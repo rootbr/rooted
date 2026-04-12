@@ -65,6 +65,16 @@ Write references as actions, not encyclopedia entries:
 `bad: "API schema documentation is available in docs/api.md"`
 `good: "For auth endpoints: see docs/api.md#auth"`
 
+Write rules as actions, not descriptions:
+`bad: "Every rule is derived from evidence-backed sources"`
+`good: "Before adding any rule — verify it traces to an evidence-backed source"`
+
+Static inventories go stale — replace with a command or script that returns current state:
+`bad: listing plugins, skills, or project structure inline`
+`good: "Read <essential files>, then run \`./overview.sh\` to orient. Read other files only if not sufficient"` — create the script if it doesn't exist
+Add `Bash(./script-name)` to `.claude/settings.json` permissions.allow so the script runs without approval prompts
+Orientation sequence: essential files (always read) → discovery script → other files on demand
+
 File budgets: overview ≤ 200 lines, task-specific files ≤ 400 lines, no prose paragraph longer than 3 sentences
 
 ### Positive Framing
@@ -175,6 +185,8 @@ bad:  user = userRepo.findByEmail(email)                 look up user by email
 | 50 if-then edge cases | 3-5 canonical examples + declarative heuristic |
 | 500-word persona | 2-3 behavioral anchors |
 | "Don't do X" lists | Reframe as what to do instead |
+| Static project inventories | Replace with discovery command (`./overview.sh`, `grep ...`). Auto-allow in `.claude/settings.json` |
+| Descriptive rules ("X is derived from Y") | Reframe as actions ("Before adding X — verify Y") or pointers ("See X: `command`") |
 | File only grows, never pruned | When the file outgrows its budget — time to review. |
 | Only build/run/arch rules | Add security, performance, and error-handling constraints |
 | Over-pruned to bare minimum | Before deleting a rule, check: is it essential? Is it covered in another file? If unsure, keep it and test. |

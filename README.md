@@ -1,24 +1,21 @@
-# Claude-skills
+# Claude Skills — evidence-backed AI agent skills
+
+## Methodology
+
+Every rule, checklist item, and review criterion traces to one of:
+
+- **Academic research** — arxiv.org, peer-reviewed papers, Google Scholar, PubMed
+- **Technical standards** — RFCs, official specifications, language/framework documentation
+- **Human-tested** — double-checked and reviewed by a human before commit
 
 ## Skills
 
-### `/research`
-
-Multi-language web research with source verification and critical analysis. Classifies queries by type (consumer, scientific, technical, local), selects optimal search languages, applies source-type-specific quality filters, and cross-references findings before presenting.
-
-### `/java-reviewer`
-
-Deep Java code review that spawns specialist reviewers in parallel (performance, concurrency, security, reliability, maintainability, project-specific), then verifies every finding through a dedicated verification agent. Produces two reports: a clean review with only confirmed findings and a rejection audit trail. Zero config required — works on any Java git repo.
-
-See [java-reviewer/README.md](plugins/java-reviewer/skills/java-reviewer/README.md) for project integration and config options.
-
-### `/context-engineer`
-
-Write, audit, and optimize CLAUDE.md and any file containing AI agent instructions. Covers context engineering principles — token economy, progressive disclosure, right-altitude heuristics.
-
-### `/clean-code`
-
-Proactive code cleanup: simplify, reduce nesting, remove redundancy, enforce clean code principles. Triggers automatically on code changes or on phrases like "clean this up", "simplify", "refactor".
+| Skill | Description |
+|--|--|
+| `/research` | Web research with source verification and critical analysis |
+| `/java-reviewer` | Deep Java code review with parallel specialist agents and verification. [Details](plugins/java-reviewer/skills/java-reviewer/README.md) |
+| `/context-engineer` | Audit and optimize any AI agent context: CLAUDE.md, SKILL.md, prompts, instructions. Adapt project docs for AI consumption |
+| `/clean-code` | Improve code readability and maintainability |
 
 ## Installation
 
@@ -28,13 +25,10 @@ Add the marketplace:
 /plugin marketplace add rootbr/claude-skills
 ```
 
-Then install individual skills:
+Install skills:
 
 ```
-/plugin install research@rootbr/claude-skills
-/plugin install java-reviewer@rootbr/claude-skills
-/plugin install context-engineer@rootbr/claude-skills
-/plugin install clean-code@rootbr/claude-skills
+/plugin install <skill-name>@rootbr/claude-skills
 ```
 
 ## License
