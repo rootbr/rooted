@@ -128,6 +128,11 @@ Reference source files; SHOULD NOT paste snippets. Options:
 
 Reference by method, class, or function name: `see Class#method`. SHOULD NOT use line number references.
 
+For illustrative examples (teaching a pattern, not pointing to specific code) — SHOULD use generic placeholders. Real names rot on rename and confuse pattern-vs-pointer intent.
+
+bad: `Builder pattern: see UserService.findById()`
+good: `Builder pattern: see Class#method`
+
 ### Schemas / Data Models
 
 Simple models — inline: `Order: { id: string, status: "pending"|"paid"|"shipped", total: number (cents) }`
