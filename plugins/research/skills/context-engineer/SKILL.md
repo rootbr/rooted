@@ -43,7 +43,7 @@ Mixed approach (usually best): declare goal and constraints, provide imperative 
 - Short identifiers after first definition: `rps` not `records per second`
 - State each fact once — reference, don't copy
 - SHOULD budget main context ≤ 150 actionable instructions
-- PREFER mentioning WHERE to look over duplicating discoverable info: `Builder pattern: see Class#method`
+- RECOMMENDED: mention WHERE to look over duplicating discoverable info: `Builder pattern: see Class#method`
 - Specifically omit: package structure, builder patterns, class hierarchies, default constant values, code examples that mirror source
 - MUST preserve during compression: URLs, file paths, commands, proper nouns, dates, version numbers, env vars, YAML frontmatter
 - MUST use full clarity for security warnings, irreversible action confirmations, multi-step sequences where fragment ambiguity risks misread. Resume compression after
@@ -57,7 +57,7 @@ Keep main context focused. Tiered architecture:
 |--|--|--|--|
 | Hot | CLAUDE.md / AGENTS.md — conventions, trigger tables, constraints | Always loaded | <50 instructions |
 | Warm | Domain-specific agent files — per-task specialists | Invoked when task matches | Unbounded per file, one at a time |
-| Cold | Knowledge base docs, schemas, API specs | Retrieved on demand (MCP/search) | `see <file>` pointers |
+| Cold | Knowledge base docs, schemas, API specs | Retrieved on demand (Model Context Protocol (MCP) / search) | `see <file>` pointers |
 
 Hot tier is your bottleneck. Every instruction there competes for attention. Move anything task-specific to warm tier; anything reference-like to cold tier.
 
@@ -83,11 +83,12 @@ Describe what TO do, not what NOT to do. Exception: safety boundaries benefit fr
 
 ### Priority Markers
 
-Use consistently:
-- MUST: non-negotiable (safety, compliance, data integrity)
-- SHOULD: strong defaults, overridable with reason
-- PREFER: soft preferences among valid alternatives
-- AVOID: allowed but discouraged
+Keywords interpreted per BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in ALL CAPITALS:
+- MUST / REQUIRED / SHALL: absolute requirement (safety, compliance, data integrity)
+- MUST NOT / SHALL NOT: absolute prohibition
+- SHOULD / RECOMMENDED: strong default, deviation requires justified reason
+- SHOULD NOT / NOT RECOMMENDED: discouraged, deviation requires justified reason
+- MAY / OPTIONAL: truly optional, valid alternatives coexist
 
 ### Match Constraints to Model
 
@@ -110,22 +111,22 @@ For top models — focus on goals and heuristics, not rigid rules. For weaker mo
 - Lists for instructions (clearer than paragraphs)
 - Dense format for tables — compact separators, no column-width padding
 - Horizontal rules (`---`) only for major breaks
-- State facts directly, AVOID meta-commentary, AVOID section intros
+- State facts directly; SHOULD NOT include meta-commentary or section intros
 - Write at ~8th grade reading level
 - Mix writing styles deliberately: descriptive ("uses X pattern"), prescriptive ("follow Y"), conditional ("if Z, then use W"), explanatory ("avoid X because Y")
-- Describe topology in text: `Hierarchy: X → Y → Z[]`, `Flow: a → b → c → d` — avoid ASCII diagrams
+- Describe topology in text: `Hierarchy: X → Y → Z[]`, `Flow: a → b → c → d` — SHOULD NOT use ASCII diagrams
 - Use bad/good contrast pairs to demonstrate rules. `bad: "Sure! I'd be happy to help you with that."` → `good: "Bug in auth middleware. Fix:"`
 
 ## Describing Content Types
 
 ### Code Conventions
 
-Reference source files, AVOID pasted snippets. Options:
+Reference source files; SHOULD NOT paste snippets. Options:
 - Point to examples: `<Pattern>: follow <path/to/file>`
 - Describe abstractly: `Errors: Result<T, E> pattern. Never throw from business logic.`
 - Critical rules: `MUST: run lint before every commit`
 
-Reference by method, class, or function name: `see Class#method`, AVOID line number references
+Reference by method, class, or function name: `see Class#method`. SHOULD NOT use line number references.
 
 ### Schemas / Data Models
 
@@ -193,6 +194,7 @@ bad:  user = userRepo.findByEmail(email)                 look up user by email
 
 ## Self-Review Checklist
 
+- Frontmatter `description` is self-contained — no cross-file references, no citations, readable in isolation during skill routing
 - Every section serves a clear purpose — no decorative text
 - No instruction repeated across sections
 - Declarative where possible, imperative only where necessary
