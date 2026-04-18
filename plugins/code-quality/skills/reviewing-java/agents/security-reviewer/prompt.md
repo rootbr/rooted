@@ -76,3 +76,7 @@ Use the checklist's implicit CVSS-like scale:
 ```
 
 Number sequentially: `SEC1`, `SEC2`…
+
+### Empty case
+
+If you found no issues to report, your entire output is a single line: `## No findings`. Always emit a report — silence is not an option.

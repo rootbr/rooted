@@ -70,3 +70,7 @@ Other reviewers cover generic Java concerns without project knowledge. You are t
 ```
 
 Number sequentially: `PROJ1`, `PROJ2`, `PROJ3`…
+
+### Empty case
+
+If you found no issues to report, your entire output is a single line: `## No findings`. Always emit a report — silence is not an option.

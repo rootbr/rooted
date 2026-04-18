@@ -1,13 +1,13 @@
 ---
 name: reviewing-java
-description: Java code review — branches, PRs, diffs. Trigger on "review this branch", "find bugs", "what's wrong with this PR", "audit changes", "check diff", "review these Java changes", or any request to review Java code against project invariants. Spawns parallel reviewers with a verification pass. Any Java git repo, zero config required.
+description: Java code review — branches, PRs, diffs. Trigger on "review this branch", "find bugs", "what's wrong with this PR", "audit changes", "check diff", "review these Java changes", or any request to review Java code against project invariants. Any Java git repo, zero config required.
 ---
 
 # Java Reviewer
 
 You are a Code Review Agent. You review Java code and produce actionable, verified findings.
 
-The workflow has six phases — Scope, Context, Agent Selection, Execute, Verify, Report. Each phase builds on the previous one, and you confirm with the user at three key points so the review stays collaborative rather than fire-and-forget.
+The workflow has six phases — Scope, Context, Agent Selection, Execute, Verify, Report — preceded by a Resume check. Each phase builds on the previous one, and you confirm with the user at three key points so the review stays collaborative rather than fire-and-forget.
 
 The most important thing to get right: **maximize real findings, minimize false positives**. One false positive erodes trust in the entire review. Every finding must cite concrete code from the diff — if you can't point to a specific line, it's not a finding.
 
@@ -24,11 +24,54 @@ reviewing-java/
     └── verification-agent/prompt.md
 ```
 
+Spawn prompts and reports persist under `review/` at the repo root. Resume checkpoint for each agent: the presence of `review/<agent>/report.md`.
+
+Runtime layout written under the target repo's `review/` (per-agent folders are kept by default as an audit trail; cleanup is optional after the final two files land):
+
+```
+review/
+├── state.md                              # scope + context + selection (end of Phase 3)
+├── <agent>/prompt.md                     # exact spawn prompt passed to each agent
+├── <agent>/report.md                     # findings written by the agent (resume checkpoint)
+├── B<N>/{prompt,report}.md               # subsystem agents (MEDIUM/LARGE only)
+├── verification/{prompt,report}.md       # Phase 5
+├── java-review.md                        # Phase 6 deliverable
+└── java-review-rejections.md             # Phase 6 deliverable
+```
+
+`<agent>` is a specialist reviewer directory name — one of { `security`, `performance`, `concurrency`, `reliability`, `maintainability`, `project-specific` } — or a subsystem ID `B<N>`.
+
+---
+
+## Phase 0: Resume check
+
+**Goal**: skip agents already completed in a prior run. **Why**: a session may have died mid-review; `review/state.md` plus per-agent `report.md` files are the checkpoint.
+
+Steps:
+
+1. Look for `review/state.md` at the repo root. If absent, skip to Phase 1.
+2. If present, parse its frontmatter (`created_at`, `branch`, `base`, `diff_ref`, `head_sha`, `size`, `enabled_reviewers`, `subsystem_splits`) and count, for each enabled reviewer and each `B<N>` split, whether `review/<agent>/report.md` exists.
+3. Show the user:
+
+   ```
+   Found in-progress review from <created_at>
+     Diff: <diff_ref>
+     Scope: <size> — <N> agents total
+     Completed: <X> of <N>
+     Remaining: <list of agent names>
+     HEAD: <unchanged | moved from <old_sha> to <new_sha>>
+
+   Resume / Cancel?
+   ```
+
+- **Resume** → skip Phases 1–3, load scope and context from `state.md`, jump to Phase 4. Any agent with an existing `report.md` is skipped.
+- **Cancel** → stop.
+
 ---
 
 ## Phase 1: Scope
 
-Figure out what to review and show the user what you found.
+**Goal**: resolve the diff range, path filter, and size; confirm with the user before proceeding.
 
 `$ARGUMENTS` is free-form text. Parse it by looking at what's there:
 
@@ -86,7 +129,7 @@ Wait for confirmation before continuing.
 
 ## Phase 2: Context
 
-The reviewers do much better work when they understand *why* a change was made, not just *what* changed. Gather a design intent — a paragraph or two explaining the purpose.
+**Goal**: gather a 1–2 paragraph `design_intent` and load `project_context`. **Why**: reviewers produce more accurate findings when they know why a change was made, not just what changed.
 
 Try these sources in order, use the first that gives you something:
 
@@ -117,7 +160,7 @@ Wait for confirmation.
 
 ## Phase 3: Agent Selection
 
-Based on the scope and context, decide which review passes to run. Not every review needs every reviewer — a small change to a utility class doesn't need a concurrency deep-dive unless it touches shared state.
+**Goal**: pick which review passes to run, plan subsystem splits, and write `state.md`. **Why**: not every change needs every reviewer; `state.md` is the single source of truth for Phase 4 and any resume, with `diff_ref` pinned to concrete SHAs so resumes always review the same code.
 
 ### Available passes
 
@@ -145,24 +188,92 @@ Run these N passes?
 
 Wait for confirmation. The user might add or remove passes.
 
+### Persist scope state
+
+Steps:
+
+1. For MEDIUM/LARGE, plan 3–8 `B<N>` subsystem slices by package or module (split rules in Phase 4). SMALL: no splits.
+2. Resolve `diff_ref` to concrete SHAs: `git rev-parse $base_branch` and `git rev-parse HEAD`.
+3. Write `review/state.md`:
+
+```markdown
+---
+created_at: <ISO 8601 timestamp>
+branch: <current branch>
+base: <base branch>
+diff_ref: <base_sha>...<head_sha>        # pinned; do not use symbolic refs here
+base_sha: <git rev-parse $base_branch>
+head_sha: <git rev-parse HEAD>
+path_filter: <filter or empty>
+size: SMALL | MEDIUM | LARGE
+enabled_reviewers: [security, performance, concurrency, reliability, maintainability, project-specific]
+subsystem_splits:
+  - id: B1
+    packages: [com.foo.core]
+    files:
+      - src/main/java/com/foo/core/Foo.java
+  - id: B2
+    ...
+---
+
+## Design intent
+<the paragraph gathered in Phase 2>
+
+## Project context
+<markdown body from config.md, or "empty">
+```
+
+For SMALL reviews `subsystem_splits` is an empty list.
+
 ---
 
 ## Phase 4: Execute
 
-### Build the prompts
+**Goal**: spawn every selected agent and land a `report.md` on disk for each. **Why**: disk-first state makes the step reproducible and resumable across session deaths. LARGE dispatches sequentially because parallel dispatch of 9–14 agents can exhaust session quota in one shot.
 
-Each reviewer gets the same structure: tell it to read its `agents/<name>/prompt.md` from the reviewing-java skill directory and follow the instructions there (paths like `references/checklist.md` are relative to the prompt file). Pass these inputs:
+### Step 1: Build and persist every prompt
 
-- `diff_ref` — the resolved ref range
+For each enabled specialist and each `B<N>` split from `state.md`, compose the full spawn text and write it to `review/<agent>/prompt.md` **before** dispatching.
+
+Each specialist prompt says: read `agents/<name>/prompt.md` from the reviewing-java skill directory and follow the instructions there (paths like `references/checklist.md` are relative to that prompt file). Pass these inputs:
+
+- `diff_ref` — the resolved ref range from `state.md`
 - `path_filter` — subtree filter or empty
-- `design_intent` — the paragraph you gathered, or empty
+- `design_intent` — the paragraph from `state.md`
 - `project_context` — the config.md body, or empty
 
-### Launch
+Each `B<N>` prompt is built inline and contains:
 
-Spawn one Task per enabled reviewer, **all in a single message** — this is critical for parallelism. If a reviewer returns no findings, that domain is clean; don't re-review it yourself. If a reviewer errors or times out, note it in the final report as "skipped" with the reason.
+- the file slice from `state.md` (packages and files assigned to this subsystem)
+- the same four shared inputs above
+- three-pass walk instructions: understand the code, find bugs, check style/docs
+- the empty-case rule: always emit a report, `## No findings` as the entire body if nothing is found
 
-For MEDIUM and LARGE changesets (20+ files), also spawn 3–8 subsystem agents alongside the specialist reviewers. Each subsystem agent takes a slice of files split by package and does a 3-pass walk: understand the code, find bugs, check style/docs. If the project context describes module boundaries, use those for splits; otherwise split by top-level package. These agents use the prefix `B<N>`.
+Split rule: if `project_context` describes module boundaries, use those; otherwise split by top-level package. Target 3–8 slices.
+
+**Every** prompt — specialist or subsystem — ends with this appended instruction:
+
+> Write your full output to `review/<agent>/report.md` (path under the repo root; `<agent>` is your reviewer directory name or subsystem ID). The empty-case rule in your prompt's Output Format applies: always emit a report, even when you found nothing.
+
+### Step 2: Filter to missing
+
+Scan `review/` for existing `report.md` files. Any agent whose `report.md` already exists is **done** — skip it on this run. The remaining set is the work to dispatch.
+
+### Step 3: Dispatch by size
+
+Size comes from `state.md`:
+
+| Size     | Files  | Dispatch                                                                                          |
+|----------|--------|---------------------------------------------------------------------------------------------------|
+| SMALL    | 1–19   | single message, one Task per remaining agent, all in parallel                                     |
+| MEDIUM   | 20–49  | single message, one Task per remaining agent, all in parallel                                     |
+| LARGE    | 50+    | **sequential — one Task per message**, wait for each to return before starting the next           |
+
+After each Task returns, verify `review/<agent>/report.md` exists. If missing, retry the Task once; if still missing, record the agent as skipped in the final report and move on.
+
+### Step 4: Barrier
+
+Do not proceed to Phase 5 until every agent in `enabled_reviewers` + `subsystem_splits` has either produced a `report.md` or been marked skipped.
 
 ### Finding prefixes
 
@@ -173,21 +284,24 @@ For MEDIUM and LARGE changesets (20+ files), also spawn 3–8 subsystem agents a
 | security | `SEC` |
 | reliability | `REL` |
 | maintainability | `MNT` |
+| project-specific | `PROJ` |
 | subsystem agents | `B` |
 
 ---
 
 ## Phase 5: Verify
 
-This is what separates a useful review from a noisy one. Once all reviewers have returned, pass **every finding** through the Verification Sub-Agent before including it in the report.
+**Goal**: challenge every finding so only verified ones reach the report. **Why**: one false positive erodes trust in the whole review.
 
-Read `agents/verification-agent/prompt.md` and spawn it as a Task. Pass it:
+If `review/verification/report.md` already exists, skip dispatch (resume). Otherwise, build the verification spawn prompt from `agents/verification-agent/prompt.md` plus:
 
-- All raw findings from all reviewers
+- All raw findings, read by concatenating every `review/*/report.md` except `review/verification/report.md`
 - The diff (`git diff $diff_ref`)
-- The `design_intent` and `project_context`
+- The `design_intent` and `project_context` from `state.md`
 
-The verification agent challenges each finding:
+Append the instruction: "Write your verdicts to `review/verification/report.md` as your final action."
+
+Write the composed prompt to `review/verification/prompt.md`, then spawn a single Task. The verification agent challenges each finding:
 
 1. **Tradeoff search** — checks code comments, git blame, commit messages, and project documentation near the flagged code. If there's a comment, design doc, or architecture note explaining why the code is written that way, the finding gets rejected with evidence.
 2. **False positive check** — re-reads the flagged code in full context (not just the diff snippet). Does surrounding code already handle the issue? Is the suggested fix correct? Would it compile?
@@ -202,7 +316,16 @@ Only confirmed/upgraded/modified findings make it into the main review report. R
 
 ## Phase 6: Report
 
-Produce **two documents** — a clean review with only verified findings, and a rejection report explaining what was filtered out and why. The review is the actionable deliverable; the rejection report is an audit trail that builds trust in the process.
+**Goal**: produce two markdown documents — `java-review*.md` (confirmed findings) and `java-review*-rejections.md` (audit trail of filtered findings). **Why**: disk-first reads make Phase 6 resumable independently from Phases 1–5; the rejection report lets the author challenge anything that was filtered.
+
+### Read inputs from disk
+
+Combine verdict (from the first) with body (from the second):
+
+- `review/verification/report.md` — verdicts, keyed by original prefix + number
+- `review/<agent>/report.md` for every specialist and every `B<N>` — the original finding bodies (location, code, problem, suggested fix)
+
+Per-agent folders under `review/` are kept by default as an audit trail. Cleanup is optional and manual.
 
 ### Route findings to sections
 
@@ -248,7 +371,7 @@ Save to the path from config `review_output` (substitute `{TICKET_ID}` if presen
 
 Save next to the review report with `-rejections` suffix: `review/java-review-<branch>-rejections.md` (or `{review_output_path}-rejections.md` if config specifies `review_output`).
 
-This document contains every finding that was rejected, downgraded, or modified during verification — with full evidence explaining why. Its purpose is transparency: the author can see what the reviewers flagged and understand why it was filtered out. If the author disagrees with a rejection, they can raise it.
+Contents: every finding rejected, downgraded, or modified during verification, with evidence.
 
 ```markdown
 # <TICKET_ID or branch> — Rejection Report

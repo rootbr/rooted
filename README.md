@@ -4,7 +4,7 @@
 [![GitHub stars](https://img.shields.io/github/stars/rootbr/rooted?style=social)](https://github.com/rootbr/rooted/stargazers)
 [![Rules cited from](https://img.shields.io/badge/rules%20cited%20from-13%20papers%20%C2%B7%202%20RFCs-success)](#references)
 
-Every rule in this marketplace traces to a peer-reviewed paper or an RFC — never to "ask the model to write a skill." [Research shows](https://arxiv.org/abs/2602.11988) LLM-generated context files *decrease* agent task success and raise inference cost by ~20%. Rooted structurally refuses them.
+Context engineering and agent-management skills for Claude Code — give your agents grounded instructions, verified sources, and disciplined reasoning instead of vibes. Built on top: software-development and code-review skills that boost productivity through context management and critical analysis. Every rule in this marketplace traces to a peer-reviewed paper or an RFC — never to "ask the model to write a skill." [Research shows](https://arxiv.org/abs/2602.11988) LLM-generated context files *decrease* agent task success and raise inference cost by ~20%. Rooted structurally refuses them.
 
 - **Evidence-based, not LLM-generated.** Every rule traces to a peer-reviewed paper, RFC/spec, or a hands-on test — not to "ask the model to write a skill."
 - **Lean context over static dumps.** For example, instead of an `/init`-style project-structure blob in `CLAUDE.md` (shown to *decrease* agent success and raise cost by ~20% [[11]](#references)), orientation happens on demand via [`overview.sh`](overview.sh) with an explicit stop-instruction. The agent doesn't preemptively slurp the whole tree into context, so it doesn't fill its working memory with project content it doesn't need and later lose focus on the actual task.
@@ -31,7 +31,7 @@ Every rule, checklist item, and review criterion traces to one of:
 
 | Skill | Description |
 |--|--|
-| `/researching-topics` | Web research with source verification and critical analysis |
+| `/researching-topics` | Research any topic on the web with source verification and critical analysis |
 | `/auditing-ai-context` | Audit and optimize any AI agent context: CLAUDE.md, SKILL.md, prompts, instructions. Adapt project docs for AI consumption |
 
 ## Installation

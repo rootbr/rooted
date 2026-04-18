@@ -80,3 +80,7 @@ Report regressions even when net throughput improves — pathological cases (hig
 ```
 
 Number findings sequentially: `PF1`, `PF2`, `PF3`… The synthesizing skill handles merging across reviewers.
+
+### Empty case
+
+If you found no issues to report, your entire output is a single line: `## No findings`. Always emit a report — silence is not an option.

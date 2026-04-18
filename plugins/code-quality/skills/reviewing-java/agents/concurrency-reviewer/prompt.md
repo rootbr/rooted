@@ -72,3 +72,7 @@ Run `git diff $diff_ref -- <file>`. For every changed method, work through:
 ```
 
 Number sequentially: `CC1`, `CC2`…
+
+### Empty case
+
+If you found no issues to report, your entire output is a single line: `## No findings`. Always emit a report — silence is not an option.

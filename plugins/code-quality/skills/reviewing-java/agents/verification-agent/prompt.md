@@ -115,3 +115,7 @@ End with a summary block:
 - **Don't re-review from scratch.** Trust that the specialist reviewers did their domain-specific analysis. You're checking their work against the broader code context they might have missed, not redoing their checklist.
 - **Preserve the original prefix.** A confirmed SEC1 stays SEC1. Only VER<N> findings get the VER prefix.
 - **Silence means confirmed.** If you have nothing to add to a finding, just mark it confirmed. Don't pad your output.
+
+## Empty case
+
+If zero findings were submitted to you (every specialist returned `## No findings`), emit only the summary block with all counts set to 0 — no per-finding sections. Always emit a report; silence is not an option.
