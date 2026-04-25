@@ -6,8 +6,8 @@ Concise reference for finding performance bugs during code review. Focus on subt
 1. Object Layout & CPU Cache -- header size, 8-byte alignment, field reordering, false sharing, NUMA. JEP 519 compact headers (JDK 25)
 2. Data Structures -- HashMap traps, collection choice table, String traps (Compact Strings JEP 254)
 3. Synchronization & Locking -- lock cost ladder (x86/ARM), lock states after JEP 374, StampedLock, virtual-thread pinning (JEP 491)
-4. JIT Compilation & Code Shape -- inlining (MaxInlineSize=35 vs FreqInlineSize=325), megamorphic call sites, escape analysis, intrinsics, 11 hot-path bug patterns with bad:/good: code pairs
-5. GC & Allocation Pressure -- TLAB fast path, humongous allocations, autoboxing, review checklist (14 items)
+4. JIT Compilation & Code Shape -- inlining (MaxInlineSize=35 vs FreqInlineSize=325), megamorphic call sites, escape analysis, intrinsics, 12 hot-path bug patterns with bad:/good: code pairs
+5. GC & Allocation Pressure -- TLAB fast path, humongous allocations, autoboxing, review checklist (15 items)
 6. I/O & Networking -- socket tuning, ByteBuffer, zero-copy, common traps
 7. Common Anti-Patterns in Hot Paths -- lookup table
 8. Profiling Toolkit -- async-profiler 4.3, JFR, JOL, JMH 1.37, JITWatch, JVM flags
@@ -15,9 +15,9 @@ Concise reference for finding performance bugs during code review. Focus on subt
 
 Then:
 - Key References -- inline foundational list
-- Research Questions to Cross-Check Against Sources -- 10 lettered buckets (A-J), 48 questions
+- Research Questions to Cross-Check Against Sources -- 10 lettered buckets (A-J), 49 questions
 - Sources -- 6 sub-groups (Normative, JEPs, Foundational, Tooling, Checklists, Industry)
-- Gotchas -- 18 common wrong assumptions with stable IDs (G-01..G-18)
+- Gotchas -- 20 common wrong assumptions with stable IDs (G-01..G-20)
 
 ---
 
@@ -330,6 +330,24 @@ return -1;
 
 Throwing cost is dominated by `Throwable.fillInStackTrace()` walking the entire call stack. Source: Shipilev *Exceptional Performance* (2014).
 
+### 4.12 Integer Division & Modulo in Hot Paths
+
+```java
+bad:
+int bucket = hash % capacity;            // IDIV when capacity isn't a compile-time constant
+int next = (index + 1) % ringSize;       // IDIV per iteration for ring buffer advance
+
+good:
+// Power-of-two: single AND instruction (capacity must be power of two, value ≥ 0)
+int bucket = hash & (capacity - 1);
+int next = (index + 1) & (ringSize - 1);
+
+// Non-power-of-two constant divisor: JIT emits mul+shift (Granlund-Montgomery) — no action needed
+// Variable divisor in hot loop: restructure to avoid modulo (counter, lookup table, or power-of-two sizing)
+```
+
+Integer division (`IDIV`) costs 20–90 cycles on x86 (operand-dependent); multiplication costs 3 cycles. For compile-time constant divisors, HotSpot C2 emits a multiply-shift sequence automatically (Granlund-Montgomery). For runtime-variable or runtime-constant-but-not-JIT-proven divisors, the full `IDIV` runs. Power-of-two modulo with `&` is always a single cycle. **Caution**: `n & (d - 1)` ≠ `n % d` for negative `n` — Java's `%` returns a negative remainder for negative dividends, while `&` always returns a non-negative result. Source: Lemire, Kaser, Kurz, "Faster Remainder by Direct Computation" (SPE 2019, arXiv:1902.01961) — measured 25%+ faster than compiler-optimized remainder on Skylake/Ryzen; `HashMap` source (uses `hash & (table.length - 1)` as the canonical pattern).
+
 ---
 
 ## 5. GC & Allocation Pressure
@@ -377,6 +395,7 @@ Sources: Oaks Ch 12 pp.392-395; SLF4J 2.0 manual; `java.lang.ref.Cleaner` Javado
 - [ ] `synchronized` lock targets are `private final Object lock = new Object()`, never boxed primitives, `this`, or `Class` literals (§4.5) — source: SpotBugs WL_*; Oaks Ch 9
 - [ ] Executors are bounded or virtual-thread per task; no `Executors.newCachedThreadPool` without explicit caps (§4.6) — source: JCIP §8.3
 - [ ] No exceptions used for control flow in hot paths (§4.11) — source: Shipilev *Exceptional Performance*
+- [ ] Hot-path modulo with power-of-two divisor uses bitwise AND; `%` with variable divisor flagged for restructuring (§4.12) — source: Lemire et al. SPE 2019
 
 ---
 
@@ -414,7 +433,7 @@ Sources: `InetSocketAddress` Javadoc; `BufferedOutputStream` Javadoc; Netty docs
 
 ## 7. Common Anti-Patterns in Hot Paths
 
-Concentrated lookup table. Detailed bad:/good: code pairs in §4.1-§4.11. Sources per row in the linked subsection.
+Concentrated lookup table. Detailed bad:/good: code pairs in §4.1-§4.12. Sources per row in the linked subsection.
 
 | Anti-pattern | Cost | Fix | See |
 |--|--|--|--|
@@ -427,6 +446,7 @@ Concentrated lookup table. Detailed bad:/good: code pairs in §4.1-§4.11. Sourc
 | `Collections.unmodifiableList(new ArrayList<>(list))` | Wraps + copies | `List.copyOf(list)` — single compact copy | `List.copyOf` Javadoc |
 | `toString()` in log arguments | Evaluated even if log level is off | Parameterized `log.debug("x={}", v)` or lazy supplier | §4.8, §4.10 |
 | `synchronized` on boxed `Integer`/`Long` | Integer cache → unrelated threads share lock | Lock on dedicated `Object` | §4.5 |
+| `n % powerOfTwo` in hot path | `IDIV` 20–90 cycles vs `AND` 1 cycle | `n & (powerOfTwo - 1)` for non-negative `n` | §4.12 |
 
 ---
 
@@ -560,23 +580,24 @@ The checklist is organized to answer the following questions about a diff or PR.
 38. **Are `Class.forName` / `Method.invoke` cached into `MethodHandle` / static fields?** (§7) — source: `MethodHandle` Javadoc; Oaks Ch 12.
 39. **Is `Thread.sleep(1)` avoided when sub-millisecond timing is needed?** (§4.9, §7) — source: `Thread.sleep` Javadoc; `LockSupport.parkNanos`.
 40. **Are `Collections.unmodifiableList(new ArrayList<>(x))` patterns replaced with `List.copyOf(x)`?** (§7) — source: `List.copyOf` Javadoc.
+41. **Does hot-path modulo with a power-of-two divisor use `n & (d - 1)` instead of `n % d`? Is `%` with a runtime-variable non-constant divisor flagged for restructuring?** (§4.12, §7) — source: Lemire et al. SPE 2019.
 
 ### H. Profiling discipline
 
-41. **Is async-profiler 4.3+ used as the first investigation tool (low overhead, no safepoint bias)?** (§8) — source: github.com/async-profiler/async-profiler; Slusarski 2022/12/12 async-manual.
-42. **Is JFR continuous profiling enabled in production for post-hoc analysis?** (§8) — source: Oaks Ch 3.
-43. **Are optimization hypotheses validated via JMH (1.37)?** (§8) — source: JEP 230; github.com/openjdk/jmh.
-44. **Are inlining decisions verified via `-XX:+PrintInlining` / JITWatch before declaring code "hot"?** (§4, §8) — source: Oaks Ch 4.
+42. **Is async-profiler 4.3+ used as the first investigation tool (low overhead, no safepoint bias)?** (§8) — source: github.com/async-profiler/async-profiler; Slusarski 2022/12/12 async-manual.
+43. **Is JFR continuous profiling enabled in production for post-hoc analysis?** (§8) — source: Oaks Ch 3.
+44. **Are optimization hypotheses validated via JMH (1.37)?** (§8) — source: JEP 230; github.com/openjdk/jmh.
+45. **Are inlining decisions verified via `-XX:+PrintInlining` / JITWatch before declaring code "hot"?** (§4, §8) — source: Oaks Ch 4.
 
 ### I. Virtual threads & modern JDK features
 
-45. **Are virtual threads (JEP 444 GA in JDK 21) used for I/O-bound work — not pooled, not for CPU-bound tasks?** (§3) — source: Oracle JDK 25 Virtual Threads docs.
-46. **On JDK 24+, has `-Djdk.tracePinnedThreads` been replaced with JFR `jdk.VirtualThreadPinned`?** (§3, §8) — source: mikemybytes 2025/04/09; Oracle JDK 25 docs.
-47. **Does context propagation use `ScopedValue` (JEP 506 final in JDK 25) instead of `ThreadLocal` in pool-based executors?** (§3) — source: JEP 506; `ScopedValue` Javadoc.
+46. **Are virtual threads (JEP 444 GA in JDK 21) used for I/O-bound work — not pooled, not for CPU-bound tasks?** (§3) — source: Oracle JDK 25 Virtual Threads docs.
+47. **On JDK 24+, has `-Djdk.tracePinnedThreads` been replaced with JFR `jdk.VirtualThreadPinned`?** (§3, §8) — source: mikemybytes 2025/04/09; Oracle JDK 25 docs.
+48. **Does context propagation use `ScopedValue` (JEP 506 final in JDK 25) instead of `ThreadLocal` in pool-based executors?** (§3) — source: JEP 506; `ScopedValue` Javadoc.
 
 ### J. Compact object headers / JEP 519
 
-48. **On JDK 25 workloads sensitive to heap or allocation rate, is `-XX:+UseCompactObjectHeaders` enabled?** Real-world: SPECjbb2015 22% heap, 8% CPU; Amazon up to 30% CPU reduction. (§1, §5.2) — source: JEP 519; InfoQ June 2025.
+49. **On JDK 25 workloads sensitive to heap or allocation rate, is `-XX:+UseCompactObjectHeaders` enabled?** Real-world: SPECjbb2015 22% heap, 8% CPU; Amazon up to 30% CPU reduction. (§1, §5.2) — source: JEP 519; InfoQ June 2025.
 
 ---
 
@@ -626,6 +647,7 @@ The checklist is organized to answer the following questions about a diff or PR.
 - [Ali Dehghani: HotSpot Intrinsics](https://alidg.me/blog/2020/12/10/hotspot-intrinsics) — `Math.log` intrinsic 309M vs 151M ops/s
 - [Ali Dehghani: False Sharing](https://alidg.me/blog/2020/5/1/false-sharing) — 170 ns/op → 66 ns/op with `@Contended`
 - [Krzysztof Slusarski: G1 Humongous Allocations](https://krzysztofslusarski.github.io/2020/11/10/humongous.html)
+- **Lemire, Kaser, Kurz, ["Faster Remainder by Direct Computation"](https://arxiv.org/abs/1902.01961) (Software: Practice and Experience 49(6), 2019)** — `IDIV` 20–90 cycles vs `IMUL` 3 cycles; power-of-two `&` pattern; 25%+ faster than Granlund-Montgomery on Skylake/Ryzen
 
 ### Tooling
 - [async-profiler](https://github.com/async-profiler/async-profiler) — v4.3 current (Jan 2026); v4.0 added native memory + heatmaps
@@ -674,3 +696,4 @@ G-16. **"Chronicle's 'How to Make Java Sockets Faster' is about TCP_NODELAY"** �
 G-17. **"`Executors.newCachedThreadPool()` is a safe default"** — false. Unbounded thread creation → OOM / OS limits under burst. See §4.6. Source: `Executors` Javadoc; JCIP §8.3.
 G-18. **"`SimpleDateFormat` is fine if I re-create it per call"** — functionally safe but slow. `DateTimeFormatter` is immutable + thread-safe, reusable as a `static final`. See §4.3. Source: `DateTimeFormatter` Javadoc.
 G-19. **"Nested-loop order over a 2-D array doesn't matter — the JIT will fix it"** — false. Java arrays are row-major and each `a[i]` is a distinct heap-allocated sub-array; swapping inner and outer loops strides across sub-arrays and can hit near-100% L1 misses, 10–100× slower. HotSpot does not interchange loops for you. See §1. Source: Herlihy-Shavit Appendix B "Hardware Basics"; Drepper 2007 §3.3.
+G-20. **"`n & (d - 1)` is always equivalent to `n % d` for power-of-two `d`"** — false when `n` is negative. Java's `%` returns a negative remainder for negative dividends (`-7 % 4 == -3`), while `n & (d - 1)` always returns a non-negative value (`-7 & 3 == 1`). Verify the input is non-negative before replacing `%` with `&`. See §4.12. Source: JLS §15.17.3.
