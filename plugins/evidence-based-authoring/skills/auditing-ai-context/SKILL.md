@@ -197,6 +197,7 @@ Diagnose before compressing — the symptom is rarely "too many tokens."
 - Design WHY (non-obvious decisions)
 - Invariants
 - Version strings, release dates, migration timelines — verbatim, not paraphrased into relative terms
+- Source citations: stable structural anchor (book chapter + § subsection, RFC §, practice / exercise / figure number) — pages drift across editions and ebook / PDF reflows; a page may augment a stable anchor (`Practice #14, §"Verb-mixing ban" — p.110 in 2022 print`) but never replace it
 
 ## Structure
 
@@ -335,10 +336,11 @@ bad:  user = userRepo.findByEmail(email)                 look up user by email
 | Only build/run/arch rules | Add security (rarest empirically at ~6 per 100 repos), tests, goals, error-handling |
 | Over-pruned to bare minimum | Default for playbook bullets is keep-and-refine. ACE shows full-rewrite compression below threshold drops accuracy by 9.6pp |
 | Near-duplicate skills in catalog | Audit for semantic overlap; consolidate or sharpen name / description to create routing separation. Near-duplicates cause router false negatives beyond what exact-dupe merge catches (Zheng §4) |
+| Page numbers as the sole source locator | Augment or replace with a stable structural anchor (chapter + section name, practice / exercise / figure / RFC §) — pages drift across print editions and ebook / PDF reflows |
 
 ## Self-Review Checklist
 
-- Frontmatter `description` is self-contained — no cross-file references, no citations, readable in isolation during skill routing
+- Frontmatter `description` is self-contained — no cross-file references, no citations, no deictic refs, readable in isolation during skill routing
 - Hot-tier file covers the qualifying triple (conventions + architecture + project description)
 - Every section serves a clear purpose — no decorative text
 - No instruction repeated across sections
@@ -361,6 +363,7 @@ bad:  user = userRepo.findByEmail(email)                 look up user by email
 - Name describes the function performed, not the domain
 - Body scope matches description — no tool / file-access / external-call drift
 - Every rule / threshold traces to a named source (paper, RFC, spec, dated hands-on note) — untraceable rules MUST be cut or marked provisional
+- Source citations use stable structural locators (chapter + section name, practice / exercise number, RFC §) — page numbers only augment, never replace the anchor
 - User-input payloads wrapped in delimited template; safety instructions in system-prompt tier
 
 ## Maintenance
