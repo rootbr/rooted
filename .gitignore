@@ -16,3 +16,6 @@ tmp/
 .claude/skills/
 .claude/hooks/
 .claude/worktrees/
+
+# Skill-creator eval workspaces (per-iteration runs, not source)
+**/skills/*-workspace/
