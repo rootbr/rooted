@@ -5,11 +5,26 @@ cd "$(dirname "$0")"
 
 extract_field() {
   local file="$1" field="$2"
+  # Reads a frontmatter field. Handles both inline values (quoted or bare) and
+  # YAML block scalars (`>-`, `>`, `|`, `|-`, `>+`, `|+`): when the value is a
+  # block-scalar indicator, the indented continuation lines are joined with
+  # spaces, so a folded multi-line `description:` prints as one line.
   awk -v f="$field" '
-    /^---$/ { block++; next }
-    block==1 && $0 ~ "^"f": " {
-      sub("^"f": *\"?", ""); sub("\"$", ""); print; exit
+    /^---$/ { block++; if (block==2) exit; next }
+    block!=1 { next }
+    collecting==1 {
+      if ($0 ~ /^[[:space:]]+[^[:space:]]/) {
+        t=$0; sub(/^[[:space:]]+/,"",t); sub(/[[:space:]]+$/,"",t)
+        out=(out==""?t:out" "t); next
+      }
+      print out; exit
     }
+    $0 ~ "^"f":" {
+      v=$0; sub("^"f":[[:space:]]*","",v)
+      if (v=="" || v ~ /^[|>][+-]?$/) { collecting=1; out=""; next }
+      sub(/^"/,"",v); sub(/"$/,"",v); print v; exit
+    }
+    END { if (collecting==1 && out!="") print out }
   ' "$file"
 }
 

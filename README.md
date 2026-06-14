@@ -21,13 +21,14 @@ Every rule, checklist item, and review criterion traces to one of:
 
 ### evidence-based-authoring
 
-Research → explore → write. Three skills covering the full preparation pipeline — from gathering verified sources and mapping every angle of a topic, to producing agent instructions grounded in evidence.
+Four evidence-based skills. Three form a preparation pipeline — research → explore → write: gather verified sources, map every angle of a topic, then produce agent instructions grounded in evidence. The fourth, `/reading-companion`, is an active-reading companion for a book you study yourself — grounded in learning-science research.
 
 | Skill | Description |
 |--|--|
 | `/researching-topics` | Research any topic on the web with source verification and critical analysis |
 | `/discovering-subtopics` | Build a maximum-breadth question map across any topic using 10 complementary methods — structural decomposition, perspective shifting, causal chains, and more |
 | `/auditing-ai-context` | Audit and optimize any AI agent context: CLAUDE.md, SKILL.md, prompts, instructions. Adapt project docs for AI consumption |
+| `/reading-companion` | Active-reading companion for a book you study yourself — classify it, scaffold a per-book workspace, then explain intent, translate fragments, walk proofs, and capture your own notes; amplifies recall, never substitutes for it |
 
 ### code-quality
 
@@ -60,6 +61,8 @@ See [`CONTRIBUTING.md`](CONTRIBUTING.md). Every new rule must cite a source — 
 ## References
 
 For the full cross-check of each paper against the research questions this marketplace tries to answer, see the [research audit](research/2026-04-18_context-engineering-research.md) — findings extracted per paper, including tangential results that inform but do not yet back a specific skill rule.
+
+The badge and the list below count the context-engineering corpus that backs the authoring and code-review skills. [`/reading-companion`](plugins/evidence-based-authoring/skills/reading-companion/SKILL.md) rests on a separate body of learning- and reading-science research (Adler; Dunlosky et al. 2013; Roediger & Karpicke; Cepeda et al. 2006; Chi & Wylie 2014; and others); its full bibliography is bundled with the skill in [`reading-methodology.md`](plugins/evidence-based-authoring/skills/reading-companion/references/reading-methodology.md).
 
 ### Technical standards
 
