@@ -21,12 +21,13 @@ Every rule, checklist item, and review criterion traces to one of:
 
 ### evidence-based-authoring
 
-Four evidence-based skills. Three form a preparation pipeline — research → explore → write: gather verified sources, map every angle of a topic, then produce agent instructions grounded in evidence. The fourth, `/reading-companion`, is an active-reading companion for a book you study yourself — grounded in learning-science research.
+Five evidence-based skills. Three form a preparation pipeline — research → explore → write: gather verified sources, map every angle of a topic, then produce agent instructions grounded in evidence. `/appraising-research` adds a critical-appraisal gate over a finished report — grading evidence quality, surfacing hidden assumptions, hunting competing hypotheses and blind spots, and mapping who benefits. The last, `/reading-companion`, is an active-reading companion for a book you study yourself — grounded in learning-science research.
 
 | Skill | Description |
 |--|--|
 | `/researching-topics` | Research any topic on the web with source verification and critical analysis |
 | `/discovering-subtopics` | Build a maximum-breadth question map across any topic using 10 complementary methods — structural decomposition, perspective shifting, causal chains, and more |
+| `/appraising-research` | Critically appraise a finished research report — evidence grading, hidden assumptions, competing hypotheses, premortem/red-team, and beneficiary/funding analysis — then rank what to re-check, with adversarial debate on the highest-stakes findings |
 | `/auditing-ai-context` | Audit and optimize any AI agent context: CLAUDE.md, SKILL.md, prompts, instructions. Adapt project docs for AI consumption |
 | `/reading-companion` | Active-reading companion for a book you study yourself — classify it, scaffold a per-book workspace, then explain intent, translate fragments, walk proofs, and capture your own notes; amplifies recall, never substitutes for it |
 
@@ -63,6 +64,8 @@ See [`CONTRIBUTING.md`](CONTRIBUTING.md). Every new rule must cite a source — 
 For the full cross-check of each paper against the research questions this marketplace tries to answer, see the [research audit](research/2026-04-18_context-engineering-research.md) — findings extracted per paper, including tangential results that inform but do not yet back a specific skill rule.
 
 The badge and the list below count the context-engineering corpus that backs the authoring and code-review skills. [`/reading-companion`](plugins/evidence-based-authoring/skills/reading-companion/SKILL.md) rests on a separate body of learning- and reading-science research (Adler; Dunlosky et al. 2013; Roediger & Karpicke; Cepeda et al. 2006; Chi & Wylie 2014; and others); its full bibliography is bundled with the skill in [`reading-methodology.md`](plugins/evidence-based-authoring/skills/reading-companion/references/reading-methodology.md).
+
+[`/appraising-research`](plugins/evidence-based-authoring/skills/appraising-research/SKILL.md) likewise rests on a separate body of critical-thinking and evidence-appraisal research (Toulmin's argument model; Walton's argumentation schemes; Heuer's Analysis of Competing Hypotheses; Guyatt et al.'s GRADE; Lundh et al.'s Cochrane review of sponsorship bias; and the LLM self-critique literature — Constitutional AI, Chain-of-Verification, multi-agent debate, and their documented failure modes). Its full bibliography is bundled with the skill in [`appraisal-methodology.md`](plugins/evidence-based-authoring/skills/appraising-research/references/appraisal-methodology.md), with the design rationale in the [research note](research/2026-07-01_critical-thinking-layer-for-research-pipeline.md).
 
 ### Technical standards
 

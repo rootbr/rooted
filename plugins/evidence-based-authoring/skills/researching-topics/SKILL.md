@@ -1,6 +1,6 @@
 ---
 name: researching-topics
-description: "Research any topic using web search with source verification and critical analysis. Handles narrow factual lookups directly and broad open-ended exploration by first invoking /discovering-subtopics to build a question map, then researching each question and synthesising. Use this skill whenever the user asks to: search, look up, find, research, investigate, compare, recommend, review; asks \"what's the best...\", \"how does X work\", \"is X worth it\", \"tell me about X\", \"help me learn X\"; or needs current real-world information, product reviews, scientific data, practical local knowledge, or expert opinions — even for seemingly simple questions where up-to-date or experience-based info matters. NOT for searching inside the user's codebase (use Grep / Glob) or reviewing code quality (use /reviewing-java or /cleaning-code)."
+description: "Research any topic using web search with source verification and critical analysis. Handles narrow factual lookups directly and broad open-ended exploration by first invoking /discovering-subtopics to build a question map, then researching each question, synthesising, and appraising the report via /appraising-research (a separate critic that returns a ranked re-check list and revised-confidence verdict). Use this skill whenever the user asks to: search, look up, find, research, investigate, compare, recommend, review; asks \"what's the best...\", \"how does X work\", \"is X worth it\", \"tell me about X\", \"help me learn X\"; or needs current real-world information, product reviews, scientific data, practical local knowledge, or expert opinions — even for seemingly simple questions where up-to-date or experience-based info matters. NOT for searching inside the user's codebase (use Grep / Glob) or reviewing code quality (use /reviewing-java or /cleaning-code)."
 ---
 
 # Research
@@ -107,6 +107,15 @@ When presenting findings:
 - Within each cluster, lead with the consolidated finding, then the supporting evidence per question.
 - Open questions where evidence is thin or contradictory belong in a final "Open questions / further work" section — do not pad them with speculation.
 - Preserve the cluster ordering from the discovery map unless evidence reveals a stronger narrative order; if you reorder, say why in one line.
+
+### Phase 7: Critical Appraisal
+
+Phase 5 verifies facts and sources; it does not stress-test the report's *reasoning* — evidence strength, hidden assumptions, competing explanations, beneficiaries, or logic. Phase 7 closes that gap by handing the finished report to a separate critic.
+
+- **Discovery path** (Phase 2 ran `/discovering-subtopics`): invoke `/appraising-research` on the produced `.md` report by default. Fold its ranked findings back in — fix or caveat load-bearing weaknesses — and attach its verdict (main conclusion strengthened / unchanged / weakened / unsupported, with revised confidence) to the report.
+- **Direct path**: run it on request ("stress-test this", "how solid is this", "what did I miss"). Skip it for narrow factual answers — appraisal adds little to a one-line lookup.
+
+The critic runs in a clean context and must not be told which conclusion is hoped for; its output is a ranked "re-check first" list plus a revised-confidence verdict, not an edited report. It dispatches a seven-method + debate pipeline, so reserve it for reports where soundness matters, not every direct lookup.
 
 ## Output
 
