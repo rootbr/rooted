@@ -1,6 +1,6 @@
 ---
 name: discovering-subtopics
-description: "Produce a maximum-breadth map of questions across any topic — covering all dimensions, perspectives, and angles so nothing important remains unasked. Use when the user wants to explore a topic comprehensively: learning a new field, brainstorming an incident, planning a book or project, researching options, or any situation where exhaustive question coverage matters more than immediate answers. Triggers on phrases like 'map out', 'explore deeply', 'break down topic X', 'coverage map for Z', 'what should I be asking about', 'help me think through', 'what am I missing about', 'brainstorm questions on', 'body of knowledge for W', 'full question space for R'. Runs 10 complementary methods (Structural decomposition, Perspective shifting, Inversion, Causal chains, Temporal/scale, Hidden assumptions, Field intelligence, Adjacent disciplines, Meta-questions, Coverage audit) as independent checkpointed background agents, then synthesises a reader-facing question map — partial runs resume by restarting only the incomplete agents."
+description: "Produce a maximum-breadth map of questions across any topic — covering all dimensions, perspectives, and angles so nothing important remains unasked. Use when the user wants to explore a topic comprehensively: learning a new field, brainstorming an incident, planning a book or project, researching options. Triggers on phrases like 'map out', 'explore deeply', 'break down topic X', 'coverage map for Z', 'what should I be asking about', 'what am I missing about', 'brainstorm questions on'. Runs 10 complementary methods (Structural decomposition, Perspective shifting, Inversion, Causal chains, Temporal/scale, Hidden assumptions, Field intelligence via live web search, Adjacent disciplines, Meta-questions, Coverage audit) as checkpointed background agents writing per-method files to a working directory, then synthesises a reader-facing question map; partial runs resume only incomplete agents. NOT for narrow single-question lookups where an immediate answer matters more than coverage — use researching-topics."
 ---
 
 # Subtopic Discoverer
@@ -117,7 +117,7 @@ To force a specific agent to re-run, delete its output file. The saved prompt is
 
 | Anti-pattern | Fix |
 |--|--|
-| Dispatcher reads / rewrites an agent's `outputs/NN-*.md` | Don't — each agent is the sole writer of its own output file |
+| Dispatcher reads / rewrites an agent's `outputs/NN-*.md` | Don't — each agent is the sole writer of its own output; sole exception is G-06's pre-restart cleanup of a stale output lacking the completion marker |
 | Agent writes `<!-- COMPLETE -->` before finalising the body | Marker MUST be last; write it only after Verification passes |
 | Dispatching agent 10 before all of 01–09 are complete | Agent 10 audits the aggregate — missing inputs defeat its purpose |
 | Dispatching Synthesis before Agent 10 completes | Synthesis relies on the audit's Frontier / Gaps / Duplicate flags |

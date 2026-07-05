@@ -109,7 +109,7 @@ COPY {topic-slug}-questions.md to user's cwd
 
 ## Agent contract (shared across all 10 methods)
 
-Every agent prompt under `agents/method-NN-*/prompt.md` follows this structure:
+Every discovering-subtopics agent prompt under `agents/method-NN-*/prompt.md` follows this structure:
 
 1. **Role** — one sentence on what this agent is.
 2. **Task** — the specific method to run (with a primary-source citation).

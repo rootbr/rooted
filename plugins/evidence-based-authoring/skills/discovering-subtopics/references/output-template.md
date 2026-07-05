@@ -1,6 +1,6 @@
 # Output Templates
 
-> Two output shapes live in this skill: (1) the **per-agent raw output** each of the 10 method agents writes to `outputs/NN-*.md` — a flat numbered list of questions with sub-technique tags; and (2) the **synthesised reader-facing report** the Synthesis agent writes to `{run_dir}/{topic-slug}-questions.md`. This file documents both.
+> Two output shapes live in the discovering-subtopics skill: (1) the **per-agent raw output** each of the 10 method agents writes to `outputs/NN-*.md` — a flat numbered list of questions with sub-technique tags; and (2) the **synthesised reader-facing report** the Synthesis agent writes to `{run_dir}/{topic-slug}-questions.md`. This file documents both.
 
 ## Contents
 - §Per-agent output format

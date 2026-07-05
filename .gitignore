@@ -12,6 +12,9 @@ Thumbs.db
 # Temporary files
 tmp/
 
+# Local-only recycle area (retired files stay on disk; git history is the archive)
+trash/
+
 # Local-only Claude Code config (per-repo skills, hooks, worktrees)
 .claude/skills/
 .claude/hooks/
