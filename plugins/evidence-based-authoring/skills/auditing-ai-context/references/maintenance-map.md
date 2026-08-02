@@ -8,7 +8,7 @@ Out-of-runtime maintainer doc, same class as `rule-cards-provenance.md` and `rul
 |---|---|---|---|
 | `R-01`…`R-85` | audit rule for context files / skills / agent prompts | its card `rule-cards/r-XX--*.md`; full citation, ownership, evidence caveats in `rule-cards-provenance.md` | read the card's Thesis + Source; cross-check the provenance line |
 | `C-A1`…`C-F3` | audit rule for KB cards | same pattern (`rule-cards/c-XX--*.md` + provenance) | same |
-| `G-01`…`G-26` | symptom-indexed gotcha | `gotchas.md` — each entry carries its own source inline | read the entry; verify its source as below |
+| `G-01`…`G-27` | symptom-indexed gotcha | `gotchas.md` — each entry carries its own source inline | read the entry; verify its source as below |
 | `<Author> <arXiv-ID> §x` / `Table N` / `abstract` | academic source with a structural anchor | provenance line (card rules) or README §References | fetch `arxiv.org/abs/<ID>`; confirm the anchored section states the claim as written (R-56: entailment, not vibes) |
 | `Anthropic, <doc name>` | vendor doc (platform.claude.com / code.claude.com) | named inline; no separate record | fetch the named doc; vendor pages are versionless — on mismatch treat as drift and re-anchor |
 | `RFC NNNN` | technical standard | named inline | rfc-editor.org |

@@ -1,7 +1,7 @@
 ---
 title: Contradictions across sections must be resolved into one rule with explicit conditions
 rule_id: R-70
-applies_to_target: [context-file, skill, agent-prompt]
+applies_to_target: [context-file, skill, agent-prompt, doc]
 check_kind: semantic
 severity_default: high
 ---

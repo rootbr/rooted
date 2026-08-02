@@ -1,7 +1,7 @@
 ---
 title: Quantified claims must carry their numbers
 rule_id: R-54
-applies_to_target: [context-file, skill, agent-prompt]
+applies_to_target: [context-file, skill, agent-prompt, doc, code, answer]
 check_kind: mechanical
 severity_default: low
 ---

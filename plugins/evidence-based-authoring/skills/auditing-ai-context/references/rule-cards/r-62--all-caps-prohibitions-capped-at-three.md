@@ -1,7 +1,7 @@
 ---
 title: ALL-CAPS prohibitions capped at three per file, each tied to safety or data integrity
 rule_id: R-62
-applies_to_target: [context-file, skill, agent-prompt]
+applies_to_target: [context-file, skill, agent-prompt, doc, answer]
 check_kind: mechanical
 severity_default: medium
 ---

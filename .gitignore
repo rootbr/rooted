@@ -11,6 +11,7 @@ Thumbs.db
 
 # Temporary files
 tmp/
+__pycache__/
 
 # Local-only recycle area (retired files stay on disk; git history is the archive)
 trash/

@@ -171,11 +171,11 @@ accepted: Split any meeting longer than 90 minutes into two sessions with separa
 
 ### A card is a proposition for the consumer, not a summary of the source
 
-Three independent sources converge on the same unit of knowledge for an LLM consumer:
+Two independent sources converge on the same unit of knowledge for an LLM consumer, and a third names the wording the rule follows:
 
-1. **Dense X Retrieval** (Chen et al., EMNLP 2024). The best indexing unit is the *proposition*: "atomic expressions within text, each encapsulating a distinct factoid and presented in a concise, self-contained natural language format". Proposition-level indexing beats passage-level retrieval (up to +9–12 points Recall@5 with retrievers not tuned to the corpus) and improves downstream QA under a fixed token budget — and an agent assembling its working context operates exactly in that fixed-budget, untuned regime. An ideal card is a proposition.
-2. **Zettelkasten** (Ahrens, *How to Take Smart Notes*; zettelkasten.de). A permanent note holds "one idea and one idea only", written in full sentences, in your own words, as if for someone else. A note that needs "as mentioned above" to be understood is an essay fragment, not a note. Atomic does not mean small: notes should be "only about one thing — but which, as much as possible, capture the entirety of that thing" (Matuschak).
-3. **Anthropic** (*Effective context engineering for AI agents*). Context engineering means finding "the smallest possible set of high-signal tokens that maximize the likelihood of some desired outcome", written at the right altitude — the Goldilocks zone between brittle hardcoded logic and vague guidance — and "minimal does not necessarily mean short".
+1. **Dense X Retrieval** (Chen et al., EMNLP 2024) — evidence. The best indexing unit is the *proposition*: "atomic expressions within text, each encapsulating a distinct factoid and presented in a concise, self-contained natural language format". Proposition-level indexing beats passage-level retrieval (up to +9–12 points Recall@5 with retrievers not tuned to the corpus) and improves downstream QA under a fixed token budget — and an agent assembling its working context operates exactly in that fixed-budget, untuned regime. An ideal card is a proposition.
+2. **Anthropic** (*Effective context engineering for AI agents*) — evidence. Context engineering means finding "the smallest possible set of high-signal tokens that maximize the likelihood of some desired outcome", written at the right altitude — the Goldilocks zone between brittle hardcoded logic and vague guidance — and "minimal does not necessarily mean short".
+3. **Zettelkasten** (zettelkasten.de, "Atomicity"; Matuschak, "Evergreen notes should be atomic") — **the formulation C-B1 follows, never its evidence.** A permanent note holds "one idea and one idea only", written in full sentences, in your own words, as if for someone else. A note that needs "as mentioned above" to be understood is an essay fragment, not a note. Atomic does not mean small: notes should be "only about one thing — but which, as much as possible, capture the entirety of that thing" (Matuschak). Both pages call this a convention — "not a rigid law, but a guiding compass", with "no clear litmus test" — so the rule rests on the measurement in item 1 and takes only its wording here.
 
 Consequences for any KB pipeline:
 
@@ -222,12 +222,16 @@ Everything else in this specification is uniform across all stores.
 
 ## Sources
 
+Evidence:
+
 - Anthropic. *Contextual Retrieval* (2024). anthropic.com/news/contextual-retrieval
 - Anthropic. *Effective context engineering for AI agents* (2025). anthropic.com/engineering/effective-context-engineering-for-ai-agents
 - Anthropic. *Skill authoring best practices*. platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices
 - Chen, T., et al. "Dense X Retrieval: What Retrieval Granularity Should We Use?" *EMNLP 2024*. arXiv:2312.06648
 - Maynez, J., et al. "On Faithfulness and Factuality in Abstractive Summarization." *ACL 2020*. arXiv:2005.00661
 - Zhang, Q., et al. "Agentic Context Engineering: Evolving Contexts for Self-Improving Language Models" (ACE). arXiv:2510.04618
-- Ahrens, S. *How to Take Smart Notes*. 2017
-- zettelkasten.de. "Atomicity." zettelkasten.de/atomicity/guide/
-- Matuschak, A. "Evergreen notes should be atomic." notes.andymatuschak.org/Evergreen_notes_should_be_atomic
+
+Formulation a rule follows — never a rule's evidence. C-B1 rests on Dense X Retrieval, which measures proposition-level indexing; these supply how the rule is worded, and each calls it a convention:
+
+- zettelkasten.de. "Atomicity." zettelkasten.de/atomicity/guide/ — "not a rigid law, but a guiding compass"
+- Matuschak, A. "Evergreen notes should be atomic." notes.andymatuschak.org/Evergreen_notes_should_be_atomic — "no clear litmus test"

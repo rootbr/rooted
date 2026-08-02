@@ -1,7 +1,7 @@
 ---
 title: Section intros and meta-commentary are trimmed so a section opens on its rule
 rule_id: R-25
-applies_to_target: [context-file, skill, agent-prompt]
+applies_to_target: [context-file, skill, agent-prompt, doc, answer]
 check_kind: semantic
 severity_default: low
 ---

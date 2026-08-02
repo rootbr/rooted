@@ -1,7 +1,7 @@
 ---
 title: Every pointer to an in-repo entity must be verified against the current repo state
 rule_id: R-73
-applies_to_target: [context-file, skill, agent-prompt]
+applies_to_target: [context-file, skill, agent-prompt, doc, code, answer]
 check_kind: mechanical
 severity_default: medium
 ---

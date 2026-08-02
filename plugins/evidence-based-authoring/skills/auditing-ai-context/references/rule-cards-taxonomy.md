@@ -32,10 +32,10 @@ No `links`, no `tags`. `group` and `confidence` are not card fields — `group` 
 
 ## Allowed values
 
-- `applies_to_target`: `context-file` · `skill` · `agent-prompt` · `kb-card` · `kb-corpus`
+- `applies_to_target`: `context-file` · `skill` · `agent-prompt` · `kb-card` · `kb-corpus` · `doc` · `code` · `answer`
 - `check_kind`: `mechanical` · `semantic`
 - `severity_default`: `high` · `medium` · `low` · `info`
-- `group` (mapper / workflow-derived, not a card field): `G1-routing` · `G2-tiering` · `G3-structure` · `G4-pointers` · `G5-sourcing` · `G6-constraints` · `G7-antipatterns` · `G8-security` · `G9-kb-card`
+- `group` (mapper / workflow-derived, not a card field): `G1-routing` · `G2-tiering` · `G3-structure` · `G4-pointers` · `G5-sourcing` · `G6-constraints` · `G7-antipatterns` · `G8-security` · `G9-kb-card` · `G10-present-design` · `G11-output-style`
 - `confidence` (recorded as `evidence` in the map, not a card field): `high` · `moderate` · `low`
 
 ## Body block schema (one schema across the corpus, C-F1)
@@ -48,7 +48,7 @@ In this order: `## Thesis` → `## Rationale` → `## Example` → `## Limits` �
 - **Limits** — the rule's own scope and applicability bound; caveats and extrapolations (C-C3). States its boundary without naming sibling rules.
 - **Validator** — the operative check the sub-agent runs (what to grep, what to flag, the validator question). Corpus-local block, added because an audit rule has an operative check distinct from its rationale.
 - **Patch output** — the consumer block (C-D2, one per card, one name per corpus): when (the audit sub-task), who (this rule's audit sub-agent), where (emit a patch with this `rule_id` against the dispatch-supplied schema, or `needs_human` for a semantic call).
-- **Source** — a compact provenance footer: the article + § / RFC + § / book + § the rule rests on, plus any one-line caveat. Not in-prose attribution (Thesis/Rationale stay attribution-free), so the spirit of C-E2 holds. Note: the audit sub-agent is read-only and usually cannot fetch the source at runtime, so the locator chiefly serves human verification of `needs_human` patches and model grounding; the full citation lives in the map.
+- **Source** — a compact provenance footer naming one of the three admissible classes of the repo's Evidence-Based Rule: academic research (article + §), a technical standard (RFC or specification + §), or verified hands-on experience (the test that demonstrated it). A trade book is not a source class — a practitioner text may be named as the formulation a rule follows, never as its evidence. Plus any one-line caveat. Not in-prose attribution (Thesis/Rationale stay attribution-free), so the spirit of C-E2 holds. Note: the audit sub-agent is read-only and usually cannot fetch the source at runtime, so the locator chiefly serves human verification of `needs_human` patches and model grounding; the full citation lives in the map.
 
 ## Provenance
 

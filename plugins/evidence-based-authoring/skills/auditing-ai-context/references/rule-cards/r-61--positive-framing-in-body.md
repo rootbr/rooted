@@ -1,7 +1,7 @@
 ---
 title: Positive framing in body; negatives reserved for description triggers and safety
 rule_id: R-61
-applies_to_target: [context-file, skill, agent-prompt]
+applies_to_target: [context-file, skill, agent-prompt, doc, code, answer]
 check_kind: semantic
 severity_default: low
 ---

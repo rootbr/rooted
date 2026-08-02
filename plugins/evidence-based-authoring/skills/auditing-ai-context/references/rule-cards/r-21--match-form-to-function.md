@@ -1,7 +1,7 @@
 ---
 title: Lists carry instructions, tables carry lookup data, prose carries argument
 rule_id: R-21
-applies_to_target: [context-file, skill, agent-prompt]
+applies_to_target: [context-file, skill, agent-prompt, doc, answer]
 check_kind: semantic
 severity_default: low
 ---

@@ -1,7 +1,7 @@
 ---
 title: Provenance stays out of runtime context — cite the finding, not the bookkeeping
 rule_id: R-57
-applies_to_target: [context-file, skill, agent-prompt]
+applies_to_target: [context-file, skill, agent-prompt, doc, code]
 check_kind: mechanical
 severity_default: low
 ---

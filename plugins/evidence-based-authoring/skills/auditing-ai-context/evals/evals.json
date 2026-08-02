@@ -1,0 +1,324 @@
+{
+  "harness": "auditing-ai-context",
+  "schema_version": 1,
+  "note": "Each eval seeds a file in an artifact-prone state, gives a rework/cleanup prompt, and asserts the result. The agent edits a copy of the seed in place; the grader checks that copy. Seeds 1-8 were migrated from the personal `documenting-present-design` skill and are the hands-on evidence cards D-02, D-03, D-04 and D-06 cite by filename — renaming a seed breaks a card citation. Seeds 9 and 10 are new and close half of the two coverage gaps recorded under `gaps` below.",
+  "grading": {
+    "assertion_kinds": {
+      "absent": "must NOT match the edited file",
+      "present": "must match the edited file",
+      "checklist": "one binary YES/NO question about one rule card, answered by the pinned judge model; `expect` gives the passing answer"
+    },
+    "matcher": "Exactly one of `needle` or `pattern`. `needle` is a literal substring, case-insensitive. `pattern` is a Python `re` regular expression evaluated with `re.IGNORECASE` and `re.search` (no MULTILINE, no DOTALL) — `\\b` therefore means a word boundary on every platform, which a shell `grep -E` does not portably provide.",
+    "judge_procedure": "The judge sees the edited file, one question, and that question's decision procedure — never the seed, the prompt, the expected_output, or a reference answer, and never more than one question at a time. It answers YES or NO and nothing else. Order of files within a run is randomized. Substring assertions are graded first and independently; a judge answer never overrides one.",
+    "why_split": "A substring assertion is used wherever a substring can do the job, so the judge is reserved for the assertions that genuinely need reading. Decomposing a semantic check into one binary question per card, rather than scoring quality holistically, raises average cross-model agreement by 0.45 and cuts score variance (CheckEval 2403.18771, EMNLP 2025, 12 evaluator models)."
+  },
+  "models": {
+    "subject": {
+      "note": "The models under test — the audit workflow's own dispatch tiers (`modelByCheckKind` in SKILL.md). Re-run this harness on every model upgrade; a minor model bump silently dropped one rule's compliance by 48% (Yang 2505.13360 §3.3).",
+      "mechanical_cards": "claude-haiku-4-5",
+      "semantic_cards": "claude-sonnet-5",
+      "pinned_on": "2026-08-02"
+    },
+    "judge": {
+      "id": "gemini-2.5-flash",
+      "provider_family": "Google",
+      "why": "A judge from a different provider family than the author, which is Claude — self-preference means a Claude judge under-flags exactly Claude's native habits. This model with a combined debiasing strategy was the best cost-performance configuration measured, at 71.0% agreement (kappa = 0.549) for roughly $0.001 per evaluation (Judging the Judges 2604.23178).",
+      "pinned_on": "2026-08-02",
+      "runner": "none ships with this repository — see judging_constraints.unsatisfied"
+    }
+  },
+  "judging_constraints": {
+    "source": "research/2026-08-02_output-style-evidence.md (topic D2)",
+    "satisfied": [
+      "Binary-checklist form: one YES/NO question per card, each with a decision procedure; no holistic quality score anywhere in the harness (CheckEval 2403.18771).",
+      "Cross-family judge: pinned to a Google model, distinct from the Claude author (self-preference, Zheng 2306.05685).",
+      "Format held constant: every seed and every expected edit is plain Markdown or plain source; no compared variant carries Markdown structure the other lacks. Style bias, the dominant judge bias at 0.10-0.76, favours Markdown over plain text (2604.23178).",
+      "Order randomized: the runner shuffles files within a run. Position bias is minor at <= 0.04, so this is cheap insurance rather than a load-bearing control.",
+      "Judge model pinned, with the pin dated and re-run on model upgrade (SKILL.md Maintenance).",
+      "Over-cutting control present: seed 8 asserts only `present`, and seed 10 asserts a scope qualifier and an exact number survive. The Claude judge's verbosity bias runs toward brevity (-0.12), so the systematic error on a corpus of cutting rules is over-flagging deletions (D2 finding 3)."
+    ],
+    "unsatisfied": [
+      {
+        "constraint": "Cross-family judge actually executed",
+        "why": "The pin is a declaration; no runner, API key, or local model ships with this repository, and this harness has never been executed against a non-Anthropic judge. Until an operator supplies one, every `checklist` assertion is unrun. Substituting a Claude judge satisfies the letter of the harness and voids the constraint it exists for.",
+        "unblock": "Supply a `gemini-2.5-flash` endpoint, or record a different non-Anthropic model id in models.judge and re-run."
+      },
+      {
+        "constraint": "Length control on scores (Length-Controlled AlpacaEval 2404.04475)",
+        "why": "It is a Job B statistical correction — a GLM conditioned on zero length difference across compared variants. This harness is per-rule and per-file with no corpus-on against corpus-off comparison, so there is no score to length-correct.",
+        "unblock": "Only applies once a corpus-on/corpus-off comparison exists; not applicable to the per-rule audit."
+      },
+      {
+        "constraint": "Repetition (reliable@10 / repeated runs)",
+        "why": "Each eval is specified as a single run. The corpus's own repetition rule (R-66) is not encoded here, and no variance figure has been measured for these ten seeds.",
+        "unblock": "Run each eval N times and report pass rate rather than pass/fail; needs the runner above."
+      },
+      {
+        "constraint": "Debiasing strategy on the judge",
+        "why": "The measured 71.0% / kappa = 0.549 figure is for a *combined* strategy, which this harness does not specify. Agreement without one is lower and unmeasured here.",
+        "unblock": "Name the strategy in models.judge once the runner exists."
+      }
+    ],
+    "standing_caveat": "Even the best-configured cheap judge reached only moderate agreement (kappa = 0.549). A checklist NO is a finding to review, never an automatic verdict — the corpus's `needs_human: true` convention on semantic cards holds here too."
+  },
+  "gaps": [
+    {
+      "id": "gap-semantic-S",
+      "state": "half open",
+      "was": "No seed exercised a semantic `S-` card; S-01, S-04, S-06 and S-07 all needed new seeds and none is substring-checkable.",
+      "now": "Seed 10 covers S-06 (cut what the rest still says; never to a length target) and S-07 (load-bearing uncertainty in the first person), with substring anchors on both the cut half and the keep half plus one binary question per card.",
+      "still_open": [
+        {
+          "card": "S-01",
+          "thesis": "The output's shape is applied after reasoning finishes, never as a constraint on it",
+          "what_it_would_take": "A `skill` or `agent-prompt` seed carrying a shape constraint that binds the producer from the first token (\"Answer as one JSON line, verdict first\"). The passing edit scopes the same shape to the delivered artifact, so the JSON schema must survive while the binding-on-reasoning wording goes — a keep-assertion on the schema plus one binary question. Fully semantic: no substring separates a shape stated as a property of the artifact from the same shape stated as a constraint on the work."
+        },
+        {
+          "card": "S-04",
+          "thesis": "A sentence opens on the antecedent the reader already holds and ends on the new element",
+          "what_it_would_take": "A two-sentence `answer` seed whose second sentence opens on new material. No substring can express it, and the check is a comparison between an original and a rewrite, which puts it in the pairwise-judging regime where style bias is dominant. It needs the format-held-constant and length-control apparatus the per-rule harness deliberately does not carry — write it only alongside a corpus-on/corpus-off comparison."
+        }
+      ]
+    },
+    {
+      "id": "gap-conflict-cases",
+      "state": "half open",
+      "was": "No seed carried a conflict case, which PRIME 2606.22470 requires: conflict type outweighs model scale, and the ability to follow instructions cannot be assessed through isolated constraints alone.",
+      "now": "Seed 9 carries one conflict on the reasoning axis — two peer rules prescribing different actions for the same case, standing behind a declared precedence clause (S-03, R-70).",
+      "still_open": [
+        "PRIME calibrates conflicts across three dimensions — response length, output format, and reasoning. Seed 9 covers reasoning only. A length-conflict seed (two rules prescribing incompatible lengths for the same output) and a format-conflict seed (two rules prescribing incompatible shapes) would complete the set; each is written the same way as seed 9, with the resolution clause as the absent anchor and the merged-rule question as the checklist."
+      ]
+    }
+  ],
+  "evals": [
+    {
+      "id": 1,
+      "name": "spec-redo-status-to-slider",
+      "seed": "seed1_spec_redo.md",
+      "target_type": "doc",
+      "cards": ["D-01", "D-02"],
+      "prompt": "I am replacing the status line with a dedicated 'Brightness' slider: it shows the current value, and dragging it takes manual control of brightness. Update this spec section (file seed1_spec_redo.md) for the new implementation.",
+      "expected_output": "Spec describes the brightness slider and the auto/sun behavior, with no trace of the removed status line and no contrast wording.",
+      "assertions": [
+        {"name": "no 'status line'", "kind": "absent", "needle": "status line"},
+        {"name": "no 'status' leftover", "kind": "absent", "pattern": "\\bstatus\\b", "changed": "was the bare substring `status`, which also matched any word containing it; word boundaries added"},
+        {"name": "no 'instead of'", "kind": "absent", "needle": "instead of"},
+        {"name": "no 'previously'", "kind": "absent", "needle": "previously"},
+        {"name": "describes slider", "kind": "present", "needle": "slider"},
+        {"name": "keeps sun behavior", "kind": "present", "needle": "Sun"}
+      ]
+    },
+    {
+      "id": 2,
+      "name": "comment-narrating-change",
+      "seed": "seed2_comment_history.swift",
+      "target_type": "code",
+      "cards": ["D-01", "D-02", "D-06"],
+      "prompt": "Clean up the comments in file seed2_comment_history.swift — they must describe only the current implementation.",
+      "expected_output": "Comment describes manual tracking in present tense; no 'used to / is now / never fired'.",
+      "assertions": [
+        {"name": "no 'used to'", "kind": "absent", "needle": "used to"},
+        {"name": "no contrastive 'is now'", "kind": "absent", "needle": "is now"},
+        {"name": "no 'never fired'", "kind": "absent", "needle": "never fired"},
+        {"name": "no prior-use narration ('rely on')", "kind": "absent", "needle": "rely on"},
+        {"name": "code preserved", "kind": "present", "needle": "func track"}
+      ]
+    },
+    {
+      "id": 3,
+      "name": "hidden-rationale-cache",
+      "seed": "seed3_hidden_cache.py",
+      "target_type": "code",
+      "cards": ["D-01", "D-02"],
+      "prompt": "Clean up the comment in file seed3_hidden_cache.py: drop the reference to the past implementation but keep the rationale (why the cache exists).",
+      "expected_output": "Comment keeps a positive rationale for caching; no 'old / slowdowns / so we don't get'.",
+      "assertions": [
+        {"name": "no past-referring 'old'", "kind": "absent", "pattern": "\\bold\\b", "changed": "was the bare substring `old`, which matched `holds`, `threshold`, `gold`; word boundaries added"},
+        {"name": "no 'slowdown'", "kind": "absent", "needle": "slowdown"},
+        {"name": "no 'so we don't get'", "kind": "absent", "needle": "so we don't get"},
+        {"name": "code preserved", "kind": "present", "needle": "_cache"},
+        {
+          "name": "rationale survives as a present fact",
+          "kind": "checklist",
+          "card": "D-02",
+          "changed": "replaces `present: repeat`, which asserted one wording of a rationale that has many valid wordings",
+          "question": "Does the surviving comment state a reason the cache exists that a reader who has never seen any prior version of this file can check against the code as it now stands?",
+          "procedure": [
+            "Read only the comment lines in the edited file.",
+            "Strip any clause whose meaning depends on an earlier state of the code.",
+            "Ask what remains: a mechanism, capability, result, decision, or contract that stands on its own is a present fact; a bare negative, an unchanged or absent thing, or a triviality is not.",
+            "Answer YES only if a present fact remains AND it gives a reason for the cache, not merely a restatement of what the code does."
+          ],
+          "expect": "YES"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "hidden-rationale-actor",
+      "seed": "seed4_hidden_actor.swift",
+      "target_type": "code",
+      "cards": ["D-01", "D-02"],
+      "prompt": "Clean up the comment in file seed4_hidden_actor.swift — keep only the present state, preserve the rationale.",
+      "expected_output": "Comment states the present invariant (serialized access / race-free) without naming the old races.",
+      "assertions": [
+        {"name": "no 'old races'", "kind": "absent", "needle": "old races"},
+        {"name": "no 'used to happen'", "kind": "absent", "needle": "used to"},
+        {"name": "no removal-of-a-past-defect", "kind": "absent", "pattern": "\\bremov(e|es|ed|ing)\\b[^.\\n]{0,40}\\b(old|previous|prior|former)\\b", "changed": "was the bare substring `remove`, which flagged a legitimate present-tense sentence such as 'removes the possibility of a data race'; now matches only removal of something past"},
+        {"name": "no 'direct calls'", "kind": "absent", "needle": "direct calls"},
+        {"name": "code preserved", "kind": "present", "needle": "actor Session"},
+        {
+          "name": "states the present invariant",
+          "kind": "checklist",
+          "card": "D-02",
+          "changed": "new — 'states the present invariant' is a semantic assertion no substring expresses",
+          "question": "Does the surviving comment state what the actor guarantees now, without naming a defect that occurred before?",
+          "procedure": [
+            "Read only the comment lines in the edited file.",
+            "Identify the property the comment claims: serialized access, mutual exclusion, race-freedom by construction, or an equivalent statement of what holds today.",
+            "Check whether any defect is named as something that happened, recurred, or was suffered — as opposed to a property named in the abstract.",
+            "Answer YES only if a present guarantee is stated AND no past instance of its violation is named. Naming the property (race-freedom) is fine; naming the old instance of its violation is not."
+          ],
+          "expect": "YES"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "dead-commented-old-code",
+      "seed": "seed5_dead_code.swift",
+      "target_type": "code",
+      "cards": ["D-04"],
+      "prompt": "Clean file seed5_dead_code.swift of artifacts of the past implementation.",
+      "expected_output": "The commented-out old render path is gone; current render kept.",
+      "assertions": [
+        {"name": "no 'Old render path'", "kind": "absent", "needle": "old render"},
+        {"name": "no 'just in case'", "kind": "absent", "needle": "just in case"},
+        {"name": "no 'drawLegacy'", "kind": "absent", "needle": "drawLegacy"},
+        {"name": "no 'fixupArtifacts'", "kind": "absent", "needle": "fixupArtifacts"},
+        {"name": "current impl kept", "kind": "present", "needle": "drawComposited"}
+      ]
+    },
+    {
+      "id": 6,
+      "name": "stale-removed-flag",
+      "seed": "seed6_stale_ref.md",
+      "target_type": "doc",
+      "cards": ["D-01", "D-02", "R-73"],
+      "prompt": "We removed the `useLegacyPath` parameter from the code. Update the documentation (file seed6_stale_ref.md).",
+      "expected_output": "The useLegacyPath entry is removed; other params remain.",
+      "assertions": [
+        {"name": "no 'useLegacyPath'", "kind": "absent", "needle": "useLegacyPath"},
+        {"name": "no 'old parsing algorithm'", "kind": "absent", "needle": "old parsing"},
+        {"name": "no 'compatibility'", "kind": "absent", "needle": "compatibility"},
+        {"name": "timeout kept", "kind": "present", "needle": "timeout"},
+        {"name": "retries kept", "kind": "present", "needle": "retries"}
+      ]
+    },
+    {
+      "id": 7,
+      "name": "old-design-name",
+      "seed": "seed7_old_name.ts",
+      "target_type": "code",
+      "cards": ["D-03"],
+      "prompt": "`parseConfigV2` is now the only parser; the old one is gone. Clean up the naming and any mentions of the old design in file seed7_old_name.ts.",
+      "expected_output": "Function renamed to drop the V2 suffix; call site updated; comment present-tense.",
+      "assertions": [
+        {"name": "no 'V2' suffix", "kind": "absent", "needle": "V2"},
+        {"name": "renamed function present", "kind": "present", "needle": "parseConfig"},
+        {"name": "call site present", "kind": "present", "needle": "config ="}
+      ]
+    },
+    {
+      "id": 8,
+      "name": "negative-keep-rationale-and-guardrail",
+      "seed": "seed8_negative_keep.swift",
+      "target_type": "code",
+      "cards": ["D-06", "D-02"],
+      "control": "do-not-cut — every assertion is `present`. An audit that over-cuts fails here and nowhere else.",
+      "prompt": "Clean file seed8_negative_keep.swift of artifacts of the past implementation, if there are any.",
+      "expected_output": "Nothing removed: the present-tense env constraint and the main-thread guardrail must survive (there is no prior-version artifact here).",
+      "assertions": [
+        {"name": "guardrail kept (main thread)", "kind": "present", "needle": "main thread"},
+        {"name": "env constraint kept (menu)", "kind": "present", "needle": "menu"},
+        {"name": "comment kept (track)", "kind": "present", "needle": "track"},
+        {"name": "code kept", "kind": "present", "needle": "setBrightness"}
+      ]
+    },
+    {
+      "id": 9,
+      "name": "conflicting-peer-rules-behind-a-precedence-clause",
+      "seed": "seed9_conflicting_rules.md",
+      "target_type": "context-file",
+      "cards": ["S-03", "R-70"],
+      "new": "closes half of gap-conflict-cases — the reasoning axis of PRIME's three conflict dimensions",
+      "prompt": "Audit this context file (seed9_conflicting_rules.md) and fix what an agent reading it cannot follow.",
+      "expected_output": "One merged rule states what to do in the overlapping case — for example, report every issue with a confidence level attached — and the declared precedence clause is gone. The file still requires reporting, and still names file and line.",
+      "assertions": [
+        {"name": "no declared peer precedence", "kind": "absent", "pattern": "\\b(the earlier (rule |one )?wins|in case of (a )?conflict|unless stated otherwise)\\b"},
+        {"name": "no 'on a collision'", "kind": "absent", "needle": "on a collision"},
+        {"name": "reporting rule survives", "kind": "present", "needle": "report"},
+        {"name": "unrelated rule untouched", "kind": "present", "needle": "line number"},
+        {
+          "name": "the overlapping case has one answer",
+          "kind": "checklist",
+          "card": "S-03",
+          "question": "Does the edited file say what to do about an issue that is both low-severity and not certainly a defect, rather than which of two rules wins that case?",
+          "procedure": [
+            "List every rule in the edited file that governs which issues get reported.",
+            "Construct the overlapping case: an issue that is low-severity and that the reader is not confident about.",
+            "Ask whether the file prescribes exactly one action for that case, and whether the condition separating it from other cases is stated in the rule itself.",
+            "Answer NO if two rules still prescribe different actions for it, if the file resolves it by ranking the rules, or if the case is now unaddressed because a rule was deleted rather than merged."
+          ],
+          "expect": "YES"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "name": "cut-the-filler-keep-the-qualifier",
+      "seed": "seed10_answer_cut_and_hedge.md",
+      "target_type": "answer",
+      "cards": ["S-06", "S-07"],
+      "new": "closes half of gap-semantic-S — the first seed exercising a semantic `S-` card",
+      "control": "part do-not-cut — the scope qualifier, the number, and the first-person uncertainty must all survive the cut.",
+      "prompt": "Tighten this drafted answer (seed10_answer_cut_and_hedge.md) before it is sent.",
+      "expected_output": "The filler opener and the echo summary are gone and the impersonal hedge is stated in the first person. The scope qualifier ('only on the retry path'), the exact figure (30 seconds), and the first-person statement of what was not measured all survive.",
+      "assertions": [
+        {"name": "no filler opener", "kind": "absent", "needle": "Great question"},
+        {"name": "no echo summary", "kind": "absent", "pattern": "\\bin summary\\b"},
+        {"name": "no impersonal hedge", "kind": "absent", "pattern": "\\bit seems\\b"},
+        {"name": "no empty softener", "kind": "absent", "pattern": "\\bpossibly\\b"},
+        {"name": "scope qualifier kept", "kind": "present", "needle": "only on the retry path"},
+        {"name": "exact figure kept", "kind": "present", "pattern": "\\b30 seconds\\b"},
+        {"name": "first-person uncertainty kept", "kind": "present", "pattern": "\\bI have not\\b"},
+        {
+          "name": "nothing load-bearing was cut",
+          "kind": "checklist",
+          "card": "S-06",
+          "question": "Does the edited answer still assert exactly what the original asserted — the same claim, under the same conditions, with the same scope?",
+          "procedure": [
+            "Read the edited answer and restate every claim it makes, with its conditions.",
+            "Read the original and do the same.",
+            "Compare the two lists: a claim present in one and absent from the other, a condition that widened or narrowed, or a figure that changed is a difference.",
+            "Answer YES only if the two lists match. Fewer words with the same claims is a pass; a claim, a condition, a boundary, or a figure that disappeared is a fail."
+          ],
+          "expect": "YES"
+        },
+        {
+          "name": "every hedge names a real uncertainty, in the first person",
+          "kind": "checklist",
+          "card": "S-07",
+          "question": "Does every hedge left in the edited answer name something the writer states they do not know, and say who does not know it?",
+          "procedure": [
+            "List every hedge, softener, or epistemic marker in the edited answer.",
+            "For each, ask what specific thing is uncertain and who holds that uncertainty.",
+            "A hedge naming a real gap in the first person passes. A hedge with no identifiable gap behind it fails. A real gap stated impersonally fails.",
+            "Answer YES only if every hedge in the answer passes."
+          ],
+          "expect": "YES"
+        }
+      ]
+    }
+  ]
+}

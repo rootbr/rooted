@@ -1,7 +1,7 @@
 ---
 title: State each fact once; downstream sections must reference, not restate
 rule_id: R-43
-applies_to_target: [context-file, skill, agent-prompt]
+applies_to_target: [context-file, skill, agent-prompt, doc, code, answer]
 check_kind: mechanical
 severity_default: medium
 ---
