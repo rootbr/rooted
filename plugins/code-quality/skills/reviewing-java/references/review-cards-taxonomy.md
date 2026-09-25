@@ -2,7 +2,7 @@
 
 Out-of-runtime maintainer doc. Defines the controlled vocabulary (for facet validation by `scripts/validate-review-cards.py`) and the corpus-local card schema. The review workflow passes a card to its finder; it never passes this file. Paths in this document are relative to `plugins/code-quality/skills/reviewing-java/`.
 
-This corpus is a specialization of `plugins/evidence-based-authoring/skills/auditing-ai-context/references/kb-card-specification.md` for one consumption model: each card is **dispatched** to its own finder sub-agent (one card → one finder per diff slice), read in total isolation — not retrieved from a pool by facet, grep, or link. The finder holds the card, the diff hunks whose added lines matched the card's triggers, and the review inventory; nothing else. The deltas from the base spec follow from that.
+This corpus is a specialization of `plugins/evidence-based-authoring/skills/auditing-ai-context/references/kb-card-specification.md` for one consumption model: each card is **dispatched** to its own finder sub-agent (one card → one finder per diff slice), read in total isolation — not retrieved from a pool by facet, grep, or link. The finder holds the card, the diff hunks whose added lines matched the card's triggers, the review inventory, and what the card's `scope` lets it open (the whole file, the base version, the callers); nothing else. The deltas from the base spec follow from that.
 
 ## How this corpus specializes the KB card spec
 
@@ -16,21 +16,21 @@ This corpus is a specialization of `plugins/evidence-based-authoring/skills/audi
 | `## Example` form (C-F3) | a fenced Java `bad:` / `good:` pair of at most ten lines, with generic names (`cache`, `load`, `k`); `{ ... }` marks an elided method body and is the one non-Java token allowed, so a `good:` half compiles once each elision gets a body; no diff markers inside the fence; on a `meta` card the fence is still ```java for the validator but its lines are the config's Markdown invariants, since that card reads `config.md` | a three-line everyday-domain pair cannot carry a Java defect; the reader is a Java reviewer and the card's domain is its own. A documented deviation from C-F3 |
 | Numbers in claims | kept in the card | C-E3: the number is the load-bearing part |
 | Self-containedness (group C) | strict: no sibling-rule ids, no "the skill", no "the checklist", no "see above" | each finder sees only its card + the hunks + the inventory |
-| Cross-card concerns (ownership / defer, conflict priority) | in `scripts/review-workflow.js` (`DEFER_TO`, `DOMAIN_PRIORITY`), keyed by `rule_id` / `domain` | orchestration is the workflow's job, not the atom's |
+| Cross-card concerns (ownership / defer, conflict priority) | in `scripts/review-workflow.js` (`DEFER_TO`, `DOMAIN_PRIORITY`), keyed by `rule_id` / `domain` | orchestration belongs to the workflow, and the atom stays free of it |
 
 ## Frontmatter fields
 
-Exactly these keys, in this order; the validator rejects any other key or order.
+Exactly these keys, all required, in this order; the validator rejects any other key or order. Paths in this file are relative to the skill's directory.
 
-| Field | Required | Meaning |
-|--|--|--|
-| `title` | yes | the rule as one complete, checkable declarative claim (C-A1); identical to the H1 |
-| `rule_id` | yes | stable id; the finder stamps it on every finding and the workflow dedups and applies ownership by it. A finding is `<rule_id>.<ordinal>` |
-| `domain` | yes | the owning domain; decides conflict priority |
-| `triggers` | yes | list of Python `re` patterns, each matched with `re.search` against one added line of the diff at a time; a card runs on a file when any pattern matches any added line. `[]` means every diff and is reserved for a handful of always-on cards |
-| `scope` | yes | what the finder reads beyond the matched hunk |
-| `check_kind` | yes | `mechanical`: the pattern is the finding once one light context question is confirmed (hot path? user input? shared field?); `semantic`: the finder traces a chain, such as a happens-before edge, a taint path, a query inside a loop, an API contract |
-| `severity_default` | yes | the severity the finder emits; the verifier calibrates |
+| Field | Meaning |
+|--|--|
+| `title` | the rule as one complete, checkable declarative claim (C-A1); identical to the H1 |
+| `rule_id` | stable id; the finder stamps it on every finding and the workflow dedups and applies ownership by it. A finding is `<rule_id>.<ordinal>` |
+| `domain` | the owning domain; decides conflict priority |
+| `triggers` | list of Python `re` patterns, each matched with `re.search` against one added line of the diff at a time; a card runs on a file when any pattern matches any added line. `[]` means every diff and is reserved for a handful of always-on cards |
+| `scope` | what the finder reads beyond the matched hunk |
+| `check_kind` | `mechanical` or `semantic`, defined under Allowed values |
+| `severity_default` | the severity the finder emits; the verifier calibrates |
 
 `group` is not a field: the domain is the group.
 

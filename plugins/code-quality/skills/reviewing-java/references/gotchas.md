@@ -2,15 +2,17 @@
 
 Symptom → cause → fix for the card-dispatched review, each tied to the file that owns the behaviour. Cold-tier reference: read when a review misfires — a shallow report, a finding that verification should have rejected, a workflow that dies on its first agent, a card that never triggers. Stable IDs: a retired entry keeps its number vacant rather than reusing it (house convention). Pointer in `SKILL.md` §Gotchas.
 
+Paths are relative to the skill directory; `review/…` and `.claude/…` are in the repository under review.
+
 G-01. Finders produce shallow, generic findings, and the same diff reads as style in one repo and correctness in another? The pre-pass found no `.claude/reviewing-java/config.md`, so every finder prompt carries "(no project context was given)". Ask the author for the project's invariants and tolerances and write them into `config.md` before re-running the pre-pass; a review without them cannot reject a finding on a documented tolerance, and cannot run a single `PROJ-N` card.
 
 G-02. A skeptic confirms a finding the surrounding code plainly handles? It read the finding's quoted snippet and stopped. The skeptic prompt (`scripts/review-workflow.js`, `skepticPrompt`) requires opening the whole method at HEAD and the diff of the file; a verdict whose `evidence` names neither is a verdict to distrust. Re-run that finding's verification by hand with the same prompt.
 
-G-03. A finder returned an empty array: the run is fine. "No findings" is the expected outcome for most (card × slice) jobs — a card triggers on a lexical net far wider than its defect. Never re-dispatch a quiet finder hoping for findings; the empty result is data.
+G-03. A finder returned an empty array: the run is fine. "No findings" is the expected outcome for most (card by slice) jobs — a card triggers on a lexical net far wider than its defect. The empty result is data; a quiet finder is left alone.
 
-G-04. A finding's location no longer matches after a rebase or a follow-up commit? Findings anchor by `file` + `symbol` (`Class#method`) + the verbatim `code` fragment, never by line number; the render script prints the symbol, and the skeptic re-anchors by the fragment. A finding that carries only a line number came from a prompt that was edited — restore the `symbol` requirement.
+G-04. A finding's location no longer matches after a rebase or a follow-up commit? Findings anchor by `file` + `symbol` (`Class#method`) + the verbatim `code` fragment, and by nothing else; the render script prints the symbol, and the skeptic re-anchors by the fragment. A finding that carries only a line number came from a prompt that was edited — restore the `symbol` requirement.
 
-G-05. (Retired — it governed the batch-of-four dispatch cap of the hand-driven agents; the workflow runtime paces its own concurrency. The number stays vacant.)
+G-05. (Retired. Its subject, a dispatch cap of four agents per batch, has no counterpart in the workflow design; the number stays vacant.)
 
 G-06. A finding with no anchor in the diff? Speculation. The finder discipline (`plugins/code-quality/agents/review-finder.md`) and the skeptic's false-positive check both require the quoted `code` to be an added line of `git diff <base> <head>`; a skeptic that cannot find it rejects the finding, and "conceptually similar to existing issues" is not an anchor.
 
@@ -18,7 +20,7 @@ G-07. A resumed verify stage rejects findings as "not in the diff", or confirms 
 
 G-08. Logic-pass slices cut across a module, or one slice holds an unrelated mix? The pre-pass groups files by the package prefix one segment below the changed files' common root, which assumes package ≈ module. Where logical modules span packages, name them in `config.md` frontmatter — `modules: [{name, packages: [..]}]` — and the pre-pass slices by module instead.
 
-G-09. (Retired — it warned against working around the batch cap with extra background tasks; the cap no longer exists. The number stays vacant.)
+G-09. (Retired. Its subject, extra batches around a dispatch cap, has no counterpart in the workflow design; the number stays vacant.)
 
 G-10. The workflow dies on its first agent with "agent type 'code-quality:review-finder' not found"? The two agent types are declared by this plugin and resolve only where the plugin is installed, as `code-quality:review-finder` and `code-quality:review-verifier`. In a repository checkout, or any session that lists only the built-in types, omit `agentTypes` from the args: every prompt carries the read-only prohibition and the injection stance, and the integrity check after the run is the backstop.
 
