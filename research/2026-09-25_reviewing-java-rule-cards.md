@@ -229,7 +229,7 @@ Prompts: the finder prompt names the card path, the slice files and hunks, the c
 Every card cites one admissible class of the repository's Evidence-Based Rule, in a form anyone can open:
 
 - academic research — an arXiv id or a DOI;
-- a technical standard — the Java Language Specification or JVM Specification by section, a JDK 21 Javadoc page by class and member, a JEP by number, the Spring Framework or Spring Boot reference by section, the Hibernate ORM user guide by section, an OWASP cheat sheet or ASVS item, a CWE entry, a SEI CERT Oracle Coding Standard for Java rule, a SonarSource RSPEC rule page, an RFC by number and section;
+- a technical standard — the Java Language Specification or JVM Specification by section, a JDK 21 Javadoc page by class and member, a JEP by number, the Spring Framework or Spring Boot reference by section, the Hibernate ORM user guide by section, an OWASP cheat sheet or ASVS item, a CWE entry, a SEI CERT Oracle Coding Standard for Java rule, a static-analysis rule's own documentation (a SonarSource RSPEC page, an Error Prone bug-pattern page, a SpotBugs bug description), an RFC by number and section;
 - verified hands-on experience in an openable form — a jcstress sample in the `openjdk/jcstress` repository, a JMH benchmark, or a test committed under the skill's `evals/fixture/`.
 
 The author fetches every cited source and confirms the anchored section states the claim as the card words it: no inversion, no stripped precondition, no conditional flattened to an absolute. A card's `## Source` carries the compact locator plus any one-line caveat; the provenance line carries the full citation, the origin section, and the formulation source.
