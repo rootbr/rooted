@@ -1,5 +1,5 @@
 ---
-title: A Resilience4j Decorators chain places withFallback last, because decorators apply in chain order with the first innermost
+title: A Resilience4j Decorators chain places withFallback last
 rule_id: REL-53
 domain: reliability
 triggers: ['Decorators[.]of', 'withCircuitBreaker\(', 'withRetry\(', 'withFallback\(', 'withBulkhead\(', 'withTimeLimiter\(', 'withRateLimiter\(']
@@ -8,10 +8,10 @@ check_kind: mechanical
 severity_default: minor
 ---
 
-# A Resilience4j Decorators chain places withFallback last, because decorators apply in chain order with the first innermost
+# A Resilience4j Decorators chain places withFallback last
 
 ## Thesis
-In a `Decorators.of...()` chain the first `with*` call wraps the call itself and each later one wraps the previous, so `withFallback` is the last call and sees every other decorator's failure; where the chain holds both `withCircuitBreaker` and `withRetry`, their order decides whether the breaker counts every attempt or one failure per operation, and a comment on the chain or the project context names which count is meant.
+In a `Decorators.of...()` chain the first `with*` call wraps the call itself and each later one wraps the previous, so `withFallback` is the last call and sees every other decorator's failure.
 
 ## Rationale
 "Decorators are applied in the order of the builder chain": `withCircuitBreaker` then `withRetry` then `withFallback` produces `Fallback(Retry(CircuitBreaker(Supplier)))` — "the Supplier is called first, then its result is handled by the CircuitBreaker, then Retry and then Fallback". A fallback declared before a later decorator wraps only what precedes it: retry exhaustion, a `CallNotPermittedException`, a `BulkheadFullException` or a `TimeoutException` added after it bypass the fallback and reach the caller as raw exceptions. Each decorator "makes its own determination whether an exception represents a failure", so the order also sets what the breaker counts: with the breaker inside the retry (`withCircuitBreaker` first), every attempt is one call the breaker records, and "a single logical operation with multiple retries will be recorded as multiple failures by the CircuitBreaker, potentially opening the circuit too aggressively"; with the breaker outside (`withRetry` first), it records "only 1 failure per total attempt". Neither order is wrong on its own; an unstated one is a choice the next reader cannot check.
@@ -24,10 +24,10 @@ good: Decorators.ofSupplier(call).withRetry(retry).withCircuitBreaker(cb)   // b
 ```
 
 ## Limits
-A chain with a single decorator has no order. A fallback declared before a later decorator on purpose — meant only for the inner exception type, with the outer failures left to the caller — is correct with a comment naming the intent. The breaker/retry order is not flagged when a comment on the chain, or the project context, names which failure count the breaker should see. Annotation-based aspects (`@CircuitBreaker`, `@Retry` on a method) are ordered by the `circuitBreakerAspectOrder` and `retryAspectOrder` properties, not by a chain, and are out of scope.
+A chain with a single decorator has no order. A fallback declared before a later decorator on purpose — meant only for the inner exception type, with the outer failures left to the caller — is correct with a comment naming the intent. The order of `withCircuitBreaker` and `withRetry` is a design choice this rule does not flag: with the retry outside, the breaker counts every attempt; with the breaker outside, one failure per operation; a comment on the chain or the project context names which count is meant. Annotation-based aspects (`@CircuitBreaker`, `@Retry` on a method) are ordered by the `circuitBreakerAspectOrder` and `retryAspectOrder` properties, not by a chain, and are out of scope.
 
 ## Validator
-On the triggered hunk find each `Decorators` chain and list its `with*` calls in order. Flag `withFallback` that is not last. When the chain holds both `withCircuitBreaker` and `withRetry`, read the surrounding comment and the project context for the intended failure count; flag the pair only when neither states it. Validator question: **does the chain place `withFallback` before another decorator, or order the breaker and the retry with no stated choice of what the breaker counts?** Yes → flag.
+On the triggered hunk find each `Decorators` chain and list its `with*` calls in order. Validator question: **does the chain place `withFallback` before another decorator?** Yes → flag.
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: REL-53`, severity minor, `file`, `symbol`, `code` = the chain quoted verbatim from the diff, `fix` = `withFallback` moved to the end of the chain, or a comment naming which failure count the breaker is meant to see, `rationale` naming the decorator whose failures bypass the fallback, or the attempt count the breaker records under the unstated order).

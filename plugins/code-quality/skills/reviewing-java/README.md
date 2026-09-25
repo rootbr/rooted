@@ -1,6 +1,6 @@
 # reviewing-java
 
-Java code review skill for Claude Code. A deterministic pre-pass matches a corpus of atomic rule cards against your diff, one workflow runs a finder per triggered card and a skeptic per finding, and two reports land under `review/`: the verified findings and the rejection audit trail.
+Java code review skill for Claude Code; paths in this file are relative to this directory. A deterministic pre-pass matches a corpus of atomic rule cards against your diff, one workflow runs a finder per triggered card and a skeptic per finding, and two reports land under `review/`: the verified findings and the rejection audit trail.
 
 ## What it does
 

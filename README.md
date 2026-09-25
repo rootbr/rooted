@@ -15,7 +15,7 @@ Every rule, checklist item, and review criterion traces to one of:
 
 - **Academic research** — arxiv.org, peer-reviewed papers, Google Scholar, PubMed
 - **Technical standards** — RFCs, official specifications, language/framework documentation
-- **Human-tested** — double-checked and reviewed by a human before commit
+- **Human-tested** — a linked hands-on test (a commit or a gist) confirmed through practice
 
 ## Plugins
 
