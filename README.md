@@ -35,7 +35,7 @@ Five evidence-based skills. Three form a preparation pipeline — research → e
 
 | Skill | Description |
 |--|--|
-| `/reviewing-java` | Deep Java code review with parallel specialist agents and verification. [Details](plugins/code-quality/skills/reviewing-java/README.md) |
+| `/reviewing-java` | Java code review from a corpus of atomic rule cards, each resting on an openable source: a deterministic pre-pass matches cards to the diff, one workflow runs a finder per triggered card and a skeptic per finding, and two reports land under `review/`. [Details](plugins/code-quality/skills/reviewing-java/README.md) |
 | `/architecting-code` | Structural and boundary-level design: dependency direction, layering, component cohesion/coupling, plugin architecture, use-case isolation |
 | `/cleaning-code` | Improve code readability and maintainability |
 | `/committing-changes` | Review changes and create atomic commits following Conventional Commits |
