@@ -9,6 +9,7 @@ Six phases — **Scope** → **Context** → **Pre-pass** → **Workflow** → *
 | Stage | What runs | Where it lives |
 |--|--|--|
 | Pre-pass | `static-review.py` reads `git diff -U0`, the card frontmatter and your `config.md`, and writes `review/plan.json`: which cards the diff triggers, which files each one reads, the logic-pass slices, mechanical candidates, your project invariants as cards | `scripts/static-review.py` |
+| Bundle | `bundle-run.py` embeds the plan, the design intent and the project context into `review/run.js`, the workflow script the orchestrator runs by path, so a plan of any size never passes through a typed tool call | `scripts/bundle-run.py` |
 | Find | one finder per (card × slice) at the card's tier, one logic pass per slice, one finder per project invariant per slice | `scripts/review-workflow.js`, `plugins/code-quality/agents/review-finder.md` |
 | Aggregate | deterministic: duplicates dropped, spans grouped, compatible fixes folded, conflicts resolved by domain priority | `scripts/review-workflow.js` |
 | Verify | one skeptic per finding tries to refute it with something it opened and calibrates severity; a rejected Critical or Major gets a second skeptic and an arbiter | `scripts/review-workflow.js`, `plugins/code-quality/agents/review-verifier.md` |
@@ -45,7 +46,7 @@ Two documents, under `review/` or at the path your config's `review_output` name
 1. **Review report** (`java-review-<branch>.md`) — only findings that survived verification. Executive summary, critical and major findings with the rule id, a one-line source pointer and suggested fix code, a table of minor findings and suggestions, and a section for findings an arbiter could not settle.
 2. **Rejection report** (`java-review-<branch>-rejections.md`) — everything a skeptic rejected or downgraded, with the evidence it opened. Lets the author see what was flagged and push back.
 
-`review/plan.json`, `review/plan.log`, `review/findings.json` and `review/verdicts.json` stay as the run's record; a review can resume from `findings.json` in a new session.
+`review/plan.json`, `review/plan.log`, `review/run.js`, `review/findings.json` and `review/verdicts.json` stay as the run's record; a review can resume from `findings.json` in a new session.
 
 ## Project integration
 
