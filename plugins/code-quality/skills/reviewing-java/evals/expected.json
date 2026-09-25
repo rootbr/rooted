@@ -55,6 +55,60 @@
       "rule_id": "META-08",
       "file": ".claude/reviewing-java/config.md",
       "symbol": "Invariants"
+    },
+    {
+      "id": "sec-01-sql-concatenation",
+      "rule_id": "SEC-01",
+      "file": "src/main/java/com/example/app/UserLookup.java",
+      "symbol": "UserLookup#findNameByEmail"
+    },
+    {
+      "id": "sec-04-runtime-exec-shell-string",
+      "rule_id": "SEC-04",
+      "file": "src/main/java/com/example/app/UserLookup.java",
+      "symbol": "UserLookup#convertAvatar"
+    },
+    {
+      "id": "sec-31-random-for-reset-token",
+      "rule_id": "SEC-31",
+      "file": "src/main/java/com/example/app/UserLookup.java",
+      "symbol": "UserLookup#newPasswordResetToken"
+    },
+    {
+      "id": "pf-16-pattern-compiled-per-call",
+      "rule_id": "PF-16",
+      "file": "src/main/java/com/example/app/Formatter.java",
+      "symbol": "Formatter#isUpperCase"
+    },
+    {
+      "id": "pf-11-string-concat-in-loop",
+      "rule_id": "PF-11",
+      "file": "src/main/java/com/example/app/Formatter.java",
+      "symbol": "Formatter#joinAll"
+    },
+    {
+      "id": "pf-02-linkedlist-indexed",
+      "rule_id": "PF-02",
+      "file": "src/main/java/com/example/app/Formatter.java",
+      "symbol": "Formatter#recentAt"
+    },
+    {
+      "id": "mnt-02-boolean-selector",
+      "rule_id": "MNT-02",
+      "file": "src/main/java/com/example/app/OrderService.java",
+      "symbol": "OrderService#render"
+    },
+    {
+      "id": "mnt-22-log-and-rethrow",
+      "rule_id": "MNT-22",
+      "file": "src/main/java/com/example/app/OrderService.java",
+      "symbol": "OrderService#loadName"
+    },
+    {
+      "id": "mnt-34-field-injection",
+      "rule_id": "MNT-34",
+      "file": "src/main/java/com/example/app/OrderService.java",
+      "symbol": "OrderService#repo"
     }
   ],
   "controls": [
@@ -145,6 +199,96 @@
         "META-08"
       ],
       "tolerance": "numbered, structural, names its forbidden state as a construct and its evidence handle"
+    },
+    {
+      "id": "sec-01-parameterized",
+      "file": "src/main/java/com/example/app/UserLookup.java",
+      "symbol": "UserLookup#findNameById",
+      "silent": [
+        "SEC-01"
+      ],
+      "tolerance": "the value is bound as a parameter"
+    },
+    {
+      "id": "sec-04-processbuilder-args",
+      "file": "src/main/java/com/example/app/UserLookup.java",
+      "symbol": "UserLookup#convertAvatarSafely",
+      "silent": [
+        "SEC-04"
+      ],
+      "tolerance": "each argument is its own element"
+    },
+    {
+      "id": "sec-31-securerandom-session-id",
+      "file": "src/main/java/com/example/app/UserLookup.java",
+      "symbol": "UserLookup#newSessionId",
+      "silent": [
+        "SEC-31"
+      ],
+      "tolerance": "SecureRandom"
+    },
+    {
+      "id": "sec-31-random-for-non-secret",
+      "file": "src/main/java/com/example/app/UserLookup.java",
+      "symbol": "UserLookup#sampleAvatarIndex",
+      "silent": [
+        "SEC-31"
+      ],
+      "tolerance": "the value is not security-relevant, as the comment states"
+    },
+    {
+      "id": "pf-16-static-pattern",
+      "file": "src/main/java/com/example/app/Formatter.java",
+      "symbol": "Formatter#isDigits",
+      "silent": [
+        "PF-16"
+      ],
+      "tolerance": "the pattern is a static final field"
+    },
+    {
+      "id": "pf-11-stringbuilder",
+      "file": "src/main/java/com/example/app/Formatter.java",
+      "symbol": "Formatter#joinWithBuilder",
+      "silent": [
+        "PF-11"
+      ],
+      "tolerance": "StringBuilder"
+    },
+    {
+      "id": "pf-02-listiterator-cursor",
+      "file": "src/main/java/com/example/app/Formatter.java",
+      "symbol": "Formatter#separate",
+      "silent": [
+        "PF-02"
+      ],
+      "tolerance": "every access goes through a ListIterator at the cursor"
+    },
+    {
+      "id": "mnt-02-boolean-setter",
+      "file": "src/main/java/com/example/app/OrderService.java",
+      "symbol": "OrderService#setArchived",
+      "silent": [
+        "MNT-02"
+      ],
+      "tolerance": "the boolean is stored, not tested to choose a path"
+    },
+    {
+      "id": "mnt-22-wrap-without-log",
+      "file": "src/main/java/com/example/app/OrderService.java",
+      "symbol": "OrderService#loadCount",
+      "silent": [
+        "MNT-22"
+      ],
+      "tolerance": "the exception is wrapped and thrown, not logged"
+    },
+    {
+      "id": "mnt-34-constructor-injection",
+      "file": "src/main/java/com/example/app/OrderService.java",
+      "symbol": "OrderService#formatter",
+      "silent": [
+        "MNT-34"
+      ],
+      "tolerance": "constructor injection into a final field"
     }
   ]
 }

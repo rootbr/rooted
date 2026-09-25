@@ -224,7 +224,7 @@ def check_corpus(cards, rep, provenance=None, pending=None):
     if pending:
         ptext = open(pending, encoding="utf-8").read()
         for rid, path in seen_ids.items():
-            if re.search(rf"\b{re.escape(rid)}\b", ptext):
+            if re.search(rf"^- \*\*{re.escape(rid)}\*\*|rule_id:\s*{re.escape(rid)}\b", ptext, re.M):
                 rep.error(path, f"{rid} is both a shipped card and a pending-evidence entry")
 
 
