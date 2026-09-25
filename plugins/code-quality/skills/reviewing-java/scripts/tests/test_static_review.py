@@ -111,8 +111,9 @@ class TriggerSelection(unittest.TestCase):
         job = jobs[0]
         self.assertEqual(job["id"], "CC-08:all")
         self.assertEqual([sf["path"] for sf in job["slice"]["files"]], ["src/main/java/com/acme/core/Cache.java"])
-        self.assertEqual(len(job["slice"]["files"][0]["hunks"]), 1)
-        self.assertEqual(job["slice"]["files"][0]["hunks"][0]["start"], 11)
+        self.assertEqual(job["slice"]["files"][0]["hunks"], [0])
+        self.assertEqual(self.files[0]["hunks"][0]["start"], 11)
+        self.assertEqual(job["rule_id"], "CC-08")
 
     def test_no_match_no_job(self):
         jobs = sr.build_jobs([card("SEC-01", "security", [r"executeQuery\("])], self.files, [], 400, 96, sr.Log())
@@ -122,7 +123,7 @@ class TriggerSelection(unittest.TestCase):
         jobs = sr.build_jobs([card("MNT-01", "maintainability", [])], self.files, [], 400, 96, sr.Log())
         self.assertEqual(len(jobs), 1)
         self.assertEqual(len(jobs[0]["slice"]["files"]), 2)
-        self.assertEqual(len(jobs[0]["slice"]["files"][0]["hunks"]), 2)
+        self.assertEqual(jobs[0]["slice"]["files"][0]["hunks"], [0, 1])
 
 
 class SliceMergeAndSplit(unittest.TestCase):
@@ -179,7 +180,7 @@ class JobCap(unittest.TestCase):
         log = sr.Log()
         jobs = sr.build_jobs(cards, files, [], 400, 2, log)
         self.assertEqual(len(jobs), 2)
-        ids = {j["card"]["rule_id"] for j in jobs}
+        ids = {j["rule_id"] for j in jobs}
         self.assertIn("CC-01", ids)
         self.assertIn("PF-01", ids)
         self.assertTrue(any("merged 3 jobs of PF-01" in l for l in log.lines))
@@ -306,14 +307,16 @@ class EndToEnd(unittest.TestCase):
         self.assertEqual(rc, 0)
         plan = json.load(open(os.path.join(repo, "review", "plan.json")))
         self.assertTrue(plan["meta_run"])
-        meta_jobs = [j for j in plan["jobs"] if j["card"]["rule_id"] == "META-01"]
+        meta_jobs = [j for j in plan["jobs"] if j["rule_id"] == "META-01"]
         self.assertEqual(len(meta_jobs), 1)
         sf = meta_jobs[0]["slice"]["files"][0]
         self.assertEqual(sf["path"], ".claude/reviewing-java/config.md")
         self.assertEqual(plan["inventory"]["config_file"]["status"], "unchanged")
-        self.assertIn("**Sentinel at index 0**", "\n".join(l["text"] for l in sf["hunks"][0]["lines"]))
+        cfg = plan["inventory"]["config_file"]
+        self.assertIn("**Sentinel at index 0**", "\n".join(l["text"] for l in cfg["hunks"][sf["hunks"][0]]["lines"]))
+        self.assertEqual({c["rule_id"] for c in plan["cards"]}, {j["rule_id"] for j in plan["jobs"]} | {c["rule_id"] for c in plan["candidates"] if c.get("rule_id")})
         # the Java card never sees the config
-        cc = [j for j in plan["jobs"] if j["card"]["rule_id"] == "CC-08"]
+        cc = [j for j in plan["jobs"] if j["rule_id"] == "CC-08"]
         self.assertEqual([f["path"] for f in cc[0]["slice"]["files"]], ["src/main/java/com/acme/Cache.java"])
         self.assertEqual(plan["inventory"]["file_count"], 1)
 

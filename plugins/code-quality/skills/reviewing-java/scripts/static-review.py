@@ -261,45 +261,46 @@ def matches(card, line):
 
 def build_jobs(cards, files, modules, max_job_lines, max_jobs, log, config_files=()):
     """One job per (card x slice). A `meta` card reads the project config, so its
-    slice is drawn from `config_files`; every other card reads the Java files."""
+    slice is drawn from `config_files`; every other card reads the Java files. A job
+    names its card by `rule_id` and each file's matching hunks by their index in the
+    inventory record, so the plan stays small enough to travel as workflow arguments."""
     jobs = []
+    by_id = {c["rule_id"]: c for c in cards}
     for card in cards:
         card["_compiled"] = [re.compile(t) for t in card["triggers"]]
         slice_files = []
         for f in (config_files if card["domain"] == "meta" else files):
-            hunks = [h for h in f["hunks"] if any(matches(card, ln["text"]) for ln in h["lines"])]
-            if hunks:
-                slice_files.append({"path": f["path"], "package": f["package"], "group": f["group"],
-                                    "hunks": hunks,
-                                    "added_lines": sum(len(h["lines"]) for h in hunks)})
+            idx = [i for i, h in enumerate(f["hunks"]) if any(matches(card, ln["text"]) for ln in h["lines"])]
+            if idx:
+                slice_files.append({"path": f["path"], "group": f["group"], "hunks": idx,
+                                    "added_lines": sum(len(f["hunks"][i]["lines"]) for i in idx)})
         if not slice_files:
             continue
         total = sum(sf["added_lines"] for sf in slice_files)
-        rec = {k: v for k, v in card.items() if not k.startswith("_")}
         if total <= max_job_lines:
-            jobs.append(make_job(rec, "all", slice_files))
+            jobs.append(make_job(card["rule_id"], "all", slice_files))
             continue
         groups = {}
         for sf in slice_files:
             groups.setdefault(sf["group"], []).append(sf)
         log(f"{card['rule_id']}: {total} matching added lines exceed {max_job_lines}; split into {len(groups)} job(s) by {'module' if modules else 'package'}")
         for name, sfs in sorted(groups.items()):
-            jobs.append(make_job(rec, name, sfs))
+            jobs.append(make_job(card["rule_id"], name, sfs))
     # cap: merge one card's jobs back first, then drop suggestion jobs, then minor jobs
     while len(jobs) > max_jobs:
         per_card = {}
         for j in jobs:
-            per_card.setdefault(j["card"]["rule_id"], []).append(j)
+            per_card.setdefault(j["rule_id"], []).append(j)
         multi = sorted((v for v in per_card.values() if len(v) > 1), key=len, reverse=True)
         if multi:
             group = multi[0]
             merged_files = [sf for j in group for sf in j["slice"]["files"]]
-            jobs = [j for j in jobs if j not in group] + [make_job(group[0]["card"], "all", merged_files)]
-            log(f"cap {max_jobs}: merged {len(group)} jobs of {group[0]['card']['rule_id']} back into one")
+            jobs = [j for j in jobs if j not in group] + [make_job(group[0]["rule_id"], "all", merged_files)]
+            log(f"cap {max_jobs}: merged {len(group)} jobs of {group[0]['rule_id']} back into one")
             continue
         dropped = False
         for sev in ("suggestion", "minor"):
-            cands = sorted((j for j in jobs if j["card"]["severity_default"] == sev), key=lambda j: j["slice"]["added_lines"])
+            cands = sorted((j for j in jobs if by_id[j["rule_id"]]["severity_default"] == sev), key=lambda j: j["slice"]["added_lines"])
             if cands:
                 jobs.remove(cands[0])
                 log(f"cap {max_jobs}: dropped job {cands[0]['id']} ({sev}, {cands[0]['slice']['added_lines']} lines)")
@@ -311,9 +312,9 @@ def build_jobs(cards, files, modules, max_job_lines, max_jobs, log, config_files
     return jobs
 
 
-def make_job(card, name, slice_files):
-    return {"id": f"{card['rule_id']}:{name}", "card": card,
-            "slice": {"name": name, "files": slice_files,
+def make_job(rule_id, name, slice_files):
+    return {"id": f"{rule_id}:{name}", "rule_id": rule_id,
+            "slice": {"name": name, "files": [{"path": sf["path"], "hunks": sf["hunks"], "added_lines": sf["added_lines"]} for sf in slice_files],
                       "added_lines": sum(sf["added_lines"] for sf in slice_files)}}
 
 
@@ -487,6 +488,8 @@ def build_plan(opts, log):
     config_files = [config_file_record(repo, config_path, config_rel, base_sha, head_sha, config_changed)] if meta_run else []
     jobs = build_jobs(active, files, modules, opts["max_job_lines"], opts["max_jobs"], log, config_files) if (files or config_files) else []
     slices = build_slices(files, log) if files else []
+    candidates = find_candidates(files)
+    dispatched = {j["rule_id"] for j in jobs} | {c["rule_id"] for c in candidates if c.get("rule_id")}
     build_files = [b for b in BUILD_FILES if os.path.isfile(os.path.join(repo, b))]
     plan = {
         "inventory": {
@@ -502,10 +505,10 @@ def build_plan(opts, log):
             "config": config,
             "config_file": config_files[0] if config_files else None,
         },
-        "cards": [{k: v for k, v in c.items() if not k.startswith("_")} for c in cards],
+        "cards": [{k: v for k, v in c.items() if not k.startswith("_")} for c in cards if c["rule_id"] in dispatched],
         "jobs": jobs,
         "slices": slices,
-        "candidates": find_candidates(files),
+        "candidates": candidates,
         "project_cards": {"cards": invariants, "card_paths": card_paths},
         "meta_run": meta_run,
     }

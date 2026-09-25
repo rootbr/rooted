@@ -24,6 +24,7 @@ plugins/code-quality/
     ├── scripts/
     │   ├── static-review.py          # pre-pass: diff + cards + config → review/plan.json, review/plan.log
     │   ├── review-workflow.js        # Find → Aggregate → Verify → Refute
+    │   ├── bundle-run.py             # plan + intent + context → review/run.js (the workflow with its arguments embedded)
     │   ├── render-reports.py         # findings.json + verdicts.json → two Markdown reports
     │   ├── validate-review-cards.py  # mechanical corpus validator
     │   └── tests/                    # unit tests for the pre-pass
@@ -157,10 +158,12 @@ A tie at the top priority keeps both findings and flags them for the author. Two
     "config_changed": true | false,
     "config": { "project_name": "...", "base_branch": "...", "review_output": "...", ... } | null
   },
-  "cards": [ { "rule_id": "CC-14", "path": "/abs/.../cc-14--....md", "domain": "concurrency",
+  "cards": [ { "rule_id": "CC-14", "path": "/abs/.../cc-14--....md", "title": "...", "domain": "concurrency",
                "triggers": ["..."], "scope": "file", "check_kind": "semantic", "severity_default": "major" } ],
-  "jobs": [ { "id": "CC-14:core", "card": { ...same record... },
-              "slice": { "name": "core", "files": [ { "path": "...", "hunks": [ ...matching hunks only... ] } ],
+                                                    // the dispatched cards only: every rule_id a job or a candidate names
+  "jobs": [ { "id": "CC-14:core", "rule_id": "CC-14",
+              "slice": { "name": "core",
+                         "files": [ { "path": "...", "hunks": [ 0, 2 ], "added_lines": N } ],   // indices into inventory.files[path].hunks: the matching hunks only
                          "added_lines": N } } ],
   "slices": [ { "name": "core", "packages": ["a.core"], "files": ["..."], "added_lines": N } ],
   "candidates": [ { "id": "pattern-compile-in-method", "rule_id": "PF-NN" | null, "file": "...", "line": 17,
@@ -172,7 +175,7 @@ A tie at the top priority keeps both findings and flags them for the author. Two
 }
 ```
 
-Job construction: for each card, the slice is the set of files whose added lines match any trigger, carrying only the matching hunks. A card with `[]` triggers matches every file. One card's slice stays one job while its added lines total at most 400; above that it splits by the package prefix one segment below the changed files' common root, or by the module boundaries the config's optional `modules:` frontmatter key names (`modules: [{name, packages: [..]}]`). The total job count is capped at 96, and every action the cap forces is written to `review/plan.log`:
+Job construction: for each card, the slice is the set of files whose added lines match any trigger, carrying only the matching hunks, each named by its index in the file's inventory record so that no hunk text is repeated across jobs and the plan stays small enough to travel verbatim as the workflow's arguments (a `META-` card's file is `inventory.config_file`). A card with `[]` triggers matches every file. One card's slice stays one job while its added lines total at most 400; above that it splits by the package prefix one segment below the changed files' common root, or by the module boundaries the config's optional `modules:` frontmatter key names (`modules: [{name, packages: [..]}]`). The total job count is capped at 96, and every action the cap forces is written to `review/plan.log`:
 
 1. the jobs of the card with the most jobs are merged back into one, repeated while any card holds more than one job;
 2. then the smallest job of a `suggestion` card is dropped;
@@ -197,7 +200,7 @@ Project cards: the numbered invariants in the Markdown body of `config.md` — `
 
 ## Workflow contracts
 
-`scripts/review-workflow.js`, called through `Workflow({ scriptPath, args })`. Phases: Find → Aggregate → Verify → Refute.
+`scripts/review-workflow.js`, run as a bundle: `scripts/bundle-run.py` embeds the run's arguments (`root`, `stage`, `plan`, `design_intent`, `project_context`, `findings`, `tiers`, `agentTypes`) as `const EMBEDDED_ARGS` after the script's `meta` block and writes `review/run.js`, which the orchestrator calls through `Workflow({ scriptPath })` with no `args`. The plan of a real diff is hundreds of kilobytes, and a Workflow argument is typed into the tool call by the orchestrating model; the bundle carries the plan verbatim without that transcription, and explicit `args` still override it. Phases: Find → Aggregate → Verify → Refute.
 
 Args: `{ root, stage: 'find' | 'verify' | 'all', plan, design_intent, project_context, findings?, tiers?, agentTypes? }`. `plan` is the parsed `plan.json`; a JSON string is accepted and parsed. Every enum is validated loud.
 
