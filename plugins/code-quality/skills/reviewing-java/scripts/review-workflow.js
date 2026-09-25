@@ -31,7 +31,8 @@
 //   }
 //
 // Canonical definitions of the aggregation (DEFER_TO, DOMAIN_PRIORITY, compatibility of two
-// fixes) live in ../SKILL.md §Aggregation; the JS below is their machine encoding — keep in sync.
+// fixes) live in ../SKILL.md §Aggregation, and the DEFER_TO pairs are tabled in
+// ../references/maintenance.md; the JS below is their machine encoding — keep in sync.
 
 export const meta = {
   name: 'review-java',
