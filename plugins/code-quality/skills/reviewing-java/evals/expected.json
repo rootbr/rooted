@@ -1,0 +1,21 @@
+{
+  "note": "Per seed the (rule_id, file, symbol) triple a verified finding must carry; per control the rule ids that must stay silent on that file and symbol after verification. Grading is mechanical (evals/grade.py) — no judge model. A control may be flagged by a finder and rejected by a skeptic; the gate is the verified set, and the raw finder hits are reported beside it.",
+  "diff_ref": "HEAD~1..HEAD",
+  "seeds": [
+    {"id": "cc-08-check-then-act-on-shared-map", "rule_id": "CC-08", "file": "src/main/java/com/example/app/Cache.java", "symbol": "Cache#getOrLoad"},
+    {"id": "cc-09-volatile-increment", "rule_id": "CC-09", "file": "src/main/java/com/example/app/Stats.java", "symbol": "Stats#hit"},
+    {"id": "cc-11-compute-reads-same-map", "rule_id": "CC-11", "file": "src/main/java/com/example/app/Totals.java", "symbol": "Totals#transfer"},
+    {"id": "rel-01-jdbc-not-in-try-with-resources", "rule_id": "REL-01", "file": "src/main/java/com/example/app/Repo.java", "symbol": "Repo#findNameByEmail"},
+    {"id": "rel-02-files-lines-unclosed", "rule_id": "REL-02", "file": "src/main/java/com/example/app/LogScanner.java", "symbol": "LogScanner#countErrors"},
+    {"id": "rel-03-threadlocal-set-null", "rule_id": "REL-03", "file": "src/main/java/com/example/app/RequestContext.java", "symbol": "RequestContext#handle"}
+  ],
+  "controls": [
+    {"id": "cc-08-local-map", "file": "src/main/java/com/example/app/Cache.java", "symbol": "Cache#buildIndex", "silent": ["CC-08"], "tolerance": "the map is a local that never leaves the method"},
+    {"id": "cc-09-increment-under-lock", "file": "src/main/java/com/example/app/Stats.java", "symbol": "Stats#record", "silent": ["CC-09"], "tolerance": "the increment sits in a synchronized method"},
+    {"id": "cc-09-documented-approximate-counter", "file": "src/main/java/com/example/app/Stats.java", "symbol": "Stats#sample", "silent": ["CC-09"], "tolerance": "the project context states lost increments are accepted on this counter"},
+    {"id": "cc-11-compute-reads-other-map", "file": "src/main/java/com/example/app/Totals.java", "symbol": "Totals#addWithinLimit", "silent": ["CC-11"], "tolerance": "the function reads a different map"},
+    {"id": "rel-01-try-with-resources", "file": "src/main/java/com/example/app/Repo.java", "symbol": "Repo#countActive", "silent": ["REL-01"], "tolerance": "every resource is a try resource"},
+    {"id": "rel-02-collection-stream", "file": "src/main/java/com/example/app/LogScanner.java", "symbol": "LogScanner#countErrorsIn", "silent": ["REL-02"], "tolerance": "the stream's source is a collection"},
+    {"id": "rel-03-remove-in-finally", "file": "src/main/java/com/example/app/RequestContext.java", "symbol": "RequestContext#handleSafely", "silent": ["REL-03"], "tolerance": "remove() runs in finally"}
+  ]
+}

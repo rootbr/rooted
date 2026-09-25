@@ -63,9 +63,16 @@ for plugin_json in plugins/*/.claude-plugin/plugin.json; do
       fi
     fi
 
-    # References
+    # References: a card corpus (a directory of one-rule cards under references/)
+    # prints as one line with its count; every other reference file is listed.
     refs=()
+    for card_dir in "$skill_dir"/references/*-cards; do
+      [ -d "$card_dir" ] || continue
+      n="$(find "$card_dir" -maxdepth 1 -name '*.md' | wc -l | tr -d ' ')"
+      refs+=("$(echo "$card_dir" | sed "s|${skill_dir}/||")/ (${n} cards)")
+    done
     while IFS= read -r -d '' f; do
+      case "$f" in */references/*-cards/*) continue ;; esac
       refs+=("$(echo "$f" | sed "s|${skill_dir}/||")")
     done < <(find "$skill_dir" -path '*/references/*.md' -print0 2>/dev/null)
     if [ ${#refs[@]} -gt 0 ]; then
