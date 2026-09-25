@@ -37,6 +37,24 @@
       "rule_id": "REL-03",
       "file": "src/main/java/com/example/app/RequestContext.java",
       "symbol": "RequestContext#handle"
+    },
+    {
+      "id": "meta-01-load-dependent-invariant-without-a-number",
+      "rule_id": "META-01",
+      "file": ".claude/reviewing-java/config.md",
+      "symbol": "Inv 2"
+    },
+    {
+      "id": "meta-05-aspirational-should",
+      "rule_id": "META-05",
+      "file": ".claude/reviewing-java/config.md",
+      "symbol": "Inv 3"
+    },
+    {
+      "id": "meta-08-unnumbered-prose-rule",
+      "rule_id": "META-08",
+      "file": ".claude/reviewing-java/config.md",
+      "symbol": "Invariants"
     }
   ],
   "controls": [
@@ -111,6 +129,22 @@
         "CC-11"
       ],
       "tolerance": "the function reads another key of the same map and updates nothing; a read takes no lock"
+    },
+    {
+      "id": "meta-well-formed-invariant",
+      "file": ".claude/reviewing-java/config.md",
+      "symbol": "Inv 4",
+      "silent": [
+        "META-01",
+        "META-02",
+        "META-03",
+        "META-04",
+        "META-05",
+        "META-06",
+        "META-07",
+        "META-08"
+      ],
+      "tolerance": "numbered, structural, names its forbidden state as a construct and its evidence handle"
     }
   ]
 }

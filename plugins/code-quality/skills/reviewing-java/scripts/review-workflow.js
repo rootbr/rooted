@@ -209,7 +209,9 @@ ${CONTEXT}
 
 ${DISCIPLINE}
 - rule_id is ${c.rule_id}; severity is ${c.severity_default} unless the card's Limits name a condition that changes it — the verifier calibrates afterwards.
-- "symbol" is the enclosing Class#method (or Class#field); "fix" is Java; "rationale" names the mechanism the card's Rationale names.
+${c.domain === 'meta'
+  ? '- This card audits the project\'s review configuration, not Java: the slice is the Markdown of config.md; "symbol" is `Inv <N>` for a numbered invariant or the nearest heading for a prose rule; "fix" is the rewritten invariant text.'
+  : '- "symbol" is the enclosing Class#method (or Class#field); "fix" is Java; "rationale" names the mechanism the card\'s Rationale names.'}
 
 ${READ_ONLY}
 Return the findings object (may be empty) via the structured-output tool.`

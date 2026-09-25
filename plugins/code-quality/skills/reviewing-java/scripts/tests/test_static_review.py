@@ -298,6 +298,25 @@ class EndToEnd(unittest.TestCase):
         log = open(os.path.join(repo, "review", "plan.log")).read()
         self.assertIn("META cards ['META-01'] not run", log)
 
+    def test_meta_cards_read_the_config(self):
+        repo = os.path.join(self.tmp, "repo3")
+        make_repo(repo)
+        # --meta with an unchanged config: the whole config is one hunk for the META card
+        rc = sr.main(["--diff-ref", "HEAD~1..HEAD", "--cards-dir", self.cards, "--repo", repo, "--meta"])
+        self.assertEqual(rc, 0)
+        plan = json.load(open(os.path.join(repo, "review", "plan.json")))
+        self.assertTrue(plan["meta_run"])
+        meta_jobs = [j for j in plan["jobs"] if j["card"]["rule_id"] == "META-01"]
+        self.assertEqual(len(meta_jobs), 1)
+        sf = meta_jobs[0]["slice"]["files"][0]
+        self.assertEqual(sf["path"], ".claude/reviewing-java/config.md")
+        self.assertEqual(plan["inventory"]["config_file"]["status"], "unchanged")
+        self.assertIn("**Sentinel at index 0**", "\n".join(l["text"] for l in sf["hunks"][0]["lines"]))
+        # the Java card never sees the config
+        cc = [j for j in plan["jobs"] if j["card"]["rule_id"] == "CC-08"]
+        self.assertEqual([f["path"] for f in cc[0]["slice"]["files"]], ["src/main/java/com/acme/Cache.java"])
+        self.assertEqual(plan["inventory"]["file_count"], 1)
+
     def test_empty_diff(self):
         repo = os.path.join(self.tmp, "repo2")
         make_repo(repo, with_java_change=False)

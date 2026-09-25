@@ -163,6 +163,21 @@ def package_of(repo, head_sha, path):
     return m.group(1).replace("/", ".") if m else ""
 
 
+def config_file_record(repo, config_path, config_rel, base_sha, head_sha, changed):
+    """The config as a file record for the META cards: its diff hunks when the diff
+    changed it, else the whole file as one hunk so a --meta run reads all of it."""
+    if changed:
+        parsed = parse_diff(git(repo, "diff", "-U0", "--no-color", "--no-ext-diff", base_sha, head_sha, "--", config_rel))
+        rec = parsed[0] if parsed else {"status": "modified", "hunks": [], "added_lines": 0, "removed_lines": 0}
+    else:
+        with open(config_path, encoding="utf-8") as handle:
+            lines = handle.read().split("\n")
+        rec = {"status": "unchanged", "removed_lines": 0, "added_lines": len(lines),
+               "hunks": [{"start": 1, "old_start": 1, "lines": [{"no": i + 1, "text": l} for i, l in enumerate(lines)]}]}
+    rec.update({"path": config_rel, "package": "", "group": "(config)", "kind": "config"})
+    return rec
+
+
 def size_class(n):
     if n == 0:
         return None
@@ -244,12 +259,14 @@ def matches(card, line):
     return any(re.search(t, line) for t in card["_compiled"])
 
 
-def build_jobs(cards, files, modules, max_job_lines, max_jobs, log):
+def build_jobs(cards, files, modules, max_job_lines, max_jobs, log, config_files=()):
+    """One job per (card x slice). A `meta` card reads the project config, so its
+    slice is drawn from `config_files`; every other card reads the Java files."""
     jobs = []
     for card in cards:
         card["_compiled"] = [re.compile(t) for t in card["triggers"]]
         slice_files = []
-        for f in files:
+        for f in (config_files if card["domain"] == "meta" else files):
             hunks = [h for h in f["hunks"] if any(matches(card, ln["text"]) for ln in h["lines"])]
             if hunks:
                 slice_files.append({"path": f["path"], "package": f["package"], "group": f["group"],
@@ -461,13 +478,14 @@ def build_plan(opts, log):
                 rec["path"] = os.path.abspath(p)
                 cards.append(rec)
                 card_paths.append(os.path.relpath(p, repo).replace(os.sep, "/"))
-    meta_run = config_changed or opts["meta"]
+    meta_run = (config_changed or opts["meta"]) and config is not None
     active = [c for c in cards if c["domain"] != "meta" or meta_run]
     if not meta_run:
         skipped = [c["rule_id"] for c in cards if c["domain"] == "meta"]
         if skipped:
-            log(f"META cards {skipped} not run: config.md unchanged and --meta not passed")
-    jobs = build_jobs(active, files, modules, opts["max_job_lines"], opts["max_jobs"], log) if files else []
+            log(f"META cards {skipped} not run: " + ("no config.md" if config is None else "config.md unchanged and --meta not passed"))
+    config_files = [config_file_record(repo, config_path, config_rel, base_sha, head_sha, config_changed)] if meta_run else []
+    jobs = build_jobs(active, files, modules, opts["max_job_lines"], opts["max_jobs"], log, config_files) if (files or config_files) else []
     slices = build_slices(files, log) if files else []
     build_files = [b for b in BUILD_FILES if os.path.isfile(os.path.join(repo, b))]
     plan = {
@@ -482,6 +500,7 @@ def build_plan(opts, log):
             "config_path": config_rel if config is not None else None,
             "config_changed": config_changed,
             "config": config,
+            "config_file": config_files[0] if config_files else None,
         },
         "cards": [{k: v for k, v in c.items() if not k.startswith("_")} for c in cards],
         "jobs": jobs,
