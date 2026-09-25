@@ -196,7 +196,8 @@
         "META-05",
         "META-06",
         "META-07",
-        "META-08"
+        "META-08",
+        "META-09"
       ],
       "tolerance": "numbered, structural, names its forbidden state as a construct and its evidence handle"
     },

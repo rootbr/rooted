@@ -58,9 +58,9 @@ CANDIDATES = [
      "test": lambda line, ctx: "new Random(" in line and re.search(r"token|secret|password|nonce|salt|otp", ctx["window"], re.I) is not None},
     {"id": "synchronized-wrapper-on-concurrent-map", "rule_id": "PF-10",
      "test": lambda line, ctx: re.search(r"Collections\.synchronized\w+\(\s*new Concurrent", line) is not None},
-    {"id": "print-stack-trace", "rule_id": None,
+    {"id": "print-stack-trace", "rule_id": "REL-52",
      "test": lambda line, ctx: ".printStackTrace()" in line},
-    {"id": "empty-catch", "rule_id": None,
+    {"id": "empty-catch", "rule_id": "REL-52",
      "test": lambda line, ctx: re.search(r"catch\s*\([^)]*\)\s*\{\s*\}", line) is not None
      or (re.search(r"catch\s*\([^)]*\)\s*\{\s*$", line) is not None and re.match(r"\s*\}\s*$", ctx["next"]) is not None)},
 ]

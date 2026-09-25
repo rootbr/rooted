@@ -386,6 +386,26 @@ Return the ruling object via the structured-output tool.`
 // its rule flagged the same span. Filled from the pairs the corpus reviewers find still
 // overlapping; an entry names concepts one card states in the vocabulary of another domain.
 const DEFER_TO = {
+  // general data-race card yields to the specific shape it overlaps
+  'CC-01': ['CC-02', 'CC-09', 'CC-10', 'CC-12'],
+  'CC-07': 'CC-45',   // bare tryLock() span: the untested-result card owns it
+  'CC-10': 'CC-48',   // a mutating updateAndGet/getAndUpdate function
+  'CC-31': 'REL-49',  // a virtual-thread fan-out onto a remote dependency is a bulkhead question
+  'CC-32': 'CC-03',   // blocking under synchronized on a virtual thread is blocking under a lock
+  'CC-34': 'CC-21',   // a platform pool on blocking work inside an unbounded executor
+  'CC-46': 'CC-21',   // an unbounded queue passed to a ThreadPoolExecutor constructor
+  'CC-49': ['CC-01', 'CC-13'],  // a field read twice on a data race or a lazy-init idiom
+  'MNT-06': 'MNT-05', // cyclomatic and cognitive complexity on one method
+  'MNT-16': 'CC-16',  // a mutable collection exposed from a holder shared between threads
+  'MNT-27': 'REL-07', // a wall-clock read on a duration span: the elapsed-time card owns the fix
+  'PF-19': 'MNT-31',  // a concatenated logger argument: maintainability owns logging style
+  'PF-22': 'MNT-24',  // an exception used for control flow
+  'REL-20': 'REL-52', // a swallowing fallback lambda is a swallowed failure
+  'REL-59': 'REL-58', // a dropped runAsync/supplyAsync future of one stage is a dropped submission
+  'SEC-15': 'SEC-16', // path traversal on an upload name or location
+  'SEC-19': 'SEC-18', // permitAll breadth on a shadowed matcher
+  'SEC-36': 'SEC-30', // a {noop} literal password is plaintext storage
+  'SEC-49': 'SEC-30', // a weak digest hashing a password is a password-storage defect
 }
 const ownersOf = ruleId => [DEFER_TO[ruleId] || []].flat()
 const SEV_RANK = { critical: 0, major: 1, minor: 2, suggestion: 3 }
