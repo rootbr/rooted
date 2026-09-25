@@ -88,8 +88,8 @@ def render(findings, plan, title, passes):
 
     out = [f"# {title} Review", "", "## Executive Summary",
            f"- Reviewed: `{inv.get('diff_ref', '?')}` — {inv.get('file_count', 0)} Java files ({inv.get('size_class') or 'n/a'}); "
-           f"packages: {', '.join(sorted({f.get('package', '') for f in inv.get('files', [])}) - {''}) or 'n/a'}",
-           f"- Passes: {passes or f'{len(plan.get('jobs', []))} card jobs and {len(plan.get('slices', []))} logic slices'}",
+           f"packages: {', '.join(sorted({f.get('package', '') for f in inv.get('files', [])} - {''})) or 'n/a'}",
+           f"- Passes: {passes or default_passes(plan)}",
            f"- Findings: {len(shown)} ({counts['critical']} critical, {counts['major']} major, {counts['minor']} minor, {counts['suggestion']} suggestion)",
            f"- Verification: {len(findings)} raw findings → {len(report)} confirmed, {len(downgraded)} downgraded, {len(rejected)} rejected, {len(flagged)} flagged for the author",
            f"- Recommendation: {rec}", ""]
@@ -101,9 +101,9 @@ def render(findings, plan, title, passes):
         out.append("")
     for f in grave:
         b = body_of(f)
-        out += [f"### {f.get('id', f['rule_id'])}: {title_of(f, cards)}",
+        out += [f"### {f.get('id', f['rule_id'])}: {title_of(f, cards, plan)}",
                 f"- **Severity**: {final_severity(f).capitalize()}" + (f" _(downgraded from {f.get('severity')})_" if f in downgraded else ""),
-                f"- **Rule**: `{f['rule_id']}` — {source_line(cards[f['rule_id']]['path']) if f['rule_id'] in cards else 'project invariant'}",
+                f"- **Rule**: {rule_line(f, cards)}",
                 f"- **Location**: `{b['file']}` · `{b['symbol']}`",
                 "- **Code**:", "  ```java", indent(b["code"]), "  ```",
                 f"- **Problem**: {b['problem']}",
@@ -130,7 +130,7 @@ def render(findings, plan, title, passes):
         for f in flagged:
             b = body_of(f)
             r = f.get("ruling") or {}
-            out += [f"### {f.get('id', f['rule_id'])}: {title_of(f, cards)}",
+            out += [f"### {f.get('id', f['rule_id'])}: {title_of(f, cards, plan)}",
                     f"- **Severity**: {final_severity(f).capitalize()}",
                     f"- **Location**: `{b['file']}` · `{b['symbol']}`",
                     f"- **Problem**: {b['problem']}",
@@ -150,7 +150,7 @@ def render(findings, plan, title, passes):
     for f in rejected:
         b = body_of(f)
         r = f.get("ruling") or {}
-        rej += [f"### ~~{f.get('id', f['rule_id'])}: {title_of(f, cards)}~~",
+        rej += [f"### ~~{f.get('id', f['rule_id'])}: {title_of(f, cards, plan)}~~",
                 f"- **Original severity**: {f.get('severity', '').capitalize()}",
                 f"- **Rule**: `{f['rule_id']}`",
                 f"- **Location**: `{b['file']}` · `{b['symbol']}`",
@@ -166,7 +166,7 @@ def render(findings, plan, title, passes):
         rej.append("")
     for f in downgraded:
         v = f.get("verdict") or {}
-        rej += [f"### {f.get('id', f['rule_id'])}: {title_of(f, cards)} _({f.get('severity')} → {final_severity(f)})_",
+        rej += [f"### {f.get('id', f['rule_id'])}: {title_of(f, cards, plan)} _({f.get('severity')} → {final_severity(f)})_",
                 f"- **Original severity**: {f.get('severity', '').capitalize()}",
                 f"- **Rule**: `{f['rule_id']}`",
                 "- **Verdict**: Downgraded",
@@ -174,9 +174,32 @@ def render(findings, plan, title, passes):
     return "\n".join(out), "\n".join(rej), out[2:9]
 
 
-def title_of(f, cards):
+def default_passes(plan):
+    return f"{len(plan.get('jobs', []))} card jobs and {len(plan.get('slices', []))} logic slices"
+
+
+def title_of(f, cards, plan=None):
     c = cards.get(f["rule_id"])
-    return f.get("title") or (c["title"] if c else f.get("problem", "")[:80])
+    if c:
+        return c["title"]
+    for pc in ((plan or {}).get("project_cards") or {}).get("cards", []):
+        if pc.get("rule_id") == f["rule_id"]:
+            return pc.get("title", f["rule_id"])
+    words = str(f.get("problem", "")).split()
+    out = ""
+    for w in words:
+        if len(out) + len(w) + 1 > 72:
+            return out + " …"
+        out = (out + " " + w).strip()
+    return out
+
+
+def rule_line(f, cards):
+    if f["rule_id"] in cards:
+        return f"`{f['rule_id']}` — {source_line(cards[f['rule_id']]['path'])}"
+    if f["rule_id"] == "LOGIC":
+        return "`LOGIC` — logic and correctness pass (no card)"
+    return f"`{f['rule_id']}` — project invariant from config.md"
 
 
 def indent(code):

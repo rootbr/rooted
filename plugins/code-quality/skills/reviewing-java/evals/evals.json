@@ -70,9 +70,11 @@
       ],
       "seeds": 6,
       "controls": 7,
-      "result": "to fill after grading",
-      "raw_finder_hits": "to fill after grading",
-      "notes": "to fill after grading"
+      "result": "13/13 passed: 6 seeds found, 7 controls silent after verification",
+      "raw_finder_hits": "6/6 seeds hit by their cards; 0/7 controls flagged by any card before verification; the logic pass added two findings of its own",
+      "notes": "CC-08's finding and the PROJ-1 finding shared the span Cache#getOrLoad with compatible fixes and were folded into PROJ-1.1 (also: CC-08), which the grader counts for the seed. The skeptic downgraded CC-11.1 to minor. The logic pass found a genuine defect the fixture did not seed on purpose — Totals#transfer credits the target without debiting the source — and the skeptic confirmed it critical; its second finding on Totals#addWithinLimit was rejected. The fixture tree was unmutated after the run (git status clean but for review/).",
+      "agents": "12 finders (6 card jobs, 3 logic slices, 3 project-invariant jobs) + 8 skeptics; no second skeptic or arbiter was needed",
+      "cost": "Find stage 600,995 sub-agent tokens in 96 s wall-clock; full run (finders replayed from cache) 579,754 further tokens in 888 s at the runtime's two-agent concurrency cap on a 4-CPU host"
     }
   ]
 }

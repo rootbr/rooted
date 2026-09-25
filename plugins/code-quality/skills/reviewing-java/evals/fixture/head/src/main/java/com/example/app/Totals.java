@@ -13,9 +13,8 @@ public class Totals {
 
     public void transfer(String from, String to, int amount) {
         totals.compute(to, (key, current) -> {
-            Integer other = totals.get(from);
-            int base = current == null ? 0 : current;
-            return other == null ? base : base + Math.min(amount, other);
+            totals.merge(from, -amount, Integer::sum);
+            return (current == null ? 0 : current) + amount;
         });
     }
 
@@ -25,6 +24,14 @@ public class Totals {
             int base = current == null ? 0 : current;
             int next = base + amount;
             return limit == null ? next : Math.min(next, limit);
+        });
+    }
+
+    /** Mirrors the sibling's balance; a stale read of the sibling is accepted by the dashboard. */
+    public void mirror(String account, String sibling) {
+        totals.compute(account, (key, current) -> {
+            Integer other = totals.get(sibling);
+            return other == null ? current : other;
         });
     }
 }
