@@ -14,8 +14,9 @@
   "runner": {
     "build": "evals/fixture/make-fixture.sh <dir>",
     "plan": "python3 scripts/static-review.py --diff-ref HEAD~1..HEAD --cards-dir <abs>/references/review-cards --repo <dir>",
-    "review": "Workflow({ scriptPath: scripts/review-workflow.js, args: { root: <dir>, stage: 'all', plan: <dir>/review/plan.json, design_intent, project_context } })",
-    "grade": "python3 evals/grade.py --expected evals/expected.json --verdicts <dir>/review/verdicts.json --findings <dir>/review/findings.json"
+    "review": "Workflow({ scriptPath: <dir>/review/run.js })  — the bundle embeds root, stage 'all', the plan, design_intent and project_context",
+    "grade": "python3 evals/grade.py --expected evals/expected.json --verdicts <dir>/review/verdicts.json --findings <dir>/review/findings.json",
+    "bundle": "python3 scripts/bundle-run.py --root <dir> --plan review/plan.json --intent <intent-file> --context <context-file> --out review/run.js"
   },
   "models": {
     "subject": {
