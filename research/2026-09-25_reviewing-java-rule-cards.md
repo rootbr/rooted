@@ -20,6 +20,8 @@ plugins/code-quality/
     │   ├── review-cards-provenance.md# rule_id · full citation · origin section · formulation source · notes
     │   ├── pending-evidence.md       # rules held back for lack of an openable source
     │   ├── gotchas.md                # G-NN, symptom-indexed
+    │   ├── maintenance.md            # what changes together when a card, script, prompt or tier changes
+    │   ├── report-format.md          # the exact layout of the two reports render-reports.py writes
     │   └── java-invariants-review-checklist.md   # author-facing guide to writing config.md invariants
     ├── scripts/
     │   ├── static-review.py          # pre-pass: diff + cards + config → review/plan.json, review/plan.log
