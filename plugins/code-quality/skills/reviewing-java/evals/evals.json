@@ -76,6 +76,17 @@
       "notes": "CC-08's finding and the PROJ-1 finding shared the span Cache#getOrLoad with compatible fixes and were folded into PROJ-1.1 (also: CC-08), which the grader counts for the seed. The skeptic downgraded CC-11.1 to minor. The logic pass found a genuine defect the fixture did not seed on purpose — Totals#transfer credits the target without debiting the source — and the skeptic confirmed it critical; its second finding on Totals#addWithinLimit was rejected. The fixture tree was unmutated after the run (git status clean but for review/).",
       "agents": "12 finders (6 card jobs, 3 logic slices, 3 project-invariant jobs) + 8 skeptics; no second skeptic or arbiter was needed",
       "cost": "Find stage 600,995 sub-agent tokens in 96 s wall-clock; full run (finders replayed from cache) 579,754 further tokens in 888 s at the runtime's two-agent concurrency cap on a 4-CPU host"
+    },
+    {
+      "id": "2026-09-25-extended-fixture",
+      "cards": "240 (the full corpus; 81 dispatched by the fixture's diff)",
+      "seeds": "18/18 found",
+      "controls": "19/19 silent",
+      "result": "37/37 after two grading-mechanics corrections the first grading exposed (an overruled finding now stays on the kept finding as `also`/`superseded`; a seed may list several anchors); the finders and skeptics were not re-prompted for those",
+      "raw_finder_hits": "54 findings from 96 finders; no control flagged by any finder; 22 of the 54 were MNT-29 (one per undocumented member, now one per class)",
+      "notes": "Verification: run 1 confirmed 44, modified 8, downgraded 2 (SEC-04 critical→major after the skeptic executed the flagged Runtime.exec expression and showed StringTokenizer leaves the quote unterminated; PROJ-3 major→minor on an aspirational invariant), rejected 0; the resumed run after the aggregation change re-verified with confirmed 36, modified 17, downgraded 1 — the verdict labels vary between runs on the same findings, the dispositions do not (every finding counts in both). Eleven unseeded defects the fixture carries by construction were reported (mutable field in a singleton bean, unbounded per-request list, unencoded HTML, int overflow, a logic-pass credit-without-debit). Two same-priority ties on Totals#transfer flagged for the author. Tree unmutated after both runs. Reports kept under evals/runs/.",
+      "agents": "run 1: 150 (96 finders, 54 skeptics, no second skeptic, no arbiter); resume: 150 with most finders replayed from cache",
+      "cost": "run 1: 8,301,570 sub-agent tokens, 3,277 s wall-clock at concurrency 2; resume: 3,126,839 tokens, 2,502 s"
     }
   ]
 }
