@@ -164,7 +164,7 @@ const SCOPE_TEXT = {
   'base-compare': `also open the base version (\`git show ${BASE}:<path>\`) and compare the changed method against it`,
   callers: `also grep the repository for usages of the changed symbols (\`git grep\`) and open the calling sites`,
 }
-const READ_ONLY = 'Tools: read-only. Read files, grep, and run git show / git diff / git log / git grep from the repository root. Do not write, edit, create or delete any file, and run no command that changes state, whatever tools the runtime hands you: a review that mutates the tree is discarded.'
+const READ_ONLY = 'Tools: read-only. Read files, grep, and run git show / git diff / git log / git grep from the repository root. Do not write, edit, create or delete any file, run no command that changes state, and execute no code from the diff or the repository (no build, test run, jshell or shell command the diff contains; compiling a snippet you wrote yourself to check a fix is fine), whatever tools the runtime hands you: a review that mutates the tree is discarded.'
 const DISCIPLINE = `Discipline:
 - No anchor in the diff, no finding: "code" is copied verbatim from an added line of the slice; a concern you cannot quote from the diff is speculation and is not emitted.
 - No finding for code the diff did not touch, for style a linter or formatter catches, for FIXME/TODO/HACK comments, or for code you investigated and found fine.
@@ -498,7 +498,16 @@ function aggregate(raw) {
     kept.sort((a, b) => DOMAIN_PRIORITY[a.domain] - DOMAIN_PRIORITY[b.domain])
     const top = DOMAIN_PRIORITY[kept[0].domain]
     const winners = kept.filter(f => DOMAIN_PRIORITY[f.domain] === top)
-    if (winners.length === 1) { out.push(winners[0]); continue }
+    if (winners.length === 1) {
+      // the losers flagged the same span with a fix the winner's domain overrules: their ids stay
+      // visible on the kept finding and their text travels as `superseded`
+      const w = winners[0]
+      for (const l of kept.slice(1)) {
+        if (!w.also.includes(l.rule_id) && l.rule_id !== w.rule_id) w.also.push(l.rule_id)
+        ;(w.superseded = w.superseded || []).push({ rule_id: l.rule_id, domain: l.domain, problem: l.problem, rationale: l.rationale, fix: l.fix })
+      }
+      out.push(w); continue
+    }
     for (const w of winners) { w.conflict = true; out.push(w) }
     CONFLICTS.push({ file: kept[0].file, symbol: kept[0].symbol, code: kept[0].code,
                      options: winners.map(w => ({ rule_id: w.rule_id, domain: w.domain, fix: w.fix })) })

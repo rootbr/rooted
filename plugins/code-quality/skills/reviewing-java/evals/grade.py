@@ -32,7 +32,10 @@ def method_part(symbol):
 
 
 def matches(f, file, symbol):
-    return f.get("file") == file and method_part(f.get("symbol")) == method_part(symbol)
+    """`symbol` is one anchor or a list of the anchors a card admits (the method that performs
+    the access, or the field it reads); the finding matches when its method part equals any."""
+    symbols = symbol if isinstance(symbol, list) else [symbol]
+    return f.get("file") == file and any(method_part(f.get("symbol")) == method_part(x) for x in symbols)
 
 
 def carries(f, rule_id):
@@ -64,7 +67,7 @@ def main(argv):
         ok = bool(hit)
         failures += 0 if ok else 1
         extra = "" if not opts["findings"] else f"  raw={'hit' if rawhit else 'miss'}"
-        print(f"  {'PASS' if ok else 'FAIL'}  {s['id']}  ({s['rule_id']} {s['symbol']}){extra}"
+        print(f"  {'PASS' if ok else 'FAIL'}  {s['id']}  ({s['rule_id']} {s['symbol'] if isinstance(s['symbol'], str) else ' | '.join(s['symbol'])}){extra}"
               + (f"  verified as {hit[0].get('id')} [{disposition(hit[0])}]" if hit else ""))
     print("CONTROLS")
     for c in exp["controls"]:

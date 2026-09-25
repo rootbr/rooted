@@ -90,7 +90,11 @@
       "id": "pf-02-linkedlist-indexed",
       "rule_id": "PF-02",
       "file": "src/main/java/com/example/app/Formatter.java",
-      "symbol": "Formatter#recentAt"
+      "symbol": [
+        "Formatter#recentAt",
+        "Formatter#recent"
+      ],
+      "note": "the card admits either anchor: the indexed read or the LinkedList field it reads"
     },
     {
       "id": "mnt-02-boolean-selector",

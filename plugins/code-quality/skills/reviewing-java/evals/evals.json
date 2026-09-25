@@ -4,11 +4,11 @@
   "note": "The fixture under fixture/ is a small Java tree in two states; make-fixture.sh commits base/ then head/ into a temporary repository so the pre-pass and the finders run on a real diff_ref (HEAD~1..HEAD). head/ seeds one defect per chosen card and, beside each, a control whose suspicious-looking code is correct by a stated tolerance. expected.json lists the (rule_id, file, symbol) triple per seed and the rule ids that must stay silent per control; grade.py grades the run's verdicts.json against it.",
   "grading": {
     "assertion_kinds": {
-      "seed": "a verified finding must carry the seed's rule_id — as its own or folded into it by aggregation (`also`) — and the seed's file, and its symbol's method part must match",
+      "seed": "a verified finding must carry the seed's rule_id — as its own, folded into it by aggregation (`also`), or superseded on the same span by a higher-priority domain's finding (also listed in `also`) — and the seed's file, and its symbol's method part must match one of the seed's symbols",
       "control": "no verified finding with a listed rule id may sit on the control's file and symbol"
     },
     "counting_rule": "A finding counts when its disposition after verification is report, flagged or downgraded; a finding a skeptic rejected (or an arbiter upheld as rejected) does not. --findings adds the pre-verification hits so a control the finder flagged and the skeptic rejected is visible as 'flagged then rejected'.",
-    "matcher": "Exact rule_id and file; symbol compared on the part after the last '#', '.' or '::', case-insensitive, '()' stripped.",
+    "matcher": "Exact rule_id and file; symbol compared on the part after the last '#', '.' or '::', case-insensitive, '()' stripped. A seed may list several symbols when the card admits more than one anchor (the method that performs the access or the field it reads); any of them matches.",
     "why_mechanical": "Precision and recall on seeded defects need no reading: the triple either appears in the verified set or it does not. A judge model would add its own error to the measurement and the self-preference bias of a Claude judge on Claude findings (Zheng 2306.05685). Holistic quality of a finding's prose is not graded here."
   },
   "runner": {

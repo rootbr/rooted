@@ -35,7 +35,7 @@ good: /**
 On the triggered hunk take each added public type and public or protected member; open the file to see the lines above it for a `/**` comment with a summary sentence. Apply the two exceptions. Validator question: **is this visible element without a Javadoc summary, and is it neither self-explanatory nor an override?** Yes → flag.
 
 ## Finding output
-When the validator answers yes, the finder emits one finding (`rule_id: MNT-29`, severity suggestion, `file`, `symbol`, `code` = the declaration quoted verbatim from the diff, `fix` = the Javadoc with a summary sentence, `rationale` naming what the signature does not tell a caller).
+When the validator answers yes for one or more elements of a class, the finder emits one finding for that class (`rule_id: MNT-29`, severity suggestion, `file`, `symbol` = the class name, `code` = the first such declaration quoted verbatim from the diff, `problem` listing every element without a summary, `fix` = a Javadoc summary for the first one as the model, `rationale` naming what the signatures do not tell a caller); one finding per class keeps a diff that adds twenty undocumented methods to one entry.
 
 ## Source
 Google Java Style Guide §7.3 "Where Javadoc is used" — "At the minimum, Javadoc is present for every visible class, member, or record component … A top-level class is visible if it is public; a member is visible if it is public or protected and its containing class is visible"; §7.3.1 exception for self-explanatory members, with the caveat that it does not justify omitting information "a typical reader might need to know"; §7.3.2 exception for overrides. Error Prone `MissingSummary` — "A summary line is required on public/protected Javadocs".
