@@ -18,7 +18,7 @@ plugins/code-quality/
     |-- references/
     |   |-- craft-cards/           # <prefix>-NN--<slug>.md, one rule each
     |   |-- craft-cards-taxonomy.md    # corpus schema, controlled vocabulary, deltas from the base card spec
-    |   |-- craft-cards-provenance.md  # rule_id · evidence citation · formulation source · reception · notes
+    |   |-- craft-cards-provenance.md  # rule_id, evidence citation, formulation source, reception, notes
     |   |-- pending-evidence.md    # rules held back: no openable evidence, or no separating condition
     |   |-- maintenance.md         # what changes together when a card, script, prompt or tier changes
     |   |-- gotchas.md             # G-NN, symptom-indexed
@@ -26,7 +26,7 @@ plugins/code-quality/
     |-- scripts/
     |   |-- static-craft.py        # pre-pass: diff + cards -> craft/plan.json, craft/plan.log; stdlib only
     |   |-- cardlib.py             # shared frontmatter and trigger parsing
-    |   |-- craft-cards.py         # lists cards by facet for the developer agent: rule_id · title · path
+    |   |-- craft-cards.py         # lists cards by facet for the developer agent: rule_id, title, path
     |   |-- validate-craft-cards.py    # mechanical corpus validator
     |   |-- bundle-run.py          # plan + intent + context -> craft/run.js
     |   |-- craft-review-workflow.js   # Find -> Aggregate -> Verify -> Refute
@@ -140,7 +140,7 @@ Ten topic groups, each one domain and one id prefix. The topics inside a group a
 | J, `input`, `INP` | `parsing-and-grammar-based-input` | SW4.9, PoP9 |
 | | `security-hygiene-in-ordinary-code` | PP "Stay Safe Out There", SWEBOK ch. 3 §3.7 |
 
-Forty-six topics. A topic the research adds beyond this table is recorded in §Deviations with its source.
+Forty-six topics. §Deviations records every topic the research adds beyond this table, with its source.
 
 Concept ownership between neighbouring topics, decided at carding time so that one concept has one card:
 
@@ -164,7 +164,10 @@ Reserved specialties are outside the corpus and outside the developer agent's ma
 - `step` has seven values because the developer agent's work has seven moments at which it loads cards: `design`, `implement`, `handle-errors`, `test`, `refactor`, `document`, `review`. A card lists every moment at which its rule is applied while writing, not only the one where the defect is found; `review` is reserved for rules about the shape and description of the change itself.
 - `applies_to` is `universal` for a rule that holds in every mainstream language and paradigm; otherwise it names a paradigm (`object-oriented`, `functional`), a boundary kind (`public-api`, `service-boundary`, `library`), a language trait (`exceptions`, `result-types`, `garbage-collected`, `manual-memory`, `static-types`, `dynamic-types`) or a file kind (`tests`, `build-config`, `prose`). A rule that holds only in one language is not carded here; it belongs to a language-specific corpus.
 - `scope`, `check_kind` and the tiers keep the Java review corpus's meanings, so the two review workflows read a card the same way.
-- Severity: `major` — a correctness or maintainability defect the card's evidence ties to failures or to measured cost; `minor` — a clarity or design cost; `suggestion` — style, naming, documentation.
+- Severity has three values:
+  - `major` — a correctness or maintainability defect the card's evidence ties to failures or to measured cost;
+  - `minor` — a clarity or design cost;
+  - `suggestion` — style, naming, documentation.
 
 ## Structural signals
 
@@ -218,7 +221,7 @@ The order follows what a wrong fix costs: a validation defect at a trust boundar
     "mode": "committed" | "worktree",
     "diff_ref": "<base_sha>...<head_sha>" | "<base_sha>...worktree",
     "base_sha": "...", "head_sha": "..." | "worktree",
-    "path_filter": "", "size_class": "SMALL" | "MEDIUM" | "LARGE",   // 1–19 · 20–49 · 50+ changed files
+    "path_filter": "", "size_class": "SMALL" | "MEDIUM" | "LARGE",   // 1-19, 20-49, 50+ changed files
     "file_count": N, "languages": { "python": 3, "go": 1 },
     "files": [ { "path": "src/pkg/mod.py", "language": "python",
                  "kind": "source" | "test" | "config" | "docs" | "build",
@@ -260,7 +263,7 @@ The deny-list, documented in the script, skips a file for one of six reasons:
 
 Language detection is by extension; the finder's `fix` is written in the file's language.
 
-Job construction: for each card, the slice is the set of files whose added lines match any pattern or whose hunks carry the named signal, carrying only the matching hunks by index into the inventory record, so no hunk text repeats and the plan travels as a bundle. A card's slice stays one job while its added lines total at most 400; above that it splits by the config's `modules` (`[{name, paths: [..]}]`) or by directory prefix. The total is capped at 96 jobs, and every merge and drop the cap forces is written to `craft/plan.log`:
+Job construction: for each card, the slice is the set of files whose added lines match any pattern or whose hunks carry the named signal, carrying only the matching hunks by index into the inventory record, so no hunk text repeats and the plan travels as a bundle. A card's slice stays one job while its added lines total at most 400; above that it splits by the config's `modules` (`[{name, paths: [..]}]`) or by directory prefix. The total is capped at 96 jobs, and `craft/plan.log` records every merge and drop the cap forces:
 
 1. the jobs of the card with the most jobs are merged back into one, repeated while any card holds more than one job;
 2. then the smallest `suggestion` job is dropped;
@@ -316,7 +319,7 @@ Fetch status, recorded per citation on the provenance line:
 
 - `fetched` — opened from the authoring environment and quoted. The channel is GitHub-hosted content (`raw.githubusercontent.com`): the tool rule documentation of ESLint, Error Prone, PMD, Checkstyle, Pylint, Ruff, `go vet`, clippy, SpotBugs, Semgrep and the SonarSource language plugins; official documentation whose source is on GitHub (CPython, the Go specification and Effective Go, the Rust book, reference and API guidelines, the TypeScript handbook, the OpenJDK sources, the PEPs, Google's style guides and engineering practices, the OWASP cheat sheets and ASVS, the httpwg RFC sources, the tz database, semver); the CC-licensed *97 Things* repository; the public discussion of the authors of APOSD and *Clean Code*; plus `pkg.go.dev` for Go package documentation.
 - `relayed` — the paper itself could not be opened, and the search index's summary of it states the claim with its number; the card's Thesis carries no more than the relayed statement, and the provenance line quotes it.
-- `unfetched` — cited from memory with no relayed statement; such a citation backs no card. A rule whose only anchor is unfetched goes to `references/pending-evidence.md`.
+- `unfetched` — cited from memory with no relayed statement; such a citation backs no card. When a rule's only anchor is unfetched, the rule goes to `references/pending-evidence.md`.
 
 A card's evidence is fetched or relayed; the drafter and the skeptic confirm that the anchored section states the claim as the card words it — no inversion, no stripped precondition, no conditional flattened to an absolute — and a rule with no such anchor is not shipped. Where a fetched tool-rule page and a relayed paper back one rule, the card cites both and the fetched page is the first locator.
 
@@ -345,7 +348,7 @@ Per topic, the research workflow runs 3 source agents, 1 spine agent, and per ca
 
 The brief is the operator's handover message that commissioned this build; it is not a file in the repository, so each entry quotes the instruction it deviates from and states the determining reason.
 
-1. Branch. The brief says "Work on branch `feat/software-craft`". The work is committed and pushed on the branch the session environment designates, `claude/youthful-thompson-m7gj89`, because that environment binds pushes to its designated branch and the operator follows it in the session view.
+1. Branch. The brief says "Work on branch `feat/software-craft`". I commit and push the work on the branch the session environment designates, `claude/youthful-thompson-m7gj89`, because that environment binds pushes to its designated branch and the operator follows it in the session view.
 2. Fetch channel. The brief says "Fetch every source you cite and confirm the anchored section states the claim as the card words it" and, for the pilot gate, "every `## Source` fetched and entailed". The environment's egress policy denies arXiv, doi.org, the publishers, the vendors' documentation sites and the search engines, and admits GitHub-hosted content, `pkg.go.dev` and the search tool. A paper therefore enters a card only as `relayed` — the search index's statement of the claim with its number — and a standard or tool rule as `fetched` from its GitHub source, as §Source policy states; the pilot gate reads "fetched or relayed, and entailed". I have not re-verified the relayed citations against the papers themselves; an environment with arXiv access can, and that re-verification is open for the operator.
 3. Agent types. The brief names the types `code-quality:craft-finder`, `code-quality:craft-verifier` and `code-quality:software-developer`. A probe of the workflow runtime in this checkout shows a plugin's types resolve only where the plugin is installed, so every workflow run here dispatches the default sub-agent with the same prompts, and the smoke task runs the developer definition's body as a general-purpose agent's prompt; `evals.json` says so.
 4. Skill preloading. The brief says the developer agent preloads the skill through `skills:` "where the current Claude Code documentation confirms that field exists for plugin agents". The subagent reference (`code.claude.com/docs/en/sub-agents.md`, the `skills` row of its frontmatter table) and the plugin components reference (`code.claude.com/docs/en/plugins/components.md`, its list of supported agent fields) confirm the field for plugin agents and show bare skill names in the example; neither page names a plugin-qualified form, and neither says whether a preloaded skill's `disallowed-tools` binds the agent. The agent therefore preloads `software-craft` by bare name and its body also names the card index script by path, so the agent works where the field does not resolve. I have not verified whether the preloaded skill's `disallowed-tools: Edit` reaches the agent; a session with the plugin installed can, and that check is open for the operator.
