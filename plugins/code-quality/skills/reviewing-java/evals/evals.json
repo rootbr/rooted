@@ -1,0 +1,92 @@
+{
+  "harness": "reviewing-java",
+  "schema_version": 1,
+  "note": "The fixture under fixture/ is a small Java tree in two states; make-fixture.sh commits base/ then head/ into a temporary repository so the pre-pass and the finders run on a real diff_ref (HEAD~1..HEAD). head/ seeds one defect per chosen card and, beside each, a control whose suspicious-looking code is correct by a stated tolerance. expected.json lists the (rule_id, file, symbol) triple per seed and the rule ids that must stay silent per control; grade.py grades the run's verdicts.json against it.",
+  "grading": {
+    "assertion_kinds": {
+      "seed": "a verified finding must carry the seed's rule_id — as its own, folded into it by aggregation (`also`), or superseded on the same span by a higher-priority domain's finding (also listed in `also`) — and the seed's file, and its symbol's method part must match one of the seed's symbols",
+      "control": "no verified finding with a listed rule id may sit on the control's file and symbol"
+    },
+    "counting_rule": "A finding counts when its disposition after verification is report, flagged or downgraded; a finding a skeptic rejected (or an arbiter upheld as rejected) does not. --findings adds the pre-verification hits so a control the finder flagged and the skeptic rejected is visible as 'flagged then rejected'.",
+    "matcher": "Exact rule_id and file; symbol compared on the part after the last '#', '.' or '::', case-insensitive, '()' stripped. A seed may list several symbols when the card admits more than one anchor (the method that performs the access or the field it reads); any of them matches.",
+    "why_mechanical": "Precision and recall on seeded defects need no reading: the triple either appears in the verified set or it does not. A judge model would add its own error to the measurement and the self-preference bias of a Claude judge on Claude findings (Zheng 2306.05685). Holistic quality of a finding's prose is not graded here."
+  },
+  "runner": {
+    "build": "evals/fixture/make-fixture.sh <dir>",
+    "plan": "python3 scripts/static-review.py --diff-ref HEAD~1..HEAD --cards-dir <abs>/references/review-cards --repo <dir>",
+    "review": "Workflow({ scriptPath: <dir>/review/run.js })  — the bundle embeds root, stage 'all', the plan, design_intent and project_context",
+    "grade": "python3 evals/grade.py --expected evals/expected.json --verdicts <dir>/review/verdicts.json --findings <dir>/review/findings.json",
+    "bundle": "python3 scripts/bundle-run.py --root <dir> --plan review/plan.json --intent <intent-file> --context <context-file> --out review/run.js"
+  },
+  "models": {
+    "subject": {
+      "note": "The models under test are the workflow's own tiers (args.tiers in SKILL.md §Phase 4). Re-run this harness on every model change; a minor model bump silently dropped one rule's compliance by 48% in the audit skill's evidence base (Yang 2505.13360 §3.3).",
+      "mechanical_tier": "claude-opus-5-5 / effort high",
+      "semantic_tier": "claude-opus-5-5 / effort xhigh",
+      "verdict_tier": "claude-opus-5-5 / effort max",
+      "pinned_on": "2026-09-25"
+    },
+    "judge": {
+      "id": "none",
+      "why": "Grading is mechanical on (rule_id, file, symbol) triples; no judge model runs."
+    }
+  },
+  "constraints": {
+    "satisfied": [
+      "Mechanical grading on triples: no holistic score, no judge model, no self-preference channel.",
+      "Controls present for every seeded card: each seed sits beside a control whose tolerance the card's Limits name, so a finder that fires on the pattern alone fails the control.",
+      "Verification exercised: one control (Stats#sample) is correct only by a project_context tolerance, which the finder cannot see as code, so the skeptic path is on the grading path.",
+      "Pre-pass exercised on a real repository: make-fixture.sh commits two states, so hunk parsing, trigger selection, slicing and config parsing run as in production.",
+      "Subject tiers pinned with the pin dated; re-run on model change."
+    ],
+    "unsatisfied": [
+      {
+        "constraint": "Repetition (reliable@10 / repeated runs)",
+        "why": "Each grading run is a single run of the workflow; no variance figure has been measured for the seeds. A finder that flags a seed in 9 runs of 10 and a control in 1 of 10 grades identically to a deterministic one on a single run.",
+        "unblock": "Run the workflow N times on the fixture and report pass rate per seed and per control."
+      },
+      {
+        "constraint": "Fallback path graded",
+        "why": "The grading runs the Workflow path. The Agent-tool fallback (one sub-agent per domain) bundles a domain's cards into one agent and has not been graded on the fixture.",
+        "unblock": "Run the fallback dispatch on the fixture with the same prompts and schemas and grade its verdicts."
+      },
+      {
+        "constraint": "Agent types under test",
+        "why": "The plugin's agent types (code-quality:review-finder, code-quality:review-verifier) resolve only where the plugin is installed; the recorded runs dispatched the default workflow sub-agent with the same prompts.",
+        "unblock": "Re-run the harness in a session with the plugin installed and agentTypes set."
+      }
+    ],
+    "standing_caveat": "A seed found on the fixture is a finder that recognises one shape of the defect; a control silent on the fixture is one tolerance recognised. Neither measures recall on real diffs."
+  },
+  "runs": [
+    {
+      "id": "pilot",
+      "cards": [
+        "CC-08",
+        "CC-09",
+        "CC-11",
+        "REL-01",
+        "REL-02",
+        "REL-03"
+      ],
+      "seeds": 6,
+      "controls": 7,
+      "result": "13/13 passed: 6 seeds found, 7 controls silent after verification",
+      "raw_finder_hits": "6/6 seeds hit by their cards; 0/7 controls flagged by any card before verification; the logic pass added two findings of its own",
+      "notes": "CC-08's finding and the PROJ-1 finding shared the span Cache#getOrLoad with compatible fixes and were folded into PROJ-1.1 (also: CC-08), which the grader counts for the seed. The skeptic downgraded CC-11.1 to minor. The logic pass found a genuine defect the fixture did not seed on purpose — Totals#transfer credits the target without debiting the source — and the skeptic confirmed it critical; its second finding on Totals#addWithinLimit was rejected. The fixture tree was unmutated after the run (git status clean but for review/).",
+      "agents": "12 finders (6 card jobs, 3 logic slices, 3 project-invariant jobs) + 8 skeptics; no second skeptic or arbiter was needed",
+      "cost": "Find stage 600,995 sub-agent tokens in 96 s wall-clock; full run (finders replayed from cache) 579,754 further tokens in 888 s at the runtime's two-agent concurrency cap on a 4-CPU host"
+    },
+    {
+      "id": "2026-09-25-extended-fixture",
+      "cards": "240 (the full corpus; 81 dispatched by the fixture's diff)",
+      "seeds": "18/18 found",
+      "controls": "19/19 silent",
+      "result": "37/37 after two grading-mechanics corrections the first grading exposed (an overruled finding now stays on the kept finding as `also`/`superseded`; a seed may list several anchors); the finders and skeptics were not re-prompted for those",
+      "raw_finder_hits": "54 findings from 96 finders; no control flagged by any finder; 22 of the 54 were MNT-29 (one per undocumented member, now one per class)",
+      "notes": "Verification: run 1 confirmed 44, modified 8, downgraded 2 (SEC-04 critical→major after the skeptic executed the flagged Runtime.exec expression and showed StringTokenizer leaves the quote unterminated; PROJ-3 major→minor on an aspirational invariant), rejected 0; the resumed run after the aggregation change re-verified with confirmed 36, modified 17, downgraded 1 — the verdict labels vary between runs on the same findings, the dispositions do not (every finding counts in both). Eleven unseeded defects the fixture carries by construction were reported (mutable field in a singleton bean, unbounded per-request list, unencoded HTML, int overflow, a logic-pass credit-without-debit). Two same-priority ties on Totals#transfer flagged for the author. Tree unmutated after both runs. Reports kept under evals/runs/.",
+      "agents": "run 1: 150 (96 finders, 54 skeptics, no second skeptic, no arbiter); resume: 150 with most finders replayed from cache",
+      "cost": "run 1: 8,301,570 sub-agent tokens, 3,277 s wall-clock at concurrency 2; resume: 3,126,839 tokens, 2,502 s"
+    }
+  ]
+}
