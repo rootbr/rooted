@@ -7,8 +7,8 @@
   "plugins": [
     {
       "name": "code-quality",
-      "description": "Deep Java code review with parallel specialist agents and proactive code cleanup",
-      "version": "4.9.0",
+      "description": "Java code review from a corpus of sourced rule cards — a deterministic pre-pass, a finder per triggered card, a skeptic per finding — plus proactive code cleanup",
+      "version": "5.0.0",
       "source": "./plugins/code-quality"
     },
     {
