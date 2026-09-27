@@ -1,0 +1,23 @@
+{
+ "slug": "test-doubles",
+ "title": "Test doubles",
+ "group": "E. Tests",
+ "domain": "tests",
+ "prefix": "TST",
+ "locators": "SEG13 (Software Engineering at Google ch. 13 'Test Doubles': seams, mocking frameworks, the impact on software development, fakes over stubs and interaction testing, 'prefer state testing over interaction testing'); the 97 Things essays on testing; PP 'Test to Code' where it treats mocks; CC22 where it treats stubs and scaffolding",
+ "candidate_evidence": [
+  "Spadini, Aniche, Bruntink, Bacchelli, 'To mock or not to mock? An empirical study on mocking practices' (MSR 2017)",
+  "Spadini, Aniche, Bruntink, Bacchelli, 'Mock objects for testing Java systems: why and how developers use them, and how they evolve' (EMSE 2019)",
+  "Mostafa, Wang, 'An empirical study on the usage of mocking frameworks in software testing' (QSIC 2014)",
+  "Arcuri, Fraser, Just, 'Private API access and functional mocking in automated unit test generation' (ICST 2017)",
+  "Pereira, Hora, 'Assessing mock classes: an empirical study' (ICSME 2020)",
+  "Zhu et al. 'MockSniffer: characterizing and recommending mocking decisions for unit tests' (ASE 2020)",
+  "Wang, Zhu, Lin, Kang, 'Understanding and detecting test smells related to mocks' / Fowler-style 'over-specified' and 'mock happy' test smells in the test-smell catalogs (Bavota et al. EMSE 2015 'Are test smells really harmful?')",
+  "Freeman, Mackinnon, Pryce, Walnes, 'Mock roles, not objects' (OOPSLA 2004 companion) — the original mock-object paper",
+  "Mackinnon, Freeman, Craig, 'Endo-testing: unit testing with mock objects' (XP 2000)",
+  "tool and framework documentation on GitHub: Mockito main javadoc (mockito/mockito src/main/java/org/mockito/Mockito.java — 'Do not mock types you don't own' guidance lives in the wiki which is not openable; search for it), pytest 'monkeypatch' and unittest.mock documentation (cpython Doc/library/unittest.mock.rst — the section on speccing and autospec, and 'where to patch'), Go testing package doc and 'Go code review comments' on interfaces for testing (golang/website), Rust book ch. 11 'Writing Automated Tests' and the mockall crate README (asomers/mockall), Jest docs on mock functions (jestjs/jest website docs/MockFunctions.md and jest-object), Google Java Style has no mocking guidance; google/eng-practices review guides mention tests",
+  "SonarSource and PMD rules on tests: PMD bestpractices JUnit rules (JUnitAssertionsShouldIncludeMessage, JUnitTestContainsTooManyAsserts), SonarSource S2699 tests should include assertions, S5976, S5960; ESLint jest plugin rules (jest-community/eslint-plugin-jest docs/rules: prefer-spy-on, no-mocks-import, unbound-method)"
+ ],
+ "contested": false,
+ "notes": "Owns the choice and use of test doubles: mocking what you own versus a type you do not own, fakes versus stubs versus mocks, over-specified interaction verification, mocking value objects and data holders, a double that duplicates the real dependency's logic, doubles that the real dependency's contract does not license (a mocked method that the real type does not have, or that behaves differently), speccing a double to the real interface. Yields assertion quality, test naming and structure to unit-testing-and-test-quality; integration tests against real dependencies to larger-tests-integration-and-end-to-end; property-based generators to property-based-testing. Rules must hold across mocking frameworks and languages; a framework name may appear in an Example only."
+}

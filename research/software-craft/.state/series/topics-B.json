@@ -1,0 +1,190 @@
+[
+ {
+  "slug": "complexity-and-deep-modules",
+  "title": "Complexity and deep modules",
+  "group": "B. Module design",
+  "domain": "design",
+  "prefix": "DSN",
+  "locators": "SW1.1 (SWEBOK Guide V4.0 ch. 4 'Software Construction' §1.1 'Minimizing Complexity'); APOSD (A Philosophy of Software Design ch. 2 'The Nature of Complexity', ch. 4 'Modules Should Be Deep', ch. 7 'Different Layer, Different Abstraction', ch. 8 'Pull Complexity Downwards'); the public discussion of module depth in johnousterhout/aposd-vs-clean-code README.md as a formulation",
+  "candidate_evidence": [
+   "Chidamber, Kemerer, 'A metrics suite for object oriented design' (IEEE TSE 20(6), 1994) — WMC, RFC, CBO and LCOM as class-level size and interface measures",
+   "Briand, Daly, Wüst, 'A unified framework for cohesion measurement in object-oriented systems' (Empirical Software Engineering, 1998; doi 10.1023/A:1009783721306)",
+   "Olbrich, Cruzes, Sjøberg, 'Are all code smells harmful? A study of God Classes and Brain Classes in the evolution of three open source systems' (ICSM 2010) — God and Brain Classes change more and carry more defects, but less so once normalized for size",
+   "Muñoz Barón, Wyrich, Wagner, 'An empirical validation of cognitive complexity as a measure of source code understandability' (ESEM 2020; arXiv:2007.12520) — a meta-analysis over about 24,000 understandability evaluations of 427 snippets",
+   "'An empirical evaluation of the \"Cognitive Complexity\" measure as a predictor of code understandability' (Journal of Systems and Software; doi 10.1016/j.jss.2022.111561) — a second evaluation of the same metric",
+   "'An empirical study on software understandability and its dependence on code characteristics' (Empirical Software Engineering; doi 10.1007/s10664-023-10396-7)",
+   "tool rules (Java): PMD design category GodClass, ExcessivePublicCount, TooManyMethods, CognitiveComplexity (pmd/pmd pmd-java/src/main/resources/category/java/design.xml); Checkstyle metrics checks (src/site/xdoc/checks/metrics/cyclomaticcomplexity.xml, classfanoutcomplexity.xml); SonarSource S3776 cognitive complexity — the sonar-java RSPEC path answers 404 and is not openable, use the sonar-python copy",
+   "tool rules (other languages): Pylint design_analysis checker too-many-public-methods, too-many-instance-attributes, too-few-public-methods (pylint/checkers/design_analysis.py); Ruff C901 (crates/ruff_linter/src/rules/mccabe/rules/function_is_too_complex.rs); SonarSource S3776 (sonar-python python-checks/src/main/resources/org/sonar/l10n/py/rules/python/S3776.html); ESLint complexity and max-classes-per-file (eslint/eslint docs/src/rules); clippy cognitive_complexity (rust-lang/rust-clippy clippy_lints/src/cognitive_complexity.rs)",
+   "official documentation and standards: SWEBOK V3 Software Construction §1.1 'Minimizing Complexity' in the community transcription ligurio/swebok-v3 (branch master; README.md opens, the chapter file path is not yet located); google/eng-practices review/reviewer/looking-for.md, the 'Complexity' section on code that cannot be understood quickly and on over-engineering"
+  ],
+  "contested": false,
+  "notes": "Owns module depth and interface width: the functionality a module provides against the interface it exposes, shallow modules and pass-through methods or wrappers that add an interface without hiding anything, a class whose public surface grows past what its callers need, complexity pushed up into every caller instead of down into the module, and a layer that repeats the abstraction of the layer below it. Yields routine length and parameter count to routine-size-and-parameters; what a module hides of its representation to information-hiding-and-encapsulation; the number and direction of dependencies between modules to coupling-and-dependency-direction; nesting and branch structure inside one routine to control-flow. Rules must hold across Java, Python, TypeScript, Go and Rust; a rule that holds in one language belongs to a language-specific corpus."
+ },
+ {
+  "slug": "information-hiding-and-encapsulation",
+  "title": "Information hiding and encapsulation",
+  "group": "B. Module design",
+  "domain": "design",
+  "prefix": "DSN",
+  "locators": "CC5 (Code Complete 2nd ed. ch. 5 'Design in Construction': the heuristics 'Hide Secrets (Information Hiding)' and 'Encapsulate Implementation Details'); CC6 (Code Complete 2nd ed. ch. 6 'Working Classes': good class interfaces, abstraction and encapsulation); APOSD ch. 5 'Information Hiding (and Leakage)' as a second formulation",
+  "candidate_evidence": [
+   "Parnas, 'On the criteria to be used in decomposing systems into modules' (Communications of the ACM 15(12), 1972; doi 10.1145/361598.361623) — decomposition by the design decisions each module hides",
+   "Khomh, Di Penta, Guéhéneuc, Antoniol, 'An exploratory study of the impact of antipatterns on class change- and fault-proneness' (Empirical Software Engineering 17, 2012) — 13 antipatterns in 54 releases of four systems; the set includes Class Data Should Be Private",
+   "Zoller, Schmolitzky, 'Measuring inappropriate generosity with access modifiers in Java systems' (IWSM-MENSURA 2012) — the IGAT and IGAM metrics; at least 20% of methods over-exposed on average",
+   "Vidal et al., 'Understanding and addressing exhibitionism in Java empirical research about method accessibility' (Empirical Software Engineering; doi 10.1007/s10664-015-9365-9)",
+   "'Over-exposed classes in Java: an empirical study' (Computer Languages, Systems & Structures; ScienceDirect PII S1477842415300531)",
+   "tool rules (Java): Checkstyle VisibilityModifier (checkstyle/checkstyle src/site/xdoc/checks/design/visibilitymodifier.xml); PMD design DataClass (pmd-java category/java/design.xml); SpotBugs EI_EXPOSE_REP and EI_EXPOSE_REP2, a method that returns or stores a reference to mutable internal representation (spotbugs/spotbugs spotbugs/etc/messages.xml)",
+   "tool rules (other languages): Pylint protected-access (pylint/checkers/classes/class_checker.py); Ruff SLF001 private-member-access (crates/ruff_linter/src/rules/flake8_self/rules/private_member_access.rs); typescript-eslint explicit-member-accessibility (packages/eslint-plugin/docs/rules/explicit-member-accessibility.mdx)",
+   "official documentation: Go spec 'Exported identifiers' (golang/go doc/go_spec.html); Rust book ch. 7 on privacy of items in the module tree (rust-lang/book src/ch07-03-paths-for-referring-to-an-item-in-the-module-tree.md) and Rust API guidelines C-STRUCT-PRIVATE 'Structs have private fields' (rust-lang/api-guidelines src/future-proofing.md); PEP 8 'Designing for Inheritance' on public and non-public attributes (python/peps peps/pep-0008.rst); TypeScript handbook 'Member Visibility' (microsoft/TypeScript-Website packages/documentation/copy/en/handbook-v2/Classes.md)"
+  ],
+  "contested": false,
+  "notes": "Owns what a module hides and what it exposes: a design decision or representation visible outside the module that owns it, the same secret known to two modules (information leakage), fields and members exposed wider than their callers need, accessors that publish the representation field by field, and a data holder whose behaviour lives in other modules. Yields interface depth and width to complexity-and-deep-modules; the number and direction of dependencies to coupling-and-dependency-direction; a mutable internal object handed to or kept from a caller, which is shared mutable state, to mutable-state-and-immutability; the operations and contract of a public API to api-design-and-use; a global variable to variables-scope-and-numerics. Rules must hold across Java, Python, TypeScript, Go and Rust, so a rule names the effect (the narrowest visibility the language offers) and never one language's keyword or naming convention. Encapsulation as a security boundary is security-critical design, a reserved specialty outside the corpus."
+ },
+ {
+  "slug": "coupling-and-dependency-direction",
+  "title": "Coupling and dependency direction",
+  "group": "B. Module design",
+  "domain": "design",
+  "prefix": "DSN",
+  "locators": "PP 'Orthogonality' (The Pragmatic Programmer, 20th anniversary ed., topic 10, ch. 2 'A Pragmatic Approach'); PP 'Decoupling' (topic 28, ch. 5 'Bend, or Break': train wrecks, the Law of Demeter, global data); CC5 heuristic 'Keep Coupling Loose' as a second formulation",
+  "candidate_evidence": [
+   "Briand, Daly, Wüst, 'A unified framework for coupling measurement in object-oriented systems' (IEEE TSE 25(1), 1999)",
+   "Chidamber, Kemerer, 'A metrics suite for object oriented design' (IEEE TSE 20(6), 1994) — CBO and RFC",
+   "Lieberherr, Holland, 'Assuring good style for object-oriented programs' (IEEE Software 6, 1989; doi 10.1109/52.35588) — the Law of Demeter",
+   "Zimmermann, Nagappan, 'Predicting defects using network analysis on dependency graphs' (ICSE 2008) — network measures on the Windows Server 2003 dependency graph raise recall by 10 percentage points over complexity metrics",
+   "'Investigating the impact of multiple dependency structures on software defects' (ICSE 2019; doi 10.1109/ICSE.2019.00069)",
+   "tool rules (Java): PMD design LawOfDemeter, CouplingBetweenObjects, ExcessiveImports and bestpractices LooseCoupling (pmd-java category/java/design.xml, bestpractices.xml); Checkstyle ClassFanOutComplexity and ClassDataAbstractionCoupling (src/site/xdoc/checks/metrics/classfanoutcomplexity.xml, classdataabstractioncoupling.xml); SonarSource S1200 'Classes should not be coupled to too many other classes' — the sonar-java RSPEC path answers 404 and is not openable",
+   "tool rules (other languages): Pylint cyclic-import (pylint/checkers/imports.py); eslint-plugin-import no-cycle (import-js/eslint-plugin-import main docs/rules/no-cycle.md)",
+   "official documentation: Go spec 'Import declarations' — a package may not import itself, directly or indirectly (golang/go doc/go_spec.html); Google Go style decisions 'Interfaces' on which package declares an interface (google/styleguide go/decisions.md); Rust API guidelines C-GENERIC on accepting generic parameters over concrete types (rust-lang/api-guidelines src/flexibility.md)"
+  ],
+  "contested": false,
+  "notes": "Owns the dependencies between modules: how many, in which direction and through what — reaching through a chain of objects into another module's internals (the Law of Demeter), cyclic dependencies between modules or packages, a high-level policy that depends on a low-level detail where an abstraction declared by the consumer would reverse the direction, and a change in one concern that forces changes in unrelated modules (lost orthogonality). Yields shared mutable state between components to mutable-state-and-immutability; inheritance as a coupling mechanism to inheritance-versus-composition; interface depth and width to complexity-and-deep-modules; what a module hides to information-hiding-and-encapsulation; a global variable to variables-scope-and-numerics; third-party packages and their versions to dependency-management. Rules must hold across Java, Python, TypeScript, Go and Rust; a rule that holds in one language belongs to a language-specific corpus. Coupling between services over a network is distributed systems and middleware, outside the corpus."
+ },
+ {
+  "slug": "duplication-and-single-source-of-truth",
+  "title": "Duplication and single source of truth",
+  "group": "B. Module design",
+  "domain": "design",
+  "prefix": "DSN",
+  "locators": "PP 'DRY—The Evils of Duplication' (The Pragmatic Programmer, 20th anniversary ed., topic 9, ch. 2 'A Pragmatic Approach': duplication of knowledge, not of text, in code, documentation, data and representations); CC24 (Code Complete 2nd ed. ch. 24 'Refactoring') where it lists duplicated code as a reason to refactor; the 97 Things essay 'Don't Repeat Yourself'",
+  "candidate_evidence": [
+   "Juergens, Deissenboeck, Hummel, Wagner, 'Do code clones matter?' (ICSE 2009; arXiv:1701.05472) — inconsistent changes to clones are frequent and a significant number of them are faults",
+   "Kapser, Godfrey, '\"Cloning considered harmful\" considered harmful: patterns of cloning in software' (Empirical Software Engineering 13(6), 2008) — cloning as a principled choice for platform variation, boilerplate and language idioms",
+   "Rahman, Bird, Devanbu, 'Clones: what is that smell?' (MSR 2010; Empirical Software Engineering 2012) — most bugs are not significantly associated with clones",
+   "Wagner et al., 'Are there functionally similar code clones in practice?' (arXiv:1803.10542) — duplicated behaviour that text-based clone detection misses",
+   "Roy, Zibran, Koschke, 'The vision of software clone management: past, present, and future' (arXiv:2005.01005)",
+   "'An empirical analysis of Git commit logs for potential inconsistency in code clones' (arXiv:2409.08555)",
+   "tool rules: Pylint duplicate-code R0801 (pylint/checkers/symilar.py); PMD CPD, the copy-paste detector (pmd/pmd docs/pages/pmd/userdocs/cpd/cpd.md); SonarSource S1192 string literals should not be duplicated and S4144 methods should not have identical implementations (sonar-python python-checks/src/main/resources/org/sonar/l10n/py/rules/python/S1192.html, S4144.html)"
+  ],
+  "contested": false,
+  "notes": "Owns duplicated code blocks (the pre-pass signal duplicate_block) and duplicated knowledge: one decision, constant, rule or schema encoded in several places that must change together, a representation repeated across code and data, and derived data stored beside its source instead of computed from it; it also owns the conditions under which a copy is the accepted choice (platform variation, boilerplate the language forces, an experimental fork), which a card carries in its Limits. Yields the smells with no owner of their own to code-smells-and-antipatterns; the mechanics of extracting shared code to refactoring; a comment that restates the code to comments-and-self-documenting-code; a magic number repeated in place to variables-scope-and-numerics. Rules must hold across Java, Python, TypeScript, Go and Rust; a rule that holds in one language belongs to a language-specific corpus."
+ },
+ {
+  "slug": "inheritance-versus-composition",
+  "title": "Inheritance versus composition",
+  "group": "B. Module design",
+  "domain": "design",
+  "prefix": "DSN",
+  "locators": "PP 'Inheritance Tax' (The Pragmatic Programmer, 20th anniversary ed., topic 31, ch. 5 'Bend, or Break': interfaces and protocols, delegation, mixins and traits as the alternatives to inheritance); CC6 (Code Complete 2nd ed. ch. 6 'Working Classes': containment ('has a') and inheritance ('is a') relationships)",
+  "candidate_evidence": [
+   "Chidamber, Kemerer, 'A metrics suite for object oriented design' (IEEE TSE 20(6), 1994) — DIT and NOC, the depth and breadth of inheritance",
+   "Khomh, Di Penta, Guéhéneuc, Antoniol, 'An exploratory study of the impact of antipatterns on class change- and fault-proneness' (Empirical Software Engineering 17, 2012) — the antipattern set includes Refused Parent Bequest",
+   "tool rules (Java): Checkstyle DesignForExtension and FinalClass (src/site/xdoc/checks/design/designforextension.xml, finalclass.xml); PMD bestpractices MissingOverride (pmd-java category/java/bestpractices.xml); Error Prone MissingOverride (google/error-prone docs/bugpattern/MissingOverride.md); SonarSource S110 'Inheritance tree of classes should not be too deep' — the sonar-java and sonar-python RSPEC paths answer 404 and are not openable",
+   "tool rules (Python, TypeScript): Pylint too-many-ancestors R0901 (pylint/checkers/design_analysis.py) and super-init-not-called (pylint/checkers/classes/class_checker.py); the TypeScript compiler option noImplicitOverride (microsoft/TypeScript-Website packages/tsconfig-reference/copy/en/options/noImplicitOverride.md)",
+   "official documentation (Go, Rust): Go FAQ 'Why is there no type inheritance?' (golang/website _content/doc/faq.md) and Effective Go 'Embedding' (_content/doc/effective_go.html); Rust book 'Characteristics of Object-Oriented Languages', the section on inheritance as a type system and as code sharing (rust-lang/book src/ch18-01-what-is-oo.md; ch. 17 in editions before the async chapter)",
+   "official documentation (Python, TypeScript): PEP 8 'Designing for Inheritance' (python/peps peps/pep-0008.rst); TypeScript handbook 'Mixins' (packages/documentation/copy/en/reference/Mixins.md) and 'Classes' (handbook-v2/Classes.md)",
+   "official documentation (Java): the javadoc of the skeletal collection classes, which documents the self-use a subclass depends on (openjdk/jdk jdk-21-ga src/java.base/share/classes/java/util/AbstractCollection.java, AbstractList.java)",
+   "Daly, Brooks, Miller, Roper, Wood, 'The effect of inheritance on the maintainability of object-oriented software: an empirical study' (ICSM 1995; also EMSE 1996 'Evaluating inheritance depth on the maintainability of object-oriented software') — relayed by the orchestrator's search: subjects maintaining software with a hierarchy of 3 levels of inheritance depth performed the modification tasks on average approximately 20% quicker than those maintaining equivalent object-based software with no inheritance; a replication at Bournemouth (Cartwright, 'An empirical view of inheritance', IST 1998) found subjects took significantly longer on the program with inheritance while their changes were more compact — https://ieeexplore.ieee.org/document/526524/ and https://link.springer.com/article/10.1007/BF00368701",
+   "Prechelt, Unger, Philippsen, Tichy, 'A controlled experiment on inheritance depth as a cost factor for code maintenance' (JSS 2003) — relayed by the orchestrator's search (title and venue confirmed in the result list) — https://www.researchgate.net/publication/222575530_A_controlled_experiment_on_inheritance_depth_as_a_cost_factor_for_code_maintenance",
+   "Jabangwe, Börstler, Šmite, Wohlin, 'Empirical evidence on the link between object-oriented measures and external quality attributes: a systematic literature review' (EMSE 2015) — relayed by the orchestrator's search: 99 primary studies traced to reliability, maintainability, effectiveness and functionality; vote-counting suggests complexity, cohesion, size and coupling measures have a better link with reliability and maintainability than inheritance measures"
+  ],
+  "contested": false,
+  "notes": "Owns the choice between implementation inheritance and composition, delegation or an interface: subclassing to reuse code where the subtype does not honour the base type's behaviour, deep or wide hierarchies, a base-class change that breaks subclasses through self-use (the fragile base class), a subclass that refuses what it inherits, and designing a class for extension or closing it. Yields the pre- and postconditions a subtype must keep to contracts-assertions-and-invariants; type parameters to generics-and-parameterization; dependencies in general to coupling-and-dependency-direction; patterns built on inheritance, such as a template method, to design-patterns-in-construction. Rules must hold across Java, Python, TypeScript, Go and Rust; Go and Rust have no implementation inheritance, so a rule speaks of implementation inheritance where the language has it and says what the rule means for embedding and traits, and a rule about one language's keyword belongs to a language-specific corpus."
+ },
+ {
+  "slug": "design-patterns-in-construction",
+  "title": "Design patterns in construction",
+  "group": "B. Module design",
+  "domain": "design",
+  "prefix": "DSN",
+  "locators": "SWEBOK Guide V4.0 ch. 3 'Software Design' §4.4; the SWEBOK V3 Software Design chapter §3.3 'Design Patterns' as the openable transcription; CC5 heuristic 'Look for Common Design Patterns' as a second formulation",
+  "candidate_evidence": [
+   "Jaafar et al., 'Evaluating the impact of design pattern and anti-pattern dependencies on changes and faults' (Empirical Software Engineering; doi 10.1007/s10664-015-9361-0)",
+   "Khomh, Di Penta, Guéhéneuc, Antoniol, 'An exploratory study of the impact of antipatterns on class change- and fault-proneness' (Empirical Software Engineering 17, 2012) — the antipattern set includes AntiSingleton",
+   "tool rules (Java): PMD errorprone SingleMethodSingleton and SingletonClassReturningNewInstance (pmd-java category/java/errorprone.xml); Checkstyle HideUtilityClassConstructor (src/site/xdoc/checks/design/hideutilityclassconstructor.xml)",
+   "official documentation (Rust): Rust API guidelines C-BUILDER 'Builders enable construction of complex values' (rust-lang/api-guidelines src/type-safety.md)",
+   "official documentation (Go): Google Go style best practices 'Option structure' and 'Variadic options' (google/styleguide go/best-practices.md); Effective Go 'Interfaces and other types' (golang/website _content/doc/effective_go.html)",
+   "official documentation (Python, TypeScript): PEP 443 'Single-dispatch generic functions' (python/peps peps/pep-0443.rst) and functools (python/cpython Doc/library/functools.rst) as the language-level form of dispatch on type; TypeScript handbook 'Mixins' (microsoft/TypeScript-Website packages/documentation/copy/en/reference/Mixins.md)",
+   "standards: SWEBOK V3 Software Design §3.3 'Design Patterns' in the community transcription ligurio/swebok-v3 (branch master; README.md opens, the chapter file path is not yet located); the SWEBOK Guide V4.0 text itself is on computer.org and is not openable",
+   "Prechelt, Unger, Tichy, Brössler, Votta, 'A controlled experiment in maintenance comparing design patterns to simpler solutions' (IEEE TSE 27(12), 2001, pp. 1134–1144) — relayed by the orchestrator's search: in most of the nine maintenance tasks, positive effects from using a design pattern — either its inherent additional flexibility was achieved without requiring more maintenance time, or maintenance time was reduced compared to the simpler alternative; the full text is hosted by the authors' institute at https://ps.ipd.kit.edu/downloads/zeitschriftenartikel_PatmainTSE2001.pdf (not openable through the channel; the search result relays the abstract)",
+   "Vokáč, Tichy, Sjøberg, Arisholm, Aldrin, 'A controlled experiment comparing the maintainability of programs designed with and without design patterns — a replication in a real programming environment' (EMSE 9(3), 2004) — relayed by the orchestrator's search: the one replication published in 2004 found remarkably different results from the original — https://link.springer.com/article/10.1023/B:EMSE.0000027778.69251.1f",
+   "Krein, Knutson, Prechelt, Juristo, 'Design patterns in software maintenance: an experiment replication at Brigham Young University' (RESER 2011) — relayed by the orchestrator's search — https://ieeexplore.ieee.org/document/6148334/"
+  ],
+  "contested": false,
+  "notes": "Owns applying a design pattern while writing code: using a pattern where the problem it solves is present and not where it is absent, a pattern implemented so that it defeats its own intent (a singleton that returns new instances), and the language-native form that replaces a classic pattern (a function value for a strategy or command, a sum type and pattern match for a visitor, an options struct or builder for a telescoping constructor). Yields a singleton used as a global variable to variables-scope-and-numerics; the inheritance a pattern rests on to inheritance-versus-composition; pipelines and higher-order functions to functional-style-and-pipelines; state machines to table-driven-and-state-machines; interface depth to complexity-and-deep-modules. Rules must hold across Java, Python, TypeScript, Go and Rust; a rule that holds in one language belongs to a language-specific corpus. Concurrency patterns such as double-checked locking belong to concurrency correctness, a reserved specialty, and architectural or middleware patterns are distributed systems and middleware, outside the corpus."
+ },
+ {
+  "slug": "mutable-state-and-immutability",
+  "title": "Mutable state and immutability",
+  "group": "B. Module design",
+  "domain": "design",
+  "prefix": "DSN",
+  "locators": "PP 'Shared State Is Incorrect State' (The Pragmatic Programmer, 20th anniversary ed., topic 34, ch. 6 'Concurrency'), read for its design claim that shared mutable state is a cost, not for its semaphore and transaction mechanics",
+  "candidate_evidence": [
+   "tool rules (Java): PMD design MutableStaticState and ImmutableField, errorprone AssignmentToNonFinalStatic, bestpractices AvoidReassigningParameters (pmd-java category/java/*.xml); SpotBugs MS_MUTABLE_COLLECTION and EI_EXPOSE_REP (spotbugs/spotbugs spotbugs/etc/messages.xml); Error Prone Immutable (google/error-prone docs/bugpattern/Immutable.md)",
+   "tool rules (Python): Pylint dangerous-default-value W0102 (pylint/checkers/base/basic_checker.py); Ruff B006 mutable-argument-default (crates/ruff_linter/src/rules/flake8_bugbear/rules/mutable_argument_default.rs)",
+   "tool rules (JavaScript, TypeScript): ESLint prefer-const and no-param-reassign with its props option (eslint/eslint docs/src/rules); typescript-eslint prefer-readonly and prefer-readonly-parameter-types (packages/eslint-plugin/docs/rules/*.mdx)",
+   "official documentation (Rust): Rust book 'Variables and Mutability' (rust-lang/book src/ch03-01-variables-and-mutability.md) and 'References and Borrowing', one mutable reference or any number of immutable references (src/ch04-02-references-and-borrowing.md)",
+   "official documentation (Python): tutorial 'Default Argument Values', the default value is evaluated only once (python/cpython Doc/tutorial/controlflow.rst); frozen dataclasses (Doc/library/dataclasses.rst)",
+   "official documentation (Java, TypeScript): 'Unmodifiable Lists' in the java.util.List javadoc (openjdk/jdk jdk-21-ga src/java.base/share/classes/java/util/List.java) and java.lang.Record (Record.java); TypeScript handbook on readonly properties and ReadonlyArray (microsoft/TypeScript-Website packages/documentation/copy/en/handbook-v2/Object Types.md)",
+   "official documentation (Go): Google Go style decisions 'Copying' on values that alias internal state (google/styleguide go/decisions.md); Effective Go 'Slices' on slices sharing an underlying array (golang/website _content/doc/effective_go.html)",
+   "Coblenz, Sunshine, Aldrich, Myers, Weber, Shull, 'Exploring language support for immutability' (ICSE 2016) — relayed by the orchestrator's search: interviews with professional developers in which participants stated that incorrect state mutations are a major source of bugs, for example an object thought to be immutable changed by some other object because references were reused instead of immutable copies — https://www.researchgate.net/publication/303099366_Exploring_language_support_for_immutability",
+   "Coblenz, Nelson, Aldrich, Myers, Sunshine, 'Glacier: transitive class immutability for Java' (ICSE 2017) — relayed by the orchestrator's search: refactoring a spreadsheet's code to use Glacier took approximately twenty hours and found two previously unknown bugs, one in a copy method and another in code that improperly used a cache",
+   "Weber, Coblenz, Ugurlu, Aldrich, Sunshine, 'Empirical studies on the security and usability impact of immutability' (IEEE Cybersecurity Development, SecDev 2017) — relayed by the orchestrator's search: from a series of empirical studies the authors concluded that immutability had positive effects on both security and usability — https://www.cs.cmu.edu/~jssunshi/assets/pdf/weber2017empirical.pdf"
+  ],
+  "contested": false,
+  "notes": "Owns shared mutable state between components: an object or collection that more than one component mutates, mutation of an argument the caller still holds, a mutable internal object returned to or accepted from a caller without a copy, and state that could be an immutable value but is kept mutable. Yields a magic number or a global variable to variables-scope-and-numerics; what a module exposes of its representation, apart from mutation through it, to information-hiding-and-encapsulation; pipelines of pure transformations to functional-style-and-pipelines; the release of resources a component owns to resource-management-and-ownership. Rules must hold across Java, Python, TypeScript, Go and Rust; the mutable default argument is one language's semantics, so it appears only as an Example and a rule resting on it alone belongs to a language-specific corpus. Concurrency correctness is a reserved specialty outside the corpus: rules stop at 'shared mutable state is a design cost' and never reach locks, atomics, data races or memory-model correctness."
+ },
+ {
+  "slug": "functional-style-and-pipelines",
+  "title": "Functional style and pipelines",
+  "group": "B. Module design",
+  "domain": "design",
+  "prefix": "DSN",
+  "locators": "PP 'Transforming Programming' (The Pragmatic Programmer, 20th anniversary ed., topic 30, ch. 5 'Bend, or Break': a program as a pipeline of transformations, and error handling inside the pipeline)",
+  "candidate_evidence": [
+   "official documentation (Java): the java.util.stream package documentation, 'Non-interference', 'Stateless behaviors' and 'Side-effects' (openjdk/jdk jdk-21-ga src/java.base/share/classes/java/util/stream/package-info.java)",
+   "official documentation (Python): Functional Programming HOWTO (python/cpython Doc/howto/functional.rst) and itertools (Doc/library/itertools.rst); Google Python style guide 'Comprehensions & Generator Expressions' and 'Lambda Functions' (google/styleguide pyguide.md)",
+   "official documentation (Rust): Rust book ch. 13 'Functional Language Features: Iterators and Closures' (rust-lang/book src/ch13-00-functional-features.md) and 'Comparing Performance: Loops vs. Iterators' (src/ch13-04-performance.md)",
+   "official documentation (Go, JavaScript): the iter package documentation for range-over-function iterators (golang/go src/iter/iter.go); MDN Array.prototype.map, filter and reduce (mdn/content main files/en-us/web/javascript/reference/global_objects/array/*/index.md — the path follows the repository's layout and is not yet opened)",
+   "tool rules (Python): Pylint unnecessary-lambda W0108 (pylint/checkers/base/basic_checker.py); Ruff flake8-comprehensions C4 rules (crates/ruff_linter/src/rules/flake8_comprehensions/rules/) and PERF401 manual-list-comprehension (crates/ruff_linter/src/rules/perflint/rules/manual_list_comprehension.rs)",
+   "tool rules (JavaScript, TypeScript, Rust): ESLint array-callback-return and prefer-arrow-callback (eslint/eslint docs/src/rules); eslint-plugin-unicorn no-array-reduce (sindresorhus/eslint-plugin-unicorn main docs/rules/no-array-reduce.md); clippy needless_collect (rust-lang/rust-clippy clippy_lints/src/methods/needless_collect.rs) and the iterator lints documented in clippy_lints/src/methods/mod.rs",
+   "Khatchadourian, Tang, Bagherzadeh, Ray, 'An empirical study on the use and misuse of Java 8 streams' (FASE 2020, LNCS 12076; open access at PMC7418129) — relayed by the orchestrator's search: 34 Java projects, 5.53 million lines of code and 719 manually examined code patches; streams are pervasive, parallelization is not widely used, and performance is a crosscutting concern that accounted for the majority of fixes — https://link.springer.com/chapter/10.1007/978-3-030-45234-6_5",
+   "Mazinanian, Ketkar, Tsantalis, Dig, 'Understanding the use of lambda expressions in Java' (OOPSLA 2017, PACMPL 1(OOPSLA) art. 85) — relayed by the orchestrator's search: the first large-scale quantitative and qualitative study, 241 open-source projects with 19,770 contributors; adoption of lambda expressions is growing and they are mostly used for behavior parameterization such as in stream pipelines — http://dig.cs.illinois.edu/papers/Mazinanian_OOPSLA_2017.pdf",
+   "Rosales, Basso, Rosà, Binder, 'Large-scale characterization of Java streams' (Software: Practice and Experience 2023) — relayed by the orchestrator's search (title and venue confirmed) — https://onlinelibrary.wiley.com/doi/full/10.1002/spe.3213"
+  ],
+  "contested": false,
+  "notes": "Owns functional style inside ordinary code: a data transformation written as a pipeline of steps without side effects, a side effect inside a map, filter or stream callback, a lazy pipeline whose effects run at a surprising time or never run because nothing consumes it, a fold or reduce where a named step or a loop states the intent more plainly, a chain too long to read or debug without naming its intermediate results, and a closure that captures mutable state. Yields shared mutable state between components to mutable-state-and-immutability; loop versus iterator cost to profiling-and-code-tuning; failure propagation through a pipeline to error-and-exception-handling; type parameters to generics-and-parameterization; branch structure inside a routine to control-flow. Rules must hold across Java, Python, TypeScript, Go and Rust; Go has no stream library in its standard library, so a rule must hold whether the pipeline is a chain of calls, a comprehension or a sequence of loops, and a rule about one library's API belongs to a language-specific corpus. Parallel pipelines belong to concurrency correctness, a reserved specialty outside the corpus; rules stop at sequential semantics."
+ },
+ {
+  "slug": "domain-modeling-and-domain-language",
+  "title": "Domain modeling and domain language",
+  "group": "B. Module design",
+  "domain": "design",
+  "prefix": "DSN",
+  "locators": "PP 'Domain Languages' (The Pragmatic Programmer, 20th anniversary ed., topic 14, ch. 2 'A Pragmatic Approach': programming close to the problem domain, internal and external domain languages); SWEBOK Guide V4.0 ch. 3 'Software Design' §5.10; the domain-driven-design literature (Evans, Domain-Driven Design) as the practitioner formulation of a ubiquitous language, named in the provenance map only",
+  "candidate_evidence": [
+   "official documentation (Rust): Rust API guidelines C-NEWTYPE 'Newtypes provide static distinctions' and C-CUSTOM-TYPE 'Arguments convey meaning through types, not bool or Option' (rust-lang/api-guidelines src/type-safety.md)",
+   "official documentation (TypeScript): handbook 'Narrowing', the sections 'Discriminated unions' and 'Exhaustiveness checking' (microsoft/TypeScript-Website packages/documentation/copy/en/handbook-v2/Narrowing.md)",
+   "official documentation (Python): typing.NewType (python/cpython Doc/library/typing.rst), enum (Doc/library/enum.rst) and dataclasses (Doc/library/dataclasses.rst)",
+   "official documentation (Go, Java): Go spec 'Type definitions', a defined type distinct from its underlying type (golang/go doc/go_spec.html); the java.lang.Record javadoc (openjdk/jdk jdk-21-ga src/java.base/share/classes/java/lang/Record.java); JEP 395 records and JEP 409 sealed classes on openjdk.org are not openable",
+   "tool rules: clippy struct_excessive_bools and fn_params_excessive_bools (rust-lang/rust-clippy clippy_lints/src/excessive_bools.rs); typescript-eslint switch-exhaustiveness-check (packages/eslint-plugin/docs/rules/switch-exhaustiveness-check.mdx)",
+   "standards: SWEBOK Guide V4.0 ch. 3 §5.10 — the V4 text is on computer.org and is not openable; look for a counterpart in the V3 transcription ligurio/swebok-v3 (branch master; the chapter file path is not yet located)",
+   "Kosar, Mernik, Carver, 'Program comprehension of domain-specific and general-purpose languages: comparison using a family of experiments' (EMSE 17(3), 2012) — relayed by the orchestrator's search: three experiments each in a distinct domain (feature diagrams, graph description, GUIs), a DSL compared with a GPL library or API; in each experiment usage of the DSL led to significantly improved results — https://link.springer.com/article/10.1007/s10664-011-9172-x",
+   "Kosar, Gaberc, Carver, Mernik, 'Program comprehension of domain-specific and general-purpose languages: replication of a family of experiments using integrated development environments' (EMSE 2018) — relayed by the orchestrator's search — https://link.springer.com/article/10.1007/s10664-017-9593-2",
+   "Kosar, Oliveira, Mernik, Pereira, Črepinšek, da Cruz, Henriques, 'Comparing general-purpose and domain-specific languages: an empirical study' (Computer Science and Information Systems 7(2), 2010) — relayed by the orchestrator's search: XAML for UI design against C# Forms, developers performed about 15% better with the DSL across comprehension tasks even with less prior experience — https://www.comsis.org/pdf.php?id=226-0911"
+  ],
+  "contested": false,
+  "notes": "Owns how code represents a problem domain: which domain concepts become types, a bare primitive standing for a quantity, identifier or unit (primitive obsession), a combination of flags and nullable fields where a sum type or enumeration would make invalid states unrepresentable, the domain's own terms carried consistently into type and operation names across modules, and an internal domain language built from the host language. Yields identifier form and the consistency of single names to naming-identifiers; parameter count, including a boolean argument's share of it, to routine-size-and-parameters; parsing an external language or input format to parsing-and-grammar-based-input; validation of a value that crosses a trust boundary to security-hygiene-in-ordinary-code; state machines to table-driven-and-state-machines; type parameters to generics-and-parameterization. Rules must hold across Java, Python, TypeScript, Go and Rust; the mechanism differs (a Go defined type, a Rust newtype, a TypeScript branded type, a Python NewType, a Java record), so a rule names the effect and a rule about one mechanism belongs to a language-specific corpus. Product and UX decisions and requirements elicitation are outside the corpus; the topic starts from a domain already decided."
+ }
+]

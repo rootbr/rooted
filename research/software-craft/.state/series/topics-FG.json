@@ -1,0 +1,186 @@
+[
+ {
+  "slug": "refactoring",
+  "title": "Refactoring",
+  "group": "F. Changing code",
+  "domain": "change",
+  "prefix": "CHG",
+  "locators": "CC24 (Code Complete 2nd ed. ch. 24 'Refactoring': kinds of software evolution, reasons to refactor, specific refactorings, refactoring safely, refactoring strategies); PP 'Refactoring' (The Pragmatic Programmer, 20th anniversary ed., ch. 7 'While You Are Coding', topic 'Refactoring'); the 97 Things essay 'Before You Refactor' (97-things/97-things-every-programmer-should-know en/thing_06/README.md)",
+  "candidate_evidence": [
+   "Kim, Zimmermann, Nagappan, 'A field study of refactoring challenges and benefits' (FSE 2012); journal extension 'An empirical study of refactoring challenges and benefits at Microsoft' (IEEE TSE 2014)",
+   "Murphy-Hill, Parnin, Black, 'How we refactor, and how we know it' (ICSE 2009; IEEE TSE 2012)",
+   "Silva, Tsantalis, Valente, 'Why we refactor? Confessions of GitHub contributors' (FSE 2016)",
+   "Bavota, De Carluccio, De Lucia, Di Penta, Oliveto, Strollo, 'When does a refactoring induce bugs? An empirical study' (SCAM 2012) — refactorings involving hierarchies (e.g. pull up method) induce faults frequently",
+   "Di Penta, Bavota, Zampetti, 'On the relationship between refactoring actions and bugs: a differentiated replication' (ESEC/FSE 2020; arXiv 2009.11685)",
+   "Tsantalis, Mansouri, Eshkevari, Mazinanian, Dig, 'Accurate and efficient refactoring detection in commit history' (ICSE 2018) — RefactoringMiner; its catalog of detected refactoring types is in tsantalis/RefactoringMiner master README.md",
+   "Golubev, Kurbatova, AlOmar, Bryksin, Mkaouer, 'One thousand and one stories: a large-scale survey of software refactoring' (ESEC/FSE 2021; arXiv 2107.07357)",
+   "Mens, Tourwé, 'A survey of software refactoring' (IEEE TSE 2004)",
+   "official and tool documentation: google/eng-practices master review/developer/small-cls.md §'Separate Out Refactorings'; golang/tools master gopls/doc/features/transformation.md (Rename, refactor.extract, refactor.inline.call, refactor.inline.variable as tool-performed behaviour-preserving transformations); the refactoring catalog on refactoring.com and IDE refactoring documentation on vendor sites are not openable"
+  ],
+  "contested": false,
+  "notes": "Owns the behaviour-preserving transformation and its safety: refactoring only under tests that pass before and after, one transformation at a time with the tests run between steps, tool-performed transformations over hand edits where a tool exists, extra care with hierarchy-changing refactorings that the evidence ties to induced faults, and refactoring as preparation for the change at hand rather than as a free-standing rewrite. Yields the diagnosis of what to refactor to code-smells-and-antipatterns; getting untested code under a safety net to seams-and-characterization-tests; repository-wide automated rewrites to large-scale-changes-and-migrations; keeping structural and behavioural edits in separate commits (the size and shape of one change) to small-steps-and-minimal-diffs; duplicated code blocks to duplication-and-single-source-of-truth; routine length and parameter count to routine-size-and-parameters; renaming a public API that external callers use to api-evolution-and-deprecation. Rules must hold across Java, Python, TypeScript, Go and Rust; a rule that depends on one IDE's or one language's refactoring tool belongs elsewhere, and a tool name may appear in an Example only."
+ },
+ {
+  "slug": "code-smells-and-antipatterns",
+  "title": "Code smells and antipatterns",
+  "group": "F. Changing code",
+  "domain": "change",
+  "prefix": "CHG",
+  "locators": "CC24 (Code Complete 2nd ed. ch. 24 'Refactoring', the 'Reasons to Refactor' list of warning signs); the smell catalog the topic is usually formulated from is Fowler and Beck, Refactoring 2nd ed. ch. 3 'Bad Smells in Code' — a trade book, named as formulation only",
+  "candidate_evidence": [
+   "Tufano, Palomba, Bavota, Oliveto, Di Penta, De Lucia, Poshyvanyk, 'When and why your code starts to smell bad' (ICSE 2015); extension 'When and why your code starts to smell bad (and whether the smells go away)' (IEEE TSE 2017) — most smells are introduced when an artifact is created; 80% survive, and only 9% of removals come from refactoring",
+   "Sjøberg, Yamashita, Anda, Mockus, Dybå, 'Quantifying the effect of code smells on maintenance effort' (IEEE TSE 2013) — none of 12 smells significantly associated with more effort after adjusting for file size and number of changes",
+   "Palomba, Bavota, Di Penta, Fasano, Oliveto, De Lucia, 'On the diffuseness and the impact on maintainability of code smells: a large scale empirical investigation' (EMSE 2018, online 2017; ICSE 2018 journal-first) — smelly classes more change- and fault-prone, class size often matters more",
+   "Khomh, Di Penta, Guéhéneuc, Antoniol, 'An exploratory study of the impact of antipatterns on class change- and fault-proneness' (EMSE 2012) — size alone does not explain the higher odds",
+   "Silva, Tsantalis, Valente, 'Why we refactor? Confessions of GitHub contributors' (FSE 2016) — refactoring is driven mainly by requirement changes, much less by smells",
+   "tool rules on class-level smells: PMD design category (pmd/pmd main pmd-java/src/main/resources/category/java/design.xml: GodClass, DataClass, TooManyMethods, CouplingBetweenObjects, ExcessiveImports, SwitchDensity), Checkstyle metrics checks (checkstyle/checkstyle master src/site/xdoc/checks/metrics/classfanoutcomplexity.xml, classdataabstractioncoupling.xml), Pylint design checker (pylint-dev/pylint main pylint/checkers/design_analysis.py: too-many-instance-attributes, too-many-public-methods, too-few-public-methods, too-many-ancestors), ESLint max-classes-per-file (eslint/eslint main docs/src/rules/max-classes-per-file.md)",
+   "tool rules on dead code: ESLint no-unused-vars and no-unreachable (docs/src/rules/no-unused-vars.md, no-unreachable.md), PMD bestpractices UnusedPrivateMethod, UnusedPrivateField, UnusedLocalVariable, UnusedFormalParameter (category/java/bestpractices.xml), Ruff F841 unused-variable (crates/ruff_linter/src/rules/pyflakes/rules/unused_variable.rs), go vet unreachable (golang/tools master go/analysis/passes/unreachable/doc.go)",
+   "the smell catalog pages on refactoring.com and martinfowler.com are not openable; the book is formulation only"
+  ],
+  "contested": false,
+  "notes": "Owns the smells with no owner of their own: large or god class, data class, feature envy, divergent change and shotgun surgery, speculative generality, lazy class, temporary field, dead code and commented-out code; it names the smell as a reason to look, and the fix travels through refactoring. Yields duplicated code blocks to duplication-and-single-source-of-truth; routine length and parameter count to routine-size-and-parameters; message chains and dependency direction to coupling-and-dependency-direction; pass-through methods and shallow modules to complexity-and-deep-modules; refused bequest and deep hierarchies to inheritance-versus-composition; primitive obsession to domain-modeling-and-domain-language; the transformation itself to refactoring; a smell left deliberately and recorded to technical-debt. The evidence is mixed once size is controlled (Sjøberg 2013 against Khomh 2012 and Palomba 2018), so a card states each smell's effect with the source's own precondition and never as an absolute. Rules must hold across Java, Python, TypeScript, Go and Rust; a class-level smell carries applies_to object-oriented where it presupposes classes, and a smell that exists in one language only belongs elsewhere."
+ },
+ {
+  "slug": "seams-and-characterization-tests",
+  "title": "Seams and characterization tests",
+  "group": "F. Changing code",
+  "domain": "change",
+  "prefix": "CHG",
+  "locators": "WELC (Working Effectively with Legacy Code, Feathers 2004: ch. 4 'The Seam Model'; ch. 6 'I Don't Have Much Time and I Have to Change It' — sprout method and class, wrap method and class; ch. 13 'I Need to Make a Change, but I Don't Know What Tests to Write' — characterization tests; Part III 'Dependency-Breaking Techniques', ch. 25); SEG13 (Software Engineering at Google ch. 13 'Test Doubles', where it treats seams)",
+  "candidate_evidence": [
+   "Fraser, Arcuri, 'EvoSuite: automatic test suite generation for object-oriented software' (ESEC/FSE 2011) — generated assertions summarize the current behaviour so that deviations from it are detected",
+   "Xie, 'Augmenting automatically generated unit-test suites with regression oracle checking' (ECOOP 2006) — Orstra: assertions on observed object states and observer return values guard against regression faults",
+   "Pacheco, Lahiri, Ernst, Ball, 'Feedback-directed random test generation' (ICSE 2007) — Randoop, regression tests generated from observed behaviour",
+   "Shamshiri, Just, Rojas, Fraser, McMinn, Arcuri, 'Do automatically generated unit tests find real faults? An empirical study of effectiveness and challenges' (ASE 2015) — 55.7% of Defects4J faults detected overall, 19.9% by an individual suite; the limits of behaviour-capturing oracles",
+   "Zaidman, Van Rompaey, van Deursen, Demeyer, 'Studying the co-evolution of production and test code in open source and industrial developer test processes through repository mining' (EMSE 2011)",
+   "'Snapshot testing in practice: benefits and drawbacks' (Journal of Systems and Software, 2023; ScienceDirect PII S0164121223001929) — authors not confirmed by the search, read them off the record; fragility and the need to review snapshot updates",
+   "official documentation of snapshot and golden-file tests: jestjs/jest main docs/SnapshotTesting.md; mitsuhiko/insta master README.md (Rust); golang/go master src/cmd/go/alldocs.go (the go tool ignores a directory named 'testdata', the home of golden files)",
+   "official documentation of seams per language: golang/website master _content/doc/effective_go.html 'Interfaces and other types'; python/cpython main Doc/library/unittest.mock.rst §'Where to patch' (a patch target is a seam); rust-lang/book main src/ch10-02-traits.md on trait bounds as the parameter seam",
+   "SEG13 on abseil.io is not openable; the seam model and the dependency-breaking catalog are a trade book, formulation only"
+  ],
+  "contested": false,
+  "notes": "Owns putting untested code under a safety net before changing it: finding a seam where behaviour can be substituted without editing the code under test (an object or interface seam, a parameter seam, a module or link seam), the smallest dependency-breaking edit that makes a unit constructible in a test (parameterize a constructor, extract an interface, sprout or wrap new behaviour instead of editing inside it), and characterization tests that pin the observed behaviour, snapshot and golden-file tests included, with the rule that a pinned oddity is recorded, not silently fixed in the same change. Yields the choice among fakes, stubs and mocks and speccing a double to test-doubles; assertion quality and test structure to unit-testing-and-test-quality; end-to-end golden tests to larger-tests-integration-and-end-to-end; test-first development of new code to test-first-and-test-driven-development; the refactoring done once the net is in place to refactoring. Rules must hold across Java, Python, TypeScript, Go and Rust; the preprocessing seam exists in C and C++ only and is out of scope, and a seam that one language's runtime alone offers (monkey-patching a module) is named as that language's form of a general seam, never as the rule."
+ },
+ {
+  "slug": "large-scale-changes-and-migrations",
+  "title": "Large-scale changes and migrations",
+  "group": "F. Changing code",
+  "domain": "change",
+  "prefix": "CHG",
+  "locators": "SEG22 (Software Engineering at Google ch. 22 'Large-Scale Changes': what a large-scale change is, why atomic changes are hard, the infrastructure and the process); SW3.8 (SWEBOK Guide V4.0 ch. 4 'Software Construction' §3.8)",
+  "candidate_evidence": [
+   "Wright, Jasper, Klimek, Carruth, Wan, 'Large-scale automated refactoring using ClangMR' (ICSM 2013) — AST-matching transformations applied across a monorepo",
+   "Potvin, Levenberg, 'Why Google stores billions of lines of code in a single repository' (CACM 2016) — atomic changes and large-scale refactoring as monorepo benefits",
+   "Ramanathan, Clapp, Barik, Sridharan, 'Piranha: reducing feature flag debt at Uber' (ICSE SEIP 2020) — generated cleanup diffs: 65% landed unchanged, over 85% compiled and passed tests; tool at uber/piranha master README.md",
+   "Dig, Johnson, 'How do APIs evolve? A story of refactoring' (Journal of Software Maintenance and Evolution 2006) — over 80% of breaking API changes are refactorings",
+   "Kim, Cai, Kim, 'An empirical investigation into the role of API-level refactorings during software evolution' (ICSE 2011) — more bug fixes after API-level refactorings",
+   "Ivers, Nord, Ozkaya, Seifried, Timperley, Kessentini, 'Industry experiences with large-scale refactoring' (ESEC/FSE 2022 industry track; arXiv 2202.00173)",
+   "official and tool documentation of automated migration: openrewrite/rewrite main README.md (recipes); golang/tools master gopls/doc/features/transformation.md §'refactor.inline.call'; rust-lang/edition-guide master src/editions/transitioning-an-existing-project-to-a-new-edition.md (cargo fix); Error Prone Refaster and InlineMe docs answered 404 at google/error-prone master docs/refaster.md and docs/bugpattern/InlineMe*.md, so the path must be located before citing",
+   "google/eng-practices master review/developer/small-cls.md §'Splitting CLs' and §'Can't Make it Small Enough' — sharding a large change into independently reviewable pieces",
+   "SWEBOK V3 community transcription ligurio/swebok-v3: ch. 3 'Software Construction' §3.8 'Integration' and ch. 5 'Software Maintenance' §4 on migration — the README lists no chapter files, so the file path must be located before citing"
+  ],
+  "contested": false,
+  "notes": "Owns a change that spans many files, packages or owners and cannot land as one reviewable change: generating the edit with a syntax-aware tool rather than text substitution, sharding it into pieces that each build, pass and can be reverted alone, letting the old and new paths coexist while callers migrate, and finishing the migration by removing the old path and the flag that selected it. Yields the size and shape of one shard to small-steps-and-minimal-diffs; the behaviour preservation of each rewrite to refactoring; deprecation policy and version signalling to api-evolution-and-deprecation; dependency version upgrades to dependency-management; a stale path left behind and recorded to technical-debt. Rules must hold across Java, Python, TypeScript, Go and Rust; a rule that relies on one language's migration tool belongs elsewhere, and the tool may appear in an Example only. SEG22's approval committee and ownership process belong to process and team management, and online data or schema migrations across services belong to distributed systems; both are outside the corpus, as is cross-platform migration."
+ },
+ {
+  "slug": "small-steps-and-minimal-diffs",
+  "title": "Small steps and minimal diffs",
+  "group": "F. Changing code",
+  "domain": "change",
+  "prefix": "CHG",
+  "locators": "TF (Tidy First? A Personal Exercise in Empirical Software Design, Beck 2023: Part I 'Tidyings'; Part II 'Managing' — 'Separate Tidying', 'Batch Sizes', 'Getting Untangled'; Part III 'Theory' — 'Structure and Behavior'); the openable formulation of the same practice is google/eng-practices 'Small CLs'",
+  "candidate_evidence": [
+   "Herzig, Zeller, 'The impact of tangled code changes' (MSR 2013)",
+   "Barnett, Bird, Brunet, Lahiri, 'Helping developers help themselves: automatic decomposition of code review changesets' (ICSE 2015) — changes in five open-source projects are tangled",
+   "Di Biase, Bruntink, van Deursen, Bacchelli, 'The effects of change decomposition on code review — a controlled experiment' (PeerJ Computer Science 2019; arXiv 1805.10978)",
+   "Kamei, Shihab, Adams, Hassan, Mockus, Sinha, Ubayashi, 'A large-scale empirical study of just-in-time quality assurance' (IEEE TSE 2013) — change-level defect risk, with change size among the factors",
+   "Sadowski, Söderberg, Church, Sipko, Bacchelli, 'Modern code review: a case study at Google' (ICSE SEIP 2018) — 9 million reviewed changes, mostly small",
+   "official documentation: google/eng-practices master review/developer/small-cls.md (§'Why Write Small CLs?', 'What is Small?', 'Separate Out Refactorings', 'Keep related test code in the same CL', 'Don't Break the Build', 'Splitting CLs')",
+   "git/git master Documentation/git-add.adoc (interactive and patch staging, the mechanism for splitting a working tree into one-concern commits)",
+   "Tidy First? is a trade book with no openable text — formulation only"
+  ],
+  "contested": false,
+  "notes": "Owns the size and shape of one change: one concern per change with no tangled edits, structural tidying and behavioural change in separate commits, a minimal diff without drive-by reformatting, renames or unrelated fixes, tests in the same change as the code they cover, every change building and passing on its own, and splitting large work by stacking or by horizontal and vertical slices. Yields the change description and the reviewer's reading to code-review-as-author-and-reviewer; a migration that spans many owners and shards to large-scale-changes-and-migrations; the safety of each transformation to refactoring. Rules must hold across Java, Python, TypeScript, Go and Rust and across version-control systems; a rule tied to one tool's workflow belongs elsewhere. Review turnaround targets, team batch policies and release cadence are process and team management and stay outside the corpus."
+ },
+ {
+  "slug": "technical-debt",
+  "title": "Technical debt",
+  "group": "F. Changing code",
+  "domain": "change",
+  "prefix": "CHG",
+  "locators": "PP 'Software Entropy' (The Pragmatic Programmer, 20th anniversary ed., ch. 1 'A Pragmatic Philosophy', topic 'Software Entropy': broken windows); the 97 Things essays 'Act with Prudence' (en/thing_01/README.md), 'The Boy Scout Rule' (en/thing_08/README.md) and 'The Road to Performance Is Littered with Dirty Code Bombs' (en/thing_74/README.md) in 97-things/97-things-every-programmer-should-know",
+  "candidate_evidence": [
+   "Potdar, Shihab, 'An exploratory study on self-admitted technical debt' (ICSME 2014) — debt admitted in comments in Eclipse, Chromium OS, Apache HTTP Server and ArgoUML, why it is introduced and how likely it is removed",
+   "Wehaibi, Shihab, Guerrouj, 'Examining the impact of self-admitted technical debt on software quality' (SANER 2016)",
+   "Bavota, Russo, 'A large-scale empirical study on self-admitted technical debt' (MSR 2016) — on average 51 instances per system, increasing over time, surviving over 1,000 commits when fixed",
+   "Levén, Broman, Besker, Torkar, 'The broken windows theory applies to technical debt' (EMSE 2024; arXiv 2209.01549) — existing debt raises developers' propensity to add more, in a controlled experiment",
+   "Tufano, Palomba, Bavota, Oliveto, Di Penta, De Lucia, Poshyvanyk, 'When and why your code starts to smell bad' (ICSE 2015) — 80% of smells survive; only 9% of removals come from refactoring",
+   "Ramanathan, Clapp, Barik, Sridharan, 'Piranha: reducing feature flag debt at Uber' (ICSE SEIP 2020) — stale flags as debt and their automated removal",
+   "tool rules on debt markers: ESLint no-warning-comments (eslint/eslint main docs/src/rules/no-warning-comments.md), Pylint fixme (pylint-dev/pylint main pylint/checkers/misc.py), Checkstyle TodoComment (checkstyle/checkstyle master src/site/xdoc/checks/misc/todocomment.xml), Ruff flake8-todos TD rules incl. TD003 missing issue link (crates/ruff_linter/src/rules/flake8_todos/rules/todos.rs) and flake8-fixme FIX rules (flake8_fixme/rules/todos.rs), clippy todo and unimplemented (rust-lang/rust-clippy master clippy_lints/src/panic_unimplemented.rs), SonarSource S1135 'track uses of TODO tags' (sonar-python python-checks/.../python/S1135.html answers 200; the sonar-java path from the source map answers 404 and is not openable as mapped)"
+  ],
+  "contested": false,
+  "notes": "Owns the debt a change knowingly takes on or leaves behind: a shortcut or workaround recorded where it lives with an owner and a tracking reference (the todo_marker signal), no new debt added next to known debt (broken windows), the debt a change touches paid down or recorded rather than widened, and stale temporary code such as a rolled-out feature flag's dead branch removed. Yields the individual smells to code-smells-and-antipatterns; the paying-down transformation to refactoring; the comment's wording to comments-and-self-documenting-code; a multi-owner cleanup to large-scale-changes-and-migrations; how configuration and flags are read to runtime-configuration. Rules must hold across Java, Python, TypeScript, Go and Rust; a marker convention is 'the project's debt marker', never one linter's spelling. Prioritizing a debt backlog, allocating team capacity to it and estimating its interest are process and team management and estimation, outside the corpus."
+ },
+ {
+  "slug": "debugging",
+  "title": "Debugging",
+  "group": "G. Diagnostics and performance",
+  "domain": "performance",
+  "prefix": "PRF",
+  "locators": "CC23 (Code Complete 2nd ed. ch. 23 'Debugging': finding a defect by the scientific method, fixing a defect, psychological considerations, debugging tools); PoP5 (The Practice of Programming ch. 5 'Debugging': good clues and easy bugs, no clues and hard bugs, non-reproducible bugs, debugging tools); PP 'Debugging' (The Pragmatic Programmer, 20th anniversary ed., ch. 3 'The Basic Tools', topic 'Debugging')",
+  "candidate_evidence": [
+   "Zeller, 'Yesterday, my program worked. Today, it does not. Why?' (ESEC/FSE 1999) — delta debugging on changes",
+   "Zeller, Hildebrandt, 'Simplifying and isolating failure-inducing input' (IEEE TSE 2002) — ddmin reduces a failing input to a minimal one; 896 lines of HTML reduced to the one line that caused the failure",
+   "Parnin, Orso, 'Are automated debugging techniques actually helping programmers?' (ISSTA 2011) — ranked-statement fault localization helped only experienced developers on easy tasks",
+   "Beller, Spruit, Spinellis, Zaidman, 'On the dichotomy of debugging behavior among programmers' (ICSE 2018) — survey of 176 developers and IDE observation of 458",
+   "Böhme, Soremekun, Chattopadhyay, Ugherughe, Zeller, 'Where is the bug and how is it fixed? An experiment with practitioners' (ESEC/FSE 2017)",
+   "Alaboudi, LaToza, 'Using hypotheses as a debugging aid' (VL/HCC 2020; arXiv 2005.13652)",
+   "Alaboudi, LaToza, 'An exploratory study of debugging episodes' (arXiv 2105.02162; EMSE 2023 as 'What constitutes debugging? An exploratory study of debugging episodes')",
+   "tool rules on debugging aids left in code: ESLint no-debugger and no-console (eslint/eslint main docs/src/rules/no-debugger.md, no-console.md), Ruff flake8-debugger T100 (crates/ruff_linter/src/rules/flake8_debugger/rules/debugger.rs) and flake8-print T201/T203 (flake8_print/rules/print_call.rs), clippy dbg_macro (rust-lang/rust-clippy master clippy_lints/src/dbg_macro.rs)",
+   "official documentation: git/git master Documentation/git-bisect.adoc (the .txt path answers 404); python/cpython main Doc/library/pdb.rst; rust-lang/rust master library/std/src/macros.rs (the dbg! macro's documentation)"
+  ],
+  "contested": false,
+  "notes": "Owns finding and fixing a defect: reproduce the failure first and capture it as a failing test, narrow it by explicit hypotheses and experiments rather than by random edits, shrink the failing input or bisect the history when the cause is not evident, fix the cause rather than the symptom and look for the same defect elsewhere, keep the reproducing test as a regression test, and remove temporary debugging aids (debugger statements, stray prints) before the change lands. Yields permanent diagnostic output and log levels to logging-and-diagnostic-output; the regression test's structure and assertions to unit-testing-and-test-quality; slowness as the symptom to profiling-and-code-tuning; the local handling of a failure to error-and-exception-handling; reading unfamiliar code to reading-and-understanding-code. Rules must hold across Java, Python, TypeScript, Go and Rust; a debugger or a language's print facility may appear in an Example only. Data races, deadlocks and other concurrency failures belong to the reserved concurrency-correctness specialty, and tracing across services belongs to distributed systems; both are outside the corpus, and the agent names them and stops."
+ },
+ {
+  "slug": "profiling-and-code-tuning",
+  "title": "Profiling and code tuning",
+  "group": "G. Diagnostics and performance",
+  "domain": "performance",
+  "prefix": "PRF",
+  "locators": "CC25 (Code Complete 2nd ed. ch. 25 'Code-Tuning Strategies'); CC26 (Code Complete 2nd ed. ch. 26 'Code-Tuning Techniques'); PoP7 (The Practice of Programming ch. 7 'Performance': a bottleneck, timing and profiling, strategies for speed, tuning the code, space efficiency, estimation); SW4.14 (SWEBOK Guide V4.0 ch. 4 'Software Construction' §4.14)",
+  "candidate_evidence": [
+   "Mytkowicz, Diwan, Hauswirth, Sweeney, 'Evaluating the accuracy of Java profilers' (PLDI 2010) — four profilers often disagree on the hot methods",
+   "Burchell, Larose, Kaleba, Marr, 'Don't trust your profiler: an empirical study on the precision and accuracy of Java profilers' (MPLR 2023)",
+   "Mytkowicz, Diwan, Hauswirth, Sweeney, 'Producing wrong data without doing anything obviously wrong!' (ASPLOS 2009) — measurement bias from innocuous setup changes",
+   "Georges, Buytaert, Eeckhout, 'Statistically rigorous Java performance evaluation' (OOPSLA 2007) — run-to-run variation and statistically sound comparison",
+   "Curtsinger, Berger, 'Coz: finding code that counts with causal profiling' (SOSP 2015; arXiv 1608.03676) — most guided optimizations modified under 10 lines",
+   "Jin, Song, Shi, Scherpelz, Lu, 'Understanding and detecting real-world performance bugs' (PLDI 2012)",
+   "Nistor, Jiang, Tan, 'Discovering, reporting, and fixing performance bugs' (MSR 2013) — many performance bugs found by code reasoning, not profiling; fixing them is harder",
+   "official documentation of profilers and benchmark harnesses: python/cpython main Doc/library/profile.rst, timeit.rst, tracemalloc.rst; golang/go master src/testing/testing.go §'Benchmarks' and src/runtime/pprof/pprof.go; golang/website master _content/doc/diagnostics.html; openjdk/jmh master README.md; bheisler/criterion.rs master README.md; SWEBOK V3 ch. 3 §4.14 'Performance Analysis and Tuning' in ligurio/swebok-v3, file path to locate",
+   "tool rules on ordinary inefficiencies: PMD performance category (pmd/pmd main pmd-java/src/main/resources/category/java/performance.xml: InefficientStringBuffering, UseStringBufferForStringAppends, AvoidInstantiatingObjectsInLoops), Ruff perflint PERF rules (crates/ruff_linter/src/rules/perflint/rules/try_except_in_loop.rs, unnecessary_list_cast.rs, incorrect_dict_iterator.rs, manual_list_comprehension.rs), SpotBugs PERFORMANCE category (spotbugs/spotbugs master spotbugs/etc/messages.xml)"
+  ],
+  "contested": false,
+  "notes": "Owns measure before tuning: no tuning without a measurement that shows a need, a profile to find where the time goes before choosing what to change, a benchmark that warms up, repeats and reports variation against a baseline, re-measuring after each change and reverting tuning that does not pay, keeping the clear version where the measurement does not justify the tuned one, and recording the measurement with the change. Yields the complexity class and the standard-library structure to algorithm-and-data-structure-choice; leaked or unreleased resources to resource-management-and-ownership; a wrong result found while measuring to debugging; build and compiler settings to build-warnings-static-analysis-ci. Rules must hold across Java, Python, TypeScript, Go and Rust; a profiler or benchmark harness may appear in an Example only. Low-latency and high-frequency-trading tuning (cache-line layout, lock-free structures, allocation-free hot paths, runtime and garbage-collector tuning) is a reserved specialty, as is parallelization under concurrency correctness; the rules stop at measure before tuning and the agent names the specialty and stops."
+ },
+ {
+  "slug": "algorithm-and-data-structure-choice",
+  "title": "Algorithm and data structure choice",
+  "group": "G. Diagnostics and performance",
+  "domain": "performance",
+  "prefix": "PRF",
+  "locators": "PoP2 (The Practice of Programming ch. 2 'Algorithms and Data Structures': searching, sorting, libraries, O-notation, growing arrays, lists, trees, hash tables); PP 'Algorithm Speed' (The Pragmatic Programmer, 20th anniversary ed., ch. 7 'While You Are Coding', topic 'Algorithm Speed')",
+  "candidate_evidence": [
+   "Shacham, Vechev, Yahav, 'Chameleon: adaptive selection of collections' (PLDI 2009)",
+   "Costa, Andrzejak, Seboek, Lo, 'Empirical study of usage and performance of Java collections' (ICPE 2017) — 10,986 projects; alternative implementations save 60–88% memory and run some operations 1.5x–50x faster",
+   "Basios, Li, Wu, Kanthan, Barr, 'Darwinian data structure selection' (ESEC/FSE 2018; arXiv 1706.03232)",
+   "Olivo, Dillig, Lin, 'Static detection of asymptotic performance bugs in collection traversals' (PLDI 2015) — redundant traversal bugs; repaired programs at least 2.45x faster at input size 50,000",
+   "Selakovic, Pradel, 'Performance issues and optimizations in JavaScript: an empirical study' (ICSE 2016) — inefficient API usage is the most prevalent root cause",
+   "Jin, Song, Shi, Scherpelz, Lu, 'Understanding and detecting real-world performance bugs' (PLDI 2012)",
+   "official documentation of collection costs: rust-lang/rust master library/std/src/collections/mod.rs ('When Should You Use Which Collection?', 'Cost of Collection Operations'); openjdk/jdk jdk-21-ga src/java.base/share/classes/java/util/ArrayList.java and LinkedList.java class documentation on operation cost; python/cpython main Doc/library/collections.rst (deque), bisect.rst, heapq.rst; golang/go master src/container/heap/heap.go; tc39/ecma262 main spec.html (Map and Set must provide access times sublinear in the number of elements)",
+   "tool rules: clippy linkedlist (rust-lang/rust-clippy master clippy_lints/src/types/mod.rs, LINKEDLIST), Ruff PLR6201 literal-membership (crates/ruff_linter/src/rules/pylint/rules/literal_membership.rs), PMD performance UseArrayListInsteadOfVector (category/java/performance.xml); SonarSource S2250 on collection methods with O(n) performance — the sonar-java path from the source map answers 404 and is not openable as mapped"
+  ],
+  "contested": false,
+  "notes": "Owns the complexity class of the chosen structure for the observed size and the ordinary standard-library choice: a hashed set or map for repeated membership tests or lookups by key instead of a scan inside a loop, a deque or an index instead of repeated removal from the front of an array, one indexing pass instead of a nested traversal of two collections, the library's sort, binary search and heap instead of a hand-rolled one, and linear accumulation instead of quadratic string or array building in a loop. Yields measuring whether the choice matters to profiling-and-code-tuning; the type that models a domain value to domain-modeling-and-domain-language; shared mutable collections to mutable-state-and-immutability. Rules must hold across Java, Python, TypeScript, Go and Rust; a rule names the operation and its cost class, and one language's collection type appears in an Example only. Algorithm research (novel algorithms, proofs of bounds, probabilistic or cache-oblivious structures) and low-latency tuning are reserved specialties, and algorithmic-complexity denial of service belongs to security-critical design; the rules stop at the complexity class for the observed size and the standard-library choice."
+ }
+]

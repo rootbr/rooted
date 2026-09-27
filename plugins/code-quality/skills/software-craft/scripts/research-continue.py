@@ -24,6 +24,12 @@ Usage:
                     rule with verdict "accept" is done and one with "reject" stays pending
     --split N       write N bundles, each drafting an interleaved subset of the rule keys, so a
                     topic runs on N workflows at once; the first bundle reports the held rules
+    --resume-cut-short
+                    finish round N whose fixes ran and whose skeptics were cut short: the bundle
+                    carries every `fix<N>:` draft (`fix:` for N = 1... see stage_labels) as its state
+                    with the `verify<N+1>:` verdicts already recorded, runs only the missing verdicts,
+                    and ends a rule the verdict does not accept as pending (fix_after_verify false);
+                    a rule with no fix<N> draft is left to a plain --round N bundle
 Writes the bundle files and prints their paths; standard library only."""
 import json
 import os
@@ -71,10 +77,14 @@ def bundle(script, args_obj):
 
 
 def main(argv):
-    opts = {"journal": [], "from_output": None, "round": "1", "rotation_start": "0", "max_rules": "12", "split": "1", "out_dir": None, "root": None}
+    opts = {"journal": [], "from_output": None, "round": "1", "rotation_start": "0", "max_rules": "12", "split": "1", "out_dir": None, "root": None, "resume_cut_short": False}
     i = 0
     while i < len(argv):
         key = argv[i][2:].replace("-", "_")
+        if key == "resume_cut_short":
+            opts[key] = True
+            i += 1
+            continue
         if not argv[i].startswith("--") or key not in opts or i + 1 >= len(argv):
             sys.exit(f"research-continue: unexpected argument {argv[i]!r}\n{__doc__}")
         if key == "journal":
@@ -101,17 +111,30 @@ def main(argv):
         sys.exit("research-continue: the journal holds no spine or no source layer; run the topic afresh")
     if not spine:
         sys.exit("research-continue: no spine in the journals or the output; run the topic afresh")
-    draft_label, verify_label = stage_labels(rnd)
+    cut_short = opts["resume_cut_short"]
+    if cut_short:
+        # the round's own fix label is the draft, its own second-verdict label the verdict
+        draft_label, verify_label = stage_labels(rnd + 1)
+    else:
+        draft_label, verify_label = stage_labels(rnd)
     drafts = {k[len(draft_label) + 1:]: v for k, v in results.items() if k.startswith(draft_label + ":") and v.get("status") == "card"}
     verdicts = {k[len(verify_label) + 1:]: v for k, v in results.items() if k.startswith(verify_label + ":")}
     max_rules = int(opts["max_rules"])
     card_keys = [r["key"] for r in spine["rules"] if r.get("disposition") == "card"][:max_rules]
-    if rnd > 1:
+    if cut_short:
+        card_keys = [k for k in card_keys if k in drafts]
+        missing = [k for k in card_keys if k not in verdicts]
+        print(f"round {rnd} cut short: {len(drafts)} `{draft_label}:` draft(s), {len(verdicts)} `{verify_label}:` verdict(s) recorded, {len(missing)} verdict(s) to run")
+        if not card_keys:
+            sys.exit("research-continue: no fixed draft of this round in the journals")
+    elif rnd > 1:
         # a further round carries only the rules the last verdict sent back with exact edits
         accepted = [k for k in card_keys if verdicts.get(k, {}).get("verdict") == "accept"]
         rejected = [k for k in card_keys if verdicts.get(k, {}).get("verdict") == "reject"]
-        card_keys = [k for k in card_keys if k in drafts and verdicts.get(k, {}).get("verdict") == "revise"]
-        print(f"round {rnd}: {len(accepted)} accepted, {len(rejected)} rejected, {len(card_keys)} sent back with revise -> continue")
+        own_fix = stage_labels(rnd + 1)[0]
+        done = [k for k in card_keys if (own_fix + ":" + k) in results]
+        card_keys = [k for k in card_keys if k in drafts and verdicts.get(k, {}).get("verdict") == "revise" and k not in done]
+        print(f"round {rnd}: {len(accepted)} accepted, {len(rejected)} rejected, {len(done)} already fixed in this round (see --resume-cut-short), {len(card_keys)} sent back with revise -> continue")
         if not card_keys:
             sys.exit("research-continue: no rule to carry into this round")
     n = max(1, int(opts["split"]))
@@ -133,9 +156,10 @@ def main(argv):
             "resume_state": {"sources": [], "spine": spine,
                              "drafts": {k: v for k, v in drafts.items() if k in keys},
                              "verdicts": {k: v for k, v in verdicts.items() if k in keys}},
-            "only_keys": keys, "include_held": rnd == 1 and part == 0, "round": rnd,
+            "only_keys": keys, "include_held": rnd == 1 and part == 0, "round": rnd + 1 if cut_short else rnd,
+            "fix_after_verify": not cut_short,
         }
-        suffix = "" if rnd == 1 else f"-round{rnd}"
+        suffix = ("" if rnd == 1 else f"-round{rnd}") + ("-finish" if cut_short else "")
         path = os.path.join(out_dir, f"continue-{topic['slug']}{suffix}-{part + 1}of{n}.js")
         with open(path, "w", encoding="utf-8") as fh:
             fh.write(bundle(script, args_obj))

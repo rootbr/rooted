@@ -1,0 +1,60 @@
+diff --git a/plugins/code-quality/skills/software-craft/SKILL.md b/plugins/code-quality/skills/software-craft/SKILL.md
+index edf86dc..f59e150 100644
+--- a/plugins/code-quality/skills/software-craft/SKILL.md
++++ b/plugins/code-quality/skills/software-craft/SKILL.md
+@@ -181,7 +181,7 @@ Script declarations — every script is standard library only with no pinned dep
+ - `scripts/render-reports.py` — reads `craft/plan.json` and `craft/verdicts.json`; writes the two reports.
+ - `scripts/research-topic-workflow.js` — orchestrates the authoring of one topic; writes no files; spawns sub-agents that read the web through the fetch channel.
+ - `scripts/write-topic-result.py` — reads one or more research runs' outputs; writes the note, the cards and the two map appendices.
+-- `scripts/research-continue.py` — reads a cut-short research run's journal and output; writes continuation bundles of the research workflow that carry the finished stages.
++- `scripts/research-continue.py` — reads a research run's journals and output; writes continuation bundles of the research workflow that carry the finished stages, for a cut-short run or for the second fix round.
+ - `scripts/tests/` — reads a fixture repository it builds under a temporary directory.
+ 
+ Fallback, manual dispatch (degraded). When the Workflow tool is unavailable, dispatch one Agent-tool sub-agent per triggered domain — `plan.jobs` grouped by `card.domain` — with `Read, Grep, Glob, Bash` as its tools (Bash for read-only git), giving each the paths of its cards, the slices from the plan, `design_intent` and `project_context` wrapped in `<target_excerpt>` tags as data, and the same `FINDINGS` schema, using the `code-quality:craft-finder` type (the Agent tool enforces its allowlist). Then aggregate by hand per §Aggregation, and dispatch one `code-quality:craft-verifier` sub-agent per finding with `Read, Grep, Glob, Bash` as its tools and the skeptic prompt from the script. This path bundles a domain's cards into one agent, so it misses more than the primary path; name it as degraded in the report's Executive Summary.
+diff --git a/plugins/code-quality/skills/software-craft/references/gotchas.md b/plugins/code-quality/skills/software-craft/references/gotchas.md
+index 1ac8692..560d402 100644
+--- a/plugins/code-quality/skills/software-craft/references/gotchas.md
++++ b/plugins/code-quality/skills/software-craft/references/gotchas.md
+@@ -38,6 +38,6 @@ G-16. A research topic's cards cite a paper the skeptic could not open? The auth
+ 
+ G-17. The developer agent edited files outside the write zone, or ran `git commit`? Its definition forbids both, but a task that names no zone leaves the agent to infer one from the task's subject. Name the write zone in the task text, and treat a version-control write as a compromised build: reset the commit, keep the tree, and re-run the review on the working tree.
+ 
+-G-18. A research topic cut short (a session limit, a killed process) re-runs its skeptics when resumed with `resumeFromRunId`? The runtime's resume replays the unchanged prefix of agent calls and runs everything after the first divergence live, and the pipeline's call order after the drafts depends on which draft finished first, so a resumed topic replays the sources, the spine and the drafts and re-runs every first verdict. Continue from the journal instead: `scripts/research-continue.py --journal <transcript>/journal.jsonl --from-output <task output> --split 3` writes bundles that carry the finished stages as `resume_state` and draft only their own keys, so only the fixes and second verdicts run; `scripts/write-topic-result.py --run <cut-short output> --run <bundle output> ...` merges the runs into one note. A bundle above the runtime's 512 KiB script limit is refused: raise `--split`, since each bundle carries only its own keys' drafts and verdicts and no source layer.
++G-18. A research topic cut short (a session limit, a killed process) re-runs its skeptics when resumed with `resumeFromRunId`? The runtime's resume replays the unchanged prefix of agent calls and runs everything after the first divergence live, and the pipeline's call order after the drafts depends on which draft finished first, so a resumed topic replays the sources, the spine and the drafts and re-runs every first verdict. Continue from the journal instead: `scripts/research-continue.py --journal <transcript>/journal.jsonl --from-output <task output> --split 3` writes bundles that carry the finished stages as `resume_state` and draft only their own keys, so only the fixes and second verdicts run; `scripts/write-topic-result.py --run <cut-short output> --run <bundle output> ...` merges the runs into one note. A bundle above the runtime's 512 KiB script limit is refused: raise `--split`, since each bundle carries only its own keys' drafts and verdicts and no source layer. The second fix round is the same mechanism: `--round 2` with every journal of the first round names `fix:`/`verify2:` as the state and carries only the rules the second verdict sent back with `revise`; a topic's writer merge then lists the cut-short output and every bundle output of both rounds.
+ 
+ G-19. A topic's workflow runs at two agents at a time and takes two hours? The runtime caps concurrency per workflow at `min(16, CPUs - 2)`, two on a four-CPU host. The cap is per workflow, so run several topics at once, and split one topic's draft-and-verify stage over several bundles through `scripts/research-continue.py --split`; the writer merges them.
+diff --git a/plugins/code-quality/skills/software-craft/references/maintenance.md b/plugins/code-quality/skills/software-craft/references/maintenance.md
+index d3fceab..10ff5d5 100644
+--- a/plugins/code-quality/skills/software-craft/references/maintenance.md
++++ b/plugins/code-quality/skills/software-craft/references/maintenance.md
+@@ -4,7 +4,7 @@ What changes together when a card, a script, a prompt, a signal or a tier change
+ 
+ - A rule is one card in `references/craft-cards/`; adding or removing one means its card, its `references/craft-cards-provenance.md` line, its topic's research note under `research/software-craft/` (the "Cards derived" table), and a `references/craft-cards-taxonomy.md` value when a facet is new. Run `scripts/validate-craft-cards.py --provenance references/craft-cards-provenance.md --pending references/pending-evidence.md references/craft-cards` before committing; run the audit on every card, agent or SKILL.md change (repository Quality Gate).
+ - A rule with no openable evidence, or a contested rule with no sourced separating condition, lives in `references/pending-evidence.md` until one is found; it has no card and no id.
+-- A topic is re-researched, or a new one added, through `scripts/research-topic-workflow.js` with the topic's row from the design note's taxonomy as its arguments; `scripts/write-topic-result.py` writes the run's note, cards, provenance lines and pending entries, renumbering ids contiguously from the cards already in the tree, and merges several runs of one topic. A cut-short run continues from its journal through `scripts/research-continue.py`, whose bundles carry the finished stages as `resume_state`. A new topic is a new row in the design note's taxonomy table and a new entry in its deviations section.
++- A topic is re-researched, or a new one added, through `scripts/research-topic-workflow.js` with the topic's row from the design note's taxonomy as its arguments; `scripts/write-topic-result.py` writes the run's note, cards, provenance lines and pending entries, renumbering ids contiguously from the cards already in the tree, and merges several runs of one topic. A cut-short run continues from its journal through `scripts/research-continue.py`, whose bundles carry the finished stages as `resume_state`; the second fix round is the same script with `--round 2` over the journals of the first, carrying only the rules the skeptic sent back with `revise`. A new topic is a new row in the design note's taxonomy table and a new entry in its deviations section.
+ - When the aggregation definitions, the schemas, the severity scale or the prompts change, change `scripts/craft-review-workflow.js` and `plugins/code-quality/agents/craft-finder.md` / `craft-verifier.md` in the same commit as SKILL.md §Aggregation and §Workflow; when the developer's procedure changes, `plugins/code-quality/agents/software-developer.md` and SKILL.md §Build change together.
+ - When a card's triggers, a structural signal, a threshold or the candidate list change, change `scripts/static-craft.py` (`SIGNALS`, `THRESHOLDS`, `CANDIDATE_RULE_IDS`), `scripts/cardlib.py` (`SIGNALS`), the design note's "Structural signals" table and `scripts/tests/test_static_craft.py` together, then re-run `scripts/tests/` and the fixture grading (`evals/grade.py`) in both modes of `evals/fixture/make-fixture.sh`.
+ - A new facet value (a `step`, an `applies_to` scope) is a `scripts/cardlib.py` constant, a `references/craft-cards-taxonomy.md` row and a `scripts/research-topic-workflow.js` enum in the same commit.
+diff --git a/research/2026-09-26_software-craft-cards.md b/research/2026-09-26_software-craft-cards.md
+index 9c0d7ad..da390dd 100644
+--- a/research/2026-09-26_software-craft-cards.md
++++ b/research/2026-09-26_software-craft-cards.md
+@@ -140,7 +140,7 @@ Ten topic groups, each one domain and one id prefix. The topics inside a group a
+ | J, `input`, `INP` | `parsing-and-grammar-based-input` | SW4.9, PoP9 |
+ | | `security-hygiene-in-ordinary-code` | PP "Stay Safe Out There", SWEBOK ch. 3 §3.7 |
+ 
+-Forty-six topics. §Deviations records every topic the research adds beyond this table, with its source.
++Forty-eight topics. §Deviations records every topic the research adds beyond this table, with its source.
+ 
+ Concept ownership between neighbouring topics, decided at carding time so that one concept has one card:
+ 
+@@ -307,7 +307,7 @@ Confirmed findings go back to the developer agent once, with the write zone unch
+ 2. Spine — one agent merges the three layers into candidate rules in source order, each with its formulation locator, its reception (contested or not, by whom), its evidence anchor or the search that found none, its checkability on a diff, and its proposed facets.
+ 3. Draft — one agent per candidate rule writes the card, its provenance line and, where evidence is missing, its pending entry.
+ 4. Verify — one skeptic per draft checks entailment of the Thesis by the evidence, self-containment, the Example's compilability in its language, the trigger's sanity and the separating condition of a contested rule, and returns a verdict with the edit it requires.
+-5. Fix — the drafter applies the verdict once; a draft rejected twice goes to pending.
++5. Fix — the drafter applies the verdict once per round, and the skeptic verifies the fixed draft again. A run is one round; a further round continues from the journal (`scripts/research-continue.py --round N`), carrying the fixed drafts and the last verdicts as its state and drafting only the rules the verdict sent back with `revise`, so a rule with verdict `accept` is done and a rule with verdict `reject` stays pending. A topic gets two rounds; a rule the skeptic does not accept after the second goes to pending.
+ 
+ Every agent names `model: 'claude-opus-5-5'`; effort `xhigh` for the source, spine and draft agents and `max` for the skeptic. The workflow writes no files: it returns the research note body, the cards, the provenance lines and the pending entries, and the orchestrator writes them, runs the validator and the audit, and commits. The research note's frontmatter `status: researched | drafted | verified | done` is the run's durable state: on start, the work list is derived from these files and continues from the first topic not `done`.
+ 

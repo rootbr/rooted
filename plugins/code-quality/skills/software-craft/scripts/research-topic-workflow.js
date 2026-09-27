@@ -45,6 +45,9 @@
 //                                      // a verdict for every key, and the labels read fix<round>: / verify<round+1>:
 //   channel_note: "..."                // optional: a paragraph appended to the fetch-channel text of every prompt, for
 //                                      // what the running environment adds or withholds (a spent search budget, a mirror)
+//   fix_after_verify: true | false     // false: a verdict other than accept ends the rule as pending instead of running a
+//                                      // fix; the bundle research-continue.py --resume-cut-short writes, to finish the
+//                                      // verdicts of a round whose fixes ran and whose skeptics were cut short
 // A stage whose result the state carries returns it without an agent; ids and example languages are
 // assigned over the whole spine, so a split topic keeps one numbering.
 
@@ -90,6 +93,7 @@ const ONLY = Array.isArray(A.only_keys) ? new Set(A.only_keys) : null
 if (ONLY && ONLY.size === 0) throw new Error('research-topic-workflow: only_keys is empty — omit it to draft every rule')
 const INCLUDE_HELD = A.include_held !== false
 const ROUND = Number.isInteger(A.round) && A.round >= 1 ? A.round : 1
+const FIX_AFTER_VERIFY = A.fix_after_verify !== false
 const CHANNEL_NOTE = typeof A.channel_note === 'string' && A.channel_note.trim() ? `\n- This run: ${A.channel_note.trim()}` : ''
 if (ROUND > 1 && !(RESUME && RESUME.spine && RESUME.drafts && RESUME.verdicts)) throw new Error('research-topic-workflow: round above 1 needs resume_state with the spine, the drafts and the verdicts of the previous round')
 const DRAFT_LABEL = ROUND === 1 ? 'draft' : ROUND === 2 ? 'fix' : `fix${ROUND - 1}`
@@ -497,6 +501,7 @@ const outcomes = await pipeline(drafted,
     if (!s || s.final) return s
     if (!s.verdict) return { ...s, final: 'pending', reason: 'the skeptic returned no verdict' }
     if (s.verdict.verdict === 'accept') return { ...s, final: 'card' }
+    if (!FIX_AFTER_VERIFY) return { ...s, final: 'pending', reason: `not accepted after fix round ${ROUND - 1} — ${summarize(s.verdict)}` }
     return agent(fixPrompt(s.rule, s.draft, s.verdict), opts(`${FIX_LABEL}:${s.rule.key}`, 'Fix', DRAFT, EFFORT.draft))
       .then(d2 => ({ ...s, draft1: s.draft, verdict1: s.verdict, draft: d2 }))
   },

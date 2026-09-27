@@ -1,0 +1,21 @@
+{
+ "slug": "naming-identifiers",
+ "title": "Naming of identifiers",
+ "group": "A. Code inside a function",
+ "domain": "code",
+ "prefix": "CODE",
+ "locators": "CC11 (Code Complete 2nd ed. ch. 11 'The Power of Variable Names'); PP 'Naming Things' (The Pragmatic Programmer, 20th anniversary ed., topic 45); PoP1 (The Practice of Programming ch. 1 'Style', §1.1 Names); SEG8 (Software Engineering at Google ch. 8 'Style Guides and Rules'); the 97 Things essays on naming",
+ "candidate_evidence": [
+  "Lawrie, Morrell, Feild, Binkley, 'What's in a Name? A Study of Identifiers' (ICPC 2006)",
+  "Hofmeister, Siegmund, Holt, 'Shorter identifier names take longer to comprehend' (SANER 2017; EMSE 2019 extension)",
+  "Arnaoudova, Di Penta, Antoniol, 'Linguistic antipatterns: what they are and how developers perceive them' (EMSE 2016)",
+  "Butler, Wermelinger, Yu, Sharp, 'Relating identifier naming flaws and code quality: an empirical study' (WCRE 2009/2010)",
+  "Feitelson, Mizrahi, Noy, Ben Shabat, Eliyahu, Sheffer, 'How developers choose names' (IEEE TSE 2020)",
+  "Schankin et al., 'Descriptive compound identifier names improve source code comprehension' (ICPC 2018)",
+  "Binkley, Davis, Lawrie, Morrell, 'To camelcase or under_score' (ICPC 2009) and Sharif & Maletic eye-tracking replication (ICPC 2010)",
+  "tool rules: ESLint id-length and camelcase (eslint/eslint docs/src/rules), Pylint invalid-name and disallowed-name (pylint/checkers/base/name_checker), Checkstyle naming checks (src/site/xdoc/checks/naming/*.xml), PMD codestyle naming rules (pmd-java category/java/codestyle.xml), clippy naming lints (rust-lang/rust-clippy), Ruff pep8-naming N8xx rules, SonarSource S100/S101/S117",
+  "official documentation: PEP 8 'Naming Conventions' (python/peps), Effective Go 'Names' (golang/website), Go code review comments (golang/go wiki is not openable; use golang/website _content), Rust API guidelines 'Naming' (rust-lang/api-guidelines src/naming.md), Google Java Style §5 Naming (google/styleguide javaguide.html), Google TypeScript style guide (tsguide.html) naming section, Java Language Specification §6.1 Declarations is not openable"
+ ],
+ "contested": false,
+ "notes": "Owns identifier naming: length and form (single letters, abbreviations, words), meaning and consistency, the language's own casing convention, linguistic antipatterns (a name that says the opposite of what the code does). Yields comment content to the topic comments-and-self-documenting-code, and the naming of API operations beyond identifier form to api-design-and-use. Rules must be language-agnostic: a casing convention is 'the language's documented convention', never one language's casing."
+}

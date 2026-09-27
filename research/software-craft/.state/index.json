@@ -1,0 +1,383 @@
+[
+ {
+  "topic": "naming-identifiers",
+  "run": "orig",
+  "task_id": "whj5vx3zo",
+  "workflow": "wf_6bd2ca81-2ad",
+  "rotation_start": 0,
+  "journal": "naming-identifiers--orig--journal.jsonl.gz",
+  "output": "naming-identifiers--orig--output.json.gz",
+  "agents": {
+   "sources": 3,
+   "spine": 1,
+   "draft": 12,
+   "verify": 12,
+   "fix": 5
+  },
+  "verdicts": {
+   "verify:name-hides-behaviour": "revise",
+   "verify:name-contradicts-declaration": "revise",
+   "verify:word-not-single-letter": "revise",
+   "verify:placeholder-and-filler-names": "revise",
+   "verify:one-name-per-concept": "revise",
+   "verify:boolean-names-affirmative-assertions": "revise",
+   "verify:language-naming-convention": "revise",
+   "verify:name-role-not-type": "revise",
+   "verify:abbreviation-known-outside-project": "revise",
+   "verify:confusable-names": "revise",
+   "verify:descriptiveness-grows-with-scope": "revise",
+   "verify:public-parameter-names-descriptive": "revise"
+  }
+ },
+ {
+  "topic": "naming-identifiers",
+  "run": "r1-1of3",
+  "task_id": "wsq9lajmr",
+  "workflow": "wf_9e79f7eb-174",
+  "rotation_start": 0,
+  "journal": "naming-identifiers--r1-1of3--journal.jsonl.gz",
+  "output": "naming-identifiers--r1-1of3--output.json.gz",
+  "agents": {
+   "fix": 4,
+   "verify2": 4
+  },
+  "verdicts": {
+   "verify2:placeholder-and-filler-names": "revise",
+   "verify2:language-naming-convention": "revise",
+   "verify2:name-contradicts-declaration": "revise",
+   "verify2:confusable-names": "revise"
+  }
+ },
+ {
+  "topic": "naming-identifiers",
+  "run": "r1-2of3",
+  "task_id": "wgsiatmwz",
+  "workflow": "wf_7b58c794-303",
+  "rotation_start": 0,
+  "journal": "naming-identifiers--r1-2of3--journal.jsonl.gz",
+  "output": "naming-identifiers--r1-2of3--output.json.gz",
+  "agents": {
+   "fix": 4,
+   "verify2": 4
+  },
+  "verdicts": {
+   "verify2:boolean-names-affirmative-assertions": "revise",
+   "verify2:name-hides-behaviour": "revise",
+   "verify2:name-role-not-type": "revise",
+   "verify2:descriptiveness-grows-with-scope": "revise"
+  }
+ },
+ {
+  "topic": "naming-identifiers",
+  "run": "r1-3of3",
+  "task_id": "w00wx4pia",
+  "workflow": "wf_357d9e63-857",
+  "rotation_start": 0,
+  "journal": "naming-identifiers--r1-3of3--journal.jsonl.gz",
+  "output": "naming-identifiers--r1-3of3--output.json.gz",
+  "agents": {
+   "fix": 4,
+   "verify2": 4
+  },
+  "verdicts": {
+   "verify2:one-name-per-concept": "revise",
+   "verify2:word-not-single-letter": "revise",
+   "verify2:abbreviation-known-outside-project": "revise",
+   "verify2:public-parameter-names-descriptive": "revise"
+  }
+ },
+ {
+  "topic": "naming-identifiers",
+  "run": "r2-1",
+  "task_id": "w50yhl8xt",
+  "workflow": "wf_33769118-61e",
+  "rotation_start": 0,
+  "journal": "naming-identifiers--r2-1--journal.jsonl.gz",
+  "output": null,
+  "agents": {
+   "fix2": 4
+  },
+  "verdicts": {}
+ },
+ {
+  "topic": "naming-identifiers",
+  "run": "r2-2",
+  "task_id": "wqs7gm152",
+  "workflow": "wf_3c4b1a40-7d4",
+  "rotation_start": 0,
+  "journal": "naming-identifiers--r2-2--journal.jsonl.gz",
+  "output": null,
+  "agents": {
+   "fix2": 4
+  },
+  "verdicts": {}
+ },
+ {
+  "topic": "naming-identifiers",
+  "run": "r2-3",
+  "task_id": "w6o4m6qs0",
+  "workflow": "wf_296f8ce8-877",
+  "rotation_start": 0,
+  "journal": "naming-identifiers--r2-3--journal.jsonl.gz",
+  "output": null,
+  "agents": {
+   "fix2": 4
+  },
+  "verdicts": {}
+ },
+ {
+  "topic": "error-and-exception-handling",
+  "run": "orig",
+  "task_id": "wu3s7fth2",
+  "workflow": "wf_de9330a2-164",
+  "rotation_start": 1,
+  "journal": "error-and-exception-handling--orig--journal.jsonl.gz",
+  "output": "error-and-exception-handling--orig--output.json.gz",
+  "agents": {
+   "sources": 3,
+   "spine": 1,
+   "draft": 12,
+   "verify": 12,
+   "fix": 9
+  },
+  "verdicts": {
+   "verify:error-carries-failure-context": "revise",
+   "verify:caught-error-not-silently-ignored": "revise",
+   "verify:failure-mechanism-follows-codebase-convention": "revise",
+   "verify:handler-continues-only-with-valid-invariants": "revise",
+   "verify:translate-errors-at-abstraction-boundary": "revise",
+   "verify:stop-at-broken-invariant": "revise",
+   "verify:returned-error-checked-or-explicitly-discarded": "revise",
+   "verify:raise-purpose-designed-error-types": "revise",
+   "verify:empty-collection-not-null": "revise",
+   "verify:catch-only-types-the-handler-can-handle": "revise",
+   "verify:replacement-error-keeps-cause": "revise",
+   "verify:expected-failure-returned-not-aborted": "revise"
+  }
+ },
+ {
+  "topic": "error-and-exception-handling",
+  "run": "r1-1of3",
+  "task_id": "w9ugafki6",
+  "workflow": "wf_4c9d2740-75d",
+  "rotation_start": 1,
+  "journal": "error-and-exception-handling--r1-1of3--journal.jsonl.gz",
+  "output": "error-and-exception-handling--r1-1of3--output.json.gz",
+  "agents": {
+   "fix": 4,
+   "verify2": 4
+  },
+  "verdicts": {
+   "verify2:handler-continues-only-with-valid-invariants": "revise",
+   "verify2:error-carries-failure-context": "revise",
+   "verify2:returned-error-checked-or-explicitly-discarded": "revise",
+   "verify2:empty-collection-not-null": "revise"
+  }
+ },
+ {
+  "topic": "error-and-exception-handling",
+  "run": "r1-2of3",
+  "task_id": "wib7s8tl1",
+  "workflow": "wf_454e7097-a6d",
+  "rotation_start": 1,
+  "journal": "error-and-exception-handling--r1-2of3--journal.jsonl.gz",
+  "output": "error-and-exception-handling--r1-2of3--output.json.gz",
+  "agents": {
+   "fix": 4,
+   "verify2": 4
+  },
+  "verdicts": {
+   "verify2:translate-errors-at-abstraction-boundary": "accept",
+   "verify2:caught-error-not-silently-ignored": "revise",
+   "verify2:replacement-error-keeps-cause": "revise",
+   "verify2:catch-only-types-the-handler-can-handle": "revise"
+  }
+ },
+ {
+  "topic": "error-and-exception-handling",
+  "run": "r1-3of3",
+  "task_id": "wmazu7glh",
+  "workflow": "wf_d1d56194-b8f",
+  "rotation_start": 1,
+  "journal": "error-and-exception-handling--r1-3of3--journal.jsonl.gz",
+  "output": "error-and-exception-handling--r1-3of3--output.json.gz",
+  "agents": {
+   "fix": 4,
+   "verify2": 4
+  },
+  "verdicts": {
+   "verify2:failure-mechanism-follows-codebase-convention": "revise",
+   "verify2:stop-at-broken-invariant": "revise",
+   "verify2:raise-purpose-designed-error-types": "revise",
+   "verify2:expected-failure-returned-not-aborted": "revise"
+  }
+ },
+ {
+  "topic": "error-and-exception-handling",
+  "run": "r2-1",
+  "task_id": "wydu03le3",
+  "workflow": "wf_6e7b3f65-cd7",
+  "rotation_start": 1,
+  "journal": "error-and-exception-handling--r2-1--journal.jsonl.gz",
+  "output": null,
+  "agents": {
+   "fix2": 4
+  },
+  "verdicts": {}
+ },
+ {
+  "topic": "error-and-exception-handling",
+  "run": "r2-2",
+  "task_id": "wkani1dy5",
+  "workflow": "wf_9cdaa703-2e1",
+  "rotation_start": 1,
+  "journal": "error-and-exception-handling--r2-2--journal.jsonl.gz",
+  "output": null,
+  "agents": {
+   "fix2": 3
+  },
+  "verdicts": {}
+ },
+ {
+  "topic": "error-and-exception-handling",
+  "run": "r2-3",
+  "task_id": "wfqi9ldaf",
+  "workflow": "wf_afbc97c2-4e5",
+  "rotation_start": 1,
+  "journal": "error-and-exception-handling--r2-3--journal.jsonl.gz",
+  "output": null,
+  "agents": {
+   "fix2": 4
+  },
+  "verdicts": {}
+ },
+ {
+  "topic": "test-doubles",
+  "run": "orig",
+  "task_id": "w3pjpmrlw",
+  "workflow": "wf_9fcca5a4-cd1",
+  "rotation_start": 2,
+  "journal": "test-doubles--orig--journal.jsonl.gz",
+  "output": "test-doubles--orig--output.json.gz",
+  "agents": {
+   "sources": 3,
+   "spine": 1,
+   "draft": 12,
+   "verify": 12,
+   "fix": 11
+  },
+  "verdicts": {
+   "verify:owner-fake-over-mock": "revise",
+   "verify:real-implementation-for-in-process-collaborators": "revise",
+   "verify:real-value-objects": "revise",
+   "verify:stub-within-real-contract": "revise",
+   "verify:fake-runs-contract-tests": "revise",
+   "verify:no-direct-double-of-unowned-type": "revise",
+   "verify:no-logic-in-stubs": "revise",
+   "verify:every-double-reaches-code-under-test": "revise",
+   "verify:verify-only-side-effect-calls": "revise",
+   "verify:no-overspecified-interaction-checks": "revise",
+   "verify:spec-double-to-real-type": "revise",
+   "verify:double-only-immediate-collaborators": "revise"
+  }
+ },
+ {
+  "topic": "test-doubles",
+  "run": "r1-1of3",
+  "task_id": "wqzjqhy60",
+  "workflow": "wf_12e0ea0c-3e2",
+  "rotation_start": 2,
+  "journal": "test-doubles--r1-1of3--journal.jsonl.gz",
+  "output": "test-doubles--r1-1of3--output.json.gz",
+  "agents": {
+   "fix": 4,
+   "verify2": 4
+  },
+  "verdicts": {
+   "verify2:real-value-objects": "revise",
+   "verify2:real-implementation-for-in-process-collaborators": "revise",
+   "verify2:no-overspecified-interaction-checks": "revise",
+   "verify2:no-logic-in-stubs": "revise"
+  }
+ },
+ {
+  "topic": "test-doubles",
+  "run": "r1-2of3",
+  "task_id": "wtex5l2wr",
+  "workflow": "wf_1f32a0a8-d19",
+  "rotation_start": 2,
+  "journal": "test-doubles--r1-2of3--journal.jsonl.gz",
+  "output": "test-doubles--r1-2of3--output.json.gz",
+  "agents": {
+   "fix": 4,
+   "verify2": 4
+  },
+  "verdicts": {
+   "verify2:fake-runs-contract-tests": "revise",
+   "verify2:owner-fake-over-mock": "revise",
+   "verify2:every-double-reaches-code-under-test": "revise",
+   "verify2:spec-double-to-real-type": "revise"
+  }
+ },
+ {
+  "topic": "test-doubles",
+  "run": "r1-3of3",
+  "task_id": "w683vsq1u",
+  "workflow": "wf_32568f09-8c8",
+  "rotation_start": 2,
+  "journal": "test-doubles--r1-3of3--journal.jsonl.gz",
+  "output": "test-doubles--r1-3of3--output.json.gz",
+  "agents": {
+   "fix": 4,
+   "verify2": 4
+  },
+  "verdicts": {
+   "verify2:stub-within-real-contract": "revise",
+   "verify2:no-direct-double-of-unowned-type": "revise",
+   "verify2:verify-only-side-effect-calls": "revise",
+   "verify2:double-only-immediate-collaborators": "revise"
+  }
+ },
+ {
+  "topic": "test-doubles",
+  "run": "r2-1",
+  "task_id": "wzle432ut",
+  "workflow": "wf_f08bb32d-0cf",
+  "rotation_start": 2,
+  "journal": "test-doubles--r2-1--journal.jsonl.gz",
+  "output": null,
+  "agents": {
+   "fix2": 4,
+   "verify3": 1
+  },
+  "verdicts": {
+   "verify3:real-value-objects": "revise"
+  }
+ },
+ {
+  "topic": "test-doubles",
+  "run": "r2-2",
+  "task_id": "wj7dule2f",
+  "workflow": "wf_eb9fbd3e-c57",
+  "rotation_start": 2,
+  "journal": "test-doubles--r2-2--journal.jsonl.gz",
+  "output": null,
+  "agents": {
+   "fix2": 4
+  },
+  "verdicts": {}
+ },
+ {
+  "topic": "test-doubles",
+  "run": "r2-3",
+  "task_id": "wy3oyhwxc",
+  "workflow": "wf_a7506bc1-36c",
+  "rotation_start": 2,
+  "journal": "test-doubles--r2-3--journal.jsonl.gz",
+  "output": null,
+  "agents": {
+   "fix2": 4
+  },
+  "verdicts": {}
+ }
+]
