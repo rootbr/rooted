@@ -262,7 +262,9 @@ def main(argv):
             with open(path, "w", encoding="utf-8") as fh:
                 fh.write(md.rstrip("\n") + "\n")
         o = outcomes.get(card["key"], {})
-        verification = "accepted on the first verdict" if not o.get("verdict2") else f"accepted after one fix ({o.get('verdict1', '')[:160]})"
+        rounds = o.get("fix_rounds", 1 if o.get("verdict2") else 0)
+        verification = ("accepted on the first verdict" if not rounds
+                        else f"accepted after {rounds} fix round{'s' if rounds != 1 else ''} ({o.get('verdict1', '')[:160]})")
         written.append({"rule_id": new_id, "title": card["title"], "filename": fn, "verification": verification})
         prov_lines.append(prov_line)
         next_id += 1

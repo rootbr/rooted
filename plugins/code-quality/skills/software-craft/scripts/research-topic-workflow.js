@@ -13,7 +13,11 @@
 //                 containment, the Example's compilability in its language, the triggers' sanity and
 //                 the separating condition of a contested rule, and returns a verdict with the edits
 //                 it requires.
-// Phase Fix     : the drafter applies the verdict once; a draft rejected twice goes to pending.
+// Phase Fix     : the drafter applies the verdict once per round; a draft the skeptic does not accept after
+//                 the run's round goes to pending. A run is one round (`round`, default 1): a further
+//                 round is a continuation from the journal (scripts/research-continue.py --round 2) that
+//                 carries the fixed drafts and the last verdicts as its state, so only the rules the
+//                 skeptic sent back with "revise" run a fix and a verdict again.
 //
 // The workflow writes no files. It returns the research note's material (sources, spine, outcomes),
 // the cards, the provenance lines and the pending entries; scripts/write-topic-result.py writes them
@@ -37,18 +41,20 @@
 //   resume_state: { sources: [...], spine: {...}, drafts: { <key>: DRAFT }, verdicts: { <key>: VERDICT } }
 //   only_keys:    [ <key>, ... ]      // the subset of candidate rules this bundle drafts and verifies
 //   include_held: true | false        // whether this bundle reports the held rules (one bundle per topic does)
+//   round:        1 | 2 | ...          // the fix round this run performs; above 1 the state must carry a draft and
+//                                      // a verdict for every key, and the labels read fix<round>: / verify<round+1>:
 // A stage whose result the state carries returns it without an agent; ids and example languages are
 // assigned over the whole spine, so a split topic keeps one numbering.
 
 export const meta = {
   name: 'research-craft-topic',
-  description: 'Research one software-craft topic: three source layers in parallel, a spine of candidate rules, one drafter and one skeptic per rule, one fix round',
+  description: 'Research one software-craft topic: three source layers in parallel, a spine of candidate rules, one drafter and one skeptic per rule, one fix round per run',
   phases: [
     { title: 'Sources', detail: 'formulation, reception and evidence agents in parallel', model: 'claude-opus-5-5' },
     { title: 'Spine', detail: 'one agent merges the layers into candidate rules with evidence anchors', model: 'claude-opus-5-5' },
     { title: 'Draft', detail: 'one drafter per candidate rule: the card, its provenance line, its pending entry', model: 'claude-opus-5-5' },
     { title: 'Verify', detail: 'one skeptic per draft: entailment, self-containment, example, triggers, separating condition', model: 'claude-opus-5-5' },
-    { title: 'Fix', detail: 'the drafter applies the verdict once; a second rejection sends the rule to pending', model: 'claude-opus-5-5' },
+    { title: 'Fix', detail: 'the drafter applies the verdict once per round; a rule the skeptic does not accept after this round goes to pending', model: 'claude-opus-5-5' },
   ],
 }
 
@@ -81,6 +87,12 @@ if (RESUME) {
 const ONLY = Array.isArray(A.only_keys) ? new Set(A.only_keys) : null
 if (ONLY && ONLY.size === 0) throw new Error('research-topic-workflow: only_keys is empty — omit it to draft every rule')
 const INCLUDE_HELD = A.include_held !== false
+const ROUND = Number.isInteger(A.round) && A.round >= 1 ? A.round : 1
+if (ROUND > 1 && !(RESUME && RESUME.spine && RESUME.drafts && RESUME.verdicts)) throw new Error('research-topic-workflow: round above 1 needs resume_state with the spine, the drafts and the verdicts of the previous round')
+const DRAFT_LABEL = ROUND === 1 ? 'draft' : ROUND === 2 ? 'fix' : `fix${ROUND - 1}`
+const VERIFY_LABEL = ROUND === 1 ? 'verify' : `verify${ROUND}`
+const FIX_LABEL = ROUND === 1 ? 'fix' : `fix${ROUND}`
+const VERIFY_AGAIN_LABEL = `verify${ROUND + 1}`
 
 const MODEL = 'claude-opus-5-5'
 const EFFORT = { source: 'xhigh', spine: 'xhigh', draft: 'xhigh', skeptic: 'max' }
@@ -464,29 +476,32 @@ const outcomes = await pipeline(drafted,
   r => {
     const d = fromState('drafts', r.key)
     if (d) return { rule: r, draft: d }
-    return agent(draftPrompt(r), opts(`draft:${r.key}`, 'Draft', DRAFT, EFFORT.draft)).then(d2 => ({ rule: r, draft: d2 }))
+    if (ROUND > 1) return { rule: r, final: 'pending', reason: `round ${ROUND} has no draft for this rule in its state` }
+    return agent(draftPrompt(r), opts(`${DRAFT_LABEL}:${r.key}`, 'Draft', DRAFT, EFFORT.draft)).then(d2 => ({ rule: r, draft: d2 }))
   },
   s => {
-    if (!s || !s.draft) return { rule: s ? s.rule : null, final: 'pending', reason: 'the drafter returned nothing' }
+    if (!s || s.final) return s
+    if (!s.draft) return { rule: s ? s.rule : null, final: 'pending', reason: 'the drafter returned nothing' }
     if (s.draft.status !== 'card') return { ...s, final: 'pending', reason: s.draft.notes || 'the drafter sent the rule to pending' }
     const v = fromState('verdicts', s.rule.key)
     if (v) return { ...s, verdict: v }
-    return agent(verifyPrompt(s.rule, s.draft), opts(`verify:${s.rule.key}`, 'Verify', VERDICT, EFFORT.skeptic)).then(v2 => ({ ...s, verdict: v2 }))
+    if (ROUND > 1) return { ...s, final: 'pending', reason: `round ${ROUND} has no verdict for this rule in its state` }
+    return agent(verifyPrompt(s.rule, s.draft), opts(`${VERIFY_LABEL}:${s.rule.key}`, 'Verify', VERDICT, EFFORT.skeptic)).then(v2 => ({ ...s, verdict: v2 }))
   },
   s => {
     if (!s || s.final) return s
     if (!s.verdict) return { ...s, final: 'pending', reason: 'the skeptic returned no verdict' }
     if (s.verdict.verdict === 'accept') return { ...s, final: 'card' }
-    return agent(fixPrompt(s.rule, s.draft, s.verdict), opts(`fix:${s.rule.key}`, 'Fix', DRAFT, EFFORT.draft))
+    return agent(fixPrompt(s.rule, s.draft, s.verdict), opts(`${FIX_LABEL}:${s.rule.key}`, 'Fix', DRAFT, EFFORT.draft))
       .then(d2 => ({ ...s, draft1: s.draft, verdict1: s.verdict, draft: d2 }))
   },
   s => {
     if (!s || s.final) return s
     if (!s.draft) return { ...s, final: 'pending', reason: `the fix returned nothing after ${summarize(s.verdict1)}` }
     if (s.draft.status !== 'card') return { ...s, final: 'pending', reason: s.draft.notes || 'the fix sent the rule to pending' }
-    return agent(verifyPrompt(s.rule, s.draft), opts(`verify2:${s.rule.key}`, 'Verify', VERDICT, EFFORT.skeptic))
+    return agent(verifyPrompt(s.rule, s.draft), opts(`${VERIFY_AGAIN_LABEL}:${s.rule.key}`, 'Verify', VERDICT, EFFORT.skeptic))
       .then(v => ({ ...s, verdict: v, final: v && v.verdict === 'accept' ? 'card' : 'pending',
-                    reason: v && v.verdict === 'accept' ? '' : `rejected twice — ${summarize(v)}` }))
+                    reason: v && v.verdict === 'accept' ? '' : `not accepted after fix round ${ROUND} — ${summarize(v)}` }))
   },
 )
 
@@ -496,6 +511,7 @@ for (const s of outcomes.filter(Boolean)) {
   if (!s.rule) continue
   const r = s.rule
   const entry = { key: r.key, rule_id: r.rule_id, title: r.title, final: s.final, reason: s.reason || '',
+                  round: ROUND, fix_rounds: s.draft1 ? ROUND : ROUND - 1,
                   verdict1: s.verdict1 ? summarize(s.verdict1) : (s.verdict ? summarize(s.verdict) : ''),
                   verdict2: s.verdict1 && s.verdict ? summarize(s.verdict) : '' }
   results.push(entry)
@@ -528,5 +544,6 @@ return {
   pending_entries: pendingEntries,
   held: (INCLUDE_HELD ? held : []).map(r => ({ key: r.key, title: r.title, disposition: r.disposition, hold_reason: r.hold_reason })),
   only_keys: ONLY ? [...ONLY] : null,
+  round: ROUND,
   cost: { agents_run: agentsRun },
 }

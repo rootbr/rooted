@@ -11,10 +11,17 @@ each `started` line maps a key to its label (`sources:<layer>`, `spine`, `draft:
 embeds them as the state the workflow takes without an agent.
 
 Usage:
-  research-continue.py --journal <transcript-dir>/journal.jsonl --from-output <task-output.json>
-                       [--rotation-start N] [--max-rules N] [--split N] [--out-dir <dir>] [--root <repo>]
+  research-continue.py --journal <transcript-dir>/journal.jsonl [--journal ...] --from-output <task-output.json>
+                       [--round N] [--rotation-start N] [--max-rules N] [--split N] [--out-dir <dir>] [--root <repo>]
+    --journal       a journal of the topic; repeatable, so a topic split over several bundles continues
+                    from all of them
     --from-output   the Workflow tool's task output of the cut-short run (its result.topic and
                     result.next_id are the topic arguments)
+    --round N       the fix round the bundles perform (default 1). Round 1 continues a cut-short run:
+                    drafts from `draft:` and first verdicts from `verify:`. Round N above 1 carries the
+                    previous round's fixed drafts (`fix:` for round 2, `fix<N-1>:` after) and its verdicts
+                    (`verify<N>:`), and drafts only the rules that verdict sent back with "revise"; a
+                    rule with verdict "accept" is done and one with "reject" stays pending
     --split N       write N bundles, each drafting an interleaved subset of the rule keys, so a
                     topic runs on N workflows at once; the first bundle reports the held rules
 Writes the bundle files and prints their paths; standard library only."""
@@ -26,8 +33,11 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 SCRIPT = os.path.join(HERE, "research-topic-workflow.js")
 
 
-def read_journal(path):
-    key2label, results = {}, {}
+def read_journal(path, results=None):
+    """Label -> the agent's result, for every agent the journal records; a repeated label keeps its
+    first result. Several journals of one topic accumulate into one map."""
+    key2label = {}
+    results = {} if results is None else results
     with open(path, encoding="utf-8") as fh:
         for line in fh:
             line = line.strip()
@@ -43,6 +53,13 @@ def read_journal(path):
     return results
 
 
+def stage_labels(rnd):
+    """The journal labels of the draft and the verdict a round starts from."""
+    draft = "draft" if rnd == 1 else ("fix" if rnd == 2 else f"fix{rnd - 1}")
+    verify = "verify" if rnd == 1 else f"verify{rnd}"
+    return draft, verify
+
+
 def bundle(script, args_obj):
     lines = script.splitlines(keepends=True)
     start = next((i for i, l in enumerate(lines) if l.startswith("export const meta = {")), None)
@@ -54,30 +71,49 @@ def bundle(script, args_obj):
 
 
 def main(argv):
-    opts = {"journal": None, "from_output": None, "rotation_start": "0", "max_rules": "12", "split": "1", "out_dir": None, "root": None}
+    opts = {"journal": [], "from_output": None, "round": "1", "rotation_start": "0", "max_rules": "12", "split": "1", "out_dir": None, "root": None}
     i = 0
     while i < len(argv):
         key = argv[i][2:].replace("-", "_")
         if not argv[i].startswith("--") or key not in opts or i + 1 >= len(argv):
             sys.exit(f"research-continue: unexpected argument {argv[i]!r}\n{__doc__}")
-        opts[key] = argv[i + 1]
+        if key == "journal":
+            opts[key].append(argv[i + 1])
+        else:
+            opts[key] = argv[i + 1]
         i += 2
     if not opts["journal"] or not opts["from_output"]:
         sys.exit("research-continue: --journal and --from-output are required")
+    rnd = int(opts["round"])
+    if rnd < 1:
+        sys.exit("research-continue: --round must be 1 or more")
     with open(opts["from_output"], encoding="utf-8") as fh:
         out = json.load(fh)
     result = out["result"] if "result" in out else out
     topic = result["topic"]
     root = opts["root"] or os.path.abspath(os.path.join(HERE, "..", "..", "..", ".."))
-    results = read_journal(opts["journal"])
+    results = {}
+    for j in opts["journal"]:
+        read_journal(j, results)
     sources = [results[k] for k in ("sources:formulation", "sources:reception", "sources:evidence") if k in results]
-    spine = results.get("spine")
-    if not spine or not sources:
+    spine = results.get("spine") or (result.get("spine") if rnd > 1 else None)
+    if rnd == 1 and (not spine or not sources):
         sys.exit("research-continue: the journal holds no spine or no source layer; run the topic afresh")
-    drafts = {k[len("draft:"):]: v for k, v in results.items() if k.startswith("draft:") and v.get("status") == "card"}
-    verdicts = {k[len("verify:"):]: v for k, v in results.items() if k.startswith("verify:")}
+    if not spine:
+        sys.exit("research-continue: no spine in the journals or the output; run the topic afresh")
+    draft_label, verify_label = stage_labels(rnd)
+    drafts = {k[len(draft_label) + 1:]: v for k, v in results.items() if k.startswith(draft_label + ":") and v.get("status") == "card"}
+    verdicts = {k[len(verify_label) + 1:]: v for k, v in results.items() if k.startswith(verify_label + ":")}
     max_rules = int(opts["max_rules"])
     card_keys = [r["key"] for r in spine["rules"] if r.get("disposition") == "card"][:max_rules]
+    if rnd > 1:
+        # a further round carries only the rules the last verdict sent back with exact edits
+        accepted = [k for k in card_keys if verdicts.get(k, {}).get("verdict") == "accept"]
+        rejected = [k for k in card_keys if verdicts.get(k, {}).get("verdict") == "reject"]
+        card_keys = [k for k in card_keys if k in drafts and verdicts.get(k, {}).get("verdict") == "revise"]
+        print(f"round {rnd}: {len(accepted)} accepted, {len(rejected)} rejected, {len(card_keys)} sent back with revise -> continue")
+        if not card_keys:
+            sys.exit("research-continue: no rule to carry into this round")
     n = max(1, int(opts["split"]))
     out_dir = opts["out_dir"] or os.path.dirname(os.path.abspath(opts["from_output"]))
     os.makedirs(out_dir, exist_ok=True)
@@ -97,9 +133,10 @@ def main(argv):
             "resume_state": {"sources": [], "spine": spine,
                              "drafts": {k: v for k, v in drafts.items() if k in keys},
                              "verdicts": {k: v for k, v in verdicts.items() if k in keys}},
-            "only_keys": keys, "include_held": part == 0,
+            "only_keys": keys, "include_held": rnd == 1 and part == 0, "round": rnd,
         }
-        path = os.path.join(out_dir, f"continue-{topic['slug']}-{part + 1}of{n}.js")
+        suffix = "" if rnd == 1 else f"-round{rnd}"
+        path = os.path.join(out_dir, f"continue-{topic['slug']}{suffix}-{part + 1}of{n}.js")
         with open(path, "w", encoding="utf-8") as fh:
             fh.write(bundle(script, args_obj))
         paths.append(path)
@@ -107,7 +144,7 @@ def main(argv):
         if size > 524288:
             sys.exit(f"research-continue: {path} is {size} bytes, above the runtime's 524288-byte script limit; raise --split")
         print(f"{path}: {len(keys)} rule(s), {size} bytes — {', '.join(keys)}")
-    print(f"state: {len(sources)} source layer(s), {len(spine['rules'])} spine rule(s), {len(drafts)} draft(s), {len(verdicts)} first verdict(s); {len(card_keys)} card rule(s) across {len(paths)} bundle(s)")
+    print(f"state: round {rnd}, {len(sources)} source layer(s), {len(spine['rules'])} spine rule(s), {len(drafts)} draft(s) from `{draft_label}:`, {len(verdicts)} verdict(s) from `{verify_label}:`; {len(card_keys)} card rule(s) across {len(paths)} bundle(s)")
     return 0
 
 
