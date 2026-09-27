@@ -8,9 +8,14 @@ Workflow tool's task output (a JSON object whose "result" key holds the return v
 and whose "workflowProgress" key holds the per-agent token counts), or the bare return
 value.
 
-Usage:  python3 write-topic-result.py --run <run.json> --root <repo root> [--status verified]
-                                     [--cards-dir <dir>] [--provenance <map.md>] [--pending <pending.md>]
-                                     [--notes-dir research/software-craft] [--dry-run]
+Usage:  python3 write-topic-result.py --run <run.json> [--run <run.json> ...] --root <repo root>
+                                     [--status verified] [--cards-dir <dir>] [--provenance <map.md>]
+                                     [--pending <pending.md>] [--notes-dir research/software-craft] [--dry-run]
+Several --run files are one topic split over several runs (a cut-short run and the
+continuation bundles scripts/research-continue.py wrote): their cards, outcomes,
+pending entries and held rules merge by rule key, a key that shipped as a card in any
+run drops from the pending entries, the sources and the spine come from the first run
+that carries them, and the cost line sums every run's agents and tokens.
 Ids are renumbered contiguously per domain from the cards already in the cards
 directory, so a rule that went to pending leaves no gap; every occurrence of a card's
 provisional id in its markdown, its filename and its provenance line is replaced.
@@ -56,17 +61,22 @@ def load_run(path):
     return data, []
 
 
-def cost_line(progress, result):
-    agents = [p for p in progress if p.get("type") == "workflow_agent"]
-    tokens = sum(int(p.get("tokens") or 0) for p in agents)
-    starts = [p.get("queuedAt") or p.get("startedAt") for p in agents if p.get("queuedAt") or p.get("startedAt")]
-    ends = [p.get("lastProgressAt") for p in agents if p.get("lastProgressAt")]
-    wall = (max(ends) - min(starts)) // 1000 if starts and ends else None
-    n = len(agents) or (result.get("cost") or {}).get("agents_run", 0)
-    parts = [f"agents run: {n}"]
+def cost_line(runs):
+    """runs: list of (result, progress). Agents and tokens sum over the runs; wall-clock is
+    the sum of each run's own span, since the runs of one topic may overlap or be days apart."""
+    n = tokens = wall = 0
+    for result, progress in runs:
+        agents = [p for p in progress if p.get("type") == "workflow_agent"]
+        tokens += sum(int(p.get("tokens") or 0) for p in agents)
+        starts = [p.get("queuedAt") or p.get("startedAt") for p in agents if p.get("queuedAt") or p.get("startedAt")]
+        ends = [p.get("lastProgressAt") for p in agents if p.get("lastProgressAt")]
+        if starts and ends:
+            wall += (max(ends) - min(starts)) // 1000
+        n += len(agents) or (result.get("cost") or {}).get("agents_run", 0)
+    parts = [f"agents run: {n}", f"runs: {len(runs)}"]
     if tokens:
         parts.append(f"sub-agent tokens: {tokens:,}")
-    if wall is not None:
+    if wall:
         parts.append(f"wall-clock: {wall} s")
     return "; ".join(parts)
 
@@ -161,8 +171,50 @@ def append_under(path, header, section_title, lines, dry):
             fh.write(text)
 
 
+def merge_runs(runs):
+    """One result from several runs of one topic, merged by rule key."""
+    base = dict(runs[0][0])
+    base["sources"] = next((r.get("sources") for r, _ in runs if r.get("sources")), [])
+    base["spine"] = next((r.get("spine") for r, _ in runs if r.get("spine") and r["spine"].get("rules")), runs[0][0].get("spine"))
+    cards, prov, seen = [], [], set()
+    for r, _ in runs:
+        for card, line in zip(r.get("cards", []), r.get("provenance_lines", [])):
+            if card["key"] in seen:
+                continue
+            seen.add(card["key"])
+            cards.append(card)
+            prov.append(line)
+    order = {rule["key"]: i for i, rule in enumerate((base.get("spine") or {}).get("rules", []))}
+    pairs = sorted(zip(cards, prov), key=lambda cp: order.get(cp[0]["key"], 10**6))
+    base["cards"] = [c for c, _ in pairs]
+    base["provenance_lines"] = [p for _, p in pairs]
+    outcomes, seen_o = [], set()
+    for r, _ in reversed(runs):       # a later run's outcome for a key supersedes an earlier one
+        for o in r.get("outcomes", []):
+            if o["key"] not in seen_o:
+                seen_o.add(o["key"])
+                outcomes.append(o)
+    base["outcomes"] = sorted(outcomes, key=lambda o: order.get(o["key"], 10**6))
+    pend, seen_p = [], set()
+    for r, _ in reversed(runs):
+        for p in r.get("pending_entries", []):
+            if p["key"] in seen or p["key"] in seen_p:
+                continue
+            seen_p.add(p["key"])
+            pend.append(p)
+    base["pending_entries"] = sorted(pend, key=lambda p: order.get(p["key"], 10**6))
+    held, seen_h = [], set()
+    for r, _ in runs:
+        for h in r.get("held", []):
+            if h["key"] not in seen_h and h["key"] not in seen:
+                seen_h.add(h["key"])
+                held.append(h)
+    base["held"] = held
+    return base
+
+
 def main(argv):
-    opts = {"run": None, "root": None, "status": "verified", "cards_dir": os.path.join(SKILL, "references", "craft-cards"),
+    opts = {"run": [], "root": None, "status": "verified", "cards_dir": os.path.join(SKILL, "references", "craft-cards"),
             "provenance": os.path.join(SKILL, "references", "craft-cards-provenance.md"),
             "pending": os.path.join(SKILL, "references", "pending-evidence.md"),
             "notes_dir": None, "dry_run": False}
@@ -176,13 +228,20 @@ def main(argv):
         key = a[2:].replace("-", "_")
         if not a.startswith("--") or key not in opts or i + 1 >= len(argv):
             sys.exit(f"write-topic-result: unexpected argument {a!r}\n{__doc__}")
-        opts[key] = argv[i + 1]
+        if key == "run":
+            opts["run"].append(argv[i + 1])
+        else:
+            opts[key] = argv[i + 1]
         i += 2
     if not opts["run"] or not opts["root"]:
         sys.exit("write-topic-result: --run and --root are required")
     root = os.path.abspath(opts["root"])
     notes_dir = opts["notes_dir"] or os.path.join(root, "research", "software-craft")
-    result, progress = load_run(opts["run"])
+    runs = [load_run(p) for p in opts["run"]]
+    slugs = {r.get("topic", {}).get("slug") for r, _ in runs}
+    if len(slugs) != 1:
+        sys.exit(f"write-topic-result: the runs name different topics {sorted(s for s in slugs if s)}; one topic per call")
+    result = merge_runs(runs)
     t = result["topic"]
     dry = opts["dry_run"]
     # renumber contiguously from the cards already in the tree
@@ -212,7 +271,7 @@ def main(argv):
         append_under(opts["provenance"], PROVENANCE_HEADER, DOMAIN_TITLES[t["domain"]], prov_lines, dry)
     if pendings:
         append_under(opts["pending"], PENDING_HEADER, t["domain"], [p["entry"] for p in pendings], dry)
-    cost = cost_line(progress, result)
+    cost = cost_line(runs)
     note = note_markdown(result, opts["status"], cost, written, pendings)
     note_path = os.path.join(notes_dir, f"{t['slug']}.md")
     if not dry:

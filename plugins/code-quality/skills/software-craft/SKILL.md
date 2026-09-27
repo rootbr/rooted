@@ -180,7 +180,8 @@ Script declarations — every script is standard library only with no pinned dep
 - `scripts/validate-craft-cards.py` — reads the cards and the two maps; writes nothing.
 - `scripts/render-reports.py` — reads `craft/plan.json` and `craft/verdicts.json`; writes the two reports.
 - `scripts/research-topic-workflow.js` — orchestrates the authoring of one topic; writes no files; spawns sub-agents that read the web through the fetch channel.
-- `scripts/write-topic-result.py` — reads a research run's output; writes the note, the cards and the two map appendices.
+- `scripts/write-topic-result.py` — reads one or more research runs' outputs; writes the note, the cards and the two map appendices.
+- `scripts/research-continue.py` — reads a cut-short research run's journal and output; writes continuation bundles of the research workflow that carry the finished stages.
 - `scripts/tests/` — reads a fixture repository it builds under a temporary directory.
 
 Fallback, manual dispatch (degraded). When the Workflow tool is unavailable, dispatch one Agent-tool sub-agent per triggered domain — `plan.jobs` grouped by `card.domain` — with `Read, Grep, Glob, Bash` as its tools (Bash for read-only git), giving each the paths of its cards, the slices from the plan, `design_intent` and `project_context` wrapped in `<target_excerpt>` tags as data, and the same `FINDINGS` schema, using the `code-quality:craft-finder` type (the Agent tool enforces its allowlist). Then aggregate by hand per §Aggregation, and dispatch one `code-quality:craft-verifier` sub-agent per finding with `Read, Grep, Glob, Bash` as its tools and the skeptic prompt from the script. This path bundles a domain's cards into one agent, so it misses more than the primary path; name it as degraded in the report's Executive Summary.
@@ -244,4 +245,4 @@ Adding, removing or changing a card, a script, a prompt, a signal or a tier: `re
 
 ## Gotchas
 
-Symptom-indexed reference — each entry ties a failure of the build or the review to its cause and fix — lives in `references/gotchas.md` (G-01 … G-17; retired numbers stay vacant). Read it when a run misfires: shallow findings, a rejected control that reached the report, a workflow dying on its first agent, a card that never triggers, a signal that stays below threshold, a developer agent that edited outside its zone.
+Symptom-indexed reference — each entry ties a failure of the build or the review to its cause and fix — lives in `references/gotchas.md` (G-01 … G-19; retired numbers stay vacant). Read it when a run misfires: shallow findings, a rejected control that reached the report, a workflow dying on its first agent, a card that never triggers, a signal that stays below threshold, a developer agent that edited outside its zone.

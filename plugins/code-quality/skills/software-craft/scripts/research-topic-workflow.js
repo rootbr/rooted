@@ -29,6 +29,16 @@
 //     rotation_start: 0                   // index into the example-language rotation for this topic
 //   }})
 // Every agent runs on claude-opus-5-5: xhigh for the source, spine and draft agents, max for the skeptic.
+//
+// Continuation: a run cut short (a session limit, a killed process) is continued from its journal rather
+// than replayed — the runtime's resume replays only the unchanged prefix of agent calls, and the pipeline's
+// order diverges after the drafts. scripts/research-continue.py rebuilds the finished stages from the
+// journal and writes a bundle of this script with `const EMBEDDED_ARGS = {...}` after `meta`, carrying:
+//   resume_state: { sources: [...], spine: {...}, drafts: { <key>: DRAFT }, verdicts: { <key>: VERDICT } }
+//   only_keys:    [ <key>, ... ]      // the subset of candidate rules this bundle drafts and verifies
+//   include_held: true | false        // whether this bundle reports the held rules (one bundle per topic does)
+// A stage whose result the state carries returns it without an agent; ids and example languages are
+// assigned over the whole spine, so a split topic keeps one numbering.
 
 export const meta = {
   name: 'research-craft-topic',
@@ -44,8 +54,9 @@ export const meta = {
 
 // ---- args ---------------------------------------------------------------------------------
 let A = args
+if (A === undefined || A === null) A = (typeof EMBEDDED_ARGS === 'undefined') ? undefined : EMBEDDED_ARGS
 if (typeof A === 'string') { try { A = JSON.parse(A) } catch (e) { /* validated below */ } }
-if (!A || typeof A !== 'object') throw new Error('research-topic-workflow: args must be an object { root, topic, next_id, existing_titles?, max_rules?, rotation_start? }')
+if (!A || typeof A !== 'object') throw new Error('research-topic-workflow: args must be an object { root, topic, next_id, existing_titles?, max_rules?, rotation_start?, resume_state?, only_keys?, include_held? }')
 const T = A.topic
 for (const k of ['slug', 'title', 'group', 'domain', 'prefix']) {
   if (!T || typeof T[k] !== 'string' || !T[k]) throw new Error(`research-topic-workflow: topic.${k} is required`)
@@ -61,6 +72,15 @@ const LOCATORS = typeof T.locators === 'string' ? T.locators : ''
 const CANDIDATE_EVIDENCE = Array.isArray(T.candidate_evidence) ? T.candidate_evidence : []
 const CONTESTED = T.contested === true
 const NOTES = typeof T.notes === 'string' ? T.notes : ''
+const RESUME = (A.resume_state && typeof A.resume_state === 'object') ? A.resume_state : null
+if (RESUME) {
+  for (const k of ['drafts', 'verdicts']) if (RESUME[k] !== undefined && (typeof RESUME[k] !== 'object' || Array.isArray(RESUME[k]))) throw new Error(`research-topic-workflow: resume_state.${k} must be an object keyed by rule key`)
+  if (RESUME.sources !== undefined && !Array.isArray(RESUME.sources)) throw new Error('research-topic-workflow: resume_state.sources must be an array of source layers')
+  if (RESUME.spine !== undefined && (!RESUME.spine || !Array.isArray(RESUME.spine.rules))) throw new Error('research-topic-workflow: resume_state.spine must hold a rules array')
+}
+const ONLY = Array.isArray(A.only_keys) ? new Set(A.only_keys) : null
+if (ONLY && ONLY.size === 0) throw new Error('research-topic-workflow: only_keys is empty — omit it to draft every rule')
+const INCLUDE_HELD = A.include_held !== false
 
 const MODEL = 'claude-opus-5-5'
 const EFFORT = { source: 'xhigh', spine: 'xhigh', draft: 'xhigh', skeptic: 'max' }
@@ -397,16 +417,25 @@ Return the draft object via the structured-output tool.`
 // ---- Phase Sources ----------------------------------------------------------------------------
 phase('Sources')
 const LAYERS = ['formulation', 'reception', 'evidence']
-const sources = (await parallel(LAYERS.map(l => () =>
-  agent(sourcePrompt(l), { label: `sources:${l}`, phase: 'Sources', schema: SOURCES, model: MODEL, effort: EFFORT.source })
-    .then(s => s ? { ...s, layer: s.layer || l } : null)))).filter(Boolean)
-if (sources.length === 0) throw new Error('research-topic-workflow: every source agent returned nothing')
+let sources
+if (RESUME && RESUME.sources) {
+  sources = RESUME.sources.filter(Boolean)
+  log(`Sources: ${sources.length} layer(s) taken from the resume state`)
+} else {
+  sources = (await parallel(LAYERS.map(l => () =>
+    agent(sourcePrompt(l), { label: `sources:${l}`, phase: 'Sources', schema: SOURCES, model: MODEL, effort: EFFORT.source })
+      .then(s => s ? { ...s, layer: s.layer || l } : null)))).filter(Boolean)
+}
+if (sources.length === 0 && !(RESUME && RESUME.spine)) throw new Error('research-topic-workflow: every source agent returned nothing')
 if (sources.length < LAYERS.length) log(`WARNING: ${LAYERS.length - sources.length} source layer(s) returned nothing; the spine works from ${sources.map(s => s.layer).join(', ')}`)
 log(`Sources: ${sources.map(s => `${s.layer} ${s.items.length} item(s)`).join(', ')}`)
 
 // ---- Phase Spine ------------------------------------------------------------------------------
 phase('Spine')
-const spine = await agent(spinePrompt(sources), { label: 'spine', phase: 'Spine', schema: SPINE, model: MODEL, effort: EFFORT.spine })
+const spine = (RESUME && RESUME.spine)
+  ? RESUME.spine
+  : await agent(spinePrompt(sources), { label: 'spine', phase: 'Spine', schema: SPINE, model: MODEL, effort: EFFORT.spine })
+if (RESUME && RESUME.spine) log('Spine: taken from the resume state')
 if (!spine || !Array.isArray(spine.rules)) throw new Error('research-topic-workflow: the spine agent returned no rules')
 const allRules = spine.rules
 const cardRules = allRules.filter(r => r.disposition === 'card')
@@ -415,22 +444,34 @@ if (cardRules.length > MAX_RULES) {
   log(`WARNING: ${cardRules.length} candidate cards exceed max_rules ${MAX_RULES}; the last ${cardRules.length - MAX_RULES} are held as "held-cap" and listed in the result`)
   for (const r of cardRules.slice(MAX_RULES)) { r.disposition = 'held-cap'; r.hold_reason = `beyond max_rules ${MAX_RULES}; re-run the topic with a higher cap or a later next_id`; held.push(r) }
 }
-const drafted = cardRules.slice(0, MAX_RULES)
-drafted.forEach((r, i) => {
+const numbered = cardRules.slice(0, MAX_RULES)
+numbered.forEach((r, i) => {
   r.rule_id = `${T.prefix}-${String(NEXT_ID + i).padStart(2, '0')}`
   r.example_language = LANGS[(ROT + i) % LANGS.length]
 })
-log(`Spine: ${allRules.length} candidate rule(s) — ${drafted.length} to draft, ${held.length} held (${held.map(r => r.disposition).join(', ') || 'none'})`)
+const drafted = ONLY ? numbered.filter(r => ONLY.has(r.key)) : numbered
+if (ONLY) {
+  const unknown = [...ONLY].filter(k => !numbered.some(r => r.key === k))
+  if (unknown.length) throw new Error(`research-topic-workflow: only_keys names rule key(s) the spine does not number: ${unknown.join(', ')}`)
+}
+const fromState = (kind, key) => (RESUME && RESUME[kind] && RESUME[kind][key]) || null
+log(`Spine: ${allRules.length} candidate rule(s) — ${drafted.length} to draft${ONLY ? ` (of ${numbered.length} numbered)` : ''}, ${held.length} held (${held.map(r => r.disposition).join(', ') || 'none'})`)
 
 // ---- Phases Draft, Verify, Fix — one pipeline per rule, no barrier ----------------------------------
 const summarize = v => v ? `${v.verdict}: ${(v.problems || []).map(p => `[${p.kind}] ${p.detail}`).join('; ') || v.note}` : 'no verdict returned'
 const opts = (label, ph, schema, effort) => ({ label, phase: ph, schema, model: MODEL, effort })
 const outcomes = await pipeline(drafted,
-  r => agent(draftPrompt(r), opts(`draft:${r.key}`, 'Draft', DRAFT, EFFORT.draft)).then(d => ({ rule: r, draft: d })),
+  r => {
+    const d = fromState('drafts', r.key)
+    if (d) return { rule: r, draft: d }
+    return agent(draftPrompt(r), opts(`draft:${r.key}`, 'Draft', DRAFT, EFFORT.draft)).then(d2 => ({ rule: r, draft: d2 }))
+  },
   s => {
     if (!s || !s.draft) return { rule: s ? s.rule : null, final: 'pending', reason: 'the drafter returned nothing' }
     if (s.draft.status !== 'card') return { ...s, final: 'pending', reason: s.draft.notes || 'the drafter sent the rule to pending' }
-    return agent(verifyPrompt(s.rule, s.draft), opts(`verify:${s.rule.key}`, 'Verify', VERDICT, EFFORT.skeptic)).then(v => ({ ...s, verdict: v }))
+    const v = fromState('verdicts', s.rule.key)
+    if (v) return { ...s, verdict: v }
+    return agent(verifyPrompt(s.rule, s.draft), opts(`verify:${s.rule.key}`, 'Verify', VERDICT, EFFORT.skeptic)).then(v2 => ({ ...s, verdict: v2 }))
   },
   s => {
     if (!s || s.final) return s
@@ -466,7 +507,7 @@ for (const s of outcomes.filter(Boolean)) {
     pendingEntries.push({ key: r.key, entry: (s.draft && s.draft.pending_entry) || fallback, reason: s.reason || '' })
   }
 }
-for (const r of held) {
+for (const r of (INCLUDE_HELD ? held : [])) {
   if (r.disposition === 'pending-no-evidence' || r.disposition === 'pending-no-separating-condition') {
     const lead = r.disposition === 'pending-no-separating-condition' ? 'no separating condition · ' : ''
     const positions = r.positions && r.positions.length ? ` · positions: ${r.positions.map(p => `${p.side} (${p.holder}): ${p.statement} — evidence: ${p.evidence}`).join(' / ')}` : ''
@@ -485,6 +526,7 @@ return {
   cards,
   provenance_lines: provenanceLines,
   pending_entries: pendingEntries,
-  held: held.map(r => ({ key: r.key, title: r.title, disposition: r.disposition, hold_reason: r.hold_reason })),
+  held: (INCLUDE_HELD ? held : []).map(r => ({ key: r.key, title: r.title, disposition: r.disposition, hold_reason: r.hold_reason })),
+  only_keys: ONLY ? [...ONLY] : null,
   cost: { agents_run: agentsRun },
 }
