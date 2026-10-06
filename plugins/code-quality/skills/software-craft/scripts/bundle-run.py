@@ -8,7 +8,8 @@ the main agent calls `Workflow({ scriptPath: "<repo>/craft/run.js" })` with no a
 
 Usage:
   bundle-run.py --root <repo> --plan craft/plan.json --intent <file|-> --context <file|->
-                [--stage all|find|verify] [--findings craft/findings.json]
+                [--stage all|find|aggregate|verify] [--findings craft/findings.json]
+                [--part <i>/<n>] [--raw <find-part-output.json> ...]
                 [--tiers <json-file>] [--agent-types <json-file>] [--out craft/run.js]
 
 Standard library only. Exit status 2 on a malformed input."""
@@ -56,7 +57,9 @@ def main(argv):
     ap.add_argument("--plan", default="craft/plan.json")
     ap.add_argument("--intent", default=None, help="file holding design_intent, or - for stdin")
     ap.add_argument("--context", default=None, help="file holding project_context (the config.md body)")
-    ap.add_argument("--stage", default="all", choices=["all", "find", "verify"])
+    ap.add_argument("--stage", default="all", choices=["all", "find", "aggregate", "verify"])
+    ap.add_argument("--part", default=None, help="i/n: this bundle runs every n-th finder job (stage find) or finding (stage verify)")
+    ap.add_argument("--raw", action="append", default=[], help="stage aggregate: a find part's task output (its result.raw) or a JSON array of {source, findings}")
     ap.add_argument("--findings", default=None, help="craft/findings.json (stage verify)")
     ap.add_argument("--tiers", default=None, help="JSON file overriding the tiers")
     ap.add_argument("--agent-types", default=None, help="JSON file naming the agent types")
@@ -76,6 +79,26 @@ def main(argv):
         "design_intent": read_text(opts.intent).strip(),
         "project_context": read_text(opts.context).strip(),
     }
+    if opts.part:
+        try:
+            i, n = (int(x) for x in opts.part.split("/"))
+        except ValueError:
+            sys.exit("bundle-run: --part takes i/n")
+        if not (1 <= i <= n):
+            sys.exit("bundle-run: --part i/n needs 1 <= i <= n")
+        args_obj["part"] = {"index": i, "of": n}
+    if opts.stage == "aggregate":
+        if not opts.raw:
+            sys.exit("bundle-run: stage aggregate needs --raw")
+        raw = []
+        for rp in opts.raw:
+            d = read_json(rp if os.path.isabs(rp) else os.path.join(root, rp), "raw")
+            if isinstance(d, dict):
+                d = (d.get("result") or {}).get("raw", d.get("raw"))
+            if not isinstance(d, list):
+                sys.exit(f"bundle-run: {rp} holds no raw findings")
+            raw.extend(d)
+        args_obj["raw"] = raw
     if opts.stage == "verify":
         if not opts.findings:
             sys.exit("bundle-run: stage verify needs --findings")

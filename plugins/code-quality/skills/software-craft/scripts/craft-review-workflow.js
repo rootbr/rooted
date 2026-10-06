@@ -20,7 +20,12 @@
 // Explicit `args` still win when given. The embedded (or passed) object is:
 //   {
 //     root:            "<absolute repo root>",          // git runs here, read-only
-//     stage:           "find" | "verify" | "all",       // find returns aggregated findings (checkpoint);
+//     part:            { index: 1, of: 4 },               // optional: this run takes every of-th finder job (stage find,
+//                                                        // returning raw findings) or every of-th finding (stage verify);
+//                                                        // the runtime caps a workflow at a few concurrent agents, so a
+//                                                        // large plan runs as several parts and stage "aggregate" joins them
+//     raw:             [ {source, findings:[..]} ],      // stage aggregate: the raw findings of every find part
+//     stage:           "find" | "aggregate" | "verify" | "all",  // find returns aggregated findings (checkpoint);
 //                                                        // verify takes args.findings and skips Find
 //     plan:            <parsed craft/plan.json>,         // from scripts/static-craft.py
 //     design_intent:   "<1–2 paragraphs>",
@@ -58,8 +63,13 @@ for (const k of ['inventory', 'cards', 'jobs', 'slices']) {
 }
 if (!Array.isArray(PLAN.cards) || !Array.isArray(PLAN.jobs) || !Array.isArray(PLAN.slices)) throw new Error('craft-review-workflow: plan.cards, plan.jobs and plan.slices must be arrays')
 for (const j of PLAN.jobs) if (!j || typeof j.rule_id !== 'string' || !j.slice || !Array.isArray(j.slice.files)) throw new Error(`craft-review-workflow: job ${j && j.id} lacks rule_id or slice.files (the plan is written by scripts/static-craft.py; pass it verbatim)`)
-const STAGES = ['find', 'verify', 'all']
+const STAGES = ['find', 'aggregate', 'verify', 'all']
 const STAGE = A.stage || 'all'
+const PART = (A.part && Number.isInteger(A.part.index) && Number.isInteger(A.part.of) && A.part.of >= 1 && A.part.index >= 1 && A.part.index <= A.part.of) ? A.part : null
+if (A.part && !PART) throw new Error('craft-review-workflow: part must be { index: 1..of, of: n }')
+if (PART && STAGE === 'all') throw new Error('craft-review-workflow: a part runs stage "find" or "verify", never "all"')
+if (STAGE === 'aggregate' && !Array.isArray(A.raw)) throw new Error('craft-review-workflow: stage "aggregate" needs args.raw (the raw findings of the find parts)')
+const takePart = arr => PART ? arr.filter((_, i) => i % PART.of === PART.index - 1) : arr
 if (!STAGES.includes(STAGE)) throw new Error(`craft-review-workflow: stage "${STAGE}" (expected one of ${STAGES.join('|')})`)
 if (STAGE === 'verify' && !Array.isArray(A.findings)) throw new Error('craft-review-workflow: stage "verify" needs args.findings (the aggregated findings from stage "find")')
 const ROOT = A.root || '.'
@@ -519,9 +529,22 @@ function finderOpts(label, tier, type) {
 
 let found = A.findings
 let agentsRun = 0
+if (STAGE === 'aggregate') {
+  phase('Aggregate')
+  const raw = []
+  for (const r of A.raw) {
+    for (const f of (r.findings || [])) {
+      if (f.rule_id !== r.source) log(`WARNING: finder for ${r.source} returned a finding tagged "${f.rule_id}" — retagged`)
+      raw.push({ ...f, rule_id: r.source })
+    }
+  }
+  found = aggregate(raw)
+  log(`Aggregate: ${raw.length} raw → ${found.length} finding(s); ${CONFLICTS.length} conflict(s) flagged for the author`)
+  return { stage: 'aggregate', findings: found, conflicts: CONFLICTS, agents_run: 0, inventory: INV, main_agent_followups: followups() }
+}
 if (STAGE !== 'verify') {
   phase('Find')
-  const thunks = [
+  const allThunks = [
     ...PLAN.jobs.map(j => () => agent(cardPrompt(j), finderOpts(`${j.rule_id}:${j.slice.name}`, TIERS[cardOf(j).check_kind] || TIERS.semantic, TYPES.finder))
       .then(r => ({ source: j.rule_id, findings: (r && r.findings) || [] }))),
     ...PLAN.slices.map(s => () => agent(logicPrompt(s), finderOpts(`logic:${s.name}`, TIERS.semantic, TYPES.finder))
@@ -529,11 +552,16 @@ if (STAGE !== 'verify') {
     ...PROJECT_CARDS.flatMap(p => PLAN.slices.map(s => () => agent(projPrompt(p, s), finderOpts(`${p.rule_id}:${s.name}`, TIERS.semantic, TYPES.finder))
       .then(r => ({ source: p.rule_id, findings: (r && r.findings) || [] })))),
   ]
-  log(`Find: ${PLAN.jobs.length} card job(s), ${PLAN.slices.length} logic slice(s), ${PROJECT_CARDS.length * PLAN.slices.length} project-invariant job(s)`)
+  const thunks = takePart(allThunks)
+  log(`Find: ${PLAN.jobs.length} card job(s), ${PLAN.slices.length} logic slice(s), ${PROJECT_CARDS.length * PLAN.slices.length} project-invariant job(s)${PART ? ` — part ${PART.index} of ${PART.of}: ${thunks.length} of ${allThunks.length}` : ''}`)
   if (thunks.length === 0) log('WARNING: nothing to dispatch — the plan holds no jobs and no slices')
   // a barrier: deduplication needs every finder's output
   const results = (await parallel(thunks)).filter(Boolean)
   agentsRun = thunks.length
+  if (PART) {
+    log(`Find part ${PART.index} of ${PART.of}: ${results.reduce((n, r) => n + r.findings.length, 0)} raw finding(s) from ${results.length} finder(s)`)
+    return { stage: 'find', part: PART, raw: results, agents_run: agentsRun, inventory: INV, main_agent_followups: followups() }
+  }
 
   phase('Aggregate')
   // the dispatched source is authoritative for rule_id: a finder that mis-tags its own card is retagged
@@ -554,6 +582,7 @@ if (STAGE !== 'verify') {
 
 // ---- Phase Verify + Refute --------------------------------------------------------------------
 phase('Verify')
+if (PART) { found = takePart(found); log(`Verify part ${PART.index} of ${PART.of}: ${found.length} of ${A.findings.length} finding(s)`) }
 const verified = await pipeline(found,
   f => {
     const tier = grave(f) ? TIERS.verdict : TIERS.semantic
@@ -586,6 +615,7 @@ if (tally.unverified) log(`WARNING: ${tally.unverified} finding(s) have no verdi
 
 return {
   stage: STAGE,
+  part: PART,
   findings: finalFindings,
   conflicts: CONFLICTS,
   tally,
