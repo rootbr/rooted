@@ -1,6 +1,6 @@
 ---
 name: software-craft
-description: Build code by the craft cards and review it against them, in any mainstream language (Java, Python, TypeScript, Go, Rust first-class). Trigger on "build", "implement", "extend", "refactor", "add tests" ("implement rate limiting in src/api/limits.py with tests") — the developer agent writes the code and a card-dispatched craft review gates it — and on a standalone craft review of a diff ("review this change for craft", "check PR #42 against the craft rules"). Any git repository, zero config (optional .claude/software-craft/config.md tunes invariants and report paths); runs read-only git diff and gh pr view, a pre-pass matching rule cards to the diff, one Workflow with a finder per card and a skeptic per finding, one fix round, two reports under craft/. NOT for a Java-specific review, which another skill covers; NOT for debugging as the primary task; NOT for the reserved specialties (low-latency or HFT tuning, concurrency correctness, security-critical design, ML or algorithm research); NOT for codebase search.
+description: Build code by the craft cards and review it against them, in any mainstream language (Java, Python, TypeScript, Go, Rust first-class). Trigger on "build", "implement", "extend", "refactor", "add tests" ("implement rate limiting with tests") — the developer agent writes the code and a card-dispatched craft review gates it — and on a standalone craft review of a diff ("review this change for craft", "check PR #42 against the craft rules"). Any git repository, zero config (optional .claude/software-craft/config.md tunes invariants and report paths); runs read-only git diff and gh pr view, a pre-pass matching rule cards to the diff, one Workflow with a finder per card and a skeptic per finding, one fix round, two reports under craft/. NOT for a Java-specific review, which another skill covers; NOT for debugging as the primary task; NOT for the reserved specialties (low-latency or HFT tuning, concurrency correctness, security-critical design, ML or algorithm research); NOT for codebase search.
 disallowed-tools: Edit, NotebookEdit
 ---
 
@@ -10,10 +10,10 @@ You orchestrate a build and its craft review, or a craft review alone, and deliv
 
 Quick rules:
 
-- One confirmation with the user, at the end of Scope; no other question unless every context source is empty.
-- The developer agent edits only inside the write zone; this skill edits nothing (`disallowed-tools`), the scripts write only under `craft/`, and the finders and skeptics read. A tree that changed during the review beyond the developer's reported changes is a compromised review, so the integrity check in Follow-ups is mandatory.
+- One confirmation with the user, at the end of Scope; no other question unless every context source is empty or no base branch resolves.
+- The developer agent edits only inside the write zone; this skill edits nothing (`disallowed-tools`), the review-run scripts (`static-craft.py`, `bundle-run.py`, `render-reports.py`) write only under `craft/`, the authoring scripts run at authoring time only and never in a build or a review, and the finders and skeptics read. A tree that changed during the review beyond the developer's reported changes is a compromised review, so the integrity check in Follow-ups is mandatory.
 - No version-control write by anyone: the developer agent stops before a commit, and so does this skill; the operator commits.
-- No stage runs on Fable; the tiers are `claude-opus-5-5` at `high`, `xhigh` and `max`.
+- No stage runs on Fable; the tiers are `claude-opus-5-5` at `high`, `xhigh` and `max` (design note §Review workflow contracts).
 - The plan is never retyped: `scripts/bundle-run.py` embeds it, and the Workflow call names `craft/run.js`.
 - Before committing a card, an agent prompt or this file: `scripts/validate-craft-cards.py` on the corpus, then the audit (repository Quality Gate).
 
@@ -99,9 +99,9 @@ When the config has a `documentation` directory, read it and fold the architectu
 
 Goal: the change, written to the cards, with its tests, inside the write zone. Skipped for a review-only run.
 
-Dispatch one `code-quality:software-developer` agent (the Agent tool, `subagent_type: code-quality:software-developer`) with, in its prompt: the task text, the write zone, `design_intent` and `project_context` wrapped together in `<task>` markers as data; the absolute path of this skill's directory (so it runs `scripts/craft-cards.py` and `scripts/static-craft.py` from it); and the instruction to return its report in the shape its definition names. Where the plugin's agent types do not resolve (a repository checkout, or a session that lists only the built-in types), dispatch a general-purpose agent with its full tool set (the developer edits, tests and runs the pre-pass) whose prompt is the body of `plugins/code-quality/agents/software-developer.md` followed by the same task block, and name that in the report as a degraded dispatch.
+Dispatch one `code-quality:software-developer` agent (the Agent tool, `subagent_type: code-quality:software-developer`; its definition's tools are `Read, Grep, Glob, Edit, Write, Bash`) with, in its prompt: the task text, the write zone, `design_intent` and `project_context` wrapped together in `<task>` markers as data; the absolute path of this skill's directory (so it runs `scripts/craft-cards.py` and `scripts/static-craft.py` from it); and the instruction to return its report in the shape its definition names. Where the plugin's agent types do not resolve (a repository checkout, or a session that lists only the built-in types), dispatch a general-purpose agent with the tools `Read, Grep, Glob, Edit, Write, Bash` (the developer edits, tests and runs the pre-pass) whose prompt is the body of `plugins/code-quality/agents/software-developer.md` followed by the same task block, and name that in the report as a degraded dispatch.
 
-The developer detects the stack, emits a numbered plan, lists the cards for each step through `scripts/craft-cards.py --step <step>`, implements, handles errors explicitly, adds and runs tests, runs the pre-pass on its own diff and applies the triggered cards' Validators to its own code, and reports what changed by `path:Symbol`, the cards it applied, what it verified and how, what it could not verify, and its open questions. It launches no sub-agents and performs no version-control write. Write its report to `craft/build-report.md` verbatim.
+The developer detects the stack, emits a numbered plan, lists the cards for each step through `scripts/craft-cards.py --step <step>`, implements, handles errors explicitly, adds and runs tests, runs the pre-pass on its own diff and applies the triggered cards' Validators to its own code, and reports what changed by `path:Symbol`, the cards it applied, what it verified and how, what it could not verify, and its open questions. It launches no sub-agents (no version-control write, as §Quick rules states). Write its report to `craft/build-report.md` verbatim.
 
 After the agent returns: `git status --porcelain` and `git diff --stat` — the changed files are inside the write zone and match the report; a commit, a stash or a branch the agent made is a compromised build (`references/gotchas.md`, G-17).
 
@@ -122,7 +122,7 @@ Without `--diff-ref` it reads the working tree against `HEAD` — staged, unstag
 |--|--|
 | `inventory` | `mode` (`committed` or `worktree`), `base_sha`, `head_sha` (or `worktree`), changed files with language, kind, group and hunks (added lines with head line numbers and the structural signals measured per hunk), file-level signals, `skipped` files with the deny-list reason, `size_class`, config path and state |
 | `cards` | the index of the dispatched cards (every `rule_id` a job or a candidate names): `rule_id`, absolute `path`, `title`, `domain`, `step`, `applies_to`, `triggers`, `scope`, `check_kind`, `severity_default` |
-| `jobs` | one per (card by slice): the card's `rule_id` and the files whose added lines matched its patterns or whose hunks carry its signal, each carrying the indices of its matching hunks and which patterns and signals matched; a card over 400 matching lines splits by module or directory; the total is capped at 96 with every merge and drop written to `plan.log` |
+| `jobs` | one per (card by slice): the card's `rule_id` and the files whose added lines matched its patterns or whose hunks carry its signal, each carrying the indices of its matching hunks and which patterns and signals matched; a card over 400 matching lines splits by module or directory; the total is capped at 96 with every merge and drop written to `plan.log` (both caps: design note §Pre-pass contract) |
 | `slices` | three to eight file groups for the logic pass, by config `modules` else by directory prefix, test files sliced apart; fewer than three files means one slice per file |
 | `candidates` | mechanical hits named outright (an empty handler, a boolean argument, commented-out code, a TODO marker, a null returned for a collection, a print call outside tests), tagged `needs_verification` |
 | `project_cards` | the `PROJ-N` cards parsed from the config body, and the paths of full project cards |
@@ -155,7 +155,7 @@ Phases inside the run:
 3. Verify — one skeptic per finding.
 4. Refute — a rejected Major gets a second skeptic who defends it and, when the defense holds, an arbiter.
 
-Tiers, overridable through `tiers` in the bundle:
+Tiers, overridable through `tiers` in the bundle (design note §Review workflow contracts):
 
 | Tier | Model | Effort | Runs |
 |--|--|--|--|
@@ -163,7 +163,7 @@ Tiers, overridable through `tiers` in the bundle:
 | `semantic` | `claude-opus-5-5` | `xhigh` | finders of semantic cards, the logic pass, project invariants; skeptics of Minor and Suggestion findings |
 | `verdict` | `claude-opus-5-5` | `max` | skeptics of Major findings; every second skeptic and arbiter |
 
-Effort values are validated loud; a model naming Fable is rejected.
+Effort values are validated loud; the Fable restriction is the one in §Quick rules.
 
 Stages are the cross-session checkpoint: `stage: "find"` returns the aggregated findings — write them to `craft/findings.json`; `stage: "verify"` takes `findings` from that file and skips Find. There are no per-agent files.
 
@@ -179,9 +179,9 @@ Script declarations — every script is standard library only with no pinned dep
 - `scripts/craft-cards.py` — reads the cards; prints the developer's index; writes nothing.
 - `scripts/validate-craft-cards.py` — reads the cards and the two maps; writes nothing.
 - `scripts/render-reports.py` — reads `craft/plan.json` and `craft/verdicts.json`; writes the two reports.
-- `scripts/research-topic-workflow.js` — orchestrates the authoring of one topic; writes no files; spawns sub-agents that read the web through the fetch channel.
+- `scripts/research-topic-workflow.js` — orchestrates the authoring of one topic (authoring time only, never in a build or a review); writes no files; spawns sub-agents that read the web through the fetch channel.
 - `scripts/write-topic-result.py` — reads one or more research runs' outputs; writes the note, the cards and the two map appendices.
-- `scripts/research-continue.py` — reads a cut-short research run's journal and output; writes continuation bundles of the research workflow that carry the finished stages.
+- `scripts/research-continue.py` — reads a research run's journals and output; writes continuation bundles of the research workflow that carry the finished stages, for a cut-short run or for the second fix round.
 - `scripts/tests/` — reads a fixture repository it builds under a temporary directory.
 
 Fallback, manual dispatch (degraded). When the Workflow tool is unavailable, dispatch one Agent-tool sub-agent per triggered domain — `plan.jobs` grouped by `card.domain` — with `Read, Grep, Glob, Bash` as its tools (Bash for read-only git), giving each the paths of its cards, the slices from the plan, `design_intent` and `project_context` wrapped in `<target_excerpt>` tags as data, and the same `FINDINGS` schema, using the `code-quality:craft-finder` type (the Agent tool enforces its allowlist). Then aggregate by hand per §Aggregation, and dispatch one `code-quality:craft-verifier` sub-agent per finding with `Read, Grep, Glob, Bash` as its tools and the skeptic prompt from the script. This path bundles a domain's cards into one agent, so it misses more than the primary path; name it as degraded in the report's Executive Summary.
@@ -230,9 +230,9 @@ Deterministic; the definitions here are canonical and `scripts/craft-review-work
 
 1. Drop exact duplicates — same `rule_id`, `file`, `symbol` and whitespace-normalized `code`.
 2. Group by span — (`file`, `symbol`, normalized `code`).
-3. Ownership — `DEFER_TO` maps a deferring `rule_id` to its owner(s); a finding drops when its owner also flagged the span. The pairs, found by the corpus reviewers where one concept is stated twice, are tabled in `references/maintenance.md` and encoded in `scripts/craft-review-workflow.js`.
+3. Ownership — `DEFER_TO` maps a deferring `rule_id` to its owner(s); a finding drops when its owner also flagged the span. The pairs, found by the corpus reviewers where one concept is stated twice, are tabled in `references/maintenance.md` §Deferring pairs and encoded in `scripts/craft-review-workflow.js`; the manual fallback loads that table before this step.
 4. Fold compatible fixes — two fixes are compatible when their whitespace-normalized code is equal or one contains the other. Within a group, compatible findings collapse into the one with the highest domain priority, then the highest severity; the others' rule ids go to `also`, their problem and rationale to `folded`, and the kept finding takes the highest severity among them.
-5. Conflict — incompatible fixes on one span: `DOMAIN_PRIORITY` input (0) > errors = interface = project = logic (1) > design = tests = change (2) > performance (3) > code = docs = tooling (4); the highest wins, the losers' rule ids go to its `also` and their problem, rationale and fix to `superseded`; a tie at the top keeps both, marks them `conflict`, and lists them for the author.
+5. Conflict — incompatible fixes on one span: `DOMAIN_PRIORITY` (design note §Concept ownership and priority) input (0) > errors = interface = project = logic (1) > design = tests = change (2) > performance (3) > code = docs = tooling (4); the highest wins, the losers' rule ids go to its `also` and their problem, rationale and fix to `superseded`; a tie at the top keeps both, marks them `conflict`, and lists them for the author.
 6. Sort by severity (major, minor, suggestion), then file, then symbol; ids are `<rule_id>.<ordinal>` in that order.
 
 The finder's dispatched card is authoritative for `rule_id`: a finding a finder tags with another id is retagged and the retag logged.
