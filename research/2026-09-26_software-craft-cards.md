@@ -333,16 +333,29 @@ The tree is the state: each topic's research note carries `status`, each card ex
 
 | Step | Gate | State |
 |--|--|--|
-| 1 Design note and taxonomy | both audit clean as `doc` | open |
-| 2 Pilot: `research-topic-workflow.js` on naming, error handling, test doubles; `validate-craft-cards.py` | validator clean, audit clean, every Source fetched or relayed and entailed, research notes complete with cost lines | open |
-| 3 Scripts and agents: `static-craft.py` and tests, `craft-cards.py`, `bundle-run.py`, `craft-review-workflow.js`, `render-reports.py`, three agent definitions | tests pass, workflow scripts pass the wrapped syntax check, agents audit clean | open |
+| 1 Design note and taxonomy | both audit clean as `doc` | done |
+| 2 Pilot: `research-topic-workflow.js` on naming, error handling, test doubles; `validate-craft-cards.py` | validator clean, audit clean, every Source fetched or relayed and entailed, research notes complete with cost lines | done: 36 cards, 12 pending entries, the corpus audit's findings all documented schema deltas (`references/craft-cards-taxonomy.md`), a per-card audit on one card per domain |
+| 3 Scripts and agents: `static-craft.py` and tests, `craft-cards.py`, `bundle-run.py`, `craft-review-workflow.js`, `render-reports.py`, three agent definitions | tests pass, workflow scripts pass the wrapped syntax check, agents audit clean | done |
 | 4 Dry run: fixture for the pilot cards in three languages, both pre-pass modes, workflow, grading, smoke task | every seed found, every control silent; the smoke task builds, its tests pass, its review report is written | open |
 | 5 Series: every remaining topic in batches, one reviewer per domain, corpus audit, fixture to three seeds per domain | validator, audit and grading clean, `pending-evidence.md` complete, every note `done`, provenance round-trip holds | open |
 | 6 Close: SKILL.md, READMEs, maintenance, gotchas, report format, `overview.sh`, versions, final audit | final audit clean | open |
 
 ## Cost
 
-Per topic, the research workflow runs 3 source agents, 1 spine agent, and per candidate rule one drafter, one skeptic and at most one fix. The measured cost per pilot topic and the projection for the series are recorded here once the pilot has run.
+Per topic, the research workflow runs 3 source agents, 1 spine agent and, per candidate rule, one drafter, two skeptics, one fix and at most one closing edit: about 55 agents for 12 rules. Measured on the pilot (three topics of 12 candidate rules each; sub-agent tokens as the Workflow tool reports them, the round-2 fixes estimated from the round-1 fixes because their runs were stopped before reporting):
+
+| Stage | Agents per topic | Tokens per topic |
+|--|--|--|
+| Sources (3 in parallel) | 3 | 0.6–0.7 M |
+| Spine | 1 | 0.3 M |
+| Drafts | 12 | 1.5–1.6 M |
+| First verdicts (`max`) | 12 | 2.6–2.7 M |
+| Fixes, two rounds | 24 | 2.7–3.0 M |
+| Second and third verdicts (`max`) | 24 | 5.2–5.6 M |
+| Closing edits | 9–11 | 0.6–0.8 M |
+| Topic in all | 85–87 | 13.0–14.0 M |
+
+Yield: every one of the 36 drafts drew a `revise` on its first verdict; 1 of 36 was accepted after the first fix round and 5 of 35 after the second, each remaining verdict carrying exact edits (a dropped precondition, a number recast, a correlation stated as a cause), none a rejection for missing evidence. The pipeline costs about 9.5–10 M tokens and 55 agents per topic as it stands (draft, verdict, fix, verdict, closing edit); at 12 rules a topic, the 45 series topics project to 430–450 M sub-agent tokens. A skeptic verdict is 210–240 k tokens at `max` effort and is the largest line; running the second verdict at `xhigh` is the one cut the design admits without changing what ships, and its effect on the verdict's findings is unmeasured.
 
 ## Deviations from the brief
 
@@ -354,4 +367,5 @@ The brief is the operator's handover message that commissioned this build; it is
 4. Skill preloading. The brief says the developer agent preloads the skill through `skills:` "where the current Claude Code documentation confirms that field exists for plugin agents". The subagent reference (`code.claude.com/docs/en/sub-agents.md`, the `skills` row of its frontmatter table) and the plugin components reference (`code.claude.com/docs/en/plugins/components.md`, its list of supported agent fields) confirm the field for plugin agents and show bare skill names in the example; neither page names a plugin-qualified form, and neither says whether a preloaded skill's `disallowed-tools` binds the agent. The agent therefore preloads `software-craft` by bare name and its body also names the card index script by path, so the agent works where the field does not resolve. I have not verified whether the preloaded skill's `disallowed-tools: Edit` reaches the agent; a session with the plugin installed can, and that check is open for the operator.
 5. Topic slug. The brief names the topic "legacy code, seams, characterization tests". The research note is `seams-and-characterization-tests`, because the corpus's audit flags the word in the brief's title on every run (its static pre-pass `static-audit.py`, rule D-01, temporal/contrast marker), and the two mechanisms named are the topic's content.
 6. Skill name. The brief names the skill `software-craft`. The audit's naming rule (R-01) asks for a verb and an object in a skill name; the brief's name stays, because the layout, the developer agent's `skills:` field and the marketplace README address the skill by it, and its description carries the verbs and the objects.
-7. Search budget. The brief's research protocol assumes the search tool for the reception and evidence layers. The runtime caps the search tool at 200 calls per session for all sub-agents together (`CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION`), and the cap was spent before the pilot's source layer ran, so a paper enters a card only through a GitHub-hosted copy (`fetched`) or through a snippet the orchestrator's own search relayed into the topic's `candidate_evidence` with its URL (`relayed`); every series bundle carries the cap and the GitHub paper mirrors as the workflow's `channel_note`. Raising the cap in the environment's settings before a series run is open for the operator.
+7. Fix rounds. The brief's decision says one fix round. On the pilot, the skeptic at `max` effort sent every draft back after the first verdict and accepted 1 of 36 after the first fix round and 5 of 35 after the second, each time with exact edits and never a rejection for missing evidence, so a verdict that accepts is the exception and not the point of convergence. §Research workflow therefore gives a topic two fix rounds and a closing edit, and the research note records which card shipped on a closing edit; §Cost carries the measured cost of that choice.
+8. Search budget. The brief's research protocol assumes the search tool for the reception and evidence layers. The runtime caps the search tool at 200 calls per session for all sub-agents together (`CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION`), and the cap was spent before the pilot's source layer ran, so a paper enters a card only through a GitHub-hosted copy (`fetched`) or through a snippet the orchestrator's own search relayed into the topic's `candidate_evidence` with its URL (`relayed`); every series bundle carries the cap and the GitHub paper mirrors as the workflow's `channel_note`. Raising the cap in the environment's settings before a series run is open for the operator.

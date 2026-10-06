@@ -1,0 +1,564 @@
+{
+ "seeds": [
+  {
+   "id": "code-01-seed",
+   "rule_id": "CODE-01",
+   "file": "code/java/InvoiceLedger.java",
+   "symbol": "InvoiceLedger#hasOpenDisputes"
+  },
+  {
+   "id": "code-02-seed",
+   "rule_id": "CODE-02",
+   "file": "code/rust/session_cache.rs",
+   "symbol": "SessionCache::idle_sessions"
+  },
+  {
+   "id": "code-03-seed",
+   "rule_id": "CODE-03",
+   "file": "code/java/InvoiceLedger.java",
+   "symbol": "InvoiceLedger#computeLateFee"
+  },
+  {
+   "id": "code-04-seed",
+   "rule_id": "CODE-04",
+   "file": "code/go/stockroom.go",
+   "symbol": "Stockroom.ReserveUnits"
+  },
+  {
+   "id": "code-05-seed",
+   "rule_id": "CODE-05",
+   "file": "code/rust/route_table.rs",
+   "symbol": "RouteTable::hub_status"
+  },
+  {
+   "id": "code-06-seed",
+   "rule_id": "CODE-06",
+   "file": "code/rust/billing.rs",
+   "symbol": "Money::to_text"
+  },
+  {
+   "id": "code-07-seed",
+   "rule_id": "CODE-07",
+   "file": "code/go/supplier_client.go",
+   "symbol": "SupplierClient.WebhookTarget"
+  },
+  {
+   "id": "code-08-seed",
+   "rule_id": "CODE-08",
+   "file": "code/java/ShipmentPlanner.java",
+   "symbol": "ShipmentPlanner#countShipmentsByCarrier"
+  },
+  {
+   "id": "code-09-seed",
+   "rule_id": "CODE-09",
+   "file": "code/go/stockroom.go",
+   "symbol": "Stockroom.AvailableUnits"
+  },
+  {
+   "id": "code-10-seed",
+   "rule_id": "CODE-10",
+   "file": "code/rust/session_cache.rs",
+   "symbol": "SessionCache::remaining_lifetime"
+  },
+  {
+   "id": "code-11-seed",
+   "rule_id": "CODE-11",
+   "file": "code/java/InvoiceLedger.java",
+   "symbol": "InvoiceLedger#reconcilePayments"
+  },
+  {
+   "id": "code-12-seed",
+   "rule_id": "CODE-12",
+   "file": "code/go/stockroom.go",
+   "symbol": "Stockroom.ReleaseReservation"
+  },
+  {
+   "id": "err-01-seed",
+   "rule_id": "ERR-01",
+   "file": "errors/py/profiles.py",
+   "symbol": "parse_age_field_with_vague_message"
+  },
+  {
+   "id": "err-02-seed",
+   "rule_id": "ERR-02",
+   "file": "errors/ts/orders.ts",
+   "symbol": "saveDraftSwallowsError"
+  },
+  {
+   "id": "err-03-seed",
+   "rule_id": "ERR-03",
+   "file": "errors/go/inventory.go",
+   "symbol": "restockFromRowReturnsMinusOne"
+  },
+  {
+   "id": "err-04-seed",
+   "rule_id": "ERR-04",
+   "file": "errors/py/ledger.py",
+   "symbol": "transfer_credits_after_failed_debit"
+  },
+  {
+   "id": "err-05-seed",
+   "rule_id": "ERR-05",
+   "file": "errors/go/catalog.go",
+   "symbol": [
+    "PriceOfProductLeaksDriverError",
+    "Catalog.PriceOfProductLeaksDriverError",
+    "(*Catalog).PriceOfProductLeaksDriverError"
+   ]
+  },
+  {
+   "id": "err-06-seed",
+   "rule_id": "ERR-06",
+   "file": "errors/ts/pricing.ts",
+   "symbol": "monthlyPriceFallsBackToZero"
+  },
+  {
+   "id": "err-07-seed",
+   "rule_id": "ERR-07",
+   "file": "errors/go/receipts.go",
+   "symbol": "appendAuditLineIgnoresWriteError"
+  },
+  {
+   "id": "err-08-seed",
+   "rule_id": "ERR-08",
+   "file": "errors/py/jobs.py",
+   "symbol": "load_plugin_config_catches_everything"
+  },
+  {
+   "id": "err-09-seed",
+   "rule_id": "ERR-09",
+   "file": "errors/ts/quota.ts",
+   "symbol": "reserveQuotaThrowsString"
+  },
+  {
+   "id": "err-10-seed",
+   "rule_id": "ERR-10",
+   "file": "errors/ts/tags.ts",
+   "symbol": "hashtagsOfPostOrNull"
+  },
+  {
+   "id": "err-11-seed",
+   "rule_id": "ERR-11",
+   "file": "errors/py/settings.py",
+   "symbol": "load_settings_drops_cause"
+  },
+  {
+   "id": "err-12-seed",
+   "rule_id": "ERR-12",
+   "file": "errors/go/notify.go",
+   "symbol": "retryDelayExitsOnBadHeader"
+  },
+  {
+   "id": "tst-01-seed",
+   "rule_id": "TST-01",
+   "file": "tests/ts/checkout.test.ts",
+   "symbol": [
+    "checkoutTotalStubsDiscountRules",
+    "\"checkoutTotalStubsDiscountRules\"",
+    "'checkoutTotalStubsDiscountRules'",
+    "test(\"checkoutTotalStubsDiscountRules\")",
+    "test('checkoutTotalStubsDiscountRules')"
+   ]
+  },
+  {
+   "id": "tst-02-seed",
+   "rule_id": "TST-02",
+   "file": "tests/java/shop/ReservationServiceTest.java",
+   "symbol": "reserveStubsEveryInventoryGatewayMethod"
+  },
+  {
+   "id": "tst-03-seed",
+   "rule_id": "TST-03",
+   "file": "tests/python/test_profiles.py",
+   "symbol": "test_profile_name_is_guest_when_directory_raises_key_error"
+  },
+  {
+   "id": "tst-04-seed",
+   "rule_id": "TST-04",
+   "file": "tests/java/shop/QuoteServiceTest.java",
+   "symbol": "quoteTotalMocksMoneyValue"
+  },
+  {
+   "id": "tst-05-seed",
+   "rule_id": "TST-05",
+   "file": "tests/ts/order-history.test.ts",
+   "symbol": [
+    "InMemoryOrderRepository",
+    "latestOrderIsTheNewestPlaced",
+    "\"latestOrderIsTheNewestPlaced\"",
+    "'latestOrderIsTheNewestPlaced'",
+    "test(\"latestOrderIsTheNewestPlaced\")",
+    "test('latestOrderIsTheNewestPlaced')"
+   ]
+  },
+  {
+   "id": "tst-06-seed",
+   "rule_id": "TST-06",
+   "file": "tests/python/test_release_notes.py",
+   "symbol": "test_render_notes_patches_markdown_package"
+  },
+  {
+   "id": "tst-07-seed",
+   "rule_id": "TST-07",
+   "file": "tests/java/shop/OrderServiceTest.java",
+   "symbol": "placeOrderPricesSaleItemsInsideTheStub"
+  },
+  {
+   "id": "tst-08-seed",
+   "rule_id": "TST-08",
+   "file": "tests/ts/shipping.test.ts",
+   "symbol": [
+    "shippingQuoteSurfacesPrimaryCarrierFailure",
+    "\"shippingQuoteSurfacesPrimaryCarrierFailure\"",
+    "'shippingQuoteSurfacesPrimaryCarrierFailure'",
+    "test(\"shippingQuoteSurfacesPrimaryCarrierFailure\")",
+    "test('shippingQuoteSurfacesPrimaryCarrierFailure')"
+   ]
+  },
+  {
+   "id": "tst-09-seed",
+   "rule_id": "TST-09",
+   "file": "tests/java/shop/OrderServiceTest.java",
+   "symbol": "shipSendsShippedNotice"
+  },
+  {
+   "id": "tst-10-seed",
+   "rule_id": "TST-10",
+   "file": "tests/python/test_welcome_flow.py",
+   "symbol": "test_welcome_mail_addresses_member_by_name"
+  },
+  {
+   "id": "tst-11-seed",
+   "rule_id": "TST-11",
+   "file": "tests/python/test_checkout.py",
+   "symbol": "test_checkout_pays_through_bare_gateway_mock"
+  },
+  {
+   "id": "tst-12-seed",
+   "rule_id": "TST-12",
+   "file": "tests/ts/invoice.test.ts",
+   "symbol": [
+    "invoiceTotalStubsItsOwnTaxMethod",
+    "\"invoiceTotalStubsItsOwnTaxMethod\"",
+    "'invoiceTotalStubsItsOwnTaxMethod'",
+    "test(\"invoiceTotalStubsItsOwnTaxMethod\")",
+    "test('invoiceTotalStubsItsOwnTaxMethod')"
+   ]
+  }
+ ],
+ "controls": [
+  {
+   "id": "code-01-control",
+   "silent": [
+    "CODE-01"
+   ],
+   "file": "code/java/InvoiceLedger.java",
+   "symbol": "InvoiceLedger#isOverdueOn"
+  },
+  {
+   "id": "code-02-control",
+   "silent": [
+    "CODE-02"
+   ],
+   "file": "code/rust/billing.rs",
+   "symbol": "Invoice::grand_total"
+  },
+  {
+   "id": "code-03-control",
+   "silent": [
+    "CODE-03"
+   ],
+   "file": "code/java/ShipmentPlanner.java",
+   "symbol": "ShipmentPlanner#distanceFromDepot"
+  },
+  {
+   "id": "code-04-control",
+   "silent": [
+    "CODE-04"
+   ],
+   "file": "code/go/stock_http.go",
+   "symbol": "Stockroom.StockChart"
+  },
+  {
+   "id": "code-05-control",
+   "silent": [
+    "CODE-05"
+   ],
+   "file": "code/rust/route_table.rs",
+   "symbol": "RouteTable::close_hub"
+  },
+  {
+   "id": "code-06-control",
+   "silent": [
+    "CODE-06"
+   ],
+   "file": "code/rust/billing.rs",
+   "symbol": "<Money as Add>::add"
+  },
+  {
+   "id": "code-07-control",
+   "silent": [
+    "CODE-07"
+   ],
+   "file": "code/go/supplier_client.go",
+   "symbol": "webhookFromProto"
+  },
+  {
+   "id": "code-08-control",
+   "silent": [
+    "CODE-08"
+   ],
+   "file": "code/java/RateCardImporter.java",
+   "symbol": "RateCardImporter#parseRateRow"
+  },
+  {
+   "id": "code-09-control",
+   "silent": [
+    "CODE-09"
+   ],
+   "file": "code/go/stockroom.go",
+   "symbol": "Stockroom.LowStockCSV"
+  },
+  {
+   "id": "code-10-control",
+   "silent": [
+    "CODE-10"
+   ],
+   "file": "code/rust/route_table.rs",
+   "symbol": "RouteTable::grid_distance_km"
+  },
+  {
+   "id": "code-11-control",
+   "silent": [
+    "CODE-11"
+   ],
+   "file": "code/java/ShipmentPlanner.java",
+   "symbol": "ShipmentPlanner#composeDelayNotice"
+  },
+  {
+   "id": "code-12-control",
+   "silent": [
+    "CODE-12"
+   ],
+   "file": "code/go/stock_http.go",
+   "symbol": "Stockroom.ServeStockLevels"
+  },
+  {
+   "id": "err-01-control",
+   "silent": [
+    "ERR-01"
+   ],
+   "file": "errors/py/profiles.py",
+   "symbol": "authenticate_token_names_secret_by_role"
+  },
+  {
+   "id": "err-02-control",
+   "silent": [
+    "ERR-02"
+   ],
+   "file": "errors/ts/orders.ts",
+   "symbol": "prefetchOrderIgnoresMissByDesign"
+  },
+  {
+   "id": "err-03-control",
+   "silent": [
+    "ERR-03"
+   ],
+   "file": "errors/go/inventory.go",
+   "symbol": "compareItemsBySKUForSort"
+  },
+  {
+   "id": "err-04-control",
+   "silent": [
+    "ERR-04"
+   ],
+   "file": "errors/py/ledger.py",
+   "symbol": "refresh_balance_cache_best_effort"
+  },
+  {
+   "id": "err-05-control",
+   "silent": [
+    "ERR-05"
+   ],
+   "file": "errors/go/catalog.go",
+   "symbol": "scanProductRowForCatalog"
+  },
+  {
+   "id": "err-06-control",
+   "silent": [
+    "ERR-06"
+   ],
+   "file": "errors/ts/pricing.ts",
+   "symbol": "regionSurchargeDefaultsToNone"
+  },
+  {
+   "id": "err-07-control",
+   "silent": [
+    "ERR-07"
+   ],
+   "file": "errors/go/receipts.go",
+   "symbol": "renderReceiptLinesDiscardsBufferErrors"
+  },
+  {
+   "id": "err-08-control",
+   "silent": [
+    "ERR-08"
+   ],
+   "file": "errors/py/jobs.py",
+   "symbol": "run_queued_jobs_isolating_failures"
+  },
+  {
+   "id": "err-09-control",
+   "silent": [
+    "ERR-09"
+   ],
+   "file": "errors/ts/quota.ts",
+   "symbol": "renderQuotaBannerThrowsPlainError"
+  },
+  {
+   "id": "err-10-control",
+   "silent": [
+    "ERR-10"
+   ],
+   "file": "errors/ts/tags.ts",
+   "symbol": "listTagFilesNullWhenNotDirectory"
+  },
+  {
+   "id": "err-11-control",
+   "silent": [
+    "ERR-11"
+   ],
+   "file": "errors/py/settings.py",
+   "symbol": "parse_timeout_setting_keeps_input"
+  },
+  {
+   "id": "err-12-control",
+   "silent": [
+    "ERR-12"
+   ],
+   "file": "errors/go/notify.go",
+   "symbol": "mustParseBuiltinTemplate"
+  },
+  {
+   "id": "tst-01-control",
+   "silent": [
+    "TST-01"
+   ],
+   "file": "tests/ts/checkout.test.ts",
+   "symbol": [
+    "checkoutTotalOnATuesdayTakesTenPercentOff",
+    "\"checkoutTotalOnATuesdayTakesTenPercentOff\"",
+    "'checkoutTotalOnATuesdayTakesTenPercentOff'",
+    "test(\"checkoutTotalOnATuesdayTakesTenPercentOff\")",
+    "test('checkoutTotalOnATuesdayTakesTenPercentOff')"
+   ]
+  },
+  {
+   "id": "tst-02-control",
+   "silent": [
+    "TST-02"
+   ],
+   "file": "tests/java/shop/ReservationServiceTest.java",
+   "symbol": "deliveryDaysAddHandlingToTheWarehouseEstimate"
+  },
+  {
+   "id": "tst-03-control",
+   "silent": [
+    "TST-03"
+   ],
+   "file": "tests/python/test_profiles.py",
+   "symbol": "test_profile_name_reports_directory_outage"
+  },
+  {
+   "id": "tst-04-control",
+   "silent": [
+    "TST-04"
+   ],
+   "file": "tests/java/shop/QuoteServiceTest.java",
+   "symbol": "quoteStaysValidForFourteenDaysFromTheClock"
+  },
+  {
+   "id": "tst-05-control",
+   "silent": [
+    "TST-05"
+   ],
+   "file": "tests/ts/session-guard.test.ts",
+   "symbol": [
+    "FakeSessionStore",
+    "sessionGuardResolvesTheLoggedInUser",
+    "\"sessionGuardResolvesTheLoggedInUser\"",
+    "'sessionGuardResolvesTheLoggedInUser'",
+    "test(\"sessionGuardResolvesTheLoggedInUser\")",
+    "test('sessionGuardResolvesTheLoggedInUser')"
+   ]
+  },
+  {
+   "id": "tst-06-control",
+   "silent": [
+    "TST-06"
+   ],
+   "file": "tests/python/test_release_notes.py",
+   "symbol": "test_render_notes_through_project_renderer"
+  },
+  {
+   "id": "tst-07-control",
+   "silent": [
+    "TST-07"
+   ],
+   "file": "tests/java/shop/OrderServiceTest.java",
+   "symbol": "placeOrderReturnsTheOrderAsStored"
+  },
+  {
+   "id": "tst-08-control",
+   "silent": [
+    "TST-08"
+   ],
+   "file": "tests/ts/shipping.test.ts",
+   "symbol": [
+    "shippingQuoteLeavesFallbackUntouchedWhenPrimaryAnswers",
+    "\"shippingQuoteLeavesFallbackUntouchedWhenPrimaryAnswers\"",
+    "'shippingQuoteLeavesFallbackUntouchedWhenPrimaryAnswers'",
+    "test(\"shippingQuoteLeavesFallbackUntouchedWhenPrimaryAnswers\")",
+    "test('shippingQuoteLeavesFallbackUntouchedWhenPrimaryAnswers')"
+   ]
+  },
+  {
+   "id": "tst-09-control",
+   "silent": [
+    "TST-09"
+   ],
+   "file": "tests/java/shop/CachedPriceListTest.java",
+   "symbol": "repeatedLookupsReadTheCatalogueOnce"
+  },
+  {
+   "id": "tst-10-control",
+   "silent": [
+    "TST-10"
+   ],
+   "file": "tests/python/test_welcome_flow.py",
+   "symbol": "test_dry_run_welcome_leaves_mailer_untouched"
+  },
+  {
+   "id": "tst-11-control",
+   "silent": [
+    "TST-11"
+   ],
+   "file": "tests/python/test_checkout.py",
+   "symbol": "test_checkout_reports_receipt_to_paid_callback"
+  },
+  {
+   "id": "tst-12-control",
+   "silent": [
+    "TST-12"
+   ],
+   "file": "tests/ts/invoice.test.ts",
+   "symbol": [
+    "legacyInvoicePrintPutsHeaderFirst",
+    "\"legacyInvoicePrintPutsHeaderFirst\"",
+    "'legacyInvoicePrintPutsHeaderFirst'",
+    "test(\"legacyInvoicePrintPutsHeaderFirst\")",
+    "test('legacyInvoicePrintPutsHeaderFirst')"
+   ]
+  }
+ ]
+}
