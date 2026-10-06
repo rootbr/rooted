@@ -36,6 +36,17 @@ for plugin_json in plugins/*/.claude-plugin/plugin.json; do
   echo "Plugin: ${plugin_name}"
   echo "  ${plugin_desc}"
 
+  # Plugin-level agents (agents/<name>.md at the plugin root), by frontmatter name.
+  plugin_agents=()
+  for agent_md in "$plugin_dir"/agents/*.md; do
+    [ -f "$agent_md" ] || continue
+    agent_name="$(extract_field "$agent_md" "name")"
+    plugin_agents+=("${agent_name:-$(basename "${agent_md%.md}")}")
+  done
+  if [ ${#plugin_agents[@]} -gt 0 ]; then
+    echo "  Agents: $(IFS=','; echo "${plugin_agents[*]}" | sed 's/,/, /g')"
+  fi
+
   for skill_md in "$plugin_dir"/skills/*/SKILL.md; do
     [ -f "$skill_md" ] || continue
     skill_name="$(extract_field "$skill_md" "name")"
