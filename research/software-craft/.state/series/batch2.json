@@ -1,0 +1,10 @@
+{"batch": 2, "launched": "2026-10-06T22:38 UTC", "group": "B (design, DSN)", "topics": {
+ "complexity-and-deep-modules": {"task": "w7i62h1lp", "wf": "wf_99ebf0a4-9fa"},
+ "information-hiding-and-encapsulation": {"task": "wla73btan", "wf": "wf_c9486472-103"},
+ "coupling-and-dependency-direction": {"task": "wukaja3c2", "wf": "wf_3dd73ab6-ff7"},
+ "duplication-and-single-source-of-truth": {"task": "w7bv91r6q", "wf": "wf_4954e0f2-382"},
+ "inheritance-versus-composition": {"task": "wicyp0rn3", "wf": "wf_57723a9e-481"},
+ "design-patterns-in-construction": {"task": "wikoqqxiu", "wf": "wf_36eeec5c-850"},
+ "mutable-state-and-immutability": {"task": "wkeua1hu2", "wf": "wf_cafe9606-0b9"},
+ "functional-style-and-pipelines": {"task": "wepjhgfca", "wf": "wf_6240dc5f-500"},
+ "domain-modeling-and-domain-language": {"task": "wh40ypvg6", "wf": "wf_76c3028f-1e9"}}}
