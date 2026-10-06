@@ -37,7 +37,8 @@ def source_line(card_path):
     except OSError:
         return ""
     m = re.search(r"^## Source\n+(.+?)$", text, re.M)
-    return m.group(1).strip() if m else ""
+    line = m.group(1).strip() if m else ""
+    return line[2:].strip() if line.startswith("- ") else line
 
 
 def final_severity(f):

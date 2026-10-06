@@ -93,9 +93,14 @@ def kind_of(path, language):
     return "source"
 
 
-def deny_reason(path, head_text):
+REVIEW_DIR = "craft/"   # the review's own output directory, never part of the change under review
+
+
+def deny_reason(path, head_text, out_dir="craft"):
     """The deny-list: the reason a file is skipped, or None."""
     name = os.path.basename(path)
+    if path.startswith(REVIEW_DIR) or path.startswith(out_dir.rstrip("/") + "/"):
+        return "review output"
     if any(seg in ("/" + path) for seg in ("/" + v for v in VENDORED_DIRS)):
         return "vendored"
     if name in LOCK_FILES:
@@ -897,7 +902,7 @@ def build_plan(opts, log):
             skipped.append({"path": f["path"], "reason": "binary"})
             continue
         text = head_text(repo, mode, head_sha, f["path"])
-        reason = deny_reason(f["path"], text)
+        reason = deny_reason(f["path"], text, opts["out_dir"])
         if reason:
             skipped.append({"path": f["path"], "reason": reason})
             continue

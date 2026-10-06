@@ -577,3 +577,15 @@ class EndToEnd(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class ReviewOutputDenied(unittest.TestCase):
+    def test_the_review_directory_is_skipped(self):
+        import importlib.util
+        here = os.path.dirname(os.path.abspath(__file__))
+        spec = importlib.util.spec_from_file_location("sc", os.path.join(here, "..", "static-craft.py"))
+        sc = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(sc)
+        self.assertEqual(sc.deny_reason("craft/plan.json", "{}"), "review output")
+        self.assertEqual(sc.deny_reason("review/plan.json", "{}", "review"), "review output")
+        self.assertIsNone(sc.deny_reason("src/app.py", "x = 1"))
