@@ -494,7 +494,7 @@ const outcomes = await pipeline(drafted,
     if (s.draft.status !== 'card') return { ...s, final: 'pending', reason: s.draft.notes || 'the drafter sent the rule to pending' }
     const v = fromState('verdicts', s.rule.key)
     if (v) return { ...s, verdict: v }
-    if (ROUND > 1) return { ...s, final: 'pending', reason: `round ${ROUND} has no verdict for this rule in its state` }
+    // no verdict in the state: the skeptic runs — in round 1 as the first verdict, in a cut-short round as the missing one
     return agent(verifyPrompt(s.rule, s.draft), opts(`${VERIFY_LABEL}:${s.rule.key}`, 'Verify', VERDICT, EFFORT.skeptic)).then(v2 => ({ ...s, verdict: v2 }))
   },
   s => {
