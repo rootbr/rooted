@@ -103,7 +103,12 @@ def main(argv):
         if not opts.findings:
             sys.exit("bundle-run: stage verify needs --findings")
         fpath = opts.findings if os.path.isabs(opts.findings) else os.path.join(root, opts.findings)
-        args_obj["findings"] = read_json(fpath, "findings")
+        findings = read_json(fpath, "findings")
+        if isinstance(findings, dict):
+            findings = findings.get("findings")
+        if not isinstance(findings, list):
+            sys.exit(f"bundle-run: {opts.findings} holds no findings array")
+        args_obj["findings"] = findings
     if opts.tiers:
         args_obj["tiers"] = read_json(opts.tiers, "tiers")
     if opts.agent_types:
