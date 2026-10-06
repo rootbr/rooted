@@ -89,3 +89,35 @@ class Bundle(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class MergePartsTest(unittest.TestCase):
+    def test_merges_find_and_verify_parts(self):
+        import tempfile
+        here = os.path.dirname(os.path.abspath(__file__))
+        script = os.path.join(here, "..", "merge-parts.py")
+        with tempfile.TemporaryDirectory() as tmp:
+            p1 = os.path.join(tmp, "p1.json"); p2 = os.path.join(tmp, "p2.json")
+            with open(p1, "w") as fh:
+                json.dump({"result": {"stage": "find", "part": {"index": 1, "of": 2}, "raw": [{"source": "X-01", "findings": [{"rule_id": "X-01"}]}]}}, fh)
+            with open(p2, "w") as fh:
+                json.dump({"stage": "find", "part": {"index": 2, "of": 2}, "raw": [{"source": "X-02", "findings": []}]}, fh)
+            out = os.path.join(tmp, "raw.json")
+            r = subprocess.run([sys.executable, script, "--stage", "find", "--out", out, p1, p2], capture_output=True, text=True)
+            self.assertEqual(r.returncode, 0, r.stderr)
+            with open(out) as fh:
+                self.assertEqual(len(json.load(fh)), 2)
+            v1 = os.path.join(tmp, "v1.json"); v2 = os.path.join(tmp, "v2.json")
+            with open(v1, "w") as fh:
+                json.dump({"stage": "verify", "part": {"index": 1, "of": 2}, "findings": [{"id": "X-01.2", "verdict": {"verdict": "confirmed"}}], "conflicts": [], "agents_run": 1}, fh)
+            with open(v2, "w") as fh:
+                json.dump({"stage": "verify", "part": {"index": 2, "of": 2}, "findings": [{"id": "X-01.1", "verdict": {"verdict": "rejected"}}], "agents_run": 1}, fh)
+            out2 = os.path.join(tmp, "verdicts.json")
+            r = subprocess.run([sys.executable, script, "--stage", "verify", "--out", out2, v1, v2], capture_output=True, text=True)
+            self.assertEqual(r.returncode, 0, r.stderr)
+            with open(out2) as fh:
+                d = json.load(fh)
+            self.assertEqual([f["id"] for f in d["findings"]], ["X-01.1", "X-01.2"])
+            self.assertEqual(d["tally"]["confirmed"], 1)
+            self.assertEqual(d["tally"]["rejected"], 1)
+            self.assertEqual(d["agents_run"], 2)

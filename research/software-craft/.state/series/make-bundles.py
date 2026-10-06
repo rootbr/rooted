@@ -69,7 +69,7 @@ def main(argv):
     for n, t in enumerate(topics):
         if only and t["slug"] not in only: continue
         args = {"root": ROOT, "topic": t, "next_id": 1, "existing_titles": titles_in(cards_dir, t["prefix"]),
-                "max_rules": 12, "rotation_start": n % 5, "channel_note": CHANNEL_NOTE}
+                "max_rules": 12, "rotation_start": n % 5, "channel_note": CHANNEL_NOTE, "closing_edit": True}
         path = os.path.join(out_dir, f"{t['slug']}.js")
         open(path, "w", encoding="utf-8").write(rc.bundle(script, args))
         print(f"{path}: {os.path.getsize(path)} bytes, {len(args['existing_titles'])} existing title(s), rotation {n % 5}")
