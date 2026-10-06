@@ -24,6 +24,8 @@ Usage:
                     rule with verdict "accept" is done and one with "reject" stays pending
     --split N       write N bundles, each drafting an interleaved subset of the rule keys, so a
                     topic runs on N workflows at once; the first bundle reports the held rules
+    --closing-edit  the bundle ships a rule the last verdict sends back with "revise" after the drafter
+                    applies that verdict's required edits verbatim (the workflow's closing_edit)
     --resume-cut-short
                     finish round N whose fixes ran and whose skeptics were cut short: the bundle
                     carries every `fix<N>:` draft (`fix:` for N = 1... see stage_labels) as its state
@@ -77,11 +79,11 @@ def bundle(script, args_obj):
 
 
 def main(argv):
-    opts = {"journal": [], "from_output": None, "round": "1", "rotation_start": "0", "max_rules": "12", "split": "1", "out_dir": None, "root": None, "resume_cut_short": False}
+    opts = {"journal": [], "from_output": None, "round": "1", "rotation_start": "0", "max_rules": "12", "split": "1", "out_dir": None, "root": None, "resume_cut_short": False, "closing_edit": False}
     i = 0
     while i < len(argv):
         key = argv[i][2:].replace("-", "_")
-        if key == "resume_cut_short":
+        if key in ("resume_cut_short", "closing_edit"):
             opts[key] = True
             i += 1
             continue
@@ -157,7 +159,7 @@ def main(argv):
                              "drafts": {k: v for k, v in drafts.items() if k in keys},
                              "verdicts": {k: v for k, v in verdicts.items() if k in keys}},
             "only_keys": keys, "include_held": rnd == 1 and part == 0, "round": rnd + 1 if cut_short else rnd,
-            "fix_after_verify": not cut_short,
+            "fix_after_verify": not cut_short, "closing_edit": bool(opts["closing_edit"]),
         }
         suffix = ("" if rnd == 1 else f"-round{rnd}") + ("-finish" if cut_short else "")
         path = os.path.join(out_dir, f"continue-{topic['slug']}{suffix}-{part + 1}of{n}.js")

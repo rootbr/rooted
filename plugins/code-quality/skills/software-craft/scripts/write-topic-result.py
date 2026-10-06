@@ -263,8 +263,12 @@ def main(argv):
                 fh.write(md.rstrip("\n") + "\n")
         o = outcomes.get(card["key"], {})
         rounds = o.get("fix_rounds", 1 if o.get("verdict2") else 0)
-        verification = ("accepted on the first verdict" if not rounds
-                        else f"accepted after {rounds} fix round{'s' if rounds != 1 else ''} ({o.get('verdict1', '')[:160]})")
+        if o.get("closing_edit"):
+            verification = (f"shipped on a closing edit after {rounds} fix round{'s' if rounds != 1 else ''}: the last verdict's "
+                            f"required edits applied verbatim, no further verdict ({o.get('last_verdict', '')[:200]})")
+        else:
+            verification = ("accepted on the first verdict" if not rounds
+                            else f"accepted after {rounds} fix round{'s' if rounds != 1 else ''} ({o.get('verdict1', '')[:160]})")
         written.append({"rule_id": new_id, "title": card["title"], "filename": fn, "verification": verification})
         prov_lines.append(prov_line)
         next_id += 1

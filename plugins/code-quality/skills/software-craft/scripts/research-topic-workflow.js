@@ -48,6 +48,9 @@
 //   fix_after_verify: true | false     // false: a verdict other than accept ends the rule as pending instead of running a
 //                                      // fix; the bundle research-continue.py --resume-cut-short writes, to finish the
 //                                      // verdicts of a round whose fixes ran and whose skeptics were cut short
+//   closing_edit: true | false         // true: after the run's last verdict, a "revise" does not pend the rule — the drafter
+//                                      // applies that verdict's required edits verbatim, changes nothing else, and the
+//                                      // card ships with the verdict as its verification record (a "reject" still pends)
 // A stage whose result the state carries returns it without an agent; ids and example languages are
 // assigned over the whole spine, so a split topic keeps one numbering.
 
@@ -94,6 +97,8 @@ if (ONLY && ONLY.size === 0) throw new Error('research-topic-workflow: only_keys
 const INCLUDE_HELD = A.include_held !== false
 const ROUND = Number.isInteger(A.round) && A.round >= 1 ? A.round : 1
 const FIX_AFTER_VERIFY = A.fix_after_verify !== false
+const CLOSING_EDIT = A.closing_edit === true
+const CLOSE_LABEL = `close${ROUND}`
 const CHANNEL_NOTE = typeof A.channel_note === 'string' && A.channel_note.trim() ? `\n- This run: ${A.channel_note.trim()}` : ''
 if (ROUND > 1 && !(RESUME && RESUME.spine && RESUME.drafts && RESUME.verdicts)) throw new Error('research-topic-workflow: round above 1 needs resume_state with the spine, the drafts and the verdicts of the previous round')
 const DRAFT_LABEL = ROUND === 1 ? 'draft' : ROUND === 2 ? 'fix' : `fix${ROUND - 1}`
@@ -478,6 +483,12 @@ if (ONLY) {
 const fromState = (kind, key) => (RESUME && RESUME[kind] && RESUME[kind][key]) || null
 log(`Spine: ${allRules.length} candidate rule(s) — ${drafted.length} to draft${ONLY ? ` (of ${numbered.length} numbered)` : ''}, ${held.length} held (${held.map(r => r.disposition).join(', ') || 'none'})`)
 
+function closingPrompt(r, draft, verdict) {
+  return fixPrompt(r, draft, verdict).replace(
+    'You are the drafter of one software-craft card, applying a skeptic\'s verdict once.',
+    'You are the drafter of one software-craft card, applying a skeptic\'s final verdict as a closing edit: no further skeptic reads the card, so you make each required edit exactly as the verdict words it, in the place it names, and change nothing else — no new sentence, no new claim, no rewording outside the edit, no new citation unless the edit names one. Where an edit cannot be applied as worded without a source you do not have, set status pending and say which edit in notes.')
+}
+
 // ---- Phases Draft, Verify, Fix — one pipeline per rule, no barrier ----------------------------------
 const summarize = v => v ? `${v.verdict}: ${(v.problems || []).map(p => `[${p.kind}] ${p.detail}`).join('; ') || v.note}` : 'no verdict returned'
 const opts = (label, ph, schema, effort) => ({ label, phase: ph, schema, model: MODEL, effort })
@@ -501,7 +512,10 @@ const outcomes = await pipeline(drafted,
     if (!s || s.final) return s
     if (!s.verdict) return { ...s, final: 'pending', reason: 'the skeptic returned no verdict' }
     if (s.verdict.verdict === 'accept') return { ...s, final: 'card' }
-    if (!FIX_AFTER_VERIFY) return { ...s, final: 'pending', reason: `not accepted after fix round ${ROUND - 1} — ${summarize(s.verdict)}` }
+    if (!FIX_AFTER_VERIFY) {
+      if (CLOSING_EDIT && s.verdict.verdict === 'revise') return closingEdit(s, ROUND - 1)
+      return { ...s, final: 'pending', reason: `not accepted after fix round ${ROUND - 1} — ${summarize(s.verdict)}` }
+    }
     return agent(fixPrompt(s.rule, s.draft, s.verdict), opts(`${FIX_LABEL}:${s.rule.key}`, 'Fix', DRAFT, EFFORT.draft))
       .then(d2 => ({ ...s, draft1: s.draft, verdict1: s.verdict, draft: d2 }))
   },
@@ -510,10 +524,22 @@ const outcomes = await pipeline(drafted,
     if (!s.draft) return { ...s, final: 'pending', reason: `the fix returned nothing after ${summarize(s.verdict1)}` }
     if (s.draft.status !== 'card') return { ...s, final: 'pending', reason: s.draft.notes || 'the fix sent the rule to pending' }
     return agent(verifyPrompt(s.rule, s.draft), opts(`${VERIFY_AGAIN_LABEL}:${s.rule.key}`, 'Verify', VERDICT, EFFORT.skeptic))
-      .then(v => ({ ...s, verdict: v, final: v && v.verdict === 'accept' ? 'card' : 'pending',
-                    reason: v && v.verdict === 'accept' ? '' : `not accepted after fix round ${ROUND} — ${summarize(v)}` }))
+      .then(v => {
+        if (v && v.verdict === 'accept') return { ...s, verdict: v, final: 'card' }
+        if (CLOSING_EDIT && v && v.verdict === 'revise') return closingEdit({ ...s, verdict: v }, ROUND)
+        return { ...s, verdict: v, final: 'pending', reason: `not accepted after fix round ${ROUND} — ${summarize(v)}` }
+      })
   },
 )
+// the closing edit: the drafter applies the last verdict verbatim and the card ships on that verdict's record
+function closingEdit(s, roundsSoFar) {
+  return agent(closingPrompt(s.rule, s.draft, s.verdict), opts(`${CLOSE_LABEL}:${s.rule.key}`, 'Fix', DRAFT, EFFORT.draft))
+    .then(d => {
+      if (!d) return { ...s, final: 'pending', reason: `the closing edit returned nothing after ${summarize(s.verdict)}` }
+      if (d.status !== 'card') return { ...s, draft: d, final: 'pending', reason: d.notes || 'the closing edit sent the rule to pending' }
+      return { ...s, draft_before_close: s.draft, draft: d, final: 'card', closing_edit: true, fix_rounds_done: roundsSoFar }
+    })
+}
 
 // ---- assemble the result --------------------------------------------------------------------------
 const cards = [], provenanceLines = [], pendingEntries = [], results = []
@@ -521,7 +547,8 @@ for (const s of outcomes.filter(Boolean)) {
   if (!s.rule) continue
   const r = s.rule
   const entry = { key: r.key, rule_id: r.rule_id, title: r.title, final: s.final, reason: s.reason || '',
-                  round: ROUND, fix_rounds: s.draft1 ? ROUND : ROUND - 1,
+                  round: ROUND, fix_rounds: s.fix_rounds_done !== undefined ? s.fix_rounds_done : (s.draft1 ? ROUND : ROUND - 1),
+                  closing_edit: s.closing_edit === true, last_verdict: s.closing_edit ? summarize(s.verdict) : '',
                   verdict1: s.verdict1 ? summarize(s.verdict1) : (s.verdict ? summarize(s.verdict) : ''),
                   verdict2: s.verdict1 && s.verdict ? summarize(s.verdict) : '' }
   results.push(entry)
@@ -540,7 +567,7 @@ for (const r of (INCLUDE_HELD ? held : [])) {
     pendingEntries.push({ key: r.key, entry: `- ${lead}${T.domain} · ${T.slug} · "${r.statement}" · formulation: ${r.formulation.join('; ') || 'none named'}${positions} · searched: ${r.searched || 'see the research note'} · what would unblock: ${r.hold_reason || 'an openable source stating the claim'}`, reason: r.disposition })
   }
 }
-const agentsRun = sources.length + 1 + outcomes.filter(Boolean).reduce((n, s) => n + (s.draft ? 1 : 0) + (s.verdict ? 1 : 0) + (s.draft1 ? 2 : 0), 0)
+const agentsRun = sources.length + 1 + outcomes.filter(Boolean).reduce((n, s) => n + (s.draft ? 1 : 0) + (s.verdict ? 1 : 0) + (s.draft1 ? 2 : 0) + (s.closing_edit ? 1 : 0), 0)
 log(`Result: ${cards.length} card(s), ${pendingEntries.length} pending entr${pendingEntries.length === 1 ? 'y' : 'ies'}, ${held.filter(r => r.disposition === 'held-not-checkable' || r.disposition === 'folded').length} held or folded; ${agentsRun} agent(s) run`)
 
 return {
