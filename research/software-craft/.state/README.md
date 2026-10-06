@@ -7,7 +7,7 @@ Transient: this directory holds the material a paused session needs to resume th
 - `index.json` — every pilot run: topic, run label, task id, workflow directory, rotation start, and which agents each journal holds.
 - `<topic>--<run>--journal.jsonl.gz` — the workflow journals (one `result` line per finished agent; `research-continue.py` reads them after `gunzip`).
 - `<topic>--<run>--output.json.gz` — the Workflow tool outputs of the finished runs (`result.topic`, `result.spine`, `result.next_id`; the cut-short round-2 runs have none).
-- `docs-pending.patch` — the documentation of the review path in parts (SKILL.md §Phase 5 and its tree, gotchas G-19, maintenance.md, the skill README's Bundle row) that awaits the Quality Gate audit at the close; apply with `git apply research/software-craft/.state/docs-pending.patch`.
+- `docs-pending.patch` — the documentation of the review path in parts (SKILL.md §Phase 5 and its tree, gotchas G-19, maintenance.md, the skill README's Bundle row) and the design note's research-workflow step 5 (one round and the closing edit for a series topic), which await the Quality Gate audit at the close; apply with `git apply research/software-craft/.state/docs-pending.patch`.
 - `series/` — the validated argument objects of the 45 series topics (`topics-*.json`, with paper seeds relayed by the orchestrator's searches), the bundle maker `make-bundles.py` (validates against the design note's taxonomy table, embeds the channel note, writes one bundle per topic), the seed merger and the prompt the topic-argument agents followed.
 - `make-inventory.py` — the audit inventory helper (`--target-type <type> --tier <tier> --out <inventory.md> <target>`).
 
