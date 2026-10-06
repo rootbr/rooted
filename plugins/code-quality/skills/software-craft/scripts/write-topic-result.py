@@ -177,7 +177,7 @@ def merge_runs(runs):
     base["sources"] = next((r.get("sources") for r, _ in runs if r.get("sources")), [])
     base["spine"] = next((r.get("spine") for r, _ in runs if r.get("spine") and r["spine"].get("rules")), runs[0][0].get("spine"))
     cards, prov, seen = [], [], set()
-    for r, _ in runs:
+    for r, _ in reversed(runs):       # a later run's card for a key supersedes an earlier one
         for card, line in zip(r.get("cards", []), r.get("provenance_lines", [])):
             if card["key"] in seen:
                 continue
