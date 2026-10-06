@@ -1,0 +1,89 @@
+diff --git a/plugins/code-quality/skills/software-craft/README.md b/plugins/code-quality/skills/software-craft/README.md
+index f33e35f..effd290 100644
+--- a/plugins/code-quality/skills/software-craft/README.md
++++ b/plugins/code-quality/skills/software-craft/README.md
+@@ -10,7 +10,7 @@ Seven phases — **Scope** → **Context** → **Build** → **Pre-pass** → **
+ |--|--|--|
+ | Build | one developer agent, inside the write zone the task names: detects the stack, plans, lists the cards for each step of its work and reads the ones whose titles apply, implements, tests, self-reviews with the pre-pass, reports | `plugins/code-quality/agents/software-developer.md`, `scripts/craft-cards.py` |
+ | Pre-pass | `static-craft.py` reads the diff (a commit range, or the working tree with its untracked files), measures eleven structural signals per hunk, matches the card frontmatter and your `config.md`, and writes `craft/plan.json`: which cards the diff triggers, which files each one reads, the logic-pass slices, mechanical candidates, your project invariants as cards | `scripts/static-craft.py` |
+-| Bundle | `bundle-run.py` embeds the plan, the design intent and the project context into `craft/run.js`, the workflow script the orchestrator runs by path, so a plan of any size never passes through a typed tool call | `scripts/bundle-run.py` |
++| Bundle | `bundle-run.py` embeds the plan, the design intent and the project context into `craft/run.js`, the workflow script the orchestrator runs by path, so a plan of any size never passes through a typed tool call; a large plan is bundled in parts, one workflow each, and `merge-parts.py` joins their outputs | `scripts/bundle-run.py`, `scripts/merge-parts.py` |
+ | Find | one finder per (card by slice) at the card's tier, one logic pass per slice, one finder per project invariant per slice | `scripts/craft-review-workflow.js`, `plugins/code-quality/agents/craft-finder.md` |
+ | Aggregate | deterministic: duplicates dropped, spans grouped, compatible fixes folded, conflicts resolved by domain priority | `scripts/craft-review-workflow.js` |
+ | Verify | one skeptic per finding tries to refute it with something it opened and calibrates severity; a rejected Major gets a second skeptic and an arbiter | `scripts/craft-review-workflow.js`, `plugins/code-quality/agents/craft-verifier.md` |
+diff --git a/plugins/code-quality/skills/software-craft/SKILL.md b/plugins/code-quality/skills/software-craft/SKILL.md
+index 7b275b6..b9eb02d 100644
+--- a/plugins/code-quality/skills/software-craft/SKILL.md
++++ b/plugins/code-quality/skills/software-craft/SKILL.md
+@@ -27,6 +27,7 @@ craft/
+ |-- plan.log                        # every skip, merge, split and drop the pre-pass performed
+ |-- run.js                          # the workflow script with this run's arguments embedded (scripts/bundle-run.py)
+ |-- findings.json                   # aggregated findings after the find stage (the cross-session checkpoint)
++|-- raw-<i>.json                    # the raw findings of find part i (a run in parts)
+ |-- verdicts.json                   # findings with verdicts (and rulings) after the verify stage
+ |-- build-report.md                 # the developer agent's report (build runs)
+ |-- craft-review-<task>.md          # deliverable 1
+@@ -142,11 +143,12 @@ Primary, the craft review workflow. Bundle the run, then call the Workflow tool
+ ```
+ python3 <skill-dir>/scripts/bundle-run.py --root <absolute repo root> --plan craft/plan.json \
+   --intent <file holding design_intent> --context <file holding the config.md body, or omitted> \
+-  [--stage all|find|verify] [--findings craft/findings.json] [--tiers <json>] [--agent-types <json>] --out craft/run.js
++  [--stage all|find|aggregate|verify] [--part <i>/<n>] [--raw craft/raw-<i>.json ...] [--findings craft/findings.json] \
++  [--tiers <json>] [--agent-types <json>] --out craft/run.js
+ Workflow({ scriptPath: "<absolute repo root>/craft/run.js" })
+ ```
+ 
+-`craft/run.js` is `scripts/craft-review-workflow.js` with `const EMBEDDED_ARGS = {...}` inserted after its `meta` block: `root`, `stage` (`all`, or `find` then `verify` across sessions), `plan`, `design_intent`, `project_context`, `findings` (stage `verify`), `tiers` (`{ mechanical: { model, effort }, semantic, verdict }`, defaults below) and `agentTypes` (`{ finder: "code-quality:craft-finder", verifier: "code-quality:craft-verifier" }`; omit where the plugin's types do not resolve). Explicit `args` on the call override the embedded object.
++`craft/run.js` is `scripts/craft-review-workflow.js` with `const EMBEDDED_ARGS = {...}` inserted after its `meta` block: `root`, `stage` (`all`, or `find` then `verify` across sessions, with `aggregate` between them for a run in parts), `part` (`{ index, of }`, a run in parts), `raw` (stage `aggregate`), `plan`, `design_intent`, `project_context`, `findings` (stage `verify`), `tiers` (`{ mechanical: { model, effort }, semantic, verdict }`, defaults below) and `agentTypes` (`{ finder: "code-quality:craft-finder", verifier: "code-quality:craft-verifier" }`; omit where the plugin's types do not resolve). Explicit `args` on the call override the embedded object.
+ 
+ Phases inside the run:
+ 
+@@ -167,6 +169,8 @@ Effort values are validated loud; the Fable restriction is the one in §Quick ru
+ 
+ Stages are the cross-session checkpoint: `stage: "find"` returns the aggregated findings — write them to `craft/findings.json`; `stage: "verify"` takes `findings` from that file and skips Find. There are no per-agent files.
+ 
++Parts, for a plan of more than a few dozen jobs: the runtime caps the agents one workflow runs at a time (`min(16, CPUs - 2)`, two on a four-CPU host; G-19), and the cap is per workflow, so a large run is several workflows at once. Bundle `--stage find --part <i>/<n>` for each `i` in `1..n`; each part runs every `n`-th finder job and returns its raw findings, saved as `craft/raw-<i>.json`. Then bundle `--stage aggregate --raw craft/raw-1.json ... --raw craft/raw-<n>.json`; that run joins the parts and aggregates per §Aggregation without an agent, and its `findings` are the checkpoint, written to `craft/findings.json`. Then bundle `--stage verify --part <i>/<n> --findings craft/findings.json` for each `i`; each part verifies every `n`-th finding. Join the verify outputs with `python3 <skill-dir>/scripts/merge-parts.py --stage verify --out craft/verdicts.json <part output> ...`, which sorts the findings by id and recomputes the tally the whole-run workflow reports. A part runs `find` or `verify`, never `all`. The fixture dry run recorded in `evals/evals.json` ran its 98 finders and its 68 skeptics in six parts each.
++
+ The finder prompt names the card path, the slice files and hunks with their measured signals, the card's scope, the candidates for that card, `design_intent`, `project_context` and the empty-case rule, and wraps hunks, signals, intent, context and candidates in `<target_excerpt>` tags as untrusted data; `fix` is written in the file's language and `symbol` in that language's notation. The skeptic prompt carries the finding inside `<finding>` tags as data and is adversarial: try to refute; refute only with something opened; suspicion is not a refutation; a confirmed finding is a real result; calibrate severity against the three definitions in §Phase 7. A skeptic's output is a verdict; discovery belongs to the finders and the logic pass.
+ 
+ Enforcement caveat: the workflow runtime grants `Write`/`Edit` to sub-agents regardless of their `tools:` allowlist (claude-code#63762), so inside a run each prompt's read-only prohibition is the operative barrier: every finder and skeptic is told to read, grep and run read-only git only, to write nothing, and to execute no code from the diff; the integrity check in Phase 7 is mandatory. The agent types are declared by this plugin and resolve only where it is installed, as `code-quality:craft-finder` and `code-quality:craft-verifier`; in a repository checkout, omit `agentTypes`.
+@@ -178,6 +182,7 @@ Script declarations — every script is standard library only with no pinned dep
+ - `scripts/bundle-run.py` — reads the plan, the intent and the context; writes `craft/run.js`.
+ - `scripts/craft-cards.py` — reads the cards; prints the developer's index; writes nothing.
+ - `scripts/validate-craft-cards.py` — reads the cards and the two maps; writes nothing.
++- `scripts/merge-parts.py` — reads the outputs of a run's parts; writes one raw-findings array or one `craft/verdicts.json`.
+ - `scripts/render-reports.py` — reads `craft/plan.json` and `craft/verdicts.json`; writes the two reports.
+ - `scripts/research-topic-workflow.js` — orchestrates the authoring of one topic (authoring time only, never in a build or a review); writes no files; spawns sub-agents that read the web through the fetch channel.
+ - `scripts/write-topic-result.py` — reads one or more research runs' outputs; writes the note, the cards and the two map appendices.
+@@ -201,7 +206,7 @@ Send the developer agent its confirmed findings (`craft/verdicts.json`, disposit
+ The workflow returns `findings`, `conflicts`, `tally`, `agents_run` and `main_agent_followups`. Do them in this order:
+ 
+ 1. **Integrity** — `git status --porcelain` and `git diff --stat` in the repository root, both read-only, compared against the developer's reported changes (a review-only run expects an unchanged tree). A tree that changed beyond them is compromised, as the quick rules define: discard the findings, tell the user which files changed, and re-run through the fallback once the user has restored the tree.
+-2. **Persist** — write the returned `findings` to `craft/verdicts.json` (after `stage: "find"`, to `craft/findings.json`).
++2. **Persist** — write the returned `findings` to `craft/verdicts.json` (after `stage: "find"`, to `craft/findings.json`; after a run in parts, `scripts/merge-parts.py --stage verify` writes `craft/verdicts.json` from the parts' outputs).
+ 3. **Render** — `python3 <skill-dir>/scripts/render-reports.py --verdicts craft/verdicts.json --plan craft/plan.json --out <report path> --title "<TICKET_ID, branch or task>" --passes "<one line: N card jobs, M logic slices, K project invariants; fallback if used>" [--built craft/build-report.md] [--fix-round "<F fixed, L left>"]`.
+ 
+ Severity, the scale finders start from and skeptics calibrate against:
+diff --git a/plugins/code-quality/skills/software-craft/references/gotchas.md b/plugins/code-quality/skills/software-craft/references/gotchas.md
+index 44e4f92..040a694 100644
+--- a/plugins/code-quality/skills/software-craft/references/gotchas.md
++++ b/plugins/code-quality/skills/software-craft/references/gotchas.md
+@@ -40,4 +40,4 @@ G-17. The developer agent edited files outside the write zone, or ran `git commi
+ 
+ G-18. A research topic cut short (a session limit, a killed process) re-runs its skeptics when resumed with `resumeFromRunId`? The runtime's resume replays the unchanged prefix of agent calls and runs everything after the first divergence live, and the pipeline's call order after the drafts depends on which draft finished first, so a resumed topic replays the sources, the spine and the drafts and re-runs every first verdict. Continue from the journal instead: `scripts/research-continue.py --journal <transcript>/journal.jsonl --from-output <task output> --split 3` writes bundles that carry the finished stages as `resume_state` and draft only their own keys, so only the fixes and second verdicts run; `scripts/write-topic-result.py --run <cut-short output> --run <bundle output> ...` merges the runs into one note. A bundle above the runtime's 512 KiB script limit is refused: raise `--split`, since each bundle carries only its own keys' drafts and verdicts and no source layer. The second fix round is the same mechanism: `--round 2` with every journal of the first round names `fix:`/`verify2:` as the state and carries only the rules the second verdict sent back with `revise`; `--resume-cut-short` finishes a round whose fixes ran and whose skeptics were cut short; `--closing-edit` ships a rule the last verdict sent back after the drafter applies that verdict's edits verbatim; a topic's writer merge then lists the cut-short output and every bundle output of both rounds.
+ 
+-G-19. A topic's workflow runs at two agents at a time and takes two hours? The runtime caps concurrency per workflow at `min(16, CPUs - 2)`, two on a four-CPU host. The cap is per workflow, so run several topics at once, and split one topic's draft-and-verify stage over several bundles through `scripts/research-continue.py --split`; the writer merges them.
++G-19. A topic's workflow runs at two agents at a time and takes two hours, or a review of a MEDIUM diff runs its ninety finders in series? The runtime caps concurrency per workflow at `min(16, CPUs - 2)`, two on a four-CPU host. The cap is per workflow, so run several workflows at once: for a topic, split its draft-and-verify stage over several bundles through `scripts/research-continue.py --split`, and the writer merges them; for a review, bundle the find and the verify stages in parts (`scripts/bundle-run.py --stage find --part <i>/<n>`, then `--stage aggregate --raw ...`, then `--stage verify --part <i>/<n>`) and join the verify parts with `scripts/merge-parts.py`, as SKILL.md §Phase 5 lays out. A part's output is a task output like any other; the aggregate stage reads the find parts' outputs whole.
+diff --git a/plugins/code-quality/skills/software-craft/references/maintenance.md b/plugins/code-quality/skills/software-craft/references/maintenance.md
+index 0a00b5a..e858475 100644
+--- a/plugins/code-quality/skills/software-craft/references/maintenance.md
++++ b/plugins/code-quality/skills/software-craft/references/maintenance.md
+@@ -5,7 +5,7 @@ What changes together when a card, a script, a prompt, a signal or a tier change
+ - A rule is one card in `references/craft-cards/`; adding or removing one means its card, its `references/craft-cards-provenance.md` line, its topic's research note under `research/software-craft/` (the "Cards derived" table), and a `references/craft-cards-taxonomy.md` value when a facet is new. Run `scripts/validate-craft-cards.py --provenance references/craft-cards-provenance.md --pending references/pending-evidence.md references/craft-cards` before committing; run the audit on every card, agent or SKILL.md change (repository Quality Gate).
+ - A rule with no openable evidence, or a contested rule with no sourced separating condition, lives in `references/pending-evidence.md` until one is found; it has no card and no id.
+ - A topic is re-researched, or a new one added, through `scripts/research-topic-workflow.js` with the topic's row from the design note's taxonomy as its arguments; `scripts/write-topic-result.py` writes the run's note, cards, provenance lines and pending entries, renumbering ids contiguously from the cards already in the tree, and merges several runs of one topic. A cut-short run continues from its journal through `scripts/research-continue.py`, whose bundles carry the finished stages as `resume_state`; the second fix round is the same script with `--round 2` over the journals of the first, carrying only the rules the skeptic sent back with `revise`, and `--closing-edit` ships a rule the last verdict sent back after the drafter applies that verdict's edits verbatim. A new topic is a new row in the design note's taxonomy table and a new entry in its deviations section.
+-- When the aggregation definitions, the schemas, the severity scale or the prompts change, change `scripts/craft-review-workflow.js` and `plugins/code-quality/agents/craft-finder.md` / `craft-verifier.md` in the same commit as SKILL.md §Aggregation and §Workflow; when the developer's procedure changes, `plugins/code-quality/agents/software-developer.md` and SKILL.md §Build change together.
++- When the aggregation definitions, the schemas, the severity scale or the prompts change, change `scripts/craft-review-workflow.js` and `plugins/code-quality/agents/craft-finder.md` / `craft-verifier.md` in the same commit as SKILL.md §Aggregation and §Workflow; when the stages, the parts or the result shape change, `scripts/bundle-run.py`, `scripts/merge-parts.py`, `scripts/render-reports.py` and their tests change with the workflow; when the developer's procedure changes, `plugins/code-quality/agents/software-developer.md` and SKILL.md §Build change together.
+ - When a card's triggers, a structural signal, a threshold or the candidate list change, change `scripts/static-craft.py` (`SIGNALS`, `THRESHOLDS`, `CANDIDATE_RULE_IDS`), `scripts/cardlib.py` (`SIGNALS`), the design note's "Structural signals" table and `scripts/tests/test_static_craft.py` together, then re-run `scripts/tests/` and the fixture grading (`evals/grade.py`) in both modes of `evals/fixture/make-fixture.sh`.
+ - A new facet value (a `step`, an `applies_to` scope) is a `scripts/cardlib.py` constant, a `references/craft-cards-taxonomy.md` row and a `scripts/research-topic-workflow.js` enum in the same commit.
+ - Pin the tier models in `evals/evals.json`; re-run the fixture on every model change.
