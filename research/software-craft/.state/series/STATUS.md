@@ -1,6 +1,6 @@
 # Series status
 
-Snapshot taken 2026-10-07T21:55 UTC by `series/series-status.py --snapshot`. Journals under `journals/`, finished runs' outputs under `outputs/`.
+Snapshot taken 2026-10-07T21:59 UTC by `series/series-status.py --snapshot`. Journals under `journals/`, finished runs' outputs under `outputs/`.
 
 `done` counts the agents whose results the journal holds (cached for a continuation); `failed` the agents a usage-limit stop or an error ended, which a continuation re-runs. `cards` is the count in the run's own output; a run whose agents failed shipped none, and its cards come from the continuation. A continuation run (batch 3 and later) is one bundle of a topic, named by its part; a topic is finished when every part's run is complete.
 
@@ -49,7 +49,7 @@ Snapshot taken 2026-10-07T21:55 UTC by `series/series-status.py --snapshot`. Jou
 | 3 | `generics-and-parameterization` r2-finish | ? | - | - | - | running or stopped |
 | 3 | `api-design-and-use` 1of2 | 12 | verify 6, fix 6 | verify2 6 | 0 | run ended, agents failed |
 | 3 | `api-design-and-use` r2-finish | 12 | verify2 6 | - | 6 | run complete |
-| 3 | `api-design-and-use` r3-rest | ? | verify 1 | - | - | running or stopped |
+| 3 | `api-design-and-use` r3-rest | ? | verify 2 | - | - | running or stopped |
 | 3 | `contracts-assertions-and-invariants` 1of2 | 7 | verify 3, fix 4, verify2 2, close1 1 | verify2 2, close1 1 | 1 | run ended, agents failed |
 | 3 | `contracts-assertions-and-invariants` r2-finish | ? | - | - | - | running or stopped |
 | 3 | `contracts-assertions-and-invariants` r2-finish | 7 | verify2 2 | - | 3 | run complete |
