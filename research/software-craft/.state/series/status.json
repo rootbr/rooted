@@ -2,7 +2,7 @@
  "comments-and-self-documenting-code": {
   "batch": 1,
   "wf": "wf_43e15358-ad0",
-  "task": "wm49sgjai",
+  "task": "wjjmrni4z",
   "journal": "/root/.claude/projects/-home-user-rooted/61735d01-895f-5d61-bc3c-3f903162bd3a/subagents/workflows/wf_43e15358-ad0/journal.jsonl",
   "done": {
    "sources": 3,
@@ -18,13 +18,13 @@
   "finished": false,
   "cards": null,
   "spine_card_rules": 12,
-  "checked": "2026-10-07T11:58 UTC",
+  "checked": "2026-10-07T12:01 UTC",
   "snapshot_journal": "journals/comments-and-self-documenting-code.journal.jsonl.gz"
  },
  "layout-and-coding-style": {
   "batch": 1,
   "wf": "wf_381224c1-745",
-  "task": "w13oepyin",
+  "task": "we2igv8li",
   "journal": "/root/.claude/projects/-home-user-rooted/61735d01-895f-5d61-bc3c-3f903162bd3a/subagents/workflows/wf_381224c1-745/journal.jsonl",
   "done": {
    "sources": 3,
@@ -40,13 +40,13 @@
   "finished": false,
   "cards": null,
   "spine_card_rules": 11,
-  "checked": "2026-10-07T11:58 UTC",
+  "checked": "2026-10-07T12:01 UTC",
   "snapshot_journal": "journals/layout-and-coding-style.journal.jsonl.gz"
  },
  "routine-size-and-parameters": {
   "batch": 1,
   "wf": "wf_fe4a53a1-01e",
-  "task": "w6j5ymocx",
+  "task": "whhgck042",
   "journal": "/root/.claude/projects/-home-user-rooted/61735d01-895f-5d61-bc3c-3f903162bd3a/subagents/workflows/wf_fe4a53a1-01e/journal.jsonl",
   "done": {
    "sources": 3,
@@ -62,13 +62,13 @@
   "finished": false,
   "cards": null,
   "spine_card_rules": 9,
-  "checked": "2026-10-07T11:58 UTC",
+  "checked": "2026-10-07T12:01 UTC",
   "snapshot_journal": "journals/routine-size-and-parameters.journal.jsonl.gz"
  },
  "variables-scope-and-numerics": {
   "batch": 1,
   "wf": "wf_1b1b3ec6-586",
-  "task": "whln1vvup",
+  "task": "w6y1e2dl0",
   "journal": "/root/.claude/projects/-home-user-rooted/61735d01-895f-5d61-bc3c-3f903162bd3a/subagents/workflows/wf_1b1b3ec6-586/journal.jsonl",
   "done": {
    "sources": 3,
@@ -84,13 +84,13 @@
   "finished": false,
   "cards": null,
   "spine_card_rules": 14,
-  "checked": "2026-10-07T11:58 UTC",
+  "checked": "2026-10-07T12:01 UTC",
   "snapshot_journal": "journals/variables-scope-and-numerics.journal.jsonl.gz"
  },
  "control-flow": {
   "batch": 1,
   "wf": "wf_396b0630-141",
-  "task": "w6k95zpva",
+  "task": "whqm7p663",
   "journal": "/root/.claude/projects/-home-user-rooted/61735d01-895f-5d61-bc3c-3f903162bd3a/subagents/workflows/wf_396b0630-141/journal.jsonl",
   "done": {
    "sources": 3,
@@ -106,13 +106,13 @@
   "finished": false,
   "cards": null,
   "spine_card_rules": 18,
-  "checked": "2026-10-07T11:58 UTC",
+  "checked": "2026-10-07T12:01 UTC",
   "snapshot_journal": "journals/control-flow.journal.jsonl.gz"
  },
  "table-driven-and-state-machines": {
   "batch": 1,
   "wf": "wf_0837001f-b71",
-  "task": "w4pd0ct46",
+  "task": "wmo3ya5xc",
   "journal": "/root/.claude/projects/-home-user-rooted/61735d01-895f-5d61-bc3c-3f903162bd3a/subagents/workflows/wf_0837001f-b71/journal.jsonl",
   "done": {
    "sources": 3,
@@ -128,13 +128,13 @@
   "finished": false,
   "cards": null,
   "spine_card_rules": 8,
-  "checked": "2026-10-07T11:58 UTC",
+  "checked": "2026-10-07T12:01 UTC",
   "snapshot_journal": "journals/table-driven-and-state-machines.journal.jsonl.gz"
  },
  "generics-and-parameterization": {
   "batch": 1,
   "wf": "wf_14a4223f-56c",
-  "task": "we8bok113",
+  "task": "w490kulxa",
   "journal": "/root/.claude/projects/-home-user-rooted/61735d01-895f-5d61-bc3c-3f903162bd3a/subagents/workflows/wf_14a4223f-56c/journal.jsonl",
   "done": {
    "sources": 3,
@@ -150,13 +150,13 @@
   "finished": false,
   "cards": null,
   "spine_card_rules": 10,
-  "checked": "2026-10-07T11:58 UTC",
+  "checked": "2026-10-07T12:01 UTC",
   "snapshot_journal": "journals/generics-and-parameterization.journal.jsonl.gz"
  },
  "api-design-and-use": {
   "batch": 1,
   "wf": "wf_5e433524-1d7",
-  "task": "wsq4ffpug",
+  "task": "woj6t25mw",
   "journal": "/root/.claude/projects/-home-user-rooted/61735d01-895f-5d61-bc3c-3f903162bd3a/subagents/workflows/wf_5e433524-1d7/journal.jsonl",
   "done": {
    "sources": 3,
@@ -171,13 +171,13 @@
   "finished": false,
   "cards": null,
   "spine_card_rules": 13,
-  "checked": "2026-10-07T11:58 UTC",
+  "checked": "2026-10-07T12:01 UTC",
   "snapshot_journal": "journals/api-design-and-use.journal.jsonl.gz"
  },
  "contracts-assertions-and-invariants": {
   "batch": 1,
   "wf": "wf_0fc70fe6-185",
-  "task": "wrubs3id2",
+  "task": "wfw2kype5",
   "journal": "/root/.claude/projects/-home-user-rooted/61735d01-895f-5d61-bc3c-3f903162bd3a/subagents/workflows/wf_0fc70fe6-185/journal.jsonl",
   "done": {
    "sources": 3,
@@ -194,13 +194,13 @@
   "finished": false,
   "cards": null,
   "spine_card_rules": 7,
-  "checked": "2026-10-07T11:58 UTC",
+  "checked": "2026-10-07T12:01 UTC",
   "snapshot_journal": "journals/contracts-assertions-and-invariants.journal.jsonl.gz"
  },
  "api-evolution-and-deprecation": {
   "batch": 1,
   "wf": "wf_8bb4db49-a32",
-  "task": "wprwsw1if",
+  "task": "wrkxkq7jf",
   "journal": "/root/.claude/projects/-home-user-rooted/61735d01-895f-5d61-bc3c-3f903162bd3a/subagents/workflows/wf_8bb4db49-a32/journal.jsonl",
   "done": {
    "sources": 3,
@@ -216,13 +216,13 @@
   "finished": false,
   "cards": null,
   "spine_card_rules": 14,
-  "checked": "2026-10-07T11:58 UTC",
+  "checked": "2026-10-07T12:01 UTC",
   "snapshot_journal": "journals/api-evolution-and-deprecation.journal.jsonl.gz"
  },
  "defensive-programming": {
   "batch": 1,
   "wf": "wf_6ef40c38-d36",
-  "task": "wam2sy15d",
+  "task": "w8kj4di33",
   "journal": "/root/.claude/projects/-home-user-rooted/61735d01-895f-5d61-bc3c-3f903162bd3a/subagents/workflows/wf_6ef40c38-d36/journal.jsonl",
   "done": {
    "sources": 3,
@@ -237,13 +237,13 @@
   "finished": false,
   "cards": null,
   "spine_card_rules": 6,
-  "checked": "2026-10-07T11:58 UTC",
+  "checked": "2026-10-07T12:01 UTC",
   "snapshot_journal": "journals/defensive-programming.journal.jsonl.gz"
  },
  "fault-tolerance-retries-timeouts-fallbacks": {
   "batch": 1,
   "wf": "wf_8f00507b-3c0",
-  "task": "w8ciblc5d",
+  "task": "wfbdfiegy",
   "journal": "/root/.claude/projects/-home-user-rooted/61735d01-895f-5d61-bc3c-3f903162bd3a/subagents/workflows/wf_8f00507b-3c0/journal.jsonl",
   "done": {
    "sources": 3,
@@ -260,13 +260,13 @@
   "finished": false,
   "cards": null,
   "spine_card_rules": 9,
-  "checked": "2026-10-07T11:58 UTC",
+  "checked": "2026-10-07T12:01 UTC",
   "snapshot_journal": "journals/fault-tolerance-retries-timeouts-fallbacks.journal.jsonl.gz"
  },
  "resource-management-and-ownership": {
   "batch": 1,
   "wf": "wf_9044328c-674",
-  "task": "wylqypbs9",
+  "task": "w6us4w00l",
   "journal": "/root/.claude/projects/-home-user-rooted/61735d01-895f-5d61-bc3c-3f903162bd3a/subagents/workflows/wf_9044328c-674/journal.jsonl",
   "done": {
    "sources": 3,
@@ -282,13 +282,13 @@
   "finished": false,
   "cards": null,
   "spine_card_rules": 13,
-  "checked": "2026-10-07T11:58 UTC",
+  "checked": "2026-10-07T12:01 UTC",
   "snapshot_journal": "journals/resource-management-and-ownership.journal.jsonl.gz"
  },
  "logging-and-diagnostic-output": {
   "batch": 1,
   "wf": "wf_9c6df0f4-135",
-  "task": "w8680isrf",
+  "task": "wb41hx5k0",
   "journal": "/root/.claude/projects/-home-user-rooted/61735d01-895f-5d61-bc3c-3f903162bd3a/subagents/workflows/wf_9c6df0f4-135/journal.jsonl",
   "done": {
    "sources": 3,
@@ -304,13 +304,13 @@
   "finished": false,
   "cards": null,
   "spine_card_rules": 12,
-  "checked": "2026-10-07T11:58 UTC",
+  "checked": "2026-10-07T12:01 UTC",
   "snapshot_journal": "journals/logging-and-diagnostic-output.journal.jsonl.gz"
  },
  "complexity-and-deep-modules": {
   "batch": 2,
   "wf": "wf_99ebf0a4-9fa",
-  "task": "w08hosj8y",
+  "task": "w3k97m2we",
   "journal": "/root/.claude/projects/-home-user-rooted/61735d01-895f-5d61-bc3c-3f903162bd3a/subagents/workflows/wf_99ebf0a4-9fa/journal.jsonl",
   "done": {
    "sources": 3,
@@ -326,13 +326,13 @@
   "finished": false,
   "cards": null,
   "spine_card_rules": 6,
-  "checked": "2026-10-07T11:58 UTC",
+  "checked": "2026-10-07T12:01 UTC",
   "snapshot_journal": "journals/complexity-and-deep-modules.journal.jsonl.gz"
  },
  "information-hiding-and-encapsulation": {
   "batch": 2,
   "wf": "wf_c9486472-103",
-  "task": "wcm9sa24u",
+  "task": "w8o5lxv78",
   "journal": "/root/.claude/projects/-home-user-rooted/61735d01-895f-5d61-bc3c-3f903162bd3a/subagents/workflows/wf_c9486472-103/journal.jsonl",
   "done": {
    "sources": 3,
@@ -347,13 +347,13 @@
   "finished": false,
   "cards": null,
   "spine_card_rules": 8,
-  "checked": "2026-10-07T11:58 UTC",
+  "checked": "2026-10-07T12:01 UTC",
   "snapshot_journal": "journals/information-hiding-and-encapsulation.journal.jsonl.gz"
  },
  "coupling-and-dependency-direction": {
   "batch": 2,
   "wf": "wf_3dd73ab6-ff7",
-  "task": "wd4cjqpyr",
+  "task": "w08slgu2v",
   "journal": "/root/.claude/projects/-home-user-rooted/61735d01-895f-5d61-bc3c-3f903162bd3a/subagents/workflows/wf_3dd73ab6-ff7/journal.jsonl",
   "done": {
    "sources": 3,
@@ -367,13 +367,13 @@
   "finished": false,
   "cards": null,
   "spine_card_rules": 6,
-  "checked": "2026-10-07T11:58 UTC",
+  "checked": "2026-10-07T12:01 UTC",
   "snapshot_journal": "journals/coupling-and-dependency-direction.journal.jsonl.gz"
  },
  "duplication-and-single-source-of-truth": {
   "batch": 2,
   "wf": "wf_4954e0f2-382",
-  "task": "w5rqu4v2t",
+  "task": "wgninybim",
   "journal": "/root/.claude/projects/-home-user-rooted/61735d01-895f-5d61-bc3c-3f903162bd3a/subagents/workflows/wf_4954e0f2-382/journal.jsonl",
   "done": {
    "sources": 3,
@@ -387,13 +387,13 @@
   "finished": false,
   "cards": null,
   "spine_card_rules": 8,
-  "checked": "2026-10-07T11:58 UTC",
+  "checked": "2026-10-07T12:01 UTC",
   "snapshot_journal": "journals/duplication-and-single-source-of-truth.journal.jsonl.gz"
  },
  "inheritance-versus-composition": {
   "batch": 2,
   "wf": "wf_57723a9e-481",
-  "task": "w8gp6nemu",
+  "task": "wfgtsd00d",
   "journal": "/root/.claude/projects/-home-user-rooted/61735d01-895f-5d61-bc3c-3f903162bd3a/subagents/workflows/wf_57723a9e-481/journal.jsonl",
   "done": {
    "sources": 3,
@@ -407,13 +407,13 @@
   "finished": false,
   "cards": null,
   "spine_card_rules": 8,
-  "checked": "2026-10-07T11:58 UTC",
+  "checked": "2026-10-07T12:01 UTC",
   "snapshot_journal": "journals/inheritance-versus-composition.journal.jsonl.gz"
  },
  "design-patterns-in-construction": {
   "batch": 2,
   "wf": "wf_36eeec5c-850",
-  "task": "ws0ope6o6",
+  "task": "wlhgz5g5d",
   "journal": "/root/.claude/projects/-home-user-rooted/61735d01-895f-5d61-bc3c-3f903162bd3a/subagents/workflows/wf_36eeec5c-850/journal.jsonl",
   "done": {
    "sources": 3,
@@ -429,13 +429,13 @@
   "finished": false,
   "cards": null,
   "spine_card_rules": 7,
-  "checked": "2026-10-07T11:58 UTC",
+  "checked": "2026-10-07T12:01 UTC",
   "snapshot_journal": "journals/design-patterns-in-construction.journal.jsonl.gz"
  },
  "mutable-state-and-immutability": {
   "batch": 2,
   "wf": "wf_cafe9606-0b9",
-  "task": "wztr1tkvc",
+  "task": "w8evhxelk",
   "journal": "/root/.claude/projects/-home-user-rooted/61735d01-895f-5d61-bc3c-3f903162bd3a/subagents/workflows/wf_cafe9606-0b9/journal.jsonl",
   "done": {
    "sources": 3,
@@ -450,13 +450,13 @@
   "finished": false,
   "cards": null,
   "spine_card_rules": 11,
-  "checked": "2026-10-07T11:58 UTC",
+  "checked": "2026-10-07T12:01 UTC",
   "snapshot_journal": "journals/mutable-state-and-immutability.journal.jsonl.gz"
  },
  "functional-style-and-pipelines": {
   "batch": 2,
   "wf": "wf_6240dc5f-500",
-  "task": "wizgbc4wa",
+  "task": "wy1sdiabr",
   "journal": "/root/.claude/projects/-home-user-rooted/61735d01-895f-5d61-bc3c-3f903162bd3a/subagents/workflows/wf_6240dc5f-500/journal.jsonl",
   "done": {
    "sources": 3,
@@ -470,13 +470,13 @@
   "finished": false,
   "cards": null,
   "spine_card_rules": 11,
-  "checked": "2026-10-07T11:58 UTC",
+  "checked": "2026-10-07T12:01 UTC",
   "snapshot_journal": "journals/functional-style-and-pipelines.journal.jsonl.gz"
  },
  "domain-modeling-and-domain-language": {
   "batch": 2,
   "wf": "wf_76c3028f-1e9",
-  "task": "woorvmhrv",
+  "task": "wfrfrig1s",
   "journal": "/root/.claude/projects/-home-user-rooted/61735d01-895f-5d61-bc3c-3f903162bd3a/subagents/workflows/wf_76c3028f-1e9/journal.jsonl",
   "done": {
    "sources": 3,
@@ -491,7 +491,7 @@
   "finished": false,
   "cards": null,
   "spine_card_rules": 10,
-  "checked": "2026-10-07T11:58 UTC",
+  "checked": "2026-10-07T12:01 UTC",
   "snapshot_journal": "journals/domain-modeling-and-domain-language.journal.jsonl.gz"
  }
 }

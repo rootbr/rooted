@@ -129,5 +129,6 @@
    ]
   }
  },
- "note": "runs resumed on their run ids after each stop (usage limit at 22:45 and 05:55 UTC; the operator's pause at 11:58 UTC); the latest attempt is `task`, earlier ones `earlier_tasks`"
+ "note": "runs resumed on their run ids after each stop (usage limit at 22:45 and 05:55 UTC; the operator's pause at 11:58 UTC); the latest attempt is `task`, earlier ones `earlier_tasks`",
+ "paused": "2026-10-07T12:01 UTC: every run stopped by the operator (TaskStop); the journals under ../journals hold every finished agent; continue per HANDOVER.md \u00a75.3 (new session) or \u00a75.4 (same session, resumeFromRunId on `wf`)"
 }
