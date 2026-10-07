@@ -115,5 +115,6 @@
    ]
   }
  },
- "note": "the first launch and the first resume each hit the session usage limit (resets 02:00 and 10:00 UTC); every run resumed on its run id, replaying the cached agents: 05:02 UTC and 11:16 UTC"
+ "note": "the first launch and the first resume each hit the session usage limit (resets 02:00 and 10:00 UTC); every run resumed on its run id, replaying the cached agents: 05:02 UTC and 11:16 UTC",
+ "paused": "2026-10-07T11:58 UTC: every run stopped by the operator's pause (TaskStop); the journals under ../journals hold every finished agent; continue per HANDOVER.md \u00a75.3 (new session) or \u00a75.4 (same session, resumeFromRunId on `wf`)"
 }
