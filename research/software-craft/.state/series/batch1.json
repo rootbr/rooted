@@ -1,15 +1,77 @@
-{"batch": 1, "launched": "2026-10-06T22:5x UTC", "topics": {
- "comments-and-self-documenting-code": {"task": "wengy30rq", "wf": "wf_43e15358-ad0"},
- "layout-and-coding-style": {"task": "wd09zqj0o", "wf": "wf_381224c1-745"},
- "routine-size-and-parameters": {"task": "wsumrwtwk", "wf": "wf_fe4a53a1-01e"},
- "variables-scope-and-numerics": {"task": "w5vo5e33h", "wf": "wf_1b1b3ec6-586"},
- "control-flow": {"task": "wdwj1xviq", "wf": "wf_396b0630-141"},
- "table-driven-and-state-machines": {"task": "w68itctuf", "wf": "wf_0837001f-b71"},
- "generics-and-parameterization": {"task": "wxu7x7y4y", "wf": "wf_14a4223f-56c"},
- "api-design-and-use": {"task": "wu31w5wm0", "wf": "wf_5e433524-1d7"},
- "contracts-assertions-and-invariants": {"task": "w2d3u1ax1", "wf": "wf_0fc70fe6-185"},
- "api-evolution-and-deprecation": {"task": "weiti0c7c", "wf": "wf_8bb4db49-a32"},
- "defensive-programming": {"task": "wm21ombva", "wf": "wf_6ef40c38-d36"},
- "fault-tolerance-retries-timeouts-fallbacks": {"task": "wilqyd9qk", "wf": "wf_8f00507b-3c0"},
- "resource-management-and-ownership": {"task": "wowi7ld15", "wf": "wf_9044328c-674"},
- "logging-and-diagnostic-output": {"task": "wv9y9snf8", "wf": "wf_9c6df0f4-135"}}}
+{
+ "batch": 1,
+ "launched": "2026-10-06T22:5x UTC",
+ "topics": {
+  "comments-and-self-documenting-code": {
+   "task": "wf8nramgr",
+   "wf": "wf_43e15358-ad0",
+   "first_task": "wengy30rq"
+  },
+  "layout-and-coding-style": {
+   "task": "w2gvy5flg",
+   "wf": "wf_381224c1-745",
+   "first_task": "wd09zqj0o"
+  },
+  "routine-size-and-parameters": {
+   "task": "wr0l5t6gu",
+   "wf": "wf_fe4a53a1-01e",
+   "first_task": "wsumrwtwk"
+  },
+  "variables-scope-and-numerics": {
+   "task": "w7zbolbi0",
+   "wf": "wf_1b1b3ec6-586",
+   "first_task": "w5vo5e33h"
+  },
+  "control-flow": {
+   "task": "ws1owi2eq",
+   "wf": "wf_396b0630-141",
+   "first_task": "wdwj1xviq"
+  },
+  "table-driven-and-state-machines": {
+   "task": "wyrge7c9y",
+   "wf": "wf_0837001f-b71",
+   "first_task": "w68itctuf"
+  },
+  "generics-and-parameterization": {
+   "task": "wzge7mvpv",
+   "wf": "wf_14a4223f-56c",
+   "first_task": "wxu7x7y4y"
+  },
+  "api-design-and-use": {
+   "task": "wy7bougsi",
+   "wf": "wf_5e433524-1d7",
+   "first_task": "wu31w5wm0"
+  },
+  "contracts-assertions-and-invariants": {
+   "task": "wkiuijbre",
+   "wf": "wf_0fc70fe6-185",
+   "first_task": "w2d3u1ax1"
+  },
+  "api-evolution-and-deprecation": {
+   "task": "wsml8715r",
+   "wf": "wf_8bb4db49-a32",
+   "first_task": "weiti0c7c"
+  },
+  "defensive-programming": {
+   "task": "w8aywi8aq",
+   "wf": "wf_6ef40c38-d36",
+   "first_task": "wm21ombva"
+  },
+  "fault-tolerance-retries-timeouts-fallbacks": {
+   "task": "wj3te2zew",
+   "wf": "wf_8f00507b-3c0",
+   "first_task": "wilqyd9qk"
+  },
+  "resource-management-and-ownership": {
+   "task": "w81pppw4o",
+   "wf": "wf_9044328c-674",
+   "first_task": "wowi7ld15"
+  },
+  "logging-and-diagnostic-output": {
+   "task": "wmqk4l6fh",
+   "wf": "wf_9c6df0f4-135",
+   "first_task": "wv9y9snf8"
+  }
+ },
+ "note": "the first launch hit the session usage limit (reset 02:00 UTC); every run resumed on its run id at 05:02 UTC, replaying the cached agents"
+}

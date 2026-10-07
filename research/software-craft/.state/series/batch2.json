@@ -1,10 +1,53 @@
-{"batch": 2, "launched": "2026-10-06T22:38 UTC", "group": "B (design, DSN)", "topics": {
- "complexity-and-deep-modules": {"task": "w7i62h1lp", "wf": "wf_99ebf0a4-9fa"},
- "information-hiding-and-encapsulation": {"task": "wla73btan", "wf": "wf_c9486472-103"},
- "coupling-and-dependency-direction": {"task": "wukaja3c2", "wf": "wf_3dd73ab6-ff7"},
- "duplication-and-single-source-of-truth": {"task": "w7bv91r6q", "wf": "wf_4954e0f2-382"},
- "inheritance-versus-composition": {"task": "wicyp0rn3", "wf": "wf_57723a9e-481"},
- "design-patterns-in-construction": {"task": "wikoqqxiu", "wf": "wf_36eeec5c-850"},
- "mutable-state-and-immutability": {"task": "wkeua1hu2", "wf": "wf_cafe9606-0b9"},
- "functional-style-and-pipelines": {"task": "wepjhgfca", "wf": "wf_6240dc5f-500"},
- "domain-modeling-and-domain-language": {"task": "wh40ypvg6", "wf": "wf_76c3028f-1e9"}}}
+{
+ "batch": 2,
+ "launched": "2026-10-06T22:38 UTC",
+ "group": "B (design, DSN)",
+ "topics": {
+  "complexity-and-deep-modules": {
+   "task": "wnv4ap7h0",
+   "wf": "wf_99ebf0a4-9fa",
+   "first_task": "w7i62h1lp"
+  },
+  "information-hiding-and-encapsulation": {
+   "task": "wb9lamq3w",
+   "wf": "wf_c9486472-103",
+   "first_task": "wla73btan"
+  },
+  "coupling-and-dependency-direction": {
+   "task": "wgm2w6ksf",
+   "wf": "wf_3dd73ab6-ff7",
+   "first_task": "wukaja3c2"
+  },
+  "duplication-and-single-source-of-truth": {
+   "task": "w2wvfuz4n",
+   "wf": "wf_4954e0f2-382",
+   "first_task": "w7bv91r6q"
+  },
+  "inheritance-versus-composition": {
+   "task": "w1e5m9z4m",
+   "wf": "wf_57723a9e-481",
+   "first_task": "wicyp0rn3"
+  },
+  "design-patterns-in-construction": {
+   "task": "wncqe7g03",
+   "wf": "wf_36eeec5c-850",
+   "first_task": "wikoqqxiu"
+  },
+  "mutable-state-and-immutability": {
+   "task": "wmxgs64wo",
+   "wf": "wf_cafe9606-0b9",
+   "first_task": "wkeua1hu2"
+  },
+  "functional-style-and-pipelines": {
+   "task": "w99mh2960",
+   "wf": "wf_6240dc5f-500",
+   "first_task": "wepjhgfca"
+  },
+  "domain-modeling-and-domain-language": {
+   "task": "wx1wa9bk4",
+   "wf": "wf_76c3028f-1e9",
+   "first_task": "wh40ypvg6"
+  }
+ },
+ "note": "the first launch hit the session usage limit (reset 02:00 UTC); every run resumed on its run id at 05:02 UTC, replaying the cached agents"
+}
