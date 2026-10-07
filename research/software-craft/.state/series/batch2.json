@@ -4,50 +4,77 @@
  "group": "B (design, DSN)",
  "topics": {
   "complexity-and-deep-modules": {
-   "task": "wnv4ap7h0",
+   "task": "w08hosj8y",
    "wf": "wf_99ebf0a4-9fa",
-   "first_task": "w7i62h1lp"
+   "first_task": "w7i62h1lp",
+   "earlier_tasks": [
+    "wnv4ap7h0"
+   ]
   },
   "information-hiding-and-encapsulation": {
-   "task": "wb9lamq3w",
+   "task": "wcm9sa24u",
    "wf": "wf_c9486472-103",
-   "first_task": "wla73btan"
+   "first_task": "wla73btan",
+   "earlier_tasks": [
+    "wb9lamq3w"
+   ]
   },
   "coupling-and-dependency-direction": {
-   "task": "wgm2w6ksf",
+   "task": "wd4cjqpyr",
    "wf": "wf_3dd73ab6-ff7",
-   "first_task": "wukaja3c2"
+   "first_task": "wukaja3c2",
+   "earlier_tasks": [
+    "wgm2w6ksf"
+   ]
   },
   "duplication-and-single-source-of-truth": {
-   "task": "w2wvfuz4n",
+   "task": "w5rqu4v2t",
    "wf": "wf_4954e0f2-382",
-   "first_task": "w7bv91r6q"
+   "first_task": "w7bv91r6q",
+   "earlier_tasks": [
+    "w2wvfuz4n"
+   ]
   },
   "inheritance-versus-composition": {
-   "task": "w1e5m9z4m",
+   "task": "w8gp6nemu",
    "wf": "wf_57723a9e-481",
-   "first_task": "wicyp0rn3"
+   "first_task": "wicyp0rn3",
+   "earlier_tasks": [
+    "w1e5m9z4m"
+   ]
   },
   "design-patterns-in-construction": {
-   "task": "wncqe7g03",
+   "task": "ws0ope6o6",
    "wf": "wf_36eeec5c-850",
-   "first_task": "wikoqqxiu"
+   "first_task": "wikoqqxiu",
+   "earlier_tasks": [
+    "wncqe7g03"
+   ]
   },
   "mutable-state-and-immutability": {
-   "task": "wmxgs64wo",
+   "task": "wztr1tkvc",
    "wf": "wf_cafe9606-0b9",
-   "first_task": "wkeua1hu2"
+   "first_task": "wkeua1hu2",
+   "earlier_tasks": [
+    "wmxgs64wo"
+   ]
   },
   "functional-style-and-pipelines": {
-   "task": "w99mh2960",
+   "task": "wizgbc4wa",
    "wf": "wf_6240dc5f-500",
-   "first_task": "wepjhgfca"
+   "first_task": "wepjhgfca",
+   "earlier_tasks": [
+    "w99mh2960"
+   ]
   },
   "domain-modeling-and-domain-language": {
-   "task": "wx1wa9bk4",
+   "task": "woorvmhrv",
    "wf": "wf_76c3028f-1e9",
-   "first_task": "wh40ypvg6"
+   "first_task": "wh40ypvg6",
+   "earlier_tasks": [
+    "wx1wa9bk4"
+   ]
   }
  },
- "note": "the first launch hit the session usage limit (reset 02:00 UTC); every run resumed on its run id at 05:02 UTC, replaying the cached agents"
+ "note": "the first launch and the first resume each hit the session usage limit (resets 02:00 and 10:00 UTC); every run resumed on its run id, replaying the cached agents: 05:02 UTC and 11:16 UTC"
 }
