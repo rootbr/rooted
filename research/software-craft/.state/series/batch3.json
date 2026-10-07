@@ -431,5 +431,5 @@
    ]
   }
  },
- "concurrency": "operator's schedule: 15 workflows at a time until 19:00 UTC, then down to 4 as runs end (the cap of 4 keeps about 8 agents in flight and spends about 80 percent of a usage window with no cut)"
+ "concurrency": "operator's decision at 16:40 UTC: the 15 runs in flight finish; a new bundle launches only while fewer than 4 run (about 8 agents in flight, about 80 percent of a usage window, no cut)"
 }
