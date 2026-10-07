@@ -167,6 +167,16 @@
      "task": "w225qmptr",
      "wf": "wf_9092972d-c65",
      "stopped": "2026-10-07T16:05 UTC, operator's cap of four workflows at a time; its journal feeds the rebuilt bundle"
+    },
+    {
+     "part": "r2-rest-1of1",
+     "task": "wkral9q5g",
+     "wf": "wf_cb59f837-b4d"
+    },
+    {
+     "part": "r2-finish",
+     "task": "w2e1jd8k7",
+     "wf": "wf_cc39ca56-9ba"
     }
    ]
   },
@@ -231,6 +241,11 @@
      "task": "wlynlmlt8",
      "wf": "wf_816503f5-004",
      "stopped": "2026-10-07T16:05 UTC, operator's cap of four workflows at a time; its journal feeds the rebuilt bundle"
+    },
+    {
+     "part": "r2-rest-1of1",
+     "task": "wh6xn5400",
+     "wf": "wf_6d4d2f09-c77"
     }
    ]
   },
@@ -266,6 +281,11 @@
      "task": "wtbikhrij",
      "wf": "wf_331fa000-de8",
      "stopped": "2026-10-07T16:05 UTC, operator's cap of four workflows at a time; its journal feeds the rebuilt bundle"
+    },
+    {
+     "part": "r2-rest-1of1",
+     "task": "wlkbek54k",
+     "wf": "wf_844010de-33c"
     }
    ]
   },
@@ -311,6 +331,16 @@
      "task": "wwpi8z0ho",
      "wf": "wf_078751c6-5cf",
      "stopped": "2026-10-07T16:05 UTC, operator's cap of four workflows at a time; its journal feeds the rebuilt bundle"
+    },
+    {
+     "part": "r2-rest-1of1",
+     "task": "wxg2sh1u1",
+     "wf": "wf_9ba60ea3-632"
+    },
+    {
+     "part": "r2-finish",
+     "task": "w42eviiqn",
+     "wf": "wf_bbf723ea-caa"
     }
    ]
   },
@@ -366,5 +396,5 @@
    ]
   }
  },
- "concurrency": "at most 4 workflows at a time from 16:05 UTC (operator's decision): about 8 agents in flight, about 200 agents per usage window, no usage-limit cut"
+ "concurrency": "at most 4 workflows at a time (operator's decision at 16:05 UTC); raised to 10 for the rest of the window that resets at about 17:00 UTC, back to 4 afterwards"
 }
