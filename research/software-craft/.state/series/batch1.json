@@ -3,118 +3,131 @@
  "launched": "2026-10-06T22:5x UTC",
  "topics": {
   "comments-and-self-documenting-code": {
-   "task": "wm49sgjai",
+   "task": "wjjmrni4z",
    "wf": "wf_43e15358-ad0",
    "first_task": "wengy30rq",
    "earlier_tasks": [
-    "wf8nramgr"
+    "wf8nramgr",
+    "wm49sgjai"
    ]
   },
   "layout-and-coding-style": {
-   "task": "w13oepyin",
+   "task": "we2igv8li",
    "wf": "wf_381224c1-745",
    "first_task": "wd09zqj0o",
    "earlier_tasks": [
-    "w2gvy5flg"
+    "w2gvy5flg",
+    "w13oepyin"
    ]
   },
   "routine-size-and-parameters": {
-   "task": "w6j5ymocx",
+   "task": "whhgck042",
    "wf": "wf_fe4a53a1-01e",
    "first_task": "wsumrwtwk",
    "earlier_tasks": [
-    "wr0l5t6gu"
+    "wr0l5t6gu",
+    "w6j5ymocx"
    ]
   },
   "variables-scope-and-numerics": {
-   "task": "whln1vvup",
+   "task": "w6y1e2dl0",
    "wf": "wf_1b1b3ec6-586",
    "first_task": "w5vo5e33h",
    "earlier_tasks": [
-    "w7zbolbi0"
+    "w7zbolbi0",
+    "whln1vvup"
    ]
   },
   "control-flow": {
-   "task": "w6k95zpva",
+   "task": "whqm7p663",
    "wf": "wf_396b0630-141",
    "first_task": "wdwj1xviq",
    "earlier_tasks": [
-    "ws1owi2eq"
+    "ws1owi2eq",
+    "w6k95zpva"
    ]
   },
   "table-driven-and-state-machines": {
-   "task": "w4pd0ct46",
+   "task": "wmo3ya5xc",
    "wf": "wf_0837001f-b71",
    "first_task": "w68itctuf",
    "earlier_tasks": [
-    "wyrge7c9y"
+    "wyrge7c9y",
+    "w4pd0ct46"
    ]
   },
   "generics-and-parameterization": {
-   "task": "we8bok113",
+   "task": "w490kulxa",
    "wf": "wf_14a4223f-56c",
    "first_task": "wxu7x7y4y",
    "earlier_tasks": [
-    "wzge7mvpv"
+    "wzge7mvpv",
+    "we8bok113"
    ]
   },
   "api-design-and-use": {
-   "task": "wsq4ffpug",
+   "task": "woj6t25mw",
    "wf": "wf_5e433524-1d7",
    "first_task": "wu31w5wm0",
    "earlier_tasks": [
-    "wy7bougsi"
+    "wy7bougsi",
+    "wsq4ffpug"
    ]
   },
   "contracts-assertions-and-invariants": {
-   "task": "wrubs3id2",
+   "task": "wfw2kype5",
    "wf": "wf_0fc70fe6-185",
    "first_task": "w2d3u1ax1",
    "earlier_tasks": [
-    "wkiuijbre"
+    "wkiuijbre",
+    "wrubs3id2"
    ]
   },
   "api-evolution-and-deprecation": {
-   "task": "wprwsw1if",
+   "task": "wrkxkq7jf",
    "wf": "wf_8bb4db49-a32",
    "first_task": "weiti0c7c",
    "earlier_tasks": [
-    "wsml8715r"
+    "wsml8715r",
+    "wprwsw1if"
    ]
   },
   "defensive-programming": {
-   "task": "wam2sy15d",
+   "task": "w8kj4di33",
    "wf": "wf_6ef40c38-d36",
    "first_task": "wm21ombva",
    "earlier_tasks": [
-    "w8aywi8aq"
+    "w8aywi8aq",
+    "wam2sy15d"
    ]
   },
   "fault-tolerance-retries-timeouts-fallbacks": {
-   "task": "w8ciblc5d",
+   "task": "wfbdfiegy",
    "wf": "wf_8f00507b-3c0",
    "first_task": "wilqyd9qk",
    "earlier_tasks": [
-    "wj3te2zew"
+    "wj3te2zew",
+    "w8ciblc5d"
    ]
   },
   "resource-management-and-ownership": {
-   "task": "wylqypbs9",
+   "task": "w6us4w00l",
    "wf": "wf_9044328c-674",
    "first_task": "wowi7ld15",
    "earlier_tasks": [
-    "w81pppw4o"
+    "w81pppw4o",
+    "wylqypbs9"
    ]
   },
   "logging-and-diagnostic-output": {
-   "task": "w8680isrf",
+   "task": "wb41hx5k0",
    "wf": "wf_9c6df0f4-135",
    "first_task": "wv9y9snf8",
    "earlier_tasks": [
-    "wmqk4l6fh"
+    "wmqk4l6fh",
+    "w8680isrf"
    ]
   }
  },
- "note": "the first launch and the first resume each hit the session usage limit (resets 02:00 and 10:00 UTC); every run resumed on its run id, replaying the cached agents: 05:02 UTC and 11:16 UTC",
- "paused": "2026-10-07T11:58 UTC: every run stopped by the operator's pause (TaskStop); the journals under ../journals hold every finished agent; continue per HANDOVER.md \u00a75.3 (new session) or \u00a75.4 (same session, resumeFromRunId on `wf`)"
+ "note": "runs resumed on their run ids after each stop (usage limit at 22:45 and 05:55 UTC; the operator's pause at 11:58 UTC); the latest attempt is `task`, earlier ones `earlier_tasks`"
 }

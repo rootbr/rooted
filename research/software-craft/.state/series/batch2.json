@@ -4,78 +4,86 @@
  "group": "B (design, DSN)",
  "topics": {
   "complexity-and-deep-modules": {
-   "task": "w08hosj8y",
+   "task": "w3k97m2we",
    "wf": "wf_99ebf0a4-9fa",
    "first_task": "w7i62h1lp",
    "earlier_tasks": [
-    "wnv4ap7h0"
+    "wnv4ap7h0",
+    "w08hosj8y"
    ]
   },
   "information-hiding-and-encapsulation": {
-   "task": "wcm9sa24u",
+   "task": "w8o5lxv78",
    "wf": "wf_c9486472-103",
    "first_task": "wla73btan",
    "earlier_tasks": [
-    "wb9lamq3w"
+    "wb9lamq3w",
+    "wcm9sa24u"
    ]
   },
   "coupling-and-dependency-direction": {
-   "task": "wd4cjqpyr",
+   "task": "w08slgu2v",
    "wf": "wf_3dd73ab6-ff7",
    "first_task": "wukaja3c2",
    "earlier_tasks": [
-    "wgm2w6ksf"
+    "wgm2w6ksf",
+    "wd4cjqpyr"
    ]
   },
   "duplication-and-single-source-of-truth": {
-   "task": "w5rqu4v2t",
+   "task": "wgninybim",
    "wf": "wf_4954e0f2-382",
    "first_task": "w7bv91r6q",
    "earlier_tasks": [
-    "w2wvfuz4n"
+    "w2wvfuz4n",
+    "w5rqu4v2t"
    ]
   },
   "inheritance-versus-composition": {
-   "task": "w8gp6nemu",
+   "task": "wfgtsd00d",
    "wf": "wf_57723a9e-481",
    "first_task": "wicyp0rn3",
    "earlier_tasks": [
-    "w1e5m9z4m"
+    "w1e5m9z4m",
+    "w8gp6nemu"
    ]
   },
   "design-patterns-in-construction": {
-   "task": "ws0ope6o6",
+   "task": "wlhgz5g5d",
    "wf": "wf_36eeec5c-850",
    "first_task": "wikoqqxiu",
    "earlier_tasks": [
-    "wncqe7g03"
+    "wncqe7g03",
+    "ws0ope6o6"
    ]
   },
   "mutable-state-and-immutability": {
-   "task": "wztr1tkvc",
+   "task": "w8evhxelk",
    "wf": "wf_cafe9606-0b9",
    "first_task": "wkeua1hu2",
    "earlier_tasks": [
-    "wmxgs64wo"
+    "wmxgs64wo",
+    "wztr1tkvc"
    ]
   },
   "functional-style-and-pipelines": {
-   "task": "wizgbc4wa",
+   "task": "wy1sdiabr",
    "wf": "wf_6240dc5f-500",
    "first_task": "wepjhgfca",
    "earlier_tasks": [
-    "w99mh2960"
+    "w99mh2960",
+    "wizgbc4wa"
    ]
   },
   "domain-modeling-and-domain-language": {
-   "task": "woorvmhrv",
+   "task": "wfrfrig1s",
    "wf": "wf_76c3028f-1e9",
    "first_task": "wh40ypvg6",
    "earlier_tasks": [
-    "wx1wa9bk4"
+    "wx1wa9bk4",
+    "woorvmhrv"
    ]
   }
  },
- "note": "the first launch and the first resume each hit the session usage limit (resets 02:00 and 10:00 UTC); every run resumed on its run id, replaying the cached agents: 05:02 UTC and 11:16 UTC",
- "paused": "2026-10-07T11:58 UTC: every run stopped by the operator's pause (TaskStop); the journals under ../journals hold every finished agent; continue per HANDOVER.md \u00a75.3 (new session) or \u00a75.4 (same session, resumeFromRunId on `wf`)"
+ "note": "runs resumed on their run ids after each stop (usage limit at 22:45 and 05:55 UTC; the operator's pause at 11:58 UTC); the latest attempt is `task`, earlier ones `earlier_tasks`"
 }
