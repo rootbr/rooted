@@ -1,6 +1,6 @@
 # Series status
 
-Snapshot taken 2026-10-07T20:55 UTC by `series/series-status.py --snapshot`. Journals under `journals/`, finished runs' outputs under `outputs/`.
+Snapshot taken 2026-10-07T21:10 UTC by `series/series-status.py --snapshot`. Journals under `journals/`, finished runs' outputs under `outputs/`.
 
 `done` counts the agents whose results the journal holds (cached for a continuation); `failed` the agents a usage-limit stop or an error ended, which a continuation re-runs. `cards` is the count in the run's own output; a run whose agents failed shipped none, and its cards come from the continuation. A continuation run (batch 3 and later) is one bundle of a topic, named by its part; a topic is finished when every part's run is complete.
 
@@ -69,7 +69,7 @@ Snapshot taken 2026-10-07T20:55 UTC by `series/series-status.py --snapshot`. Jou
 | 3 | `complexity-and-deep-modules` 2of2 | 6 | - | verify 3 | 0 | run ended, agents failed |
 | 3 | `complexity-and-deep-modules` r2-rest-1of1 | ? | - | - | - | running or stopped |
 | 3 | `complexity-and-deep-modules` r2-rest-1of1 | 6 | verify 3, fix 3, verify2 2, close1 2 | verify2 1 | 2 | run ended, agents failed |
-| 3 | `complexity-and-deep-modules` r3-finish | ? | - | - | - | running or stopped |
+| 3 | `complexity-and-deep-modules` r3-finish | ? | verify2 1 | - | - | running or stopped |
 | 3 | `information-hiding-and-encapsulation` 1of2 | 8 | verify 4, fix 4, verify2 1 | verify2 3, close1 1 | 0 | run ended, agents failed |
 | 3 | `information-hiding-and-encapsulation` r2-finish | ? | - | - | - | running or stopped |
 | 3 | `information-hiding-and-encapsulation` r2-finish | 8 | verify2 3 | - | 4 | run complete |
@@ -77,18 +77,20 @@ Snapshot taken 2026-10-07T20:55 UTC by `series/series-status.py --snapshot`. Jou
 | 3 | `coupling-and-dependency-direction` 2of2 | 6 | - | verify 3 | 0 | run ended, agents failed |
 | 3 | `coupling-and-dependency-direction` r2-rest-1of1 | ? | - | - | - | running or stopped |
 | 3 | `coupling-and-dependency-direction` r2-rest-1of1 | 6 | verify 3, fix 3, verify2 1 | verify2 2 | 1 | run ended, agents failed |
-| 3 | `coupling-and-dependency-direction` r3-finish | ? | - | - | - | running or stopped |
+| 3 | `coupling-and-dependency-direction` r3-finish | 6 | verify2 2 | - | 2 | run complete |
 | 3 | `duplication-and-single-source-of-truth` 1of2 | 8 | verify 4, fix 4, verify2 2 | verify2 2, close1 2 | 0 | run ended, agents failed |
 | 3 | `duplication-and-single-source-of-truth` r2-finish | ? | - | - | - | running or stopped |
 | 3 | `duplication-and-single-source-of-truth` r2-finish | 8 | verify2 2 | - | 4 | run complete |
 | 3 | `duplication-and-single-source-of-truth` r2-rest-1of1 | 8 | verify 3, fix 3 | verify 1, verify2 3 | 0 | run ended, agents failed |
+| 3 | `duplication-and-single-source-of-truth` r3-finish | ? | - | - | - | running or stopped |
+| 3 | `duplication-and-single-source-of-truth` r3-rest | ? | - | - | - | running or stopped |
 | 3 | `inheritance-versus-composition` 1of2 | 8 | draft 1, verify 4, fix 4 | verify2 4 | 0 | run ended, agents failed |
 | 3 | `inheritance-versus-composition` r2-finish | ? | - | - | - | running or stopped |
 | 3 | `design-patterns-in-construction` 1of2 | 7 | verify 3, fix 4, verify2 3, close1 3 | verify2 1 | 3 | run ended, agents failed |
 | 3 | `design-patterns-in-construction` r2-finish | ? | - | - | - | running or stopped |
 | 3 | `design-patterns-in-construction` r2-rest-1of1 | 7 | verify 2, fix 3, verify2 2, close1 2 | verify2 1 | 2 | run ended, agents failed |
 | 3 | `design-patterns-in-construction` r2-finish | 7 | verify2 1 | - | 1 | run complete |
-| 3 | `design-patterns-in-construction` r3-finish | ? | - | - | - | running or stopped |
+| 3 | `design-patterns-in-construction` r3-finish | 7 | verify2 1 | - | 1 | run complete |
 | 3 | `mutable-state-and-immutability` 1of2 | 11 | draft 2, verify 6 | fix 6 | 0 | run ended, agents failed |
 | 3 | `mutable-state-and-immutability` r2-rest-1of2 | ? | fix 1 | - | - | running or stopped |
 | 3 | `mutable-state-and-immutability` r2-rest-2of2 | ? | - | - | - | running or stopped |

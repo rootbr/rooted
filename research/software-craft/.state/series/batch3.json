@@ -351,6 +351,16 @@
      "part": "r2-rest-1of1",
      "task": "w73hkpgkh",
      "wf": "wf_84f217d2-b9c"
+    },
+    {
+     "part": "r3-finish",
+     "task": "w776esliu",
+     "wf": "wf_d0b0b44a-18e"
+    },
+    {
+     "part": "r3-rest",
+     "task": "wq8fkl7zj",
+     "wf": "wf_c8f3cb41-7a4"
     }
    ]
   },

@@ -17,7 +17,7 @@ elif cmd=="next":
     todo=[e for e in q["queue"] if e["status"] in ("pending","rebuild")][:n]
     print(f"running {len(running)}, cap {q['cap']}")
     for e in todo:
-        out=subprocess.run([f"{S}/rebuild.sh", e["slug"], e["kind"]] + (["2"] if "of2" in e["part"] else []), capture_output=True, text=True)
+        out=subprocess.run([f"{S}/rebuild.sh", e["slug"], e["kind"]] + (["2"] if "of2" in e["part"] else []), capture_output=True, text=True, env={**__import__("os").environ, "ROUND_DIR": "r3"})
         lines=[l for l in out.stdout.splitlines() if "rule(s)," in l]
         print(e["slug"], e["part"], e["rules"], "rules ->", e["bundle"]); print("   ", "\n    ".join(l[:110] for l in lines))
 elif cmd=="show":
