@@ -1,6 +1,6 @@
 # Series status
 
-Snapshot taken 2026-10-07T22:29 UTC by `series/series-status.py --snapshot`. Journals under `journals/`, finished runs' outputs under `outputs/`.
+Snapshot taken 2026-10-07T23:22 UTC by `series/series-status.py --snapshot`. Journals under `journals/`, finished runs' outputs under `outputs/`.
 
 `done` counts the agents whose results the journal holds (cached for a continuation); `failed` the agents a usage-limit stop or an error ended, which a continuation re-runs. `cards` is the count in the run's own output; a run whose agents failed shipped none, and its cards come from the continuation. A continuation run (batch 3 and later) is one bundle of a topic, named by its part; a topic is finished when every part's run is complete.
 
@@ -37,7 +37,7 @@ Snapshot taken 2026-10-07T22:29 UTC by `series/series-status.py --snapshot`. Jou
 | 3 | `routine-size-and-parameters` r2-finish | ? | - | - | - | running or stopped |
 | 3 | `variables-scope-and-numerics` 1of2 | 12 | verify 5, fix 5 | fix 1, verify2 5 | 0 | run ended, agents failed |
 | 3 | `variables-scope-and-numerics` r2-finish | 12 | verify2 5 | - | 5 | run complete |
-| 3 | `variables-scope-and-numerics` r3-rest | ? | - | - | - | running or stopped |
+| 3 | `variables-scope-and-numerics` r3-rest | ? | verify 6, fix 7 | - | - | running or stopped |
 | 3 | `control-flow` 1of2 | 12 | draft 1, verify 6, fix 5 | fix 1, verify2 5 | 0 | run ended, agents failed |
 | 3 | `control-flow` r2-finish | ? | - | - | - | running or stopped |
 | 3 | `table-driven-and-state-machines` 1of2 | 8 | verify 3, fix 4, verify2 3, close1 1 | verify2 1, close1 1 | 2 | run ended, agents failed |
@@ -50,7 +50,7 @@ Snapshot taken 2026-10-07T22:29 UTC by `series/series-status.py --snapshot`. Jou
 | 3 | `generics-and-parameterization` r2-finish | ? | - | - | - | running or stopped |
 | 3 | `api-design-and-use` 1of2 | 12 | verify 6, fix 6 | verify2 6 | 0 | run ended, agents failed |
 | 3 | `api-design-and-use` r2-finish | 12 | verify2 6 | - | 6 | run complete |
-| 3 | `api-design-and-use` r3-rest | ? | verify 6, fix 3 | - | - | running or stopped |
+| 3 | `api-design-and-use` r3-rest | 12 | verify 6, fix 6, verify2 6, close1 6 | - | 6 | run complete |
 | 3 | `contracts-assertions-and-invariants` 1of2 | 7 | verify 3, fix 4, verify2 2, close1 1 | verify2 2, close1 1 | 1 | run ended, agents failed |
 | 3 | `contracts-assertions-and-invariants` r2-finish | ? | - | - | - | running or stopped |
 | 3 | `contracts-assertions-and-invariants` r2-finish | 7 | verify2 2 | - | 3 | run complete |
@@ -58,7 +58,7 @@ Snapshot taken 2026-10-07T22:29 UTC by `series/series-status.py --snapshot`. Jou
 | 3 | `contracts-assertions-and-invariants` r3-finish | 7 | verify2 1 | - | 2 | run complete |
 | 3 | `api-evolution-and-deprecation` 1of2 | 12 | verify 5, fix 6 | verify2 6 | 0 | run ended, agents failed |
 | 3 | `api-evolution-and-deprecation` r2-finish | 12 | verify2 6 | - | 6 | run complete |
-| 3 | `api-evolution-and-deprecation` r3-rest | ? | verify 4 | - | - | running or stopped |
+| 3 | `api-evolution-and-deprecation` r3-rest | ? | verify 6, fix 6, verify2 6, close1 4 | - | - | running or stopped |
 | 3 | `defensive-programming` 1of2 | 6 | verify 1, fix 3, verify2 3, close1 3 | - | 3 | run complete |
 | 3 | `defensive-programming` 2of2 | 6 | fix 2 | verify 1, verify2 2 | 0 | run ended, agents failed |
 | 3 | `defensive-programming` r2-finish | ? | - | - | - | running or stopped |
@@ -68,7 +68,7 @@ Snapshot taken 2026-10-07T22:29 UTC by `series/series-status.py --snapshot`. Jou
 | 3 | `fault-tolerance-retries-timeouts-fallbacks` r2-finish | ? | - | - | - | running or stopped |
 | 3 | `resource-management-and-ownership` 1of2 | 12 | verify 5, fix 6 | verify2 6 | 0 | run ended, agents failed |
 | 3 | `resource-management-and-ownership` r2-finish | 12 | verify2 6 | - | 6 | run complete |
-| 3 | `resource-management-and-ownership` r3-rest | ? | verify 4, fix 2 | - | - | running or stopped |
+| 3 | `resource-management-and-ownership` r3-rest | ? | verify 5, fix 6, verify2 5, close1 5 | - | - | running or stopped |
 | 3 | `logging-and-diagnostic-output` 1of2 | 12 | verify 5, fix 5, verify2 2 | fix 1, verify2 3, close1 1 | 1 | run ended, agents failed |
 | 3 | `logging-and-diagnostic-output` r2-finish | ? | - | - | - | running or stopped |
 | 3 | `complexity-and-deep-modules` 1of2 | 6 | verify 2, fix 3, verify2 3, close1 3 | - | 3 | run complete |
@@ -93,6 +93,7 @@ Snapshot taken 2026-10-07T22:29 UTC by `series/series-status.py --snapshot`. Jou
 | 3 | `duplication-and-single-source-of-truth` r3-rest | 8 | verify 1, fix 1, verify2 1, close1 1 | - | 1 | run complete |
 | 3 | `inheritance-versus-composition` 1of2 | 8 | draft 1, verify 4, fix 4 | verify2 4 | 0 | run ended, agents failed |
 | 3 | `inheritance-versus-composition` r2-finish | ? | - | - | - | running or stopped |
+| 3 | `inheritance-versus-composition` r3-finish | ? | - | - | - | running or stopped |
 | 3 | `design-patterns-in-construction` 1of2 | 7 | verify 3, fix 4, verify2 3, close1 3 | verify2 1 | 3 | run ended, agents failed |
 | 3 | `design-patterns-in-construction` r2-finish | ? | - | - | - | running or stopped |
 | 3 | `design-patterns-in-construction` r2-rest-1of1 | 7 | verify 2, fix 3, verify2 2, close1 2 | verify2 1 | 2 | run ended, agents failed |
