@@ -1,8 +1,8 @@
 # Series status
 
-Snapshot taken 2026-10-07T12:01 UTC by `series/series-status.py --snapshot`. Journals under `journals/`, finished runs' outputs under `outputs/`.
+Snapshot taken 2026-10-07T13:05 UTC by `series/series-status.py --snapshot`. Journals under `journals/`, finished runs' outputs under `outputs/`.
 
-`done` counts the agents whose results the journal holds (cached for a continuation); `failed` the agents a usage-limit stop or an error ended, which a continuation re-runs. `cards` is the count in the run's own output; a run whose agents failed shipped none, and its cards come from the continuation.
+`done` counts the agents whose results the journal holds (cached for a continuation); `failed` the agents a usage-limit stop or an error ended, which a continuation re-runs. `cards` is the count in the run's own output; a run whose agents failed shipped none, and its cards come from the continuation. A continuation run (batch 3 and later) is one bundle of a topic, named by its part; a topic is finished when every part's run is complete.
 
 | Batch | Topic | Spine card rules | Done | Failed | Cards in output | State |
 |--|--|--|--|--|--|--|
@@ -29,3 +29,27 @@ Snapshot taken 2026-10-07T12:01 UTC by `series/series-status.py --snapshot`. Jou
 | 2 | `mutable-state-and-immutability` | 11 | sources 3, spine 1, draft 9 | sources 3, draft 9, verify 2 | - | running or stopped |
 | 2 | `functional-style-and-pipelines` | 11 | sources 3, spine 1, draft 8 | sources 3, draft 11 | - | running or stopped |
 | 2 | `domain-modeling-and-domain-language` | 10 | sources 3, spine 1, draft 10 | sources 3, draft 9, verify 1 | - | running or stopped |
+| 3 | `comments-and-self-documenting-code` 1of2 | ? | verify 5, fix 5 | - | - | running or stopped |
+| 3 | `layout-and-coding-style` 1of2 | ? | verify 5, fix 5 | - | - | running or stopped |
+| 3 | `routine-size-and-parameters` 1of2 | ? | verify 3, fix 4, verify2 2 | - | - | running or stopped |
+| 3 | `variables-scope-and-numerics` 1of2 | ? | verify 4, fix 4 | - | - | running or stopped |
+| 3 | `control-flow` 1of2 | ? | draft 1, verify 5, fix 1 | - | - | running or stopped |
+| 3 | `table-driven-and-state-machines` 1of2 | ? | verify 3, fix 4, verify2 2 | - | - | running or stopped |
+| 3 | `generics-and-parameterization` 1of2 | ? | verify 3, fix 4, verify2 1 | - | - | running or stopped |
+| 3 | `api-design-and-use` 1of2 | ? | verify 6, fix 2 | - | - | running or stopped |
+| 3 | `contracts-assertions-and-invariants` 1of2 | ? | verify 3, fix 3, verify2 1 | - | - | running or stopped |
+| 3 | `api-evolution-and-deprecation` 1of2 | ? | verify 5, fix 4 | - | - | running or stopped |
+| 3 | `defensive-programming` 1of2 | 6 | verify 1, fix 3, verify2 3, close1 3 | - | 3 | run complete |
+| 3 | `defensive-programming` 2of2 | ? | - | - | - | running or stopped |
+| 3 | `fault-tolerance-retries-timeouts-fallbacks` 1of2 | ? | verify 4, fix 5 | - | - | running or stopped |
+| 3 | `resource-management-and-ownership` 1of2 | ? | verify 5, fix 4 | - | - | running or stopped |
+| 3 | `logging-and-diagnostic-output` 1of2 | ? | verify 5, fix 5 | - | - | running or stopped |
+| 3 | `complexity-and-deep-modules` 1of2 | ? | verify 2, fix 3, verify2 2, close1 2 | - | - | running or stopped |
+| 3 | `information-hiding-and-encapsulation` 1of2 | ? | verify 4, fix 3 | - | - | running or stopped |
+| 3 | `coupling-and-dependency-direction` 1of2 | ? | verify 3, fix 3, verify2 2, close1 2 | - | - | running or stopped |
+| 3 | `duplication-and-single-source-of-truth` 1of2 | ? | verify 4, fix 4, verify2 2 | - | - | running or stopped |
+| 3 | `inheritance-versus-composition` 1of2 | ? | draft 1, verify 4, fix 3 | - | - | running or stopped |
+| 3 | `design-patterns-in-construction` 1of2 | ? | verify 3, fix 4, verify2 2 | - | - | running or stopped |
+| 3 | `mutable-state-and-immutability` 1of2 | ? | draft 2, verify 4 | - | - | running or stopped |
+| 3 | `functional-style-and-pipelines` 1of2 | ? | draft 2, verify 5 | - | - | running or stopped |
+| 3 | `domain-modeling-and-domain-language` 1of2 | ? | verify 5, fix 4 | - | - | running or stopped |
