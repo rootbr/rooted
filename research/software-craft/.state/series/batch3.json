@@ -1,7 +1,7 @@
 {
  "batch": 3,
  "launched": "2026-10-07T12:08 UTC",
- "kind": "continuation (HANDOVER.md \u00a75.3): round-1 bundles built by scripts/research-continue.py --from-bundle --split 2 from the journals under ../journals; part 1of2 of every in-flight topic of batches 1 and 2 launched first, 2of2 after it ends. After the usage limit cut the first parts: `r2-finish` bundles (research-continue.py --resume-cut-short --skip-carded: the missing second verdicts and closing edits of the rules whose fix ran) and `r2-rest` bundles (--round 1 --skip-fixed --skip-carded: fix, second verdict and closing edit of the rules whose fix had not run), built from the original journal plus every batch-3 journal of the topic",
+ "kind": "continuation (HANDOVER.md \u00a75.3): round-1 bundles built by scripts/research-continue.py --from-bundle --split 2 from the journals under ../journals; part 1of2 of every in-flight topic of batches 1 and 2 launched first, 2of2 after it ends. After the usage limit cut the first parts: `r2-finish` bundles (research-continue.py --resume-cut-short --skip-carded: the missing second verdicts and closing edits of the rules whose fix ran) and `r2-rest` bundles (--round 1 --skip-fixed --skip-carded: fix, second verdict and closing edit of the rules whose fix had not run), built from the original journal plus every batch-3 journal of the topic. Third round (`r3-finish`, `r3-rest`): the same two kinds rebuilt from every journal of the topic after the second usage-limit cut; one bundle per kind per topic, four workflows at a time.",
  "topics": {
   "comments-and-self-documenting-code": {
    "runs": [
@@ -153,6 +153,11 @@
      "part": "r2-rest-1of1",
      "task": "wbrglnuvq",
      "wf": "wf_a1ee6924-71d"
+    },
+    {
+     "part": "r3-finish",
+     "task": "wamp553h3",
+     "wf": "wf_bac2aa7c-b36"
     }
    ]
   },
@@ -266,6 +271,11 @@
      "part": "r2-rest-1of1",
      "task": "wh6xn5400",
      "wf": "wf_6d4d2f09-c77"
+    },
+    {
+     "part": "r3-finish",
+     "task": "wekclg17l",
+     "wf": "wf_8628c4fa-b59"
     }
    ]
   },
@@ -311,6 +321,11 @@
      "part": "r2-rest-1of1",
      "task": "wlkbek54k",
      "wf": "wf_844010de-33c"
+    },
+    {
+     "part": "r3-finish",
+     "task": "w335f6993",
+     "wf": "wf_ffe54cbd-e1b"
     }
    ]
   },
@@ -376,6 +391,11 @@
      "part": "r2-finish",
      "task": "w42eviiqn",
      "wf": "wf_bbf723ea-caa"
+    },
+    {
+     "part": "r3-finish",
+     "task": "w83uc08x6",
+     "wf": "wf_3fe5f5d4-06b"
     }
    ]
   },
