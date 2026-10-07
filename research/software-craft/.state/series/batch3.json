@@ -99,6 +99,11 @@
      "part": "r2-rest-1of1",
      "task": "w6oczb0j8",
      "wf": "wf_869df62e-ddf"
+    },
+    {
+     "part": "r3-finish",
+     "task": "wu3sedrr7",
+     "wf": "wf_25574952-8a8"
     }
    ]
   },
