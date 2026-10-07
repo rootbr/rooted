@@ -138,6 +138,11 @@
      "part": "r2-finish",
      "task": "wmiq9zh45",
      "wf": "wf_c63b7000-87d"
+    },
+    {
+     "part": "r3-rest",
+     "task": "w9h079a10",
+     "wf": "wf_05697861-23f"
     }
    ]
   },
