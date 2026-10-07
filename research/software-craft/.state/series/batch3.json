@@ -104,6 +104,11 @@
      "part": "r3-finish",
      "task": "wu3sedrr7",
      "wf": "wf_25574952-8a8"
+    },
+    {
+     "part": "r3-rest",
+     "task": "wwkka9wop",
+     "wf": "wf_e55017b1-2ce"
     }
    ]
   },
