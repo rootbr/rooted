@@ -1,0 +1,214 @@
+{
+ "batch": 3,
+ "launched": "2026-10-07T12:08 UTC",
+ "kind": "continuation (HANDOVER.md \u00a75.3): round-1 bundles built by scripts/research-continue.py --from-bundle --split 2 from the journals under ../journals; part 1of2 of every in-flight topic of batches 1 and 2 launched first, 2of2 after it ends",
+ "topics": {
+  "comments-and-self-documenting-code": {
+   "runs": [
+    {
+     "part": "1of2",
+     "task": "wxuisi9ra",
+     "wf": "wf_f746b93b-624"
+    }
+   ]
+  },
+  "layout-and-coding-style": {
+   "runs": [
+    {
+     "part": "1of2",
+     "task": "wwvocvonz",
+     "wf": "wf_364f3b66-fc0"
+    }
+   ]
+  },
+  "routine-size-and-parameters": {
+   "runs": [
+    {
+     "part": "1of2",
+     "task": "wpxec881y",
+     "wf": "wf_e9208921-a7c"
+    }
+   ]
+  },
+  "variables-scope-and-numerics": {
+   "runs": [
+    {
+     "part": "1of2",
+     "task": "we20mrpbr",
+     "wf": "wf_3f946a0f-efa"
+    }
+   ]
+  },
+  "control-flow": {
+   "runs": [
+    {
+     "part": "1of2",
+     "task": "wechvt1t7",
+     "wf": "wf_5afd0534-c5c"
+    }
+   ]
+  },
+  "table-driven-and-state-machines": {
+   "runs": [
+    {
+     "part": "1of2",
+     "task": "wj96ah1yc",
+     "wf": "wf_0c1f7f8e-3ea"
+    }
+   ]
+  },
+  "generics-and-parameterization": {
+   "runs": [
+    {
+     "part": "1of2",
+     "task": "w7ih9nt53",
+     "wf": "wf_0297847b-f51"
+    }
+   ]
+  },
+  "api-design-and-use": {
+   "runs": [
+    {
+     "part": "1of2",
+     "task": "wl932igqz",
+     "wf": "wf_305718d3-75c"
+    }
+   ]
+  },
+  "contracts-assertions-and-invariants": {
+   "runs": [
+    {
+     "part": "1of2",
+     "task": "wjmfswr2t",
+     "wf": "wf_73e3ac16-171"
+    }
+   ]
+  },
+  "api-evolution-and-deprecation": {
+   "runs": [
+    {
+     "part": "1of2",
+     "task": "w9eheta8z",
+     "wf": "wf_f6279f04-bce"
+    }
+   ]
+  },
+  "defensive-programming": {
+   "runs": [
+    {
+     "part": "1of2",
+     "task": "w63agfemk",
+     "wf": "wf_d3eec0de-a3f"
+    }
+   ]
+  },
+  "fault-tolerance-retries-timeouts-fallbacks": {
+   "runs": [
+    {
+     "part": "1of2",
+     "task": "wa3qazryy",
+     "wf": "wf_f3a3818b-20b"
+    }
+   ]
+  },
+  "resource-management-and-ownership": {
+   "runs": [
+    {
+     "part": "1of2",
+     "task": "wyz6u6vmi",
+     "wf": "wf_a14a8c6f-df0"
+    }
+   ]
+  },
+  "logging-and-diagnostic-output": {
+   "runs": [
+    {
+     "part": "1of2",
+     "task": "wabwmygqd",
+     "wf": "wf_5621e98a-672"
+    }
+   ]
+  },
+  "complexity-and-deep-modules": {
+   "runs": [
+    {
+     "part": "1of2",
+     "task": "wvn0x5w2y",
+     "wf": "wf_0db193bd-c6c"
+    }
+   ]
+  },
+  "information-hiding-and-encapsulation": {
+   "runs": [
+    {
+     "part": "1of2",
+     "task": "whnraacqk",
+     "wf": "wf_7caca05e-dfe"
+    }
+   ]
+  },
+  "coupling-and-dependency-direction": {
+   "runs": [
+    {
+     "part": "1of2",
+     "task": "w916zwsmy",
+     "wf": "wf_8aede842-d87"
+    }
+   ]
+  },
+  "duplication-and-single-source-of-truth": {
+   "runs": [
+    {
+     "part": "1of2",
+     "task": "wjg2knqxy",
+     "wf": "wf_91164181-c5f"
+    }
+   ]
+  },
+  "inheritance-versus-composition": {
+   "runs": [
+    {
+     "part": "1of2",
+     "task": "w0jvr4r7l",
+     "wf": "wf_bb3e3c34-e64"
+    }
+   ]
+  },
+  "design-patterns-in-construction": {
+   "runs": [
+    {
+     "part": "1of2",
+     "task": "wyfdmkft2",
+     "wf": "wf_e8339c99-63d"
+    }
+   ]
+  },
+  "mutable-state-and-immutability": {
+   "runs": [
+    {
+     "part": "1of2",
+     "task": "wr0muolxf",
+     "wf": "wf_7cd930a5-fc8"
+    }
+   ]
+  },
+  "functional-style-and-pipelines": {
+   "runs": [
+    {
+     "part": "1of2",
+     "task": "wlaut4zdg",
+     "wf": "wf_5ea7c35d-798"
+    }
+   ]
+  },
+  "domain-modeling-and-domain-language": {
+   "runs": [
+    {
+     "part": "1of2",
+     "task": "wi8al0q2t",
+     "wf": "wf_303796d1-15f"
+    }
+   ]
+  }
+ }
+}

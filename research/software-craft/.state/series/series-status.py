@@ -5,12 +5,14 @@ repository, so another session (or another checkout) continues them without re-r
 Usage:
   series-status.py [--batches <batchN.json> ...] [--workflows-dir <dir>] [--tasks-dir <dir>] [--snapshot]
     --batches        the batch records (default: every batch*.json beside this script); each names a topic's
-                     workflow run id (`wf`) and its latest task id (`task`)
+                     workflow run id (`wf`) and its latest task id (`task`), or, for a topic continued over
+                     several bundles, a `runs` list of {part, task, wf} (one row, one journal and one output per run)
     --workflows-dir  the runtime's workflow transcripts: <dir>/<wf id>/journal.jsonl (default: found under
                      ~/.claude/projects/*/*/subagents/workflows)
     --tasks-dir      the runtime's task outputs: <dir>/<task id>.output (default: found under /tmp/claude-0/*/*/tasks)
     --snapshot       copy each topic's journal to ../journals/<slug>.journal.jsonl.gz and its task output, when
-                     the run finished, to ../outputs/<slug>.output.json.gz; write status.json and STATUS.md here
+                     the run finished, to ../outputs/<slug>.output.json.gz (a continuation run's files carry
+                     `--<part>` before the extension); write status.json and STATUS.md here
 
 A journal is append-only and every finished agent writes one `result` line, so the snapshot taken after a
 usage-limit stop holds everything a continuation needs (scripts/research-continue.py --from-bundle).
@@ -26,14 +28,6 @@ import time
 HERE = os.path.dirname(os.path.abspath(__file__))
 STATE = os.path.dirname(HERE)
 STAGES = ["sources", "spine", "draft", "verify", "fix", "verify2", "close1"]
-
-
-def find_dir(patterns, probe):
-    for pat in patterns:
-        for d in glob.glob(pat):
-            if os.path.exists(os.path.join(d, probe)):
-                return d
-    return None
 
 
 def journal_stats(path):
@@ -80,25 +74,28 @@ def main(argv):
     for bf in batches:
         b = json.load(open(bf, encoding="utf-8"))
         for slug, v in b["topics"].items():
-            topics.append((b.get("batch"), slug, v))
+            for run in v.get("runs") or [v]:
+                topics.append((b.get("batch"), slug, run))
     wdir = opts["workflows_dir"]
     tdir = opts["tasks_dir"]
     if topics and not wdir:
-        wdir = find_dir([os.path.expanduser("~/.claude/projects/*/*/subagents/workflows")], "")
+        # the runtime directory that holds any of the batches' runs (an older batch's runs may live only in the snapshots)
         wdir = next((d for d in glob.glob(os.path.expanduser("~/.claude/projects/*/*/subagents/workflows"))
-                     if glob.glob(os.path.join(d, topics[0][2]["wf"] + "*"))), wdir)
+                     if any(glob.glob(os.path.join(d, v["wf"] + "*")) for _, _, v in topics)), None)
     if topics and not tdir:
         tdir = next((d for d in glob.glob("/tmp/claude-0/*/*/tasks")
-                     if os.path.exists(os.path.join(d, topics[0][2]["task"] + ".output"))), None)
+                     if any(os.path.exists(os.path.join(d, v["task"] + ".output")) for _, _, v in topics)), None)
     status, rows = {}, []
     now = time.strftime("%Y-%m-%dT%H:%M UTC", time.gmtime())
     if opts["snapshot"]:
         os.makedirs(os.path.join(STATE, "journals"), exist_ok=True)
         os.makedirs(os.path.join(STATE, "outputs"), exist_ok=True)
     for batch, slug, v in topics:
+        part = v.get("part")
+        name = f"{slug}--{part}" if part else slug
         wf_dirs = glob.glob(os.path.join(wdir, v["wf"] + "*")) if wdir else []
         journal = os.path.join(wf_dirs[0], "journal.jsonl") if wf_dirs else None
-        snap_j = os.path.join(STATE, "journals", f"{slug}.journal.jsonl.gz")
+        snap_j = os.path.join(STATE, "journals", f"{name}.journal.jsonl.gz")
         if not (journal and os.path.exists(journal)) and os.path.exists(snap_j):
             journal = snap_j
         done, failed, spine = {}, {}, None
@@ -122,7 +119,7 @@ def main(argv):
                 errors = sum(1 for a in (o.get("workflowProgress") or []) if isinstance(a, dict) and a.get("status") == "error")
             except ValueError:
                 finished = False
-        rec = {"batch": batch, "wf": v["wf"], "task": v["task"], "journal": journal, "done": done, "failed": failed,
+        rec = {"batch": batch, "part": part, "wf": v["wf"], "task": v["task"], "journal": journal, "done": done, "failed": failed,
                "finished": finished, "cards": cards, "spine_card_rules": spine, "checked": now}
         if opts["snapshot"]:
             if journal and os.path.exists(journal) and not journal.endswith(".gz"):
@@ -132,21 +129,22 @@ def main(argv):
             elif os.path.exists(snap_j):
                 rec["snapshot_journal"] = os.path.relpath(snap_j, STATE)
             if finished:
-                snap_o = os.path.join(STATE, "outputs", f"{slug}.output.json.gz")
+                snap_o = os.path.join(STATE, "outputs", f"{name}.output.json.gz")
                 with open(out_path, "rb") as src, gzip.open(snap_o, "wb") as dst:
                     shutil.copyfileobj(src, dst)
                 rec["snapshot_output"] = os.path.relpath(snap_o, STATE)
-        status[slug] = rec
+        status[name] = rec
         d = ", ".join(f"{k} {done[k]}" for k in STAGES if k in done) or "-"
         f = ", ".join(f"{k} {failed[k]}" for k in STAGES if k in failed) or "-"
         state = "run complete" if finished and not failed else ("run ended, agents failed" if finished else "running or stopped")
-        rows.append(f"| {batch} | `{slug}` | {spine if spine is not None else '?'} | {d} | {f} | {cards if cards is not None else '-'} | {state} |")
-        print(f"{slug:45s} done=[{d}] failed=[{f}] {'FINISHED cards=' + str(cards) if finished else ''}")
+        rows.append(f"| {batch} | `{slug}`{' ' + part if part else ''} | {spine if spine is not None else '?'} | {d} | {f} | {cards if cards is not None else '-'} | {state} |")
+        print(f"{name:52s} done=[{d}] failed=[{f}] {'FINISHED cards=' + str(cards) if finished else ''}")
     if opts["snapshot"]:
         json.dump(status, open(os.path.join(HERE, "status.json"), "w", encoding="utf-8"), indent=1)
         table = ["# Series status", "", f"Snapshot taken {now} by `series/series-status.py --snapshot`. Journals under `journals/`, finished runs' outputs under `outputs/`.", "",
                  "`done` counts the agents whose results the journal holds (cached for a continuation); `failed` the agents a usage-limit stop or an error ended, which a continuation re-runs. "
-                 "`cards` is the count in the run's own output; a run whose agents failed shipped none, and its cards come from the continuation.", "",
+                 "`cards` is the count in the run's own output; a run whose agents failed shipped none, and its cards come from the continuation. "
+                 "A continuation run (batch 3 and later) is one bundle of a topic, named by its part; a topic is finished when every part's run is complete.", "",
                  "| Batch | Topic | Spine card rules | Done | Failed | Cards in output | State |", "|--|--|--|--|--|--|--|"] + rows
         open(os.path.join(HERE, "STATUS.md"), "w", encoding="utf-8").write("\n".join(table) + "\n")
         print(f"status.json and STATUS.md written; journals and outputs under {STATE}")
