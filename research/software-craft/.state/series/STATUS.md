@@ -1,6 +1,6 @@
 # Series status
 
-Snapshot taken 2026-10-07T15:57 UTC by `series/series-status.py --snapshot`. Journals under `journals/`, finished runs' outputs under `outputs/`.
+Snapshot taken 2026-10-07T16:01 UTC by `series/series-status.py --snapshot`. Journals under `journals/`, finished runs' outputs under `outputs/`.
 
 `done` counts the agents whose results the journal holds (cached for a continuation); `failed` the agents a usage-limit stop or an error ended, which a continuation re-runs. `cards` is the count in the run's own output; a run whose agents failed shipped none, and its cards come from the continuation. A continuation run (batch 3 and later) is one bundle of a topic, named by its part; a topic is finished when every part's run is complete.
 
@@ -73,7 +73,7 @@ Snapshot taken 2026-10-07T15:57 UTC by `series/series-status.py --snapshot`. Jou
 | 3 | `design-patterns-in-construction` 1of2 | 7 | verify 3, fix 4, verify2 3, close1 3 | verify2 1 | 3 | run ended, agents failed |
 | 3 | `design-patterns-in-construction` r2-finish | ? | - | - | - | running or stopped |
 | 3 | `mutable-state-and-immutability` 1of2 | 11 | draft 2, verify 6 | fix 6 | 0 | run ended, agents failed |
-| 3 | `mutable-state-and-immutability` r2-rest-1of2 | ? | - | - | - | running or stopped |
+| 3 | `mutable-state-and-immutability` r2-rest-1of2 | ? | fix 1 | - | - | running or stopped |
 | 3 | `mutable-state-and-immutability` r2-rest-2of2 | ? | - | - | - | running or stopped |
 | 3 | `functional-style-and-pipelines` 1of2 | 11 | draft 2, verify 6, fix 4 | fix 2, verify2 4 | 0 | run ended, agents failed |
 | 3 | `functional-style-and-pipelines` r2-finish | ? | - | - | - | running or stopped |

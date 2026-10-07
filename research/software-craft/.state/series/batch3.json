@@ -13,7 +13,8 @@
     {
      "part": "r2-finish",
      "task": "w8w5caxgb",
-     "wf": "wf_956039d0-c52"
+     "wf": "wf_956039d0-c52",
+     "stopped": "2026-10-07T16:05 UTC, operator's cap of four workflows at a time; its journal feeds the rebuilt bundle"
     }
    ]
   },
@@ -27,7 +28,8 @@
     {
      "part": "r2-finish",
      "task": "wgnig4vtp",
-     "wf": "wf_888048d1-3d5"
+     "wf": "wf_888048d1-3d5",
+     "stopped": "2026-10-07T16:05 UTC, operator's cap of four workflows at a time; its journal feeds the rebuilt bundle"
     }
    ]
   },
@@ -41,7 +43,8 @@
     {
      "part": "r2-finish",
      "task": "wz6pr8yi4",
-     "wf": "wf_d64f9bf1-034"
+     "wf": "wf_d64f9bf1-034",
+     "stopped": "2026-10-07T16:05 UTC, operator's cap of four workflows at a time; its journal feeds the rebuilt bundle"
     }
    ]
   },
@@ -69,7 +72,8 @@
     {
      "part": "r2-finish",
      "task": "wi31fowla",
-     "wf": "wf_ff38bc77-935"
+     "wf": "wf_ff38bc77-935",
+     "stopped": "2026-10-07T16:05 UTC, operator's cap of four workflows at a time; its journal feeds the rebuilt bundle"
     }
    ]
   },
@@ -83,7 +87,8 @@
     {
      "part": "r2-finish",
      "task": "w1v7h251w",
-     "wf": "wf_1d777f1e-790"
+     "wf": "wf_1d777f1e-790",
+     "stopped": "2026-10-07T16:05 UTC, operator's cap of four workflows at a time; its journal feeds the rebuilt bundle"
     }
    ]
   },
@@ -97,7 +102,8 @@
     {
      "part": "r2-finish",
      "task": "wv9nrr6ye",
-     "wf": "wf_101b6086-52c"
+     "wf": "wf_101b6086-52c",
+     "stopped": "2026-10-07T16:05 UTC, operator's cap of four workflows at a time; its journal feeds the rebuilt bundle"
     }
    ]
   },
@@ -125,7 +131,8 @@
     {
      "part": "r2-finish",
      "task": "w2y6n2h31",
-     "wf": "wf_9139cb56-7c9"
+     "wf": "wf_9139cb56-7c9",
+     "stopped": "2026-10-07T16:05 UTC, operator's cap of four workflows at a time; its journal feeds the rebuilt bundle"
     }
    ]
   },
@@ -158,7 +165,8 @@
     {
      "part": "r2-finish",
      "task": "w225qmptr",
-     "wf": "wf_9092972d-c65"
+     "wf": "wf_9092972d-c65",
+     "stopped": "2026-10-07T16:05 UTC, operator's cap of four workflows at a time; its journal feeds the rebuilt bundle"
     }
    ]
   },
@@ -172,7 +180,8 @@
     {
      "part": "r2-finish",
      "task": "wyetgcf34",
-     "wf": "wf_91825ffb-5c2"
+     "wf": "wf_91825ffb-5c2",
+     "stopped": "2026-10-07T16:05 UTC, operator's cap of four workflows at a time; its journal feeds the rebuilt bundle"
     }
    ]
   },
@@ -200,7 +209,8 @@
     {
      "part": "r2-finish",
      "task": "ww4r2nkjj",
-     "wf": "wf_f8b422ae-86a"
+     "wf": "wf_f8b422ae-86a",
+     "stopped": "2026-10-07T16:05 UTC, operator's cap of four workflows at a time; its journal feeds the rebuilt bundle"
     }
    ]
   },
@@ -219,7 +229,8 @@
     {
      "part": "r2-rest-1of1",
      "task": "wlynlmlt8",
-     "wf": "wf_816503f5-004"
+     "wf": "wf_816503f5-004",
+     "stopped": "2026-10-07T16:05 UTC, operator's cap of four workflows at a time; its journal feeds the rebuilt bundle"
     }
    ]
   },
@@ -233,7 +244,8 @@
     {
      "part": "r2-finish",
      "task": "wtlyuwqjw",
-     "wf": "wf_fe781d49-943"
+     "wf": "wf_fe781d49-943",
+     "stopped": "2026-10-07T16:05 UTC, operator's cap of four workflows at a time; its journal feeds the rebuilt bundle"
     }
    ]
   },
@@ -252,7 +264,8 @@
     {
      "part": "r2-rest-1of1",
      "task": "wtbikhrij",
-     "wf": "wf_331fa000-de8"
+     "wf": "wf_331fa000-de8",
+     "stopped": "2026-10-07T16:05 UTC, operator's cap of four workflows at a time; its journal feeds the rebuilt bundle"
     }
    ]
   },
@@ -266,7 +279,8 @@
     {
      "part": "r2-finish",
      "task": "wf753oeg9",
-     "wf": "wf_df8ffbb0-19a"
+     "wf": "wf_df8ffbb0-19a",
+     "stopped": "2026-10-07T16:05 UTC, operator's cap of four workflows at a time; its journal feeds the rebuilt bundle"
     }
    ]
   },
@@ -280,7 +294,8 @@
     {
      "part": "r2-finish",
      "task": "wistupgza",
-     "wf": "wf_8bd8c7c6-921"
+     "wf": "wf_8bd8c7c6-921",
+     "stopped": "2026-10-07T16:05 UTC, operator's cap of four workflows at a time; its journal feeds the rebuilt bundle"
     }
    ]
   },
@@ -294,7 +309,8 @@
     {
      "part": "r2-finish",
      "task": "wwpi8z0ho",
-     "wf": "wf_078751c6-5cf"
+     "wf": "wf_078751c6-5cf",
+     "stopped": "2026-10-07T16:05 UTC, operator's cap of four workflows at a time; its journal feeds the rebuilt bundle"
     }
    ]
   },
@@ -308,12 +324,14 @@
     {
      "part": "r2-rest-1of2",
      "task": "wlpofc8zx",
-     "wf": "wf_dc884415-3d2"
+     "wf": "wf_dc884415-3d2",
+     "stopped": "2026-10-07T16:05 UTC, operator's cap of four workflows at a time; its journal feeds the rebuilt bundle"
     },
     {
      "part": "r2-rest-2of2",
      "task": "w9ucfntpg",
-     "wf": "wf_a837479a-f96"
+     "wf": "wf_a837479a-f96",
+     "stopped": "2026-10-07T16:05 UTC, operator's cap of four workflows at a time; its journal feeds the rebuilt bundle"
     }
    ]
   },
@@ -327,7 +345,8 @@
     {
      "part": "r2-finish",
      "task": "wjl7b8wph",
-     "wf": "wf_475fa3b3-39f"
+     "wf": "wf_475fa3b3-39f",
+     "stopped": "2026-10-07T16:05 UTC, operator's cap of four workflows at a time; its journal feeds the rebuilt bundle"
     }
    ]
   },
@@ -341,9 +360,11 @@
     {
      "part": "r2-finish",
      "task": "wpztht41y",
-     "wf": "wf_37884f21-816"
+     "wf": "wf_37884f21-816",
+     "stopped": "2026-10-07T16:05 UTC, operator's cap of four workflows at a time; its journal feeds the rebuilt bundle"
     }
    ]
   }
- }
+ },
+ "concurrency": "at most 4 workflows at a time from 16:05 UTC (operator's decision): about 8 agents in flight, about 200 agents per usage window, no usage-limit cut"
 }
