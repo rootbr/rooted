@@ -16,6 +16,7 @@ Usage:
 
 A journal is append-only and every finished agent writes one `result` line, so the snapshot taken after a
 usage-limit stop holds everything a continuation needs (scripts/research-continue.py --from-bundle).
+The gzip members carry no timestamp (mtime 0), so an unchanged journal or output snapshots to identical bytes.
 Standard library only."""
 import glob
 import gzip
@@ -123,14 +124,14 @@ def main(argv):
                "finished": finished, "cards": cards, "spine_card_rules": spine, "checked": now}
         if opts["snapshot"]:
             if journal and os.path.exists(journal) and not journal.endswith(".gz"):
-                with open(journal, "rb") as src, gzip.open(snap_j, "wb") as dst:
+                with open(journal, "rb") as src, gzip.GzipFile(snap_j, "wb", mtime=0) as dst:
                     shutil.copyfileobj(src, dst)
                 rec["snapshot_journal"] = os.path.relpath(snap_j, STATE)
             elif os.path.exists(snap_j):
                 rec["snapshot_journal"] = os.path.relpath(snap_j, STATE)
             if finished:
                 snap_o = os.path.join(STATE, "outputs", f"{name}.output.json.gz")
-                with open(out_path, "rb") as src, gzip.open(snap_o, "wb") as dst:
+                with open(out_path, "rb") as src, gzip.GzipFile(snap_o, "wb", mtime=0) as dst:
                     shutil.copyfileobj(src, dst)
                 rec["snapshot_output"] = os.path.relpath(snap_o, STATE)
         status[name] = rec
