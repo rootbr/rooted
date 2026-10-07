@@ -1,7 +1,7 @@
 {
  "batch": 3,
  "launched": "2026-10-07T12:08 UTC",
- "kind": "continuation (HANDOVER.md \u00a75.3): round-1 bundles built by scripts/research-continue.py --from-bundle --split 2 from the journals under ../journals; part 1of2 of every in-flight topic of batches 1 and 2 launched first, 2of2 after it ends",
+ "kind": "continuation (HANDOVER.md \u00a75.3): round-1 bundles built by scripts/research-continue.py --from-bundle --split 2 from the journals under ../journals; part 1of2 of every in-flight topic of batches 1 and 2 launched first, 2of2 after it ends. After the usage limit cut the first parts: `r2-finish` bundles (research-continue.py --resume-cut-short --skip-carded: the missing second verdicts and closing edits of the rules whose fix ran) and `r2-rest` bundles (--round 1 --skip-fixed --skip-carded: fix, second verdict and closing edit of the rules whose fix had not run), built from the original journal plus every batch-3 journal of the topic",
  "topics": {
   "comments-and-self-documenting-code": {
    "runs": [
@@ -9,6 +9,11 @@
      "part": "1of2",
      "task": "wxuisi9ra",
      "wf": "wf_f746b93b-624"
+    },
+    {
+     "part": "r2-finish",
+     "task": "w8w5caxgb",
+     "wf": "wf_956039d0-c52"
     }
    ]
   },
@@ -18,6 +23,11 @@
      "part": "1of2",
      "task": "wwvocvonz",
      "wf": "wf_364f3b66-fc0"
+    },
+    {
+     "part": "r2-finish",
+     "task": "wgnig4vtp",
+     "wf": "wf_888048d1-3d5"
     }
    ]
   },
@@ -27,6 +37,11 @@
      "part": "1of2",
      "task": "wpxec881y",
      "wf": "wf_e9208921-a7c"
+    },
+    {
+     "part": "r2-finish",
+     "task": "wz6pr8yi4",
+     "wf": "wf_d64f9bf1-034"
     }
    ]
   },
@@ -36,6 +51,11 @@
      "part": "1of2",
      "task": "we20mrpbr",
      "wf": "wf_3f946a0f-efa"
+    },
+    {
+     "part": "r2-finish",
+     "task": "wy3i81dww",
+     "wf": "wf_13611606-740"
     }
    ]
   },
@@ -45,6 +65,11 @@
      "part": "1of2",
      "task": "wechvt1t7",
      "wf": "wf_5afd0534-c5c"
+    },
+    {
+     "part": "r2-finish",
+     "task": "wi31fowla",
+     "wf": "wf_ff38bc77-935"
     }
    ]
   },
@@ -54,6 +79,11 @@
      "part": "1of2",
      "task": "wj96ah1yc",
      "wf": "wf_0c1f7f8e-3ea"
+    },
+    {
+     "part": "r2-finish",
+     "task": "w1v7h251w",
+     "wf": "wf_1d777f1e-790"
     }
    ]
   },
@@ -63,6 +93,11 @@
      "part": "1of2",
      "task": "w7ih9nt53",
      "wf": "wf_0297847b-f51"
+    },
+    {
+     "part": "r2-finish",
+     "task": "wv9nrr6ye",
+     "wf": "wf_101b6086-52c"
     }
    ]
   },
@@ -72,6 +107,11 @@
      "part": "1of2",
      "task": "wl932igqz",
      "wf": "wf_305718d3-75c"
+    },
+    {
+     "part": "r2-finish",
+     "task": "wmiq9zh45",
+     "wf": "wf_c63b7000-87d"
     }
    ]
   },
@@ -81,6 +121,11 @@
      "part": "1of2",
      "task": "wjmfswr2t",
      "wf": "wf_73e3ac16-171"
+    },
+    {
+     "part": "r2-finish",
+     "task": "w2y6n2h31",
+     "wf": "wf_9139cb56-7c9"
     }
    ]
   },
@@ -90,6 +135,11 @@
      "part": "1of2",
      "task": "w9eheta8z",
      "wf": "wf_f6279f04-bce"
+    },
+    {
+     "part": "r2-finish",
+     "task": "wplekfx5h",
+     "wf": "wf_ccc322b0-99c"
     }
    ]
   },
@@ -104,6 +154,11 @@
      "part": "2of2",
      "task": "wsmhhmaed",
      "wf": "wf_786b4d09-1a7"
+    },
+    {
+     "part": "r2-finish",
+     "task": "w225qmptr",
+     "wf": "wf_9092972d-c65"
     }
    ]
   },
@@ -113,6 +168,11 @@
      "part": "1of2",
      "task": "wa3qazryy",
      "wf": "wf_f3a3818b-20b"
+    },
+    {
+     "part": "r2-finish",
+     "task": "wyetgcf34",
+     "wf": "wf_91825ffb-5c2"
     }
    ]
   },
@@ -122,6 +182,11 @@
      "part": "1of2",
      "task": "wyz6u6vmi",
      "wf": "wf_a14a8c6f-df0"
+    },
+    {
+     "part": "r2-finish",
+     "task": "w8egd6l0z",
+     "wf": "wf_9af71482-f15"
     }
    ]
   },
@@ -131,6 +196,11 @@
      "part": "1of2",
      "task": "wabwmygqd",
      "wf": "wf_5621e98a-672"
+    },
+    {
+     "part": "r2-finish",
+     "task": "ww4r2nkjj",
+     "wf": "wf_f8b422ae-86a"
     }
    ]
   },
@@ -145,6 +215,11 @@
      "part": "2of2",
      "task": "wj9gyt23c",
      "wf": "wf_f5870776-68d"
+    },
+    {
+     "part": "r2-rest-1of1",
+     "task": "wlynlmlt8",
+     "wf": "wf_816503f5-004"
     }
    ]
   },
@@ -154,6 +229,11 @@
      "part": "1of2",
      "task": "whnraacqk",
      "wf": "wf_7caca05e-dfe"
+    },
+    {
+     "part": "r2-finish",
+     "task": "wtlyuwqjw",
+     "wf": "wf_fe781d49-943"
     }
    ]
   },
@@ -168,6 +248,11 @@
      "part": "2of2",
      "task": "wji24rbc9",
      "wf": "wf_2b1c7dab-70d"
+    },
+    {
+     "part": "r2-rest-1of1",
+     "task": "wtbikhrij",
+     "wf": "wf_331fa000-de8"
     }
    ]
   },
@@ -177,6 +262,11 @@
      "part": "1of2",
      "task": "wjg2knqxy",
      "wf": "wf_91164181-c5f"
+    },
+    {
+     "part": "r2-finish",
+     "task": "wf753oeg9",
+     "wf": "wf_df8ffbb0-19a"
     }
    ]
   },
@@ -186,6 +276,11 @@
      "part": "1of2",
      "task": "w0jvr4r7l",
      "wf": "wf_bb3e3c34-e64"
+    },
+    {
+     "part": "r2-finish",
+     "task": "wistupgza",
+     "wf": "wf_8bd8c7c6-921"
     }
    ]
   },
@@ -195,6 +290,11 @@
      "part": "1of2",
      "task": "wyfdmkft2",
      "wf": "wf_e8339c99-63d"
+    },
+    {
+     "part": "r2-finish",
+     "task": "wwpi8z0ho",
+     "wf": "wf_078751c6-5cf"
     }
    ]
   },
@@ -204,6 +304,16 @@
      "part": "1of2",
      "task": "wr0muolxf",
      "wf": "wf_7cd930a5-fc8"
+    },
+    {
+     "part": "r2-rest-1of2",
+     "task": "wlpofc8zx",
+     "wf": "wf_dc884415-3d2"
+    },
+    {
+     "part": "r2-rest-2of2",
+     "task": "w9ucfntpg",
+     "wf": "wf_a837479a-f96"
     }
    ]
   },
@@ -213,6 +323,11 @@
      "part": "1of2",
      "task": "wlaut4zdg",
      "wf": "wf_5ea7c35d-798"
+    },
+    {
+     "part": "r2-finish",
+     "task": "wjl7b8wph",
+     "wf": "wf_475fa3b3-39f"
     }
    ]
   },
@@ -222,6 +337,11 @@
      "part": "1of2",
      "task": "wi8al0q2t",
      "wf": "wf_303796d1-15f"
+    },
+    {
+     "part": "r2-finish",
+     "task": "wpztht41y",
+     "wf": "wf_37884f21-816"
     }
    ]
   }
