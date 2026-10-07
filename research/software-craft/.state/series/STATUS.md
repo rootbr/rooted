@@ -1,6 +1,6 @@
 # Series status
 
-Snapshot taken 2026-10-07T21:52 UTC by `series/series-status.py --snapshot`. Journals under `journals/`, finished runs' outputs under `outputs/`.
+Snapshot taken 2026-10-07T21:55 UTC by `series/series-status.py --snapshot`. Journals under `journals/`, finished runs' outputs under `outputs/`.
 
 `done` counts the agents whose results the journal holds (cached for a continuation); `failed` the agents a usage-limit stop or an error ended, which a continuation re-runs. `cards` is the count in the run's own output; a run whose agents failed shipped none, and its cards come from the continuation. A continuation run (batch 3 and later) is one bundle of a topic, named by its part; a topic is finished when every part's run is complete.
 
@@ -44,7 +44,7 @@ Snapshot taken 2026-10-07T21:52 UTC by `series/series-status.py --snapshot`. Jou
 | 3 | `table-driven-and-state-machines` r2-finish | 8 | verify2 1 | - | 2 | run complete |
 | 3 | `table-driven-and-state-machines` r2-rest-1of1 | 8 | verify 3, fix 3, verify2 1 | fix 1, verify2 2, close1 1 | 0 | run ended, agents failed |
 | 3 | `table-driven-and-state-machines` r3-finish | 8 | verify2 2 | - | 3 | run complete |
-| 3 | `table-driven-and-state-machines` r3-rest | ? | fix 1, verify2 1 | - | - | running or stopped |
+| 3 | `table-driven-and-state-machines` r3-rest | 8 | fix 1, verify2 1, close1 1 | - | 1 | run complete |
 | 3 | `generics-and-parameterization` 1of2 | 10 | verify 3, fix 4, verify2 2 | fix 1, verify2 2, close1 2 | 0 | run ended, agents failed |
 | 3 | `generics-and-parameterization` r2-finish | ? | - | - | - | running or stopped |
 | 3 | `api-design-and-use` 1of2 | 12 | verify 6, fix 6 | verify2 6 | 0 | run ended, agents failed |
@@ -67,6 +67,7 @@ Snapshot taken 2026-10-07T21:52 UTC by `series/series-status.py --snapshot`. Jou
 | 3 | `fault-tolerance-retries-timeouts-fallbacks` r2-finish | ? | - | - | - | running or stopped |
 | 3 | `resource-management-and-ownership` 1of2 | 12 | verify 5, fix 6 | verify2 6 | 0 | run ended, agents failed |
 | 3 | `resource-management-and-ownership` r2-finish | 12 | verify2 6 | - | 6 | run complete |
+| 3 | `resource-management-and-ownership` r3-rest | ? | - | - | - | running or stopped |
 | 3 | `logging-and-diagnostic-output` 1of2 | 12 | verify 5, fix 5, verify2 2 | fix 1, verify2 3, close1 1 | 1 | run ended, agents failed |
 | 3 | `logging-and-diagnostic-output` r2-finish | ? | - | - | - | running or stopped |
 | 3 | `complexity-and-deep-modules` 1of2 | 6 | verify 2, fix 3, verify2 3, close1 3 | - | 3 | run complete |
