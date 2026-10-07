@@ -39,6 +39,14 @@ Usage:
                     with the `verify<N+1>:` verdicts already recorded, runs only the missing verdicts,
                     and ends a rule the verdict does not accept as pending (fix_after_verify false);
                     a rule with no fix<N> draft is left to a plain --round N bundle
+    --skip-fixed    in a plain --round N bundle, leave out every rule whose round-N fix (`fix:`, `fix<N>:`)
+                    the journals already hold, whatever its status: a --resume-cut-short bundle finishes
+                    those, and a fix that sent the rule to pending is already in the cut-short run's output
+    --skip-carded <task-output.json>
+                    leave out every rule the given output already ships as a card (its result.cards keys);
+                    repeatable, so the outputs of every earlier bundle of the topic count. A continuation
+                    of a continuation (a run cut short twice) passes every journal with --journal and the
+                    earlier bundles' outputs here, and the writer merges all of the outputs
 Writes the bundle files and prints their paths; standard library only."""
 import json
 import os
@@ -95,17 +103,17 @@ def read_bundle_args(path):
 
 
 def main(argv):
-    opts = {"journal": [], "from_output": None, "from_bundle": None, "write_output": None, "round": "1", "rotation_start": None, "max_rules": None, "split": "1", "out_dir": None, "root": None, "resume_cut_short": False, "closing_edit": False}
+    opts = {"journal": [], "from_output": None, "from_bundle": None, "write_output": None, "round": "1", "rotation_start": None, "max_rules": None, "split": "1", "out_dir": None, "root": None, "resume_cut_short": False, "closing_edit": False, "skip_fixed": False, "skip_carded": []}
     i = 0
     while i < len(argv):
         key = argv[i][2:].replace("-", "_")
-        if key in ("resume_cut_short", "closing_edit"):
+        if key in ("resume_cut_short", "closing_edit", "skip_fixed"):
             opts[key] = True
             i += 1
             continue
         if not argv[i].startswith("--") or key not in opts or i + 1 >= len(argv):
             sys.exit(f"research-continue: unexpected argument {argv[i]!r}\n{__doc__}")
-        if key == "journal":
+        if key in ("journal", "skip_carded"):
             opts[key].append(argv[i + 1])
         else:
             opts[key] = argv[i + 1]
@@ -170,6 +178,22 @@ def main(argv):
         print(f"round {rnd}: {len(accepted)} accepted, {len(rejected)} rejected, {len(done)} already fixed in this round (see --resume-cut-short), {len(card_keys)} sent back with revise -> continue")
         if not card_keys:
             sys.exit("research-continue: no rule to carry into this round")
+    carded = set()
+    for path in opts["skip_carded"]:
+        with open(path, encoding="utf-8") as fh:
+            out = json.load(fh)
+        carded |= {c["key"] for c in (out.get("result", out)).get("cards", [])}
+    if carded:
+        before = len(card_keys)
+        card_keys = [k for k in card_keys if k not in carded]
+        print(f"skip-carded: {before - len(card_keys)} rule(s) already shipped by the given output(s) left out")
+    if opts["skip_fixed"] and not cut_short:
+        own_fix = stage_labels(rnd + 1)[0]
+        fixed = [k for k in card_keys if (own_fix + ":" + k) in results]
+        card_keys = [k for k in card_keys if k not in fixed]
+        print(f"skip-fixed: {len(fixed)} rule(s) whose `{own_fix}:` result the journals hold left out")
+    if not card_keys:
+        sys.exit("research-continue: no rule left to run after the skips; nothing to write")
     n = max(1, int(opts["split"]))
     out_dir = opts["out_dir"] or os.path.dirname(os.path.abspath(opts["from_output"]))
     os.makedirs(out_dir, exist_ok=True)
