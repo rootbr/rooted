@@ -59,6 +59,11 @@
      "part": "r2-finish",
      "task": "wy3i81dww",
      "wf": "wf_13611606-740"
+    },
+    {
+     "part": "r3-rest",
+     "task": "wto2bkygw",
+     "wf": "wf_0ddca0a9-3bc"
     }
    ]
   },
