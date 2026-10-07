@@ -42,7 +42,7 @@ Snapshot taken 2026-10-07T16:45 UTC by `series/series-status.py --snapshot`. Jou
 | 3 | `table-driven-and-state-machines` 1of2 | 8 | verify 3, fix 4, verify2 3, close1 1 | verify2 1, close1 1 | 2 | run ended, agents failed |
 | 3 | `table-driven-and-state-machines` r2-finish | ? | - | - | - | running or stopped |
 | 3 | `table-driven-and-state-machines` r2-finish | 8 | verify2 1 | - | 2 | run complete |
-| 3 | `table-driven-and-state-machines` r2-rest-1of1 | ? | verify 2, fix 1 | - | - | running or stopped |
+| 3 | `table-driven-and-state-machines` r2-rest-1of1 | ? | verify 2, fix 2 | - | - | running or stopped |
 | 3 | `generics-and-parameterization` 1of2 | 10 | verify 3, fix 4, verify2 2 | fix 1, verify2 2, close1 2 | 0 | run ended, agents failed |
 | 3 | `generics-and-parameterization` r2-finish | ? | - | - | - | running or stopped |
 | 3 | `api-design-and-use` 1of2 | 12 | verify 6, fix 6 | verify2 6 | 0 | run ended, agents failed |

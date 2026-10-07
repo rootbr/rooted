@@ -750,7 +750,7 @@
   "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_869df62e-ddf/journal.jsonl",
   "done": {
    "verify": 2,
-   "fix": 1
+   "fix": 2
   },
   "failed": {},
   "finished": false,
