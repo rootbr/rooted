@@ -1,6 +1,6 @@
 # Series status
 
-Snapshot taken 2026-10-07T21:35 UTC by `series/series-status.py --snapshot`. Journals under `journals/`, finished runs' outputs under `outputs/`.
+Snapshot taken 2026-10-07T21:40 UTC by `series/series-status.py --snapshot`. Journals under `journals/`, finished runs' outputs under `outputs/`.
 
 `done` counts the agents whose results the journal holds (cached for a continuation); `failed` the agents a usage-limit stop or an error ended, which a continuation re-runs. `cards` is the count in the run's own output; a run whose agents failed shipped none, and its cards come from the continuation. A continuation run (batch 3 and later) is one bundle of a topic, named by its part; a topic is finished when every part's run is complete.
 
@@ -43,8 +43,8 @@ Snapshot taken 2026-10-07T21:35 UTC by `series/series-status.py --snapshot`. Jou
 | 3 | `table-driven-and-state-machines` r2-finish | ? | - | - | - | running or stopped |
 | 3 | `table-driven-and-state-machines` r2-finish | 8 | verify2 1 | - | 2 | run complete |
 | 3 | `table-driven-and-state-machines` r2-rest-1of1 | 8 | verify 3, fix 3, verify2 1 | fix 1, verify2 2, close1 1 | 0 | run ended, agents failed |
-| 3 | `table-driven-and-state-machines` r3-finish | ? | verify2 1 | - | - | running or stopped |
-| 3 | `table-driven-and-state-machines` r3-rest | ? | - | - | - | running or stopped |
+| 3 | `table-driven-and-state-machines` r3-finish | 8 | verify2 2 | - | 3 | run complete |
+| 3 | `table-driven-and-state-machines` r3-rest | ? | fix 1 | - | - | running or stopped |
 | 3 | `generics-and-parameterization` 1of2 | 10 | verify 3, fix 4, verify2 2 | fix 1, verify2 2, close1 2 | 0 | run ended, agents failed |
 | 3 | `generics-and-parameterization` r2-finish | ? | - | - | - | running or stopped |
 | 3 | `api-design-and-use` 1of2 | 12 | verify 6, fix 6 | verify2 6 | 0 | run ended, agents failed |
@@ -75,7 +75,7 @@ Snapshot taken 2026-10-07T21:35 UTC by `series/series-status.py --snapshot`. Jou
 | 3 | `information-hiding-and-encapsulation` 1of2 | 8 | verify 4, fix 4, verify2 1 | verify2 3, close1 1 | 0 | run ended, agents failed |
 | 3 | `information-hiding-and-encapsulation` r2-finish | ? | - | - | - | running or stopped |
 | 3 | `information-hiding-and-encapsulation` r2-finish | 8 | verify2 3 | - | 4 | run complete |
-| 3 | `information-hiding-and-encapsulation` r3-rest | ? | verify 2 | - | - | running or stopped |
+| 3 | `information-hiding-and-encapsulation` r3-rest | ? | verify 3 | - | - | running or stopped |
 | 3 | `coupling-and-dependency-direction` 1of2 | 6 | verify 3, fix 3, verify2 3, close1 3 | - | 3 | run complete |
 | 3 | `coupling-and-dependency-direction` 2of2 | 6 | - | verify 3 | 0 | run ended, agents failed |
 | 3 | `coupling-and-dependency-direction` r2-rest-1of1 | ? | - | - | - | running or stopped |
