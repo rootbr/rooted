@@ -869,7 +869,9 @@
   "wf": "wf_a1ee6924-71d",
   "task": "wbrglnuvq",
   "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_a1ee6924-71d/journal.jsonl",
-  "done": {},
+  "done": {
+   "verify": 1
+  },
   "failed": {},
   "finished": false,
   "cards": null,
@@ -1141,7 +1143,8 @@
   "task": "wh6xn5400",
   "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_6d4d2f09-c77/journal.jsonl",
   "done": {
-   "verify": 2
+   "verify": 2,
+   "fix": 1
   },
   "failed": {},
   "finished": false,
@@ -1276,6 +1279,20 @@
   "checked": "2026-10-07T16:36 UTC",
   "snapshot_journal": "journals/duplication-and-single-source-of-truth--r2-finish.journal.jsonl.gz"
  },
+ "duplication-and-single-source-of-truth--r2-rest-1of1": {
+  "batch": 3,
+  "part": "r2-rest-1of1",
+  "wf": "wf_84f217d2-b9c",
+  "task": "w73hkpgkh",
+  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_84f217d2-b9c/journal.jsonl",
+  "done": {},
+  "failed": {},
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-07T16:36 UTC",
+  "snapshot_journal": "journals/duplication-and-single-source-of-truth--r2-rest-1of1.journal.jsonl.gz"
+ },
  "inheritance-versus-composition--1of2": {
   "batch": 3,
   "part": "1of2",
@@ -1359,7 +1376,7 @@
   "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_9ba60ea3-632/journal.jsonl",
   "done": {
    "verify": 2,
-   "fix": 2
+   "fix": 3
   },
   "failed": {},
   "finished": false,

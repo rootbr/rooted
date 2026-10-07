@@ -50,7 +50,7 @@ Snapshot taken 2026-10-07T16:36 UTC by `series/series-status.py --snapshot`. Jou
 | 3 | `contracts-assertions-and-invariants` 1of2 | 7 | verify 3, fix 4, verify2 2, close1 1 | verify2 2, close1 1 | 1 | run ended, agents failed |
 | 3 | `contracts-assertions-and-invariants` r2-finish | ? | - | - | - | running or stopped |
 | 3 | `contracts-assertions-and-invariants` r2-finish | ? | - | - | - | running or stopped |
-| 3 | `contracts-assertions-and-invariants` r2-rest-1of1 | ? | - | - | - | running or stopped |
+| 3 | `contracts-assertions-and-invariants` r2-rest-1of1 | ? | verify 1 | - | - | running or stopped |
 | 3 | `api-evolution-and-deprecation` 1of2 | 12 | verify 5, fix 6 | verify2 6 | 0 | run ended, agents failed |
 | 3 | `api-evolution-and-deprecation` r2-finish | ? | verify2 4 | - | - | running or stopped |
 | 3 | `defensive-programming` 1of2 | 6 | verify 1, fix 3, verify2 3, close1 3 | - | 3 | run complete |
@@ -67,7 +67,7 @@ Snapshot taken 2026-10-07T16:36 UTC by `series/series-status.py --snapshot`. Jou
 | 3 | `complexity-and-deep-modules` 1of2 | 6 | verify 2, fix 3, verify2 3, close1 3 | - | 3 | run complete |
 | 3 | `complexity-and-deep-modules` 2of2 | 6 | - | verify 3 | 0 | run ended, agents failed |
 | 3 | `complexity-and-deep-modules` r2-rest-1of1 | ? | - | - | - | running or stopped |
-| 3 | `complexity-and-deep-modules` r2-rest-1of1 | ? | verify 2 | - | - | running or stopped |
+| 3 | `complexity-and-deep-modules` r2-rest-1of1 | ? | verify 2, fix 1 | - | - | running or stopped |
 | 3 | `information-hiding-and-encapsulation` 1of2 | 8 | verify 4, fix 4, verify2 1 | verify2 3, close1 1 | 0 | run ended, agents failed |
 | 3 | `information-hiding-and-encapsulation` r2-finish | ? | - | - | - | running or stopped |
 | 3 | `coupling-and-dependency-direction` 1of2 | 6 | verify 3, fix 3, verify2 3, close1 3 | - | 3 | run complete |
@@ -77,11 +77,12 @@ Snapshot taken 2026-10-07T16:36 UTC by `series/series-status.py --snapshot`. Jou
 | 3 | `duplication-and-single-source-of-truth` 1of2 | 8 | verify 4, fix 4, verify2 2 | verify2 2, close1 2 | 0 | run ended, agents failed |
 | 3 | `duplication-and-single-source-of-truth` r2-finish | ? | - | - | - | running or stopped |
 | 3 | `duplication-and-single-source-of-truth` r2-finish | ? | - | - | - | running or stopped |
+| 3 | `duplication-and-single-source-of-truth` r2-rest-1of1 | ? | - | - | - | running or stopped |
 | 3 | `inheritance-versus-composition` 1of2 | 8 | draft 1, verify 4, fix 4 | verify2 4 | 0 | run ended, agents failed |
 | 3 | `inheritance-versus-composition` r2-finish | ? | - | - | - | running or stopped |
 | 3 | `design-patterns-in-construction` 1of2 | 7 | verify 3, fix 4, verify2 3, close1 3 | verify2 1 | 3 | run ended, agents failed |
 | 3 | `design-patterns-in-construction` r2-finish | ? | - | - | - | running or stopped |
-| 3 | `design-patterns-in-construction` r2-rest-1of1 | ? | verify 2, fix 2 | - | - | running or stopped |
+| 3 | `design-patterns-in-construction` r2-rest-1of1 | ? | verify 2, fix 3 | - | - | running or stopped |
 | 3 | `design-patterns-in-construction` r2-finish | 7 | verify2 1 | - | 1 | run complete |
 | 3 | `mutable-state-and-immutability` 1of2 | 11 | draft 2, verify 6 | fix 6 | 0 | run ended, agents failed |
 | 3 | `mutable-state-and-immutability` r2-rest-1of2 | ? | fix 1 | - | - | running or stopped |
