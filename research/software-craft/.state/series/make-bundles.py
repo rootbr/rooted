@@ -1,9 +1,13 @@
 #!/usr/bin/env python3
 """Validate the series topic objects against the design note's taxonomy table and write one
 research-workflow bundle per topic (EMBEDDED_ARGS after `meta`), so a Workflow call names only a
-script path. Usage: make-bundles.py [--only slug,slug] [--existing-titles-from <cards-dir>] topics-*.json"""
+script path. Usage: make-bundles.py [--root <repo>] [--out-dir <dir>] [--only slug,slug] [--existing-titles-from <cards-dir>] topics-*.json
+The root defaults to the repository this file sits in (four levels up); the bundles embed it as the
+absolute path the workflow's agents run in, so a checkout at another path regenerates them."""
 import json, os, re, sys, importlib.util
-ROOT = "/home/user/rooted"
+ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "..", ".."))
+if "--root" in sys.argv:
+    ROOT = os.path.abspath(sys.argv[sys.argv.index("--root") + 1])
 SKILL = f"{ROOT}/plugins/code-quality/skills/software-craft"
 spec = importlib.util.spec_from_file_location("rc", f"{SKILL}/scripts/research-continue.py")
 rc = importlib.util.module_from_spec(spec); spec.loader.exec_module(rc)
@@ -35,16 +39,19 @@ def titles_in(cards_dir, prefix):
 
 def main(argv):
     only, cards_dir, files = None, f"{SKILL}/references/craft-cards", []
+    out_dir = f"{os.path.dirname(os.path.abspath(__file__))}/bundles"
     i = 0
     while i < len(argv):
         if argv[i] == "--only": only = set(argv[i + 1].split(",")); i += 2
         elif argv[i] == "--existing-titles-from": cards_dir = argv[i + 1]; i += 2
+        elif argv[i] == "--root": i += 2
+        elif argv[i] == "--out-dir": out_dir = os.path.abspath(argv[i + 1]); i += 2
         else: files.append(argv[i]); i += 1
     topics = []
     for f in files:
         d = json.load(open(f, encoding="utf-8"))
         topics += d if isinstance(d, list) else [d]
-    problems, out_dir = [], f"{os.path.dirname(os.path.abspath(__file__))}/bundles"
+    problems = []
     os.makedirs(out_dir, exist_ok=True)
     script = open(f"{SKILL}/scripts/research-topic-workflow.js", encoding="utf-8").read()
     seen = set()

@@ -11,12 +11,19 @@ each `started` line maps a key to its label (`sources:<layer>`, `spine`, `draft:
 embeds them as the state the workflow takes without an agent.
 
 Usage:
-  research-continue.py --journal <transcript-dir>/journal.jsonl [--journal ...] --from-output <task-output.json>
+  research-continue.py --journal <transcript-dir>/journal.jsonl [--journal ...] (--from-output <task-output.json> | --from-bundle <run.js>)
                        [--round N] [--rotation-start N] [--max-rules N] [--split N] [--out-dir <dir>] [--root <repo>]
+                       [--write-output <path>]
     --journal       a journal of the topic; repeatable, so a topic split over several bundles continues
                     from all of them
     --from-output   the Workflow tool's task output of the cut-short run (its result.topic and
                     result.next_id are the topic arguments)
+    --from-bundle   the bundle the cut-short run was launched from (its EMBEDDED_ARGS supply the topic,
+                    next_id, rotation_start, max_rules, channel_note and closing_edit); the way to continue
+                    a run that left no task output, in another session or another checkout. With both,
+                    the output supplies the topic and the bundle the remaining arguments
+    --write-output  write a task-output file for the cut-short run from the journal (its sources and spine,
+                    no cards), so scripts/write-topic-result.py can merge it as the run's first output
     --round N       the fix round the bundles perform (default 1). Round 1 continues a cut-short run:
                     drafts from `draft:` and first verdicts from `verify:`. Round N above 1 carries the
                     previous round's fixed drafts (`fix:` for round 2, `fix<N-1>:` after) and its verdicts
@@ -78,8 +85,17 @@ def bundle(script, args_obj):
     return "".join(lines[: end + 1]) + "// Embedded by scripts/research-continue.py — the finished stages of a cut-short run.\n" + embedded + "".join(lines[end + 1:])
 
 
+def read_bundle_args(path):
+    """The EMBEDDED_ARGS object of a bundle (one line after the meta block)."""
+    with open(path, encoding="utf-8") as fh:
+        for line in fh:
+            if line.startswith("const EMBEDDED_ARGS = "):
+                return json.loads(line[len("const EMBEDDED_ARGS = "):])
+    sys.exit(f"research-continue: {path} holds no EMBEDDED_ARGS line")
+
+
 def main(argv):
-    opts = {"journal": [], "from_output": None, "round": "1", "rotation_start": "0", "max_rules": "12", "split": "1", "out_dir": None, "root": None, "resume_cut_short": False, "closing_edit": False}
+    opts = {"journal": [], "from_output": None, "from_bundle": None, "write_output": None, "round": "1", "rotation_start": None, "max_rules": None, "split": "1", "out_dir": None, "root": None, "resume_cut_short": False, "closing_edit": False}
     i = 0
     while i < len(argv):
         key = argv[i][2:].replace("-", "_")
@@ -94,15 +110,23 @@ def main(argv):
         else:
             opts[key] = argv[i + 1]
         i += 2
-    if not opts["journal"] or not opts["from_output"]:
-        sys.exit("research-continue: --journal and --from-output are required")
+    if not opts["journal"] or not (opts["from_output"] or opts["from_bundle"]):
+        sys.exit("research-continue: --journal and one of --from-output / --from-bundle are required")
     rnd = int(opts["round"])
     if rnd < 1:
         sys.exit("research-continue: --round must be 1 or more")
-    with open(opts["from_output"], encoding="utf-8") as fh:
-        out = json.load(fh)
-    result = out["result"] if "result" in out else out
+    launched = read_bundle_args(opts["from_bundle"]) if opts["from_bundle"] else {}
+    if opts["from_output"]:
+        with open(opts["from_output"], encoding="utf-8") as fh:
+            out = json.load(fh)
+        result = out["result"] if "result" in out else out
+    else:
+        result = {"topic": launched["topic"], "next_id": launched.get("next_id", 1)}
     topic = result["topic"]
+    rotation_start = int(opts["rotation_start"] if opts["rotation_start"] is not None else launched.get("rotation_start", 0))
+    max_rules = int(opts["max_rules"] if opts["max_rules"] is not None else launched.get("max_rules", 12))
+    closing_edit = bool(opts["closing_edit"] or launched.get("closing_edit", False))
+    channel_note = launched.get("channel_note")
     root = opts["root"] or os.path.abspath(os.path.join(HERE, "..", "..", "..", ".."))
     results = {}
     for j in opts["journal"]:
@@ -121,7 +145,14 @@ def main(argv):
         draft_label, verify_label = stage_labels(rnd)
     drafts = {k[len(draft_label) + 1:]: v for k, v in results.items() if k.startswith(draft_label + ":") and v.get("status") == "card"}
     verdicts = {k[len(verify_label) + 1:]: v for k, v in results.items() if k.startswith(verify_label + ":")}
-    max_rules = int(opts["max_rules"])
+    if opts["write_output"]:
+        synthetic = {"result": {"topic": topic, "next_id": result.get("next_id", 1), "sources": sources, "spine": spine,
+                                "cards": [], "provenance_lines": [], "outcomes": [], "pending_entries": [], "held": [], "round": rnd},
+                     "workflowProgress": [], "agentCount": 0, "totalTokens": 0,
+                     "note": "written by scripts/research-continue.py --write-output from the journal of a cut-short run: its sources and spine, no cards"}
+        with open(opts["write_output"], "w", encoding="utf-8") as fh:
+            json.dump(synthetic, fh, ensure_ascii=False)
+        print(f"{opts['write_output']}: cut-short output with {len(sources)} source layer(s) and {len(spine.get('rules', []))} spine rule(s)")
     card_keys = [r["key"] for r in spine["rules"] if r.get("disposition") == "card"][:max_rules]
     if cut_short:
         card_keys = [k for k in card_keys if k in drafts]
@@ -154,13 +185,15 @@ def main(argv):
         # run's own output when the writer merges the runs
         args_obj = {
             "root": root, "topic": topic, "next_id": result.get("next_id", 1), "existing_titles": [],
-            "max_rules": max_rules, "rotation_start": int(opts["rotation_start"]),
+            "max_rules": max_rules, "rotation_start": rotation_start,
             "resume_state": {"sources": [], "spine": spine,
                              "drafts": {k: v for k, v in drafts.items() if k in keys},
                              "verdicts": {k: v for k, v in verdicts.items() if k in keys}},
             "only_keys": keys, "include_held": rnd == 1 and part == 0, "round": rnd + 1 if cut_short else rnd,
-            "fix_after_verify": not cut_short, "closing_edit": bool(opts["closing_edit"]),
+            "fix_after_verify": not cut_short, "closing_edit": closing_edit,
         }
+        if channel_note:
+            args_obj["channel_note"] = channel_note
         suffix = ("" if rnd == 1 else f"-round{rnd}") + ("-finish" if cut_short else "")
         path = os.path.join(out_dir, f"continue-{topic['slug']}{suffix}-{part + 1}of{n}.js")
         with open(path, "w", encoding="utf-8") as fh:

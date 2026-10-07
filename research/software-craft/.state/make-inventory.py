@@ -10,7 +10,7 @@ import re
 import subprocess
 import sys
 
-STATIC = "/home/user/rooted/plugins/evidence-based-authoring/skills/auditing-ai-context/scripts/static-audit.py"
+STATIC = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))), "plugins/evidence-based-authoring/skills/auditing-ai-context/scripts/static-audit.py")
 CAPS = re.compile(r"\b(MUST NOT|MUST|NEVER|ALWAYS|ONLY|SHALL)\b")
 
 
