@@ -1,6 +1,6 @@
 # Series status
 
-Snapshot taken 2026-10-08T01:35 UTC by `series/series-status.py --snapshot`. Journals under `journals/`, finished runs' outputs under `outputs/`.
+Snapshot taken 2026-10-08T01:39 UTC by `series/series-status.py --snapshot`. Journals under `journals/`, finished runs' outputs under `outputs/`.
 
 `done` counts the agents whose results the journal holds (cached for a continuation); `failed` the agents a usage-limit stop or an error ended, which a continuation re-runs. `cards` is the count in the run's own output; a run whose agents failed shipped none, and its cards come from the continuation. A continuation run (batch 3 and later) is one bundle of a topic, named by its part; a topic is finished when every part's run is complete.
 
@@ -120,5 +120,5 @@ Snapshot taken 2026-10-08T01:35 UTC by `series/series-status.py --snapshot`. Jou
 | 3 | `domain-modeling-and-domain-language` r2-finish | ? | - | - | - | running or stopped |
 | 3 | `domain-modeling-and-domain-language` r3-finish | ? | verify2 2 | - | - | running or stopped |
 | 3 | `domain-modeling-and-domain-language` r3-rest | ? | - | - | - | running or stopped |
-| 3 | `domain-modeling-and-domain-language` r4-finish | ? | - | - | - | running or stopped |
+| 3 | `domain-modeling-and-domain-language` r4-finish | ? | verify2 1 | - | - | running or stopped |
 | 3 | `domain-modeling-and-domain-language` r4-rest | ? | verify 2 | - | - | running or stopped |
