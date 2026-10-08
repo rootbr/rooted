@@ -44,11 +44,16 @@
   },
   "small-steps-and-minimal-diffs": {
    "task": "wxu5tocsk",
-   "wf": "wf_bfdf4f85-c85"
+   "wf": "wf_bfdf4f85-c85",
+   "status": "done"
   },
   "technical-debt": {
    "task": "w65n20rmd",
    "wf": "wf_2d8b2fdb-e9d"
+  },
+  "debugging": {
+   "task": "wr0o8y6br",
+   "wf": "wf_bf2b1ec3-155"
   }
  }
 }
