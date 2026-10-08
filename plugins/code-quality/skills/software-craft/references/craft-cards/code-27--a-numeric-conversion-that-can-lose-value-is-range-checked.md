@@ -2,7 +2,7 @@
 title: A numeric conversion that can lose value, into an integer type that cannot hold every source value or from an integer beyond a floating-point type's exact range, is range-checked or done with a checked conversion unless the value is known to fit
 rule_id: CODE-27
 domain: code
-step: [implement, review]
+step: [implement, handle-errors]
 applies_to: [universal]
 triggers: ['\(\s*(byte|short|char|int|long|float|double)\s*\)\s*[\w(]', '[.](byte|short|int|long|float|double)Value\(\)', '\bas\s+[iuf](8|16|32|64|128|size)\b', '(?<![\w.])(u?int(8|16|32|64)?|float(32|64)?|byte|rune|Number)\(\s*[A-Za-z_]', '\b(byte|short|char)\s+\w+\s*[=;,)]']
 scope: file

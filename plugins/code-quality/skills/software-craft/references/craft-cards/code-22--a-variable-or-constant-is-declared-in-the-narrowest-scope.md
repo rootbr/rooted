@@ -2,7 +2,7 @@
 title: A variable or constant is declared in the narrowest scope that holds all its uses, unless narrowing it would deepen nesting or its value is needed after that scope
 rule_id: CODE-22
 domain: code
-step: [design, implement, refactor, review]
+step: [design, implement, refactor]
 applies_to: [universal]
 triggers: ['\b(const|static|final|readonly)\s+(mut\s+)?([\w<>\[\]?.]+(,\s*[\w<>\[\]?.]+)*\s+)?[A-Z][A-Z0-9_]*\s*[:=]', '^((const|let|static)\s+(mut\s+)?)?[A-Za-z_$][\w$]*\s*(:\s*[^=\n]+)?=(?!=)', '\b(const|let|var)\s+(mut\s+)?[A-Za-z_$({\[]|\b[A-Za-z_]\w*(\s*,\s*[A-Za-z_]\w*)*\s*:=|^\s*(private|protected)\s+(static\s+)?(?!final\b|readonly\b)[\w<>\[\],.?: ]*\b[a-z]\w*\s*;']
 scope: file

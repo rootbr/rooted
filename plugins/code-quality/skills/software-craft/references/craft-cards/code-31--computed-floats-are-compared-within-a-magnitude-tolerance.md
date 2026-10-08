@@ -2,11 +2,11 @@
 title: Computed binary floating-point values are compared within a tolerance suited to their magnitude, never with == or !=, and the tolerance is absolute only where the domain gives a natural margin or the expected value is zero
 rule_id: CODE-31
 domain: code
-step: [implement, test, review]
+step: [implement, test]
 applies_to: [universal]
 triggers: ['[=!]==?\s*-?(\d+[.]\d*([eE][-+]?\d+)?|[.]\d+([eE][-+]?\d+)?|\d+[eE][-+]?\d+)(_?f(32|64)|[fFdD])?(?![\w.])|(?<![\w.])-?(\d+[.]\d*([eE][-+]?\d+)?|[.]\d+([eE][-+]?\d+)?|\d+[eE][-+]?\d+)(_?f(32|64)|[fFdD])?(?![\w.])\s*[=!]==?(?!=)|\b(assert(Not)?Equals?|assert_(eq|ne)!|toBe|toEqual|toStrictEqual|isEqualTo|Equal|EqualValues)\s*\([^;]*?(?<![\w.])-?(\d+[.]\d*([eE][-+]?\d+)?|[.]\d+([eE][-+]?\d+)?|\d+[eE][-+]?\d+)(_?f(32|64)|[fFdD])?(?![\w.])', '(?i)epsilon|toleran|\beps\b|\b(abs|rel)_?tol\b|\b[ar]tol\b|\b(float|double)[.]min_value\b|\bsmallestnonzerofloat(32|64)\b|is_?close(?!d)|all_?close|almost_?equal|nearly_?equal|\bapprox\b|to_?be_?close_?to|is_?within|in_?delta|relative_eq|abs_diff_eq|ulps_eq|\b(abs|fabs)\(.*-.*\)\s*[<>]=?|\)[.]abs\(\)\s*[<>]=?', '\b(float|double|f32|f64|float32|float64)\b|(?<![=!<>])=\s*-?(\d+[.]\d*|[.]\d+)([eE][-+]?\d+)?(_?f(32|64)|[fFdD])?(?![\w.])']
 scope: hunk
-check_kind: mechanical
+check_kind: semantic
 severity_default: major
 ---
 

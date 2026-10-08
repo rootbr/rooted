@@ -2,7 +2,7 @@
 title: A routine works in a local variable with its own name and assigns no new value to a parameter, except a newly created object in place of a null default
 rule_id: CODE-38
 domain: code
-step: [implement, review]
+step: [implement]
 applies_to: [universal]
 triggers: ['^\s*(\w+)\s*=\s*\1\s*(?:[-+*/%.(\[]|\|\||\?\?|\bor\b)', '^\s*(\w+)\s*=\s*[\w.]+\(\s*\1\s*[,)]', '^\s*(?:\w+\s*(?:[-+*/%]|\*\*|//|\?\?|\|\||&&)=\s*[^=\s]|(?:\+\+|--)\w+\s*;?\s*$|\w+(?:\+\+|--)\s*;?\s*$)']
 scope: file

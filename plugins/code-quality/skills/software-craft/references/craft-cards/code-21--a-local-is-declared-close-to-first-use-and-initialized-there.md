@@ -2,7 +2,7 @@
 title: A local variable is declared close to its first use, not at the start of its block ahead of code that does not use it, and is initialized in its declaration or immediately after it
 rule_id: CODE-21
 domain: code
-step: [implement, refactor, review]
+step: [implement, refactor]
 applies_to: [universal]
 triggers: ['^\s*(final\s+)?((int|long|short|byte|char|float|double|boolean|String|[A-Z][\w.]*(<[^;=]*>)?)(\[\])*|var|let)\s+[A-Za-z_$][\w$]*\s*;\s*$', '^\s*var\s+[A-Za-z_]\w*(\s*,\s*[A-Za-z_]\w*)*\s+[\w.*\[\]]+\s*$', '^\s*let\s+(mut\s+)?[A-Za-z_]\w*\s*(:\s*[^=;]+)?;\s*$', '^\s*(?:(?:let|var|const|final|auto)\s+)?(?:mut\s+)?(?:[\w<>\[\]]+\s+)?[A-Za-z_]\w*(?:\s+[\w.*\[\]]+)?\s*(?::\s*[^=]+)?(?::=|=)\s*(null|nil|undefined|0|false|[\x22\x27]{2})\s*;?\s*$', '^\s*let\s+(mut\s+)?[A-Za-z_]\w*\s*(:\s*[^=;]+)?=\s*None\s*;\s*$']
 scope: hunk

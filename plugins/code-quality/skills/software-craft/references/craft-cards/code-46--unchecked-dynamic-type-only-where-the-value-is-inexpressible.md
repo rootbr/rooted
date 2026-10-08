@@ -2,11 +2,11 @@
 title: A declaration uses the unchecked dynamic type only where the type system cannot express the value, and otherwise uses a specific type or the checked top type
 rule_id: CODE-46
 domain: code
-step: [implement, review]
+step: [implement]
 applies_to: [static-types, dynamic-types]
 triggers: ['(:|=>|[<,|&=\[]|\bextends|\bkeyof)\s*any\b(?!\s*\()|(:|->|[\[,=|])\s*["\x27]?(\w+[.])?Any\b|\bfrom\s+typing(_extensions)?\s+import\b.*\bAny\b', '\bany\[\]']
 scope: hunk
-check_kind: mechanical
+check_kind: semantic
 severity_default: major
 ---
 

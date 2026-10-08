@@ -1,0 +1,53 @@
+{
+ "purpose": "concepts the domain reviewers found with no card, no pending entry and an openable source: each is a research run to queue (a topic object of one or two candidate rules for scripts/research-topic-workflow.js), never a hand-written card (HANDOVER 5.8)",
+ "runs": [
+  {
+   "domain": "change",
+   "concept": "A series is presented in final form, with fix-up commits folded into the commit they fix",
+   "source_path": "kubernetes/community contributors/guide/pull-requests.md, Squashing",
+   "claim": "squash fix-up and reviewer-feedback commits so only the end state remains; keep layered commits; checkable on the commit list base..head",
+   "taxonomy_row": null,
+   "status": "queued"
+  },
+  {
+   "domain": "change",
+   "concept": "Deliberate debt is taken on only for a hard deadline or an emergency, never for a soft deadline",
+   "source_path": "google/eng-practices review/emergencies.md",
+   "claim": "most deadlines are soft; code health is not sacrificed for them; checkable only against a change description that invokes urgency",
+   "taxonomy_row": null,
+   "status": "queued"
+  },
+  {
+   "domain": "code",
+   "concept": "Deep nesting: a block nested too deeply inside its routine (CC19 \"Taming Dangerously Deep Nesting\"). The design note computes a `deep_nesting` signal (\"the block depth of an added line inside its routine ... depth of 4 or more\") but no card's triggers name it; pending entry 69 holds composite complexity scores, not a nesting-depth bound.",
+   "source_path": "eslint/eslint docs/src/rules/max-depth.md (rule description; option `max`)",
+   "claim": "\"Many developers consider code difficult to read if blocks are nested beyond a certain depth.\"; \"This rule enforces a maximum depth that blocks can be nested to reduce code complexity.\"; `\"max\"` (default `4`)",
+   "taxonomy_row": "| | `control-flow` | CC14–17, CC19 |",
+   "status": "queued"
+  },
+  {
+   "domain": "code",
+   "concept": "Complex boolean expressions: a condition built from many boolean operators, not broken into named parts (CC19 \"Boolean Expressions\"); CODE-82 covers only comparison with true/false.",
+   "source_path": "checkstyle/checkstyle src/site/xdoc/checks/metrics/booleanexpressioncomplexity.xml (Description)",
+   "claim": "\"Restricts the number of boolean operators (&&, ||, &, | and ^) in an expression.\"; \"Rationale: Too many conditions leads to code that is difficult to read\"",
+   "taxonomy_row": "| | `control-flow` | CC14–17, CC19 |",
+   "status": "queued"
+  },
+  {
+   "domain": "code",
+   "concept": "Division by a divisor that can be zero (CC12 \"Anticipate divide-by-zero errors\"); CODE-30's Limits put \"division by zero\" outside the rule and no other card or pending entry holds it.",
+   "source_path": "golang/go doc/go_spec.html §Integer operators",
+   "claim": "\"If the divisor is zero at run time, a run-time panic occurs.\" (a curl of SonarSource/sonar-java sonar-java-plugin/src/main/resources/org/sonar/l10n/java/rules/java/S3518.html returned no such text, so that rule is not cited)",
+   "taxonomy_row": "| | `variables-scope-and-numerics` | CC10–13 |",
+   "status": "queued"
+  },
+  {
+   "domain": "code",
+   "concept": "Exact decimal quantities (money) held in binary floating point (CC12): CODE-31's Limits defer it (\"Whether a quantity that must be exact, such as money, belongs in binary floating point at all ... are judged by their own rules\") and CODE-27's Limits put \"the choice of a decimal type for decimal quantities\" outside, but no card or pending entry holds it.",
+   "source_path": "python/cpython Doc/library/decimal.rst (opening list of the decimal module's advantages)",
+   "claim": "\"The exactness carries over into arithmetic. In decimal floating point, ``0.1 + 0.1 + 0.1 - 0.3`` is exactly equal to zero.\"; \"decimal is preferred in accounting applications which have strict ...\" (equality invariants)",
+   "taxonomy_row": "| | `variables-scope-and-numerics` | CC10–13 |",
+   "status": "queued"
+  }
+ ]
+}

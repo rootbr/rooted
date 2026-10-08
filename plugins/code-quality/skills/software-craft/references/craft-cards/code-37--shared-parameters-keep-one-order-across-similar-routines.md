@@ -2,7 +2,7 @@
 title: A routine takes the parameters it shares with similar routines in the same order
 rule_id: CODE-37
 domain: code
-step: [design, implement, review]
+step: [design, implement]
 applies_to: [universal]
 triggers: ['\b(?:def|fn|func|function)\b[^=;]*\((?:.*,|\s*$)', '^\s*(?:(?:public|protected|private|internal|static|export|abstract|final|override|async|synchronized|default)\s+)+[^=;]*\((?:.*,|\s*$)', '^\s*(?!(?:return|new|throw|else|yield|await)\b)(?:<[^>]*>\s*)?(?:[\w.?\[\]>]|<[^>]*>)+\s+\w+\s*\((?:[^)]*[\w>\]]\s+\w+\s*,|\s*$)', '^\s*(?!(?:return|if|for|while|switch|catch|super|await|yield|typeof|new|import|const|var|type)\b)\w+\s*(?:<[^>]*>)?\s*\((?:\s*\w+\??\s*:\s*[^)]*,|\s*$)', '=\s*(?:async\s+)?\([^)]*,.*=>', '^\s*(?!(?:for|if|while|switch|catch|return|await|yield|new|throw)\b)[A-Za-z_]\w*\s*\((?=[^)]*,)\s*\w+(?:\s*,\s*\w+)*\s+[*\[\]]*[\w.]+']
 scope: file

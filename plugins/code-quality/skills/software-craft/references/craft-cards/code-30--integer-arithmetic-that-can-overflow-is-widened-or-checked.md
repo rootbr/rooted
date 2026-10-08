@@ -2,8 +2,8 @@
 title: Integer arithmetic that can exceed the range its type holds exactly, including an intermediate result computed in a narrower type before widening, is widened first or checked, and wraps or saturates only where that is its intended result
 rule_id: CODE-30
 domain: code
-step: [implement, test, review]
-applies_to: [static-types]
+step: [implement, handle-errors]
+applies_to: [universal]
 triggers: ['\b(long|int64|uint64|i64|u64)\b[^=;]*=\s*[^;]*\w\s*\*\s*\w', '\b(int64|uint64|long)\s*\)?\s*\(\s*\w+\s*([*+-]|<<)\s*\w+', '\)\s*as\s+[iu](64|128|size)\b', '\b(MAX_VALUE|MIN_VALUE|MaxInt\d*|MinInt\d*|MaxUint\d*|MAX_SAFE_INTEGER|::MAX|::MIN)\b', '(\w\s*\*\s*\d[\d_]{3,}|\b\d[\d_]{3,}\s*\*\s*\w)']
 scope: file
 check_kind: semantic

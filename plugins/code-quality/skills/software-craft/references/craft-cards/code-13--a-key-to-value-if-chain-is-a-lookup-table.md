@@ -2,7 +2,7 @@
 title: An if chain that tests one key against three or more literal constants and only returns an effect-free value in every branch is written as a lookup table
 rule_id: CODE-13
 domain: code
-step: [implement, refactor, review]
+step: [implement, refactor]
 applies_to: [universal]
 triggers: ['^\s*(\}\s*)?else\s+if\s*\(?\s*[\w.]+\s*={2,3}\s*[\x22\x27\w.-]+', '^\s*elif\s+[\w.]+\s*==\s*[^:]+:', '\belse\s+if\s*\(.*[.]equals(IgnoreCase)?\(']
 scope: hunk

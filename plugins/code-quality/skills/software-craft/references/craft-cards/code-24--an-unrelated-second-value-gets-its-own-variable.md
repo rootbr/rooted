@@ -2,7 +2,7 @@
 title: A name in a routine holds one quantity, and a second, unrelated value gets its own variable rather than being assigned or re-declared under the earlier name
 rule_id: CODE-24
 domain: code
-step: [implement, refactor, review]
+step: [implement, refactor]
 applies_to: [universal]
 triggers: ['(?<![\w.])(?:(?i:temp|tmp|aux|scratch)\w*|result|res|value|val|data|ret|buf|out)\s*(:\s*[^=]+)?:?=(?!=)', 'signal:long_routine']
 scope: file

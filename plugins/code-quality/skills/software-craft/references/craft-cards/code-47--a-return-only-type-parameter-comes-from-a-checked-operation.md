@@ -2,7 +2,7 @@
 title: A type parameter that appears in a routine's result and in none of its parameters is declared only when the routine produces the result through an operation checked against the type argument
 rule_id: CODE-47
 domain: code
-step: [design, implement, review]
+step: [design, implement]
 applies_to: [static-types, dynamic-types]
 triggers: ['<[^<>]*\b([A-Z]\w*)\b[^<>]*>\s+\1\s+\w+\s*\(|[<\[][^<>\[\]]*\b([A-Z]\w*)\b[^<>\[\]]*[>\]]\s*\([^)]*\)\s*(?::|->)?\s*\(?\s*[*&\[\]]*\2\b|->\s*[A-Z]\s*:', '\bas\s+[A-Z]\b|\bcast\(\s*[A-Z]\s*,|\(\s*\*?\s*[A-Z]\s*\)\s*[\w(]|\btransmute\b']
 scope: file

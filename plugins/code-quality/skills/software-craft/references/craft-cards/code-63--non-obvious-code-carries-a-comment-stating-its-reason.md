@@ -2,7 +2,7 @@
 title: Code whose reason or meaning a reader fluent in the language could not infer from reading it, such as a workaround, a deliberately unusual form or a dense expression, carries a comment that states it
 rule_id: CODE-63
 domain: code
-step: [implement, document, review]
+step: [implement, document]
 applies_to: [universal]
 triggers: ['\b(re[.](compile|match|search|fullmatch|sub|findall|split)|Regex::new|regexp[.](MustCompile|Compile)|Pattern[.]compile|new RegExp)\s*\(', '\w\s*[&^]\s*[\w(]']
 scope: file

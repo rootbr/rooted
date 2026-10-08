@@ -2,7 +2,7 @@
 title: A routine longer than about 40 lines is split where a part can be broken out without harming the program's structure, and length alone is not the finding
 rule_id: CODE-36
 domain: code
-step: [implement, refactor, review]
+step: [implement, refactor]
 applies_to: [universal]
 triggers: ['signal:long_routine']
 scope: file

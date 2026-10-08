@@ -2,7 +2,7 @@
 title: A numeric literal that stands for a quantity whose meaning the surrounding code does not state is a constant named for its role, while a literal whose value is its whole meaning stays a literal
 rule_id: CODE-26
 domain: code
-step: [implement, refactor, review]
+step: [implement, refactor]
 applies_to: [universal]
 triggers: ['signal:magic_number', '(?<![\w.])(60|24|365|1000|1024|3600|86400|1000000|60000|3600000|86400000|1_000|1_000_000|1e3|1e6|1e9)(?![\w.])']
 scope: file

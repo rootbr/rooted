@@ -2,7 +2,7 @@
 title: A definition takes a type parameter only when it is used with more than one type or is a library's public API, and code used with one type is written for that type
 rule_id: CODE-40
 domain: code
-step: [design, implement, review]
+step: [design, implement]
 applies_to: [static-types, dynamic-types]
 triggers: ['\b(function|class|interface|type|fn|struct|enum|trait|record)\s+\w+\s*<[^>]*\b[A-Z]\w*\b', '(^\s*|\b(public|private|protected|static|default|abstract|final|synchronized)\b[^=;(<]{0,80})<\s*[A-Z]\w*[^>]*>\s*[\w.<>\[\]?, ]{1,160}\s\w+\s*\(', '\b(func|type)\s+(\([^)]*\)\s*)?\w+\s*\[\s*\w+(\s*,\s*\w+)*\s+[^\]]+\]', '\bTypeVar\(|\b(Generic|Protocol)\[|\b(def|class)\s+\w+\s*\[\s*\w+|\btype\s+\w+\s*\[[^\]]*\]\s*=|\b(def|class)\s+\w+\s*\(.*(:\s*|\[\s*|\[[^\]]{0,80},\s*|->\s*)_?[A-Z][A-Z0-9]?(_co|_contra)?\b', '\bimpl\s*<[^>]*\b[A-Z]', '=\s*(async\s*)?<\s*[A-Z]\w*\b[^>]*>\s*\(|^\s*((public|private|protected|static|async|abstract|override|readonly)\s+)*\w+\s*<\s*[A-Z]\w*[^>]*>\s*\(']
 scope: callers

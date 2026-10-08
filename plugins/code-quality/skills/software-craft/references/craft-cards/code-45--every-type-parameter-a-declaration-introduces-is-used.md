@@ -2,7 +2,7 @@
 title: Every type parameter a routine or a type declares is used in its signature, a field, another type parameter's constraint or its body
 rule_id: CODE-45
 domain: code
-step: [implement, refactor, review]
+step: [implement, refactor]
 applies_to: [static-types, dynamic-types]
 triggers: ['\b(function|class|interface|type|fn|struct|enum|trait|record)\s+\w+\s*<\s*[A-Z]\w*\b', '(\b(public|private|protected|static|abstract|default|final)\b[^=;(]*|^\s*)<\s*[A-Z]\w*[^>]*>\s*[\w.<>\[\]?, ]+\s\w+\s*\(', '\b(func|type)\s+(\([^)]*\)\s*)?\w+\s*\[\s*\w+(\s*,\s*\w+)*\s+[^\]]+\]', '\bTypeVar\(|\b(Generic|Protocol)\[|\b(def|class)\s+\w+\s*\[\s*\w+', '\bimpl\s*<\s*[A-Z]', '^\s*((public|private|protected|static|async|readonly|override)\s+)*\w+\s*<\s*[A-Z]\w*[^()=;]*?>\s*\(|=\s*(async\s+)?<\s*[A-Z]\w*[^()]*?>\s*\(']
 scope: hunk

@@ -1,0 +1,828 @@
+{
+ "domain": "code",
+ "reviewer": "one read-only agent (claude-opus-5-5, effort max), 2026-10-08T16:42 UTC, 0.75M sub-agent tokens, 40 minutes; applied by the orchestrator per HANDOVER 5.8 (see the commit that follows this file)",
+ "cards_read": [
+  "CODE-01",
+  "CODE-02",
+  "CODE-03",
+  "CODE-04",
+  "CODE-05",
+  "CODE-06",
+  "CODE-07",
+  "CODE-08",
+  "CODE-09",
+  "CODE-10",
+  "CODE-11",
+  "CODE-12",
+  "CODE-13",
+  "CODE-14",
+  "CODE-15",
+  "CODE-16",
+  "CODE-17",
+  "CODE-18",
+  "CODE-19",
+  "CODE-20",
+  "CODE-21",
+  "CODE-22",
+  "CODE-23",
+  "CODE-24",
+  "CODE-25",
+  "CODE-26",
+  "CODE-27",
+  "CODE-28",
+  "CODE-29",
+  "CODE-30",
+  "CODE-31",
+  "CODE-32",
+  "CODE-33",
+  "CODE-34",
+  "CODE-35",
+  "CODE-36",
+  "CODE-37",
+  "CODE-38",
+  "CODE-39",
+  "CODE-40",
+  "CODE-41",
+  "CODE-42",
+  "CODE-43",
+  "CODE-44",
+  "CODE-45",
+  "CODE-46",
+  "CODE-47",
+  "CODE-48",
+  "CODE-49",
+  "CODE-50",
+  "CODE-51",
+  "CODE-52",
+  "CODE-53",
+  "CODE-54",
+  "CODE-55",
+  "CODE-56",
+  "CODE-57",
+  "CODE-58",
+  "CODE-59",
+  "CODE-60",
+  "CODE-61",
+  "CODE-62",
+  "CODE-63",
+  "CODE-64",
+  "CODE-65",
+  "CODE-66",
+  "CODE-67",
+  "CODE-68",
+  "CODE-69",
+  "CODE-70",
+  "CODE-71",
+  "CODE-72",
+  "CODE-73",
+  "CODE-74",
+  "CODE-75",
+  "CODE-76",
+  "CODE-77",
+  "CODE-78",
+  "CODE-79",
+  "CODE-80",
+  "CODE-81",
+  "CODE-82"
+ ],
+ "overlaps": [
+  {
+   "deferring": "CODE-03",
+   "owner": "CODE-12",
+   "line_kind": "An added public or exported routine signature whose parameter is one letter standing for a domain value — CODE-03's own bad Example is exactly this shape: `export function applyDiscount(p: number, r: number): number {`.",
+   "validator_a": "Does an added variable, field or parameter carry a single-letter name that is neither a conventional letter in its conventional role, nor inside the scope that a documented language convention or project tolerance admits for short names, nor a parameter name fixed by the inherited declaration of a routine it overrides or implements?",
+   "validator_b": "Does an added public routine signature introduce a one-letter parameter that stands for a domain value rather than the conventional name for its role?",
+   "taxonomy_owner": "naming-identifiers owns both; CODE-12 is the card scoped to this case (applies_to [public-api]; Thesis: \"Every parameter of an exported or public routine carries a name longer than a single letter\"), so it owns public parameters and CODE-03 keeps locals, fields and non-public parameters."
+  },
+  {
+   "deferring": "CODE-11",
+   "owner": "CODE-03",
+   "line_kind": "An added field, global or far-used local named by a single letter outside the conventional roles (e.g. `private int c;`): CODE-11 Thesis \"A single letter or a short popular word that could name many things (`g`, `open`, `kNum`) stays inside a small scope\"; CODE-03 Thesis \"Outside a conventional role, a variable, field or parameter is named with a whole word or phrase, not a single letter.\"",
+   "validator_a": "Is a name that is a global, module-level or exported variable or constant, a field, or a local used more than about 7 to 10 lines from its declaration (fewer when the scope holds many or similar variables) a single letter, a letter-dropped abbreviation or a short popular word whose meaning the reader cannot recover without returning to its declaration?",
+   "validator_b": "Does an added variable, field or parameter carry a single-letter name that is neither a conventional letter in its conventional role, nor inside the scope that a documented language convention or project tolerance admits for short names, nor a parameter name fixed by the inherited declaration of a routine it overrides or implements?",
+   "taxonomy_owner": "naming-identifiers owns both; CODE-03 is the single-letter card, CODE-11 keeps the short popular words and the conventional letter stretched over a large scope."
+  },
+  {
+   "deferring": "CODE-11",
+   "owner": "CODE-09",
+   "line_kind": "An added field or wide-scope name that is a contraction coined by dropping letters — CODE-11's own bad Example `private int cnt;`; `cnt` is listed in CODE-09's trigger `(usr|cnt|mgr|...)` and CODE-11's Thesis restates CODE-09's rule: \"never a contraction made by dropping letters from a word (`cnt`, `cstmr`)\".",
+   "validator_a": "Is a name that is a global, module-level or exported variable or constant, a field, or a local used more than about 7 to 10 lines from its declaration (fewer when the scope holds many or similar variables) a single letter, a letter-dropped abbreviation or a short popular word whose meaning the reader cannot recover without returning to its declaration?",
+   "validator_b": "Does a name declared on an added line contain an abbreviation that a programmer outside the project could not expand one way (a contraction coined by deleting letters inside a word, shorthand only the team knows, or a form with several readings) outside a documented short-name convention or tolerance and without being dictated from outside the code?",
+   "taxonomy_owner": "naming-identifiers owns both; CODE-09 (title: \"never with a contraction coined by deleting letters inside a word\") owns the coined contraction at any scope."
+  },
+  {
+   "deferring": "CODE-46",
+   "owner": "CODE-43",
+   "line_kind": "An added signature that writes the unchecked top type at a position whose type follows an argument — CODE-46's own bad `function first(items: any[]): any { return items[0]; }`, whose good half `function first<T>(items: T[]): T | undefined` is CODE-43's fix (\"a type parameter for the shared type\").",
+   "validator_a": "Does an added declaration write the unchecked dynamic type where a specific type, a type parameter or the checked top type expresses the value without being unergonomic to write, or write it, where the reason is not obvious, with no comment stating why it is legitimate?",
+   "validator_b": "Does an added declaration give a parameter, a result, a field or a container's elements the top type at a position whose type follows the type of another position, so that a reader has to cast or assert the value back to the type the caller passed, or uses it unchecked?",
+   "taxonomy_owner": "generics-and-parameterization owns both; CODE-43 owns \"a type parameter states that type instead of the top type\" for related positions; CODE-46 keeps the specific-type and checked-top-type fixes."
+  },
+  {
+   "deferring": "CODE-52",
+   "owner": "CODE-50",
+   "line_kind": "A statement added after an undelimited single-statement control body and indented one unit as if inside it: CODE-52's Validator compares \"its leading whitespace with the unit multiplied by that level\" (parsed level 0), CODE-50 flags a statement shown inside a body it is not parsed in; the fixes coincide (\"re-indented ... at each line's nesting level\" / \"the stray line moved to the header's level\").",
+   "validator_a": "Does an added line's leading whitespace, a comment on its own line included, use an indentation character the established indentation does not use, mix the two characters outside alignment, or, a continuation line excepted, start at a column other than the established unit multiplied by the line's nesting level?",
+   "validator_b": "Does an added line's indentation, line placement or operator spacing show a statement inside or outside a control body, an `else` paired with an `if`, a compound operator, or a grouping of operands that differs from what the file's language parses?",
+   "taxonomy_owner": "layout-and-coding-style owns both; CODE-50 owns layout that disagrees with the parse (CWE-483, severity major); CODE-52 keeps inconsistent indentation that misstates no parse."
+  },
+  {
+   "deferring": "CODE-53",
+   "owner": "CODE-50",
+   "line_kind": "A shift mixed with arithmetic whose spacing implies a grouping the language does not parse — CODE-50's own bad `mask = high<<8 + low` and good `mask = (high << 8) + low`, which is CODE-53's parenthesized fix; both Rationales cite the same Effective Go `x<<8 + y<<16` passage.",
+   "validator_a": "Does an added expression combine a shift with an arithmetic operator, or a bitwise operator with an arithmetic operator or a comparison, so that the sub-expression built with one is an operand of the other without parentheses around it?",
+   "validator_b": "Does an added line's indentation, line placement or operator spacing show a statement inside or outside a control body, an `else` paired with an `if`, a compound operator, or a grouping of operands that differs from what the file's language parses?",
+   "taxonomy_owner": "layout-and-coding-style owns both; on a misleadingly spaced mix CODE-50 (major) owns the finding; CODE-53 keeps uniformly spaced mixes."
+  },
+  {
+   "deferring": "CODE-54",
+   "owner": "CODE-50",
+   "line_kind": "A statement added directly beneath an unbraced control body and indented like it — CODE-54's second clause (\"add a statement directly beneath such a body and indented like it\"), which is CODE-50's misleading-body case (CODE-50's Limits name only the brace convention for bodies: \"whether every body takes braces is a brace convention, not a disagreement between layout and parse\").",
+   "validator_a": "Does the hunk add a control-statement header whose body starts on a following line without an opening brace, or add a statement directly beneath such a body and indented like it, in a language where that brace is optional and with no documented project convention that omits braces around single statements?",
+   "validator_b": "Does an added line's indentation, line placement or operator spacing show a statement inside or outside a control body, an `else` paired with an `if`, a compound operator, or a grouping of operands that differs from what the file's language parses?",
+   "taxonomy_owner": "layout-and-coding-style owns both; CODE-50 owns the stray statement; CODE-54 keeps unbraced own-line bodies with nothing misplaced."
+  },
+  {
+   "deferring": "CODE-59",
+   "owner": "CODE-51",
+   "line_kind": "A blank line inside a routine between statements of one step: CODE-59's Validator lists \"blank lines\" among the layout points it classifies against the guide's recommendation (e.g. \"Use blank lines in functions, sparingly, to indicate logical sections\").",
+   "validator_a": "Does an added or changed line break a layout requirement of the project's style guide, or, on a point the guide does not require, take a form that matches neither the established form of its file (or, where the file has none, of its directory) nor the guide's recommendation, when at least one of those exists?",
+   "validator_b": "Inside a routine body, does the change add or leave a blank line between statements that carry out one logical step?",
+   "taxonomy_owner": "layout-and-coding-style owns both; CODE-59 is the catch-all (\"No lexical pattern or structural signal marks a line whose layout departs ...\"), so each layout point with its own card is that card's."
+  },
+  {
+   "deferring": "CODE-59",
+   "owner": "CODE-52",
+   "line_kind": "An added line indented with a character or column the file's indentation or the guide does not use (CODE-59 Validator point \"indentation\").",
+   "validator_a": "Does an added or changed line break a layout requirement of the project's style guide, or, on a point the guide does not require, take a form that matches neither the established form of its file (or, where the file has none, of its directory) nor the guide's recommendation, when at least one of those exists?",
+   "validator_b": "Does an added line's leading whitespace, a comment on its own line included, use an indentation character the established indentation does not use, mix the two characters outside alignment, or, a continuation line excepted, start at a column other than the established unit multiplied by the line's nesting level?",
+   "taxonomy_owner": "layout-and-coding-style; the specific indentation card owns the point."
+  },
+  {
+   "deferring": "CODE-59",
+   "owner": "CODE-54",
+   "line_kind": "A control body on its own line without braces where the guide requires braces (CODE-59 point \"brace use and placement\"; CODE-54 Limits leave only the same-line body to the guide).",
+   "validator_a": "Does an added or changed line break a layout requirement of the project's style guide, or, on a point the guide does not require, take a form that matches neither the established form of its file (or, where the file has none, of its directory) nor the guide's recommendation, when at least one of those exists?",
+   "validator_b": "Does the hunk add a control-statement header whose body starts on a following line without an opening brace, or add a statement directly beneath such a body and indented like it, in a language where that brace is optional and with no documented project convention that omits braces around single statements?",
+   "taxonomy_owner": "layout-and-coding-style; the brace card owns own-line bodies."
+  },
+  {
+   "deferring": "CODE-59",
+   "owner": "CODE-55",
+   "line_kind": "An added line past the guide's column limit (CODE-59 point \"line length and where a long line breaks\").",
+   "validator_a": "Does an added or changed line break a layout requirement of the project's style guide, or, on a point the guide does not require, take a form that matches neither the established form of its file (or, where the file has none, of its directory) nor the guide's recommendation, when at least one of those exists?",
+   "validator_b": "Does an added line exceed the column limit that governs its kind, code or comment text, through content that could be refactored or split without breaking a URL, a path, a command, a searchable string or another exempt token?",
+   "taxonomy_owner": "layout-and-coding-style; the column-limit card owns the point."
+  },
+  {
+   "deferring": "CODE-59",
+   "owner": "CODE-56",
+   "line_kind": "A wrapped header whose continuation line sits at the block's column, against a guide that sets a deeper continuation indent (e.g. Google Java \"+4\" under a \"+2\" block).",
+   "validator_a": "Does an added or changed line break a layout requirement of the project's style guide, or, on a point the guide does not require, take a form that matches neither the established form of its file (or, where the file has none, of its directory) nor the guide's recommendation, when at least one of those exists?",
+   "validator_b": "Does an added or rewrapped control header or routine signature have a continuation line that starts at the same column as the first line of the block it opens, with no separating line after that continuation line and before the block?",
+   "taxonomy_owner": "layout-and-coding-style; the wrapped-header card owns the point."
+  },
+  {
+   "deferring": "CODE-59",
+   "owner": "CODE-57",
+   "line_kind": "Tokens padded into columns by hand — CODE-59's own bad Example line `int    count = items.size();` in a file that \"never aligns\" (CODE-59 point \"whitespace around operators and alignment\").",
+   "validator_a": "Does an added or changed line break a layout requirement of the project's style guide, or, on a point the guide does not require, take a form that matches neither the established form of its file (or, where the file has none, of its directory) nor the guide's recommendation, when at least one of those exists?",
+   "validator_b": "Does an added line carry extra spaces that put a token in a column with a token on a consecutive line, or re-pad an unchanged neighbour to restore such a column, where neither the formatter the project runs on the file nor the language's standard formatter emits that alignment?",
+   "taxonomy_owner": "layout-and-coding-style; the alignment card owns the point."
+  },
+  {
+   "deferring": "CODE-59",
+   "owner": "CODE-58",
+   "line_kind": "Two statements on a line, or a single-clause body on its header's line that the project's guide rejects — CODE-58's third clause is exactly a guide requirement (CODE-59 point \"statements per line\").",
+   "validator_a": "Does an added or changed line break a layout requirement of the project's style guide, or, on a point the guide does not require, take a form that matches neither the established form of its file (or, where the file has none, of its directory) nor the guide's recommendation, when at least one of those exists?",
+   "validator_b": "Does an added line hold two statements one after the other, a multi-clause statement or one of its clause bodies on a header's line, or a single-clause body on its header's line that the project's stated guide rejects?",
+   "taxonomy_owner": "layout-and-coding-style; the statements-per-line card owns the point."
+  },
+  {
+   "deferring": "CODE-63",
+   "owner": "CODE-75",
+   "line_kind": "An intended switch fall-through with no marking comment: CODE-63's Thesis lists \"a form chosen over the usual one because the code depends on a behaviour the usual form would lose, where the comment says the choice is intentional\", and its Validator picks out \"a form that departs from the usual one in the language or in the surrounding code\".",
+   "validator_a": "Does the hunk add code whose reason, or for a dense construct whose meaning, a reader fluent in the language could not infer from the code, with neither a comment nor a name that states it?",
+   "validator_b": "Can control reach the end of a case's statements and run on into the next case's statements with no explicit fall-through statement, and no fall-through comment the project's checks accept, marking that passage?",
+   "taxonomy_owner": "comments-and-self-documenting-code vs control-flow; CODE-75 owns fall-through (already owner of CODE-64's fall-through in DEFER_TO)."
+  },
+  {
+   "deferring": "CODE-66",
+   "owner": "CODE-65",
+   "line_kind": "An added public or exported field or constant whose meaning or special value its name and type leave open and that carries no doc comment — CODE-65's bad `pub read_timeout_ms: u64,` (\"Zero disables the timeout\"); both findings name what name and type leave open.",
+   "validator_a": "Does a declaration on an added line put an item in the public or exported interface without a doc comment in the language's documented form that says more than the item's name, the item being neither a marked override that keeps its parent's contract nor an exempt member with truly nothing to say beyond its name?",
+   "validator_b": "Does an added field, constant or parameter have a meaning, a special value or an error-prone use that neither its name, its type nor any comment documenting it states?",
+   "taxonomy_owner": "comments-and-self-documenting-code owns both; CODE-65's finding carries the missing meaning or special value; CODE-66 keeps routines, types and public items whose meaning is plain but undocumented."
+  },
+  {
+   "deferring": "CODE-66",
+   "owner": "CODE-70",
+   "line_kind": "A public declaration preceded by an ordinary comment carrying user-facing text instead of the doc-comment form — CODE-70's own bad `// Returns the position of the first item with this key, if any.` above `pub fn find`; CODE-66's Validator counts \"an ordinary implementation comment in place of the doc-comment form\" as missing.",
+   "validator_a": "Does a declaration on an added line put an item in the public or exported interface without a doc comment in the language's documented form that says more than the item's name, the item being neither a marked override that keeps its parent's contract nor an exempt member with truly nothing to say beyond its name?",
+   "validator_b": "Does an added comment put text for the declaration's users in a form or position its documentation tool does not attach, put doc-comment syntax where that tool attaches it to no declaration, open a doc comment with anything other than the summary the governing convention prescribes or lay it out against that convention, or carry in a doc comment an implementation note that does not concern the caller?",
+   "taxonomy_owner": "comments-and-self-documenting-code owns both; CODE-70 (title: \"A doc comment takes its language's documented form, sits where the documentation tool attaches it\") owns the form; CODE-66 keeps items with no comment at all."
+  },
+  {
+   "deferring": "CODE-70",
+   "owner": "CODE-69",
+   "line_kind": "A doc-comment sentence describing how the current implementation works: CODE-70's question ends \"or carry in a doc comment an implementation note that does not concern the caller\", and both Limits claim the point (\"where an implementation note sits\" / \"The rule weighs where an implementation detail is written\").",
+   "validator_a": "Does an added comment put text for the declaration's users in a form or position its documentation tool does not attach, put doc-comment syntax where that tool attaches it to no declaration, open a doc comment with anything other than the summary the governing convention prescribes or lay it out against that convention, or carry in a doc comment an implementation note that does not concern the caller?",
+   "validator_b": "Does an added doc comment, outside a heading or tag set apart for notes on the current implementation, describe how the current implementation works (its algorithm, internal data structures, helper calls or steps) beyond a time or space bound, a performance implication of use, a side effect, a special case, an input requirement or another behaviour a caller observes?",
+   "taxonomy_owner": "comments-and-self-documenting-code; CODE-69 is the dedicated card."
+  },
+  {
+   "deferring": "CODE-70",
+   "owner": "CODE-68",
+   "line_kind": "A doc-comment block tag with no description: CODE-70's Rationale lists the layout \"block tags in the order parameter, return, throws, deprecated and never with an empty description\"; CODE-68 flags \"a tag with no description\".",
+   "validator_a": "Does an added comment put text for the declaration's users in a form or position its documentation tool does not attach, put doc-comment syntax where that tool attaches it to no declaration, open a doc comment with anything other than the summary the governing convention prescribes or lay it out against that convention, or carry in a doc comment an implementation note that does not concern the caller?",
+   "validator_b": "Does an added or changed doc comment carry a parameter, return or error entry, or a one-line summary, that says nothing beyond the routine's signature — a restated name or type, a type the code already declares, a tag with no description, or the signature written out as the summary?",
+   "taxonomy_owner": "comments-and-self-documenting-code; CODE-68 owns entry content."
+  },
+  {
+   "deferring": "CODE-35",
+   "owner": "API-10",
+   "line_kind": "A public signature with two or more positional boolean parameters — CODE-35's bad `fn render(report: &Report, show_hidden: bool, draft: bool)`: two parameters \"in one primitive type\" that \"stand for different kinds of thing\"; both fixes are an enum per choice.",
+   "validator_a": "Does a signature that the hunk adds or changes, outside the set-aside cases, declare two or more boolean parameters, or does a call that the hunk adds or changes, outside the set-aside cases, pass two or more boolean literals of which at least one is named by no named argument or parameter-name comment?",
+   "validator_b": "Does an added public signature take by position, in one primitive type, two parameters that stand for different kinds of thing, or take an open string or integer for a parameter that accepts only a fixed set of named alternatives?",
+   "taxonomy_owner": "routine-size-and-parameters vs C interface (api-design-and-use); on a public signature the interface card owns it, as the existing DSN-47 -> API-10 entry does for a closed set."
+  },
+  {
+   "deferring": "CODE-18",
+   "owner": "API-11",
+   "line_kind": "A public type's transition routine that sets the state without checking the current one — CODE-18's bad `void ship() { this.status = Status.SHIPPED; }`: callable before `pay`, \"not rejected by a check of that state with an error\"; API-11's workflow exemption (\"specifying that such a call has no effect\") is CODE-18's stated no-op.",
+   "validator_a": "Does a routine the hunk adds or changes move an object to a new state without first establishing that its current state accepts the event, so that in a state from which the move is illegal the change is applied anyway?",
+   "validator_b": "Does this public type leave its callers to remember an order of calls — an operation that, called before the call that sets up its state, passes type checking and is not rejected by a check of that state with an error, in a type that is not a workflow specifying that such a call has no effect, or a setter that refuses a value, or gives a different object, when it is called before another?",
+   "taxonomy_owner": "table-driven-and-state-machines vs C interface; on a public type the interface card owns the unenforced order; CODE-18 keeps non-public types."
+  },
+  {
+   "deferring": "CODE-18",
+   "owner": "ERR-13",
+   "line_kind": "The same unchecked transition in a routine callable from outside its module: ERR-13 asks about a routine that will \"act on its object's state, under a condition its parameter types do not enforce, with no check of that condition\".",
+   "validator_a": "Does a routine the hunk adds or changes move an object to a new state without first establishing that its current state accepts the event, so that in a state from which the move is illegal the change is applied anyway?",
+   "validator_b": "Does a routine callable from outside its module use or store an argument, or act on its object's state, under a condition its parameter types do not enforce, with no check of that condition before that statement, or with the check placed only after the routine has stored the value or changed its object's state?",
+   "taxonomy_owner": "table-driven-and-state-machines vs D errors (defensive-programming); priority-1 domain owns the missing check on public routines."
+  },
+  {
+   "deferring": "CODE-16",
+   "owner": "ERR-16",
+   "line_kind": "A map read that returns null or none for a missing key and is then dereferenced (e.g. `offsets.get(zone).intValue()`): CODE-16's \"uses the zero value or null returned for that miss as if it were an entry\" is ERR-16's use \"where ... its producing call ... says it can be absent\".",
+   "validator_a": "Can a table read that the hunk adds, or that reads a table the hunk adds or changes, receive a key the table has no entry for while the code uses the zero value or null returned for that miss as if it were an entry?",
+   "validator_b": "Does an added or changed line use a value, by member access, method call, index or iteration or by passing it to a parameter that requires a present value, on a path where the value's declared type, its producing call or the routine's own test says it can be absent and no preceding test keeps the absent case away from that use?",
+   "taxonomy_owner": "table-driven-and-state-machines vs D errors; ERR-16 owns the dereference of a possibly absent value; CODE-16 keeps zero values and wrong entries that are not absent values."
+  },
+  {
+   "deferring": "CODE-63",
+   "owner": "ERR-17",
+   "line_kind": "An added non-null or type assertion with no stated reason: CODE-63's Thesis names \"an unchecked type or non-null assertion, where the comment says why it is safe\"; ERR-17 flags one the routine \"neither shows to be ensured nor explains with a stated reason\".",
+   "validator_a": "Does the hunk add code whose reason, or for a dense construct whose meaning, a reader fluent in the language could not infer from the code, with neither a comment nor a name that states it?",
+   "validator_b": "Does an added non-null assertion, unwrap, expect, throwing accessor, type assertion or unchecked cast force a value that the enclosing routine shows coming from outside the program with no check before the site ruling the other case out, or a value that the routine neither shows to be ensured nor explains with a stated reason that the file bears out?",
+   "taxonomy_owner": "comments-and-self-documenting-code vs D errors; ERR-17 owns the forced assertion."
+  },
+  {
+   "deferring": "CODE-07",
+   "owner": "DSN-68",
+   "line_kind": "A constant-cased field holding a mutable collection under a convention that reserves constant case for deeply immutable values (e.g. `static final List<String> NAMES = new ArrayList<>();`): CODE-07's Thesis \"a mutable value keeps the variable form only where the convention also requires a constant to be deeply immutable\"; incompatible fixes (rename vs make immutable).",
+   "validator_a": "Does an added name take a case, word separator, acronym form, prefix or suffix marker, constant form or part of speech that the convention governing its kind does not give it, or lack a marker that convention requires, without being dictated from outside the code?",
+   "validator_b": "Does a field named as a constant, or declared final or read-only and visible to other packages or modules, refer to an array, collection or object whose contents can still change?",
+   "taxonomy_owner": "naming-identifiers vs B design (mutable state); DSN-68 owns the immutability of a constant field, whose fix also makes the name correct."
+  },
+  {
+   "deferring": "CODE-77",
+   "owner": "DSN-60",
+   "line_kind": "An add or remove on the collection whose length a counted loop's test reads, inside that loop: CODE-77's Validator traces \"an addition to or removal from the collection whose length the test reads\"; DSN-60's Limits keep \"a counted loop that removes at its current position and then advances\" inside. CODE-77's fix (\"the bound held in a local\") would run the index past the shrunk collection.",
+   "validator_a": "Does the body of a loop the diff adds or changes write to the loop's own control variable, change the bound its termination test reads, or, where loops open no scope of their own, reuse an enclosing loop's variable name for an inner loop?",
+   "validator_b": "Does an added line inside a loop body or a pipeline step add an element to, or remove an element from, the collection that loop or pipeline is traversing, other than through the iterator's own call or a collection designed for concurrent modification?",
+   "taxonomy_owner": "control-flow vs B design; DSN-60 owns structural changes to the traversed collection; CODE-77 keeps writes to the counter and to a bound variable."
+  },
+  {
+   "deferring": "CODE-67",
+   "owner": "DSN-64",
+   "line_kind": "A doc-commented routine that mutates an argument while its doc comment does not say so: CODE-67 asks about a doc comment that \"leaves out a side effect\"; DSN-64 flags a change no \"documented contract ... declares\".",
+   "validator_a": "Does a routine the change adds or changes carry a doc comment that leaves out a side effect, an error and its condition, a panic scenario, a calling restriction, an unsafe-call invariant or a special case that the routine's body shows applies and its signature does not show?",
+   "validator_b": "Does the routine change the contents of an object passed in as an argument, directly or through a view or shallow copy that shares the argument's storage, while neither the parameter's type, the routine's name, its documented contract nor a convention in the project context declares the change?",
+   "taxonomy_owner": "comments-and-self-documenting-code vs B design; DSN-64 owns the undeclared argument mutation; CODE-67 keeps errors, panics, restrictions and special cases."
+  },
+  {
+   "deferring": "DSN-25",
+   "owner": "CODE-26",
+   "line_kind": "A numeric literal that writes out a quantity the file already defines as a named constant: CODE-26's question ends \"or write out a quantity the file already defines as a constant?\"; DSN-25 flags \"a value meant to equal a hand-written copy elsewhere\".",
+   "validator_a": "Does the diff add or change a value meant to equal a hand-written copy elsewhere in the repository, with neither a read from a single source nor a test that fails when the two copies differ?",
+   "validator_b": "Does an added numeric literal outside a constant's definition encode a domain quantity, a limit or a unit factor whose role no constant or binding named for it states at that point, so that a reader must infer its meaning from context, or write out a quantity the file already defines as a constant?",
+   "taxonomy_owner": "Ownership row: \"A magic number or a global variable | `variables-scope-and-numerics`\"; CODE-26 owns the literal; DSN-25 keeps copies across files and artifacts."
+  }
+ ],
+ "near_misses": [
+  {
+   "a": "CODE-01",
+   "b": "CODE-05",
+   "why_not": "Both read boolean names, but CODE-01 asks whether a predicate word contradicts the declared type and CODE-05 whether a boolean's name is a bare noun, a negation or a get prefix; CODE-05's Limits name CODE-01's case: \"A predicate-shaped name on a value that is not boolean, such as isValid returning a number, is a different defect and outside this rule.\""
+  },
+  {
+   "a": "CODE-01",
+   "b": "CODE-02",
+   "why_not": "CODE-01 compares a name with its signature, CODE-02 with its body; CODE-01's Limits: \"a routine whose behaviour goes beyond its signature (a getter that also creates or mutates state) ... are outside it.\""
+  },
+  {
+   "a": "CODE-03",
+   "b": "CODE-10",
+   "why_not": "Both fire on `let l = rows.len();`, but CODE-03 asks whether the letter is conventional for its role (a meaning defect) and CODE-10 whether it is `l`, `O` or `I` (a digit look-alike); each finding names a different fact."
+  },
+  {
+   "a": "CODE-04",
+   "b": "CODE-06",
+   "why_not": "A `...Manager` type triggers both, but CODE-04 asks whether the filler word states no purpose and CODE-06 whether the codebase already uses another word for the same role."
+  },
+  {
+   "a": "CODE-07",
+   "b": "CODE-08",
+   "why_not": "A Hungarian prefix (`strName`) is a type word, not a convention marker: CODE-07's Limits put \"its choice of words beyond that part of speech, its meaning\" outside it, and CODE-08's Limits put markers outside it (\"cnt for a count, p for an indirection, m_ for a member — encodes no type information and is outside the rule\")."
+  },
+  {
+   "a": "CODE-09",
+   "b": "CODE-08",
+   "why_not": "CODE-09's triggers hit Hungarian stems (`dw`, `lp`), but its Limits exclude them: \"whether a single letter outside the conventional roles fits its variable, how an acronym is cased, and whether a name encodes its type are outside it.\" The same clause clears CODE-09 against CODE-03 and CODE-07."
+  },
+  {
+   "a": "CODE-19",
+   "b": "CODE-20",
+   "why_not": "Missing member with no default (CODE-19) versus a counted default on a fully covered checked switch (CODE-20); each Limits names the other: CODE-19 \"whether a switch that names every member keeps a default as well, are judged by their own rules\"; CODE-20 \"A default on a switch whose cases leave some members unnamed ... are judged by their own rules.\""
+  },
+  {
+   "a": "CODE-21",
+   "b": "CODE-22",
+   "why_not": "Position within a scope versus choice of scope; CODE-22's Limits: \"Where a declaration sits within its scope relative to its first use ... outside this rule.\""
+  },
+  {
+   "a": "CODE-23",
+   "b": "CODE-24",
+   "why_not": "Inner-scope shadowing versus same-name reuse for an unrelated value; CODE-24's Limits: \"a declaration in a nested block that hides a name of an enclosing scope ... are outside this rule.\" The same clause clears CODE-24 against CODE-38 (reassigned parameter) and CODE-77 (loop-control variable)."
+  },
+  {
+   "a": "CODE-27",
+   "b": "CODE-30",
+   "why_not": "Lossy conversion versus overflowing arithmetic; each Limits hands the other's case off: CODE-27 \"Overflow of arithmetic within one integer type ... outside the rule\"; CODE-30 \"the conversion of a finished value into a narrower type are outside the rule.\""
+  },
+  {
+   "a": "CODE-27",
+   "b": "CODE-28",
+   "why_not": "CODE-27's triggers match `(float) 3.5e38` in CODE-28's bad Example, but CODE-27's Limits exclude \"a conversion from one floating-point type into a narrower one\", and CODE-28 judges the literal's digits."
+  },
+  {
+   "a": "CODE-33",
+   "b": "CODE-36",
+   "why_not": "Both may move a block of a long routine out, but CODE-33 asks whether operation groups share no data and CODE-36 whether a 40-plus-line routine holds an extractable task; CODE-33's Limits: \"Length alone is not the finding\"."
+  },
+  {
+   "a": "CODE-34",
+   "b": "CODE-35",
+   "why_not": "A signature with two selector booleans can draw both, but CODE-34 asks about the role (\"tests in a branch condition to choose which code runs\") and CODE-35 about the count; CODE-34's Limits: \"The number of boolean parameters is outside this rule\"."
+  },
+  {
+   "a": "CODE-40",
+   "b": "CODE-41",
+   "why_not": "`function describe<T extends Shape>(item: T)` can draw both, but CODE-40 asks whether every use instantiates one concrete type and CODE-41 whether T occurs once in the signature; the fixes differ (concrete type vs constraint)."
+  },
+  {
+   "a": "CODE-41",
+   "b": "CODE-45",
+   "why_not": "One occurrence versus none; CODE-45's Limits: \"a parameter used exactly once is outside it.\" CODE-40's Limits likewise hand off \"a type parameter that appears only in a return type or not at all\" (CODE-47, CODE-45)."
+  },
+  {
+   "a": "CODE-42",
+   "b": "CODE-44",
+   "why_not": "Per-type branching versus a constraint that does not grant an operation; CODE-44's Limits: \"A run-time type test that keeps a working path for type arguments without a capability, or that chooses between behaviours that differ per type, is outside this rule's reach\"."
+  },
+  {
+   "a": "CODE-50",
+   "b": "CODE-58",
+   "why_not": "`if (x) a(); b();` draws both, but CODE-58's finding names statements sharing a line (readability) and CODE-50's names a statement shown inside a body it is not parsed in."
+  },
+  {
+   "a": "CODE-50",
+   "b": "CODE-53",
+   "why_not": "Not a contradiction although CODE-50 calls spacing that matches the language's precedence \"truthful\": CODE-53's Limits name that case (\"Spacing does not stand in for the parentheses ... `x<<8 + y<<16`\"). The misleadingly spaced mix is listed as an overlap."
+  },
+  {
+   "a": "CODE-56",
+   "b": "CODE-52",
+   "why_not": "CODE-52 excepts continuation lines (\"a continuation line excepted\"), which CODE-56 judges."
+  },
+  {
+   "a": "CODE-55",
+   "b": "CODE-60",
+   "why_not": "CODE-55 drops \"a line that a wrapping formatter the project context names would rewrite\" and \"a line pushed over the limit by a pragma or suppression comment\"; CODE-60 judges exactly such suppressions."
+  },
+  {
+   "a": "CODE-61",
+   "b": "CODE-63",
+   "why_not": "A present restating comment versus a missing reason comment; CODE-61's Limits put \"a missing comment\" outside and CODE-63's put \"a comment that is present but restates or contradicts its code\" outside."
+  },
+  {
+   "a": "CODE-64",
+   "b": "CODE-25",
+   "why_not": "CODE-25's own bad line `// eslint-disable-next-line @typescript-eslint/no-unused-vars` draws both, but CODE-25 asks whether the variable is never read (remove it) and CODE-64 whether a reason is stated; CODE-64's Limits: \"whether a given suppression is justified at all rather than explained, are outside this rule.\""
+  },
+  {
+   "a": "CODE-65",
+   "b": "CODE-68",
+   "why_not": "A restating `@param timeout the timeout` is CODE-68's finding on the entry line, while CODE-65 flags the parameter's declaration line; different lines."
+  },
+  {
+   "a": "CODE-67",
+   "b": "CODE-71",
+   "why_not": "Omitted item versus stale item; CODE-67's Limits: \"A doc comment that states an item wrongly or has drifted from the code ... are outside the rule.\""
+  },
+  {
+   "a": "CODE-13",
+   "b": "CODE-73",
+   "why_not": "A value-returning chain without a final else draws CODE-73 (no default) but not CODE-13, which needs \"every branch, the final else included\"; different questions."
+  },
+  {
+   "a": "CODE-37",
+   "b": "API-13",
+   "why_not": "CODE-37 compares similar routines \"that are not overloads of one another\"; its Caveat leaves overloads to \"another rule\", API-13."
+  },
+  {
+   "a": "CODE-02",
+   "b": "DSN-64",
+   "why_not": "An argument write in a get-named routine is CODE-02's; DSN-64's Limits: \"a routine whose name reads as a query, predicate, accessor or conversion, which is held to its name, are outside the rule.\""
+  },
+  {
+   "a": "CODE-02",
+   "b": "API-19",
+   "why_not": "API-19 asks about expensive or failing work in a getter (\"a remote call, a complex computation, work perceivably slower than reading a field\"), CODE-02 about a hidden state change."
+  },
+  {
+   "a": "CODE-16",
+   "b": "API-15",
+   "why_not": "API-15 asks whether a routine answers \"no result with a value of its ordinary result type that means absence by convention\"; CODE-16 asks whether a miss's zero or null is used as an entry, and passes a null its routine documents as the absent result."
+  },
+  {
+   "a": "CODE-49",
+   "b": "API-16",
+   "why_not": "API-16 targets \"a concrete implementation type\", CODE-49 the variance of an interface type (`List<Shape>` vs `List<? extends Shape>`)."
+  },
+  {
+   "a": "CODE-39",
+   "b": "DSN-02",
+   "why_not": "Count of parameters versus optional inputs passed by position; a six-optional-input constructor draws both but the questions differ."
+  },
+  {
+   "a": "CODE-40",
+   "b": "DSN-19",
+   "why_not": "DSN-19 asks about \"an interface or abstract type\", \"an option, hook or extension point\", not a type parameter."
+  },
+  {
+   "a": "CODE-17",
+   "b": "DSN-49",
+   "why_not": "DSN-49 needs \"beside a tag field, optional or nullable fields\"; CODE-17's shape has boolean flags and no tag."
+  },
+  {
+   "a": "CODE-47",
+   "b": "ERR-17",
+   "why_not": "A stated reason satisfies ERR-17 but not CODE-47, which asks for a checked operation, a type token or the constraint as result type."
+  },
+  {
+   "a": "CODE-31",
+   "b": "TST-22",
+   "why_not": "TST-22's Limits admit the tolerance comparison CODE-31 asks for: \"A value that needs approximate or semantic equality ... can be compared with a comparison adjusted for approximate equality\"."
+  },
+  {
+   "a": "CODE-65",
+   "b": "DSN-51",
+   "why_not": "CODE-65's good half keeps `read_timeout_ms: u64` with a comment, while DSN-51 asks for a time type; CODE-65's Limits name that case as outside: \"the choice of a longer name or a more specific type instead of a comment\"."
+  },
+  {
+   "a": "CODE-26",
+   "b": "DSN-22",
+   "why_not": "Numeric versus string literals; CODE-26's Limits: \"non-numeric literals ... are outside this rule.\""
+  },
+  {
+   "a": "CODE-25",
+   "b": "CHG-08",
+   "why_not": "CODE-25's Limits: \"Routine parameters, fields, imports and unused routines and types are outside the rule\" — the territory of CHG-08, CHG-09 and CHG-10."
+  }
+ ],
+ "contradictions": [
+  {
+   "a": "CODE-01",
+   "b": "CODE-08",
+   "sentence_a": "CODE-01 Thesis: \"A noun phrase that names what a field or property holds, or what a routine returns ..., is singular for one value and plural for a collection, one that ends in a container word (list, array, map, dict, set, collection) counting as plural\"",
+   "sentence_b": "CODE-08 Thesis: \"It carries no type prefix in the Hungarian manner (strName, szBuf, dwFlags, bEnabled), no word that repeats the declared built-in, primitive or collection type (nameString, usersInt, userSlice, id_to_name_dict)\"",
+   "resolving_limits_sentence": "A container word at the end of a name meets the plurality check only; it repeats the declared collection type, so the fix for a singular name on a collection is the plural noun (items), not a container suffix (itemList).",
+   "carried_by": "CODE-01"
+  },
+  {
+   "a": "CODE-03",
+   "b": "CODE-11",
+   "sentence_a": "CODE-03 Limits: \"A letter in one of the conventional roles meets the rule\" (Thesis roles: \"a loop index or counter (i, j, k), a generic iteration value (v), a coordinate (x, y, z), a caught exception (e)\", with no bound on scope)",
+   "sentence_b": "CODE-11 Limits: \"Conventional short names hold within their small scope: a loop counter or index (`i`, `j`, `k`), a coordinate (`x`, `y`), ...; a conventional name spread across multiple nested scopes is likely too vague again.\"",
+   "resolving_limits_sentence": "The conventional-role exemption covers a letter whose uses stay within a small scope; a conventional letter read across several nested scopes or far from its declaration is judged by its scope, which this rule does not weigh.",
+   "carried_by": "CODE-03"
+  },
+  {
+   "a": "CODE-12",
+   "b": "CODE-03",
+   "sentence_a": "CODE-12 Thesis: \"A one-letter parameter name on a public signature stays only where the letter is the conventional name for its role: a familiar letter for a common type that stands for no domain value, such as `x` for a generic floating-point operand ..., `p` for a generic pointer, `r` for a stream reader or an incoming request and `w` for a stream writer or a response writer\"",
+   "sentence_b": "CODE-03 Thesis: \"The conventional roles are a loop index or counter (i, j, k), a generic iteration value (v), a coordinate (x, y, z), a caught exception (e), a file handle used only inside the block that opens it (f), a type parameter (T, E), and, outside a public interface, a letter that matches the notation of a paper or algorithm\" — so `public void copy(Reader r, Writer w)` passes CODE-12 and is flagged by CODE-03 (the CODE-03 -> CODE-12 defer does not fire, since CODE-12 does not flag).",
+   "resolving_limits_sentence": "A familiar letter for a common type that stands for no domain value — r for a reader or a request, w for a writer or a response writer, p for a generic pointer, x for a generic floating-point operand — is a conventional letter in that role.",
+   "carried_by": "CODE-03"
+  },
+  {
+   "a": "CODE-60",
+   "b": "CODE-57",
+   "sentence_a": "CODE-60 Thesis: \"Hand layout that the formatter would rewrite is kept only under the formatter's own documented skip directive, placed where the formatter honours it, and only for a region whose formatted output would lose a structure the hand layout shows, such as the rows of a matrix literal.\" (Validator: \"such as rows and columns of values\")",
+   "sentence_b": "CODE-57 Thesis: \"Where neither the formatter the project runs on the file nor the language's standard formatter emits the alignment itself, an added or changed line carries the language's ordinary spacing between its tokens and no extra spaces that put a token in a column with a token on a consecutive line\" — a matrix whose values are padded into columns under `# fmt: off` is CODE-60's good case and CODE-57's finding; CODE-57's Limits name formatter-emitted columns, delimiter-aligned continuations and a project tolerance, not a skip-directive region.",
+   "resolving_limits_sentence": "Columns of values padded by hand inside a region the governing formatter's documented skip directive excludes, where the formatted output would lose the rows and columns the layout shows, such as a matrix literal, are outside the rule.",
+   "carried_by": "CODE-57"
+  },
+  {
+   "a": "CODE-59",
+   "b": "CODE-57",
+   "sentence_a": "CODE-59 Thesis: \"On a layout point the guide does not require, because it only recommends a form, permits a form without requiring it, or says nothing, the added line takes the form the rest of its file already uses for that point\" — in a file that hand-aligns its assignments and a project with no guide, the aligned added line is the compliant one",
+   "sentence_b": "CODE-57 Thesis: \"an added or changed line carries the language's ordinary spacing between its tokens and no extra spaces that put a token in a column with a token on a consecutive line\"; its only tolerance is \"A project tolerance that permits hand alignment\", not a file's established practice.",
+   "resolving_limits_sentence": "Hand padding that puts tokens into columns is not an established form an added line must follow: where a file aligns by hand and no formatter emits the columns, the added line may take the language's ordinary spacing.",
+   "carried_by": "CODE-59"
+  },
+  {
+   "a": "CODE-64",
+   "b": "CHG-37",
+   "sentence_a": "CODE-64 Thesis: \"An empty body that is an unintentional omission is fixed by implementing it, and one for an operation that is not yet, or never will be, supported throws an error saying so.\" (fix: \"the body implemented or throwing an error that says the operation is unsupported\")",
+   "sentence_b": "CHG-37 Thesis: \"Each routine that production code reaches is finished when the change merges: it holds no placeholder that fails at run time whenever it is reached and marks functionality still to be written, such as a call or a raised error whose message says the code is not yet implemented.\" CHG-37's Limits exempt only a member \"deliberately left without implementation\", not the not-yet case.",
+   "resolving_limits_sentence": "Where production code reaches the routine, an operation that is not yet supported is not settled by a throwing placeholder; the throwing form answers only an operation that will never be supported, its message saying so.",
+   "carried_by": "CODE-64"
+  }
+ ],
+ "gaps": [
+  {
+   "concept": "Deep nesting: a block nested too deeply inside its routine (CC19 \"Taming Dangerously Deep Nesting\"). The design note computes a `deep_nesting` signal (\"the block depth of an added line inside its routine ... depth of 4 or more\") but no card's triggers name it; pending entry 69 holds composite complexity scores, not a nesting-depth bound.",
+   "taxonomy_row_text": "| | `control-flow` | CC14–17, CC19 |",
+   "source_path": "eslint/eslint docs/src/rules/max-depth.md (rule description; option `max`)",
+   "claim": "\"Many developers consider code difficult to read if blocks are nested beyond a certain depth.\"; \"This rule enforces a maximum depth that blocks can be nested to reduce code complexity.\"; `\"max\"` (default `4`)"
+  },
+  {
+   "concept": "Complex boolean expressions: a condition built from many boolean operators, not broken into named parts (CC19 \"Boolean Expressions\"); CODE-82 covers only comparison with true/false.",
+   "taxonomy_row_text": "| | `control-flow` | CC14–17, CC19 |",
+   "source_path": "checkstyle/checkstyle src/site/xdoc/checks/metrics/booleanexpressioncomplexity.xml (Description)",
+   "claim": "\"Restricts the number of boolean operators (&&, ||, &, | and ^) in an expression.\"; \"Rationale: Too many conditions leads to code that is difficult to read\""
+  },
+  {
+   "concept": "Division by a divisor that can be zero (CC12 \"Anticipate divide-by-zero errors\"); CODE-30's Limits put \"division by zero\" outside the rule and no other card or pending entry holds it.",
+   "taxonomy_row_text": "| | `variables-scope-and-numerics` | CC10–13 |",
+   "source_path": "golang/go doc/go_spec.html §Integer operators",
+   "claim": "\"If the divisor is zero at run time, a run-time panic occurs.\" (a curl of SonarSource/sonar-java sonar-java-plugin/src/main/resources/org/sonar/l10n/java/rules/java/S3518.html returned no such text, so that rule is not cited)"
+  },
+  {
+   "concept": "Exact decimal quantities (money) held in binary floating point (CC12): CODE-31's Limits defer it (\"Whether a quantity that must be exact, such as money, belongs in binary floating point at all ... are judged by their own rules\") and CODE-27's Limits put \"the choice of a decimal type for decimal quantities\" outside, but no card or pending entry holds it.",
+   "taxonomy_row_text": "| | `variables-scope-and-numerics` | CC10–13 |",
+   "source_path": "python/cpython Doc/library/decimal.rst (opening list of the decimal module's advantages)",
+   "claim": "\"The exactness carries over into arithmetic. In decimal floating point, ``0.1 + 0.1 + 0.1 - 0.3`` is exactly equal to zero.\"; \"decimal is preferred in accounting applications which have strict ...\" (equality invariants)"
+  },
+  {
+   "concept": "A routine named with a vague verb (handle, process, perform, do) that says nothing of its job (CC7 \"Good Routine Names\"); CODE-04 covers only filler nouns and its Limits put generic names out (\"A generic name such as data or callback is outside the rule\").",
+   "taxonomy_row_text": "| | `routine-size-and-parameters` (contested) | CC7 |",
+   "source_path": null,
+   "claim": null
+  }
+ ],
+ "facet_errors": [
+  {
+   "rule_id": "CODE-13",
+   "facet": "step",
+   "current": "[implement, refactor, review]",
+   "proposed": "[implement, refactor]",
+   "evidence": "Thesis: \"Code that selects a value by comparing one key with literal constants holds the constant-value pairs in a lookup table, read with one lookup whose default entry is the value of the final else\" — `review` is \"the self-review before the report: the shape, size and description of the change\" (taxonomy) and \"reserved for rules about the shape and description of the change itself\" (design note); this Thesis concerns the code, not the change."
+  },
+  {
+   "rule_id": "CODE-16",
+   "facet": "step",
+   "current": "[implement, handle-errors, review]",
+   "proposed": "[implement, handle-errors]",
+   "evidence": "Thesis: \"A read from a lookup table ... whose key can be one the table has no entry for states what that miss yields.\" — `review` is \"the self-review before the report: the shape, size and description of the change\" (taxonomy) and \"reserved for rules about the shape and description of the change itself\" (design note); this Thesis concerns the code, not the change."
+  },
+  {
+   "rule_id": "CODE-21",
+   "facet": "step",
+   "current": "[implement, refactor, review]",
+   "proposed": "[implement, refactor]",
+   "evidence": "Thesis: \"Each local variable is declared close to the point where it is first used, within reason, rather than habitually at the start of its block, to minimize its scope.\" — `review` is \"the self-review before the report: the shape, size and description of the change\" (taxonomy) and \"reserved for rules about the shape and description of the change itself\" (design note); this Thesis concerns the code, not the change."
+  },
+  {
+   "rule_id": "CODE-22",
+   "facet": "step",
+   "current": "[design, implement, refactor, review]",
+   "proposed": "[design, implement, refactor]",
+   "evidence": "Thesis: \"Each variable and each constant is declared in the smallest scope that contains all its uses.\" — `review` is \"the self-review before the report: the shape, size and description of the change\" (taxonomy) and \"reserved for rules about the shape and description of the change itself\" (design note); this Thesis concerns the code, not the change."
+  },
+  {
+   "rule_id": "CODE-24",
+   "facet": "step",
+   "current": "[implement, refactor, review]",
+   "proposed": "[implement, refactor]",
+   "evidence": "Thesis: \"Within a routine, each variable serves one purpose.\" — `review` is \"the self-review before the report: the shape, size and description of the change\" (taxonomy) and \"reserved for rules about the shape and description of the change itself\" (design note); this Thesis concerns the code, not the change."
+  },
+  {
+   "rule_id": "CODE-26",
+   "facet": "step",
+   "current": "[implement, refactor, review]",
+   "proposed": "[implement, refactor]",
+   "evidence": "Thesis: \"A numeric literal that encodes a quantity with a role apart from its value ... is defined once as a named constant, and every use of that quantity refers to the constant.\" — `review` is \"the self-review before the report: the shape, size and description of the change\" (taxonomy) and \"reserved for rules about the shape and description of the change itself\" (design note); this Thesis concerns the code, not the change."
+  },
+  {
+   "rule_id": "CODE-27",
+   "facet": "step",
+   "current": "[implement, review]",
+   "proposed": "[implement, handle-errors]",
+   "evidence": "Thesis: \"A conversion between numeric types whose target cannot represent every value of its source is applied only to a value shown to fit the target.\" (handle-errors is borne: \"a checked conversion that reports a value that does not fit as an error, an exception or an explicit fallback\") — `review` is \"the self-review before the report: the shape, size and description of the change\" (taxonomy) and \"reserved for rules about the shape and description of the change itself\" (design note); this Thesis concerns the code, not the change."
+  },
+  {
+   "rule_id": "CODE-28",
+   "facet": "step",
+   "current": "[implement, review]",
+   "proposed": "[implement]",
+   "evidence": "Thesis: \"A numeric literal whose value is stored in a binary floating-point type converts to that type and back without loss\" — `review` is \"the self-review before the report: the shape, size and description of the change\" (taxonomy) and \"reserved for rules about the shape and description of the change itself\" (design note); this Thesis concerns the code, not the change."
+  },
+  {
+   "rule_id": "CODE-31",
+   "facet": "step",
+   "current": "[implement, test, review]",
+   "proposed": "[implement, test]",
+   "evidence": "Thesis: \"Where at least one of two binary floating-point values is the result of arithmetic, the code tests them for equality by checking that their difference lies within an allowed error\" (test is borne: the Validator greps \"an equality assertion with such a literal among its arguments\") — `review` is \"the self-review before the report: the shape, size and description of the change\" (taxonomy) and \"reserved for rules about the shape and description of the change itself\" (design note); this Thesis concerns the code, not the change."
+  },
+  {
+   "rule_id": "CODE-32",
+   "facet": "step",
+   "current": "[implement, handle-errors, review]",
+   "proposed": "[implement, handle-errors]",
+   "evidence": "Thesis: \"A check that keeps a floating-point value within a range bounded below and above lets the value through only when its comparisons show it inside the range\" — `review` is \"the self-review before the report: the shape, size and description of the change\" (taxonomy) and \"reserved for rules about the shape and description of the change itself\" (design note); this Thesis concerns the code, not the change."
+  },
+  {
+   "rule_id": "CODE-36",
+   "facet": "step",
+   "current": "[implement, refactor, review]",
+   "proposed": "[implement, refactor]",
+   "evidence": "Thesis: \"A routine longer than about 40 lines is read for a part that can be broken out into a routine of its own without harming the program's structure\" — `review` is \"the self-review before the report: the shape, size and description of the change\" (taxonomy) and \"reserved for rules about the shape and description of the change itself\" (design note); this Thesis concerns the code, not the change."
+  },
+  {
+   "rule_id": "CODE-37",
+   "facet": "step",
+   "current": "[design, implement, review]",
+   "proposed": "[design, implement]",
+   "evidence": "Thesis: \"Similar routines that take the same inputs, routines of one type or module that are not overloads of one another, take the shared parameters in the same order.\" — `review` is \"the self-review before the report: the shape, size and description of the change\" (taxonomy) and \"reserved for rules about the shape and description of the change itself\" (design note); this Thesis concerns the code, not the change."
+  },
+  {
+   "rule_id": "CODE-38",
+   "facet": "step",
+   "current": "[implement, review]",
+   "proposed": "[implement]",
+   "evidence": "Thesis: \"A routine, a constructor and a lambda included, leaves each of its parameters holding the argument its caller passed and puts a new value derived from a parameter into a local variable declared under a name of its own\" — `review` is \"the self-review before the report: the shape, size and description of the change\" (taxonomy) and \"reserved for rules about the shape and description of the change itself\" (design note); this Thesis concerns the code, not the change."
+  },
+  {
+   "rule_id": "CODE-40",
+   "facet": "step",
+   "current": "[design, implement, review]",
+   "proposed": "[design, implement]",
+   "evidence": "Thesis: \"A type parameter on a routine or a data type is reserved for code that serves, or is about to serve, more than one type\" — `review` is \"the self-review before the report: the shape, size and description of the change\" (taxonomy) and \"reserved for rules about the shape and description of the change itself\" (design note); this Thesis concerns the code, not the change."
+  },
+  {
+   "rule_id": "CODE-41",
+   "facet": "step",
+   "current": "[design, implement, review]",
+   "proposed": "[design, implement]",
+   "evidence": "Thesis: \"A type parameter that the routine itself binds ... that is the whole declared type of exactly one parameter of the routine's signature, and appears nowhere else in that signature ..., is dropped\" — `review` is \"the self-review before the report: the shape, size and description of the change\" (taxonomy) and \"reserved for rules about the shape and description of the change itself\" (design note); this Thesis concerns the code, not the change."
+  },
+  {
+   "rule_id": "CODE-43",
+   "facet": "step",
+   "current": "[design, implement, review]",
+   "proposed": "[design, implement]",
+   "evidence": "Thesis: \"Where the type of one position in a routine or a data structure follows the type of another, a type parameter declares that type in place of the top type\" — `review` is \"the self-review before the report: the shape, size and description of the change\" (taxonomy) and \"reserved for rules about the shape and description of the change itself\" (design note); this Thesis concerns the code, not the change."
+  },
+  {
+   "rule_id": "CODE-44",
+   "facet": "step",
+   "current": "[design, implement, review]",
+   "proposed": "[design, implement]",
+   "evidence": "Thesis: \"The constraint on each type parameter of a routine or a type grants every operation the generic code performs on values of that parameter\" — `review` is \"the self-review before the report: the shape, size and description of the change\" (taxonomy) and \"reserved for rules about the shape and description of the change itself\" (design note); this Thesis concerns the code, not the change."
+  },
+  {
+   "rule_id": "CODE-45",
+   "facet": "step",
+   "current": "[implement, refactor, review]",
+   "proposed": "[implement, refactor]",
+   "evidence": "Thesis: \"Each type parameter that a routine or a type declares is used within that declaration\" — `review` is \"the self-review before the report: the shape, size and description of the change\" (taxonomy) and \"reserved for rules about the shape and description of the change itself\" (design note); this Thesis concerns the code, not the change."
+  },
+  {
+   "rule_id": "CODE-46",
+   "facet": "step",
+   "current": "[implement, review]",
+   "proposed": "[implement]",
+   "evidence": "Thesis: \"a declaration that a change writes gives its parameters, results, fields, variables, type arguments and constraints a type other than the unchecked one wherever another type expresses the value appropriately without being unergonomic to write.\" — `review` is \"the self-review before the report: the shape, size and description of the change\" (taxonomy) and \"reserved for rules about the shape and description of the change itself\" (design note); this Thesis concerns the code, not the change."
+  },
+  {
+   "rule_id": "CODE-47",
+   "facet": "step",
+   "current": "[design, implement, review]",
+   "proposed": "[design, implement]",
+   "evidence": "Thesis: \"A routine declares a type parameter that appears in its result and in none of its parameters only when each value of that type the result carries is produced by an operation checked against the type argument\" — `review` is \"the self-review before the report: the shape, size and description of the change\" (taxonomy) and \"reserved for rules about the shape and description of the change itself\" (design note); this Thesis concerns the code, not the change."
+  },
+  {
+   "rule_id": "CODE-48",
+   "facet": "step",
+   "current": "[implement, review]",
+   "proposed": "[implement]",
+   "evidence": "Thesis: \"Every use of a generic type writes its type arguments wherever the language would accept the type without them\" — `review` is \"the self-review before the report: the shape, size and description of the change\" (taxonomy) and \"reserved for rules about the shape and description of the change itself\" (design note); this Thesis concerns the code, not the change."
+  },
+  {
+   "rule_id": "CODE-63",
+   "facet": "step",
+   "current": "[implement, document, review]",
+   "proposed": "[implement, document]",
+   "evidence": "Thesis: \"Where the names in a piece of code do not tell a reader ... why the code does what it does, a comment states that reason\" (\"The test is whether the author would have to explain the code at its next code review\" is a non-obviousness test, not a rule about the change) — `review` is \"the self-review before the report: the shape, size and description of the change\" (taxonomy) and \"reserved for rules about the shape and description of the change itself\" (design note); this Thesis concerns the code, not the change."
+  },
+  {
+   "rule_id": "CODE-30",
+   "facet": "step",
+   "current": "[implement, test, review]",
+   "proposed": "[implement, handle-errors]",
+   "evidence": "Thesis: \"Integer arithmetic whose operands are not bounded so that the result and every intermediate result fit the type that computes them takes one of three forms\" — nothing in it concerns writing tests or the change's shape; it bears on handle-errors: \"an overflow-detecting operation reports overflow as an exception, an absent value or a flag instead of a wrong number\"."
+  },
+  {
+   "rule_id": "CODE-30",
+   "facet": "applies_to",
+   "current": "[static-types]",
+   "proposed": "[universal]",
+   "evidence": "Thesis: \"The range is the fixed width of a fixed-width integer type, and the exact integer range, magnitudes up to 2^53 − 1, of a number type that holds integers as 64-bit binary floating point\" — the dynamically typed JavaScript Number among them (the Example is a TypeScript `number`); the Limits exclude only \"A type of unlimited range, a built-in integer type limited only by available memory or an arbitrary-precision integer type not limited to a bit width\", not dynamic typing."
+  },
+  {
+   "rule_id": "CODE-49",
+   "facet": "applies_to",
+   "current": "[object-oriented]",
+   "proposed": "[static-types, dynamic-types]",
+   "evidence": "Thesis: \"The rule applies where the type system makes the declared collection type invariant in its element type\" — a type-system trait, not a paradigm; the Limits reach a non-OO type system: \"Where its only subtyping is between lifetimes, only an element type that carries a lifetime admits a subtype, and the rule applies to that element type alone.\" The proposed value is the one the domain's other generics cards (CODE-40 to CODE-48) carry."
+  },
+  {
+   "rule_id": "CODE-31",
+   "facet": "check_kind",
+   "current": "mechanical",
+   "proposed": "semantic",
+   "evidence": "Validator: \"settle the operands' type and origin: a floating-point value produced by arithmetic ... is computed; a value stored or copied unchanged and compared with the value it was set from ... are not\" and \"For a tolerance comparison, read the margin and the magnitude of the values: ... flag ... a fixed absolute margin for values of unstated or varying magnitude, a margin below the spacing of values at the compared magnitude (for a double, on the order of that magnitude times 2.2e-16)\" — an origin trace plus a magnitude judgement, not \"one light context question\"."
+  },
+  {
+   "rule_id": "CODE-46",
+   "facet": "check_kind",
+   "current": "mechanical",
+   "proposed": "semantic",
+   "evidence": "Validator: \"read in the hunk how the value is used: members read on it, an initializer, arguments or a stored shape that show one type call for that type; a value handed back to the caller with the caller's own type calls for a type parameter; a value that is only passed to something that accepts anything, ignored, or narrowed by a type guard before use calls for the checked top type\", and the question turns on \"without being unergonomic to write\" — the same inference CODE-43 makes as a semantic card."
+  },
+  {
+   "rule_id": "CODE-77",
+   "facet": "check_kind",
+   "current": "mechanical",
+   "proposed": "semantic",
+   "evidence": "Validator: \"Trace the body, nested blocks included, for a write to the loop variable: ... a hand-off by mutable reference or pointer to code that updates it; for a counted loop, trace also a write to the bound variable and an addition to or removal from the collection whose length the test reads\" — tracing through callees is the semantic tier's definition (\"the finder traces something (a call chain, ...)\")."
+  },
+  {
+   "rule_id": "CODE-41",
+   "facet": "scope",
+   "current": "hunk",
+   "proposed": "callers",
+   "evidence": "Finding output: \"`rationale` = ... and, for a routine the hunk does not add whole, the explicit type arguments or overrides outside the hunk that the fix breaks\"; Limits: \"the finding on a routine the hunk does not add whole names that consequence\" — naming calls and overrides outside the hunk needs usages across the repository."
+  },
+  {
+   "rule_id": "CODE-01",
+   "facet": "severity_default",
+   "current": "major",
+   "proposed": "minor",
+   "evidence": "Rationale's evidence is a perception survey and a cognitive-load measurement: \"the majority of developers judged the antipatterns poor naming practice, and in a study that measured cognitive load by functional brain imaging while developers performed comprehension tasks, the presence of linguistic antipatterns in source code significantly increased it\" — a clarity cost tied to no failure (the scale's minor; CODE-03, whose evidence is a measured 19% comprehension-speed cost, is minor)."
+  }
+ ],
+ "trigger_errors": [
+  {
+   "rule_id": "CODE-36",
+   "pattern": "signal:long_routine",
+   "problem": "nested in CODE-11, CODE-24, CODE-33 and CODE-51: CODE-36's whole trigger set ['signal:long_routine'] is one member of each of their sets, so every CODE-36 dispatch is a dispatch of all four."
+  },
+  {
+   "rule_id": "CODE-74",
+   "pattern": "\\belse\\s+if\\b.*(==|[.]equals\\()|^\\s*elif\\b.*(==|\\bin\\b|\\bis\\b)",
+   "problem": "nested in CODE-73: both alternatives begin with CODE-73's own patterns '\\belse\\s+if\\b' and '^\\s*elif\\b', so every line CODE-74 matches CODE-73 matches."
+  },
+  {
+   "rule_id": "CODE-75",
+   "pattern": "^\\s*case\\b[^:]*:\\s*(//.*|/\\*.*)?$ ; ^\\s*case\\b[^:]*:\\s*\\S ; ^\\s*default\\s*:",
+   "problem": "nested in CODE-73: each pattern starts with '^\\s*case\\b' or '^\\s*default\\s*:', which CODE-73's '^\\s*(case\\b|default\\b|_\\s*=>)' matches."
+  },
+  {
+   "rule_id": "CODE-13",
+   "pattern": "^\\s*(\\}\\s*)?else\\s+if\\s*\\(?\\s*[\\w.]+\\s*={2,3}\\s*[\\x22\\x27\\w.-]+ ; ^\\s*elif\\s+[\\w.]+\\s*==\\s*[^:]+: ; \\belse\\s+if\\s*\\(.*[.]equals(IgnoreCase)?\\(",
+   "problem": "nested in CODE-73 on every syntactically valid line: patterns 2 and 3 imply CODE-73's '^\\s*elif\\b' and '\\belse\\s+if\\b'; pattern 1 escapes only where `if` runs into a word character (`else ifx == 1`), which is no else-if in any of the five languages (checked with python3 -c on scratch strings)."
+  },
+  {
+   "rule_id": "CODE-10",
+   "pattern": "[]",
+   "problem": "identical to CODE-59: both carry `[]`, the documented always-on class, so every diff dispatches both (listed for completeness; not a defect of either card)."
+  }
+ ],
+ "summary": "All 82 cards were read; every pattern-bearing card's triggers match its own bad Example, but CODE-36's lone long_routine signal and the CODE-13, CODE-74 and CODE-75 sets are nested in other cards' triggers. The main findings are 28 deferring pairs: 19 inside the domain, chiefly CODE-59 as the catch-all layout card under seven specific layout cards and CODE-50 over three cards that flag the same misleading layout, and 9 across domains (CODE-18 under API-11 and ERR-13, CODE-16 under ERR-16, CODE-63 under ERR-17, CODE-35 under API-10, CODE-07 under DSN-68, CODE-77 under DSN-60, CODE-67 under DSN-64, DSN-25 under CODE-26), plus six contradictions, each resolvable by one Limits sentence. Facets: 23 cards carry the change-shape step `review` with no basis in their Thesis, two applies_to values are too narrow, three mechanical cards need tracing or judgement, CODE-01's major rests only on comprehension cost, and five row concepts (deep nesting, complex boolean expressions, division by zero, decimal money, vague routine verbs) have no card or pending entry."
+}

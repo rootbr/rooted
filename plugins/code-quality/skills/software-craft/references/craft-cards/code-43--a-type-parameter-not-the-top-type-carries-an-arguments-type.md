@@ -2,7 +2,7 @@
 title: When a routine's result or another parameter must have the type of an argument, or a data structure holds elements of one caller-chosen type, a type parameter states that type instead of the top type
 rule_id: CODE-43
 domain: code
-step: [design, implement, review]
+step: [design, implement]
 applies_to: [static-types, dynamic-types]
 triggers: [':\s*(any|unknown|Any|object)\b\s*([,)=;\[\]]|$)', '\)\s*(:|->)\s*(any|unknown|Any|object)\b', '\b\w+\s+(\[\])?(any|interface\{\})\s*([,)]|$)', '\)\s*(\[\])?(any|interface\{\})\s*\{|\bObject\s+\w+\s*[,)(;=]', '(\[\]|\]|[<\[,]\s*)(any|Any|Object|interface\{\}|object|unknown)\s*([>\],){=]|$)', '\bdyn\s+Any\b']
 scope: hunk

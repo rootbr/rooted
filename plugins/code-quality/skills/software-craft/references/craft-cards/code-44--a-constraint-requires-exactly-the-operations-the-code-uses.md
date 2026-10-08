@@ -2,7 +2,7 @@
 title: A type parameter's constraint requires every operation the generic code performs on its values and nothing that code does not use
 rule_id: CODE-44
 domain: code
-step: [design, implement, review]
+step: [design, implement]
 applies_to: [static-types, dynamic-types]
 triggers: ['[<,]\s*[A-Z]\w*\s+extends\s+[^>]+>', '<\s*(''\w+\s*,\s*)*[A-Z]\w*\s*:\s*[A-Z?''][\w:<>+ ?'']*|\bwhere\s+[A-Z]\w*\s*:', '\b(func|type)\s+(\([^)]*\)\s*)?\w+\s*\[\s*\w+(\s*,\s*\w+)*\s+[^\]]+\]', '\bTypeVar\(|\bGeneric\[|\b(def|class)\s+\w+\s*\[\s*\w+', '\b(class|interface|function|fn|struct|enum|trait|record)\s+\w+\s*<\s*(''\w+\s*,\s*)*[A-Z]|\bimpl\s*<\s*(''\w+\s*,\s*)*[A-Z]', '(^|\s)<\s*[A-Z]\w*(\s*,\s*[A-Z]\w*)*\s*>\s+[\w.<>\[\]?, ]*[\w>\]]\s+\w+\s*\(|=\s*(async\s*)?<\s*[A-Z]\w*[^>]*>\s*\(', '^\s*(?:(?:public|private|protected|static|async|override|abstract|readonly)\s+)*\*?\s*\w+\s*<\s*[A-Z]\w*(?:\s*,\s*[A-Z]\w*)*\s*,?\s*>\s*\([^;]*\)\s*(?::\s*[^={;]+)?\{']
 scope: file

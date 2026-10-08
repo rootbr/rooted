@@ -2,7 +2,7 @@
 title: A numeric literal stored as a floating-point value has no more significant digits than its type holds, so it is not silently rounded to a different value
 rule_id: CODE-28
 domain: code
-step: [implement, review]
+step: [implement]
 applies_to: [universal]
 triggers: ['(?<![\w.])(?=[\d_.]{17,})(?:\d[\d_]*)?[.]\d', '(?<![\w.])\d[\d_]{15,}[lL]?(?![\w.])', '(?<![\w.])(?=[\d_.]{8,})\d[\d_]*([.][\d_]*)?(_?f32|[fF])\b', '\b(f32|float32|float)\b.*(?<![\w.])(?=[\d_.]{8,})\d', '(?<![\w.])0[xX][0-9a-fA-F_]{14,}[lL]?(?![\w.])', '(?<![\w.])(?:\d[\d_]*(?:[.][\d_]*)?|[.]\d[\d_]*)[eE][-+]?(?:3[89]|[4-9]\d|\d{3,})(?!\d)']
 scope: hunk

@@ -6,7 +6,7 @@ step: [implement]
 applies_to: [universal]
 triggers: ['^\s*for\s*\(\s*(?:let|var|int|long|short|byte|size_t|auto|final)?\s*\w+\s*=\s*[^;]*;', '^\s*for\s+\w+\s*:=\s*[^;{]*;', '^\s*for\s+[\w\s,()&]+?\s+in\b', '^\s*for\s*\(\s*[^;=]*?(?:\sof\s|\w\s*:\s*\w)', '^\s*for\s+[\w\s,]*:?=\s*range\b', '(?:^|[;{):])\s*(?:(?:\+\+|--)\s*(?:i|j|k|idx|index|pos|n)\b|(?:i|j|k|idx|index|pos|n)\s*(?:\+\+|--|[-+*/]=|=(?!=)))']
 scope: file
-check_kind: mechanical
+check_kind: semantic
 severity_default: major
 ---
 

@@ -3,7 +3,7 @@ title: A collection parameter that a routine only reads from is declared with a 
 rule_id: CODE-49
 domain: code
 step: [design, implement]
-applies_to: [object-oriented]
+applies_to: [static-types, dynamic-types]
 triggers: ['[(,]\s*(@\w+\s+|final\s+)*(List|ArrayList|LinkedList|Collection|Iterable|Set|HashSet|SortedSet|Map|HashMap|SortedMap|Queue|Deque)<\s*[A-Z][\w\s,]*>\s+\w+', '^\s*(@\w+\s+|final\s+)*(List|ArrayList|LinkedList|Collection|Iterable|Set|HashSet|SortedSet|Map|HashMap|SortedMap|Queue|Deque)<\s*[A-Z][\w\s,]*>\s+\w+\s*[,)]', '\b\w+\s*:\s*(Optional\[)?(list|List|dict|Dict|set|Set|MutableSequence|MutableMapping|MutableSet)\[']
 scope: file
 check_kind: semantic

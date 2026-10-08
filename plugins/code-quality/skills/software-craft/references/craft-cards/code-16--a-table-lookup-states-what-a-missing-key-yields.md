@@ -2,7 +2,7 @@
 title: A lookup table holds an entry for every key it can be asked for or its read states what a missing key yields, unless the zero value or null returned on a miss is the intended answer for every absent key
 rule_id: CODE-16
 domain: code
-step: [implement, handle-errors, review]
+step: [implement, handle-errors]
 applies_to: [universal]
 triggers: ['[.]get\(\s*[^,()]+\)|(=|\breturn)\s*[\w.]+\[[^\]\[]+\]\s*;?\s*$|[.](floor|lower|ceiling|higher)(Entry|Key)\(|\bbisect(_left|_right)?\(|\bsort[.]Search(Ints|Float64s|Strings)?\(|\bslices[.]BinarySearch|[.](partition_point|binary_search)\(', '\bmap\[[\w.*]+\][\w.*\[\]]+\s*\{|\bRecord<|\b(Enum|Hash|Tree|Linked(Hash)?|Navigable|Sorted)?Map<|\bMap[.]of(Entries)?\(|\b[A-Z][A-Z0-9_]+\s*(:[^=]*)?=\s*\{']
 scope: file

@@ -2,7 +2,7 @@
 title: A range check on a floating-point value is written so that NaN fails it, by accepting only values shown to lie inside the range
 rule_id: CODE-32
 domain: code
-step: [implement, handle-errors, review]
+step: [implement, handle-errors]
 applies_to: [universal]
 triggers: ['[<>]=?\s*[-\w.()\[\]]+\s*(\|\||\bor\b)\s*(\\?\s*$|[-\w.()\[\]]+\s*[<>])|^\s*(\|\||or\b)\s*[-\w.()\[\]]+\s*[<>]']
 scope: hunk

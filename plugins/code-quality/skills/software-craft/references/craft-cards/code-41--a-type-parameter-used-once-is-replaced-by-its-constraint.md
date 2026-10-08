@@ -2,10 +2,10 @@
 title: A type parameter that is the type of a single parameter and appears nowhere else in the signature is replaced by its constraint wherever the constraint can serve as that parameter's type
 rule_id: CODE-41
 domain: code
-step: [design, implement, review]
+step: [design, implement]
 applies_to: [static-types, dynamic-types]
 triggers: ['\b(function|class|interface|type|fn|struct|enum|trait)\s+\w+\s*<\s*[A-Z]\w*\b', '(^\s*|\b(public|private|protected|static|final|abstract|default|synchronized)\b[^=;(]*)<\s*[A-Z]\w*[^>]*>\s*[\w.<>\[\]?, ]+\s\w+\s*\(', '\b(func|type)\s+(\([^)]*\)\s*)?\w+\s*\[\s*\w+(\s*,\s*\w+)*\s+[^\]]+\]', '\bTypeVar\(|\b(def|class)\s+\w+\s*\[\s*\w+|\bdef\s+\w+\s*\([^)]*:\s*_?[A-Z]{1,2}\d?(_co|_contra)?\s*[,)=]', '(^\s*((public|private|protected|static|readonly|override|abstract|async|declare|export)\s+)*\w+|=\s*(async\s*)?)\s*<\s*[A-Z]\w*[^>]*>\s*\(']
-scope: hunk
+scope: callers
 check_kind: mechanical
 severity_default: minor
 ---

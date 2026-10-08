@@ -2,7 +2,7 @@
 title: A generic type is written with its type arguments wherever the language allows them to be omitted, and an unknown argument is written explicitly
 rule_id: CODE-48
 domain: code
-step: [implement, review]
+step: [implement]
 applies_to: [static-types, dynamic-types]
 triggers: ['\b(List|ArrayList|LinkedList|Map|HashMap|TreeMap|Set|HashSet|Collection|Iterable|Iterator|Optional|Comparable|Comparator|Class|Queue|Deque|Stream|Future|Supplier|Function|Consumer|Predicate)\s+\w+\s*[=;,()]', '\bnew\s+(ArrayList|LinkedList|HashMap|TreeMap|HashSet|TreeSet)\s*\(', '(:|->)\s*(list|dict|set|frozenset|tuple|type|List|Dict|Set|Tuple|Sequence|Mapping|Iterable|Callable)\s*($|[,)=:\]|])', '\b(extends|implements)\s+(Comparable|Comparator|Iterable|List|Map)\s*[{,]', '[<(,]\s*(List|ArrayList|Map|HashMap|Set|HashSet|Collection|Iterable|Optional|Comparable|Comparator|Class)\s*[>),]', '([\[|]\s*(list|dict|set|frozenset|tuple|type|List|Dict|Set|Tuple|Sequence|Mapping|Iterable|Callable)\s*[\],|)=]|,\s*(list|dict|set|frozenset|tuple|type|List|Dict|Set|Tuple|Sequence|Mapping|Iterable|Callable)\s*\])']
 scope: hunk
