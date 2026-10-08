@@ -23,7 +23,12 @@
   },
   "refactoring": {
    "task": "wlb7qlbrl",
-   "wf": "wf_cd285ff6-fd6"
+   "wf": "wf_cd285ff6-fd6",
+   "status": "done"
+  },
+  "code-smells-and-antipatterns": {
+   "task": "ww8pvatyb",
+   "wf": "wf_f8a6ad6c-eec"
   }
  }
 }
