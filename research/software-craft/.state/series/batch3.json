@@ -60,7 +60,13 @@
     {
      "part": "r3-rest",
      "task": "w90zdotfn",
-     "wf": "wf_fef2de6b-655"
+     "wf": "wf_fef2de6b-655",
+     "stopped": "container restart 2026-10-08T01:08Z"
+    },
+    {
+     "part": "r5-finish",
+     "task": "wuq2mfdil",
+     "wf": "wf_4d27fbec-a6b"
     }
    ]
   },
@@ -279,7 +285,13 @@
     {
      "part": "r4-rest",
      "task": "wzcqf414m",
-     "wf": "wf_8201be8a-c20"
+     "wf": "wf_8201be8a-c20",
+     "stopped": "container restart 2026-10-08T01:08Z"
+    },
+    {
+     "part": "r5-finish",
+     "task": "wednkdj1b",
+     "wf": "wf_bbf586cd-407"
     }
    ]
   },
@@ -550,12 +562,24 @@
     {
      "part": "r3-finish",
      "task": "wrd6odj0x",
-     "wf": "wf_135aa2c3-07b"
+     "wf": "wf_135aa2c3-07b",
+     "stopped": "container restart 2026-10-08T01:08Z"
     },
     {
      "part": "r3-rest",
      "task": "wxj961dsn",
-     "wf": "wf_9c29ac37-66e"
+     "wf": "wf_9c29ac37-66e",
+     "stopped": "container restart 2026-10-08T01:08Z"
+    },
+    {
+     "part": "r4-finish",
+     "task": "wrwa0r9e3",
+     "wf": "wf_0c57f82b-fba"
+    },
+    {
+     "part": "r4-rest",
+     "task": "wxhxna6o6",
+     "wf": "wf_e72aa078-467"
     }
    ]
   }
