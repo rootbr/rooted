@@ -36,7 +36,8 @@
   },
   "seams-and-characterization-tests": {
    "task": "w0wvfk5se",
-   "wf": "wf_5a424d44-19b"
+   "wf": "wf_5a424d44-19b",
+   "status": "done"
   },
   "large-scale-changes-and-migrations": {
    "task": "whtz4xndy",
@@ -54,6 +55,10 @@
   "debugging": {
    "task": "wr0o8y6br",
    "wf": "wf_bf2b1ec3-155"
+  },
+  "profiling-and-code-tuning": {
+   "task": "w6ea4egad",
+   "wf": "wf_9ef3698b-274"
   }
  }
 }
