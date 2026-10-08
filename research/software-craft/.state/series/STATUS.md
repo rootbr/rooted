@@ -1,6 +1,6 @@
 # Series status
 
-Snapshot taken 2026-10-08T01:39 UTC by `series/series-status.py --snapshot`. Journals under `journals/`, finished runs' outputs under `outputs/`.
+Snapshot taken 2026-10-08T01:44 UTC by `series/series-status.py --snapshot`. Journals under `journals/`, finished runs' outputs under `outputs/`.
 
 `done` counts the agents whose results the journal holds (cached for a continuation); `failed` the agents a usage-limit stop or an error ended, which a continuation re-runs. `cards` is the count in the run's own output; a run whose agents failed shipped none, and its cards come from the continuation. A continuation run (batch 3 and later) is one bundle of a topic, named by its part; a topic is finished when every part's run is complete.
 
@@ -38,7 +38,7 @@ Snapshot taken 2026-10-08T01:39 UTC by `series/series-status.py --snapshot`. Jou
 | 3 | `routine-size-and-parameters` r3-finish | ? | - | - | - | running or stopped |
 | 3 | `routine-size-and-parameters` r4-finish | 9 | verify2 2 | - | 4 | run complete |
 | 3 | `routine-size-and-parameters` r3-rest | ? | verify 3, fix 4 | - | - | running or stopped |
-| 3 | `routine-size-and-parameters` r5-finish | ? | verify2 2 | - | - | running or stopped |
+| 3 | `routine-size-and-parameters` r5-finish | ? | verify2 3 | - | - | running or stopped |
 | 3 | `variables-scope-and-numerics` 1of2 | 12 | verify 5, fix 5 | fix 1, verify2 5 | 0 | run ended, agents failed |
 | 3 | `variables-scope-and-numerics` r2-finish | 12 | verify2 5 | - | 5 | run complete |
 | 3 | `variables-scope-and-numerics` r3-rest | ? | verify 6, fix 7, verify2 7, close1 5 | - | - | running or stopped |
@@ -54,6 +54,7 @@ Snapshot taken 2026-10-08T01:39 UTC by `series/series-status.py --snapshot`. Jou
 | 3 | `generics-and-parameterization` 1of2 | 10 | verify 3, fix 4, verify2 2 | fix 1, verify2 2, close1 2 | 0 | run ended, agents failed |
 | 3 | `generics-and-parameterization` r2-finish | ? | - | - | - | running or stopped |
 | 3 | `generics-and-parameterization` r3-finish | ? | - | - | - | running or stopped |
+| 3 | `generics-and-parameterization` r3-rest | ? | - | - | - | running or stopped |
 | 3 | `api-design-and-use` 1of2 | 12 | verify 6, fix 6 | verify2 6 | 0 | run ended, agents failed |
 | 3 | `api-design-and-use` r2-finish | 12 | verify2 6 | - | 6 | run complete |
 | 3 | `api-design-and-use` r3-rest | 12 | verify 6, fix 6, verify2 6, close1 6 | - | 6 | run complete |
@@ -120,5 +121,5 @@ Snapshot taken 2026-10-08T01:39 UTC by `series/series-status.py --snapshot`. Jou
 | 3 | `domain-modeling-and-domain-language` r2-finish | ? | - | - | - | running or stopped |
 | 3 | `domain-modeling-and-domain-language` r3-finish | ? | verify2 2 | - | - | running or stopped |
 | 3 | `domain-modeling-and-domain-language` r3-rest | ? | - | - | - | running or stopped |
-| 3 | `domain-modeling-and-domain-language` r4-finish | ? | verify2 1 | - | - | running or stopped |
+| 3 | `domain-modeling-and-domain-language` r4-finish | 10 | verify2 1 | - | 4 | run complete |
 | 3 | `domain-modeling-and-domain-language` r4-rest | ? | verify 2 | - | - | running or stopped |

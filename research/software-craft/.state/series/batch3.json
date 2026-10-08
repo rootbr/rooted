@@ -162,6 +162,11 @@
      "part": "r3-finish",
      "task": "wjcgzs62r",
      "wf": "wf_0fed217a-2e4"
+    },
+    {
+     "part": "r3-rest",
+     "task": "wzjlqjgnz",
+     "wf": "wf_6ce05405-6ff"
     }
    ]
   },
