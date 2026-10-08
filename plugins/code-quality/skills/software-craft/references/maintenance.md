@@ -20,3 +20,6 @@ A finding of the deferring rule drops when any owner listed for it flagged the s
 | DSN-44 (a unit or identifier is a distinct type, not a primitive) | API-10 (parameter types stop swaps and values outside a closed set): on a public operation's parameters the interface card owns the finding |
 | DSN-47 (a fixed set of values is an enumeration, not a string or int) | API-10: on a public parameter that accepts a closed set the interface card owns the finding |
 | DSN-66 (a private collection is returned as a copy or read-only view) | API-01 (a type invariant holds after every constructor and operation): where the type keeps an invariant, the accessor that leaks the mutable component is API-01's finding |
+| CODE-73 (a multiway branch acts on or explains an unmatched value) | CODE-19 (a switch over an enum names every member or has a default): over an enumerated type the missing member is CODE-19's finding |
+| CODE-74 (an if chain on one value and constants is preferably a switch) | CODE-13 (a key-to-value if chain is a lookup table): a chain whose every branch returns a value is CODE-13's finding |
+| CODE-64 (an ambiguous construct carries a comment marking it intended) | CODE-75 (a switch case leaves the switch or marks its fall-through): an unmarked fall-through is CODE-75's finding |

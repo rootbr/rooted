@@ -428,6 +428,9 @@ const DEFER_TO = {
   'DSN-44': 'API-10', // a unit or identifier as a distinct type: on a public operation's parameters API-10 owns the swap
   'DSN-47': 'API-10', // a fixed set of values as an enumeration: on a public parameter API-10 owns the closed set
   'DSN-66': 'API-01', // a private collection returned as a copy or view: where the type keeps an invariant API-01 owns the leaking accessor
+  'CODE-73': 'CODE-19', // a multiway branch handles an unmatched value: over an enumerated type CODE-19 owns the missing member
+  'CODE-74': 'CODE-13', // an if chain on one value is preferably a switch: a value-returning chain is CODE-13's lookup table
+  'CODE-64': 'CODE-75', // an ambiguous construct carries an intended-marker: an unmarked switch fall-through is CODE-75's finding
 }
 const ownersOf = ruleId => [DEFER_TO[ruleId] || []].flat()
 const SEV_RANK = { major: 0, minor: 1, suggestion: 2 }
