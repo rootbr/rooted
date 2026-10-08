@@ -31,7 +31,8 @@
   },
   "code-smells-and-antipatterns": {
    "task": "ww8pvatyb",
-   "wf": "wf_f8a6ad6c-eec"
+   "wf": "wf_f8a6ad6c-eec",
+   "status": "done"
   },
   "seams-and-characterization-tests": {
    "task": "w0wvfk5se",
@@ -44,6 +45,10 @@
   "small-steps-and-minimal-diffs": {
    "task": "wxu5tocsk",
    "wf": "wf_bfdf4f85-c85"
+  },
+  "technical-debt": {
+   "task": "w65n20rmd",
+   "wf": "wf_2d8b2fdb-e9d"
   }
  }
 }
