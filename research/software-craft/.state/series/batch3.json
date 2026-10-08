@@ -553,6 +553,11 @@
      "task": "wjl7b8wph",
      "wf": "wf_475fa3b3-39f",
      "stopped": "2026-10-07T16:05 UTC, operator's cap of four workflows at a time; its journal feeds the rebuilt bundle"
+    },
+    {
+     "part": "r3-finish",
+     "task": "wx894zo5d",
+     "wf": "wf_7435cb3a-a25"
     }
    ]
   },
