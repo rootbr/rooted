@@ -21,7 +21,8 @@
   },
   "property-based-testing": {
    "task": "w282rsffo",
-   "wf": "wf_079d4bb6-c04"
+   "wf": "wf_079d4bb6-c04",
+   "status": "done"
   },
   "refactoring": {
    "task": "wlb7qlbrl",
@@ -39,6 +40,10 @@
   "large-scale-changes-and-migrations": {
    "task": "whtz4xndy",
    "wf": "wf_7a8a5257-174"
+  },
+  "small-steps-and-minimal-diffs": {
+   "task": "wxu5tocsk",
+   "wf": "wf_bfdf4f85-c85"
   }
  }
 }
