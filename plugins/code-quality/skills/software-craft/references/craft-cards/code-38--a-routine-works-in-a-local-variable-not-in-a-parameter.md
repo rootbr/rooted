@@ -1,0 +1,55 @@
+---
+title: A routine works in a local variable with its own name and assigns no new value to a parameter, except a newly created object in place of a null default
+rule_id: CODE-38
+domain: code
+step: [implement, review]
+applies_to: [universal]
+triggers: ['^\s*(\w+)\s*=\s*\1\s*(?:[-+*/%.(\[]|\|\||\?\?|\bor\b)', '^\s*(\w+)\s*=\s*[\w.]+\(\s*\1\s*[,)]', '^\s*(?:\w+\s*(?:[-+*/%]|\*\*|//|\?\?|\|\||&&)=\s*[^=\s]|(?:\+\+|--)\w+\s*;?\s*$|\w+(?:\+\+|--)\s*;?\s*$)']
+scope: file
+check_kind: mechanical
+severity_default: minor
+---
+
+# A routine works in a local variable with its own name and assigns no new value to a parameter, except a newly created object in place of a null default
+
+## Thesis
+A routine, a constructor and a lambda included, leaves each of its parameters holding the argument its caller passed and puts a new value derived from a parameter into a local variable declared under a name of its own; a plain or compound assignment, an increment or decrement, and a loop, resource or handler binding that rebinds a parameter's name, rather than declaring a new variable under it, each give that parameter a new value. One case is exempt, the documented idiom for a default that must not be shared between calls in a language that creates a declared default value once, when the routine is defined: the parameter declares a null value as its default, a sentinel for a missing argument, and the routine tests the parameter for that value and assigns a newly created object when it holds it. An assignment made before the parameter's incoming value is read ignores the caller's argument and is likely a bug.
+
+## Rationale
+Code is often read on the assumption that parameter values do not change, so an assignment to a parameter violates the principle of least astonishment and can make the code more difficult to understand; this is especially a problem where the parameter is documented and its new content differs from the documented content. A local variable gives the new value a new name, which makes the code easier to understand. Assignment to a parameter is often unintended and a sign of a mistake or a programmer error; a routine that modifies its parameters can be hard to understand, and the assignment can also mislead where the caller passes the argument by value. The exempt idiom answers a different defect: where a language creates a declared default value exactly once, when the routine is defined, every call that omits the argument shares that one object, and a change one call makes to a mutable default is seen by the calls after it. The documented practice there is to declare a null value as the default and, inside the routine, test the parameter for it and create a new object.
+
+## Example
+```typescript
+bad:  function label(name: string, n: number): string {
+        name = name.trim();
+        n = Math.max(n, 1);
+        name += ` #${n}`;
+        return name;
+      }
+good: function label(name: string, n: number): string {
+        const trimmedName = name.trim();
+        return `${trimmedName} #${Math.max(n, 1)}`;
+      }
+```
+
+## Limits
+Changing the state of the object a parameter refers to, such as setting one of its fields or elements, assigns nothing to the parameter and is outside this rule; one checker reports such modification only when an option enables it. A declaration that creates a new variable with the parameter's name, which a language documents as shadowing, assigns nothing to the parameter and is outside this rule; a redeclaration that a language documents as assigning a new value to the original variable is an assignment and is in scope. The exemption covers a null default replaced by a newly created object; any other substitute value assigned to a parameter is a finding. Style guides divide on an assignment that follows a read of the parameter and derives the new value from the incoming one: checks that disallow assignment to parameters report it, while a style guide that treats a parameter as an ordinary mutable variable accepts it once the routine no longer needs the original value. A project that follows such a guide, disables its reassignment check or states that tolerance in its project context rejects a finding on an assignment that follows a read; a finding on an assignment that precedes every read of the parameter stands, since the checks that accept an assignment after a read still report an argument overwritten before its first use as a likely bug.
+
+## Validator
+Read the added line the trigger matched and find, in the file, the routine that encloses it, a constructor or lambda included. Check whether the name the line assigns to, by plain or compound assignment, increment or decrement, is one of that routine's parameters rather than a local variable, a field or a new variable declared under the same name. Read the routine's other added lines for any further assignment to one of its parameters, a loop, resource or handler binding that rebinds a parameter's name rather than declaring a new variable under it included. Where the language creates a declared default value once, when the routine is defined, skip the assignment that, under the body's test of a parameter for its declared null default, gives that parameter a newly created object, and check that parameter's other assignments as usual; skip an assignment to a field or element of a parameter. Report each parameter once, at its first assignment among the added lines that is not skipped, and note whether that assignment comes before any read of the parameter. Validator question: **Does an added line assign a new value to a parameter of its enclosing routine, other than the exempt replacement of a null default with a newly created object?** Yes → flag.
+
+## Finding output
+When the validator answers yes, the finder emits one finding for each parameter it reports (`rule_id: CODE-38`, severity minor, `file`, `symbol`, `code` = the added line that assigns to the parameter, quoted verbatim from the diff, `fix` = the new value declared as a local variable named for its content, with the routine's later uses switched to it and the parameter left unassigned, or, where the assignment precedes every read, the routine reading the caller's argument or the parameter removed, in the file's language, `rationale` = the parameter assigned, that after the assignment its name no longer holds the caller's argument, and, where the assignment precedes every read, that the caller's argument is ignored).
+
+## Source
+- PMD `AvoidReassigningParameters` (pmd-java, category/java/bestpractices.xml): "Reassigning values to incoming parameters of a method or constructor is not recommended, as this can make the code more difficult to understand. The code is often read with the assumption that parameter values don't change and an assignment violates therefore the principle of least astonishment. This is especially a problem if the parameter is documented e.g. in the method's javadoc and the new content differs from the original documented content." "Use temporary local variables instead. This allows you to assign a new name, which makes the code better understandable." "Note that this rule considers both methods and constructors. If there are multiple assignments for a formal parameter, then only the first assignment is reported." (fetched)
+- SonarSource S1226 (sonar-python rules/python/S1226.html, "Function parameters initial values should not be ignored"; sonar-java rules/java/S1226.html): "While it is technically correct to assign to parameters from within function bodies, doing so before the parameter value is read is likely a bug." (fetched)
+- ESLint `no-param-reassign` (docs/src/rules/no-param-reassign.md): "Often, assignment to function parameters is unintended and indicative of a mistake or programmer error."; incorrect examples `bar = 13;`, `bar++;`, `for (bar in baz) {}`; "`"props"` is `false` by default. If `"props"` is set to `true`, this rule warns against the modification of parameter properties"; "If you want to allow assignment to function parameters, then you can safely disable this rule." (fetched)
+- Checkstyle `ParameterAssignment` (src/site/xdoc/checks/coding/parameterassignment.xml): "Disallows assignment of parameters."; its example reports `parameter -= 2;` in a method and `a++;` and `b += 12;` in a lambda. (fetched)
+- revive `modifies-parameter` (RULES_DESCRIPTIONS.md): "A function that modifies its parameters can be hard to understand. It can also be misleading if the arguments are passed by value by the caller." (fetched)
+- Staticcheck SA4009 (staticcheck/sa4009/sa4009.go): "A function argument is overwritten before its first use" (fetched)
+- Pylint R1704 `redefined-argument-from-local` (pylint/checkers/refactoring/refactoring_checker.py): "Used when a local name is redefining an argument, which might suggest a potential error. This is taken in account only for a handful of name binding operations, such as for iteration, with statement assignment and exception handler assignment." (fetched)
+- Python Tutorial §4.9.1 Default Argument Values (cpython `Doc/tutorial/controlflow.rst`): "The default value is evaluated only once."; "the following function accumulates the arguments passed to it on subsequent calls"; "If you don't want the default to be shared between subsequent calls, you can write the function like this instead: `def f(a, L=None): if L is None: L = []`"; Python Programming FAQ, "Why are default values shared between objects?" (cpython `Doc/faq/programming.rst`): "Danger: shared reference to one dict for all calls"; "Default values are created exactly once, when the function is defined. If that object is changed, like the dictionary in this example, subsequent calls to the function will refer to this changed object."; "use `None` as the default value and inside the function, check if the parameter is `None` and create a new list/dictionary/whatever if it is." (fetched)
+- rust-lang/book `src/ch03-01-variables-and-mutability.md` §Shadowing: "you can declare a new variable with the same name as a previous variable"; The Go Programming Language Specification, Short variable declarations: "Redeclaration does not introduce a new variable; it just assigns a new value to the original." (fetched)
+- Google Go Style Best Practices § Shadowing (google/styleguide, gh-pages, go/best-practices.md; the document states it is neither normative nor canonical), the opposing position: a `// Good:` example `func abs(i int) int` assigns `i *= -1` to its parameter; "When using short variable declarations with the `:=` operator, in some cases a new variable is not created. We can call this *stomping*. It's OK to do this when the original value is no longer needed."; a further `// Good:` example reassigns the parameter `ctx` from `context.WithTimeout(ctx, 3*time.Second)`: "Note the use of simple assignment, = and not :=." (fetched)
+- Caveat: static-analysis rule documentation and language documentation with no measured defect rate; no empirical study of parameter reassignment was found.
