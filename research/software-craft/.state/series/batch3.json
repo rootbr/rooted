@@ -35,6 +35,11 @@
      "part": "r3-finish",
      "task": "wl9thgpy3",
      "wf": "wf_e2bdfde0-4ed"
+    },
+    {
+     "part": "r3-rest",
+     "task": "wfewvnuy2",
+     "wf": "wf_dbe0df2e-9e7"
     }
    ]
   },
