@@ -41,7 +41,8 @@
   },
   "large-scale-changes-and-migrations": {
    "task": "whtz4xndy",
-   "wf": "wf_7a8a5257-174"
+   "wf": "wf_7a8a5257-174",
+   "status": "done"
   },
   "small-steps-and-minimal-diffs": {
    "task": "wxu5tocsk",
@@ -59,6 +60,10 @@
   "profiling-and-code-tuning": {
    "task": "w6ea4egad",
    "wf": "wf_9ef3698b-274"
+  },
+  "algorithm-and-data-structure-choice": {
+   "task": "wuev93zct",
+   "wf": "wf_10defe6c-205"
   }
  }
 }
