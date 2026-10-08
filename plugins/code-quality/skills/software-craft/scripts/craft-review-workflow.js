@@ -427,6 +427,7 @@ Return the ruling object via the structured-output tool.`
 const DEFER_TO = {
   'DSN-44': 'API-10', // a unit or identifier as a distinct type: on a public operation's parameters API-10 owns the swap
   'DSN-47': 'API-10', // a fixed set of values as an enumeration: on a public parameter API-10 owns the closed set
+  'DSN-66': 'API-01', // a private collection returned as a copy or view: where the type keeps an invariant API-01 owns the leaking accessor
 }
 const ownersOf = ruleId => [DEFER_TO[ruleId] || []].flat()
 const SEV_RANK = { major: 0, minor: 1, suggestion: 2 }
