@@ -1,6 +1,6 @@
 # Series status
 
-Snapshot taken 2026-10-08T09:52 UTC by `series/series-status.py --snapshot`. Journals under `journals/`, finished runs' outputs under `outputs/`.
+Snapshot taken 2026-10-08T10:10 UTC by `series/series-status.py --snapshot`. Journals under `journals/`, finished runs' outputs under `outputs/`.
 
 `done` counts the agents whose results the journal holds (cached for a continuation); `failed` the agents a usage-limit stop or an error ended, which a continuation re-runs. `cards` is the count in the run's own output; a run whose agents failed shipped none, and its cards come from the continuation. A continuation run (batch 3 and later) is one bundle of a topic, named by its part; a topic is finished when every part's run is complete.
 
@@ -137,8 +137,9 @@ Snapshot taken 2026-10-08T09:52 UTC by `series/series-status.py --snapshot`. Jou
 | 3 | `domain-modeling-and-domain-language` r4-rest | 10 | verify 5, fix 5, verify2 5, close1 5 | - | 5 | run complete |
 | 4 | `unit-testing-and-test-quality` | 13 | sources 3, spine 1, draft 12, verify 12, fix 12, verify2 12, close1 12 | - | 12 | run complete |
 | 4 | `test-first-and-test-driven-development` | 2 | sources 3, spine 1, draft 2, verify 2, fix 2, verify2 2, close1 1 | - | 2 | run complete |
-| 4 | `larger-tests-integration-and-end-to-end` | 12 | sources 3, spine 1, draft 12, verify 12, fix 12, verify2 10, close1 4 | - | - | running or stopped |
-| 4 | `property-based-testing` | 14 | sources 3, spine 1, draft 12, verify 12, fix 12, verify2 4 | - | - | running or stopped |
+| 4 | `larger-tests-integration-and-end-to-end` | 12 | sources 3, spine 1, draft 12, verify 12, fix 12, verify2 12, close1 10 | - | 12 | run complete |
+| 4 | `property-based-testing` | 14 | sources 3, spine 1, draft 12, verify 12, fix 12, verify2 8 | - | - | running or stopped |
 | 4 | `refactoring` | 5 | sources 3, spine 1, draft 5, verify 5, fix 5, verify2 5, close1 5 | - | 5 | run complete |
-| 4 | `code-smells-and-antipatterns` | ? | - | - | - | running or stopped |
-| 4 | `seams-and-characterization-tests` | ? | - | - | - | running or stopped |
+| 4 | `code-smells-and-antipatterns` | ? | sources 3 | - | - | running or stopped |
+| 4 | `seams-and-characterization-tests` | ? | sources 2 | - | - | running or stopped |
+| 4 | `large-scale-changes-and-migrations` | ? | - | - | - | running or stopped |

@@ -16,7 +16,8 @@
   },
   "larger-tests-integration-and-end-to-end": {
    "task": "wgdshobsk",
-   "wf": "wf_1d43d6be-8af"
+   "wf": "wf_1d43d6be-8af",
+   "status": "done"
   },
   "property-based-testing": {
    "task": "w282rsffo",
@@ -34,6 +35,10 @@
   "seams-and-characterization-tests": {
    "task": "w0wvfk5se",
    "wf": "wf_5a424d44-19b"
+  },
+  "large-scale-changes-and-migrations": {
+   "task": "whtz4xndy",
+   "wf": "wf_7a8a5257-174"
   }
  }
 }
