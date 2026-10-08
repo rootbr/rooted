@@ -10,7 +10,8 @@
   },
   "test-first-and-test-driven-development": {
    "task": "wfzfkzs0n",
-   "wf": "wf_12be40cb-f39"
+   "wf": "wf_12be40cb-f39",
+   "status": "done"
   },
   "larger-tests-integration-and-end-to-end": {
    "task": "wgdshobsk",
@@ -19,6 +20,10 @@
   "property-based-testing": {
    "task": "w282rsffo",
    "wf": "wf_079d4bb6-c04"
+  },
+  "refactoring": {
+   "task": "wlb7qlbrl",
+   "wf": "wf_cd285ff6-fd6"
   }
  }
 }
