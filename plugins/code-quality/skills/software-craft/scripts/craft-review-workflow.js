@@ -446,6 +446,9 @@ const DEFER_TO = {
   'CHG-08': 'CHG-30', // an unreferenced private declaration is removed: an unused alias, forwarder or replaced implementation of a migration is CHG-30's finding
   'CHG-33': ['CODE-59', 'DSN-21'], // added code beside debt meets the clean-code bar: a style-guide form is CODE-59's finding, a repeated routine body DSN-21's
   'CHG-34': 'CODE-62', // a shortcut ships with a tracked debt marker: a marker that lacks its context pointer is CODE-62's finding
+  'ERR-48': 'PRF-05', // operational messages go through the logging facility: a print added while hunting a failure is PRF-05's remnant finding
+  'PRF-02': 'ERR-02', // a bug fix corrects the fault, not the failure: an error swallowed where it is raised is ERR-02's finding
+  'PRF-03': 'DSN-20', // a bug fix corrects the same mistake where it repeats: a verbatim copy of the fixed block is DSN-20's duplicated-code finding
   'TST-13': 'TST-24', // a new test fails without the change: where it cannot fail because its assertion has no two sides, TST-24 owns the assertion
 }
 const ownersOf = ruleId => [DEFER_TO[ruleId] || []].flat()
