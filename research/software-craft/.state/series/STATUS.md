@@ -1,6 +1,6 @@
 # Series status
 
-Snapshot taken 2026-10-08T03:46 UTC by `series/series-status.py --snapshot`. Journals under `journals/`, finished runs' outputs under `outputs/`.
+Snapshot taken 2026-10-08T03:50 UTC by `series/series-status.py --snapshot`. Journals under `journals/`, finished runs' outputs under `outputs/`.
 
 `done` counts the agents whose results the journal holds (cached for a continuation); `failed` the agents a usage-limit stop or an error ended, which a continuation re-runs. `cards` is the count in the run's own output; a run whose agents failed shipped none, and its cards come from the continuation. A continuation run (batch 3 and later) is one bundle of a topic, named by its part; a topic is finished when every part's run is complete.
 
@@ -34,7 +34,7 @@ Snapshot taken 2026-10-08T03:46 UTC by `series/series-status.py --snapshot`. Jou
 | 3 | `layout-and-coding-style` 1of2 | 11 | verify 5, fix 5 | fix 1, verify2 5 | 0 | run ended, agents failed |
 | 3 | `layout-and-coding-style` r2-finish | ? | - | - | - | running or stopped |
 | 3 | `layout-and-coding-style` r3-finish | 11 | verify2 5 | - | 5 | run complete |
-| 3 | `layout-and-coding-style` r3-rest | ? | verify 4, fix 6 | - | - | running or stopped |
+| 3 | `layout-and-coding-style` r3-rest | ? | verify 4, fix 6, verify2 2 | - | - | running or stopped |
 | 3 | `routine-size-and-parameters` 1of2 | 9 | verify 3, fix 4, verify2 2 | fix 1, verify2 2, close1 2 | 0 | run ended, agents failed |
 | 3 | `routine-size-and-parameters` r2-finish | ? | - | - | - | running or stopped |
 | 3 | `routine-size-and-parameters` r3-finish | ? | - | - | - | running or stopped |
@@ -120,10 +120,11 @@ Snapshot taken 2026-10-08T03:46 UTC by `series/series-status.py --snapshot`. Jou
 | 3 | `mutable-state-and-immutability` r2-rest-1of2 | ? | fix 1 | - | - | running or stopped |
 | 3 | `mutable-state-and-immutability` r2-rest-2of2 | ? | - | - | - | running or stopped |
 | 3 | `mutable-state-and-immutability` r3-finish | ? | - | - | - | running or stopped |
+| 3 | `mutable-state-and-immutability` r3-rest | ? | - | - | - | running or stopped |
 | 3 | `functional-style-and-pipelines` 1of2 | 11 | draft 2, verify 6, fix 4 | fix 2, verify2 4 | 0 | run ended, agents failed |
 | 3 | `functional-style-and-pipelines` r2-finish | ? | - | - | - | running or stopped |
 | 3 | `functional-style-and-pipelines` r3-finish | 11 | verify2 4 | - | 4 | run complete |
-| 3 | `functional-style-and-pipelines` r3-rest | ? | draft 1, verify 5, fix 7, verify2 6, close1 4 | - | - | running or stopped |
+| 3 | `functional-style-and-pipelines` r3-rest | 11 | draft 1, verify 5, fix 7, verify2 7, close1 5 | - | 7 | run complete |
 | 3 | `domain-modeling-and-domain-language` 1of2 | 10 | verify 5, fix 5, verify2 2 | verify2 3, close1 2 | 0 | run ended, agents failed |
 | 3 | `domain-modeling-and-domain-language` r2-finish | ? | - | - | - | running or stopped |
 | 3 | `domain-modeling-and-domain-language` r3-finish | ? | verify2 2 | - | - | running or stopped |

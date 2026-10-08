@@ -563,6 +563,11 @@
      "part": "r3-finish",
      "task": "wllmvjh5q",
      "wf": "wf_1b4949c1-817"
+    },
+    {
+     "part": "r3-rest",
+     "task": "w8ftix8u0",
+     "wf": "wf_338c1872-93e"
     }
    ]
   },
