@@ -65,17 +65,56 @@
    "status": "done"
   },
   "algorithm-and-data-structure-choice": {
-   "task": "wuev93zct",
-   "wf": "wf_10defe6c-205"
+   "runs": [
+    {
+     "part": null,
+     "task": "wuev93zct",
+     "wf": "wf_10defe6c-205",
+     "note": "the fresh run, cut by the end of the session that launched it; its journal is journals/<slug>.journal.jsonl.gz"
+    },
+    {
+     "part": "finish",
+     "task": "wznd1ra1a",
+     "wf": "wf_4b7c1e78-54a"
+    }
+   ]
   },
   "build-warnings-static-analysis-ci": {
-   "task": "wvj79ikgk",
-   "wf": "wf_e1fbc943-706"
+   "runs": [
+    {
+     "part": null,
+     "task": "wvj79ikgk",
+     "wf": "wf_e1fbc943-706",
+     "note": "the fresh run, cut by the end of the session that launched it; its journal is journals/<slug>.journal.jsonl.gz"
+    },
+    {
+     "part": "r1-1of2",
+     "task": "wprj1lphn",
+     "wf": "wf_7c75b6b2-36c"
+    }
+   ]
   },
   "dependency-management": {
-   "task": "wkhdpu2mp",
-   "wf": "wf_b3d14862-9cb"
+   "runs": [
+    {
+     "part": null,
+     "task": "wkhdpu2mp",
+     "wf": "wf_b3d14862-9cb",
+     "note": "the fresh run, cut by the end of the session that launched it; its journal is journals/<slug>.journal.jsonl.gz"
+    },
+    {
+     "part": "r1-1of2",
+     "task": "w5dtsvph1",
+     "wf": "wf_4174e404-de7"
+    },
+    {
+     "part": "r1-2of2",
+     "task": "wti1olmil",
+     "wf": "wf_9b0efe74-eb1"
+    }
+   ]
   }
  },
- "launch_stop": "2026-10-08T15:05 UTC: operator instruction \u2014 finish the running workflows, launch no new ones; then update HANDOVER for the next session, save everything and push. Not started after this: runtime-configuration, internationalization-and-text-encoding, reading-and-understanding-code, code-review-as-author-and-reviewer, documentation-beyond-comments, parsing-and-grammar-based-input, security-hygiene-in-ordinary-code."
+ "launch_stop": "2026-10-08T15:05 UTC: operator instruction \u2014 finish the running workflows, launch no new ones; then update HANDOVER for the next session, save everything and push. Not started after this: runtime-configuration, internationalization-and-text-encoding, reading-and-understanding-code, code-review-as-author-and-reviewer, documentation-beyond-comments, parsing-and-grammar-based-input, security-hygiene-in-ordinary-code.",
+ "continuations": "2026-10-08T16:45 UTC: the three runs the session end cut (algorithm fix round done; build-warnings 2 of 10 verified; dependency-management 6 of 11 drafted) continue from their journals (HANDOVER 5.3): algorithm as one --resume-cut-short finish bundle (10 second verdicts, closing edits), the other two as --round 1 bundles split in two; build-warnings r1-2of2 is launched when a slot under the cap of four frees."
 }
