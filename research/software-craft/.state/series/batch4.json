@@ -51,7 +51,8 @@
   },
   "technical-debt": {
    "task": "w65n20rmd",
-   "wf": "wf_2d8b2fdb-e9d"
+   "wf": "wf_2d8b2fdb-e9d",
+   "status": "done"
   },
   "debugging": {
    "task": "wr0o8y6br",
@@ -64,6 +65,10 @@
   "algorithm-and-data-structure-choice": {
    "task": "wuev93zct",
    "wf": "wf_10defe6c-205"
+  },
+  "build-warnings-static-analysis-ci": {
+   "task": "wvj79ikgk",
+   "wf": "wf_e1fbc943-706"
   }
  }
 }
