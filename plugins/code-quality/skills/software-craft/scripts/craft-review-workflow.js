@@ -444,6 +444,8 @@ const DEFER_TO = {
   'DSN-15': 'CHG-26', // a forwarding wrapper is added only with a purpose: a wrapper that stands in for a migrated type's old name is CHG-26's finding
   'CHG-15': 'CHG-29', // one logical change per change: hand edits, dependency updates or reformatting inside a tool-generated change are CHG-29's finding
   'CHG-08': 'CHG-30', // an unreferenced private declaration is removed: an unused alias, forwarder or replaced implementation of a migration is CHG-30's finding
+  'CHG-33': ['CODE-59', 'DSN-21'], // added code beside debt meets the clean-code bar: a style-guide form is CODE-59's finding, a repeated routine body DSN-21's
+  'CHG-34': 'CODE-62', // a shortcut ships with a tracked debt marker: a marker that lacks its context pointer is CODE-62's finding
   'TST-13': 'TST-24', // a new test fails without the change: where it cannot fail because its assertion has no two sides, TST-24 owns the assertion
 }
 const ownersOf = ruleId => [DEFER_TO[ruleId] || []].flat()
