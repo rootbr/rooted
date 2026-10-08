@@ -42,6 +42,15 @@ Usage:
     --skip-fixed    in a plain --round N bundle, leave out every rule whose round-N fix (`fix:`, `fix<N>:`)
                     the journals already hold, whatever its status: a --resume-cut-short bundle finishes
                     those, and a fix that sent the rule to pending is already in the cut-short run's output
+    --write-carded <out.json>
+                    write the cards a stopped run's journal already finished (a closing edit that returned
+                    a card, or a fix draft the round's second verdict accepted) as a task output with
+                    `result.cards`, `provenance_lines` and `outcomes`, then stop; the writer merges it as
+                    one of the topic's runs and a rebuilt bundle leaves those rules out with --skip-carded.
+                    The cards come from the journals given with --carded-journal (the stopped run's own),
+                    the spine from every --journal
+    --carded-journal <journal.jsonl>
+                    a journal whose finished cards --write-carded collects; repeatable
     --skip-carded <task-output.json>
                     leave out every rule the given output already ships as a card (its result.cards keys);
                     repeatable, so the outputs of every earlier bundle of the topic count. A continuation
@@ -76,6 +85,53 @@ def read_journal(path, results=None):
     return results
 
 
+def summarize_verdict(v):
+    if not isinstance(v, dict):
+        return ""
+    return f"{v.get('verdict', '')}: {len(v.get('problems') or [])} problem(s)"
+
+
+def carded_from_journals(paths, rnd):
+    """The cards the given journals already finished in fix round rnd: a closing edit (`close<N>:`) that
+    returned a card, or a `fix:`/`fix<N>:` draft the round's second verdict accepted. rule_id, title and the
+    example language are read from the card itself (the writer renumbers ids anyway)."""
+    import re
+    results = {}
+    for p in paths:
+        read_journal(p, results)
+    fix_label, verify2_label = stage_labels(rnd + 1)
+    cards, prov, outcomes, seen = [], [], [], set()
+
+    def add(key, d, closing, verdict):
+        md = d["card_markdown"]
+        fm = md.split("---")[1] if md.startswith("---") else ""
+        rid = re.search(r"^rule_id:\s*(\S+)", fm, re.M)
+        title = re.search(r"^title:\s*(.+)$", fm, re.M)
+        lang = re.search(r"^```(\w+)", md, re.M)
+        rule_id = rid.group(1) if rid else ""
+        t = title.group(1).strip() if title else ""
+        cards.append({"rule_id": rule_id, "key": key, "title": t, "filename": d.get("filename", ""),
+                      "example_language": lang.group(1) if lang else "", "markdown": md})
+        prov.append(d.get("provenance_line", ""))
+        outcomes.append({"key": key, "rule_id": rule_id, "title": t, "final": "card", "reason": "", "round": rnd,
+                         "fix_rounds": rnd, "closing_edit": closing,
+                         "last_verdict": summarize_verdict(verdict) if closing else "",
+                         "verdict1": "", "verdict2": "" if closing else summarize_verdict(verdict)})
+        seen.add(key)
+
+    for label, d in results.items():
+        stage, _, key = label.partition(":")
+        if key and stage.startswith("close") and isinstance(d, dict) and d.get("status") == "card" and d.get("card_markdown"):
+            add(key, d, True, results.get(f"{verify2_label}:{key}"))
+    for label, d in results.items():
+        stage, _, key = label.partition(":")
+        if key and stage == fix_label and key not in seen and isinstance(d, dict) and d.get("status") == "card" and d.get("card_markdown"):
+            v = results.get(f"{verify2_label}:{key}")
+            if isinstance(v, dict) and v.get("verdict") == "accept":
+                add(key, d, False, v)
+    return cards, prov, outcomes
+
+
 def stage_labels(rnd):
     """The journal labels of the draft and the verdict a round starts from."""
     draft = "draft" if rnd == 1 else ("fix" if rnd == 2 else f"fix{rnd - 1}")
@@ -103,7 +159,7 @@ def read_bundle_args(path):
 
 
 def main(argv):
-    opts = {"journal": [], "from_output": None, "from_bundle": None, "write_output": None, "round": "1", "rotation_start": None, "max_rules": None, "split": "1", "out_dir": None, "root": None, "resume_cut_short": False, "closing_edit": False, "skip_fixed": False, "skip_carded": []}
+    opts = {"journal": [], "from_output": None, "from_bundle": None, "write_output": None, "round": "1", "rotation_start": None, "max_rules": None, "split": "1", "out_dir": None, "root": None, "resume_cut_short": False, "closing_edit": False, "skip_fixed": False, "skip_carded": [], "write_carded": None, "carded_journal": []}
     i = 0
     while i < len(argv):
         key = argv[i][2:].replace("-", "_")
@@ -113,7 +169,7 @@ def main(argv):
             continue
         if not argv[i].startswith("--") or key not in opts or i + 1 >= len(argv):
             sys.exit(f"research-continue: unexpected argument {argv[i]!r}\n{__doc__}")
-        if key in ("journal", "skip_carded"):
+        if key in ("journal", "skip_carded", "carded_journal"):
             opts[key].append(argv[i + 1])
         else:
             opts[key] = argv[i + 1]
@@ -145,6 +201,18 @@ def main(argv):
         sys.exit("research-continue: the journal holds no spine or no source layer; run the topic afresh")
     if not spine:
         sys.exit("research-continue: no spine in the journals or the output; run the topic afresh")
+    if opts["write_carded"]:
+        if not opts["carded_journal"]:
+            sys.exit("research-continue: --write-carded needs at least one --carded-journal")
+        cards, prov, outcomes = carded_from_journals(opts["carded_journal"], rnd)
+        synthetic = {"result": {"topic": topic, "next_id": result.get("next_id", 1), "sources": sources, "spine": spine,
+                                "outcomes": outcomes, "cards": cards, "provenance_lines": prov, "pending_entries": [], "held": [], "round": rnd},
+                     "workflowProgress": [], "agentCount": 0, "totalTokens": 0,
+                     "note": "written by scripts/research-continue.py --write-carded from the journal of a stopped run: the cards its closing edits and accepted fixes finished"}
+        with open(opts["write_carded"], "w", encoding="utf-8") as fh:
+            json.dump(synthetic, fh, ensure_ascii=False)
+        print(f"{opts['write_carded']}: {len(cards)} finished card(s) from {len(opts['carded_journal'])} journal(s): {', '.join(c['key'] for c in cards)}")
+        return
     cut_short = opts["resume_cut_short"]
     if cut_short:
         # the round's own fix label is the draft, its own second-verdict label the verdict
