@@ -5,7 +5,7 @@ domain: change
 step: [test]
 applies_to: [tests]
 triggers: ['[.]toMatch(Inline)?Snapshot\(|\bassert_\w*snapshot!|\bApprovals?[.]verify\w*\(|==\s*snapshot\b|\bgolden\w*', '(?i)\bDate[.]now|\bnew Date\(\)|\bInstant[.]now|\bLocalDate(Time)?[.]now|\btime[.]Now|\bdatetime[.](now|utcnow)|\bSystemTime::now|\bUtc::now|\b(uuid\w*|randomUUID|Math[.]random|random[.]\w+|rand[.]\w+|rand::|nanoid)|[.]hashCode\(\)|\{:p\}|%p\b|object at 0x']
-scope: file
+scope: callers
 check_kind: semantic
 severity_default: major
 ---

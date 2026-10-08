@@ -5,7 +5,7 @@ domain: change
 step: [implement, review]
 applies_to: [universal]
 triggers: ['\b(def|fn|func|function|class|struct|interface|trait|enum|impl)\s+\w+', '\b(if|elif|else|switch|match|case|for|while|return|throw|raise)\b', '(?i)\b(fix(es|ed)?|bug|workaround|hack|perf|optimi[sz]\w*|unrelated|drive[- ]by|clean[- ]?up)\b', 'signal:added_file']
-scope: hunk
+scope: base-compare
 check_kind: semantic
 severity_default: minor
 ---

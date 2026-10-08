@@ -6,7 +6,7 @@ step: [implement, refactor]
 applies_to: [universal]
 triggers: ['^\s*(?:import\s+[\w.]+(?:\s+as\s+\w+)?(?:\s*,\s*[\w.]+(?:\s+as\s+\w+)?)*\s*(?:#.*)?$|from\s+[.\w]+\s+import\s)', '^\s*import\s+(?:type\s+)?(?:[\w*{][^;]*?\s+from\s+)?["''][^"'']+["'']', '^\s*import\s+(?:static\s+)?[\w.]+(?:[.]\*)?\s*;', '^\s*(?:import\s+)?(?:[\w.]+\s+)?"[\w./-]+"\s*$', '^\s*(?:pub(?:\([^)]*\))?\s+)?use\s+[\w:{]', '^\s*var\s+_\s*(?:=\s*)?\w+[.]\w+', '^\s*import\s+(?:type\s+)?(?:[\w$]+\s*,\s*)?\{\s*$', '^\s*\}\s*from\s+["''][^"'']+["'']']
 scope: file
-check_kind: mechanical
+check_kind: semantic
 severity_default: minor
 ---
 

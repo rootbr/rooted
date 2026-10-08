@@ -6,7 +6,7 @@ step: [test, review]
 applies_to: [tests, build-config]
 triggers: ['--updateSnapshot\b|--update-snapshots?\b|--snapshot-update\b|--bless\b|\bcargo\s+insta\s+(accept\b|test\b.*\s--(accept|force-update-snapshots)\b)|\b(jest|vitest)\b.*\s(-u|--update)\b|\bgo\s+test\b.*\s-update\b|\b(INSTA_UPDATE|INSTA_FORCE_PASS)\s*[:=]\s*[\x22\x27]?(always|unseen|force|1|true)\b|\bUPDATE_EXPECT\s*[:=]|--inline-snapshot[=\s]+\S*(create|fix|review|update|trim)|^\s*!?/?(\*\*/)?(__snapshots__|[\w*/.-]*[.](snap|golden|approved[.]\w+)|testdata)/?\s*$|\b(os[.]WriteFile|ioutil[.]WriteFile|fs[.]writeFileSync|write_text|Files[.]write(String)?|fs::write)\(.*(golden|snap|approved|expected)|(?i:golden|snap|approved|expected)\w*[.]write_(text|bytes)\(']
 scope: file
-check_kind: mechanical
+check_kind: semantic
 severity_default: major
 ---
 

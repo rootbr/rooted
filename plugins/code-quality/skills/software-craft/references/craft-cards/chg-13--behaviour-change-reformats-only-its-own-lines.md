@@ -2,7 +2,7 @@
 title: A change that alters behaviour reformats only the lines it changes for that purpose, and reformatting, re-indenting or re-wrapping of lines it does not otherwise change goes in a separate change
 rule_id: CHG-13
 domain: change
-step: [implement, refactor, review]
+step: [implement, review]
 applies_to: [universal]
 triggers: ['^\s*\}?[)\]]+[,;)]*\s*$', '[(\[]\s*$']
 scope: hunk

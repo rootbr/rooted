@@ -5,9 +5,9 @@ domain: change
 step: [implement, refactor, document]
 applies_to: [universal]
 triggers: ['signal:todo_marker', '\b(TODO|FIXME|HACK|XXX)\b', '(?i)(legacy|fallback|workaround|temporary|deprecated)']
-scope: file
+scope: callers
 check_kind: semantic
-severity_default: suggestion
+severity_default: minor
 ---
 
 # A change that does the work an existing debt marker records, or meets the condition that ends the need for its temporary code, removes that marker and that temporary code in the same change
@@ -29,11 +29,13 @@ good: fn timeout(cfg: &Config) -> Duration { Duration::from_secs(cfg.timeout_sec
 ## Limits
 A marker whose recorded work is still undone after the change stays as it is, including an on-hold marker whose blocking issue is still open and a marker whose waiting condition the change meets while the task that follows that condition remains; an open issue that tracks the marker's own work, alone or with other markers, does not keep a marker whose work the change has done. An issue reference that documents the code, for example to explain the rationale behind an implementation choice, is a cross-reference rather than an on-hold marker, and the closed-issue test applies to on-hold markers only. The rule reaches the markers in the files a change touches; superfluous markers elsewhere in the codebase are found by mining the issue tracker for closed references, outside any one change.
 
+The finder reaches the card through an added line that carries a marker or a word of temporariness: a rewritten marker, a comment the change edits beside the marker, or a new fallback or workaround; a change that does the marker's work while adding no such line is not dispatched by the diff alone.
+
 ## Validator
 Grep the touched file, beyond the hunk, for the project's debt marker: a debt keyword in a comment, a workaround note, or an issue reference beside a waiting condition such as once, until or when. Select the markers that predate the change. For each, read the work it records or the event or condition it waits for, then trace the change: an added or changed line that implements that work, or a change that closes the referenced issue, migrates the last caller of the covered path or otherwise meets the condition. Open the code the marker covers, such as a constant, a fallback branch, a shim or a compatibility call, and check whether it is still present and, after the change, unused or unreachable. Leave a marker whose recorded work is undone or only partly done after the change, including an on-hold marker whose blocking issue the change does not close and a marker whose condition the change meets while the task that follows it remains; an open issue that tracks the marker's own work does not keep a marker whose work the change has done. Validator question: **Does the change do the work a pre-existing debt marker in the file records, or meet the event or condition that ends the need for the temporary code it covers, while leaving that marker or that temporary code in place?** Yes → flag.
 
 ## Finding output
-When the validator answers yes, the finder emits one finding (`rule_id: CHG-35`, severity suggestion, `file`, `symbol`, `code` = the marker line and the temporary code it covers, verbatim from the file, `fix` = the same code with the marker and the temporary code it covers removed, in the file's language, `rationale` = the work or condition the marker records and the changed line that does that work or meets that condition).
+When the validator answers yes, the finder emits one finding (`rule_id: CHG-35`, severity minor, `file`, `symbol`, `code` = the added line that does the recorded work or meets the marker's condition, quoted verbatim from the diff, with the marker or temporary code it leaves in place, `fix` = the same code with the marker and the temporary code it covers removed, in the file's language, `rationale` = the work or condition the marker records and the changed line that does that work or meets that condition).
 
 ## Source
 - Google Engineering Practices, "What to look for in a code review", section Comments, google/eng-practices review/reviewer/looking-for.md (fetched): "It can also be helpful to look at comments that were there before this CL. Maybe there is a TODO that can be removed now".

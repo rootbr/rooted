@@ -4,7 +4,7 @@ rule_id: CHG-25
 domain: change
 step: [design, implement, refactor, review]
 applies_to: [universal]
-triggers: ['signal:added_file', '(?i)\b(?:moved|renamed)\s+(?:to|from)\b']
+triggers: ['signal:added_file', '(?i)\b(?:moved|renamed)\s+(?:to|from)\b', '\b(def|fn|function|class|struct|interface|trait|enum|type)\s+\w+|\bfunc\s+(\([^)]*\)\s*)?\w+\s*[(\[]|\b(public|protected|private|internal|static)\s+[\w<>\[\],.? ]+\s+\w+\s*\(']
 scope: callers
 check_kind: semantic
 severity_default: major

@@ -5,7 +5,7 @@ domain: change
 step: [design, refactor, review]
 applies_to: [object-oriented]
 triggers: ['\b(?!self\b|this\b|super\b)([a-z_]\w*)[.][A-Za-z_]\w*\s*\(.*\b\1[.][A-Za-z_]\w*\s*\(', '^\s*(?:(?:public|protected|private|static|final|synchronized)\s+)*[\w<>\[\],.?]+\s+\w+\s*\(\s*(?:final\s+)?[A-Z]\w*(?:<[^>]*>)?\s+[a-z]\w*', '^\s*(?:async\s+)?def\s+\w+\s*\(\s*self\s*,\s*\w+\s*(?::\s*[\x22\x27]?[A-Z]\w*|[,)=])', '^\s*(?:(?:public|private|protected|static|async)\s+)*[a-z]\w*\s*\(\s*\w+\s*:\s*[A-Z]\w*', '^\s*func\s+\(\s*(?:\w+\s+)?\*?\w+(?:\[[^\]]*\])?\s*\)\s*\w+\s*\(\s*\w', '\bfn\s+\w+\s*(?:<[^>]*>)?\s*\(\s*&(?:mut\s+)?self\s*,\s*\w+\s*:\s*&?(?:mut\s+)?[A-Z]\w*']
-scope: file
+scope: callers
 check_kind: semantic
 severity_default: minor
 ---

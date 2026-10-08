@@ -4,7 +4,7 @@ rule_id: CHG-29
 domain: change
 step: [refactor, review]
 applies_to: [universal]
-triggers: ['\b(?:go|cargo)\s+fix\b|(?i:\b(?:jscodeshift|libcst|openrewrite|refaster|comby|fastmod|codemod|ast-grep)\b)|//\s*go:fix\s+inline|@InlineMe\b|\bgofmt\s+-r\b']
+triggers: ['\b(?:go|cargo)\s+fix\b|(?i:\b(?:jscodeshift|libcst|openrewrite|refaster|comby|fastmod|codemod|ast-grep)\b)|//\s*go:fix\s+inline|@InlineMe\b|\bgofmt\s+-r\b', '^\s*edition\s*=\s*"20\d\d"\s*$|^go\s+1\.\d+\s*$|^toolchain\s+go1\.\d']
 scope: hunk
 check_kind: semantic
 severity_default: minor
@@ -30,6 +30,8 @@ good: /// Returns an empty list sized for `n` shapes.
 
 ## Limits
 A change that holds only a dependency update, or only formatting, is the separate change the rule asks for and is outside it, and so is the edition or toolchain field a migration sets in its manifest. A dependency version the tool itself changes and a hand fix at a site the tool reports it could not migrate belong to the tool's change when the rewritten code does not build without them, and whitespace that the tool's own formatting pass changes on a line beside a rewritten one, such as fields or trailing comments realigned after a rename lengthens a line, is part of its output. The rule judges what a tool-generated change holds, not whether each rewrite preserves behaviour; merging and testing still apply to such a change however it was produced.
+
+The finder reaches the card through the traces a tool run leaves on added lines: the tool's name in a comment or directive, a manifest's edition or toolchain field, or a generated-code marker; a tool-generated change that adds none of them is not dispatched by the diff alone, since no trigger reads the change description.
 
 ## Validator
 Grep the hunk and the change description for the name of a rewriting tool, a migration command or an inline directive. Open the hunk and sort each changed line: a line inside an expression the rewrite targets, whitespace the tool's formatting pass realigned on a line beside a rewritten one, a dependency version the tool itself changed or a hand fix the rewritten code needs to build, and the edition or toolchain field the migration sets in its manifest belong to the tool's change; any other line that differs only in whitespace, wrapping or line breaks, a comment deleted or moved beside a rewritten line, a dependency update the tool did not make, or another edit of a kind the tool's rule does not make does not. Trace each deleted comment to whether the rewrite removed the statement it annotated. Validator question: **Does a change presented as a rewriting tool's output also hold a changed line that the sort leaves outside the tool's change, such as a dependency update the tool did not make, a hand edit its rewritten code does not need to build, reformatting its formatting pass did not make beside a rewritten line, or the loss of a comment the rewrite did not require?** Yes → flag.

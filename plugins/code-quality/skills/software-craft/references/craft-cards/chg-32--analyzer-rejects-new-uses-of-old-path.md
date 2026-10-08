@@ -3,7 +3,7 @@ title: While an old module or API stays reachable during a migration off it, the
 rule_id: CHG-32
 domain: change
 step: [implement, refactor, review]
-applies_to: [build-config]
+applies_to: [universal]
 triggers: ['(?i)no-restricted-(?:imports|syntax|properties)|banned[-_]?api|TID251|disallowed[-_](?:methods|types|macros)|IllegalImport|depguard|forbidigo', '@[Dd]eprecated\b|#\[deprecated\b|//\s*Deprecated:|@warnings[.]deprecated\(']
 scope: base-compare
 check_kind: semantic

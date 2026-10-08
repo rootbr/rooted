@@ -431,24 +431,29 @@ const DEFER_TO = {
   'CODE-73': 'CODE-19', // a multiway branch handles an unmatched value: over an enumerated type CODE-19 owns the missing member
   'CODE-74': 'CODE-13', // an if chain on one value is preferably a switch: a value-returning chain is CODE-13's lookup table
   'CODE-64': 'CODE-75', // an ambiguous construct carries an intended-marker: an unmarked switch fall-through is CODE-75's finding
-  'CHG-01': 'API-20', // a refactoring alters no observable behaviour: on a published element the altered return value, error or side effect is API-20's breaking change
+  'CHG-01': ['API-20', 'CHG-02', 'CHG-03'], // a refactoring alters no observable behaviour: a published element is API-20's, an unbound subtype CHG-02's, a stale run-time use CHG-03's (reviewer, change)
   'TST-17': ['TST-25', 'TST-46'], // a test body runs the same statements every execution: a branch that encloses an assertion the test can skip is TST-25's finding; an early return in a property body is TST-46's
   'TST-25': 'TST-46', // no assertion sits where the test can skip it: an early return that skips a property's assertions is TST-46's discard finding
-  'CHG-12': 'CHG-14', // a behaviour change restructures no code beyond small cleanups: code moved between files and edited in the same change is CHG-14's finding
+  'CHG-12': ['CHG-14', 'CHG-01', 'CHG-29'], // a behaviour change restructures no code: a move edited in place is CHG-14's, a refactoring that alters behaviour CHG-01's, a hand edit inside a tool-generated change CHG-29's (reviewer, change)
   'TST-24': 'CHG-20', // every test makes an assertion that can fail: a golden file the gating run writes and then compares is CHG-20's finding
-  'CHG-21': 'CHG-05', // a change rewrites only the stored entries its intended change explains: in a change presented as a refactoring the rewritten expectation is CHG-05's finding
+  'CHG-21': ['CHG-05', 'CHG-22'], // a change rewrites only the stored entries its intent explains: a refactoring's re-recording is CHG-05's, an entry that only varies between runs CHG-22's (reviewer, change)
   'TST-18': 'CHG-24', // a failing test's report names its case: an external snapshot named by a number is CHG-24's finding
-  'CHG-25': 'API-22', // the old form stays working until no use remains: on a published element the in-place rename or removal is API-22's breaking change
-  'CHG-17': 'CHG-25', // each change builds and passes on its own: a rename or removal that leaves uses for later changes is CHG-25's finding (keep the old form beside the new)
+  'CHG-25': ['API-22', 'CHG-03', 'CHG-02'], // the old form stays working until no use remains: a published element is API-22's, a stale run-time use CHG-03's, an unbound override CHG-02's (reviewer, change)
+  'CHG-17': ['CHG-25', 'CHG-03'], // each change builds and passes on its own: a rename with uses left is CHG-25's, a stale run-time use CHG-03's (reviewer, change)
   'API-31': 'CHG-26', // a deprecated element calls its replacement: an old type name kept as a copy, wrapper or subclass during a migration is CHG-26's alias finding
   'DSN-15': 'CHG-26', // a forwarding wrapper is added only with a purpose: a wrapper that stands in for a migrated type's old name is CHG-26's finding
   'CHG-15': 'CHG-29', // one logical change per change: hand edits, dependency updates or reformatting inside a tool-generated change are CHG-29's finding
-  'CHG-08': 'CHG-30', // an unreferenced private declaration is removed: an unused alias, forwarder or replaced implementation of a migration is CHG-30's finding
-  'CHG-33': ['CODE-59', 'DSN-21'], // added code beside debt meets the clean-code bar: a style-guide form is CODE-59's finding, a repeated routine body DSN-21's
+  'CHG-08': ['CHG-30', 'CHG-31', 'CHG-35'], // an unreferenced private declaration is removed: a migration leftover is CHG-30's, code only a retired flag's branch reached CHG-31's, temporary code under a paid marker CHG-35's (reviewer, change)
+  'CHG-33': ['CODE-59', 'DSN-21', 'DSN-26', 'CODE-03', 'CODE-11', 'CODE-26', 'CODE-36'], // added code beside debt meets the clean-code bar: style forms, repeated bodies, re-implemented jobs, names, magic numbers and long routines belong to their own cards (reviewer, change)
   'CHG-34': 'CODE-62', // a shortcut ships with a tracked debt marker: a marker that lacks its context pointer is CODE-62's finding
   'ERR-48': 'PRF-05', // operational messages go through the logging facility: a print added while hunting a failure is PRF-05's remnant finding
   'PRF-02': 'ERR-02', // a bug fix corrects the fault, not the failure: an error swallowed where it is raised is ERR-02's finding
   'PRF-03': 'DSN-20', // a bug fix corrects the same mistake where it repeats: a verbatim copy of the fixed block is DSN-20's duplicated-code finding
+  'CODE-71': 'CHG-35', // a code change updates its comments: a pre-existing debt marker whose work the change does is CHG-35's finding (reviewer, change)
+  'CHG-18': 'DSN-63', // changed code receives replaced dependencies explicitly: a module-level object with interior mutability is DSN-63's finding (reviewer, change)
+  'CHG-30': 'CHG-31', // an old migration path is deleted once unused: the implementation a retired flag selected is CHG-31's finding (reviewer, change)
+  'CHG-13': 'CHG-29', // a behaviour change reformats only its own lines: reformatting inside a tool-generated change is CHG-29's finding (reviewer, change)
+  'CHG-07': 'CODE-22', // a field assigned before every read becomes local: CODE-22's private-field clause, from the same PMD rule, owns the declaration (reviewer, change)
   'TST-13': 'TST-24', // a new test fails without the change: where it cannot fail because its assertion has no two sides, TST-24 owns the assertion
 }
 const ownersOf = ruleId => [DEFER_TO[ruleId] || []].flat()
