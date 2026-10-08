@@ -6,7 +6,8 @@
  "topics": {
   "unit-testing-and-test-quality": {
    "task": "w4q4wtv46",
-   "wf": "wf_92da7122-f48"
+   "wf": "wf_92da7122-f48",
+   "status": "done"
   },
   "test-first-and-test-driven-development": {
    "task": "wfzfkzs0n",
@@ -29,6 +30,10 @@
   "code-smells-and-antipatterns": {
    "task": "ww8pvatyb",
    "wf": "wf_f8a6ad6c-eec"
+  },
+  "seams-and-characterization-tests": {
+   "task": "w0wvfk5se",
+   "wf": "wf_5a424d44-19b"
   }
  }
 }
