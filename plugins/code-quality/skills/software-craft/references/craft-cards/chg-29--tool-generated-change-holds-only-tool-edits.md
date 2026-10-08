@@ -4,7 +4,7 @@ rule_id: CHG-29
 domain: change
 step: [refactor, review]
 applies_to: [universal]
-triggers: ['\b(?:go|cargo)\s+fix\b|(?i:\b(?:jscodeshift|libcst|openrewrite|refaster|comby|fastmod|codemod|ast-grep)\b)|//\s*go:fix\s+inline|@InlineMe\b|\bgofmt\s+-r\b', '^\s*edition\s*=\s*"20\d\d"\s*$|^go\s+1\.\d+\s*$|^toolchain\s+go1\.\d']
+triggers: ['\b(?:go|cargo)\s+fix\b|(?i:\b(?:jscodeshift|libcst|openrewrite|refaster|comby|fastmod|codemod|ast-grep)\b)|//\s*go:fix\s+inline|@InlineMe\b|\bgofmt\s+-r\b', '^\s*edition\s*=\s*"20\d\d"\s*$|^go\s+1[.]\d+\s*$|^toolchain\s+go1[.]\d']
 scope: hunk
 check_kind: semantic
 severity_default: minor
