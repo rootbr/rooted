@@ -1,6 +1,6 @@
 # Series status
 
-Snapshot taken 2026-10-08T01:04 UTC by `series/series-status.py --snapshot`. Journals under `journals/`, finished runs' outputs under `outputs/`.
+Snapshot taken 2026-10-08T01:08 UTC by `series/series-status.py --snapshot`. Journals under `journals/`, finished runs' outputs under `outputs/`.
 
 `done` counts the agents whose results the journal holds (cached for a continuation); `failed` the agents a usage-limit stop or an error ended, which a continuation re-runs. `cards` is the count in the run's own output; a run whose agents failed shipped none, and its cards come from the continuation. A continuation run (batch 3 and later) is one bundle of a topic, named by its part; a topic is finished when every part's run is complete.
 
@@ -72,7 +72,7 @@ Snapshot taken 2026-10-08T01:04 UTC by `series/series-status.py --snapshot`. Jou
 | 3 | `fault-tolerance-retries-timeouts-fallbacks` r2-finish | ? | - | - | - | running or stopped |
 | 3 | `fault-tolerance-retries-timeouts-fallbacks` r3-finish | 9 | verify2 3 | - | 5 | run complete |
 | 3 | `fault-tolerance-retries-timeouts-fallbacks` r3-rest | ? | verify 1 | - | - | running or stopped |
-| 3 | `fault-tolerance-retries-timeouts-fallbacks` r4-rest | ? | verify 2, fix 4, verify2 1 | - | - | running or stopped |
+| 3 | `fault-tolerance-retries-timeouts-fallbacks` r4-rest | ? | verify 2, fix 4, verify2 2 | - | - | running or stopped |
 | 3 | `resource-management-and-ownership` 1of2 | 12 | verify 5, fix 6 | verify2 6 | 0 | run ended, agents failed |
 | 3 | `resource-management-and-ownership` r2-finish | 12 | verify2 6 | - | 6 | run complete |
 | 3 | `resource-management-and-ownership` r3-rest | 12 | verify 5, fix 6, verify2 6, close1 6 | - | 6 | run complete |
@@ -115,5 +115,5 @@ Snapshot taken 2026-10-08T01:04 UTC by `series/series-status.py --snapshot`. Jou
 | 3 | `functional-style-and-pipelines` r2-finish | ? | - | - | - | running or stopped |
 | 3 | `domain-modeling-and-domain-language` 1of2 | 10 | verify 5, fix 5, verify2 2 | verify2 3, close1 2 | 0 | run ended, agents failed |
 | 3 | `domain-modeling-and-domain-language` r2-finish | ? | - | - | - | running or stopped |
-| 3 | `domain-modeling-and-domain-language` r3-finish | ? | verify2 1 | - | - | running or stopped |
+| 3 | `domain-modeling-and-domain-language` r3-finish | ? | verify2 2 | - | - | running or stopped |
 | 3 | `domain-modeling-and-domain-language` r3-rest | ? | - | - | - | running or stopped |
