@@ -4,7 +4,7 @@ title: Naming of identifiers
 group: A. Code inside a function
 domain: code
 prefix: CODE
-status: verified
+status: done
 ---
 
 # Research note — Naming of identifiers

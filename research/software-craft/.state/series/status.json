@@ -19,7 +19,7 @@
   "finished": false,
   "cards": null,
   "spine_card_rules": 12,
-  "checked": "2026-10-08T15:55 UTC",
+  "checked": "2026-10-08T16:54 UTC",
   "snapshot_journal": "journals/comments-and-self-documenting-code.journal.jsonl.gz"
  },
  "layout-and-coding-style": {
@@ -42,7 +42,7 @@
   "finished": false,
   "cards": null,
   "spine_card_rules": 11,
-  "checked": "2026-10-08T15:55 UTC",
+  "checked": "2026-10-08T16:54 UTC",
   "snapshot_journal": "journals/layout-and-coding-style.journal.jsonl.gz"
  },
  "routine-size-and-parameters": {
@@ -65,7 +65,7 @@
   "finished": false,
   "cards": null,
   "spine_card_rules": 9,
-  "checked": "2026-10-08T15:55 UTC",
+  "checked": "2026-10-08T16:54 UTC",
   "snapshot_journal": "journals/routine-size-and-parameters.journal.jsonl.gz"
  },
  "variables-scope-and-numerics": {
@@ -88,7 +88,7 @@
   "finished": false,
   "cards": null,
   "spine_card_rules": 14,
-  "checked": "2026-10-08T15:55 UTC",
+  "checked": "2026-10-08T16:54 UTC",
   "snapshot_journal": "journals/variables-scope-and-numerics.journal.jsonl.gz"
  },
  "control-flow": {
@@ -111,7 +111,7 @@
   "finished": false,
   "cards": null,
   "spine_card_rules": 18,
-  "checked": "2026-10-08T15:55 UTC",
+  "checked": "2026-10-08T16:54 UTC",
   "snapshot_journal": "journals/control-flow.journal.jsonl.gz"
  },
  "table-driven-and-state-machines": {
@@ -134,7 +134,7 @@
   "finished": false,
   "cards": null,
   "spine_card_rules": 8,
-  "checked": "2026-10-08T15:55 UTC",
+  "checked": "2026-10-08T16:54 UTC",
   "snapshot_journal": "journals/table-driven-and-state-machines.journal.jsonl.gz"
  },
  "generics-and-parameterization": {
@@ -157,7 +157,7 @@
   "finished": false,
   "cards": null,
   "spine_card_rules": 10,
-  "checked": "2026-10-08T15:55 UTC",
+  "checked": "2026-10-08T16:54 UTC",
   "snapshot_journal": "journals/generics-and-parameterization.journal.jsonl.gz"
  },
  "api-design-and-use": {
@@ -179,7 +179,7 @@
   "finished": false,
   "cards": null,
   "spine_card_rules": 13,
-  "checked": "2026-10-08T15:55 UTC",
+  "checked": "2026-10-08T16:54 UTC",
   "snapshot_journal": "journals/api-design-and-use.journal.jsonl.gz"
  },
  "contracts-assertions-and-invariants": {
@@ -203,7 +203,7 @@
   "finished": false,
   "cards": null,
   "spine_card_rules": 7,
-  "checked": "2026-10-08T15:55 UTC",
+  "checked": "2026-10-08T16:54 UTC",
   "snapshot_journal": "journals/contracts-assertions-and-invariants.journal.jsonl.gz"
  },
  "api-evolution-and-deprecation": {
@@ -226,7 +226,7 @@
   "finished": false,
   "cards": null,
   "spine_card_rules": 14,
-  "checked": "2026-10-08T15:55 UTC",
+  "checked": "2026-10-08T16:54 UTC",
   "snapshot_journal": "journals/api-evolution-and-deprecation.journal.jsonl.gz"
  },
  "defensive-programming": {
@@ -248,7 +248,7 @@
   "finished": false,
   "cards": null,
   "spine_card_rules": 6,
-  "checked": "2026-10-08T15:55 UTC",
+  "checked": "2026-10-08T16:54 UTC",
   "snapshot_journal": "journals/defensive-programming.journal.jsonl.gz"
  },
  "fault-tolerance-retries-timeouts-fallbacks": {
@@ -272,7 +272,7 @@
   "finished": false,
   "cards": null,
   "spine_card_rules": 9,
-  "checked": "2026-10-08T15:55 UTC",
+  "checked": "2026-10-08T16:54 UTC",
   "snapshot_journal": "journals/fault-tolerance-retries-timeouts-fallbacks.journal.jsonl.gz"
  },
  "resource-management-and-ownership": {
@@ -295,7 +295,7 @@
   "finished": false,
   "cards": null,
   "spine_card_rules": 13,
-  "checked": "2026-10-08T15:55 UTC",
+  "checked": "2026-10-08T16:54 UTC",
   "snapshot_journal": "journals/resource-management-and-ownership.journal.jsonl.gz"
  },
  "logging-and-diagnostic-output": {
@@ -318,7 +318,7 @@
   "finished": false,
   "cards": null,
   "spine_card_rules": 12,
-  "checked": "2026-10-08T15:55 UTC",
+  "checked": "2026-10-08T16:54 UTC",
   "snapshot_journal": "journals/logging-and-diagnostic-output.journal.jsonl.gz"
  },
  "complexity-and-deep-modules": {
@@ -341,7 +341,7 @@
   "finished": false,
   "cards": null,
   "spine_card_rules": 6,
-  "checked": "2026-10-08T15:55 UTC",
+  "checked": "2026-10-08T16:54 UTC",
   "snapshot_journal": "journals/complexity-and-deep-modules.journal.jsonl.gz"
  },
  "information-hiding-and-encapsulation": {
@@ -363,7 +363,7 @@
   "finished": false,
   "cards": null,
   "spine_card_rules": 8,
-  "checked": "2026-10-08T15:55 UTC",
+  "checked": "2026-10-08T16:54 UTC",
   "snapshot_journal": "journals/information-hiding-and-encapsulation.journal.jsonl.gz"
  },
  "coupling-and-dependency-direction": {
@@ -384,7 +384,7 @@
   "finished": false,
   "cards": null,
   "spine_card_rules": 6,
-  "checked": "2026-10-08T15:55 UTC",
+  "checked": "2026-10-08T16:54 UTC",
   "snapshot_journal": "journals/coupling-and-dependency-direction.journal.jsonl.gz"
  },
  "duplication-and-single-source-of-truth": {
@@ -405,7 +405,7 @@
   "finished": false,
   "cards": null,
   "spine_card_rules": 8,
-  "checked": "2026-10-08T15:55 UTC",
+  "checked": "2026-10-08T16:54 UTC",
   "snapshot_journal": "journals/duplication-and-single-source-of-truth.journal.jsonl.gz"
  },
  "inheritance-versus-composition": {
@@ -426,7 +426,7 @@
   "finished": false,
   "cards": null,
   "spine_card_rules": 8,
-  "checked": "2026-10-08T15:55 UTC",
+  "checked": "2026-10-08T16:54 UTC",
   "snapshot_journal": "journals/inheritance-versus-composition.journal.jsonl.gz"
  },
  "design-patterns-in-construction": {
@@ -449,7 +449,7 @@
   "finished": false,
   "cards": null,
   "spine_card_rules": 7,
-  "checked": "2026-10-08T15:55 UTC",
+  "checked": "2026-10-08T16:54 UTC",
   "snapshot_journal": "journals/design-patterns-in-construction.journal.jsonl.gz"
  },
  "mutable-state-and-immutability": {
@@ -471,7 +471,7 @@
   "finished": false,
   "cards": null,
   "spine_card_rules": 11,
-  "checked": "2026-10-08T15:55 UTC",
+  "checked": "2026-10-08T16:54 UTC",
   "snapshot_journal": "journals/mutable-state-and-immutability.journal.jsonl.gz"
  },
  "functional-style-and-pipelines": {
@@ -492,7 +492,7 @@
   "finished": false,
   "cards": null,
   "spine_card_rules": 11,
-  "checked": "2026-10-08T15:55 UTC",
+  "checked": "2026-10-08T16:54 UTC",
   "snapshot_journal": "journals/functional-style-and-pipelines.journal.jsonl.gz"
  },
  "domain-modeling-and-domain-language": {
@@ -514,7 +514,7 @@
   "finished": false,
   "cards": null,
   "spine_card_rules": 10,
-  "checked": "2026-10-08T15:55 UTC",
+  "checked": "2026-10-08T16:54 UTC",
   "snapshot_journal": "journals/domain-modeling-and-domain-language.journal.jsonl.gz"
  },
  "comments-and-self-documenting-code--1of2": {
@@ -522,7 +522,7 @@
   "part": "1of2",
   "wf": "wf_f746b93b-624",
   "task": "wxuisi9ra",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_f746b93b-624/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/comments-and-self-documenting-code--1of2.journal.jsonl.gz",
   "done": {
    "verify": 5,
    "fix": 5,
@@ -533,25 +533,24 @@
    "fix": 1,
    "close1": 1
   },
-  "finished": true,
-  "cards": 0,
-  "spine_card_rules": 12,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/comments-and-self-documenting-code--1of2.journal.jsonl.gz",
-  "snapshot_output": "outputs/comments-and-self-documenting-code--1of2.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/comments-and-self-documenting-code--1of2.journal.jsonl.gz"
  },
  "comments-and-self-documenting-code--r2-finish": {
   "batch": 3,
   "part": "r2-finish",
   "wf": "wf_956039d0-c52",
   "task": "w8w5caxgb",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_956039d0-c52/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/comments-and-self-documenting-code--r2-finish.journal.jsonl.gz",
   "done": {},
   "failed": {},
   "finished": false,
   "cards": null,
   "spine_card_rules": null,
-  "checked": "2026-10-08T15:55 UTC",
+  "checked": "2026-10-08T16:54 UTC",
   "snapshot_journal": "journals/comments-and-self-documenting-code--r2-finish.journal.jsonl.gz"
  },
  "comments-and-self-documenting-code--r3-finish": {
@@ -559,25 +558,24 @@
   "part": "r3-finish",
   "wf": "wf_a6751b6b-9ca",
   "task": "w7w3o1xm8",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_a6751b6b-9ca/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/comments-and-self-documenting-code--r3-finish.journal.jsonl.gz",
   "done": {
    "verify2": 4,
    "close2": 5
   },
   "failed": {},
-  "finished": true,
-  "cards": 5,
-  "spine_card_rules": 12,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/comments-and-self-documenting-code--r3-finish.journal.jsonl.gz",
-  "snapshot_output": "outputs/comments-and-self-documenting-code--r3-finish.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/comments-and-self-documenting-code--r3-finish.journal.jsonl.gz"
  },
  "comments-and-self-documenting-code--r3-rest": {
   "batch": 3,
   "part": "r3-rest",
   "wf": "wf_d11d30b6-d2f",
   "task": "w3zxkaqe7",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_d11d30b6-d2f/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/comments-and-self-documenting-code--r3-rest.journal.jsonl.gz",
   "done": {
    "verify": 5,
    "fix": 7,
@@ -585,19 +583,18 @@
    "close1": 6
   },
   "failed": {},
-  "finished": true,
-  "cards": 7,
-  "spine_card_rules": 12,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/comments-and-self-documenting-code--r3-rest.journal.jsonl.gz",
-  "snapshot_output": "outputs/comments-and-self-documenting-code--r3-rest.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/comments-and-self-documenting-code--r3-rest.journal.jsonl.gz"
  },
  "layout-and-coding-style--1of2": {
   "batch": 3,
   "part": "1of2",
   "wf": "wf_364f3b66-fc0",
   "task": "wwvocvonz",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_364f3b66-fc0/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/layout-and-coding-style--1of2.journal.jsonl.gz",
   "done": {
    "verify": 5,
    "fix": 5
@@ -606,25 +603,24 @@
    "verify2": 5,
    "fix": 1
   },
-  "finished": true,
-  "cards": 0,
-  "spine_card_rules": 11,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/layout-and-coding-style--1of2.journal.jsonl.gz",
-  "snapshot_output": "outputs/layout-and-coding-style--1of2.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/layout-and-coding-style--1of2.journal.jsonl.gz"
  },
  "layout-and-coding-style--r2-finish": {
   "batch": 3,
   "part": "r2-finish",
   "wf": "wf_888048d1-3d5",
   "task": "wgnig4vtp",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_888048d1-3d5/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/layout-and-coding-style--r2-finish.journal.jsonl.gz",
   "done": {},
   "failed": {},
   "finished": false,
   "cards": null,
   "spine_card_rules": null,
-  "checked": "2026-10-08T15:55 UTC",
+  "checked": "2026-10-08T16:54 UTC",
   "snapshot_journal": "journals/layout-and-coding-style--r2-finish.journal.jsonl.gz"
  },
  "layout-and-coding-style--r3-finish": {
@@ -632,25 +628,24 @@
   "part": "r3-finish",
   "wf": "wf_e2bdfde0-4ed",
   "task": "wl9thgpy3",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_e2bdfde0-4ed/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/layout-and-coding-style--r3-finish.journal.jsonl.gz",
   "done": {
    "verify2": 5,
    "close2": 5
   },
   "failed": {},
-  "finished": true,
-  "cards": 5,
-  "spine_card_rules": 11,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/layout-and-coding-style--r3-finish.journal.jsonl.gz",
-  "snapshot_output": "outputs/layout-and-coding-style--r3-finish.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/layout-and-coding-style--r3-finish.journal.jsonl.gz"
  },
  "layout-and-coding-style--r3-rest": {
   "batch": 3,
   "part": "r3-rest",
   "wf": "wf_dbe0df2e-9e7",
   "task": "wfewvnuy2",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_dbe0df2e-9e7/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/layout-and-coding-style--r3-rest.journal.jsonl.gz",
   "done": {
    "verify": 4,
    "fix": 6,
@@ -658,19 +653,18 @@
    "close1": 6
   },
   "failed": {},
-  "finished": true,
-  "cards": 6,
-  "spine_card_rules": 11,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/layout-and-coding-style--r3-rest.journal.jsonl.gz",
-  "snapshot_output": "outputs/layout-and-coding-style--r3-rest.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/layout-and-coding-style--r3-rest.journal.jsonl.gz"
  },
  "routine-size-and-parameters--1of2": {
   "batch": 3,
   "part": "1of2",
   "wf": "wf_e9208921-a7c",
   "task": "wpxec881y",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_e9208921-a7c/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/routine-size-and-parameters--1of2.journal.jsonl.gz",
   "done": {
    "verify": 3,
    "fix": 4,
@@ -681,25 +675,24 @@
    "fix": 1,
    "close1": 2
   },
-  "finished": true,
-  "cards": 0,
-  "spine_card_rules": 9,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/routine-size-and-parameters--1of2.journal.jsonl.gz",
-  "snapshot_output": "outputs/routine-size-and-parameters--1of2.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/routine-size-and-parameters--1of2.journal.jsonl.gz"
  },
  "routine-size-and-parameters--r2-finish": {
   "batch": 3,
   "part": "r2-finish",
   "wf": "wf_d64f9bf1-034",
   "task": "wz6pr8yi4",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_d64f9bf1-034/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/routine-size-and-parameters--r2-finish.journal.jsonl.gz",
   "done": {},
   "failed": {},
   "finished": false,
   "cards": null,
   "spine_card_rules": null,
-  "checked": "2026-10-08T15:55 UTC",
+  "checked": "2026-10-08T16:54 UTC",
   "snapshot_journal": "journals/routine-size-and-parameters--r2-finish.journal.jsonl.gz"
  },
  "routine-size-and-parameters--r3-finish": {
@@ -707,13 +700,13 @@
   "part": "r3-finish",
   "wf": "wf_b6796ce7-26c",
   "task": "w90wf4beq",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_b6796ce7-26c/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/routine-size-and-parameters--r3-finish.journal.jsonl.gz",
   "done": {},
   "failed": {},
   "finished": false,
   "cards": null,
   "spine_card_rules": null,
-  "checked": "2026-10-08T15:55 UTC",
+  "checked": "2026-10-08T16:54 UTC",
   "snapshot_journal": "journals/routine-size-and-parameters--r3-finish.journal.jsonl.gz"
  },
  "routine-size-and-parameters--r4-finish": {
@@ -721,25 +714,24 @@
   "part": "r4-finish",
   "wf": "wf_a676861d-3c5",
   "task": "wx33chz33",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_a676861d-3c5/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/routine-size-and-parameters--r4-finish.journal.jsonl.gz",
   "done": {
    "verify2": 2,
    "close2": 4
   },
   "failed": {},
-  "finished": true,
-  "cards": 4,
-  "spine_card_rules": 9,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/routine-size-and-parameters--r4-finish.journal.jsonl.gz",
-  "snapshot_output": "outputs/routine-size-and-parameters--r4-finish.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/routine-size-and-parameters--r4-finish.journal.jsonl.gz"
  },
  "routine-size-and-parameters--r3-rest": {
   "batch": 3,
   "part": "r3-rest",
   "wf": "wf_fef2de6b-655",
   "task": "w90zdotfn",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_fef2de6b-655/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/routine-size-and-parameters--r3-rest.journal.jsonl.gz",
   "done": {
    "verify": 3,
    "fix": 4
@@ -748,7 +740,7 @@
   "finished": false,
   "cards": null,
   "spine_card_rules": null,
-  "checked": "2026-10-08T15:55 UTC",
+  "checked": "2026-10-08T16:54 UTC",
   "snapshot_journal": "journals/routine-size-and-parameters--r3-rest.journal.jsonl.gz"
  },
  "routine-size-and-parameters--r5-finish": {
@@ -756,25 +748,24 @@
   "part": "r5-finish",
   "wf": "wf_4d27fbec-a6b",
   "task": "wuq2mfdil",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_4d27fbec-a6b/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/routine-size-and-parameters--r5-finish.journal.jsonl.gz",
   "done": {
    "verify2": 4,
    "close2": 4
   },
   "failed": {},
-  "finished": true,
-  "cards": 4,
-  "spine_card_rules": 9,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/routine-size-and-parameters--r5-finish.journal.jsonl.gz",
-  "snapshot_output": "outputs/routine-size-and-parameters--r5-finish.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/routine-size-and-parameters--r5-finish.journal.jsonl.gz"
  },
  "variables-scope-and-numerics--1of2": {
   "batch": 3,
   "part": "1of2",
   "wf": "wf_3f946a0f-efa",
   "task": "we20mrpbr",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_3f946a0f-efa/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/variables-scope-and-numerics--1of2.journal.jsonl.gz",
   "done": {
    "verify": 5,
    "fix": 5
@@ -783,37 +774,35 @@
    "verify2": 5,
    "fix": 1
   },
-  "finished": true,
-  "cards": 0,
-  "spine_card_rules": 12,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/variables-scope-and-numerics--1of2.journal.jsonl.gz",
-  "snapshot_output": "outputs/variables-scope-and-numerics--1of2.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/variables-scope-and-numerics--1of2.journal.jsonl.gz"
  },
  "variables-scope-and-numerics--r2-finish": {
   "batch": 3,
   "part": "r2-finish",
   "wf": "wf_13611606-740",
   "task": "wy3i81dww",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_13611606-740/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/variables-scope-and-numerics--r2-finish.journal.jsonl.gz",
   "done": {
    "verify2": 5,
    "close2": 5
   },
   "failed": {},
-  "finished": true,
-  "cards": 5,
-  "spine_card_rules": 12,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/variables-scope-and-numerics--r2-finish.journal.jsonl.gz",
-  "snapshot_output": "outputs/variables-scope-and-numerics--r2-finish.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/variables-scope-and-numerics--r2-finish.journal.jsonl.gz"
  },
  "variables-scope-and-numerics--r3-rest": {
   "batch": 3,
   "part": "r3-rest",
   "wf": "wf_0ddca0a9-3bc",
   "task": "wto2bkygw",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_0ddca0a9-3bc/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/variables-scope-and-numerics--r3-rest.journal.jsonl.gz",
   "done": {
    "verify": 6,
    "fix": 7,
@@ -824,7 +813,7 @@
   "finished": false,
   "cards": null,
   "spine_card_rules": null,
-  "checked": "2026-10-08T15:55 UTC",
+  "checked": "2026-10-08T16:54 UTC",
   "snapshot_journal": "journals/variables-scope-and-numerics--r3-rest.journal.jsonl.gz"
  },
  "variables-scope-and-numerics--r4-finish": {
@@ -832,24 +821,23 @@
   "part": "r4-finish",
   "wf": "wf_3ff8934c-23a",
   "task": "wlnn06gwp",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_3ff8934c-23a/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/variables-scope-and-numerics--r4-finish.journal.jsonl.gz",
   "done": {
    "close2": 1
   },
   "failed": {},
-  "finished": true,
-  "cards": 1,
-  "spine_card_rules": 12,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/variables-scope-and-numerics--r4-finish.journal.jsonl.gz",
-  "snapshot_output": "outputs/variables-scope-and-numerics--r4-finish.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/variables-scope-and-numerics--r4-finish.journal.jsonl.gz"
  },
  "control-flow--1of2": {
   "batch": 3,
   "part": "1of2",
   "wf": "wf_5afd0534-c5c",
   "task": "wechvt1t7",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_5afd0534-c5c/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/control-flow--1of2.journal.jsonl.gz",
   "done": {
    "draft": 1,
    "verify": 6,
@@ -859,25 +847,24 @@
    "verify2": 5,
    "fix": 1
   },
-  "finished": true,
-  "cards": 0,
-  "spine_card_rules": 12,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/control-flow--1of2.journal.jsonl.gz",
-  "snapshot_output": "outputs/control-flow--1of2.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/control-flow--1of2.journal.jsonl.gz"
  },
  "control-flow--r2-finish": {
   "batch": 3,
   "part": "r2-finish",
   "wf": "wf_ff38bc77-935",
   "task": "wi31fowla",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_ff38bc77-935/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/control-flow--r2-finish.journal.jsonl.gz",
   "done": {},
   "failed": {},
   "finished": false,
   "cards": null,
   "spine_card_rules": null,
-  "checked": "2026-10-08T15:55 UTC",
+  "checked": "2026-10-08T16:54 UTC",
   "snapshot_journal": "journals/control-flow--r2-finish.journal.jsonl.gz"
  },
  "control-flow--r3-finish": {
@@ -885,25 +872,24 @@
   "part": "r3-finish",
   "wf": "wf_3d7d18f6-ed2",
   "task": "w7ycc1dsa",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_3d7d18f6-ed2/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/control-flow--r3-finish.journal.jsonl.gz",
   "done": {
    "verify2": 5,
    "close2": 5
   },
   "failed": {},
-  "finished": true,
-  "cards": 5,
-  "spine_card_rules": 12,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/control-flow--r3-finish.journal.jsonl.gz",
-  "snapshot_output": "outputs/control-flow--r3-finish.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/control-flow--r3-finish.journal.jsonl.gz"
  },
  "control-flow--r3-rest": {
   "batch": 3,
   "part": "r3-rest",
   "wf": "wf_05d10315-0df",
   "task": "wu3alj49q",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_05d10315-0df/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/control-flow--r3-rest.journal.jsonl.gz",
   "done": {
    "draft": 3,
    "verify": 6,
@@ -912,19 +898,18 @@
    "close1": 7
   },
   "failed": {},
-  "finished": true,
-  "cards": 7,
-  "spine_card_rules": 12,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/control-flow--r3-rest.journal.jsonl.gz",
-  "snapshot_output": "outputs/control-flow--r3-rest.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/control-flow--r3-rest.journal.jsonl.gz"
  },
  "table-driven-and-state-machines--1of2": {
   "batch": 3,
   "part": "1of2",
   "wf": "wf_0c1f7f8e-3ea",
   "task": "wj96ah1yc",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_0c1f7f8e-3ea/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/table-driven-and-state-machines--1of2.journal.jsonl.gz",
   "done": {
    "verify": 3,
    "fix": 4,
@@ -935,37 +920,35 @@
    "verify2": 1,
    "close1": 1
   },
-  "finished": true,
-  "cards": 2,
-  "spine_card_rules": 8,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/table-driven-and-state-machines--1of2.journal.jsonl.gz",
-  "snapshot_output": "outputs/table-driven-and-state-machines--1of2.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/table-driven-and-state-machines--1of2.journal.jsonl.gz"
  },
  "table-driven-and-state-machines--r2-finish": {
   "batch": 3,
   "part": "r2-finish",
   "wf": "wf_78464e88-fcc",
   "task": "wkknf7bzc",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_78464e88-fcc/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/table-driven-and-state-machines--r2-finish.journal.jsonl.gz",
   "done": {
    "close2": 2,
    "verify2": 1
   },
   "failed": {},
-  "finished": true,
-  "cards": 2,
-  "spine_card_rules": 8,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/table-driven-and-state-machines--r2-finish.journal.jsonl.gz",
-  "snapshot_output": "outputs/table-driven-and-state-machines--r2-finish.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/table-driven-and-state-machines--r2-finish.journal.jsonl.gz"
  },
  "table-driven-and-state-machines--r2-rest-1of1": {
   "batch": 3,
   "part": "r2-rest-1of1",
   "wf": "wf_869df62e-ddf",
   "task": "w6oczb0j8",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_869df62e-ddf/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/table-driven-and-state-machines--r2-rest-1of1.journal.jsonl.gz",
   "done": {
    "verify": 3,
    "fix": 3,
@@ -976,56 +959,53 @@
    "fix": 1,
    "close1": 1
   },
-  "finished": true,
-  "cards": 0,
-  "spine_card_rules": 8,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/table-driven-and-state-machines--r2-rest-1of1.journal.jsonl.gz",
-  "snapshot_output": "outputs/table-driven-and-state-machines--r2-rest-1of1.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/table-driven-and-state-machines--r2-rest-1of1.journal.jsonl.gz"
  },
  "table-driven-and-state-machines--r3-finish": {
   "batch": 3,
   "part": "r3-finish",
   "wf": "wf_25574952-8a8",
   "task": "wu3sedrr7",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_25574952-8a8/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/table-driven-and-state-machines--r3-finish.journal.jsonl.gz",
   "done": {
    "verify2": 2,
    "close2": 3
   },
   "failed": {},
-  "finished": true,
-  "cards": 3,
-  "spine_card_rules": 8,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/table-driven-and-state-machines--r3-finish.journal.jsonl.gz",
-  "snapshot_output": "outputs/table-driven-and-state-machines--r3-finish.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/table-driven-and-state-machines--r3-finish.journal.jsonl.gz"
  },
  "table-driven-and-state-machines--r3-rest": {
   "batch": 3,
   "part": "r3-rest",
   "wf": "wf_e55017b1-2ce",
   "task": "wwkka9wop",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_e55017b1-2ce/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/table-driven-and-state-machines--r3-rest.journal.jsonl.gz",
   "done": {
    "fix": 1,
    "verify2": 1,
    "close1": 1
   },
   "failed": {},
-  "finished": true,
-  "cards": 1,
-  "spine_card_rules": 8,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/table-driven-and-state-machines--r3-rest.journal.jsonl.gz",
-  "snapshot_output": "outputs/table-driven-and-state-machines--r3-rest.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/table-driven-and-state-machines--r3-rest.journal.jsonl.gz"
  },
  "generics-and-parameterization--1of2": {
   "batch": 3,
   "part": "1of2",
   "wf": "wf_0297847b-f51",
   "task": "w7ih9nt53",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_0297847b-f51/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/generics-and-parameterization--1of2.journal.jsonl.gz",
   "done": {
    "verify": 3,
    "fix": 4,
@@ -1036,25 +1016,24 @@
    "fix": 1,
    "close1": 2
   },
-  "finished": true,
-  "cards": 0,
-  "spine_card_rules": 10,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/generics-and-parameterization--1of2.journal.jsonl.gz",
-  "snapshot_output": "outputs/generics-and-parameterization--1of2.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/generics-and-parameterization--1of2.journal.jsonl.gz"
  },
  "generics-and-parameterization--r2-finish": {
   "batch": 3,
   "part": "r2-finish",
   "wf": "wf_101b6086-52c",
   "task": "wv9nrr6ye",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_101b6086-52c/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/generics-and-parameterization--r2-finish.journal.jsonl.gz",
   "done": {},
   "failed": {},
   "finished": false,
   "cards": null,
   "spine_card_rules": null,
-  "checked": "2026-10-08T15:55 UTC",
+  "checked": "2026-10-08T16:54 UTC",
   "snapshot_journal": "journals/generics-and-parameterization--r2-finish.journal.jsonl.gz"
  },
  "generics-and-parameterization--r3-finish": {
@@ -1062,25 +1041,24 @@
   "part": "r3-finish",
   "wf": "wf_0fed217a-2e4",
   "task": "wjcgzs62r",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_0fed217a-2e4/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/generics-and-parameterization--r3-finish.journal.jsonl.gz",
   "done": {
    "verify2": 2,
    "close2": 4
   },
   "failed": {},
-  "finished": true,
-  "cards": 4,
-  "spine_card_rules": 10,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/generics-and-parameterization--r3-finish.journal.jsonl.gz",
-  "snapshot_output": "outputs/generics-and-parameterization--r3-finish.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/generics-and-parameterization--r3-finish.journal.jsonl.gz"
  },
  "generics-and-parameterization--r3-rest": {
   "batch": 3,
   "part": "r3-rest",
   "wf": "wf_6ce05405-6ff",
   "task": "wzjlqjgnz",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_6ce05405-6ff/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/generics-and-parameterization--r3-rest.journal.jsonl.gz",
   "done": {
    "verify": 4,
    "fix": 6,
@@ -1088,19 +1066,18 @@
    "close1": 4
   },
   "failed": {},
-  "finished": true,
-  "cards": 6,
-  "spine_card_rules": 10,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/generics-and-parameterization--r3-rest.journal.jsonl.gz",
-  "snapshot_output": "outputs/generics-and-parameterization--r3-rest.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/generics-and-parameterization--r3-rest.journal.jsonl.gz"
  },
  "api-design-and-use--1of2": {
   "batch": 3,
   "part": "1of2",
   "wf": "wf_305718d3-75c",
   "task": "wl932igqz",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_305718d3-75c/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/api-design-and-use--1of2.journal.jsonl.gz",
   "done": {
    "verify": 6,
    "fix": 6
@@ -1108,37 +1085,35 @@
   "failed": {
    "verify2": 6
   },
-  "finished": true,
-  "cards": 0,
-  "spine_card_rules": 12,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/api-design-and-use--1of2.journal.jsonl.gz",
-  "snapshot_output": "outputs/api-design-and-use--1of2.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/api-design-and-use--1of2.journal.jsonl.gz"
  },
  "api-design-and-use--r2-finish": {
   "batch": 3,
   "part": "r2-finish",
   "wf": "wf_c63b7000-87d",
   "task": "wmiq9zh45",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_c63b7000-87d/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/api-design-and-use--r2-finish.journal.jsonl.gz",
   "done": {
    "verify2": 6,
    "close2": 5
   },
   "failed": {},
-  "finished": true,
-  "cards": 6,
-  "spine_card_rules": 12,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/api-design-and-use--r2-finish.journal.jsonl.gz",
-  "snapshot_output": "outputs/api-design-and-use--r2-finish.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/api-design-and-use--r2-finish.journal.jsonl.gz"
  },
  "api-design-and-use--r3-rest": {
   "batch": 3,
   "part": "r3-rest",
   "wf": "wf_05697861-23f",
   "task": "w9h079a10",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_05697861-23f/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/api-design-and-use--r3-rest.journal.jsonl.gz",
   "done": {
    "verify": 6,
    "fix": 6,
@@ -1146,19 +1121,18 @@
    "close1": 6
   },
   "failed": {},
-  "finished": true,
-  "cards": 6,
-  "spine_card_rules": 12,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/api-design-and-use--r3-rest.journal.jsonl.gz",
-  "snapshot_output": "outputs/api-design-and-use--r3-rest.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/api-design-and-use--r3-rest.journal.jsonl.gz"
  },
  "contracts-assertions-and-invariants--1of2": {
   "batch": 3,
   "part": "1of2",
   "wf": "wf_73e3ac16-171",
   "task": "wjmfswr2t",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_73e3ac16-171/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/contracts-assertions-and-invariants--1of2.journal.jsonl.gz",
   "done": {
    "verify": 3,
    "fix": 4,
@@ -1169,37 +1143,35 @@
    "close1": 1,
    "verify2": 2
   },
-  "finished": true,
-  "cards": 1,
-  "spine_card_rules": 7,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/contracts-assertions-and-invariants--1of2.journal.jsonl.gz",
-  "snapshot_output": "outputs/contracts-assertions-and-invariants--1of2.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/contracts-assertions-and-invariants--1of2.journal.jsonl.gz"
  },
  "contracts-assertions-and-invariants--r2-finish": {
   "batch": 3,
   "part": "r2-finish",
   "wf": "wf_f145ce4e-af2",
   "task": "wyeks1nom",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_f145ce4e-af2/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/contracts-assertions-and-invariants--r2-finish.journal.jsonl.gz",
   "done": {
    "verify2": 2,
    "close2": 3
   },
   "failed": {},
-  "finished": true,
-  "cards": 3,
-  "spine_card_rules": 7,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/contracts-assertions-and-invariants--r2-finish.journal.jsonl.gz",
-  "snapshot_output": "outputs/contracts-assertions-and-invariants--r2-finish.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/contracts-assertions-and-invariants--r2-finish.journal.jsonl.gz"
  },
  "contracts-assertions-and-invariants--r2-rest-1of1": {
   "batch": 3,
   "part": "r2-rest-1of1",
   "wf": "wf_a1ee6924-71d",
   "task": "wbrglnuvq",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_a1ee6924-71d/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/contracts-assertions-and-invariants--r2-rest-1of1.journal.jsonl.gz",
   "done": {
    "verify": 2,
    "fix": 3,
@@ -1210,37 +1182,35 @@
    "verify2": 1,
    "close1": 1
   },
-  "finished": true,
-  "cards": 1,
-  "spine_card_rules": 7,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/contracts-assertions-and-invariants--r2-rest-1of1.journal.jsonl.gz",
-  "snapshot_output": "outputs/contracts-assertions-and-invariants--r2-rest-1of1.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/contracts-assertions-and-invariants--r2-rest-1of1.journal.jsonl.gz"
  },
  "contracts-assertions-and-invariants--r3-finish": {
   "batch": 3,
   "part": "r3-finish",
   "wf": "wf_bac2aa7c-b36",
   "task": "wamp553h3",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_bac2aa7c-b36/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/contracts-assertions-and-invariants--r3-finish.journal.jsonl.gz",
   "done": {
    "close2": 2,
    "verify2": 1
   },
   "failed": {},
-  "finished": true,
-  "cards": 2,
-  "spine_card_rules": 7,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/contracts-assertions-and-invariants--r3-finish.journal.jsonl.gz",
-  "snapshot_output": "outputs/contracts-assertions-and-invariants--r3-finish.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/contracts-assertions-and-invariants--r3-finish.journal.jsonl.gz"
  },
  "api-evolution-and-deprecation--1of2": {
   "batch": 3,
   "part": "1of2",
   "wf": "wf_f6279f04-bce",
   "task": "w9eheta8z",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_f6279f04-bce/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/api-evolution-and-deprecation--1of2.journal.jsonl.gz",
   "done": {
    "verify": 5,
    "fix": 6
@@ -1248,37 +1218,35 @@
   "failed": {
    "verify2": 6
   },
-  "finished": true,
-  "cards": 0,
-  "spine_card_rules": 12,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/api-evolution-and-deprecation--1of2.journal.jsonl.gz",
-  "snapshot_output": "outputs/api-evolution-and-deprecation--1of2.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/api-evolution-and-deprecation--1of2.journal.jsonl.gz"
  },
  "api-evolution-and-deprecation--r2-finish": {
   "batch": 3,
   "part": "r2-finish",
   "wf": "wf_ccc322b0-99c",
   "task": "wplekfx5h",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_ccc322b0-99c/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/api-evolution-and-deprecation--r2-finish.journal.jsonl.gz",
   "done": {
    "verify2": 6,
    "close2": 6
   },
   "failed": {},
-  "finished": true,
-  "cards": 6,
-  "spine_card_rules": 12,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/api-evolution-and-deprecation--r2-finish.journal.jsonl.gz",
-  "snapshot_output": "outputs/api-evolution-and-deprecation--r2-finish.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/api-evolution-and-deprecation--r2-finish.journal.jsonl.gz"
  },
  "api-evolution-and-deprecation--r3-rest": {
   "batch": 3,
   "part": "r3-rest",
   "wf": "wf_eeff4259-d8a",
   "task": "wibyk7ciu",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_eeff4259-d8a/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/api-evolution-and-deprecation--r3-rest.journal.jsonl.gz",
   "done": {
    "verify": 6,
    "fix": 6,
@@ -1286,19 +1254,18 @@
    "close1": 6
   },
   "failed": {},
-  "finished": true,
-  "cards": 6,
-  "spine_card_rules": 12,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/api-evolution-and-deprecation--r3-rest.journal.jsonl.gz",
-  "snapshot_output": "outputs/api-evolution-and-deprecation--r3-rest.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/api-evolution-and-deprecation--r3-rest.journal.jsonl.gz"
  },
  "defensive-programming--1of2": {
   "batch": 3,
   "part": "1of2",
   "wf": "wf_d3eec0de-a3f",
   "task": "w63agfemk",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_d3eec0de-a3f/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/defensive-programming--1of2.journal.jsonl.gz",
   "done": {
    "fix": 3,
    "verify": 1,
@@ -1306,19 +1273,18 @@
    "close1": 3
   },
   "failed": {},
-  "finished": true,
-  "cards": 3,
-  "spine_card_rules": 6,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/defensive-programming--1of2.journal.jsonl.gz",
-  "snapshot_output": "outputs/defensive-programming--1of2.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/defensive-programming--1of2.journal.jsonl.gz"
  },
  "defensive-programming--2of2": {
   "batch": 3,
   "part": "2of2",
   "wf": "wf_786b4d09-1a7",
   "task": "wsmhhmaed",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_786b4d09-1a7/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/defensive-programming--2of2.journal.jsonl.gz",
   "done": {
    "fix": 2
   },
@@ -1326,37 +1292,35 @@
    "verify2": 2,
    "verify": 1
   },
-  "finished": true,
-  "cards": 0,
-  "spine_card_rules": 6,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/defensive-programming--2of2.journal.jsonl.gz",
-  "snapshot_output": "outputs/defensive-programming--2of2.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/defensive-programming--2of2.journal.jsonl.gz"
  },
  "defensive-programming--r2-finish": {
   "batch": 3,
   "part": "r2-finish",
   "wf": "wf_cc39ca56-9ba",
   "task": "w2e1jd8k7",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_cc39ca56-9ba/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/defensive-programming--r2-finish.journal.jsonl.gz",
   "done": {
    "verify2": 2,
    "close2": 2
   },
   "failed": {},
-  "finished": true,
-  "cards": 2,
-  "spine_card_rules": 6,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/defensive-programming--r2-finish.journal.jsonl.gz",
-  "snapshot_output": "outputs/defensive-programming--r2-finish.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/defensive-programming--r2-finish.journal.jsonl.gz"
  },
  "defensive-programming--r2-rest-1of1": {
   "batch": 3,
   "part": "r2-rest-1of1",
   "wf": "wf_cb59f837-b4d",
   "task": "wkral9q5g",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_cb59f837-b4d/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/defensive-programming--r2-rest-1of1.journal.jsonl.gz",
   "done": {
    "verify": 1,
    "fix": 1,
@@ -1364,19 +1328,18 @@
    "close1": 1
   },
   "failed": {},
-  "finished": true,
-  "cards": 1,
-  "spine_card_rules": 6,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/defensive-programming--r2-rest-1of1.journal.jsonl.gz",
-  "snapshot_output": "outputs/defensive-programming--r2-rest-1of1.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/defensive-programming--r2-rest-1of1.journal.jsonl.gz"
  },
  "fault-tolerance-retries-timeouts-fallbacks--1of2": {
   "batch": 3,
   "part": "1of2",
   "wf": "wf_f3a3818b-20b",
   "task": "wa3qazryy",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_f3a3818b-20b/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/fault-tolerance-retries-timeouts-fallbacks--1of2.journal.jsonl.gz",
   "done": {
    "verify": 4,
    "fix": 5,
@@ -1386,25 +1349,24 @@
    "verify2": 3,
    "close1": 2
   },
-  "finished": true,
-  "cards": 0,
-  "spine_card_rules": 9,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/fault-tolerance-retries-timeouts-fallbacks--1of2.journal.jsonl.gz",
-  "snapshot_output": "outputs/fault-tolerance-retries-timeouts-fallbacks--1of2.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/fault-tolerance-retries-timeouts-fallbacks--1of2.journal.jsonl.gz"
  },
  "fault-tolerance-retries-timeouts-fallbacks--r2-finish": {
   "batch": 3,
   "part": "r2-finish",
   "wf": "wf_91825ffb-5c2",
   "task": "wyetgcf34",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_91825ffb-5c2/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/fault-tolerance-retries-timeouts-fallbacks--r2-finish.journal.jsonl.gz",
   "done": {},
   "failed": {},
   "finished": false,
   "cards": null,
   "spine_card_rules": null,
-  "checked": "2026-10-08T15:55 UTC",
+  "checked": "2026-10-08T16:54 UTC",
   "snapshot_journal": "journals/fault-tolerance-retries-timeouts-fallbacks--r2-finish.journal.jsonl.gz"
  },
  "fault-tolerance-retries-timeouts-fallbacks--r3-finish": {
@@ -1412,25 +1374,24 @@
   "part": "r3-finish",
   "wf": "wf_17b3b1e5-8c0",
   "task": "w1aiiz70n",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_17b3b1e5-8c0/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/fault-tolerance-retries-timeouts-fallbacks--r3-finish.journal.jsonl.gz",
   "done": {
    "verify2": 3,
    "close2": 3
   },
   "failed": {},
-  "finished": true,
-  "cards": 5,
-  "spine_card_rules": 9,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/fault-tolerance-retries-timeouts-fallbacks--r3-finish.journal.jsonl.gz",
-  "snapshot_output": "outputs/fault-tolerance-retries-timeouts-fallbacks--r3-finish.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/fault-tolerance-retries-timeouts-fallbacks--r3-finish.journal.jsonl.gz"
  },
  "fault-tolerance-retries-timeouts-fallbacks--r3-rest": {
   "batch": 3,
   "part": "r3-rest",
   "wf": "wf_ccca3d74-289",
   "task": "wk3j02hub",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_ccca3d74-289/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/fault-tolerance-retries-timeouts-fallbacks--r3-rest.journal.jsonl.gz",
   "done": {
    "verify": 1
   },
@@ -1438,7 +1399,7 @@
   "finished": false,
   "cards": null,
   "spine_card_rules": null,
-  "checked": "2026-10-08T15:55 UTC",
+  "checked": "2026-10-08T16:54 UTC",
   "snapshot_journal": "journals/fault-tolerance-retries-timeouts-fallbacks--r3-rest.journal.jsonl.gz"
  },
  "fault-tolerance-retries-timeouts-fallbacks--r4-rest": {
@@ -1446,7 +1407,7 @@
   "part": "r4-rest",
   "wf": "wf_8201be8a-c20",
   "task": "wzcqf414m",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_8201be8a-c20/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/fault-tolerance-retries-timeouts-fallbacks--r4-rest.journal.jsonl.gz",
   "done": {
    "verify": 2,
    "fix": 4,
@@ -1456,7 +1417,7 @@
   "finished": false,
   "cards": null,
   "spine_card_rules": null,
-  "checked": "2026-10-08T15:55 UTC",
+  "checked": "2026-10-08T16:54 UTC",
   "snapshot_journal": "journals/fault-tolerance-retries-timeouts-fallbacks--r4-rest.journal.jsonl.gz"
  },
  "fault-tolerance-retries-timeouts-fallbacks--r5-finish": {
@@ -1464,25 +1425,24 @@
   "part": "r5-finish",
   "wf": "wf_bbf586cd-407",
   "task": "wednkdj1b",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_bbf586cd-407/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/fault-tolerance-retries-timeouts-fallbacks--r5-finish.journal.jsonl.gz",
   "done": {
    "verify2": 2,
    "close2": 3
   },
   "failed": {},
-  "finished": true,
-  "cards": 3,
-  "spine_card_rules": 9,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/fault-tolerance-retries-timeouts-fallbacks--r5-finish.journal.jsonl.gz",
-  "snapshot_output": "outputs/fault-tolerance-retries-timeouts-fallbacks--r5-finish.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/fault-tolerance-retries-timeouts-fallbacks--r5-finish.journal.jsonl.gz"
  },
  "resource-management-and-ownership--1of2": {
   "batch": 3,
   "part": "1of2",
   "wf": "wf_a14a8c6f-df0",
   "task": "wyz6u6vmi",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_a14a8c6f-df0/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/resource-management-and-ownership--1of2.journal.jsonl.gz",
   "done": {
    "verify": 5,
    "fix": 6
@@ -1490,37 +1450,35 @@
   "failed": {
    "verify2": 6
   },
-  "finished": true,
-  "cards": 0,
-  "spine_card_rules": 12,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/resource-management-and-ownership--1of2.journal.jsonl.gz",
-  "snapshot_output": "outputs/resource-management-and-ownership--1of2.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/resource-management-and-ownership--1of2.journal.jsonl.gz"
  },
  "resource-management-and-ownership--r2-finish": {
   "batch": 3,
   "part": "r2-finish",
   "wf": "wf_9af71482-f15",
   "task": "w8egd6l0z",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_9af71482-f15/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/resource-management-and-ownership--r2-finish.journal.jsonl.gz",
   "done": {
    "verify2": 6,
    "close2": 6
   },
   "failed": {},
-  "finished": true,
-  "cards": 6,
-  "spine_card_rules": 12,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/resource-management-and-ownership--r2-finish.journal.jsonl.gz",
-  "snapshot_output": "outputs/resource-management-and-ownership--r2-finish.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/resource-management-and-ownership--r2-finish.journal.jsonl.gz"
  },
  "resource-management-and-ownership--r3-rest": {
   "batch": 3,
   "part": "r3-rest",
   "wf": "wf_c15d876d-2dc",
   "task": "w4jinmwdr",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_c15d876d-2dc/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/resource-management-and-ownership--r3-rest.journal.jsonl.gz",
   "done": {
    "verify": 5,
    "fix": 6,
@@ -1528,19 +1486,18 @@
    "close1": 6
   },
   "failed": {},
-  "finished": true,
-  "cards": 6,
-  "spine_card_rules": 12,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/resource-management-and-ownership--r3-rest.journal.jsonl.gz",
-  "snapshot_output": "outputs/resource-management-and-ownership--r3-rest.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/resource-management-and-ownership--r3-rest.journal.jsonl.gz"
  },
  "logging-and-diagnostic-output--1of2": {
   "batch": 3,
   "part": "1of2",
   "wf": "wf_5621e98a-672",
   "task": "wabwmygqd",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_5621e98a-672/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/logging-and-diagnostic-output--1of2.journal.jsonl.gz",
   "done": {
    "verify": 5,
    "fix": 5,
@@ -1551,25 +1508,24 @@
    "fix": 1,
    "close1": 1
   },
-  "finished": true,
-  "cards": 1,
-  "spine_card_rules": 12,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/logging-and-diagnostic-output--1of2.journal.jsonl.gz",
-  "snapshot_output": "outputs/logging-and-diagnostic-output--1of2.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/logging-and-diagnostic-output--1of2.journal.jsonl.gz"
  },
  "logging-and-diagnostic-output--r2-finish": {
   "batch": 3,
   "part": "r2-finish",
   "wf": "wf_f8b422ae-86a",
   "task": "ww4r2nkjj",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_f8b422ae-86a/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/logging-and-diagnostic-output--r2-finish.journal.jsonl.gz",
   "done": {},
   "failed": {},
   "finished": false,
   "cards": null,
   "spine_card_rules": null,
-  "checked": "2026-10-08T15:55 UTC",
+  "checked": "2026-10-08T16:54 UTC",
   "snapshot_journal": "journals/logging-and-diagnostic-output--r2-finish.journal.jsonl.gz"
  },
  "logging-and-diagnostic-output--r3-finish": {
@@ -1577,25 +1533,24 @@
   "part": "r3-finish",
   "wf": "wf_eba5e984-78b",
   "task": "wu3ja15l2",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_eba5e984-78b/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/logging-and-diagnostic-output--r3-finish.journal.jsonl.gz",
   "done": {
    "verify2": 3,
    "close2": 2
   },
   "failed": {},
-  "finished": true,
-  "cards": 4,
-  "spine_card_rules": 12,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/logging-and-diagnostic-output--r3-finish.journal.jsonl.gz",
-  "snapshot_output": "outputs/logging-and-diagnostic-output--r3-finish.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/logging-and-diagnostic-output--r3-finish.journal.jsonl.gz"
  },
  "logging-and-diagnostic-output--r3-rest": {
   "batch": 3,
   "part": "r3-rest",
   "wf": "wf_6123a9b7-f19",
   "task": "wfw5hgsdo",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_6123a9b7-f19/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/logging-and-diagnostic-output--r3-rest.journal.jsonl.gz",
   "done": {
    "verify": 5,
    "fix": 7,
@@ -1603,19 +1558,18 @@
    "close1": 6
   },
   "failed": {},
-  "finished": true,
-  "cards": 7,
-  "spine_card_rules": 12,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/logging-and-diagnostic-output--r3-rest.journal.jsonl.gz",
-  "snapshot_output": "outputs/logging-and-diagnostic-output--r3-rest.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/logging-and-diagnostic-output--r3-rest.journal.jsonl.gz"
  },
  "complexity-and-deep-modules--1of2": {
   "batch": 3,
   "part": "1of2",
   "wf": "wf_0db193bd-c6c",
   "task": "wvn0x5w2y",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_0db193bd-c6c/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/complexity-and-deep-modules--1of2.journal.jsonl.gz",
   "done": {
    "verify": 2,
    "fix": 3,
@@ -1623,36 +1577,34 @@
    "close1": 3
   },
   "failed": {},
-  "finished": true,
-  "cards": 3,
-  "spine_card_rules": 6,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/complexity-and-deep-modules--1of2.journal.jsonl.gz",
-  "snapshot_output": "outputs/complexity-and-deep-modules--1of2.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/complexity-and-deep-modules--1of2.journal.jsonl.gz"
  },
  "complexity-and-deep-modules--2of2": {
   "batch": 3,
   "part": "2of2",
   "wf": "wf_f5870776-68d",
   "task": "wj9gyt23c",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_f5870776-68d/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/complexity-and-deep-modules--2of2.journal.jsonl.gz",
   "done": {},
   "failed": {
    "verify": 3
   },
-  "finished": true,
-  "cards": 0,
-  "spine_card_rules": 6,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/complexity-and-deep-modules--2of2.journal.jsonl.gz",
-  "snapshot_output": "outputs/complexity-and-deep-modules--2of2.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/complexity-and-deep-modules--2of2.journal.jsonl.gz"
  },
  "complexity-and-deep-modules--r2-rest-1of1": {
   "batch": 3,
   "part": "r2-rest-1of1",
   "wf": "wf_6d4d2f09-c77",
   "task": "wh6xn5400",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_6d4d2f09-c77/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/complexity-and-deep-modules--r2-rest-1of1.journal.jsonl.gz",
   "done": {
    "verify": 3,
    "fix": 3,
@@ -1662,37 +1614,35 @@
   "failed": {
    "verify2": 1
   },
-  "finished": true,
-  "cards": 2,
-  "spine_card_rules": 6,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/complexity-and-deep-modules--r2-rest-1of1.journal.jsonl.gz",
-  "snapshot_output": "outputs/complexity-and-deep-modules--r2-rest-1of1.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/complexity-and-deep-modules--r2-rest-1of1.journal.jsonl.gz"
  },
  "complexity-and-deep-modules--r3-finish": {
   "batch": 3,
   "part": "r3-finish",
   "wf": "wf_8628c4fa-b59",
   "task": "wekclg17l",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_8628c4fa-b59/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/complexity-and-deep-modules--r3-finish.journal.jsonl.gz",
   "done": {
    "verify2": 1,
    "close2": 1
   },
   "failed": {},
-  "finished": true,
-  "cards": 1,
-  "spine_card_rules": 6,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/complexity-and-deep-modules--r3-finish.journal.jsonl.gz",
-  "snapshot_output": "outputs/complexity-and-deep-modules--r3-finish.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/complexity-and-deep-modules--r3-finish.journal.jsonl.gz"
  },
  "information-hiding-and-encapsulation--1of2": {
   "batch": 3,
   "part": "1of2",
   "wf": "wf_7caca05e-dfe",
   "task": "whnraacqk",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_7caca05e-dfe/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/information-hiding-and-encapsulation--1of2.journal.jsonl.gz",
   "done": {
    "verify": 4,
    "fix": 4,
@@ -1702,37 +1652,35 @@
    "verify2": 3,
    "close1": 1
   },
-  "finished": true,
-  "cards": 0,
-  "spine_card_rules": 8,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/information-hiding-and-encapsulation--1of2.journal.jsonl.gz",
-  "snapshot_output": "outputs/information-hiding-and-encapsulation--1of2.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/information-hiding-and-encapsulation--1of2.journal.jsonl.gz"
  },
  "information-hiding-and-encapsulation--r2-finish": {
   "batch": 3,
   "part": "r2-finish",
   "wf": "wf_314a00e4-b0e",
   "task": "w6ykw6bhb",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_314a00e4-b0e/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/information-hiding-and-encapsulation--r2-finish.journal.jsonl.gz",
   "done": {
    "verify2": 3,
    "close2": 4
   },
   "failed": {},
-  "finished": true,
-  "cards": 4,
-  "spine_card_rules": 8,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/information-hiding-and-encapsulation--r2-finish.journal.jsonl.gz",
-  "snapshot_output": "outputs/information-hiding-and-encapsulation--r2-finish.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/information-hiding-and-encapsulation--r2-finish.journal.jsonl.gz"
  },
  "information-hiding-and-encapsulation--r3-rest": {
   "batch": 3,
   "part": "r3-rest",
   "wf": "wf_ad407434-27e",
   "task": "w3qz5mqjc",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_ad407434-27e/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/information-hiding-and-encapsulation--r3-rest.journal.jsonl.gz",
   "done": {
    "verify": 4,
    "fix": 4,
@@ -1740,19 +1688,18 @@
    "close1": 4
   },
   "failed": {},
-  "finished": true,
-  "cards": 4,
-  "spine_card_rules": 8,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/information-hiding-and-encapsulation--r3-rest.journal.jsonl.gz",
-  "snapshot_output": "outputs/information-hiding-and-encapsulation--r3-rest.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/information-hiding-and-encapsulation--r3-rest.journal.jsonl.gz"
  },
  "coupling-and-dependency-direction--1of2": {
   "batch": 3,
   "part": "1of2",
   "wf": "wf_8aede842-d87",
   "task": "w916zwsmy",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_8aede842-d87/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/coupling-and-dependency-direction--1of2.journal.jsonl.gz",
   "done": {
    "verify": 3,
    "fix": 3,
@@ -1760,36 +1707,34 @@
    "close1": 3
   },
   "failed": {},
-  "finished": true,
-  "cards": 3,
-  "spine_card_rules": 6,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/coupling-and-dependency-direction--1of2.journal.jsonl.gz",
-  "snapshot_output": "outputs/coupling-and-dependency-direction--1of2.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/coupling-and-dependency-direction--1of2.journal.jsonl.gz"
  },
  "coupling-and-dependency-direction--2of2": {
   "batch": 3,
   "part": "2of2",
   "wf": "wf_2b1c7dab-70d",
   "task": "wji24rbc9",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_2b1c7dab-70d/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/coupling-and-dependency-direction--2of2.journal.jsonl.gz",
   "done": {},
   "failed": {
    "verify": 3
   },
-  "finished": true,
-  "cards": 0,
-  "spine_card_rules": 6,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/coupling-and-dependency-direction--2of2.journal.jsonl.gz",
-  "snapshot_output": "outputs/coupling-and-dependency-direction--2of2.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/coupling-and-dependency-direction--2of2.journal.jsonl.gz"
  },
  "coupling-and-dependency-direction--r2-rest-1of1": {
   "batch": 3,
   "part": "r2-rest-1of1",
   "wf": "wf_844010de-33c",
   "task": "wlkbek54k",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_844010de-33c/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/coupling-and-dependency-direction--r2-rest-1of1.journal.jsonl.gz",
   "done": {
    "verify": 3,
    "fix": 3,
@@ -1798,37 +1743,35 @@
   "failed": {
    "verify2": 2
   },
-  "finished": true,
-  "cards": 1,
-  "spine_card_rules": 6,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/coupling-and-dependency-direction--r2-rest-1of1.journal.jsonl.gz",
-  "snapshot_output": "outputs/coupling-and-dependency-direction--r2-rest-1of1.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/coupling-and-dependency-direction--r2-rest-1of1.journal.jsonl.gz"
  },
  "coupling-and-dependency-direction--r3-finish": {
   "batch": 3,
   "part": "r3-finish",
   "wf": "wf_ffe54cbd-e1b",
   "task": "w335f6993",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_ffe54cbd-e1b/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/coupling-and-dependency-direction--r3-finish.journal.jsonl.gz",
   "done": {
    "verify2": 2,
    "close2": 2
   },
   "failed": {},
-  "finished": true,
-  "cards": 2,
-  "spine_card_rules": 6,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/coupling-and-dependency-direction--r3-finish.journal.jsonl.gz",
-  "snapshot_output": "outputs/coupling-and-dependency-direction--r3-finish.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/coupling-and-dependency-direction--r3-finish.journal.jsonl.gz"
  },
  "duplication-and-single-source-of-truth--1of2": {
   "batch": 3,
   "part": "1of2",
   "wf": "wf_91164181-c5f",
   "task": "wjg2knqxy",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_91164181-c5f/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/duplication-and-single-source-of-truth--1of2.journal.jsonl.gz",
   "done": {
    "verify": 4,
    "fix": 4,
@@ -1838,37 +1781,35 @@
    "verify2": 2,
    "close1": 2
   },
-  "finished": true,
-  "cards": 0,
-  "spine_card_rules": 8,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/duplication-and-single-source-of-truth--1of2.journal.jsonl.gz",
-  "snapshot_output": "outputs/duplication-and-single-source-of-truth--1of2.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/duplication-and-single-source-of-truth--1of2.journal.jsonl.gz"
  },
  "duplication-and-single-source-of-truth--r2-finish": {
   "batch": 3,
   "part": "r2-finish",
   "wf": "wf_a59c8a35-0d7",
   "task": "wm7uzp60u",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_a59c8a35-0d7/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/duplication-and-single-source-of-truth--r2-finish.journal.jsonl.gz",
   "done": {
    "verify2": 2,
    "close2": 4
   },
   "failed": {},
-  "finished": true,
-  "cards": 4,
-  "spine_card_rules": 8,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/duplication-and-single-source-of-truth--r2-finish.journal.jsonl.gz",
-  "snapshot_output": "outputs/duplication-and-single-source-of-truth--r2-finish.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/duplication-and-single-source-of-truth--r2-finish.journal.jsonl.gz"
  },
  "duplication-and-single-source-of-truth--r2-rest-1of1": {
   "batch": 3,
   "part": "r2-rest-1of1",
   "wf": "wf_84f217d2-b9c",
   "task": "w73hkpgkh",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_84f217d2-b9c/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/duplication-and-single-source-of-truth--r2-rest-1of1.journal.jsonl.gz",
   "done": {
    "verify": 3,
    "fix": 3
@@ -1877,37 +1818,35 @@
    "verify": 1,
    "verify2": 3
   },
-  "finished": true,
-  "cards": 0,
-  "spine_card_rules": 8,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/duplication-and-single-source-of-truth--r2-rest-1of1.journal.jsonl.gz",
-  "snapshot_output": "outputs/duplication-and-single-source-of-truth--r2-rest-1of1.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/duplication-and-single-source-of-truth--r2-rest-1of1.journal.jsonl.gz"
  },
  "duplication-and-single-source-of-truth--r3-finish": {
   "batch": 3,
   "part": "r3-finish",
   "wf": "wf_d0b0b44a-18e",
   "task": "w776esliu",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_d0b0b44a-18e/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/duplication-and-single-source-of-truth--r3-finish.journal.jsonl.gz",
   "done": {
    "verify2": 3,
    "close2": 3
   },
   "failed": {},
-  "finished": true,
-  "cards": 3,
-  "spine_card_rules": 8,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/duplication-and-single-source-of-truth--r3-finish.journal.jsonl.gz",
-  "snapshot_output": "outputs/duplication-and-single-source-of-truth--r3-finish.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/duplication-and-single-source-of-truth--r3-finish.journal.jsonl.gz"
  },
  "duplication-and-single-source-of-truth--r3-rest": {
   "batch": 3,
   "part": "r3-rest",
   "wf": "wf_c8f3cb41-7a4",
   "task": "wq8fkl7zj",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_c8f3cb41-7a4/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/duplication-and-single-source-of-truth--r3-rest.journal.jsonl.gz",
   "done": {
    "verify": 1,
    "fix": 1,
@@ -1915,19 +1854,18 @@
    "close1": 1
   },
   "failed": {},
-  "finished": true,
-  "cards": 1,
-  "spine_card_rules": 8,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/duplication-and-single-source-of-truth--r3-rest.journal.jsonl.gz",
-  "snapshot_output": "outputs/duplication-and-single-source-of-truth--r3-rest.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/duplication-and-single-source-of-truth--r3-rest.journal.jsonl.gz"
  },
  "inheritance-versus-composition--1of2": {
   "batch": 3,
   "part": "1of2",
   "wf": "wf_bb3e3c34-e64",
   "task": "w0jvr4r7l",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_bb3e3c34-e64/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/inheritance-versus-composition--1of2.journal.jsonl.gz",
   "done": {
    "draft": 1,
    "verify": 4,
@@ -1936,25 +1874,24 @@
   "failed": {
    "verify2": 4
   },
-  "finished": true,
-  "cards": 0,
-  "spine_card_rules": 8,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/inheritance-versus-composition--1of2.journal.jsonl.gz",
-  "snapshot_output": "outputs/inheritance-versus-composition--1of2.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/inheritance-versus-composition--1of2.journal.jsonl.gz"
  },
  "inheritance-versus-composition--r2-finish": {
   "batch": 3,
   "part": "r2-finish",
   "wf": "wf_8bd8c7c6-921",
   "task": "wistupgza",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_8bd8c7c6-921/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/inheritance-versus-composition--r2-finish.journal.jsonl.gz",
   "done": {},
   "failed": {},
   "finished": false,
   "cards": null,
   "spine_card_rules": null,
-  "checked": "2026-10-08T15:55 UTC",
+  "checked": "2026-10-08T16:54 UTC",
   "snapshot_journal": "journals/inheritance-versus-composition--r2-finish.journal.jsonl.gz"
  },
  "inheritance-versus-composition--r3-finish": {
@@ -1962,25 +1899,24 @@
   "part": "r3-finish",
   "wf": "wf_421b032b-8d9",
   "task": "w1x1zohnb",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_421b032b-8d9/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/inheritance-versus-composition--r3-finish.journal.jsonl.gz",
   "done": {
    "verify2": 4,
    "close2": 4
   },
   "failed": {},
-  "finished": true,
-  "cards": 4,
-  "spine_card_rules": 8,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/inheritance-versus-composition--r3-finish.journal.jsonl.gz",
-  "snapshot_output": "outputs/inheritance-versus-composition--r3-finish.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/inheritance-versus-composition--r3-finish.journal.jsonl.gz"
  },
  "inheritance-versus-composition--r3-rest": {
   "batch": 3,
   "part": "r3-rest",
   "wf": "wf_f5c2b6fb-b1d",
   "task": "w6714vnyp",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_f5c2b6fb-b1d/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/inheritance-versus-composition--r3-rest.journal.jsonl.gz",
   "done": {
    "draft": 1,
    "verify": 4,
@@ -1990,7 +1926,7 @@
   "finished": false,
   "cards": null,
   "spine_card_rules": null,
-  "checked": "2026-10-08T15:55 UTC",
+  "checked": "2026-10-08T16:54 UTC",
   "snapshot_journal": "journals/inheritance-versus-composition--r3-rest.journal.jsonl.gz"
  },
  "inheritance-versus-composition--r4-finish": {
@@ -1998,25 +1934,24 @@
   "part": "r4-finish",
   "wf": "wf_e7738c22-41c",
   "task": "wmw01w6wj",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_e7738c22-41c/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/inheritance-versus-composition--r4-finish.journal.jsonl.gz",
   "done": {
    "verify2": 4,
    "close2": 3
   },
   "failed": {},
-  "finished": true,
-  "cards": 4,
-  "spine_card_rules": 8,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/inheritance-versus-composition--r4-finish.journal.jsonl.gz",
-  "snapshot_output": "outputs/inheritance-versus-composition--r4-finish.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/inheritance-versus-composition--r4-finish.journal.jsonl.gz"
  },
  "design-patterns-in-construction--1of2": {
   "batch": 3,
   "part": "1of2",
   "wf": "wf_e8339c99-63d",
   "task": "wyfdmkft2",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_e8339c99-63d/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/design-patterns-in-construction--1of2.journal.jsonl.gz",
   "done": {
    "verify": 3,
    "fix": 4,
@@ -2026,37 +1961,35 @@
   "failed": {
    "verify2": 1
   },
-  "finished": true,
-  "cards": 3,
-  "spine_card_rules": 7,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/design-patterns-in-construction--1of2.journal.jsonl.gz",
-  "snapshot_output": "outputs/design-patterns-in-construction--1of2.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/design-patterns-in-construction--1of2.journal.jsonl.gz"
  },
  "design-patterns-in-construction--r2-finish": {
   "batch": 3,
   "part": "r2-finish",
   "wf": "wf_bbf723ea-caa",
   "task": "w42eviiqn",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_bbf723ea-caa/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/design-patterns-in-construction--r2-finish.journal.jsonl.gz",
   "done": {
    "verify2": 1,
    "close2": 1
   },
   "failed": {},
-  "finished": true,
-  "cards": 1,
-  "spine_card_rules": 7,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/design-patterns-in-construction--r2-finish.journal.jsonl.gz",
-  "snapshot_output": "outputs/design-patterns-in-construction--r2-finish.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/design-patterns-in-construction--r2-finish.journal.jsonl.gz"
  },
  "design-patterns-in-construction--r2-rest-1of1": {
   "batch": 3,
   "part": "r2-rest-1of1",
   "wf": "wf_9ba60ea3-632",
   "task": "wxg2sh1u1",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_9ba60ea3-632/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/design-patterns-in-construction--r2-rest-1of1.journal.jsonl.gz",
   "done": {
    "verify": 2,
    "fix": 3,
@@ -2066,36 +1999,34 @@
   "failed": {
    "verify2": 1
   },
-  "finished": true,
-  "cards": 2,
-  "spine_card_rules": 7,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/design-patterns-in-construction--r2-rest-1of1.journal.jsonl.gz",
-  "snapshot_output": "outputs/design-patterns-in-construction--r2-rest-1of1.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/design-patterns-in-construction--r2-rest-1of1.journal.jsonl.gz"
  },
  "design-patterns-in-construction--r3-finish": {
   "batch": 3,
   "part": "r3-finish",
   "wf": "wf_3fe5f5d4-06b",
   "task": "w83uc08x6",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_3fe5f5d4-06b/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/design-patterns-in-construction--r3-finish.journal.jsonl.gz",
   "done": {
    "verify2": 1
   },
   "failed": {},
-  "finished": true,
-  "cards": 1,
-  "spine_card_rules": 7,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/design-patterns-in-construction--r3-finish.journal.jsonl.gz",
-  "snapshot_output": "outputs/design-patterns-in-construction--r3-finish.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/design-patterns-in-construction--r3-finish.journal.jsonl.gz"
  },
  "mutable-state-and-immutability--1of2": {
   "batch": 3,
   "part": "1of2",
   "wf": "wf_7cd930a5-fc8",
   "task": "wr0muolxf",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_7cd930a5-fc8/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/mutable-state-and-immutability--1of2.journal.jsonl.gz",
   "done": {
    "draft": 2,
    "verify": 6
@@ -2103,19 +2034,18 @@
   "failed": {
    "fix": 6
   },
-  "finished": true,
-  "cards": 0,
-  "spine_card_rules": 11,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/mutable-state-and-immutability--1of2.journal.jsonl.gz",
-  "snapshot_output": "outputs/mutable-state-and-immutability--1of2.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/mutable-state-and-immutability--1of2.journal.jsonl.gz"
  },
  "mutable-state-and-immutability--r2-rest-1of2": {
   "batch": 3,
   "part": "r2-rest-1of2",
   "wf": "wf_dc884415-3d2",
   "task": "wlpofc8zx",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_dc884415-3d2/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/mutable-state-and-immutability--r2-rest-1of2.journal.jsonl.gz",
   "done": {
    "fix": 1
   },
@@ -2123,7 +2053,7 @@
   "finished": false,
   "cards": null,
   "spine_card_rules": null,
-  "checked": "2026-10-08T15:55 UTC",
+  "checked": "2026-10-08T16:54 UTC",
   "snapshot_journal": "journals/mutable-state-and-immutability--r2-rest-1of2.journal.jsonl.gz"
  },
  "mutable-state-and-immutability--r2-rest-2of2": {
@@ -2131,13 +2061,13 @@
   "part": "r2-rest-2of2",
   "wf": "wf_a837479a-f96",
   "task": "w9ucfntpg",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_a837479a-f96/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/mutable-state-and-immutability--r2-rest-2of2.journal.jsonl.gz",
   "done": {},
   "failed": {},
   "finished": false,
   "cards": null,
   "spine_card_rules": null,
-  "checked": "2026-10-08T15:55 UTC",
+  "checked": "2026-10-08T16:54 UTC",
   "snapshot_journal": "journals/mutable-state-and-immutability--r2-rest-2of2.journal.jsonl.gz"
  },
  "mutable-state-and-immutability--r3-finish": {
@@ -2145,25 +2075,24 @@
   "part": "r3-finish",
   "wf": "wf_1b4949c1-817",
   "task": "wllmvjh5q",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_1b4949c1-817/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/mutable-state-and-immutability--r3-finish.journal.jsonl.gz",
   "done": {
    "verify2": 1,
    "close2": 1
   },
   "failed": {},
-  "finished": true,
-  "cards": 1,
-  "spine_card_rules": 11,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/mutable-state-and-immutability--r3-finish.journal.jsonl.gz",
-  "snapshot_output": "outputs/mutable-state-and-immutability--r3-finish.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/mutable-state-and-immutability--r3-finish.journal.jsonl.gz"
  },
  "mutable-state-and-immutability--r3-rest": {
   "batch": 3,
   "part": "r3-rest",
   "wf": "wf_338c1872-93e",
   "task": "w8ftix8u0",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_338c1872-93e/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/mutable-state-and-immutability--r3-rest.journal.jsonl.gz",
   "done": {
    "verify": 5,
    "fix": 10,
@@ -2171,19 +2100,18 @@
    "close1": 10
   },
   "failed": {},
-  "finished": true,
-  "cards": 10,
-  "spine_card_rules": 11,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/mutable-state-and-immutability--r3-rest.journal.jsonl.gz",
-  "snapshot_output": "outputs/mutable-state-and-immutability--r3-rest.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/mutable-state-and-immutability--r3-rest.journal.jsonl.gz"
  },
  "functional-style-and-pipelines--1of2": {
   "batch": 3,
   "part": "1of2",
   "wf": "wf_5ea7c35d-798",
   "task": "wlaut4zdg",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_5ea7c35d-798/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/functional-style-and-pipelines--1of2.journal.jsonl.gz",
   "done": {
    "draft": 2,
    "verify": 6,
@@ -2193,25 +2121,24 @@
    "fix": 2,
    "verify2": 4
   },
-  "finished": true,
-  "cards": 0,
-  "spine_card_rules": 11,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/functional-style-and-pipelines--1of2.journal.jsonl.gz",
-  "snapshot_output": "outputs/functional-style-and-pipelines--1of2.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/functional-style-and-pipelines--1of2.journal.jsonl.gz"
  },
  "functional-style-and-pipelines--r2-finish": {
   "batch": 3,
   "part": "r2-finish",
   "wf": "wf_475fa3b3-39f",
   "task": "wjl7b8wph",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_475fa3b3-39f/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/functional-style-and-pipelines--r2-finish.journal.jsonl.gz",
   "done": {},
   "failed": {},
   "finished": false,
   "cards": null,
   "spine_card_rules": null,
-  "checked": "2026-10-08T15:55 UTC",
+  "checked": "2026-10-08T16:54 UTC",
   "snapshot_journal": "journals/functional-style-and-pipelines--r2-finish.journal.jsonl.gz"
  },
  "functional-style-and-pipelines--r3-finish": {
@@ -2219,25 +2146,24 @@
   "part": "r3-finish",
   "wf": "wf_7435cb3a-a25",
   "task": "wx894zo5d",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_7435cb3a-a25/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/functional-style-and-pipelines--r3-finish.journal.jsonl.gz",
   "done": {
    "verify2": 4,
    "close2": 4
   },
   "failed": {},
-  "finished": true,
-  "cards": 4,
-  "spine_card_rules": 11,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/functional-style-and-pipelines--r3-finish.journal.jsonl.gz",
-  "snapshot_output": "outputs/functional-style-and-pipelines--r3-finish.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/functional-style-and-pipelines--r3-finish.journal.jsonl.gz"
  },
  "functional-style-and-pipelines--r3-rest": {
   "batch": 3,
   "part": "r3-rest",
   "wf": "wf_7e8b2152-113",
   "task": "w3y83bkyt",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_7e8b2152-113/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/functional-style-and-pipelines--r3-rest.journal.jsonl.gz",
   "done": {
    "draft": 1,
    "verify": 5,
@@ -2246,19 +2172,18 @@
    "close1": 5
   },
   "failed": {},
-  "finished": true,
-  "cards": 7,
-  "spine_card_rules": 11,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/functional-style-and-pipelines--r3-rest.journal.jsonl.gz",
-  "snapshot_output": "outputs/functional-style-and-pipelines--r3-rest.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/functional-style-and-pipelines--r3-rest.journal.jsonl.gz"
  },
  "domain-modeling-and-domain-language--1of2": {
   "batch": 3,
   "part": "1of2",
   "wf": "wf_303796d1-15f",
   "task": "wi8al0q2t",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_303796d1-15f/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/domain-modeling-and-domain-language--1of2.journal.jsonl.gz",
   "done": {
    "verify": 5,
    "fix": 5,
@@ -2268,25 +2193,24 @@
    "verify2": 3,
    "close1": 2
   },
-  "finished": true,
-  "cards": 0,
-  "spine_card_rules": 10,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/domain-modeling-and-domain-language--1of2.journal.jsonl.gz",
-  "snapshot_output": "outputs/domain-modeling-and-domain-language--1of2.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/domain-modeling-and-domain-language--1of2.journal.jsonl.gz"
  },
  "domain-modeling-and-domain-language--r2-finish": {
   "batch": 3,
   "part": "r2-finish",
   "wf": "wf_37884f21-816",
   "task": "wpztht41y",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_37884f21-816/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/domain-modeling-and-domain-language--r2-finish.journal.jsonl.gz",
   "done": {},
   "failed": {},
   "finished": false,
   "cards": null,
   "spine_card_rules": null,
-  "checked": "2026-10-08T15:55 UTC",
+  "checked": "2026-10-08T16:54 UTC",
   "snapshot_journal": "journals/domain-modeling-and-domain-language--r2-finish.journal.jsonl.gz"
  },
  "domain-modeling-and-domain-language--r3-finish": {
@@ -2294,7 +2218,7 @@
   "part": "r3-finish",
   "wf": "wf_135aa2c3-07b",
   "task": "wrd6odj0x",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_135aa2c3-07b/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/domain-modeling-and-domain-language--r3-finish.journal.jsonl.gz",
   "done": {
    "verify2": 2,
    "close2": 1
@@ -2303,7 +2227,7 @@
   "finished": false,
   "cards": null,
   "spine_card_rules": null,
-  "checked": "2026-10-08T15:55 UTC",
+  "checked": "2026-10-08T16:54 UTC",
   "snapshot_journal": "journals/domain-modeling-and-domain-language--r3-finish.journal.jsonl.gz"
  },
  "domain-modeling-and-domain-language--r3-rest": {
@@ -2311,13 +2235,13 @@
   "part": "r3-rest",
   "wf": "wf_9c29ac37-66e",
   "task": "wxj961dsn",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_9c29ac37-66e/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/domain-modeling-and-domain-language--r3-rest.journal.jsonl.gz",
   "done": {},
   "failed": {},
   "finished": false,
   "cards": null,
   "spine_card_rules": null,
-  "checked": "2026-10-08T15:55 UTC",
+  "checked": "2026-10-08T16:54 UTC",
   "snapshot_journal": "journals/domain-modeling-and-domain-language--r3-rest.journal.jsonl.gz"
  },
  "domain-modeling-and-domain-language--r4-finish": {
@@ -2325,25 +2249,24 @@
   "part": "r4-finish",
   "wf": "wf_0c57f82b-fba",
   "task": "wrwa0r9e3",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_0c57f82b-fba/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/domain-modeling-and-domain-language--r4-finish.journal.jsonl.gz",
   "done": {
    "close2": 4,
    "verify2": 1
   },
   "failed": {},
-  "finished": true,
-  "cards": 4,
-  "spine_card_rules": 10,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/domain-modeling-and-domain-language--r4-finish.journal.jsonl.gz",
-  "snapshot_output": "outputs/domain-modeling-and-domain-language--r4-finish.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/domain-modeling-and-domain-language--r4-finish.journal.jsonl.gz"
  },
  "domain-modeling-and-domain-language--r4-rest": {
   "batch": 3,
   "part": "r4-rest",
   "wf": "wf_e72aa078-467",
   "task": "wxhxna6o6",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_e72aa078-467/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/domain-modeling-and-domain-language--r4-rest.journal.jsonl.gz",
   "done": {
    "verify": 5,
    "fix": 5,
@@ -2351,19 +2274,18 @@
    "close1": 5
   },
   "failed": {},
-  "finished": true,
-  "cards": 5,
-  "spine_card_rules": 10,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/domain-modeling-and-domain-language--r4-rest.journal.jsonl.gz",
-  "snapshot_output": "outputs/domain-modeling-and-domain-language--r4-rest.output.json.gz"
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/domain-modeling-and-domain-language--r4-rest.journal.jsonl.gz"
  },
  "unit-testing-and-test-quality": {
   "batch": 4,
   "part": null,
   "wf": "wf_92da7122-f48",
   "task": "w4q4wtv46",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_92da7122-f48/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/unit-testing-and-test-quality.journal.jsonl.gz",
   "done": {
    "sources": 3,
    "spine": 1,
@@ -2374,19 +2296,18 @@
    "close1": 12
   },
   "failed": {},
-  "finished": true,
-  "cards": 12,
+  "finished": false,
+  "cards": null,
   "spine_card_rules": 13,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/unit-testing-and-test-quality.journal.jsonl.gz",
-  "snapshot_output": "outputs/unit-testing-and-test-quality.output.json.gz"
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/unit-testing-and-test-quality.journal.jsonl.gz"
  },
  "test-first-and-test-driven-development": {
   "batch": 4,
   "part": null,
   "wf": "wf_12be40cb-f39",
   "task": "wfzfkzs0n",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_12be40cb-f39/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/test-first-and-test-driven-development.journal.jsonl.gz",
   "done": {
    "sources": 3,
    "spine": 1,
@@ -2397,19 +2318,18 @@
    "close1": 1
   },
   "failed": {},
-  "finished": true,
-  "cards": 2,
+  "finished": false,
+  "cards": null,
   "spine_card_rules": 2,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/test-first-and-test-driven-development.journal.jsonl.gz",
-  "snapshot_output": "outputs/test-first-and-test-driven-development.output.json.gz"
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/test-first-and-test-driven-development.journal.jsonl.gz"
  },
  "larger-tests-integration-and-end-to-end": {
   "batch": 4,
   "part": null,
   "wf": "wf_1d43d6be-8af",
   "task": "wgdshobsk",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_1d43d6be-8af/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/larger-tests-integration-and-end-to-end.journal.jsonl.gz",
   "done": {
    "sources": 3,
    "spine": 1,
@@ -2420,19 +2340,18 @@
    "close1": 10
   },
   "failed": {},
-  "finished": true,
-  "cards": 12,
+  "finished": false,
+  "cards": null,
   "spine_card_rules": 12,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/larger-tests-integration-and-end-to-end.journal.jsonl.gz",
-  "snapshot_output": "outputs/larger-tests-integration-and-end-to-end.output.json.gz"
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/larger-tests-integration-and-end-to-end.journal.jsonl.gz"
  },
  "property-based-testing": {
   "batch": 4,
   "part": null,
   "wf": "wf_079d4bb6-c04",
   "task": "w282rsffo",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_079d4bb6-c04/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/property-based-testing.journal.jsonl.gz",
   "done": {
    "sources": 3,
    "spine": 1,
@@ -2443,19 +2362,18 @@
    "close1": 11
   },
   "failed": {},
-  "finished": true,
-  "cards": 12,
+  "finished": false,
+  "cards": null,
   "spine_card_rules": 14,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/property-based-testing.journal.jsonl.gz",
-  "snapshot_output": "outputs/property-based-testing.output.json.gz"
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/property-based-testing.journal.jsonl.gz"
  },
  "refactoring": {
   "batch": 4,
   "part": null,
   "wf": "wf_cd285ff6-fd6",
   "task": "wlb7qlbrl",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_cd285ff6-fd6/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/refactoring.journal.jsonl.gz",
   "done": {
    "sources": 3,
    "spine": 1,
@@ -2466,19 +2384,18 @@
    "close1": 5
   },
   "failed": {},
-  "finished": true,
-  "cards": 5,
+  "finished": false,
+  "cards": null,
   "spine_card_rules": 5,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/refactoring.journal.jsonl.gz",
-  "snapshot_output": "outputs/refactoring.output.json.gz"
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/refactoring.journal.jsonl.gz"
  },
  "code-smells-and-antipatterns": {
   "batch": 4,
   "part": null,
   "wf": "wf_f8a6ad6c-eec",
   "task": "ww8pvatyb",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_f8a6ad6c-eec/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/code-smells-and-antipatterns.journal.jsonl.gz",
   "done": {
    "sources": 3,
    "spine": 1,
@@ -2489,19 +2406,18 @@
    "close1": 6
   },
   "failed": {},
-  "finished": true,
-  "cards": 6,
+  "finished": false,
+  "cards": null,
   "spine_card_rules": 6,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/code-smells-and-antipatterns.journal.jsonl.gz",
-  "snapshot_output": "outputs/code-smells-and-antipatterns.output.json.gz"
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/code-smells-and-antipatterns.journal.jsonl.gz"
  },
  "seams-and-characterization-tests": {
   "batch": 4,
   "part": null,
   "wf": "wf_5a424d44-19b",
   "task": "w0wvfk5se",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_5a424d44-19b/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/seams-and-characterization-tests.journal.jsonl.gz",
   "done": {
    "sources": 3,
    "spine": 1,
@@ -2512,19 +2428,18 @@
    "close1": 7
   },
   "failed": {},
-  "finished": true,
-  "cards": 7,
+  "finished": false,
+  "cards": null,
   "spine_card_rules": 7,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/seams-and-characterization-tests.journal.jsonl.gz",
-  "snapshot_output": "outputs/seams-and-characterization-tests.output.json.gz"
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/seams-and-characterization-tests.journal.jsonl.gz"
  },
  "large-scale-changes-and-migrations": {
   "batch": 4,
   "part": null,
   "wf": "wf_7a8a5257-174",
   "task": "whtz4xndy",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_7a8a5257-174/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/large-scale-changes-and-migrations.journal.jsonl.gz",
   "done": {
    "sources": 3,
    "spine": 1,
@@ -2535,19 +2450,18 @@
    "close1": 7
   },
   "failed": {},
-  "finished": true,
-  "cards": 9,
+  "finished": false,
+  "cards": null,
   "spine_card_rules": 9,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/large-scale-changes-and-migrations.journal.jsonl.gz",
-  "snapshot_output": "outputs/large-scale-changes-and-migrations.output.json.gz"
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/large-scale-changes-and-migrations.journal.jsonl.gz"
  },
  "small-steps-and-minimal-diffs": {
   "batch": 4,
   "part": null,
   "wf": "wf_bfdf4f85-c85",
   "task": "wxu5tocsk",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_bfdf4f85-c85/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/small-steps-and-minimal-diffs.journal.jsonl.gz",
   "done": {
    "sources": 3,
    "spine": 1,
@@ -2558,19 +2472,18 @@
    "close1": 6
   },
   "failed": {},
-  "finished": true,
-  "cards": 6,
+  "finished": false,
+  "cards": null,
   "spine_card_rules": 6,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/small-steps-and-minimal-diffs.journal.jsonl.gz",
-  "snapshot_output": "outputs/small-steps-and-minimal-diffs.output.json.gz"
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/small-steps-and-minimal-diffs.journal.jsonl.gz"
  },
  "technical-debt": {
   "batch": 4,
   "part": null,
   "wf": "wf_2d8b2fdb-e9d",
   "task": "w65n20rmd",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_2d8b2fdb-e9d/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/technical-debt.journal.jsonl.gz",
   "done": {
    "sources": 3,
    "spine": 1,
@@ -2581,19 +2494,18 @@
    "close1": 6
   },
   "failed": {},
-  "finished": true,
-  "cards": 6,
+  "finished": false,
+  "cards": null,
   "spine_card_rules": 6,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/technical-debt.journal.jsonl.gz",
-  "snapshot_output": "outputs/technical-debt.output.json.gz"
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/technical-debt.journal.jsonl.gz"
  },
  "debugging": {
   "batch": 4,
   "part": null,
   "wf": "wf_bf2b1ec3-155",
   "task": "wr0o8y6br",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_bf2b1ec3-155/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/debugging.journal.jsonl.gz",
   "done": {
    "sources": 3,
    "spine": 1,
@@ -2604,19 +2516,18 @@
    "close1": 6
   },
   "failed": {},
-  "finished": true,
-  "cards": 6,
+  "finished": false,
+  "cards": null,
   "spine_card_rules": 6,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/debugging.journal.jsonl.gz",
-  "snapshot_output": "outputs/debugging.output.json.gz"
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/debugging.journal.jsonl.gz"
  },
  "profiling-and-code-tuning": {
   "batch": 4,
   "part": null,
   "wf": "wf_9ef3698b-274",
   "task": "w6ea4egad",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_9ef3698b-274/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/profiling-and-code-tuning.journal.jsonl.gz",
   "done": {
    "sources": 3,
    "spine": 1,
@@ -2627,19 +2538,18 @@
    "close1": 8
   },
   "failed": {},
-  "finished": true,
-  "cards": 8,
+  "finished": false,
+  "cards": null,
   "spine_card_rules": 8,
-  "checked": "2026-10-08T15:55 UTC",
-  "snapshot_journal": "journals/profiling-and-code-tuning.journal.jsonl.gz",
-  "snapshot_output": "outputs/profiling-and-code-tuning.output.json.gz"
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/profiling-and-code-tuning.journal.jsonl.gz"
  },
  "algorithm-and-data-structure-choice": {
   "batch": 4,
   "part": null,
   "wf": "wf_10defe6c-205",
   "task": "wuev93zct",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_10defe6c-205/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/algorithm-and-data-structure-choice.journal.jsonl.gz",
   "done": {
    "sources": 3,
    "spine": 1,
@@ -2651,15 +2561,29 @@
   "finished": false,
   "cards": null,
   "spine_card_rules": 10,
-  "checked": "2026-10-08T15:55 UTC",
+  "checked": "2026-10-08T16:54 UTC",
   "snapshot_journal": "journals/algorithm-and-data-structure-choice.journal.jsonl.gz"
+ },
+ "algorithm-and-data-structure-choice--finish": {
+  "batch": 4,
+  "part": "finish",
+  "wf": "wf_4b7c1e78-54a",
+  "task": "wznd1ra1a",
+  "journal": "/root/.claude/projects/-home-user-rooted/87d2483f-4fb8-5c5b-92ee-849ce1d9a8b0/subagents/workflows/wf_4b7c1e78-54a/journal.jsonl",
+  "done": {},
+  "failed": {},
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/algorithm-and-data-structure-choice--finish.journal.jsonl.gz"
  },
  "build-warnings-static-analysis-ci": {
   "batch": 4,
   "part": null,
   "wf": "wf_e1fbc943-706",
   "task": "wvj79ikgk",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_e1fbc943-706/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/build-warnings-static-analysis-ci.journal.jsonl.gz",
   "done": {
    "sources": 3,
    "spine": 1,
@@ -2670,15 +2594,29 @@
   "finished": false,
   "cards": null,
   "spine_card_rules": 10,
-  "checked": "2026-10-08T15:55 UTC",
+  "checked": "2026-10-08T16:54 UTC",
   "snapshot_journal": "journals/build-warnings-static-analysis-ci.journal.jsonl.gz"
+ },
+ "build-warnings-static-analysis-ci--r1-1of2": {
+  "batch": 4,
+  "part": "r1-1of2",
+  "wf": "wf_7c75b6b2-36c",
+  "task": "wprj1lphn",
+  "journal": "/root/.claude/projects/-home-user-rooted/87d2483f-4fb8-5c5b-92ee-849ce1d9a8b0/subagents/workflows/wf_7c75b6b2-36c/journal.jsonl",
+  "done": {},
+  "failed": {},
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/build-warnings-static-analysis-ci--r1-1of2.journal.jsonl.gz"
  },
  "dependency-management": {
   "batch": 4,
   "part": null,
   "wf": "wf_b3d14862-9cb",
   "task": "wkhdpu2mp",
-  "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_b3d14862-9cb/journal.jsonl",
+  "journal": "/home/user/rooted/research/software-craft/.state/journals/dependency-management.journal.jsonl.gz",
   "done": {
    "sources": 3,
    "spine": 1,
@@ -2688,7 +2626,39 @@
   "finished": false,
   "cards": null,
   "spine_card_rules": 11,
-  "checked": "2026-10-08T15:55 UTC",
+  "checked": "2026-10-08T16:54 UTC",
   "snapshot_journal": "journals/dependency-management.journal.jsonl.gz"
+ },
+ "dependency-management--r1-1of2": {
+  "batch": 4,
+  "part": "r1-1of2",
+  "wf": "wf_4174e404-de7",
+  "task": "w5dtsvph1",
+  "journal": "/root/.claude/projects/-home-user-rooted/87d2483f-4fb8-5c5b-92ee-849ce1d9a8b0/subagents/workflows/wf_4174e404-de7/journal.jsonl",
+  "done": {
+   "draft": 3
+  },
+  "failed": {},
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/dependency-management--r1-1of2.journal.jsonl.gz"
+ },
+ "dependency-management--r1-2of2": {
+  "batch": 4,
+  "part": "r1-2of2",
+  "wf": "wf_9b0efe74-eb1",
+  "task": "wti1olmil",
+  "journal": "/root/.claude/projects/-home-user-rooted/87d2483f-4fb8-5c5b-92ee-849ce1d9a8b0/subagents/workflows/wf_9b0efe74-eb1/journal.jsonl",
+  "done": {
+   "draft": 2
+  },
+  "failed": {},
+  "finished": false,
+  "cards": null,
+  "spine_card_rules": null,
+  "checked": "2026-10-08T16:54 UTC",
+  "snapshot_journal": "journals/dependency-management--r1-2of2.journal.jsonl.gz"
  }
 }

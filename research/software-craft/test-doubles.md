@@ -4,7 +4,7 @@ title: Test doubles
 group: E. Tests
 domain: tests
 prefix: TST
-status: verified
+status: done
 ---
 
 # Research note — Test doubles

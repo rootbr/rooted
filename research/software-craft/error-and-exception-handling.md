@@ -4,7 +4,7 @@ title: Error and exception handling
 group: D. Errors and resilience
 domain: errors
 prefix: ERR
-status: verified
+status: done
 ---
 
 # Research note — Error and exception handling
