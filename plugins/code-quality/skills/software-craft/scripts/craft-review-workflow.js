@@ -434,6 +434,7 @@ const DEFER_TO = {
   'CHG-01': 'API-20', // a refactoring alters no observable behaviour: on a published element the altered return value, error or side effect is API-20's breaking change
   'TST-17': ['TST-25', 'TST-46'], // a test body runs the same statements every execution: a branch that encloses an assertion the test can skip is TST-25's finding; an early return in a property body is TST-46's
   'TST-25': 'TST-46', // no assertion sits where the test can skip it: an early return that skips a property's assertions is TST-46's discard finding
+  'CHG-12': 'CHG-14', // a behaviour change restructures no code beyond small cleanups: code moved between files and edited in the same change is CHG-14's finding
   'TST-13': 'TST-24', // a new test fails without the change: where it cannot fail because its assertion has no two sides, TST-24 owns the assertion
 }
 const ownersOf = ruleId => [DEFER_TO[ruleId] || []].flat()
