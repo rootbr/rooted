@@ -1,0 +1,110 @@
+{
+ "purpose": "cards that received a kb-card audit sample while the audit ran per topic; on 2026-10-08 the operator moved the card audit to the series' closing stage (HANDOVER 5.7), which samples two cards from every topic absent here",
+ "note": "built from the audit inventories kept in this container's scratchpad; audits of earlier containers (the pilot topics naming, error-handling and test-doubles, and part of the third round) are not listed, and ids renumbered by a fold may be missing",
+ "sampled": {
+  "api-design-and-use": [
+   "API-11",
+   "API-15"
+  ],
+  "api-evolution-and-deprecation": [
+   "API-25",
+   "API-30"
+  ],
+  "comments-and-self-documenting-code": [
+   "CODE-66"
+  ],
+  "complexity-and-deep-modules": [
+   "DSN-17"
+  ],
+  "contracts-assertions-and-invariants": [
+   "API-02"
+  ],
+  "control-flow": [
+   "CODE-73",
+   "CODE-79"
+  ],
+  "coupling-and-dependency-direction": [
+   "DSN-10"
+  ],
+  "design-patterns-in-construction": [
+   "DSN-06"
+  ],
+  "domain-modeling-and-domain-language": [
+   "DSN-44",
+   "DSN-49"
+  ],
+  "duplication-and-single-source-of-truth": [
+   "DSN-20",
+   "DSN-23"
+  ],
+  "fault-tolerance-retries-timeouts-fallbacks": [
+   "ERR-31",
+   "ERR-38"
+  ],
+  "functional-style-and-pipelines": [
+   "DSN-54",
+   "DSN-57"
+  ],
+  "generics-and-parameterization": [
+   "CODE-40",
+   "CODE-44",
+   "CODE-49"
+  ],
+  "information-hiding-and-encapsulation": [
+   "DSN-31",
+   "DSN-32"
+  ],
+  "inheritance-versus-composition": [
+   "DSN-39",
+   "DSN-42"
+  ],
+  "larger-tests-integration-and-end-to-end": [
+   "TST-29",
+   "TST-31"
+  ],
+  "layout-and-coding-style": [
+   "CODE-50",
+   "CODE-59"
+  ],
+  "logging-and-diagnostic-output": [
+   "ERR-43",
+   "ERR-48"
+  ],
+  "mutable-state-and-immutability": [
+   "DSN-66"
+  ],
+  "property-based-testing": [
+   "TST-45",
+   "TST-51"
+  ],
+  "refactoring": [
+   "CHG-01",
+   "CHG-05"
+  ],
+  "resource-management-and-ownership": [
+   "ERR-20",
+   "ERR-28"
+  ],
+  "routine-size-and-parameters": [
+   "CODE-36",
+   "CODE-37"
+  ],
+  "table-driven-and-state-machines": [
+   "CODE-14",
+   "CODE-20"
+  ],
+  "test-first-and-test-driven-development": [
+   "TST-13",
+   "TST-14"
+  ],
+  "unit-testing-and-test-quality": [
+   "TST-17",
+   "TST-18"
+  ],
+  "variables-scope-and-numerics": [
+   "CODE-23",
+   "CODE-31"
+  ]
+ },
+ "unresolved": []
+}
