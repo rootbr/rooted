@@ -15,6 +15,10 @@
   "larger-tests-integration-and-end-to-end": {
    "task": "wgdshobsk",
    "wf": "wf_1d43d6be-8af"
+  },
+  "property-based-testing": {
+   "task": "w282rsffo",
+   "wf": "wf_079d4bb6-c04"
   }
  }
 }
