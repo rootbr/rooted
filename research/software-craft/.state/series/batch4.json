@@ -75,5 +75,6 @@
    "task": "wkhdpu2mp",
    "wf": "wf_b3d14862-9cb"
   }
- }
+ },
+ "launch_stop": "2026-10-08T15:05 UTC: operator instruction \u2014 finish the running workflows, launch no new ones; then update HANDOVER for the next session, save everything and push. Not started after this: runtime-configuration, internationalization-and-text-encoding, reading-and-understanding-code, code-review-as-author-and-reviewer, documentation-beyond-comments, parsing-and-grammar-based-input, security-hygiene-in-ordinary-code."
 }
