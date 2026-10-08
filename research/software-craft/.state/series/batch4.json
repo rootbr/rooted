@@ -2,7 +2,7 @@
  "batch": 4,
  "launched": "2026-10-08T05:25 UTC",
  "kind": "fresh launches of the 22 not-started topics (HANDOVER \u00a75.5), one per free slot under the operator's cap of four workflows",
- "concurrency": "4 (operator): launch only while fewer than 4 run, counting the third-round continuation bundles of batch3.json",
+ "concurrency": "3 (operator, 2026-10-08T17:10 UTC, replacing 4): launch a new workflow only while fewer than 3 run; the four continuation workflows launched at 16:40 UTC run to their end",
  "topics": {
   "unit-testing-and-test-quality": {
    "task": "w4q4wtv46",
