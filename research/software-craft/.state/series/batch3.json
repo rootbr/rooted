@@ -20,6 +20,11 @@
      "part": "r3-finish",
      "task": "w7w3o1xm8",
      "wf": "wf_a6751b6b-9ca"
+    },
+    {
+     "part": "r3-rest",
+     "task": "w3zxkaqe7",
+     "wf": "wf_d11d30b6-d2f"
     }
    ]
   },
