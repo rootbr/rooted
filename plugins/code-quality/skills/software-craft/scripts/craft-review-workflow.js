@@ -432,6 +432,8 @@ const DEFER_TO = {
   'CODE-74': 'CODE-13', // an if chain on one value is preferably a switch: a value-returning chain is CODE-13's lookup table
   'CODE-64': 'CODE-75', // an ambiguous construct carries an intended-marker: an unmarked switch fall-through is CODE-75's finding
   'CHG-01': 'API-20', // a refactoring alters no observable behaviour: on a published element the altered return value, error or side effect is API-20's breaking change
+  'TST-17': 'TST-25', // a test body runs the same statements every execution: a branch that encloses an assertion the test can skip is TST-25's finding
+  'TST-13': 'TST-24', // a new test fails without the change: where it cannot fail because its assertion has no two sides, TST-24 owns the assertion
 }
 const ownersOf = ruleId => [DEFER_TO[ruleId] || []].flat()
 const SEV_RANK = { major: 0, minor: 1, suggestion: 2 }
