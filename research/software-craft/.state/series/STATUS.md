@@ -1,6 +1,6 @@
 # Series status
 
-Snapshot taken 2026-10-08T15:18 UTC by `series/series-status.py --snapshot`. Journals under `journals/`, finished runs' outputs under `outputs/`.
+Snapshot taken 2026-10-08T15:30 UTC by `series/series-status.py --snapshot`. Journals under `journals/`, finished runs' outputs under `outputs/`.
 
 `done` counts the agents whose results the journal holds (cached for a continuation); `failed` the agents a usage-limit stop or an error ended, which a continuation re-runs. `cards` is the count in the run's own output; a run whose agents failed shipped none, and its cards come from the continuation. A continuation run (batch 3 and later) is one bundle of a topic, named by its part; a topic is finished when every part's run is complete.
 
@@ -146,7 +146,7 @@ Snapshot taken 2026-10-08T15:18 UTC by `series/series-status.py --snapshot`. Jou
 | 4 | `small-steps-and-minimal-diffs` | 6 | sources 3, spine 1, draft 6, verify 6, fix 6, verify2 6, close1 6 | - | 6 | run complete |
 | 4 | `technical-debt` | 6 | sources 3, spine 1, draft 6, verify 6, fix 6, verify2 6, close1 6 | - | 6 | run complete |
 | 4 | `debugging` | 6 | sources 3, spine 1, draft 6, verify 6, fix 6, verify2 6, close1 6 | - | 6 | run complete |
-| 4 | `profiling-and-code-tuning` | 8 | sources 3, spine 1, draft 8, verify 8, fix 8, verify2 2 | - | - | running or stopped |
-| 4 | `algorithm-and-data-structure-choice` | 10 | sources 3, spine 1, draft 10, verify 5 | - | - | running or stopped |
-| 4 | `build-warnings-static-analysis-ci` | ? | sources 3 | - | - | running or stopped |
-| 4 | `dependency-management` | ? | sources 2 | - | - | running or stopped |
+| 4 | `profiling-and-code-tuning` | 8 | sources 3, spine 1, draft 8, verify 8, fix 8, verify2 4 | - | - | running or stopped |
+| 4 | `algorithm-and-data-structure-choice` | 10 | sources 3, spine 1, draft 10, verify 7 | - | - | running or stopped |
+| 4 | `build-warnings-static-analysis-ci` | 10 | sources 3, spine 1, draft 4 | - | - | running or stopped |
+| 4 | `dependency-management` | ? | sources 3 | - | - | running or stopped |
