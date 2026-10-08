@@ -455,6 +455,9 @@ const DEFER_TO = {
   'CHG-13': 'CHG-29', // a behaviour change reformats only its own lines: reformatting inside a tool-generated change is CHG-29's finding (reviewer, change)
   'CHG-07': 'CODE-22', // a field assigned before every read becomes local: CODE-22's private-field clause, from the same PMD rule, owns the declaration (reviewer, change)
   'TST-13': 'TST-24', // a new test fails without the change: where it cannot fail because its assertion has no two sides, TST-24 owns the assertion
+  'PRF-11': ['PRF-07', 'PRF-14'], // a speed claim rests on a recorded measurement: a tuned form added with no measured need is PRF-07's finding, a figure claimed from too few runs or without a noise verdict PRF-14's (spot-read, profiling)
+  'PRF-14': 'PRF-09', // a speedup rests on repeated runs against the base: a tuning kept while its own comparison shows no gain beyond noise is PRF-09's revert finding (spot-read, profiling)
+  'CHG-04': 'PRF-10', // a refactoring restructures only tested code: a routine rewritten for speed with no test against the plain implementation is PRF-10's finding (spot-read, profiling)
 }
 const ownersOf = ruleId => [DEFER_TO[ruleId] || []].flat()
 const SEV_RANK = { major: 0, minor: 1, suggestion: 2 }
