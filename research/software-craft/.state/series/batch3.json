@@ -56,6 +56,11 @@
      "part": "r4-finish",
      "task": "wx33chz33",
      "wf": "wf_a676861d-3c5"
+    },
+    {
+     "part": "r3-rest",
+     "task": "w90zdotfn",
+     "wf": "wf_fef2de6b-655"
     }
    ]
   },
