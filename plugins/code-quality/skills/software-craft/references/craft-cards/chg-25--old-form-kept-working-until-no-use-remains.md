@@ -1,0 +1,48 @@
+---
+title: A change that renames, moves, re-signs or removes an element without updating every use of it keeps the old form working beside the new one until no use of the old form remains
+rule_id: CHG-25
+domain: change
+step: [design, implement, refactor, review]
+applies_to: [universal]
+triggers: ['signal:added_file', '(?i)\b(?:moved|renamed)\s+(?:to|from)\b']
+scope: callers
+check_kind: semantic
+severity_default: major
+---
+
+# A change that renames, moves, re-signs or removes an element without updating every use of it keeps the old form working beside the new one until no use of the old form remains
+
+## Thesis
+When a change renames, moves, re-signs or removes an element and leaves some of its uses to later changes, the old form stays declared and working beside the new one, as an alias, as a re-export that keeps the element available from its old location, or as a forwarding definition, a wrapper that keeps one form's signature and calls the other, so that the whole system keeps working after each change and the remaining uses move in separate changes. The old form is removed only once no use of it remains, counting the uses in code that an automated rewrite did not process, such as code built only under another build configuration or platform, macro bodies, documentation examples and code generated at build time.
+
+## Rationale
+In a large codebase it may be impractical or infeasible to move a declaration and update all its clients in a single change; the change then happens incrementally, the declaration added at its new place without deleting the original, and the clients updated over time. Keeping the element available from both the old and the new location gives a transition period in which references to the old and the new form can be mixed and interoperate. Changes that depend on each other need a way to keep the whole system working after each one is submitted; otherwise the build can break for every other developer between the submissions, for a few minutes, or longer when a later submission goes wrong. The same holds when a codebase moves to the next language edition: code made compatible with both the current and the next edition at once is easier to migrate incrementally, and when the automated migration does not completely succeed or requires manual help, the work can iterate on the current edition before the switch. An automated rewrite does not reach every use: one compiler-driven migration tool works with a single build configuration at a time, cannot fix procedural macros at all, cannot update documentation tests and cannot apply to code that a build script generates. Tool-driven cleanup is not complete either: no analysis is known that ensures complete automation, because determining reachability in a sound and complete manner is infeasible, so some manual intervention by the developer follows the tool's cleanup. Removing the old form therefore rests on an impact analysis that identifies all the systems and software products the change affects.
+
+## Example
+```java
+bad:  class Store { void saveAll(List<Item> items) { ... } }  // renamed from save
+      store.save(items);  // a use left for a later change: the build breaks
+good: class Store {
+          void saveAll(List<Item> items) { ... }
+          void save(List<Item> items) { saveAll(items); }
+      }
+      store.save(items);
+```
+
+## Limits
+A change that moves or renames the declaration and updates every use in the same change meets the rule, since no use of the old form remains after it. An old form that must be retained indefinitely for backward compatibility, as for an element whose callers lie outside the codebase, falls outside the rule; how long it stays and how its removal is announced is deprecation policy, which the rule does not reach. Where a language offers no alias for some kind of element, there may be no way to make code that refers to the old name interoperate with code that refers to the new one; a change that deletes such an element's old form while a use remains still breaks that use and is flagged like any other, and a change that moves it together with every use meets the rule. The rule does not set the size of each change in the sequence.
+
+## Validator
+Grep the hunk for a deleted or renamed declaration, a changed parameter list, a deleted alias, re-export or forwarding definition, and a note that something moved or was renamed. For each old name or old signature, open the callers: search the whole codebase for it, including files compiled only under another build configuration, platform condition or feature switch, macro bodies, the templates and inputs of code generators, and documentation examples. Trace whether this change updates each use found, and whether the element's callers lie outside the codebase. Validator question: **Does the change delete or alter the old form of an element while a use that only the old form accepts remains in the codebase outside the change?** Yes → flag.
+
+## Finding output
+When the validator answers yes, the finder emits one finding (`rule_id: CHG-25`, severity major, `file`, `symbol`, `code` = the deleted, renamed or re-signed declaration quoted verbatim from the diff, `fix` = the old form restored beside the new one as an alias, a re-export or a forwarding definition with the old signature that calls the new form, in the file's language, or, for an element the language cannot alias, the remaining uses updated in the same change, `rationale` = names one remaining use of the old form by file and line and the build configuration, macro, generator or documentation example that holds it).
+
+## Source
+- golang/website `_content/blog/alias-names.md`, 'What's in an (Alias) Name?', paragraph on moving declarations (fetched): "In large codebases it may be unpractical or infeasible to make such a change atomically; or in other words, to do the move and update all clients in a single change. Instead, the change must happen incrementally [...] we add its declaration in a new package without deleting the original declaration in the old package. This way, clients can be updated incrementally, over time. Once all callers refer to `F` in the new package, the original declaration of `F` may be safely deleted (unless it must be retained indefinitely, for backward compatibility)."; "Moving a function `F` from one package to another while also retaining it in the original package is easy: a wrapper function is all that's needed."
+- golang/proposal `design/18130-type-alias.md`, 'Proposal: Type Aliases', §Background (fetched): "it is important to support a transition period in which the API is available from both the old and new locations and references to old and new can be mixed and interoperate. Go provides workable mechanisms for this kind of change when the API is a const, func, or var, but not when the API is a type. There is today no way to arrange that oldpkg.OldType and newpkg.NewType are identical and that code referring to the old name interoperates with code referring to the new name."
+- google/eng-practices `review/developer/small-cls.md`, §'Don't Break the Build' (fetched): "If you have several CLs that depend on each other, you need to find a way to make sure the whole system keeps working after each CL is submitted. Otherwise you might break the build for all your fellow developers for a few minutes between your CL submissions (or even longer if something goes wrong unexpectedly with your later CL submissions)."
+- rust-lang/edition-guide `src/editions/advanced-migrations.md`, §§'How migrations work', 'Migrating multiple configurations', 'Migrating macros', 'Documentation tests', 'Generated code' (fetched): "Changing the code to be simultaneously compatible with both the current and next edition makes it easier to incrementally migrate the code. If the automated migration does not completely succeed, or requires manual help, you can iterate while staying on the original edition [...]"; "`cargo fix` can only work with a single configuration at a time. If you use [Cargo features] or [conditional compilation], then you may need to run `cargo fix` multiple times with different flags. For example, if you have code that uses `#[cfg]` attributes to include different code for different platforms, you may need to run `cargo fix` with the `--target` option"; "Proc macros in general cannot be automatically fixed at all."; "At this time, `cargo fix` is not able to update [documentation tests]."; "Another area where the automated fixes cannot apply is if you have a build script which generates Rust code at compile time".
+- 'Piranha: Reducing Feature Flag Debt at Uber', ICSE-SEIP 2020, DOI 10.1145/3377813.3381350, §4.2, author copy uber/piranha `report.pdf` (fetched): "we are unaware of any analyses that can ensure complete automation as determining reachability in a sound and complete manner is infeasible [42]. This necessitates some form of manual intervention by the developer after the cleanup is performed by the tool."
+- SWEBOK Guide V3.0, ch. 5 'Software Maintenance', §2.1.3 'Impact Analysis', ligurio/swebok-v3 `5_software_maintenance.md` (fetched): "impact analysis, which identifies all systems and software products affected by a software change request".
+- Caveat: the evidence is two languages' migration documentation, one company's review guide and one flag-cleanup tool; the tool limits quoted are those of one migration tool and stand as examples of code a rewrite can miss, not as a list.

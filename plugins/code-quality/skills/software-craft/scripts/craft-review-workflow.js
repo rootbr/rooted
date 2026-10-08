@@ -438,6 +438,12 @@ const DEFER_TO = {
   'TST-24': 'CHG-20', // every test makes an assertion that can fail: a golden file the gating run writes and then compares is CHG-20's finding
   'CHG-21': 'CHG-05', // a change rewrites only the stored entries its intended change explains: in a change presented as a refactoring the rewritten expectation is CHG-05's finding
   'TST-18': 'CHG-24', // a failing test's report names its case: an external snapshot named by a number is CHG-24's finding
+  'CHG-25': 'API-22', // the old form stays working until no use remains: on a published element the in-place rename or removal is API-22's breaking change
+  'CHG-17': 'CHG-25', // each change builds and passes on its own: a rename or removal that leaves uses for later changes is CHG-25's finding (keep the old form beside the new)
+  'API-31': 'CHG-26', // a deprecated element calls its replacement: an old type name kept as a copy, wrapper or subclass during a migration is CHG-26's alias finding
+  'DSN-15': 'CHG-26', // a forwarding wrapper is added only with a purpose: a wrapper that stands in for a migrated type's old name is CHG-26's finding
+  'CHG-15': 'CHG-29', // one logical change per change: hand edits, dependency updates or reformatting inside a tool-generated change are CHG-29's finding
+  'CHG-08': 'CHG-30', // an unreferenced private declaration is removed: an unused alias, forwarder or replaced implementation of a migration is CHG-30's finding
   'TST-13': 'TST-24', // a new test fails without the change: where it cannot fail because its assertion has no two sides, TST-24 owns the assertion
 }
 const ownersOf = ruleId => [DEFER_TO[ruleId] || []].flat()
