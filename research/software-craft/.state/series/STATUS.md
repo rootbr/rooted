@@ -1,6 +1,6 @@
 # Series status
 
-Snapshot taken 2026-10-08T03:23 UTC by `series/series-status.py --snapshot`. Journals under `journals/`, finished runs' outputs under `outputs/`.
+Snapshot taken 2026-10-08T03:25 UTC by `series/series-status.py --snapshot`. Journals under `journals/`, finished runs' outputs under `outputs/`.
 
 `done` counts the agents whose results the journal holds (cached for a continuation); `failed` the agents a usage-limit stop or an error ended, which a continuation re-runs. `cards` is the count in the run's own output; a run whose agents failed shipped none, and its cards come from the continuation. A continuation run (batch 3 and later) is one bundle of a topic, named by its part; a topic is finished when every part's run is complete.
 
@@ -33,8 +33,8 @@ Snapshot taken 2026-10-08T03:23 UTC by `series/series-status.py --snapshot`. Jou
 | 3 | `comments-and-self-documenting-code` r2-finish | ? | - | - | - | running or stopped |
 | 3 | `layout-and-coding-style` 1of2 | 11 | verify 5, fix 5 | fix 1, verify2 5 | 0 | run ended, agents failed |
 | 3 | `layout-and-coding-style` r2-finish | ? | - | - | - | running or stopped |
-| 3 | `layout-and-coding-style` r3-finish | ? | verify2 5 | - | - | running or stopped |
-| 3 | `layout-and-coding-style` r3-rest | ? | verify 2 | - | - | running or stopped |
+| 3 | `layout-and-coding-style` r3-finish | 11 | verify2 5 | - | 5 | run complete |
+| 3 | `layout-and-coding-style` r3-rest | ? | verify 4 | - | - | running or stopped |
 | 3 | `routine-size-and-parameters` 1of2 | 9 | verify 3, fix 4, verify2 2 | fix 1, verify2 2, close1 2 | 0 | run ended, agents failed |
 | 3 | `routine-size-and-parameters` r2-finish | ? | - | - | - | running or stopped |
 | 3 | `routine-size-and-parameters` r3-finish | ? | - | - | - | running or stopped |
@@ -85,6 +85,7 @@ Snapshot taken 2026-10-08T03:23 UTC by `series/series-status.py --snapshot`. Jou
 | 3 | `logging-and-diagnostic-output` 1of2 | 12 | verify 5, fix 5, verify2 2 | fix 1, verify2 3, close1 1 | 1 | run ended, agents failed |
 | 3 | `logging-and-diagnostic-output` r2-finish | ? | - | - | - | running or stopped |
 | 3 | `logging-and-diagnostic-output` r3-finish | ? | - | - | - | running or stopped |
+| 3 | `logging-and-diagnostic-output` r3-rest | ? | - | - | - | running or stopped |
 | 3 | `complexity-and-deep-modules` 1of2 | 6 | verify 2, fix 3, verify2 3, close1 3 | - | 3 | run complete |
 | 3 | `complexity-and-deep-modules` 2of2 | 6 | - | verify 3 | 0 | run ended, agents failed |
 | 3 | `complexity-and-deep-modules` r2-rest-1of1 | ? | - | - | - | running or stopped |
@@ -121,7 +122,7 @@ Snapshot taken 2026-10-08T03:23 UTC by `series/series-status.py --snapshot`. Jou
 | 3 | `functional-style-and-pipelines` 1of2 | 11 | draft 2, verify 6, fix 4 | fix 2, verify2 4 | 0 | run ended, agents failed |
 | 3 | `functional-style-and-pipelines` r2-finish | ? | - | - | - | running or stopped |
 | 3 | `functional-style-and-pipelines` r3-finish | 11 | verify2 4 | - | 4 | run complete |
-| 3 | `functional-style-and-pipelines` r3-rest | ? | draft 1, verify 5, fix 7, verify2 4 | - | - | running or stopped |
+| 3 | `functional-style-and-pipelines` r3-rest | ? | draft 1, verify 5, fix 7, verify2 4, close1 1 | - | - | running or stopped |
 | 3 | `domain-modeling-and-domain-language` 1of2 | 10 | verify 5, fix 5, verify2 2 | verify2 3, close1 2 | 0 | run ended, agents failed |
 | 3 | `domain-modeling-and-domain-language` r2-finish | ? | - | - | - | running or stopped |
 | 3 | `domain-modeling-and-domain-language` r3-finish | ? | verify2 2 | - | - | running or stopped |
