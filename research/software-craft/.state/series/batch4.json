@@ -7,6 +7,14 @@
   "unit-testing-and-test-quality": {
    "task": "w4q4wtv46",
    "wf": "wf_92da7122-f48"
+  },
+  "test-first-and-test-driven-development": {
+   "task": "wfzfkzs0n",
+   "wf": "wf_12be40cb-f39"
+  },
+  "larger-tests-integration-and-end-to-end": {
+   "task": "wgdshobsk",
+   "wf": "wf_1d43d6be-8af"
   }
  }
 }
