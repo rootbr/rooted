@@ -56,7 +56,8 @@
   },
   "debugging": {
    "task": "wr0o8y6br",
-   "wf": "wf_bf2b1ec3-155"
+   "wf": "wf_bf2b1ec3-155",
+   "status": "done"
   },
   "profiling-and-code-tuning": {
    "task": "w6ea4egad",
@@ -69,6 +70,10 @@
   "build-warnings-static-analysis-ci": {
    "task": "wvj79ikgk",
    "wf": "wf_e1fbc943-706"
+  },
+  "dependency-management": {
+   "task": "wkhdpu2mp",
+   "wf": "wf_b3d14862-9cb"
   }
  }
 }
