@@ -17,4 +17,5 @@ A finding of the deferring rule drops when any owner listed for it flagged the s
 
 | Deferring rule | Owner(s) |
 |--|--|
-| (none yet) | |
+| DSN-44 (a unit or identifier is a distinct type, not a primitive) | API-10 (parameter types stop swaps and values outside a closed set): on a public operation's parameters the interface card owns the finding |
+| DSN-47 (a fixed set of values is an enumeration, not a string or int) | API-10: on a public parameter that accepts a closed set the interface card owns the finding |

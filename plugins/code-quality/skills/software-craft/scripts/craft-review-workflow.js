@@ -425,6 +425,8 @@ Return the ruling object via the structured-output tool.`
 // overlapping after the series; an entry names concepts one card states in the vocabulary
 // of another domain.
 const DEFER_TO = {
+  'DSN-44': 'API-10', // a unit or identifier as a distinct type: on a public operation's parameters API-10 owns the swap
+  'DSN-47': 'API-10', // a fixed set of values as an enumeration: on a public parameter API-10 owns the closed set
 }
 const ownersOf = ruleId => [DEFER_TO[ruleId] || []].flat()
 const SEV_RANK = { major: 0, minor: 1, suggestion: 2 }
