@@ -39,6 +39,8 @@
 // order diverges after the drafts. scripts/research-continue.py rebuilds the finished stages from the
 // journal and writes a bundle of this script with `const EMBEDDED_ARGS = {...}` after `meta`, carrying:
 //   resume_state: { sources: [...], spine: {...}, drafts: { <key>: DRAFT }, verdicts: { <key>: VERDICT } }
+//                                      // a state with some source layers and no spine (a run cut short in its Sources
+//                                      // phase) keeps those layers and runs only the missing ones, then everything after
 //   only_keys:    [ <key>, ... ]      // the subset of candidate rules this bundle drafts and verifies
 //   include_held: true | false        // whether this bundle reports the held rules (one bundle per topic does)
 //   round:        1 | 2 | ...          // the fix round this run performs; above 1 the state must carry a draft and
@@ -468,13 +470,20 @@ Return the draft object via the structured-output tool.`
 phase('Sources')
 const LAYERS = ['formulation', 'reception', 'evidence']
 let sources
-if (RESUME && RESUME.sources) {
+const sourceAgents = layers => parallel(layers.map(l => () =>
+  agent(sourcePrompt(l), { label: `sources:${l}`, phase: 'Sources', schema: SOURCES, model: MODEL, effort: EFFORT.source })
+    .then(s => s ? { ...s, layer: s.layer || l } : null)))
+if (RESUME && RESUME.sources && (RESUME.spine || RESUME.sources.filter(Boolean).length >= LAYERS.length)) {
   sources = RESUME.sources.filter(Boolean)
   log(`Sources: ${sources.length} layer(s) taken from the resume state`)
+} else if (RESUME && RESUME.sources && RESUME.sources.filter(Boolean).length) {
+  // a run cut short in its Sources phase: the layers the state carries are kept, the missing ones run
+  sources = RESUME.sources.filter(Boolean)
+  const missing = LAYERS.filter(l => !sources.some(s => s.layer === l))
+  log(`Sources: ${sources.map(s => s.layer).join(', ')} taken from the resume state; ${missing.join(', ') || 'no layer'} to run`)
+  sources = sources.concat((await sourceAgents(missing)).filter(Boolean))
 } else {
-  sources = (await parallel(LAYERS.map(l => () =>
-    agent(sourcePrompt(l), { label: `sources:${l}`, phase: 'Sources', schema: SOURCES, model: MODEL, effort: EFFORT.source })
-      .then(s => s ? { ...s, layer: s.layer || l } : null)))).filter(Boolean)
+  sources = (await sourceAgents(LAYERS)).filter(Boolean)
 }
 if (sources.length === 0 && !(RESUME && RESUME.spine)) throw new Error('research-topic-workflow: every source agent returned nothing')
 if (sources.length < LAYERS.length) log(`WARNING: ${LAYERS.length - sources.length} source layer(s) returned nothing; the spine works from ${sources.map(s => s.layer).join(', ')}`)

@@ -24,6 +24,9 @@ Usage:
                     the output supplies the topic and the bundle the remaining arguments
     --write-output  write a task-output file for the cut-short run from the journal (its sources and spine,
                     no cards), so scripts/write-topic-result.py can merge it as the run's first output
+    A run cut short in its Sources phase (some `sources:` results, no `spine`) continues as one bundle,
+    continue-<slug>-sources.js, that carries the finished layers; the workflow runs the missing layers, the
+    spine and every stage after, for every rule (no --round, --split or key options apply)
     --round N       the fix round the bundles perform (default 1). Round 1 continues a cut-short run:
                     drafts from `draft:` and first verdicts from `verify:`. Round N above 1 carries the
                     previous round's fixed drafts (`fix:` for round 2, `fix<N-1>:` after) and its verdicts
@@ -197,6 +200,27 @@ def main(argv):
         read_journal(j, results)
     sources = [results[k] for k in ("sources:formulation", "sources:reception", "sources:evidence") if k in results]
     spine = results.get("spine") or (result.get("spine") if rnd > 1 else None)
+    if rnd == 1 and not spine and sources and not (opts["write_carded"] or opts["write_output"]):
+        # cut short in the Sources phase: the bundle carries the finished layers and the workflow runs the
+        # missing ones, the spine and every stage after (one bundle, every rule, the held rules included)
+        out_dir = opts["out_dir"] or os.path.dirname(os.path.abspath(opts["from_output"] or opts["from_bundle"]))
+        os.makedirs(out_dir, exist_ok=True)
+        with open(SCRIPT, encoding="utf-8") as fh:
+            script = fh.read()
+        args_obj = {"root": root, "topic": topic, "next_id": result.get("next_id", 1), "existing_titles": launched.get("existing_titles", []),
+                    "max_rules": max_rules, "rotation_start": rotation_start, "resume_state": {"sources": sources},
+                    "include_held": True, "round": 1, "fix_after_verify": True, "closing_edit": closing_edit}
+        if channel_note:
+            args_obj["channel_note"] = channel_note
+        path = os.path.join(out_dir, f"continue-{topic['slug']}-sources.js")
+        with open(path, "w", encoding="utf-8") as fh:
+            fh.write(bundle(script, args_obj))
+        size = os.path.getsize(path)
+        if size > 524288:
+            sys.exit(f"research-continue: {path} is {size} bytes, above the runtime's 524288-byte script limit")
+        missing = [l for l in ("formulation", "reception", "evidence") if f"sources:{l}" not in results]
+        print(f"{path}: {len(sources)} source layer(s) carried ({', '.join(s['layer'] for s in sources)}), {size} bytes; the workflow runs {', '.join(missing) or 'no layer'}, the spine and every stage after")
+        return 0
     if rnd == 1 and (not spine or not sources):
         sys.exit("research-continue: the journal holds no spine or no source layer; run the topic afresh")
     if not spine:

@@ -20,7 +20,15 @@
      "task": "w8s14kkyu",
      "wf": "wf_83e5a391-945",
      "launched": "2026-10-09T07:36 UTC",
-     "status": "running"
+     "status": "cut by the usage limit at 2026-10-09T07:55 UTC (window reset 09:50 UTC): sources:formulation and sources:reception finished, sources:evidence and spine failed; its journal is the state of the continuation"
+    },
+    {
+     "part": "r1-sources",
+     "task": "w03jm2mgo",
+     "wf": "wf_ced71303-102",
+     "launched": "2026-10-09T09:55 UTC",
+     "status": "running",
+     "bundle": "cont/security-hygiene-in-ordinary-code/continue-security-hygiene-in-ordinary-code-sources.js (research-continue.py --journal <r1 journal> --from-bundle bundles/security-hygiene-in-ordinary-code.js: the two finished layers carried, the workflow runs evidence, the spine and every stage after)"
     }
    ]
   }
