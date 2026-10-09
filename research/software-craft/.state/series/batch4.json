@@ -106,15 +106,15 @@
      "wf": "wf_952078a5-411",
      "note": "the 1 closing edit the usage cut took from r1-1of2; built the same way",
      "status": "done: 1 card (suppression-names-diagnostic), 1 agent, 73k tokens"
-    }
-   ],
-   "queued": [
+    },
     {
      "part": "r1-2of2",
-     "bundle": "<scratch>/cont/build-warnings-static-analysis-ci/r1/continue-build-warnings-static-analysis-ci-2of2.js",
-     "rules": 5
+     "task": "wlbcu7fyv",
+     "wf": "wf_74445f69-de9",
+     "note": "the plain round-1 bundle of the second five rules (verdicts, fixes, second verdicts, closing edits), launched after the usage cut under the cap of two"
     }
-   ]
+   ],
+   "queued": []
   },
   "dependency-management": {
    "runs": [
@@ -139,16 +139,16 @@
      "task": "w4256cf6i",
      "wf": "wf_b9b93d6b-cab",
      "note": "3 second verdicts and 2 closing edits the usage cut took from r1-1of2"
-    }
-   ],
-   "queued": [
+    },
     {
      "part": "r2-2of2",
-     "bundle": "<scratch>/cont/dependency-management/r2-2of2/continue-dependency-management-finish-1of1.js",
-     "rules": 5,
-     "note": "2 second verdicts and 3 closing edits"
+     "task": "ww8ex0935",
+     "wf": "wf_9f13fbec-afd",
+     "status": "done: 5 cards, 7 agents, 0.80M tokens",
+     "note": "2 second verdicts and 3 closing edits the usage cut took from r1-2of2"
     }
-   ]
+   ],
+   "queued": []
   }
  },
  "launch_stop": "2026-10-08T15:05 UTC: operator instruction \u2014 finish the running workflows, launch no new ones; then update HANDOVER for the next session, save everything and push. Not started after this: runtime-configuration, internationalization-and-text-encoding, reading-and-understanding-code, code-review-as-author-and-reviewer, documentation-beyond-comments, parsing-and-grammar-based-input, security-hygiene-in-ordinary-code.",
