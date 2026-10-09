@@ -111,10 +111,12 @@
      "part": "r1-2of2",
      "task": "wlbcu7fyv",
      "wf": "wf_74445f69-de9",
-     "note": "the plain round-1 bundle of the second five rules (verdicts, fixes, second verdicts, closing edits), launched after the usage cut under the cap of two"
+     "note": "the plain round-1 bundle of the second five rules (verdicts, fixes, second verdicts, closing edits), launched after the usage cut under the cap of two",
+     "status": "done: 5 cards, 18 agents, 2.07M tokens"
     }
    ],
-   "queued": []
+   "queued": [],
+   "status": "done: 10 cards (TOOL-12 to TOOL-21), 2 pending entries; 55 agents over four runs (16 fresh, 19 in r1-1of2, 1 in r2-1of2, 18 in r1-2of2), about 4.4M sub-agent tokens in the continuation runs"
   },
   "dependency-management": {
    "runs": [

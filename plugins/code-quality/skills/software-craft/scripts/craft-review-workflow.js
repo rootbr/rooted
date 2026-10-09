@@ -430,7 +430,7 @@ const DEFER_TO = {
   'DSN-66': ['API-01', 'DSN-69'], // a private collection returned as a copy or view: where the type keeps an invariant API-01 owns the leaking accessor; an accessor of a type presented as immutable that returns its stored mutable collection is DSN-69's (reviewer, design)
   'CODE-73': 'CODE-19', // a multiway branch handles an unmatched value: over an enumerated type CODE-19 owns the missing member
   'CODE-74': 'CODE-13', // an if chain on one value is preferably a switch: a value-returning chain is CODE-13's lookup table
-  'CODE-64': 'CODE-75', // an ambiguous construct carries an intended-marker: an unmarked switch fall-through is CODE-75's finding
+  'CODE-64': ['CODE-75', 'TOOL-15'], // an ambiguous construct carries an intended-marker: an unmarked switch fall-through is CODE-75's finding; a suppression with no stated reason is TOOL-15's finding (spot-read, build-warnings)
   'CHG-01': ['API-20', 'CHG-02', 'CHG-03'], // a refactoring alters no observable behaviour: a published element is API-20's, an unbound subtype CHG-02's, a stale run-time use CHG-03's (reviewer, change)
   'TST-17': ['TST-25', 'TST-46'], // a test body runs the same statements every execution: a branch that encloses an assertion the test can skip is TST-25's finding; an early return in a property body is TST-46's
   'TST-25': 'TST-46', // no assertion sits where the test can skip it: an early return that skips a property's assertions is TST-46's discard finding
@@ -445,7 +445,7 @@ const DEFER_TO = {
   'CHG-15': 'CHG-29', // one logical change per change: hand edits, dependency updates or reformatting inside a tool-generated change are CHG-29's finding
   'CHG-08': ['CHG-30', 'CHG-31', 'CHG-35'], // an unreferenced private declaration is removed: a migration leftover is CHG-30's, code only a retired flag's branch reached CHG-31's, temporary code under a paid marker CHG-35's (reviewer, change)
   'CHG-33': ['CODE-59', 'DSN-21', 'DSN-26', 'CODE-03', 'CODE-11', 'CODE-26', 'CODE-36'], // added code beside debt meets the clean-code bar: style forms, repeated bodies, re-implemented jobs, names, magic numbers and long routines belong to their own cards (reviewer, change)
-  'CHG-34': 'CODE-62', // a shortcut ships with a tracked debt marker: a marker that lacks its context pointer is CODE-62's finding
+  'CHG-34': ['CODE-62', 'TOOL-15'], // a shortcut ships with a tracked debt marker: a marker that lacks its context pointer is CODE-62's finding; a temporary suppression without its follow-up task is TOOL-15's (spot-read, build-warnings)
   'ERR-48': 'PRF-05', // operational messages go through the logging facility: a print added while hunting a failure is PRF-05's remnant finding
   'PRF-02': 'ERR-02', // a bug fix corrects the fault, not the failure: an error swallowed where it is raised is ERR-02's finding
   'PRF-03': 'DSN-20', // a bug fix corrects the same mistake where it repeats: a verbatim copy of the fixed block is DSN-20's duplicated-code finding
@@ -501,6 +501,10 @@ const DEFER_TO = {
   'DSN-24': 'CHG-27', // a schema is declared once: a hand edit of marked generated output inside a migration is CHG-27's finding (reviewer, design)
   'PRF-23': 'PRF-15', // two input-sized collections are matched through a hashed index: a membership test or linear search of one collection inside a loop over the other is PRF-15's finding (reviewer, performance)
   'PRF-17': 'PRF-19', // a loop appends to a builder: a prepend that builds a new sequence from one element plus the accumulated one is PRF-19's front-insertion finding (reviewer, performance)
+  'CODE-62': 'TOOL-15', // a marker points to its context: a suppression marked temporary without its follow-up task is TOOL-15's finding (spot-read, build-warnings)
+  'TOOL-17': ['TST-38', 'TST-29'], // a failing check is disabled with its reason and issue: a skip mark on a test with no reason is TST-38's finding, a rerun added without a tracked record TST-29's; TOOL-17 keeps commented-out checks, deletions and the strict expected-failure form (spot-read, build-warnings)
+  'TOOL-14': ['CODE-25', 'CHG-10'], // a finding is fixed before it is suppressed: a suppression or blank assignment that silences an unused local is CODE-25's finding, a blank declaration that silences an unused import CHG-10's (spot-read, build-warnings)
+  'CODE-72': 'TOOL-17', // commented-out code is deleted: a commented-out failing test or check is TOOL-17's finding, whose fix keeps it under a skip mark (spot-read, build-warnings)
 }
 const ownersOf = ruleId => [DEFER_TO[ruleId] || []].flat()
 const SEV_RANK = { major: 0, minor: 1, suggestion: 2 }
