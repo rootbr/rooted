@@ -2,8 +2,8 @@
 title: A routine callable from outside its module checks, before it uses or stores a value, each condition on its arguments and its object's state that its correctness needs and its types do not enforce, and fails there when one is violated
 rule_id: ERR-13
 domain: errors
-step: [design, implement, handle-errors, review]
-applies_to: [universal]
+step: [design, implement, handle-errors]
+applies_to: [public-api]
 triggers: ['^\s*(public|protected)\b[^=;]*\w\s*\(', '^\s*export\s+(default\s+)?((async\s+)?function\b|(const|let)\s+\w+\s*(:[^=]+)?=\s*(async\s+)?(<[^>]*>\s*)?\(\s*\w)|^\s*constructor\s*\(\s*(public\s+|private\s+|protected\s+|readonly\s+)*\w', '^\s*(async\s+)?def\s+((?!_)\w+|__\w+__)\s*\(', '^func\s+(\([^)]*\)\s*)?[A-Z]\w*\s*(\[[^\]]*\])?\(', '^\s*pub\s+(const\s+|async\s+|unsafe\s+)*fn\s+\w+', '^\s*(static\s+)?(async\s+)?(?!(if|for|while|switch|catch|return|function)\b)[a-z]\w*\s*(<[^>]*>)?\s*\(\s*\w+\??\s*:\s*\S']
 scope: file
 check_kind: semantic

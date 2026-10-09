@@ -2,11 +2,11 @@
 title: A retry made for a waiting caller stops at a finite cap on attempts or total time and at the caller's deadline, so the failure reaches the caller
 rule_id: ERR-34
 domain: errors
-step: [implement, handle-errors, review]
+step: [implement, handle-errors]
 applies_to: [service-boundary]
 triggers: ['^\s*while\s*\(?\s*(true|True|1)\s*\)?\s*[:{]?\s*$|^\s*(loop|for)\s*\{\s*$|\bfor\b[^;{]*;\s*;', '(?i)(retry|backoff)\w*\s*(\(|[.]|::|$)', '(?i)\b(max_?(retries|attempts|tries)|retry_?(max|limit|count))\s*:?[=:]\s*(-1|None|null|nil|math[.]MaxInt\w*|Integer[.]MAX_VALUE|Infinity|u(32|64|size)::MAX|float\(.inf.\))', '\b(attempts?|retries|retry_?count|retryCount|tries)\s*(\+\+|\+=\s*1)']
 scope: file
-check_kind: mechanical
+check_kind: semantic
 severity_default: major
 ---
 

@@ -2,7 +2,7 @@
 title: A null, nil, None or undefined check whose outcome the routine's own code or a compile-time type already fixes is removed, or changed to test the value it was meant to test
 rule_id: ERR-15
 domain: errors
-step: [implement, refactor, review]
+step: [implement, refactor]
 applies_to: [universal]
 triggers: ['(!==?|===?)\s*(null|nil|undefined|None)\b|\b(null|nil|undefined)\s*(!==?|===?)', '\bis\s+(not\s+)?None\b', '\b(Objects[.](isNull|nonNull|requireNonNull)|checkNotNull|verifyNotNull)\(|[.]is_(some|none)\(', '\w\?[.(\[]|\?\?=?']
 scope: file

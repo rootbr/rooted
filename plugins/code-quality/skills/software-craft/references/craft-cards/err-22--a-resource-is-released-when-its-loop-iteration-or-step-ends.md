@@ -2,7 +2,7 @@
 title: A resource acquired for one loop iteration or one step of a routine is released when that iteration or step ends, not held until the enclosing routine returns
 rule_id: ERR-22
 domain: errors
-step: [implement, refactor, review]
+step: [implement, refactor]
 applies_to: [universal]
 triggers: ['^\s*defer\s+([\w.]+[.](Close|Release|Stop|Rollback|Remove)|cancel\w*)\(', '[.]enter_(async_)?context\(|\bstack[.](defer|adopt|use)\(', '(?<![=!<>])=\s*(await\s+)?(new\s+\w*(InputStream|OutputStream|Reader|Writer|Socket|Channel|Scanner)\b|([\w.:]*[.:])?(open|openSync|urlopen|connect|getConnection|createConnection|createReadStream|createWriteStream|Open|Create|OpenFile|CreateTemp|Dial|DialContext)\s*\()', '^\s*(async\s+)?with\s+.+\bas\s+\w+|\btry\s*\(\s*(final\s+)?[\w.<>]+\s+\w+\s*=|\b(await\s+)?using\s+\w+\s*=']
 scope: file

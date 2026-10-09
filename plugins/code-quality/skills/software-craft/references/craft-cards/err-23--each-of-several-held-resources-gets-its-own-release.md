@@ -2,11 +2,11 @@
 title: Two or more resources held at once are released each by its own scoped release or release block, never by consecutive calls in one cleanup block that a failing earlier call cuts short, so a dependent resource is released before the one it depends on and a failing release skips none of the others
 rule_id: ERR-23
 domain: errors
-step: [implement, handle-errors, review]
+step: [implement, handle-errors]
 applies_to: [universal]
 triggers: ['^\s*(\}\s*)?finally\s*(:|\{)', '\bif\b.*\b(a?close|Close|dispose|release|Release)\(', '^\s*((await\s+|[\w.]+\s*:?=\s*)?([\w.\[\]()]*[.])?(a?close|Close|dispose|release|disconnect|destroy|unlink|cancel|Stop|Release)\(\s*\)\s*;?\s*)+$']
 scope: file
-check_kind: mechanical
+check_kind: semantic
 severity_default: major
 ---
 

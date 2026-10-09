@@ -2,7 +2,7 @@
 title: The release of a resource is registered immediately after the acquisition is known to have succeeded, never before its error is checked and never after a later step that can fail
 rule_id: ERR-30
 domain: errors
-step: [implement, handle-errors, review]
+step: [implement, handle-errors]
 applies_to: [universal]
 triggers: ['^\s*defer\s+[\w.]+[.](Close|Release|Stop|Rollback|Remove)\(', '^\s*(\}\s*)?finally\s*(:|\{)', '\bif\s*\(?\s*(\w*(stream|Stream|reader|Reader|writer|Writer|conn|Conn|sock|Sock|file|File|fh|fd|stmt|channel|Channel|handle|Handle)\w*|in|out|f|fp|fis|fos|br|bw|rs|r|w)\s*(!=|!==|is\s+not)\s*(null|nil|None|undefined)\b', '\bnew\s+\w+\s*\([^()]*\bnew\s+\w*(InputStream|OutputStream|Reader|Writer|Socket|Channel)\s*\(', '\w\(\s*(\w+\s*=\s*)?open\(', '[.](defer|adopt)\(']
 scope: hunk

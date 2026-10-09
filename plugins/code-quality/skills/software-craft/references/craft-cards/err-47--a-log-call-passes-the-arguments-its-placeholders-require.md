@@ -2,7 +2,7 @@
 title: A log call passes exactly the arguments its placeholders and key-value pairs require and never formats a lone varying string as its template
 rule_id: ERR-47
 domain: errors
-step: [implement, review]
+step: [implement]
 applies_to: [universal]
 triggers: ['(?i)[.](debug|info|warn|warning|error|exception|critical|fatal|trace|log|printf)\w*\(\s*([\w.]+\s*,\s*)?["''][^"'']*(%[-+ #0]*\d*([.]\d+)?[a-z]|%\(\w+\)|\{\})', '\b(trace|debug|info|warn|error|log)!\(\s*([^"\s)]|"[^"]*\{)', '(?i)[.](debug|info|warn|warning|error|exception|critical|fatal|trace|log)(f|w|context|attrs)?\(\s*[a-z_][\w.]*\s*,', '(?i)\b\w*(printf|fatalf|panicf|debugf|infof|warnf|warningf|errorf|tracef|logf)\(\s*[a-z_][\w.]*\s*\)', '[.](Debug|Info|Warn|Error|Log)(Context|Attrs|w|S)?\(\s*([\w.]+\s*,\s*){0,2}"']
 scope: hunk

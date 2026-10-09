@@ -2,7 +2,7 @@
 title: A remote call is retried at one layer of its call path, and a retry wrapped around a client or callee that already retries turns the inner retries off
 rule_id: ERR-35
 domain: errors
-step: [design, implement, handle-errors, review]
+step: [design, implement, handle-errors]
 applies_to: [service-boundary, library]
 triggers: ['(?i)\b(max_?retries|max_?attempts|retry_?count|max_?tries|retries|attempts?)\s*[=:(]|\bretry_?policy\b\W{0,3}[=:]|\benableRetr(y|ies)\s*\(|\bfor\b.*\b(attempt|retr(y|ies)|tries)\w*\b', '(?i)\bretryOnConnectionFailure\s*\(\s*true|\bHTTPAdapter\s*\([^)]*max_retries|\bretryablehttp[.]NewClient\b|\bwith_?retr(y|ies)\w*\s*\(', '\b[Rr]etry(ing)?\s*(::|[.])\s*\w+\s*\(|[Rr]etr(y|ies|ying)\w*\s*\(|@retry\b|@Retryable\b|\bRetry(Policy|Template|Config|Strategy|Handler|Interceptor)\w*\b']
 scope: callers

@@ -2,7 +2,7 @@
 title: An expression inside a log statement has no side effect that later code relies on, because the facility may skip evaluating it
 rule_id: ERR-51
 domain: errors
-step: [implement, review]
+step: [implement]
 applies_to: [universal]
 triggers: ['(?i)([.](debug|info|warn|warning|error|trace|fine)\w*|\blog\w*[.]\w+|\b(debug|info|warn|error|trace)!)\(.*(\w\+\+|\+\+\w|\w--(?!-)|--\w|<-\s*\w|\+=|:=|[.](pop|pop_front|next|poll|take|remove|shift|incrementAndGet|getAndIncrement|send|recv)\(|\bnext\()', '(?i)\bis(debug|trace|info|warn|error|level)enabled\(|\bis(loggable|enabledfor)\(|[.]enabled\([^)]*level|\blog_enabled!\(']
 scope: hunk

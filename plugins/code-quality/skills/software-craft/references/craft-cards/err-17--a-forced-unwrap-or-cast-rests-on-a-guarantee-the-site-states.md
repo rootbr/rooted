@@ -2,7 +2,7 @@
 title: A forced unwrap, non-null assertion or unchecked cast is written only where the surrounding code guarantees the value is present and of the asserted type, and the site states that guarantee
 rule_id: ERR-17
 domain: errors
-step: [implement, review]
+step: [implement]
 applies_to: [universal]
 triggers: ['[\w)\]]!([.),;\]}]|\[(?<!\bvec!\[)|\s*$)', '[.](unwrap|expect)(_err|_unchecked)?\(|[.]orElseThrow\(\s*\)|\b(\w*([Oo]pt|Optional|[Mm]aybe)\w*|(find\w*|max|min|reduce)\(.*\))[.]get\(\)', '[\w)\]][.]\((?!type\))\*?[\w.\[\]]+\)', '\bas\s+(?!const\b)([A-Z]\w*|string|number|boolean|bigint|any|object|symbol)\b', '\b(typing[.])?cast\(\s*[\w\x22\x27\[]', '\(\s*[A-Z]\w*(\s*<[^<>()]*>)?(\s*\[\])*\s*\)\s*[\w(]']
 scope: file

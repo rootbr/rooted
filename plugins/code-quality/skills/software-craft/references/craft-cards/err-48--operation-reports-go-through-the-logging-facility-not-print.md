@@ -2,11 +2,11 @@
 title: A message that reports on a program's own operation goes through the logging facility rather than a print or console call, while a command-line program's output to its user may be printed
 rule_id: ERR-48
 domain: errors
-step: [implement, handle-errors, review]
+step: [implement, handle-errors]
 applies_to: [universal]
 triggers: ['\b(System[.](out|err)[.]print(ln|f)?|IO[.]print(ln)?)\(|[.]printStackTrace\(\)|\btraceback[.]print_exc(eption)?\(|\bdebug[.]PrintStack\(\)', '^\s*print(ln)?\(', '\bfmt[.](Print(ln|f)?\(|Fprint(ln|f)?\(\s*os[.]Std(out|err)\b)', '\bconsole[.](log|info|warn|error|debug|trace)\(', '\be?print(ln)?!\(', '\b(sys|process)[.]std(out|err)[.]write\(|\bos[.]Std(out|err)[.]Write(String)?\(|\bio::std(out|err)\(\)']
 scope: file
-check_kind: mechanical
+check_kind: semantic
 severity_default: minor
 ---
 

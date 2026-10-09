@@ -2,7 +2,7 @@
 title: Code that retries a failed remote call waits between attempts with a delay that grows, is capped and is randomized, from the second retry on
 rule_id: ERR-33
 domain: errors
-step: [implement, review]
+step: [implement]
 applies_to: [service-boundary]
 triggers: ['\b(time[.])?(sleep|delay)\s*\(\s*[\d._]+\s*\)|\bThread[.]sleep\s*\(\s*\d+|\btime[.]Sleep\s*\(\s*(\d+\s*\*\s*)?time[.]\w+\s*\)|\b(thread|time)::sleep\s*\(\s*Duration::from_\w+\s*\(\s*\d+|\bsetTimeout\s*\([^,]+,\s*[\d_]+\s*\)|\b2\s*\*\*\s*\w+|\bMath[.]pow\s*\(\s*2|\bmath[.]Pow\s*\(\s*2|\b1\s*<<\s*\w+|\b2\w*[.]pow\s*\(', '\b(attempts?|retries|retry_?count|retryCount|tries)\s*(\+\+|\+=\s*1)|(?i:\b(max_?)?(retries|attempts)\s*[=:(]\s*\d|\bRetry\s*\(\s*(total\s*=\s*)?\d|\bstop_after_attempt\s*\()', '\b(for|while|loop)\b.*([Aa]ttempt|ATTEMPT|[Rr]etr(y|ies)|RETR(Y|IES)|\btries\b|Tries\b|_tries\b)|(?i:\bbackoff_?(factor|multiplier)?\s*[=:]\s*0\b|\bwait_fixed\s*\(|(Fixed|Constant)Back[Oo]ff|\bfixed_?(delay|interval|wait)\b|\brandomi[sz]e\s*[=:]\s*false\b|\bwaitDuration\s*\(|retr(y|ies|ied|ying)|resubmit|reattempt|reschedul|re-?e?nqueue|requeue)']
 scope: hunk

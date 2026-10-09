@@ -3,7 +3,7 @@ title: A routine whose abstraction hides a lower layer translates that layer's e
 rule_id: ERR-05
 domain: errors
 step: [design, handle-errors]
-applies_to: [universal]
+applies_to: [public-api, service-boundary]
 triggers: ['\b(SQL|Sql|IO|Io|OS|Http|HTTP|Json|JSON|Xml|XML|Remote|Socket|Connection|Timeout)\w*(Exception|Error)\b', '\bexcept\s+\(?\s*(sqlite3|psycopg2?|requests|urllib3|botocore|sqlalchemy|redis)\b', '\bfmt[.]Errorf\([^)]*%w', '\berrors[.](Is|As)\([^)]*\b(sql|io|os|fs|net|http)[.]\w+', '\b(io|sqlx|reqwest|serde_json|rusqlite|hyper|diesel::result)::Error\b']
 scope: file
 check_kind: semantic

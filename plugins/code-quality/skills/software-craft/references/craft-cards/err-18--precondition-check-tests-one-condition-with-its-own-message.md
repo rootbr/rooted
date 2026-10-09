@@ -2,7 +2,7 @@
 title: Each precondition check tests one condition with its own message, so a failure names the precondition that was violated
 rule_id: ERR-18
 domain: errors
-step: [implement, review]
+step: [implement]
 applies_to: [universal]
 triggers: ['\b(check(Argument|State|NotNull|ElementIndex|PositionIndex)|require|requireNonNull|verify|invariant|isTrue|state|validState)\s*\(.*(&&|\|\|)', '^\s*assert\b.*(&&|\|\||\s(and|or)\s)', '\b(debug_)?(assert|ensure)!\s*\(.*(&&|\|\|)', '\bif\b.*(==|!=|\bis\b)\s*(null|nil|None|undefined)\b.*(\|\||\sor\s)|\bif\b.*(\|\||\sor\s).*(==|!=|\bis\b)\s*(not\s+)?(null|nil|None|undefined)\b', '\bif\b.*(\|\||\sor\s|!\s*\(.*&&|\bnot\s*\(.*\sand\s).*(\b(throw|raise|panic)\b|[{:]\s*$)', '\b((debug_)?(assert|ensure)!?|check(Argument|State)|isTrue|state|validState|require|verify|invariant)\s*\(\s*$', '^\s*(\|\||&&|or\s|and\s)|(\|\||&&)\s*$']
 scope: hunk

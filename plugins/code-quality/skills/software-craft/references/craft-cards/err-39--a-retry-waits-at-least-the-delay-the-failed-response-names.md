@@ -6,7 +6,7 @@ step: [implement, handle-errors]
 applies_to: [service-boundary]
 triggers: ['\b(413|429|503)\b', '(?i)too_?many_?requests|service_?unavailable|resource_?exhausted|\bthrottl|\bunavailable\b', '(?i)retr(y|ie[sd])|pushback|\battempt', '(?i)back[-_]?off']
 scope: file
-check_kind: mechanical
+check_kind: semantic
 severity_default: minor
 ---
 

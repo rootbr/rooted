@@ -2,7 +2,7 @@
 title: A call that changes state is retried only when it is idempotent, carries a client-generated idempotency key reused on every attempt, or failed in a way that shows it was never applied
 rule_id: ERR-38
 domain: errors
-step: [design, implement, handle-errors, review]
+step: [design, implement, handle-errors]
 applies_to: [service-boundary]
 triggers: ['(?i)\bidempoten(cy|t)\w*|\brequest_?id\b|\bIdempotency-Key\b|\ballowed_methods\s*=\s*None\b|\bmethod_whitelist\s*=\s*(None|False)\b|\bretryableStatusCodes\b', '\b(attempts?|retries|retry_?count|retryCount|tries)\s*(\+\+|\+=\s*1)', '\b(uuid4|randomUUID|uuid[.]New(String)?|Uuid::new_v4)\s*\(', '(?i)\bfor\b.*\b(attempt|retr(y|ies)|tries)\w*|\bp?retry(ing)?\w*\s*\(|@retry\b|@Retryable\b|\bRetry(Policy|Template|Config|Strategy)\w*\b']
 scope: file

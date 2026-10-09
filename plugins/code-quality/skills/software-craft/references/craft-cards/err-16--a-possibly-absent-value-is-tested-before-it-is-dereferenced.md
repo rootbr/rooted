@@ -2,7 +2,7 @@
 title: A value that its declared type, its producing call or a null test elsewhere in the routine says can be absent is tested for absence on each path before it is dereferenced
 rule_id: ERR-16
 domain: errors
-step: [implement, review]
+step: [implement]
 applies_to: [universal]
 triggers: ['[.](get|find|findFirst|lookup|getAttribute|getElementById|querySelector|closest|match|search|fullmatch|exec|readLine|readline|getProperty|getenv|getParameter|getHeader)\([^()]*(\([^()]*\))?[^()]*\)\s*([.]\s*[A-Za-z_]|\[)', '(!==?|===?)\s*(null|nil|undefined|None)\b|\b(null|nil|undefined)\s*(!==?|===?)|\bis\s+(not\s+)?None\b', '(\bOptional\[|:\s*[\w\[\], ]+\|\s*None\b|\|\s*(null|undefined)\b|@Nullable\b|\w\s+\*[\w.]+\s*[,)])', '\b\w+\?:\s*[\w\[{(]', '^\s*\w+\s*,\s*_\s*:?=\s*\S']
 scope: file

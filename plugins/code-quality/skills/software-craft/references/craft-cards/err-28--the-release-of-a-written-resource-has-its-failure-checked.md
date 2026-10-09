@@ -2,11 +2,11 @@
 title: The release of a resource that was written to has its failure checked on the success path, and is never left only to a deferred or automatic release that discards the error
 rule_id: ERR-28
 domain: errors
-step: [implement, handle-errors, review]
+step: [implement, handle-errors]
 applies_to: [universal]
 triggers: ['\bdefer\s+[\w.]+[.](Close|Sync|Flush)\(\s*\)', '\b_\s*=\s*[\w.]+[.](Close|Sync|Flush)\(\s*\)', '\bcloseQuietly\(', '\blet\s+_\s*=\s*[\w.]+[.](flush|sync_all|sync_data)\(', '[.](close|end|flush)\(\s*\)\s*[.]catch\(\s*(\(\s*\w*\s*\)|\w+)\s*=>\s*(\{\s*\}|undefined|null)']
 scope: file
-check_kind: mechanical
+check_kind: semantic
 severity_default: major
 ---
 

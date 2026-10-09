@@ -2,7 +2,7 @@
 title: A non-memory resource is released by an explicit call or the scoped-release construct, never only by a finalizer, a cleaner or garbage collection, which may serve at most as a backstop
 rule_id: ERR-26
 domain: errors
-step: [design, implement, review]
+step: [design, implement]
 applies_to: [garbage-collected]
 triggers: ['\bdef\s+__del__\s*\(', '\bvoid\s+finalize\s*\(\s*\)', '\bruntime[.](SetFinalizer|AddCleanup)\b', '\bFinalizationRegistry\b', '\bCleaner[.]create\(|[.]register\(\s*this\s*,|\bweakref[.]finalize\(|\bfinalize\(\s*self\s*,']
 scope: file

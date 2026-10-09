@@ -1,0 +1,669 @@
+{
+ "domain": "errors",
+ "reviewer": "one read-only agent (claude-opus-5-5, effort max), 2026-10-09T06:41 to 07:25 UTC, 135 turns, 43 minutes (a first launch at 06:15 was stopped to honour the cap of one active task; the sub-agent token total of the task notification was not captured); applied by the orchestrator per HANDOVER 5.8 in the commit that adds this file",
+ "cards_read": [
+  "ERR-01",
+  "ERR-02",
+  "ERR-03",
+  "ERR-04",
+  "ERR-05",
+  "ERR-06",
+  "ERR-07",
+  "ERR-08",
+  "ERR-09",
+  "ERR-10",
+  "ERR-11",
+  "ERR-12",
+  "ERR-13",
+  "ERR-14",
+  "ERR-15",
+  "ERR-16",
+  "ERR-17",
+  "ERR-18",
+  "ERR-19",
+  "ERR-20",
+  "ERR-21",
+  "ERR-22",
+  "ERR-23",
+  "ERR-24",
+  "ERR-25",
+  "ERR-26",
+  "ERR-27",
+  "ERR-28",
+  "ERR-29",
+  "ERR-30",
+  "ERR-31",
+  "ERR-32",
+  "ERR-33",
+  "ERR-34",
+  "ERR-35",
+  "ERR-36",
+  "ERR-37",
+  "ERR-38",
+  "ERR-39",
+  "ERR-40",
+  "ERR-41",
+  "ERR-42",
+  "ERR-43",
+  "ERR-44",
+  "ERR-45",
+  "ERR-46",
+  "ERR-47",
+  "ERR-48",
+  "ERR-49",
+  "ERR-50",
+  "ERR-51",
+  "API-01",
+  "API-03",
+  "API-04",
+  "API-08",
+  "API-11",
+  "API-15",
+  "CODE-20",
+  "CHG-37"
+ ],
+ "overlaps": [
+  {
+   "deferring": "ERR-01",
+   "owner": "ERR-11",
+   "line_kind": "A raise, throw or return of a new error inside a handler or error branch that does not pass the caught error, e.g. `raise ConfigError(f\"cannot load {path}\")` under `except OSError:` (ERR-11's own bad Example; ERR-01 trigger 1 and ERR-11 trigger 2 both match it).",
+   "validator_a": "Does an error created or wrapped on an added line leave out an operand or a caught cause the site holds, name no operation its routine knows, or add only a bare failure note or a repetition of the wrapped error?",
+   "validator_b": "Does an added line create an error in place of a caught or returned one that neither carries the original as its cause nor, under a cut on purpose, carries the original's relevant details in its message or fields?",
+   "taxonomy_owner": "Both cards come from `error-and-exception-handling` (row: SW4.5, CC8, PP \"Dead Programs Tell No Lies\"); the cause is ERR-11's title concept, while ERR-01 keeps the operation and the operands. ERR-11's Limits already cede the rest of the message (\"what else the replacement's message names ... are judged by their own rules\"); ERR-01's Limits cede nothing back."
+  },
+  {
+   "deferring": "ERR-03",
+   "owner": "ERR-12",
+   "line_kind": "A panic or abort added on an expected failure such as malformed input or a rate-limit reply, in a file whose routines return errors, e.g. `panic(fmt.Sprintf(\"bad port %q\", s))` in a parser (ERR-03 trigger `\\bpanic!?\\(`, ERR-12 trigger `\\b(panic!?|fatalError|preconditionFailure)\\(`). ERR-03's Thesis states the same rule: \"it reserves a process abort (a panic) for a broken invariant or an unrecoverable state rather than an expected failure such as malformed input or a rate-limit response\".",
+   "validator_a": "Does this routine report an execution failure through a status code, sentinel, error-carrying object, throw or abort while its file or codebase reports failures through a different mechanism?",
+   "validator_b": "Does an added line outside the program's entry point, its tests and the start-up code of a program that owns its process stop the process — a panic, an exit, an abort, a fatal log, an unwrap or a stop-on-failure helper — on a failure that is expected in normal operation, where the routine could return or raise an error to its caller instead?",
+   "taxonomy_owner": "Both `error-and-exception-handling`; the abort-on-expected-failure concept is ERR-12's title, and ERR-03's Limits repeat ERR-12's exemptions (\"a panic on a broken invariant, ... a failed start-up ..., in tests, examples and prototypes, or one recovered into an error value before it leaves the package\")."
+  },
+  {
+   "deferring": "ERR-04",
+   "owner": "ERR-06",
+   "line_kind": "A handler that recovers an assertion failure or panic raised for a broken invariant and continues on a substitute, e.g. `except AssertionError: return 0` (ERR-04 trigger `^\\s*except\\b`, ERR-06 trigger `\\b(except|catch)\\b.*\\bAssertionError\\b`).",
+   "validator_a": "Does execution continue past an added handler or fallback into code that uses a result the failed step never produced or performs a step the failed one guarded, with no propagation, or does the handler recover or pass the failure on while an object that outlives the routine stays partly modified by the failed step, with no restore?",
+   "validator_b": "Does an added branch continue on a substitute value or a logged warning after meeting a broken assumption, contract or invariant that the code after it relies on, or return an error from a check that found the internal state unrecoverable, or does an added handler recover such a stop only to keep the failed operation running, or, where the stop reported an unrecoverable internal state, only to keep the program running?",
+   "taxonomy_owner": "Both `error-and-exception-handling`; continuing past a broken invariant is ERR-06's title concept (row locator PP \"Dead Programs Tell No Lies\"), and neither card's Limits names the other's case."
+  },
+  {
+   "deferring": "ERR-07",
+   "owner": "ERR-28",
+   "line_kind": "An explicit discard of a written file's close, flush or sync error, e.g. `_ = f.Close()` or `let _ = writer.flush();` (ERR-07 triggers 1 and 2, ERR-28 triggers 2 and 4).",
+   "validator_a": "Does an added line call something whose returned value signals failure and leave that value unused, overwrite it before any test, or discard it without a comment stating why dropping the failure is safe?",
+   "validator_b": "Does an added line leave the release of a file or output stream the routine wrote to only to a deferred, automatic or quiet release that discards its error, with no release on the success path whose failure is checked?",
+   "taxonomy_owner": "ERR-28 (`resource-management-and-ownership`) is the card for the release error of a written resource. ERR-07 (`error-and-exception-handling`) cedes \"the release of a resource on a cleanup path\" in its Limits, but its Validator's skip list (\"a callee whose result signals no failure, a print to the standard output or error stream, a future held in a test in a variable named as unused, and a callee on an exclusion list the project context states\") skips no release, so it flags this line too."
+  },
+  {
+   "deferring": "ERR-02",
+   "owner": "ERR-28",
+   "line_kind": "An empty rejection handler on a written stream's release, e.g. `stream.end().catch(() => {});` (ERR-02 trigger 3, ERR-28 trigger 5).",
+   "validator_a": "Does a handler added in this hunk drop the error — an empty body, a lone no-op, only a TODO or FIXME, only a bare return that hands the caller neither the error nor a result that shows the failure, or only a printed stack trace before execution continues — with no comment stating why dropping it is safe?",
+   "validator_b": "Does an added line leave the release of a file or output stream the routine wrote to only to a deferred, automatic or quiet release that discards its error, with no release on the success path whose failure is checked?",
+   "taxonomy_owner": "ERR-28 (`resource-management-and-ownership`) owns a discarded release error of a written resource; ERR-02 (`error-and-exception-handling`) is the general silent-handler card and its Limits name no written resource."
+  },
+  {
+   "deferring": "ERR-23",
+   "owner": "ERR-25",
+   "line_kind": "Consecutive release calls inside a type's own release operation, e.g. ERR-25's bad Example `[Symbol.dispose]() { this.file.close(); this.conn.close(); }` (ERR-23 trigger 3 matches the close lines, ERR-25 trigger 4 the method header; ERR-23 quotes the release calls, ERR-25 the declaration and the step whose failure skips a later release).",
+   "validator_a": "Does one hand-written cleanup block release two or more resources held at once so that a throw or a return from an earlier release skips a later one, or so that a resource is released before another that depends on it?",
+   "validator_b": "Does this release operation leave a resource unreleased when an earlier step fails, report a failure before marking the object released, release an underlying handle again on a second call, or, as a destructor run during unwinding, let a teardown error escape or swallow it with no separate operation that returns it?",
+   "taxonomy_owner": "Both `resource-management-and-ownership`; a type's release operation is ERR-25's title, and ERR-23's Thesis reaches into it: \"The same holds for an object's own release method that releases several resources the object holds.\""
+  },
+  {
+   "deferring": "ERR-27",
+   "owner": "ERR-30",
+   "line_kind": "An acquisition whose deferred close or scoped release is registered only after a later call that can fail, e.g. `f, err := os.Create(p)` ... `if err := f.Chmod(0o600); err != nil { return err }` ... `defer f.Close()` (ERR-27 trigger 1 on the acquisition, ERR-30 trigger 1 on the defer; ERR-27's Thesis: \"and so does a construct or a protected block that takes hold only after such an exit\").",
+   "validator_a": "Does a routine in the added lines acquire a resource it releases itself, with the release written so that an exit between the acquisition and the release — an early return, a break or a continue, a thrown or propagated error — leaves the routine without releasing it?",
+   "validator_b": "Is the release of a resource acquired in an added line registered before its acquisition's error check, after a later call that can fail, or never because the resource was created inside a wrapper's constructor that can fail, or is the resource released with no existence test in a cleanup that also runs when its acquisition failed?",
+   "taxonomy_owner": "Both `resource-management-and-ownership`; registration placement is ERR-30's title. ERR-30's Limits cede \"a release made by hand with no registration at all\" to ERR-27, but ERR-27's Limits do not cede the late registration."
+  },
+  {
+   "deferring": "ERR-45",
+   "owner": "ERR-02",
+   "line_kind": "An empty or no-op handler for an error the code does not anticipate, with no comment, e.g. `} catch (Exception e) {}` or `except Exception: pass` (ERR-45 trigger 2, ERR-02 triggers 2 and 4).",
+   "validator_a": "Does an added handler or fallback let execution continue past an error it does not anticipate, substituting a value, skipping the work or moving on to the next unit without raising, returning or flagging the failure, with no log statement that records the error at warning severity or higher?",
+   "validator_b": "Does a handler added in this hunk drop the error — an empty body, a lone no-op, only a TODO or FIXME, only a bare return that hands the caller neither the error nor a result that shows the failure, or only a printed stack trace before execution continues — with no comment stating why dropping it is safe?",
+   "taxonomy_owner": "Acting on a caught error is `error-and-exception-handling`, ERR-02's title (\"an empty handler, a bare pass, a TODO or a printed stack trace does not count as acting\"); ERR-45 (`logging-and-diagnostic-output`) keeps the handlers that substitute or skip with no warning-level record, which ERR-02 passes as recovery."
+  },
+  {
+   "deferring": "ERR-45",
+   "owner": "ERR-08",
+   "line_kind": "A catch-all handler in an ordinary routine that goes on with a default or skipped work and records nothing, e.g. ERR-45's own bad line `const settings = await loadSettings(accountId).catch(() => DEFAULT_SETTINGS);` (ERR-45 trigger 5 and ERR-08 trigger 4, both `[.]catch\\(`).",
+   "validator_a": "Does an added handler or fallback let execution continue past an error it does not anticipate, substituting a value, skipping the work or moving on to the next unit without raising, returning or flagging the failure, with no log statement that records the error at warning severity or higher?",
+   "validator_b": "Does an added handler outside an isolation point receive every error, or every error of a broad family, through the root type or a base type that spans unrelated errors, an untyped clause or a recovery of every panic, and, without re-raising the errors it has not tested for, either abort or exit the process or go on without recording them with their stack trace?",
+   "taxonomy_owner": "Catch-all handling is `error-and-exception-handling` (ERR-08; the design note's ownership row keeps \"the local handling of a failure\" there). ERR-45's test for an unanticipated error (\"a bare or base-type clause or a callback or branch that never inspects which error arrived\") is ERR-08's catch-all test, and ERR-08 already asks whether such a handler goes on \"without recording them with their stack trace\"."
+  },
+  {
+   "deferring": "ERR-45",
+   "owner": "ERR-31",
+   "line_kind": "A catch-all around a remote call that returns a cached or default value with no log, metric or mark, e.g. `} catch (Exception e) { return cache.get(key); }` (ERR-45 trigger 2, ERR-31 trigger 6).",
+   "validator_a": "Does an added handler or fallback let execution continue past an error it does not anticipate, substituting a value, skipping the work or moving on to the next unit without raising, returning or flagging the failure, with no log statement that records the error at warning severity or higher?",
+   "validator_b": "Does an added handler answer a failed remote call with a substitute that grants access, passes a validation or lets a transaction proceed, or with a substitute that neither marks itself nor leaves the failure recorded?",
+   "taxonomy_owner": "The design note's ownership row: \"A retried, timed-out or fallen-back remote call | `fault-tolerance-retries-timeouts-fallbacks` | `error-and-exception-handling` keeps the local handling of a failure\", so ERR-31 owns the unrecorded fallback; ERR-45 is `logging-and-diagnostic-output`."
+  },
+  {
+   "deferring": "ERR-48",
+   "owner": "ERR-02",
+   "line_kind": "A handler whose only action is a printed stack trace in service code, e.g. `} catch (IOException e) { e.printStackTrace(); }` (ERR-48 trigger 1, ERR-02 trigger 4). The existing entry `'ERR-48': 'PRF-05'` would become `'ERR-48': ['PRF-05', 'ERR-02']`.",
+   "validator_a": "Does an added print, console call, standard-stream write or stack-trace print report on the program's own operation, such as its status, a noted event or a handled failure, rather than give a command-line program's output to its user?",
+   "validator_b": "Does a handler added in this hunk drop the error — an empty body, a lone no-op, only a TODO or FIXME, only a bare return that hands the caller neither the error nor a result that shows the failure, or only a printed stack trace before execution continues — with no comment stating why dropping it is safe?",
+   "taxonomy_owner": "Handling a caught error is `error-and-exception-handling`: ERR-02's Thesis counts \"a stack trace printed before execution carries on\" as a dropped error; both cards cite PMD `AvoidPrintStackTrace` and Error Prone `CatchAndPrintStackTrace` for the same line."
+  },
+  {
+   "deferring": "ERR-14",
+   "owner": "API-04",
+   "line_kind": "A removable assertion on outside data or an empty lookup result, e.g. `assert port is not None, f\"no open port from {minimum}\"` after `find_open_port(minimum)` (API-04's bad Example and the Google Python guide counter-example ERR-14 also cites; both cards carry the trigger alternative `^\\s*assert\\b(?![!._])`).",
+   "validator_a": "Does an added assertion or debug-only check that a default launch or an optimized build leaves out test a condition that can be false while the module holding it is correct, namely an argument of a routine callable from outside the module or state that routine requires its caller to have set up, user input or other received data, a result from a dependency the code does not trust to meet its specification, or a result that reports an outcome no code is at fault for?",
+   "validator_b": "Does an added assertion outside test code check a condition that can be false while the program works correctly — outside data that no earlier code on the traced path has validated, a missing file, a lookup that can come back empty or a remote status — instead of testing it with ordinary control flow and reporting an error?",
+   "taxonomy_owner": "Assertions belong to `contracts-assertions-and-invariants` (API-04); ERR-14 (`defensive-programming`) keeps the public-routine argument that API-04's Validator leaves \"to its own rule\" and the debug-flag blocks API-04 does not reach."
+  },
+  {
+   "deferring": "ERR-13",
+   "owner": "API-01",
+   "line_kind": "A public setter or constructor that stores an argument the type's invariant constrains without checking it, e.g. ERR-13's bad `pub fn set_ratio(&mut self, ratio: f64) { self.ratio = ratio; }` or API-01's bad `func (s *Span) SetHi(hi int) { s.Hi = hi }`.",
+   "validator_a": "Does a routine callable from outside its module use or store an argument, or act on its object's state, under a condition its parameter types do not enforce, with no check of that condition before that statement, or with the check placed only after the routine has stored the value or changed its object's state?",
+   "validator_b": "Can code outside the type create an instance that breaks its invariant, or leave one broken, through a creation path that skips the check, a public operation that returns or fails with the condition false, or a field, setter, accessor or stored caller-owned object that changes the governed state without the check?",
+   "taxonomy_owner": "Invariants belong to `contracts-assertions-and-invariants` (API-01), as the existing `'DSN-31': 'API-01'` and `'DSN-45': ['API-01', 'DSN-70']` entries already treat them; ERR-13 (`defensive-programming`, which the ownership row lets keep \"preconditions and fail-fast inside the trust boundary\") keeps argument conditions that guard no stored invariant."
+  },
+  {
+   "deferring": "ERR-13",
+   "owner": "API-11",
+   "line_kind": "A public type's operation that reads state only an earlier set-up call establishes, with no state check, e.g. API-11's bad `public void write(String row) throws IOException { out.write(row); }` beside `public void open(Writer target) { out = target; }` (API-11 trigger 2 fires on the `open` line of the same hunk, ERR-13 trigger 1 on both signatures). ERR-13's Thesis covers it: \"the object in the state the call requires\".",
+   "validator_a": "Does a routine callable from outside its module use or store an argument, or act on its object's state, under a condition its parameter types do not enforce, with no check of that condition before that statement, or with the check placed only after the routine has stored the value or changed its object's state?",
+   "validator_b": "Does this public type leave its callers to remember an order of calls — an operation that, called before the call that sets up its state, passes type checking and is not rejected by a check of that state with an error, in a type that is not a workflow specifying that such a call has no effect, or a setter that refuses a value, or gives a different object, when it is called before another?",
+   "taxonomy_owner": "Call order on a public type is `api-design-and-use` (API-11). The existing `'CODE-18': ['API-11', 'ERR-13']` names both as owners (\"on a public type the unenforced call order is API-11's finding\") but no entry orders API-11 and ERR-13 against each other."
+  },
+  {
+   "deferring": "API-08",
+   "owner": "ERR-19",
+   "line_kind": "A discarded cancellation function or resource, e.g. `ctx, _ := context.WithTimeout(parent, 5*time.Second)` or a bare `open(path)` statement (API-08 triggers 4 and 6, ERR-19 triggers 1 and 4); ERR-19's Thesis lists \"a discarded cancellation function\" among its breaks.",
+   "validator_a": "Does an added line call an operation and drop the value it returns, where the operation does nothing but return that value, or where the API's documentation obliges the caller to call, close or keep that value?",
+   "validator_b": "Does an added line acquire a file, socket, connection, database statement or result set, stream, temporary file or directory, or cancellation function, or skip the destructor of a value holding one, in a routine that neither releases it before returning nor returns it, stores it in an object that owns it or passes it to a routine that takes over its release?",
+   "taxonomy_owner": "Releasing what a routine acquires is `resource-management-and-ownership` (row locator PP \"How to Balance Resources\"), so ERR-19 owns; API-08 (`api-design-and-use`) keeps pure results and tasks. API-08's Limits currently claim the opposite split (\"The rule judges the call that drops an obliged value; whether a held cleanup function is called, or a held resource closed, on every later path is judged by its own rule\"), so whichever direction is chosen, that sentence and the map should agree."
+  },
+  {
+   "deferring": "API-03",
+   "owner": "ERR-06",
+   "line_kind": "A default or wildcard branch that returns a substitute under a comment calling the case unreachable, e.g. ERR-06's bad `case _: return 0  # unreachable: the invariant says this cannot happen` (API-03 triggers 1 and 3, ERR-06 triggers 1 to 4); the fix for both is a stop in that branch.",
+   "validator_a": "Does an added comment state a condition that later code in the hunk, or the routine's callers through its result, rely on and that only a defect in this code or a dependency it trusts can make false, with no assertion or explicit check before that code in the enclosing routine and no type at the value's declaration enforcing it?",
+   "validator_b": "Does an added branch continue on a substitute value or a logged warning after meeting a broken assumption, contract or invariant that the code after it relies on, or return an error from a check that found the internal state unrecoverable, or does an added handler recover such a stop only to keep the failed operation running, or, where the stop reported an unrecoverable internal state, only to keep the program running?",
+   "taxonomy_owner": "Stopping instead of substituting on a broken invariant is `error-and-exception-handling` (ERR-06; row locator PP \"Dead Programs Tell No Lies\"); API-03 (`contracts-assertions-and-invariants`) keeps commented assumptions that no branch handles."
+  }
+ ],
+ "near_misses": [
+  {
+   "a": "ERR-02",
+   "b": "ERR-04",
+   "why_not": "Different questions about one handler: ERR-02 asks whether it is silent, ERR-04 whether the code after it runs on a missing result or a half-applied update. ERR-02 Limits: \"whether execution may continue after a recorded error depends on the program's invariants and is a separate question\"; ERR-04 Limits: \"whether a handler that drops an error silently is acceptable ... [is] judged by their own rules\"."
+  },
+  {
+   "a": "ERR-02",
+   "b": "ERR-07",
+   "why_not": "ERR-02 Limits: \"A call whose returned error is never bound or tested has no handler to judge and is outside this check.\""
+  },
+  {
+   "a": "ERR-02",
+   "b": "ERR-08",
+   "why_not": "An empty catch-all carries two defects with different fixes (a stated reason or a record vs a narrowed catch), and each card's Limits name the other's question: ERR-02 \"as are the breadth of the caught type\", ERR-08 \"an empty handler that catches a specific type ... [is] judged by their own rules\". The aggregation conflict rule keeps both findings."
+  },
+  {
+   "a": "ERR-08",
+   "b": "ERR-31",
+   "why_not": "Same catch-all-around-a-remote-call line, but ERR-08 asks about the breadth of the catch (\"the local handling of a failure\", which the ownership row keeps in error handling) and ERR-31 about whether the fallback is marked or recorded; ERR-08's fix narrows the catch, ERR-31's marks or records the substitute."
+  },
+  {
+   "a": "ERR-04",
+   "b": "ERR-31",
+   "why_not": "ERR-04 Limits: \"retries, timeouts and fallbacks on a remote call ... are judged by their own rules\"."
+  },
+  {
+   "a": "ERR-06",
+   "b": "ERR-12",
+   "why_not": "Complementary cases: ERR-12 Limits \"The rule does not reach a stop on a broken assumption, contract or invariant\"; ERR-06 Thesis \"A foreseeable failure, such as malformed input or a rate limit, is reported as an ordinary error and the program keeps running.\""
+  },
+  {
+   "a": "ERR-12",
+   "b": "ERR-17",
+   "why_not": "ERR-17's Validator sets aside \"an unwrap or expect on data from outside the program, whose stop on that expected failure is judged by its own rule\"."
+  },
+  {
+   "a": "ERR-12",
+   "b": "ERR-29",
+   "why_not": "Same exit line, different questions (a stop on an expected failure vs a pending release the exit skips); ERR-29 Limits: \"Whether a routine other than the entry point may stop the process at all, how it reports a failure to its caller ... are judged by their own rules.\""
+  },
+  {
+   "a": "ERR-13",
+   "b": "ERR-14",
+   "why_not": "ERR-13 Limits: \"whether a check the build can remove may stand in for this one ... [is] judged by their own rules\"; ERR-13 quotes the signature and first use, ERR-14 the assertion line."
+  },
+  {
+   "a": "ERR-15",
+   "b": "ERR-16",
+   "why_not": "Opposite sides of one disagreement, settled in ERR-15's Limits: \"Where an earlier use and the check disagree because the value can in fact be absent, the defect is the earlier use, not the check, and is judged by its own rule.\""
+  },
+  {
+   "a": "ERR-16",
+   "b": "ERR-17",
+   "why_not": "ERR-16's Validator: \"Skip a forced-unwrap or non-null assertion\"; ERR-17's Limits: \"a dereference of a possibly absent value with no forced form written ... [is] judged by their own rules\"."
+  },
+  {
+   "a": "ERR-01",
+   "b": "ERR-18",
+   "why_not": "ERR-18 Limits: \"What a message says beyond naming its precondition, such as the operation and the offending values ... [is] judged by their own rules\"."
+  },
+  {
+   "a": "ERR-01",
+   "b": "ERR-43",
+   "why_not": "ERR-01 Limits: \"The rule judges the error value: the wording of a log line that records it ... lie outside this rule.\""
+  },
+  {
+   "a": "ERR-24",
+   "b": "ERR-25",
+   "why_not": "ERR-24's question repeats ERR-25's first clause (\"without a release operation that releases every owned field on every path\"), but ERR-24 quotes \"the field assignment or field declaration\" and ERR-25 \"the release operation's declaration\", so the spans differ and a DEFER_TO entry cannot act."
+  },
+  {
+   "a": "ERR-19",
+   "b": "ERR-26",
+   "why_not": "Same concern (a release left to a finalizer), quoted on different lines: the acquiring line (ERR-19) vs the finalizer or cleanup registration (ERR-26); the same holds for ERR-24, which quotes the owning field."
+  },
+  {
+   "a": "ERR-32",
+   "b": "ERR-37",
+   "why_not": "ERR-37 Limits: \"Whether a remote call has a finite timeout at all, the value a timeout takes ... [is] judged by their own rules\"."
+  },
+  {
+   "a": "ERR-34",
+   "b": "ERR-36",
+   "why_not": "Both ask whether a retry stops at the caller's expired deadline (ERR-36: \"admit ... the caller's expired deadline\"), but ERR-34 quotes \"the loop header, retry decorator, policy construction or maximum-attempts setting\" and ERR-36 \"the added retry condition\", and their remaining questions differ (a cap vs the transient classification)."
+  },
+  {
+   "a": "ERR-34",
+   "b": "ERR-39",
+   "why_not": "ERR-39's question ends \"or wait past the call's deadline or send an attempt beyond its attempt cap\", which ERR-34 also asks, but ERR-39 quotes the line \"that sets or sleeps the delay\" and ERR-34 the loop header or policy; ERR-39's own Limits say \"how many attempts are allowed ... [is] judged by their own rules\"."
+  },
+  {
+   "a": "ERR-33",
+   "b": "ERR-39",
+   "why_not": "ERR-33's Validator: \"skip also a wait the server specified through a Retry-After header or a pushback\"."
+  },
+  {
+   "a": "ERR-36",
+   "b": "ERR-38",
+   "why_not": "Same retry line, different defects (a permanent failure retried vs a duplicated state change); ERR-38 Limits: \"which failures count as transient ... [is] judged by their own rules\"."
+  },
+  {
+   "a": "ERR-40",
+   "b": "ERR-48",
+   "why_not": "ERR-48 Limits: \"the standard stream a message goes to ... [is] judged by their own rules\"; ERR-40 Limits: \"Whether an event deserves a message at all, at which level and with what content are judged by their own rules.\""
+  },
+  {
+   "a": "ERR-43",
+   "b": "ERR-46",
+   "why_not": "ERR-43 Limits: \"whether the record carries the error object with its stack trace ... [is] judged by their own rules\"."
+  },
+  {
+   "a": "ERR-44",
+   "b": "ERR-51",
+   "why_not": "ERR-51 Limits: \"whether a costly argument is deferred so that a discarded event does not build it is judged by its own rule\"."
+  },
+  {
+   "a": "ERR-07",
+   "b": "API-08",
+   "why_not": "API-08 Limits: \"A returned value that signals the call's own failure, such as an error value or a failure status, is judged by its own rule\"."
+  },
+  {
+   "a": "ERR-03",
+   "b": "API-15",
+   "why_not": "API-15 Limits: \"a path on which the operation failed rather than found nothing, [is] outside the rule\"; ERR-03's Validator keeps only an execution failure, \"rather than an ordinary result\"."
+  },
+  {
+   "a": "ERR-10",
+   "b": "API-15",
+   "why_not": "API-15 Limits: \"A result that is a collection, an array or a map with no elements ... [is] outside the rule\"; ERR-10 Thesis: \"It does not govern a routine whose result is a single value, such as a lookup that finds nothing\"."
+  },
+  {
+   "a": "ERR-06",
+   "b": "CODE-20",
+   "why_not": "Same `default: return 0` line, different defects (a substitute for an impossible state vs a counted default that hides members added later); ERR-06 Limits: \"Where a type rules the bad state out (a non-optional type, a validating constructor, an exhaustive match the compiler or a type checker enforces), the type does the check and no run-time stop is needed.\""
+  }
+ ],
+ "contradictions": [
+  {
+   "a": "ERR-01",
+   "b": "ERR-11",
+   "sentence_a": "Check whether the message, the error type or its fields carry that operation and those operands, and whether a caught error travels as the cause or inside the message.",
+   "sentence_b": "Outside such a cut the cause travels with the replacement even when its message already quotes the original's text.",
+   "resolving_limits_sentence": "Whether a caught error travels with the new error as its cause, rather than only as text in its message, is judged by its own rule; this rule asks only that the message or fields name the operation and the operands.",
+   "carried_by": "ERR-01"
+  },
+  {
+   "a": "ERR-05",
+   "b": "ERR-08",
+   "sentence_a": "The translation covers the lower layer's own failures; a fatal runtime error such as running out of memory passes through untranslated.",
+   "sentence_b": "Pass the handler when every error it has not tested for leaves by one of two routes: a re-raise or rethrow of the caught error, itself or as the cause of a new error, after cleanup or filtering;",
+   "resolving_limits_sentence": "A catch-all that wraps every error as the cause of a new error still folds a fatal runtime error, such as running out of memory, into that error; whether such a wrap is correct at an interface that hides a lower layer is judged by its own rule.",
+   "carried_by": "ERR-08"
+  },
+  {
+   "a": "ERR-41",
+   "b": "ERR-42",
+   "sentence_a": "A failure the code handles without raising or returning it is recorded at warning or above: at error or above when the software could not perform some function, at warning when something unexpected happened or a problem lies ahead while the software still works as expected.",
+   "sentence_b": "A failure the code expects and meets with the recovery it was written for, so that the software is still working as expected — a connection attempt to a remote service that times out, a write to a file that fails with an I/O error, each met by the retry or the fallback the code provides — is recorded below error level: at warning, or at info, a level application code may also use for an exception it records, and at debug when the failure indicates no actual issue, such as a request the client cancelled.",
+   "resolving_limits_sentence": "A failure the code expects and recovers from by design, so that the software is still working as expected, may be recorded at info, and at debug where it indicates no actual issue, such as a request the client cancelled; the level of such a record is judged by its own rule.",
+   "carried_by": "ERR-41"
+  },
+  {
+   "a": "ERR-02",
+   "b": "ERR-45",
+   "sentence_a": "The check settles silence only: a handler that records the error and continues passes it, although the production-failure study counts log-only handlers among the trivial mistakes;",
+   "sentence_b": "A record at a debug or informational level does not count; a record through a facility that has no levels counts.",
+   "resolving_limits_sentence": "The level a record must take when a handler suppresses an error it does not anticipate is judged by its own rule; a record at any level settles silence here.",
+   "carried_by": "ERR-02"
+  },
+  {
+   "a": "ERR-02",
+   "b": "ERR-28",
+   "sentence_a": "Dropping an error with a stated reason is correct where the error signals an expected, non-exceptional outcome — a parse attempt that falls through to another reading of the input — and where the failure cannot affect later behaviour, such as a failure to release a resource that is never reused, once running out of that resource is handled elsewhere, for which recording it and continuing suffices.",
+   "sentence_b": "When code has written to a file or an output stream, the release that can report a deferred write failure — the close, the flush or the sync — has its failure checked on the path where the writes succeeded, and that failure is handled or passed to the caller rather than discarded.",
+   "resolving_limits_sentence": "A failed release of a file or output stream the code wrote to can be the only report of lost data, and whether its error may be dropped is judged by its own rule.",
+   "carried_by": "ERR-02"
+  }
+ ],
+ "gaps": [
+  {
+   "concept": "A handler that only re-raises the caught error unchanged (catch and release); pending-evidence holds only the log-and-rethrow dispute, not the bare re-raise",
+   "taxonomy_row_text": "| D, `errors`, `ERR` | `error-and-exception-handling` | SW4.5, CC8, PP \"Dead Programs Tell No Lies\" |",
+   "source_path": "astral-sh/ruff crates/ruff_linter/src/rules/tryceratops/rules/useless_try_except.rs (TRY203, §Why is this bad?)",
+   "claim": "Capturing an exception, only to immediately reraise it, has no effect. Instead, remove the error-handling code and let the exception propagate upwards without the unnecessary `try`-`except` block."
+  },
+  {
+   "concept": "A finally or cleanup block that returns, throws, breaks or continues, and so replaces the error or result of its try block",
+   "taxonomy_row_text": "| D, `errors`, `ERR` | `error-and-exception-handling` | SW4.5, CC8, PP \"Dead Programs Tell No Lies\" |",
+   "source_path": "eslint/eslint docs/src/rules/no-unsafe-finally.md (rule description and its first two examples)",
+   "claim": "when `return`, `throw`, `break`, or `continue` is used in `finally`, control flow statements inside `try` and `catch` are overwritten, which is considered as unexpected behavior (its example returns 3 from `finally` in place of the error thrown in `try`)"
+  },
+  {
+   "concept": "Callers tell error conditions apart by the error's type, identity or fields, not by matching its message text",
+   "taxonomy_row_text": "| D, `errors`, `ERR` | `error-and-exception-handling` | SW4.5, CC8, PP \"Dead Programs Tell No Lies\" |",
+   "source_path": "google/styleguide go/best-practices.md §Error structure",
+   "claim": "If callers need to interrogate the error (e.g., distinguish different error conditions), give the error value structure so that this can be done programmatically rather than having the caller perform string matching. ... Do not attempt to distinguish errors based on their string form."
+  },
+  {
+   "concept": "Circuit breaking: after repeated failures, calls to the failing resource stop and fail at once until a trial call succeeds",
+   "taxonomy_row_text": "| | `fault-tolerance-retries-timeouts-fallbacks` | SW4.5 |",
+   "source_path": "MicrosoftDocs/architecture-center docs/patterns/retry-content.md (Retry pattern, the paragraph that links the Circuit Breaker pattern)",
+   "claim": "If a request still fails after a significant number of retries, it's better for the application to prevent further requests going to the same resource and report a failure immediately. When the period expires, the application can tentatively allow one or more requests through to see whether they're successful."
+  },
+  {
+   "concept": "Checking the resource balance: code or tests that verify every acquired resource was released",
+   "taxonomy_row_text": "| | `resource-management-and-ownership` | PP \"How to Balance Resources\" |",
+   "source_path": null,
+   "claim": null
+  }
+ ],
+ "facet_errors": [
+  {
+   "rule_id": "ERR-13",
+   "facet": "step",
+   "current": "[design, implement, handle-errors, review]",
+   "proposed": "[design, implement, handle-errors]",
+   "evidence": "Thesis: \"A routine or constructor that code outside its package or module can call (public, protected or exported, in a type that such code can also reach) checks each condition on its arguments or on its object's state that its correctness needs\" — a rule about the code being written, which it never relates to the change's shape, size or description, while the taxonomy reserves `review` for \"the self-review before the report: the shape, size and description of the change\" (the design note: \"`review` is reserved for rules about the shape and description of the change itself\")."
+  },
+  {
+   "rule_id": "ERR-15",
+   "facet": "step",
+   "current": "[implement, refactor, review]",
+   "proposed": "[implement, refactor]",
+   "evidence": "Thesis: \"A comparison of a value with the language's absent value (null, nil, None, undefined), a library call that tests a value for it, or an optional-chaining or null-coalescing operator applied to it, is degenerate when its outcome is fixed before it runs.\" — a rule about the code being written, which it never relates to the change's shape, size or description, while the taxonomy reserves `review` for \"the self-review before the report: the shape, size and description of the change\" (the design note: \"`review` is reserved for rules about the shape and description of the change itself\")."
+  },
+  {
+   "rule_id": "ERR-16",
+   "facet": "step",
+   "current": "[implement, review]",
+   "proposed": "[implement]",
+   "evidence": "Thesis: \"On each path where such a value can be absent, the code tests it for absence before an operation that the language does not define on the absent value uses it\" — a rule about the code being written, which it never relates to the change's shape, size or description, while the taxonomy reserves `review` for \"the self-review before the report: the shape, size and description of the change\" (the design note: \"`review` is reserved for rules about the shape and description of the change itself\")."
+  },
+  {
+   "rule_id": "ERR-17",
+   "facet": "step",
+   "current": "[implement, review]",
+   "proposed": "[implement]",
+   "evidence": "Thesis: \"A forced form is written only where other logic in the surrounding code ensures the value although the compiler does not understand that logic, and the site states the guarantee\" — a rule about the code being written, which it never relates to the change's shape, size or description, while the taxonomy reserves `review` for \"the self-review before the report: the shape, size and description of the change\" (the design note: \"`review` is reserved for rules about the shape and description of the change itself\")."
+  },
+  {
+   "rule_id": "ERR-18",
+   "facet": "step",
+   "current": "[implement, review]",
+   "proposed": "[implement]",
+   "evidence": "Thesis: \"A precondition check at a routine's entry, on the routine's arguments or on the object's state — the language's assertion, a library precondition call, or a conditional that fails the call when its condition holds — tests one precondition, stands on its own line and carries a helpful message of its own.\" — a rule about the code being written, which it never relates to the change's shape, size or description, while the taxonomy reserves `review` for \"the self-review before the report: the shape, size and description of the change\" (the design note: \"`review` is reserved for rules about the shape and description of the change itself\")."
+  },
+  {
+   "rule_id": "ERR-20",
+   "facet": "step",
+   "current": "[design, document, review]",
+   "proposed": "[design, document]",
+   "evidence": "Thesis: \"A routine that other code depends on, such as an exported or public routine or one in a library, states in its interface each transfer of a resource's release across its boundary\" — a rule about the code being written, which it never relates to the change's shape, size or description, while the taxonomy reserves `review` for \"the self-review before the report: the shape, size and description of the change\" (the design note: \"`review` is reserved for rules about the shape and description of the change itself\")."
+  },
+  {
+   "rule_id": "ERR-22",
+   "facet": "step",
+   "current": "[implement, refactor, review]",
+   "proposed": "[implement, refactor]",
+   "evidence": "Thesis: \"A file, a socket, a connection, a stream, a temporary file or a cancellation function is released promptly once the code that uses it is done with it.\" — a rule about the code being written, which it never relates to the change's shape, size or description, while the taxonomy reserves `review` for \"the self-review before the report: the shape, size and description of the change\" (the design note: \"`review` is reserved for rules about the shape and description of the change itself\")."
+  },
+  {
+   "rule_id": "ERR-23",
+   "facet": "step",
+   "current": "[implement, handle-errors, review]",
+   "proposed": "[implement, handle-errors]",
+   "evidence": "Thesis: \"When a routine holds two or more resources at once, each resource gets a release of its own\" — a rule about the code being written, which it never relates to the change's shape, size or description, while the taxonomy reserves `review` for \"the self-review before the report: the shape, size and description of the change\" (the design note: \"`review` is reserved for rules about the shape and description of the change itself\")."
+  },
+  {
+   "rule_id": "ERR-24",
+   "facet": "step",
+   "current": "[design, implement, review]",
+   "proposed": "[design, implement]",
+   "evidence": "Thesis: \"A type — a class, a struct or an object — that acquires a resource such as a file, a socket, a connection or a stream, or takes over one it is handed, and keeps it in one of its own fields beyond a single call owns that resource and becomes a resource itself.\" — a rule about the code being written, which it never relates to the change's shape, size or description, while the taxonomy reserves `review` for \"the self-review before the report: the shape, size and description of the change\" (the design note: \"`review` is reserved for rules about the shape and description of the change itself\")."
+  },
+  {
+   "rule_id": "ERR-26",
+   "facet": "step",
+   "current": "[design, implement, review]",
+   "proposed": "[design, implement]",
+   "evidence": "Thesis: \"In a garbage-collected language, a non-memory resource — a file, a socket, a connection, a stream, a temporary file, a buffered writer — is released by an explicit call to its release operation, preferably through the language's scoped-release construct.\" — a rule about the code being written, which it never relates to the change's shape, size or description, while the taxonomy reserves `review` for \"the self-review before the report: the shape, size and description of the change\" (the design note: \"`review` is reserved for rules about the shape and description of the change itself\")."
+  },
+  {
+   "rule_id": "ERR-28",
+   "facet": "step",
+   "current": "[implement, handle-errors, review]",
+   "proposed": "[implement, handle-errors]",
+   "evidence": "Thesis: \"When code has written to a file or an output stream, the release that can report a deferred write failure — the close, the flush or the sync — has its failure checked on the path where the writes succeeded\" — a rule about the code being written, which it never relates to the change's shape, size or description, while the taxonomy reserves `review` for \"the self-review before the report: the shape, size and description of the change\" (the design note: \"`review` is reserved for rules about the shape and description of the change itself\")."
+  },
+  {
+   "rule_id": "ERR-30",
+   "facet": "step",
+   "current": "[implement, handle-errors, review]",
+   "proposed": "[implement, handle-errors]",
+   "evidence": "Thesis: \"The release of a resource is registered in the statement right after the acquisition is known to have succeeded.\" — a rule about the code being written, which it never relates to the change's shape, size or description, while the taxonomy reserves `review` for \"the self-review before the report: the shape, size and description of the change\" (the design note: \"`review` is reserved for rules about the shape and description of the change itself\")."
+  },
+  {
+   "rule_id": "ERR-31",
+   "facet": "step",
+   "current": "[design, handle-errors, review]",
+   "proposed": "[design, handle-errors]",
+   "evidence": "Thesis: \"Code that answers a failed or timed-out remote call with a substitute (a cached or stale value, a default, an empty or degraded result) uses one whose effect is benign and whose use is visible\" — a rule about the code being written, which it never relates to the change's shape, size or description, while the taxonomy reserves `review` for \"the self-review before the report: the shape, size and description of the change\" (the design note: \"`review` is reserved for rules about the shape and description of the change itself\")."
+  },
+  {
+   "rule_id": "ERR-32",
+   "facet": "step",
+   "current": "[implement, review]",
+   "proposed": "[implement]",
+   "evidence": "Thesis: \"Every awaited or blocking call to a remote resource — an HTTP request, an RPC, a database or socket connection, a call into another process — runs with a finite timeout or deadline in effect\" — a rule about the code being written, which it never relates to the change's shape, size or description, while the taxonomy reserves `review` for \"the self-review before the report: the shape, size and description of the change\" (the design note: \"`review` is reserved for rules about the shape and description of the change itself\")."
+  },
+  {
+   "rule_id": "ERR-33",
+   "facet": "step",
+   "current": "[implement, review]",
+   "proposed": "[implement]",
+   "evidence": "Thesis: \"Code that retries a failed call to a remote resource or another process ... waits before every retry after the first.\" — a rule about the code being written, which it never relates to the change's shape, size or description, while the taxonomy reserves `review` for \"the self-review before the report: the shape, size and description of the change\" (the design note: \"`review` is reserved for rules about the shape and description of the change itself\")."
+  },
+  {
+   "rule_id": "ERR-34",
+   "facet": "step",
+   "current": "[implement, handle-errors, review]",
+   "proposed": "[implement, handle-errors]",
+   "evidence": "Thesis: \"Every loop, decorator or policy that repeats a failed call while a caller waits for its result has a finite cap in effect on the number of attempts or on their total duration\" — a rule about the code being written, which it never relates to the change's shape, size or description, while the taxonomy reserves `review` for \"the self-review before the report: the shape, size and description of the change\" (the design note: \"`review` is reserved for rules about the shape and description of the change itself\")."
+  },
+  {
+   "rule_id": "ERR-35",
+   "facet": "step",
+   "current": "[design, implement, handle-errors, review]",
+   "proposed": "[design, implement, handle-errors]",
+   "evidence": "Thesis: \"Along the call path of one remote operation — the code that issues it, the client library or channel it calls through, and any callee in the same codebase that calls on in turn — one layer retries the operation.\" — a rule about the code being written, which it never relates to the change's shape, size or description, while the taxonomy reserves `review` for \"the self-review before the report: the shape, size and description of the change\" (the design note: \"`review` is reserved for rules about the shape and description of the change itself\")."
+  },
+  {
+   "rule_id": "ERR-36",
+   "facet": "step",
+   "current": "[implement, handle-errors, review]",
+   "proposed": "[implement, handle-errors]",
+   "evidence": "Thesis: \"The condition that decides whether a failed call is retried admits only failures that a later attempt of the same request can clear\" — a rule about the code being written, which it never relates to the change's shape, size or description, while the taxonomy reserves `review` for \"the self-review before the report: the shape, size and description of the change\" (the design note: \"`review` is reserved for rules about the shape and description of the change itself\")."
+  },
+  {
+   "rule_id": "ERR-37",
+   "facet": "step",
+   "current": "[design, implement, review]",
+   "proposed": "[design, implement]",
+   "evidence": "Thesis: \"Code that serves a request carrying a deadline or a cancellation signal makes each remote call on that request's behalf under the request's own signal or under one derived from it\" — a rule about the code being written, which it never relates to the change's shape, size or description, while the taxonomy reserves `review` for \"the self-review before the report: the shape, size and description of the change\" (the design note: \"`review` is reserved for rules about the shape and description of the change itself\")."
+  },
+  {
+   "rule_id": "ERR-38",
+   "facet": "step",
+   "current": "[design, implement, handle-errors, review]",
+   "proposed": "[design, implement, handle-errors]",
+   "evidence": "Thesis: \"A retry that repeats a call changing state at the callee — a write, a payment, a message send — runs only when one of three things holds.\" — a rule about the code being written, which it never relates to the change's shape, size or description, while the taxonomy reserves `review` for \"the self-review before the report: the shape, size and description of the change\" (the design note: \"`review` is reserved for rules about the shape and description of the change itself\")."
+  },
+  {
+   "rule_id": "ERR-44",
+   "facet": "step",
+   "current": "[implement, review]",
+   "proposed": "[implement]",
+   "evidence": "Thesis: \"A log call at a level that the logger's configuration may discard, such as debug, trace or a verbosity level, defers expensive work on its arguments or message until the logger has decided to emit the record.\" — a rule about the code being written, which it never relates to the change's shape, size or description, while the taxonomy reserves `review` for \"the self-review before the report: the shape, size and description of the change\" (the design note: \"`review` is reserved for rules about the shape and description of the change itself\")."
+  },
+  {
+   "rule_id": "ERR-47",
+   "facet": "step",
+   "current": "[implement, review]",
+   "proposed": "[implement]",
+   "evidence": "Thesis: \"A logging call that formats a template, whether its placeholders are printf-style verbs, %-placeholders or {} slots, receives arguments that match those placeholders in number and, where a placeholder names a type, in type.\" — a rule about the code being written, which it never relates to the change's shape, size or description, while the taxonomy reserves `review` for \"the self-review before the report: the shape, size and description of the change\" (the design note: \"`review` is reserved for rules about the shape and description of the change itself\")."
+  },
+  {
+   "rule_id": "ERR-48",
+   "facet": "step",
+   "current": "[implement, handle-errors, review]",
+   "proposed": "[implement, handle-errors]",
+   "evidence": "Thesis: \"A message that reports on the program's own operation goes through the codebase's logging facility rather than a print call, a console call or a direct write to standard output or standard error.\" — a rule about the code being written, which it never relates to the change's shape, size or description, while the taxonomy reserves `review` for \"the self-review before the report: the shape, size and description of the change\" (the design note: \"`review` is reserved for rules about the shape and description of the change itself\")."
+  },
+  {
+   "rule_id": "ERR-51",
+   "facet": "step",
+   "current": "[implement, review]",
+   "proposed": "[implement]",
+   "evidence": "Thesis: \"Every expression a log statement evaluates — its message and value arguments, the body of a supplier or closure passed to it, and the statements inside a level guard that wraps it — reads or computes values and leaves unchanged any state the code after the statement relies on.\" — a rule about the code being written, which it never relates to the change's shape, size or description, while the taxonomy reserves `review` for \"the self-review before the report: the shape, size and description of the change\" (the design note: \"`review` is reserved for rules about the shape and description of the change itself\")."
+  },
+  {
+   "rule_id": "ERR-08",
+   "facet": "applies_to",
+   "current": "[exceptions]",
+   "proposed": "[exceptions, result-types]",
+   "evidence": "The Thesis covers \"a clause with no type, a catch-all clause, a recovery of every panic\", the Example is Go (`if r := recover(); r != nil { err = errBadInput }`) and a trigger is `\\brecover\\(\\)|\\bcatch_unwind\\b`, so the card reaches panic recovery in result-type languages that `[exceptions]` leaves out."
+  },
+  {
+   "rule_id": "ERR-13",
+   "facet": "applies_to",
+   "current": "[universal]",
+   "proposed": "[public-api]",
+   "evidence": "Thesis: \"A routine or constructor that code outside its package or module can call (public, protected or exported, in a type that such code can also reach)\"; Limits: \"Where the routine is reached only from checked entry points, because it is private, internal, or restricted to its package or module, it relies on its callers' checks\". The rule holds only at the boundary kind `public-api` names (ERR-20 and API-11 use that value for the same restriction)."
+  },
+  {
+   "rule_id": "ERR-05",
+   "facet": "applies_to",
+   "current": "[universal]",
+   "proposed": "[public-api, service-boundary]",
+   "evidence": "Validator: \"an exported or public routine of a module or type whose callers neither see nor supply the lower-layer object, or a handler at an RPC, IPC or storage boundary\"; Limits: \"Within one layer, a private helper or an internal routine whose caller is the same layer returns the error unchanged ...; the translation belongs at the interface that hides the layer.\""
+  },
+  {
+   "rule_id": "ERR-21",
+   "facet": "applies_to",
+   "current": "[garbage-collected]",
+   "proposed": "[garbage-collected, manual-memory]",
+   "evidence": "The Thesis's construct includes \"a declaration that releases the resource when its scope exits\", and the Limits exclude only \"a language whose compiler checks ownership\" (\"returning a value transfers its ownership to the caller, and the compiler rejects, at compile time, a reference that would outlive the data it refers to\"); a manual-memory language with scope-bound release is not excluded by any Limits sentence."
+  },
+  {
+   "rule_id": "ERR-37",
+   "facet": "scope",
+   "current": "file",
+   "proposed": "callers",
+   "evidence": "Validator: \"decide whether the enclosing function runs on behalf of an incoming request that carries a deadline or a cancellation signal: a request or RPC handler, a function that receives a context, a signal, a cancellation token or the request itself, or a function such a one calls\" — the last case needs the function's callers, which `file` does not let the finder open when they sit in another file."
+  },
+  {
+   "rule_id": "ERR-08",
+   "facet": "check_kind",
+   "current": "mechanical",
+   "proposed": "semantic",
+   "evidence": "Validator: \"a recorded suppression at an isolation point — the outermost block of a thread or a lightweight task, the body of a loop that runs independent tasks, jobs, requests or callbacks, a subsystem or plugin boundary, the program's entry point or its registered last-resort handler\" — deciding the enclosing routine's role is a judgement and, for a registered handler or a plugin boundary, a trace."
+  },
+  {
+   "rule_id": "ERR-10",
+   "facet": "check_kind",
+   "current": "mechanical",
+   "proposed": "semantic",
+   "evidence": "Validator: \"Skip the case where the language gives the absent value of that type the length, iteration and reads of an empty one, and no caller in the file serializes the result or adds elements to it that the absent value cannot take\" — a trace of the routine's callers."
+  },
+  {
+   "rule_id": "ERR-23",
+   "facet": "check_kind",
+   "current": "mechanical",
+   "proposed": "semantic",
+   "evidence": "Validator: \"Open the file and find the routine or the object that holds the released resources and the acquisition of each ... Then check the order: is a resource released before a resource created from it, wrapping it or otherwise depending on it\" — a trace of acquisitions and of dependencies between resources."
+  },
+  {
+   "rule_id": "ERR-28",
+   "facet": "check_kind",
+   "current": "mechanical",
+   "proposed": "semantic",
+   "evidence": "Validator: \"For each hit, open the file, trace the resource to where it was opened or received, and decide whether it is a file or an output stream the routine wrote to\" and \"On the path where every write succeeded, look for a release whose failure is not discarded\"."
+  },
+  {
+   "rule_id": "ERR-32",
+   "facet": "check_kind",
+   "current": "mechanical",
+   "proposed": "semantic",
+   "evidence": "Validator: \"For each hit, open the file and trace where the call's bound comes from: an argument at the call; the client, session or connection it goes through, where that object is built or configured; an enclosing deadline, cancellation context or timeout scope the call honors; a default the file or the project sets.\""
+  },
+  {
+   "rule_id": "ERR-34",
+   "facet": "check_kind",
+   "current": "mechanical",
+   "proposed": "semantic",
+   "evidence": "Validator: \"For each hit, open the file and decide whether the code repeats a failed call while a caller waits for its result: a failed attempt at a remote or blocking call leads to another attempt on a path that returns to a caller\", then trace what stops it, including a library default and a configured maximum."
+  },
+  {
+   "rule_id": "ERR-39",
+   "facet": "check_kind",
+   "current": "mechanical",
+   "proposed": "semantic",
+   "evidence": "Validator: \"Open the file and find the retry path each hit belongs to ... Trace the delay before the next attempt\", then check the deadline and the attempt cap along that path."
+  },
+  {
+   "rule_id": "ERR-48",
+   "facet": "check_kind",
+   "current": "mechanical",
+   "proposed": "semantic",
+   "evidence": "Validator: \"Open the file and read the routine around each hit, the file's entry point and its imports to decide whom the text addresses\" — a judgement between a command-line program's output to its user and a report on the program's operation (ERR-40, which makes the same kind of call, is `semantic`)."
+  }
+ ],
+ "trigger_errors": [],
+ "summary": "All 51 ERR cards were read in full (plus eight API, CODE and CHG cards read for the cross-domain checks); every ERR trigger compiles and matches its own bad Example, and no two trigger sets are identical or nested. The domain needs 16 new deferring pairs (the handler cluster ERR-45→ERR-02/ERR-08/ERR-31 and ERR-48→ERR-02, ERR-01→ERR-11, ERR-03→ERR-12, ERR-04→ERR-06, the resource pairs ERR-07→ERR-28, ERR-02→ERR-28, ERR-23→ERR-25 and ERR-27→ERR-30, and five cross-domain pairs with API-01, API-03, API-04, API-08 and API-11), Limits sentences for five contradictions (ERR-01/11, ERR-05/08, ERR-41/42, ERR-02/45, ERR-02/28), and facet fixes led by 24 cards that carry `step: review` although no Thesis bears on the change's shape. Five row concepts have no card and no pending entry: a catch that only re-raises, an abrupt exit from a finally block, matching errors by message text and circuit breaking each have a GitHub-hosted source, while checking the resource balance has none."
+}

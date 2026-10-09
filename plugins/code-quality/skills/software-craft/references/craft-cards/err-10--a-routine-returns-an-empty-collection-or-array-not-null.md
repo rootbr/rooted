@@ -6,7 +6,7 @@ step: [design, implement]
 applies_to: [universal]
 triggers: ['\breturn\s+(null|None|nil|undefined)\s*(;|$|//|#)', '(\[\]|\bList<|\bArray<|\bMap<|\bSet<|\bCollection<)[^|=]*\|\s*(null|undefined)\b', '->\s*Optional\[(list|List|dict|Dict|set|Set|Sequence|tuple|Tuple)\b|->\s*(list|List|dict|Dict|set|Set)\[.*\]\s*\|\s*None', '->\s*Option<\s*(Vec|VecDeque|HashMap|HashSet|BTreeMap|BTreeSet)\b']
 scope: file
-check_kind: mechanical
+check_kind: semantic
 severity_default: minor
 ---
 

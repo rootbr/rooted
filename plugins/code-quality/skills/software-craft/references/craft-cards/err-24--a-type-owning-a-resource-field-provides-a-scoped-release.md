@@ -2,7 +2,7 @@
 title: A type that keeps an acquired resource in a field it owns provides an explicit release operation that releases it and implements the language's scoped-release protocol
 rule_id: ERR-24
 domain: errors
-step: [design, implement, review]
+step: [design, implement]
 applies_to: [universal]
 triggers: ['\b(this|self)[.]#?_?\w+\s*=\s*(await\s+)?(new\s+\w*(InputStream|OutputStream|Reader|Writer|Socket|Channel|Connection)\b|([\w.]*[.])?(open|openSync|urlopen|connect|create_connection|socket|getConnection|createConnection|createReadStream|createWriteStream|NamedTemporaryFile|TemporaryFile|mkstemp|Popen|Open|Create|OpenFile|Dial)\s*\()', '^\s*((private|protected|public|final|static)\s+)+[\w.]*(InputStream|OutputStream|Reader|Writer|Socket|Channel|Connection|Statement|ResultSet)\s+\w+\s*(=[^;]*)?;', '^\s*\w+\s+\*?(os[.]File|net[.]Conn|sql[.](DB|Tx|Rows|Conn|Stmt)|io[.]\w*Closer)\s*(//.*)?$', '^\s*\w+[.]\w+\s*(,\s*\w+)?\s*=\s*(os[.](Open|Create|OpenFile|CreateTemp)|(net|tls)[.]Dial\w*|sql[.]Open)\(', '^\s*((private|protected|public|readonly|static)\s+)*#?\w+\s*[?!]?\s*:\s*(fs[.])?(FileHandle|Socket|WriteStream|ReadStream)\b', '^\s*(pub(\([^)]*\))?\s+)?\w+\s*:\s*(RawFd|RawHandle|RawSocket)\s*,']
 scope: file

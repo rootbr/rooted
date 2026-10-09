@@ -2,10 +2,10 @@
 title: A call made while serving a request passes that request's deadline and cancellation on to the downstream call, shortening it at most, instead of starting a fresh or longer one
 rule_id: ERR-37
 domain: errors
-step: [design, implement, review]
+step: [design, implement]
 applies_to: [service-boundary]
 triggers: ['\bcontext[.](Background|TODO)\s*\(\s*\)|\bContext[.]ROOT\b', '\bcontext[.]With(Timeout|Deadline)\s*\(|\bwithDeadline(After)?\s*\(|\bDeadline[.]after\s*\(', '\bAbortSignal[.]timeout\s*\(|\bnew\s+AbortController\s*\(|\bCancellationToken::new\s*\(', '\basyncio[.](wait_for|timeout)\s*\(|\btimeout\s*=\s*\d+([.]\d+)?\s*[,)]', '\btokio::time::timeout\s*\(|[.]timeout\s*\(\s*Duration(::from_\w+|[.]of\w+)\s*\(']
-scope: file
+scope: callers
 check_kind: semantic
 severity_default: major
 ---

@@ -2,7 +2,7 @@
 title: A substitute for the result of a failed remote call leaves the failure marked or recorded and never grants access or passes a check the call did not
 rule_id: ERR-31
 domain: errors
-step: [design, handle-errors, review]
+step: [design, handle-errors]
 applies_to: [service-boundary]
 triggers: ['(?i)fall_?back\w*|\bdegraded\w*\b|\b(stale|last_?known)_?(value|result|data|copy|entry|response)\w*', '(?i)\bexcept\s+[\w.(), ]*(Timeout|ConnectionError|ConnectError|RequestException|RequestError|HTTPError|URLError|RpcError|ClientError|OSError|IOError)\w*\b|\bcatch\s*\(\s*[\w.|\s]*(Timeout|Connect|IO|Http|Rpc|Remote|Socket|Status|Client|Rest|Service)\w*Exception\b', '\bErr\(\s*_\w*\s*\)\s*=>\s*(Ok\()?\s*(Default::default\(\)|Vec::new\(\)|None|false|true|0|String::new\(\))|[.]catch\s*\(\s*\(?\s*\w*\s*(:\s*\w+\s*)?\)?\s*=>\s*(null|undefined|\[\]|\{\}|false|true|0|\x27\x27|\x22\x22)\s*\)|[.](unwrap_or|unwrap_or_default|unwrap_or_else|exceptionally|onErrorReturn\w*|onErrorResume)\(', '(?i)\b(is_?|has_?|can_?)?(allowed|authori[sz]ed|permitted|authenticated|granted)\w*\s*=\s*(true|True)\b', '\bif\s+err\s*!=\s*nil\s*\{\s*return\s+[^,{}]+,\s*nil\b|^\s*return\s+(nil|true|false|0|\x22\x22|&?(\[\]|map\[[\w.*]+\])?[\w.]+\{\})\s*,\s*nil\s*$|^\s*return\s+(true|false)\s*$', '\bcatch\s*\(\s*(final\s+)?(Exception|Throwable|RuntimeException)\b|\bcatch\s*(\(\s*\w+\s*(:\s*\w+\s*)?\))?\s*\{|\bexcept\s+(Exception|BaseException)\b|\bexcept\s*:|[.]unwrap_or\(\s*true\s*\)']
 scope: file

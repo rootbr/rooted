@@ -2,11 +2,11 @@
 title: Every call to a remote service or another process carries a finite timeout or deadline, set at the call or on the client it goes through, so the caller cannot wait forever
 rule_id: ERR-32
 domain: errors
-step: [implement, review]
+step: [implement]
 applies_to: [service-boundary]
 triggers: ['\brequests[.](get|post|put|patch|delete|head|options|request)\s*\(|\bhttpx[.](get|post|put|patch|delete|head|request|Client|AsyncClient)\s*\(|\burlopen\s*\(|\bcreate_connection\s*\(', '\bhttp[.](Get|Post|Head|PostForm)\s*\(|&?http[.]Client\s*\{\s*\}|\bnet[.]Dial\s*\(|\bgrpc[.](Dial|NewClient)\s*\(', '\bHttpClient[.]new(Http)?Client\s*\(|\bHttpRequest[.]newBuilder\s*\(|[.]openConnection\s*\(|\bnew\s+Socket\s*\(', '\bfetch\s*\(|\baxios([.](get|post|put|patch|delete|request|create))?\s*\(', '\breqwest::(blocking::)?(get|Client::new)\b|\bClient::(new|builder)\s*\(\s*\)|\bTcpStream::connect\s*\(', '(?i)\btimeout\w*\s*[=:]\s*(None|null|nil|undefined|0|Infinity)\s*[,)};]|\bset(So|Read|Write|Connect)?Timeout\s*\(\s*0\s*\)|\bDuration[.]ZERO\b']
 scope: file
-check_kind: mechanical
+check_kind: semantic
 severity_default: major
 ---
 

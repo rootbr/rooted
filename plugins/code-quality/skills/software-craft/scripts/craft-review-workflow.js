@@ -446,7 +446,7 @@ const DEFER_TO = {
   'CHG-08': ['CHG-30', 'CHG-31', 'CHG-35'], // an unreferenced private declaration is removed: a migration leftover is CHG-30's, code only a retired flag's branch reached CHG-31's, temporary code under a paid marker CHG-35's (reviewer, change)
   'CHG-33': ['CODE-59', 'DSN-21', 'DSN-26', 'CODE-03', 'CODE-11', 'CODE-26', 'CODE-36'], // added code beside debt meets the clean-code bar: style forms, repeated bodies, re-implemented jobs, names, magic numbers and long routines belong to their own cards (reviewer, change)
   'CHG-34': ['CODE-62', 'TOOL-15'], // a shortcut ships with a tracked debt marker: a marker that lacks its context pointer is CODE-62's finding; a temporary suppression without its follow-up task is TOOL-15's (spot-read, build-warnings)
-  'ERR-48': 'PRF-05', // operational messages go through the logging facility: a print added while hunting a failure is PRF-05's remnant finding
+  'ERR-48': ['PRF-05', 'ERR-02'], // operational messages go through the logging facility: a print added while hunting a failure is PRF-05's remnant finding, a handler whose only action is a printed stack trace ERR-02's (reviewer, errors)
   'PRF-02': 'ERR-02', // a bug fix corrects the fault, not the failure: an error swallowed where it is raised is ERR-02's finding
   'PRF-03': 'DSN-20', // a bug fix corrects the same mistake where it repeats: a verbatim copy of the fixed block is DSN-20's duplicated-code finding
   'CODE-71': 'CHG-35', // a code change updates its comments: a pre-existing debt marker whose work the change does is CHG-35's finding (reviewer, change)
@@ -495,7 +495,7 @@ const DEFER_TO = {
   'DSN-52': 'DSN-53', // a pipeline expression stays flat: an inline callback past ten lines is DSN-53's finding (reviewer, design)
   'DSN-54': ['DSN-59', 'DSN-60'], // a step function has no outside effect: a map whose result is unused is DSN-59's finding, a step that edits the traversed collection DSN-60's (reviewer, design)
   'DSN-59': 'DSN-55', // a map is used for its value: a lazy pipeline that nothing consumes is DSN-55's finding (reviewer, design)
-  'API-08': 'DSN-55', // a call keeps the result that is its effect: a discarded lazy pipeline is DSN-55's finding (reviewer, design)
+  'API-08': ['DSN-55', 'ERR-19'], // a call keeps the result that is its effect: a discarded lazy pipeline is DSN-55's finding, a discarded resource handle or cancellation function ERR-19's (reviewer, design; reviewer, errors)
   'DSN-63': 'DSN-68', // shared mutable state lives in an instance: a constant-named field holding a mutable collection is DSN-68's finding (reviewer, design)
   'DSN-34': 'API-16', // a visible declaration names its abstraction: a public parameter typed with a concrete implementation type is API-16's finding (reviewer, design)
   'DSN-24': 'CHG-27', // a schema is declared once: a hand edit of marked generated output inside a migration is CHG-27's finding (reviewer, design)
@@ -505,6 +505,17 @@ const DEFER_TO = {
   'TOOL-17': ['TST-38', 'TST-29'], // a failing check is disabled with its reason and issue: a skip mark on a test with no reason is TST-38's finding, a rerun added without a tracked record TST-29's; TOOL-17 keeps commented-out checks, deletions and the strict expected-failure form (spot-read, build-warnings)
   'TOOL-14': ['CODE-25', 'CHG-10'], // a finding is fixed before it is suppressed: a suppression or blank assignment that silences an unused local is CODE-25's finding, a blank declaration that silences an unused import CHG-10's (spot-read, build-warnings)
   'CODE-72': 'TOOL-17', // commented-out code is deleted: a commented-out failing test or check is TOOL-17's finding, whose fix keeps it under a skip mark (spot-read, build-warnings)
+  'ERR-01': 'ERR-11', // an error names the failed operation and its operands: a replacement that drops the caught error as its cause is ERR-11's finding (reviewer, errors)
+  'ERR-03': 'ERR-12', // a routine reports failure through its codebase's mechanism: a panic, exit or abort on an expected failure is ERR-12's finding (reviewer, errors)
+  'ERR-04': 'ERR-06', // a handler that continues leaves a valid state: a handler that recovers a broken-invariant stop and continues on a substitute is ERR-06's finding (reviewer, errors)
+  'ERR-07': 'ERR-28', // a returned error is checked or discarded explicitly: the explicitly discarded close, flush or sync error of a written resource is ERR-28's finding (reviewer, errors)
+  'ERR-02': 'ERR-28', // a caught error is acted on: an empty rejection handler on a written stream's release is ERR-28's finding (reviewer, errors)
+  'ERR-23': 'ERR-25', // each held resource gets its own release: consecutive releases inside a type's own release operation are ERR-25's finding (reviewer, errors)
+  'ERR-27': 'ERR-30', // a resource is released on every exit: a release registered after a later call that can fail is ERR-30's finding (reviewer, errors)
+  'ERR-45': ['ERR-02', 'ERR-08', 'ERR-31'], // a handler that suppresses an unexpected error logs it: an empty handler with no comment is ERR-02's finding, a catch-all that goes on without a record ERR-08's, an unrecorded fallback for a failed remote call ERR-31's (reviewer, errors)
+  'ERR-14': 'API-04', // a check on outside values is never a removable assertion: a removable assertion on outside data or an empty lookup result is API-04's finding (reviewer, errors)
+  'ERR-13': ['API-01', 'API-11'], // a public routine checks its preconditions: a public setter or constructor that stores an argument the invariant constrains is API-01's finding, an operation that reads state only a set-up call establishes API-11's (reviewer, errors)
+  'API-03': 'ERR-06', // a commented assumption is also asserted: a default branch that returns a substitute under a comment calling the case unreachable is ERR-06's finding (reviewer, errors)
 }
 const ownersOf = ruleId => [DEFER_TO[ruleId] || []].flat()
 const SEV_RANK = { major: 0, minor: 1, suggestion: 2 }

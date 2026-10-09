@@ -2,7 +2,7 @@
 title: A failed call is retried only on a failure classified as transient, and a permanent error, an invalid request, the caller's cancellation or the caller's expired deadline goes to the caller without a retry
 rule_id: ERR-36
 domain: errors
-step: [implement, handle-errors, review]
+step: [implement, handle-errors]
 applies_to: [service-boundary]
 triggers: ['(?i)\bmax_?(attempts?|retries|tries)|\bretry\w*\s*[(.=:]|\b(is|should|can)_?(retr(y|i)able|transient|retry)\w*|\bretr(y|i)able\w*|@retry\b|\bRetry(Policy|Template|Config|Strategy|er)\w*\b', '\b(attempts?|retries|retry_?count|retryCount|tries)\s*(\+\+|\+=\s*1)', '(?i)\b(for|while)\b.*(attempt|retries|(?<![ns])tries)']
 scope: file

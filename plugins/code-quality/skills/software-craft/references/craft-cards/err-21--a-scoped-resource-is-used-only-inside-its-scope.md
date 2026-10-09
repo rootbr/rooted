@@ -3,7 +3,7 @@ title: A resource bound by a scoped-release construct is used only inside that s
 rule_id: ERR-21
 domain: errors
 step: [implement, handle-errors]
-applies_to: [garbage-collected]
+applies_to: [garbage-collected, manual-memory]
 triggers: ['^\s*(async\s+)?with\s+(.+\bas\s+\w+|\(\s*$)', '\b(await\s+)?using\s+\w+\s*(:[^=]*)?=', '\btry\s*\(\s*((final\s+)?[\w.<>]+\s+\w+\s*=|\w+\s*(;|\)\s*(\{|$)))', '^\s*defer\s+([\w.]+[.](Close|Release)\(\s*\)|cancel\w*\(\s*\)|os[.]Remove(All)?\()', '\b(enter_context|pop_all|ExitStack|AsyncExitStack|DisposableStack|AsyncDisposableStack)\b']
 scope: file
 check_kind: semantic

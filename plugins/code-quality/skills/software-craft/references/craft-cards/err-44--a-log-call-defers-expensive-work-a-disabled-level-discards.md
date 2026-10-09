@@ -2,7 +2,7 @@
 title: A log call at a level that may be disabled defers expensive work on its arguments or message until the logger decides to emit the record
 rule_id: ERR-44
 domain: errors
-step: [implement, review]
+step: [implement]
 applies_to: [universal]
 triggers: ['(?i)([.](debug|trace|fine|finer|finest)\w*\(|[.]V\(\d+\)[.]Info\w*\(|\b(debug|trace)!\(|[.]log\(\s*Level[.](fine|finer|finest|debug|trace)\b|[.]at(fine|finer|finest|debug|trace)\(\)[.]log\w*\()(.*\w\(|\s*(f["'']|["''][^"'']*["'']\s*[+%])|[^)]*$)', '(?i)[.](debug|trace|info)\w*\(.*\b(json[.]dumps|JSON[.]stringify|json[.]Marshal\w*|toJson|to_string_pretty|pformat)\(']
 scope: hunk
