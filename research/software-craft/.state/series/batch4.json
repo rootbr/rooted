@@ -2,7 +2,7 @@
  "batch": 4,
  "launched": "2026-10-08T05:25 UTC",
  "kind": "fresh launches of the 22 not-started topics (HANDOVER \u00a75.5), one per free slot under the operator's cap of four workflows",
- "concurrency": "2 (operator, 2026-10-09T04:55 UTC; 3 from 2026-10-08T17:10 UTC, 4 before): launch a new workflow only while fewer than 2 run",
+ "concurrency": "1 active task (operator, 2026-10-09T06:10 UTC; 2 workflows from 04:55 UTC, 3 from 2026-10-08T17:10 UTC, 4 before): a workflow or a reviewer agent, never both; launch the next only when nothing runs",
  "topics": {
   "unit-testing-and-test-quality": {
    "task": "w4q4wtv46",
