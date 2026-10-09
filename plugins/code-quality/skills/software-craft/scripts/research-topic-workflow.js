@@ -53,6 +53,10 @@
 //   closing_edit: true | false         // true: after the run's last verdict, a "revise" does not pend the rule — the drafter
 //                                      // applies that verdict's required edits verbatim, changes nothing else, and the
 //                                      // card ships with the verdict as its verification record (a "reject" still pends)
+//   skeptic_model: "claude-...", skeptic_effort: "high" | "xhigh" | "max"
+//                                      // optional: the model and effort of the skeptic agents of this run in place of the
+//                                      // defaults below (the operator's choice for the second-round pass over written cards:
+//                                      // claude-fable-5-1 at high); the drafter, the sources and the spine keep the defaults
 //   written: { <key>: { rule_id, example_language } }
 //                                      // optional: the id and the example language a rule's card already carries in the
 //                                      // tree, used in place of the provisional numbering and the rotation, so a pass that
@@ -118,6 +122,10 @@ const VERIFY_AGAIN_LABEL = `verify${ROUND + 1}`
 
 const MODEL = 'claude-opus-5-5'
 const EFFORT = { source: 'xhigh', spine: 'xhigh', draft: 'xhigh', skeptic: 'max' }
+const EFFORTS = ['low', 'medium', 'high', 'xhigh', 'max']
+const SKEPTIC_MODEL = (typeof A.skeptic_model === 'string' && A.skeptic_model.trim()) ? A.skeptic_model.trim() : MODEL
+const SKEPTIC_EFFORT = A.skeptic_effort === undefined ? EFFORT.skeptic : A.skeptic_effort
+if (!EFFORTS.includes(SKEPTIC_EFFORT)) throw new Error(`research-topic-workflow: skeptic_effort must be one of ${EFFORTS.join(', ')}`)
 const LANGS = ['java', 'python', 'typescript', 'go', 'rust']
 const STEPS = ['design', 'implement', 'handle-errors', 'test', 'refactor', 'document', 'review']
 const APPLIES_TO = ['universal', 'object-oriented', 'functional', 'public-api', 'service-boundary', 'library',
@@ -525,7 +533,8 @@ function closingPrompt(r, draft, verdict) {
 
 // ---- Phases Draft, Verify, Fix — one pipeline per rule, no barrier ----------------------------------
 const summarize = v => v ? `${v.verdict}: ${(v.problems || []).map(p => `[${p.kind}] ${p.detail}`).join('; ') || v.note}` : 'no verdict returned'
-const opts = (label, ph, schema, effort) => ({ label, phase: ph, schema, model: MODEL, effort })
+const opts = (label, ph, schema, effort, model = MODEL) => ({ label, phase: ph, schema, model, effort })
+if (SKEPTIC_MODEL !== MODEL || SKEPTIC_EFFORT !== EFFORT.skeptic) log(`Skeptic: ${SKEPTIC_MODEL} at ${SKEPTIC_EFFORT} (the run's skeptic_model / skeptic_effort)`)
 const outcomes = await pipeline(drafted,
   r => {
     const d = fromState('drafts', r.key)
@@ -540,7 +549,7 @@ const outcomes = await pipeline(drafted,
     const v = fromState('verdicts', s.rule.key)
     if (v) return { ...s, verdict: v }
     // no verdict in the state: the skeptic runs — in round 1 as the first verdict, in a cut-short round as the missing one
-    return agent(verifyPrompt(s.rule, s.draft), opts(`${VERIFY_LABEL}:${s.rule.key}`, 'Verify', VERDICT, EFFORT.skeptic)).then(v2 => ({ ...s, verdict: v2 }))
+    return agent(verifyPrompt(s.rule, s.draft), opts(`${VERIFY_LABEL}:${s.rule.key}`, 'Verify', VERDICT, SKEPTIC_EFFORT, SKEPTIC_MODEL)).then(v2 => ({ ...s, verdict: v2 }))
   },
   s => {
     if (!s || s.final) return s
@@ -557,7 +566,7 @@ const outcomes = await pipeline(drafted,
     if (!s || s.final) return s
     if (!s.draft) return { ...s, final: 'pending', reason: `the fix returned nothing after ${summarize(s.verdict1)}` }
     if (s.draft.status !== 'card') return { ...s, final: 'pending', reason: s.draft.notes || 'the fix sent the rule to pending' }
-    return agent(verifyPrompt(s.rule, s.draft, 'skeptic2'), opts(`${VERIFY_AGAIN_LABEL}:${s.rule.key}`, 'Verify', VERDICT, EFFORT.skeptic))
+    return agent(verifyPrompt(s.rule, s.draft, 'skeptic2'), opts(`${VERIFY_AGAIN_LABEL}:${s.rule.key}`, 'Verify', VERDICT, SKEPTIC_EFFORT, SKEPTIC_MODEL))
       .then(v => {
         if (v && v.verdict === 'accept') return { ...s, verdict: v, final: 'card' }
         if (CLOSING_EDIT && v && v.verdict === 'revise') return closingEdit({ ...s, verdict: v }, ROUND)
