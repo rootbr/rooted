@@ -12,14 +12,15 @@ orchestrator, never applied by hand.
 Subcommands (run from the repository root):
   map   <slug> [<slug> ...]                 print the rule key -> tree card mapping of each topic and stop
   build <slug> --out-dir <dir> [--bundle <regenerated bundle>] [--only <id,id,...>]
-        [--skeptic-model <id>] [--skeptic-effort <level>]
+        [--skeptic-model <id>] [--skeptic-effort <level>] [--closing-effort <level>]
         write <dir>/<slug>--r2tree.js, a bundle of scripts/research-topic-workflow.js whose resume_state carries
         the topic's spine (from journals/<slug>.journal.jsonl.gz, else the output snapshot) and every tree card
         of the topic as a `fix2:` draft, with only_keys those cards, round 3 (labels verify3: / close3:),
         fix_after_verify false, closing_edit true and `written` the cards' ids and example languages; the
         bundle's channel_note comes from --bundle when given; the skeptic runs on --skeptic-model at --skeptic-effort
-        (default claude-fable-5-1 at high, the operator's decision of 2026-10-09; the closing edits stay on the
-        workflow's default drafter model)
+        (default claude-fable-5-1 at high, the operator's decision of 2026-10-09); the closing edits run on the
+        workflow's drafter model (opus) at --closing-effort (default high: the operator's experiment of 2026-10-09 on
+        the first topic of the pass, kept or raised to xhigh after the orchestrator re-checks every closing-edited card)
   apply <slug> <pass output> [--dry-run]
         write the pass's result into the tree: a card the verdict accepted is left as it is; a card the closing
         edit changed replaces the tree card (and its filename when the title changed) and its provenance line;
@@ -227,10 +228,10 @@ def cmd_map(slugs):
     print(f"total: {total} card(s) over {len(slugs)} topic(s)")
 
 
-SKEPTIC_MODEL, SKEPTIC_EFFORT = "claude-fable-5-1", "high"
+SKEPTIC_MODEL, SKEPTIC_EFFORT, CLOSING_EFFORT = "claude-fable-5-1", "high", "high"
 
 
-def cmd_build(slug, out_dir, bundle_path=None, only=None, skeptic_model=SKEPTIC_MODEL, skeptic_effort=SKEPTIC_EFFORT):
+def cmd_build(slug, out_dir, bundle_path=None, only=None, skeptic_model=SKEPTIC_MODEL, skeptic_effort=SKEPTIC_EFFORT, closing_effort=CLOSING_EFFORT):
     topic, next_id, spine, mapped, unmapped, missing_rows = mapping(slug)
     if missing_rows:
         sys.exit(f"round2-from-tree: {slug}: note rows no key reaches: {missing_rows}; fix the mapping before a build")
@@ -261,7 +262,7 @@ def cmd_build(slug, out_dir, bundle_path=None, only=None, skeptic_model=SKEPTIC_
         "resume_state": {"sources": [], "spine": spine, "drafts": drafts, "verdicts": {}},
         "only_keys": sorted(mapped, key=lambda k: mapped[k][0]), "include_held": False, "round": 3,
         "fix_after_verify": False, "closing_edit": True, "written": written,
-        "skeptic_model": skeptic_model, "skeptic_effort": skeptic_effort,
+        "skeptic_model": skeptic_model, "skeptic_effort": skeptic_effort, "closing_effort": closing_effort,
     }
     if launched.get("channel_note"):
         args_obj["channel_note"] = launched["channel_note"]
@@ -274,7 +275,7 @@ def cmd_build(slug, out_dir, bundle_path=None, only=None, skeptic_model=SKEPTIC_
     size = os.path.getsize(path)
     if size > 524288:
         sys.exit(f"round2-from-tree: {path} is {size} bytes, above the runtime's 524288-byte script limit; use --only to split the topic")
-    print(f"{path}: {len(mapped)} card(s), {size} bytes, skeptic {skeptic_model} at {skeptic_effort} — {', '.join(rid for rid, _ in sorted(mapped.values()))}"
+    print(f"{path}: {len(mapped)} card(s), {size} bytes, skeptic {skeptic_model} at {skeptic_effort}, closing edit at {closing_effort} — {', '.join(rid for rid, _ in sorted(mapped.values()))}"
           + (f"; keys with no tree card left out: {', '.join(unmapped)}" if unmapped else ""))
     return 0
 
@@ -377,7 +378,7 @@ def main(argv):
         return cmd_map(rest) if rest else sys.exit("round2-from-tree: map needs at least one slug")
     if cmd == "build":
         slug = rest[0] if rest else sys.exit("round2-from-tree: build needs a slug")
-        out_dir = bundle = None; only = None; sm, se = SKEPTIC_MODEL, SKEPTIC_EFFORT
+        out_dir = bundle = None; only = None; sm, se, ce = SKEPTIC_MODEL, SKEPTIC_EFFORT, CLOSING_EFFORT
         i = 1
         while i < len(rest):
             if rest[i] == "--out-dir": out_dir = rest[i + 1]; i += 2
@@ -385,10 +386,11 @@ def main(argv):
             elif rest[i] == "--only": only = set(rest[i + 1].split(",")); i += 2
             elif rest[i] == "--skeptic-model": sm = rest[i + 1]; i += 2
             elif rest[i] == "--skeptic-effort": se = rest[i + 1]; i += 2
+            elif rest[i] == "--closing-effort": ce = rest[i + 1]; i += 2
             else: sys.exit(f"round2-from-tree: unexpected argument {rest[i]!r}")
         if not out_dir:
             sys.exit("round2-from-tree: build needs --out-dir")
-        return cmd_build(slug, out_dir, bundle, only, sm, se)
+        return cmd_build(slug, out_dir, bundle, only, sm, se, ce)
     if cmd == "apply":
         if len(rest) < 2:
             sys.exit("round2-from-tree: apply needs a slug and the pass output")
