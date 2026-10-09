@@ -138,7 +138,8 @@
      "part": "r2-1of2",
      "task": "w4256cf6i",
      "wf": "wf_b9b93d6b-cab",
-     "note": "3 second verdicts and 2 closing edits the usage cut took from r1-1of2"
+     "note": "3 second verdicts and 2 closing edits the usage cut took from r1-1of2",
+     "status": "done: 5 cards, 8 agents, 0.89M tokens"
     },
     {
      "part": "r2-2of2",
@@ -148,7 +149,8 @@
      "note": "2 second verdicts and 3 closing edits the usage cut took from r1-2of2"
     }
    ],
-   "queued": []
+   "queued": [],
+   "status": "done: 11 cards (TOOL-01 to TOOL-11), 3 pending entries; 56 agents over five runs (10 fresh, 21 and 20 in the cut parts, 8 and 7 in their finish runs), about 5.9M sub-agent tokens in the continuation runs"
   }
  },
  "launch_stop": "2026-10-08T15:05 UTC: operator instruction \u2014 finish the running workflows, launch no new ones; then update HANDOVER for the next session, save everything and push. Not started after this: runtime-configuration, internationalization-and-text-encoding, reading-and-understanding-code, code-review-as-author-and-reviewer, documentation-beyond-comments, parsing-and-grammar-based-input, security-hygiene-in-ordinary-code.",
