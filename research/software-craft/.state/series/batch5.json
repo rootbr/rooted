@@ -85,10 +85,10 @@
     },
     {
      "part": "r2-2of2",
-     "task": null,
-     "wf": null,
-     "launched": null,
-     "status": "built, waiting for a slot under the cap of two",
+     "task": "w41m8vs7c",
+     "wf": "wf_501f96b3-f5d",
+     "launched": "2026-10-09T22:14 UTC",
+     "status": "running",
      "bundle": "cont/parsing-and-grammar-based-input/r2/continue-parsing-and-grammar-based-input-round2-2of2.js: compute-on-parsed-typed-value, regex-matches-whole-value, regex-no-superlinear-backtracking, reject-malformed-input-whole, bound-size-and-depth-before-parsing"
     }
    ]
@@ -108,8 +108,24 @@
      "task": "w2lf5by97",
      "wf": "wf_1bb7cafc-8f1",
      "launched": "2026-10-09T20:20 UTC",
-     "status": "running",
+     "status": "done 2026-10-09T22:14 UTC: 35 agents, 3,783,301 sub-agent tokens, 11 cards in its output (10 on a closing edit, TOOL-07 accepted at the second verdict), 7 pending (held rules)",
      "bundle": "cont/runtime-configuration/r1/continue-runtime-configuration-1of1.js (research-continue.py --round 1 --skip-fixed): all 11 rules, drafts and 8 first verdicts carried; 3 first verdicts, then fix, second verdict, closing edit"
+    },
+    {
+     "part": "r2-1of2",
+     "task": null,
+     "wf": null,
+     "launched": null,
+     "status": "built, waiting for a slot under the cap of two",
+     "bundle": "cont/runtime-configuration/r2/continue-runtime-configuration-round2-1of2.js (research-continue.py --round 2 over the r1 and r1-rest journals, --split 2): deploy-varying-value-read-from-configuration, option-only-where-a-user-must-choose, debug-switch-off-by-default, configuration-error-names-setting-and-source, unapplied-setting-reported"
+    },
+    {
+     "part": "r2-2of2",
+     "task": null,
+     "wf": null,
+     "launched": null,
+     "status": "built, waiting for a slot under the cap of two",
+     "bundle": "cont/runtime-configuration/r2/continue-runtime-configuration-round2-2of2.js: configuration-read-at-entry-point, secret-never-a-command-line-argument, option-constraints-documented, invalid-value-rejected-not-overruled, configuration-change-tested-with-code"
     }
    ]
   }
