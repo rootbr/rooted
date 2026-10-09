@@ -72,8 +72,24 @@
      "task": "wsctoisfn",
      "wf": "wf_b6efcc2a-1f9",
      "launched": "2026-10-09T21:31 UTC",
-     "status": "running",
+     "status": "done 2026-10-09T21:51 UTC: 5 agents, 618,593 sub-agent tokens, 3 cards in its output, 2 pending",
      "bundle": "cont/parsing-and-grammar-based-input/r1/continue-parsing-and-grammar-based-input-finish-1of1.js (research-continue.py --round 1 --resume-cut-short): the 3 rules whose fix finished (standard-parser-for-structured-format, compute-on-parsed-typed-value, fixed-text-without-regex); second verdict and closing edit"
+    },
+    {
+     "part": "r2-1of2",
+     "task": "wexiaki7u",
+     "wf": "wf_2885125d-372",
+     "launched": "2026-10-09T21:52 UTC",
+     "status": "running",
+     "bundle": "cont/parsing-and-grammar-based-input/r2/continue-parsing-and-grammar-based-input-round2-1of2.js (research-continue.py --round 2 over the r1, r1-rest and r1-finish journals, --split 2): standard-parser-for-structured-format, regex-complexity-bounded, regex-written-for-its-engine, regex-tested-with-near-matches, lenient-parser-made-strict"
+    },
+    {
+     "part": "r2-2of2",
+     "task": null,
+     "wf": null,
+     "launched": null,
+     "status": "built, waiting for a slot under the cap of two",
+     "bundle": "cont/parsing-and-grammar-based-input/r2/continue-parsing-and-grammar-based-input-round2-2of2.js: compute-on-parsed-typed-value, regex-matches-whole-value, regex-no-superlinear-backtracking, reject-malformed-input-whole, bound-size-and-depth-before-parsing"
     }
    ]
   },
