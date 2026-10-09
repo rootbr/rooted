@@ -88,10 +88,11 @@
      "task": "w41m8vs7c",
      "wf": "wf_501f96b3-f5d",
      "launched": "2026-10-09T22:14 UTC",
-     "status": "running",
+     "status": "done 2026-10-09T22:59 UTC: 13 agents, 1,497,381 sub-agent tokens, 5 cards in its output, 0 pending",
      "bundle": "cont/parsing-and-grammar-based-input/r2/continue-parsing-and-grammar-based-input-round2-2of2.js: compute-on-parsed-typed-value, regex-matches-whole-value, regex-no-superlinear-backtracking, reject-malformed-input-whole, bound-size-and-depth-before-parsing"
     }
-   ]
+   ],
+   "written": "2026-10-09T23:01 UTC: INP-13 to INP-24 written by finish-topic.sh over the r1 (cut), r1-rest, r1-finish, r2-1of2 and r2-2of2 outputs (102 agents, 10.9M sub-agent tokens over the five runs)"
   },
   "runtime-configuration": {
    "runs": [
@@ -121,10 +122,10 @@
     },
     {
      "part": "r2-2of2",
-     "task": null,
-     "wf": null,
-     "launched": null,
-     "status": "built, waiting for a slot under the cap of two",
+     "task": "wobswkms0",
+     "wf": "wf_4c8d6d37-255",
+     "launched": "2026-10-09T22:59 UTC",
+     "status": "running",
      "bundle": "cont/runtime-configuration/r2/continue-runtime-configuration-round2-2of2.js: configuration-read-at-entry-point, secret-never-a-command-line-argument, option-constraints-documented, invalid-value-rejected-not-overruled, configuration-change-tested-with-code"
     }
    ]
