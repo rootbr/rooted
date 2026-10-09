@@ -126,6 +126,8 @@ Record the new task ids in a batch file: a continuation batch (`series/batch3.js
 
 ### 5.4 Resume in the same session after a usage-limit stop
 
+**Only while the runtime that launched the run is still the same process.** After a worker restart (the harness says "This session's worker process was restarted"), `resumeFromRunId` replays finished agents instead of only the failed ones (2026-10-09: the algorithm finish run restarted at closing edits already done, the build-warnings part at its fix stage); stop such a run at once and rebuild with §5.3 instead: `research-continue.py --journal <original journal> --journal <the part's journal> --from-bundle <regenerated bundle> --round 1 --resume-cut-short --skip-carded <the part's task output> --split 1 --out-dir <new dir>` carries the part's fix drafts and recorded second verdicts, runs only the missing verdicts and the closing edits of the rules the output does not ship, and the writer merges the part's output and the new one.
+
 When the runtime that launched the run is still alive, `Workflow({scriptPath: <bundle>, resumeFromRunId: "<wf id>"})` replays the finished agents from the runtime cache and re-runs only the failed ones, for a run that ended "completed" with failed agents as much as for one that failed outright. After the launch, confirm from the journal that the live agents are the ones that failed (two per run) and nothing earlier re-runs. Then snapshot and commit.
 
 ### 5.5 Launch a not-started topic

@@ -76,6 +76,12 @@
      "part": "finish",
      "task": "wznd1ra1a",
      "wf": "wf_4b7c1e78-54a"
+    },
+    {
+     "part": "r2-finish",
+     "task": "wumbjfr5e",
+     "wf": "wf_c708c696-1fa",
+     "note": "the 3 closing edits the usage cut took from the finish run; built by research-continue.py --resume-cut-short --skip-carded <finish output> from the original and the finish journals"
     }
    ]
   },
@@ -91,6 +97,19 @@
      "part": "r1-1of2",
      "task": "wprj1lphn",
      "wf": "wf_7c75b6b2-36c"
+    },
+    {
+     "part": "r2-1of2",
+     "task": "wmh150s4t",
+     "wf": "wf_952078a5-411",
+     "note": "the 1 closing edit the usage cut took from r1-1of2; built the same way"
+    }
+   ],
+   "queued": [
+    {
+     "part": "r1-2of2",
+     "bundle": "<scratch>/cont/build-warnings-static-analysis-ci/r1/continue-build-warnings-static-analysis-ci-2of2.js",
+     "rules": 5
     }
    ]
   },
@@ -112,10 +131,25 @@
      "task": "wti1olmil",
      "wf": "wf_9b0efe74-eb1"
     }
+   ],
+   "queued": [
+    {
+     "part": "r2-1of2",
+     "bundle": "<scratch>/cont/dependency-management/r2-1of2/continue-dependency-management-finish-1of1.js",
+     "rules": 5,
+     "note": "3 second verdicts and 2 closing edits"
+    },
+    {
+     "part": "r2-2of2",
+     "bundle": "<scratch>/cont/dependency-management/r2-2of2/continue-dependency-management-finish-1of1.js",
+     "rules": 5,
+     "note": "2 second verdicts and 3 closing edits"
+    }
    ]
   }
  },
  "launch_stop": "2026-10-08T15:05 UTC: operator instruction \u2014 finish the running workflows, launch no new ones; then update HANDOVER for the next session, save everything and push. Not started after this: runtime-configuration, internationalization-and-text-encoding, reading-and-understanding-code, code-review-as-author-and-reviewer, documentation-beyond-comments, parsing-and-grammar-based-input, security-hygiene-in-ordinary-code.",
  "continuations": "2026-10-08T16:45 UTC: the three runs the session end cut (algorithm fix round done; build-warnings 2 of 10 verified; dependency-management 6 of 11 drafted) continue from their journals (HANDOVER 5.3): algorithm as one --resume-cut-short finish bundle (10 second verdicts, closing edits), the other two as --round 1 bundles split in two; build-warnings r1-2of2 is launched when a slot under the cap of four frees.",
- "usage_cut": "2026-10-08T18:30 UTC: the five-hour window closed (reset 21:30 UTC) on the four continuation workflows and the design reviewer; algorithm finish lost 3 closing edits, build-warnings r1-1of2 one closing edit, dependency-management r1-1of2 three second verdicts and two closing edits, r1-2of2 two second verdicts and three closing edits; each run ended completed with its finished cards in its output and the cut rules as pending entries"
+ "usage_cut": "2026-10-08T18:30 UTC: the five-hour window closed (reset 21:30 UTC) on the four continuation workflows and the design reviewer; algorithm finish lost 3 closing edits, build-warnings r1-1of2 one closing edit, dependency-management r1-1of2 three second verdicts and two closing edits, r1-2of2 two second verdicts and three closing edits; each run ended completed with its finished cards in its output and the cut rules as pending entries",
+ "resume_attempt": "2026-10-09T04:58 UTC: Workflow({resumeFromRunId}) on wf_4b7c1e78-54a and wf_7c75b6b2-36c after the worker restart replayed finished agents (closing edits already done; the fix stage) instead of only the failed ones; both stopped within a minute (tasks wncxnbmft, wd0jlrpyd) and replaced by \u00a75.3 finish bundles"
 }
