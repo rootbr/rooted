@@ -80,7 +80,7 @@
      "task": "wexiaki7u",
      "wf": "wf_2885125d-372",
      "launched": "2026-10-09T21:52 UTC",
-     "status": "running",
+     "status": "done 2026-10-09T22:36 UTC: 15 agents, 1,654,238 sub-agent tokens, 5 cards in its output (all on a closing edit), 0 pending",
      "bundle": "cont/parsing-and-grammar-based-input/r2/continue-parsing-and-grammar-based-input-round2-1of2.js (research-continue.py --round 2 over the r1, r1-rest and r1-finish journals, --split 2): standard-parser-for-structured-format, regex-complexity-bounded, regex-written-for-its-engine, regex-tested-with-near-matches, lenient-parser-made-strict"
     },
     {
@@ -113,10 +113,10 @@
     },
     {
      "part": "r2-1of2",
-     "task": null,
-     "wf": null,
-     "launched": null,
-     "status": "built, waiting for a slot under the cap of two",
+     "task": "wmd0730cq",
+     "wf": "wf_3dbaf4d8-ab0",
+     "launched": "2026-10-09T22:36 UTC",
+     "status": "running",
      "bundle": "cont/runtime-configuration/r2/continue-runtime-configuration-round2-1of2.js (research-continue.py --round 2 over the r1 and r1-rest journals, --split 2): deploy-varying-value-read-from-configuration, option-only-where-a-user-must-choose, debug-switch-off-by-default, configuration-error-names-setting-and-source, unapplied-setting-reported"
     },
     {
