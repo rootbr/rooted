@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """The generator that appends the series rows of evals/expected.json: three seeds and three controls per
-domain the pilot fixture did not cover (design, interface, change, performance), on the same (rule_id, file,
+domain the pilot fixture did not cover (design, interface, change, performance, tooling), on the same (rule_id, file,
 symbol) triples as pilot-expected-gen.py writes. Usage: python3 extended-expected-gen.py <evals/expected.json>
 (rewrites the file, keeping the pilot rows first; idempotent on the ids it adds)."""
 import json, sys
@@ -21,6 +21,9 @@ seeds = [
     ("prf-04-seed", "PRF-04", "performance/py/totals.py", ["total", "file:performance/py/totals.py", "totals.py"]),
     ("prf-05-seed", "PRF-05", "performance/go/report.go", ["summarize", "func summarize"]),
     ("prf-06-seed", "PRF-06", "performance/ts/parser.test.ts", it("rejectsEmptyInput", 'describe("parseAmount")', "parseAmount")),
+    ("tool-15-seed", "TOOL-15", "tooling/py/exports.py", "load_legacy"),
+    ("tool-18-seed", "TOOL-18", "tooling/ts/events.ts", "onMessage"),
+    ("tool-21-seed", "TOOL-21", "tooling/rust/checksum.rs", ["legacy_checksum", "fn legacy_checksum"]),
 ]
 controls = [
     ("dsn-37-control", "DSN-37", "design/java/Square.java", "Square#area"),
@@ -35,6 +38,9 @@ controls = [
     ("prf-04-control", "PRF-04", "performance/py/totals.py", "subtotal"),
     ("prf-05-control", "PRF-05", "performance/go/report.go", ["PrintReport", "func PrintReport"]),
     ("prf-06-control", "PRF-06", "performance/ts/parser.test.ts", it("acceptsOnlyAsciiDigits")),
+    ("tool-15-control", "TOOL-15", "tooling/py/exports.py", "export_batch"),
+    ("tool-18-control", "TOOL-18", "tooling/ts/events.ts", "onClose"),
+    ("tool-21-control", "TOOL-21", "tooling/rust/checksum.rs", ["fast_checksum", "fn fast_checksum"]),
 ]
 path = sys.argv[1]
 d = json.load(open(path, encoding="utf-8"))

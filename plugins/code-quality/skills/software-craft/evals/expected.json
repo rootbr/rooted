@@ -47,7 +47,10 @@
   {"id": "chg-08-seed", "rule_id": "CHG-08", "file": "change/java/Pricing.java", "symbol": "Pricing#legacyPrice"},
   {"id": "prf-04-seed", "rule_id": "PRF-04", "file": "performance/py/totals.py", "symbol": ["total", "file:performance/py/totals.py", "totals.py"]},
   {"id": "prf-05-seed", "rule_id": "PRF-05", "file": "performance/go/report.go", "symbol": ["summarize", "func summarize"]},
-  {"id": "prf-06-seed", "rule_id": "PRF-06", "file": "performance/ts/parser.test.ts", "symbol": ["describe(\"parseAmount\")", "parseAmount", "rejectsEmptyInput", "\"rejectsEmptyInput\"", "'rejectsEmptyInput'", "it(\"rejectsEmptyInput\")", "it('rejectsEmptyInput')", "it.only(\"rejectsEmptyInput\")", "it.only('rejectsEmptyInput')"]}
+  {"id": "prf-06-seed", "rule_id": "PRF-06", "file": "performance/ts/parser.test.ts", "symbol": ["describe(\"parseAmount\")", "parseAmount", "rejectsEmptyInput", "\"rejectsEmptyInput\"", "'rejectsEmptyInput'", "it(\"rejectsEmptyInput\")", "it('rejectsEmptyInput')", "it.only(\"rejectsEmptyInput\")", "it.only('rejectsEmptyInput')"]},
+  {"id": "tool-15-seed", "rule_id": "TOOL-15", "file": "tooling/py/exports.py", "symbol": "load_legacy"},
+  {"id": "tool-18-seed", "rule_id": "TOOL-18", "file": "tooling/ts/events.ts", "symbol": "onMessage"},
+  {"id": "tool-21-seed", "rule_id": "TOOL-21", "file": "tooling/rust/checksum.rs", "symbol": ["legacy_checksum", "fn legacy_checksum"]}
  ],
  "controls": [
   {"id": "code-01-control", "silent": ["CODE-01"], "file": "code/java/InvoiceLedger.java", "symbol": "InvoiceLedger#isOverdueOn"},
@@ -97,6 +100,9 @@
   {"id": "chg-08-control", "silent": ["CHG-08"], "file": "change/java/Pricing.java", "symbol": ["Pricing#Pricing", "Pricing#<init>", "Pricing"]},
   {"id": "prf-04-control", "silent": ["PRF-04"], "file": "performance/py/totals.py", "symbol": "subtotal"},
   {"id": "prf-05-control", "silent": ["PRF-05"], "file": "performance/go/report.go", "symbol": ["PrintReport", "func PrintReport"]},
-  {"id": "prf-06-control", "silent": ["PRF-06"], "file": "performance/ts/parser.test.ts", "symbol": ["acceptsOnlyAsciiDigits", "\"acceptsOnlyAsciiDigits\"", "'acceptsOnlyAsciiDigits'", "it(\"acceptsOnlyAsciiDigits\")", "it('acceptsOnlyAsciiDigits')", "it.only(\"acceptsOnlyAsciiDigits\")", "it.only('acceptsOnlyAsciiDigits')"]}
+  {"id": "prf-06-control", "silent": ["PRF-06"], "file": "performance/ts/parser.test.ts", "symbol": ["acceptsOnlyAsciiDigits", "\"acceptsOnlyAsciiDigits\"", "'acceptsOnlyAsciiDigits'", "it(\"acceptsOnlyAsciiDigits\")", "it('acceptsOnlyAsciiDigits')", "it.only(\"acceptsOnlyAsciiDigits\")", "it.only('acceptsOnlyAsciiDigits')"]},
+  {"id": "tool-15-control", "silent": ["TOOL-15"], "file": "tooling/py/exports.py", "symbol": "export_batch"},
+  {"id": "tool-18-control", "silent": ["TOOL-18"], "file": "tooling/ts/events.ts", "symbol": "onClose"},
+  {"id": "tool-21-control", "silent": ["TOOL-21"], "file": "tooling/rust/checksum.rs", "symbol": ["fast_checksum", "fn fast_checksum"]}
  ]
 }
