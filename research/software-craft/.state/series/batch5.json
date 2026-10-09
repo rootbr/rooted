@@ -64,15 +64,15 @@
      "task": "w97wd4bpq",
      "wf": "wf_54bc0906-0db",
      "launched": "2026-10-09T20:20 UTC",
-     "status": "running",
+     "status": "done 2026-10-09T21:31 UTC: 26 agents, 2,781,997 sub-agent tokens, 9 cards in its output (8 on a closing edit, INP-11 accepted at the second verdict), 2 pending (held rules)",
      "bundle": "cont/parsing-and-grammar-based-input/r1/continue-parsing-and-grammar-based-input-1of1.js (research-continue.py --round 1 --skip-fixed): the 9 rules whose fix failed, drafts and first verdicts carried; fix, second verdict, closing edit"
     },
     {
      "part": "r1-finish",
-     "task": null,
-     "wf": null,
-     "launched": null,
-     "status": "built, waiting for a slot under the cap of two",
+     "task": "wsctoisfn",
+     "wf": "wf_b6efcc2a-1f9",
+     "launched": "2026-10-09T21:31 UTC",
+     "status": "running",
      "bundle": "cont/parsing-and-grammar-based-input/r1/continue-parsing-and-grammar-based-input-finish-1of1.js (research-continue.py --round 1 --resume-cut-short): the 3 rules whose fix finished (standard-parser-for-structured-format, compute-on-parsed-typed-value, fixed-text-without-regex); second verdict and closing edit"
     }
    ]
