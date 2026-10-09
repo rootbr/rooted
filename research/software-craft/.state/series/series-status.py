@@ -76,6 +76,8 @@ def main(argv):
         b = json.load(open(bf, encoding="utf-8"))
         for slug, v in b["topics"].items():
             for run in v.get("runs") or [v]:
+                if not run.get("wf") or not run.get("task"):
+                    continue   # a bundle built and recorded but not launched yet has no journal or output
                 topics.append((b.get("batch"), slug, run))
     wdir = opts["workflows_dir"]
     tdir = opts["tasks_dir"]

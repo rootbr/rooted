@@ -56,8 +56,24 @@
      "task": "wvic7oevd",
      "wf": "wf_4ebd6c39-d19",
      "launched": "2026-10-09T16:33 UTC",
-     "status": "running",
+     "status": "cut by the usage limit about 2026-10-09T19:15 UTC (window reset 19:50 UTC): sources, spine, 12 drafts, 12 first verdicts and 3 fixes done; 9 fixes and 3 second verdicts failed; 0 cards in its output (43 agents, 4,358,746 sub-agent tokens); its journal and output are the state of the continuations",
      "bundle": "bundles/parsing-and-grammar-based-input.js regenerated after the INP cards landed (12 existing titles)"
+    },
+    {
+     "part": "r1-rest",
+     "task": "w97wd4bpq",
+     "wf": "wf_54bc0906-0db",
+     "launched": "2026-10-09T20:20 UTC",
+     "status": "running",
+     "bundle": "cont/parsing-and-grammar-based-input/r1/continue-parsing-and-grammar-based-input-1of1.js (research-continue.py --round 1 --skip-fixed): the 9 rules whose fix failed, drafts and first verdicts carried; fix, second verdict, closing edit"
+    },
+    {
+     "part": "r1-finish",
+     "task": null,
+     "wf": null,
+     "launched": null,
+     "status": "built, waiting for a slot under the cap of two",
+     "bundle": "cont/parsing-and-grammar-based-input/r1/continue-parsing-and-grammar-based-input-finish-1of1.js (research-continue.py --round 1 --resume-cut-short): the 3 rules whose fix finished (standard-parser-for-structured-format, compute-on-parsed-typed-value, fixed-text-without-regex); second verdict and closing edit"
     }
    ]
   },
@@ -68,8 +84,16 @@
      "task": "w2417tcq0",
      "wf": "wf_0c095df1-09f",
      "launched": "2026-10-09T17:11 UTC",
-     "status": "running (second slot under the cap of two)",
+     "status": "cut by the usage limit about 2026-10-09T19:15 UTC (window reset 19:50 UTC): sources, spine, 11 drafts and 8 first verdicts done; 3 first verdicts and 8 fixes failed; 0 cards in its output (34 agents, 3,285,266 sub-agent tokens); its journal and output are the state of the continuation",
      "bundle": "bundles/runtime-configuration.js regenerated after the INP cards landed (21 existing TOOL titles)"
+    },
+    {
+     "part": "r1-rest",
+     "task": "w2lf5by97",
+     "wf": "wf_1bb7cafc-8f1",
+     "launched": "2026-10-09T20:20 UTC",
+     "status": "running",
+     "bundle": "cont/runtime-configuration/r1/continue-runtime-configuration-1of1.js (research-continue.py --round 1 --skip-fixed): all 11 rules, drafts and 8 first verdicts carried; 3 first verdicts, then fix, second verdict, closing edit"
     }
    ]
   }
