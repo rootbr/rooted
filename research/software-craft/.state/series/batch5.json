@@ -1,0 +1,28 @@
+{
+ "batch": 5,
+ "launched": "2026-10-09T07:36 UTC",
+ "kind": "the seven not-started topics (HANDOVER §3, operator's decision of 2026-10-09T06:55 UTC), one at a time under the cap of one active task, each as round 1 from the regenerated bundle and round 2 from its journal (HANDOVER §1 Rounds, §5.3 with --round 2), then finished and spot-read before the next is launched",
+ "order": [
+  "security-hygiene-in-ordinary-code",
+  "parsing-and-grammar-based-input",
+  "runtime-configuration",
+  "internationalization-and-text-encoding",
+  "code-review-as-author-and-reviewer",
+  "documentation-beyond-comments",
+  "reading-and-understanding-code"
+ ],
+ "concurrency": "1 active task (operator, 2026-10-09T06:10 UTC): a workflow or a reviewer agent, never both",
+ "topics": {
+  "security-hygiene-in-ordinary-code": {
+   "runs": [
+    {
+     "part": "r1",
+     "task": "w8s14kkyu",
+     "wf": "wf_83e5a391-945",
+     "launched": "2026-10-09T07:36 UTC",
+     "status": "running"
+    }
+   ]
+  }
+ }
+}
