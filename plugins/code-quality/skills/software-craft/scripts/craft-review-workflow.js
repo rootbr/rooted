@@ -513,8 +513,8 @@ const DEFER_TO = {
   'ERR-23': 'ERR-25', // each held resource gets its own release: consecutive releases inside a type's own release operation are ERR-25's finding (reviewer, errors)
   'ERR-27': 'ERR-30', // a resource is released on every exit: a release registered after a later call that can fail is ERR-30's finding (reviewer, errors)
   'ERR-45': ['ERR-02', 'ERR-08', 'ERR-31'], // a handler that suppresses an unexpected error logs it: an empty handler with no comment is ERR-02's finding, a catch-all that goes on without a record ERR-08's, an unrecorded fallback for a failed remote call ERR-31's (reviewer, errors)
-  'ERR-14': 'API-04', // a check on outside values is never a removable assertion: a removable assertion on outside data or an empty lookup result is API-04's finding (reviewer, errors)
-  'ERR-13': ['API-01', 'API-11'], // a public routine checks its preconditions: a public setter or constructor that stores an argument the invariant constrains is API-01's finding, an operation that reads state only a set-up call establishes API-11's (reviewer, errors)
+  'ERR-14': ['API-04', 'INP-01'], // a check on outside values is never a removable assertion: a removable assertion on outside data or an empty lookup result is API-04's finding, a value that enters across a trust boundary and reaches a decision with no allow-list check INP-01's (reviewer, errors; spot-read, security-hygiene)
+  'ERR-13': ['API-01', 'API-11', 'INP-01'], // a public routine checks its preconditions: a public setter or constructor that stores an argument the invariant constrains is API-01's finding, an operation that reads state only a set-up call establishes API-11's, a request handler's unvalidated value from across a trust boundary INP-01's (reviewer, errors; spot-read, security-hygiene)
   'API-03': 'ERR-06', // a commented assumption is also asserted: a default branch that returns a substitute under a comment calling the case unreachable is ERR-06's finding (reviewer, errors)
 }
 const ownersOf = ruleId => [DEFER_TO[ruleId] || []].flat()
