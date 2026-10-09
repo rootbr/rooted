@@ -35,15 +35,15 @@
      "task": "wml9xxe9r",
      "wf": "wf_3da6e9c8-559",
      "launched": "2026-10-09T14:50 UTC",
-     "status": "running",
+     "status": "done 2026-10-09T15:41 UTC: 16 agents, 1,855,584 sub-agent tokens, 6 cards in its output, 0 pending",
      "bundle": "cont/security-hygiene-in-ordinary-code/r2/continue-security-hygiene-in-ordinary-code-round2-1of2.js (research-continue.py --round 2 --journal <r1 journal> --journal <r1-sources journal> --from-bundle bundles/security-hygiene-in-ordinary-code.js --split 2; the one-bundle form was 659 KB, above the 512 KiB limit): the six rules validate-input-at-trust-boundary, contextual-output-encoding, no-eval-of-untrusted-input, least-privilege-in-what-code-asks-for, no-secret-in-code, csprng-for-unguessable-values"
     },
     {
      "part": "r2-2of2",
-     "task": null,
-     "wf": null,
-     "launched": null,
-     "status": "built, waiting for the cap (launched when r2-1of2 ends)",
+     "task": "w9o8mfhzp",
+     "wf": "wf_106a36e3-60a",
+     "launched": "2026-10-09T15:41 UTC",
+     "status": "running",
      "bundle": "cont/security-hygiene-in-ordinary-code/r2/continue-security-hygiene-in-ordinary-code-round2-2of2.js: the five rules parameterize-queries, os-command-argument-vector, listener-binds-specific-interface, secure-defaults, vetted-security-primitive"
     }
    ]
