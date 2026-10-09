@@ -81,9 +81,11 @@
      "part": "r2-finish",
      "task": "wumbjfr5e",
      "wf": "wf_c708c696-1fa",
-     "note": "the 3 closing edits the usage cut took from the finish run; built by research-continue.py --resume-cut-short --skip-carded <finish output> from the original and the finish journals"
+     "note": "the 3 closing edits the usage cut took from the finish run; built by research-continue.py --resume-cut-short --skip-carded <finish output> from the original and the finish journals",
+     "status": "done: 3 cards, 3 agents, 245k tokens"
     }
-   ]
+   ],
+   "status": "done: 10 cards (PRF-15 to PRF-24), 1 pending entry, 7 held; 53 agents over three runs (34 fresh, 16 finish, 3 r2), about 2.4M sub-agent tokens in the two continuation runs"
   },
   "build-warnings-static-analysis-ci": {
    "runs": [

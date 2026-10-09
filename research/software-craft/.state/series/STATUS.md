@@ -1,6 +1,6 @@
 # Series status
 
-Snapshot taken 2026-10-09T05:02 UTC by `series/series-status.py --snapshot`. Journals under `journals/`, finished runs' outputs under `outputs/`.
+Snapshot taken 2026-10-09T05:03 UTC by `series/series-status.py --snapshot`. Journals under `journals/`, finished runs' outputs under `outputs/`.
 
 `done` counts the agents whose results the journal holds (cached for a continuation); `failed` the agents a usage-limit stop or an error ended, which a continuation re-runs. `cards` is the count in the run's own output; a run whose agents failed shipped none, and its cards come from the continuation. A continuation run (batch 3 and later) is one bundle of a topic, named by its part; a topic is finished when every part's run is complete.
 
@@ -149,7 +149,7 @@ Snapshot taken 2026-10-09T05:02 UTC by `series/series-status.py --snapshot`. Jou
 | 4 | `profiling-and-code-tuning` | 8 | sources 3, spine 1, draft 8, verify 8, fix 8, verify2 8, close1 8 | - | - | running or stopped |
 | 4 | `algorithm-and-data-structure-choice` | 10 | sources 3, spine 1, draft 10, verify 10, fix 10 | - | - | running or stopped |
 | 4 | `algorithm-and-data-structure-choice` finish | 10 | verify2 10 | - | 7 | run ended, agents failed |
-| 4 | `algorithm-and-data-structure-choice` r2-finish | ? | - | - | - | running or stopped |
+| 4 | `algorithm-and-data-structure-choice` r2-finish | 10 | - | - | 3 | run complete |
 | 4 | `build-warnings-static-analysis-ci` | 10 | sources 3, spine 1, draft 10, verify 2 | - | - | running or stopped |
 | 4 | `build-warnings-static-analysis-ci` r1-1of2 | 10 | verify 4, fix 5, verify2 5, close1 4 | close1 1 | 4 | run ended, agents failed |
 | 4 | `build-warnings-static-analysis-ci` r2-1of2 | 10 | - | - | 1 | run complete |

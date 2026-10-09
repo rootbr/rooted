@@ -475,6 +475,11 @@ const DEFER_TO = {
   'CODE-77': 'DSN-60', // a loop variable is changed only by its header: an add or remove on the traversed collection is DSN-60's finding (reviewer, code)
   'CODE-67': 'DSN-64', // a doc comment states side effects: an undeclared change to an argument is DSN-64's finding (reviewer, code)
   'DSN-25': 'CODE-26', // a value kept in two places is read from one: a literal that writes out a constant the same file defines is CODE-26's finding (reviewer, code)
+  'DSN-58': 'PRF-17', // a reduce or fold that copies a growing accumulator: the quadratic copy of the accumulated value is PRF-17's finding, whose builder fix is the loop DSN-58 asks for (spot-read, algorithm)
+  'CODE-78': 'PRF-20', // a loop iterates over elements, not an index: an index loop over a linked list or another sequence with linear positional access is PRF-20's finding (spot-read, algorithm)
+  'PRF-19': 'DSN-60', // front or middle removal in a loop takes a deque or a batch pass: a removal from the collection the loop itself traverses is DSN-60's correctness finding, whose single filtering pass satisfies both (spot-read, algorithm)
+  'PRF-24': 'PRF-18', // the extreme is taken by a scan, not a full sort: a sort or a scan for the extreme repeated inside a loop that adds elements is PRF-18's heap finding (spot-read, algorithm)
+  'DSN-26': 'PRF-16', // an added routine does not re-implement an existing job: a hand-written sort, binary search, heap or ordered map where the standard library provides it is PRF-16's finding (spot-read, algorithm)
 }
 const ownersOf = ruleId => [DEFER_TO[ruleId] || []].flat()
 const SEV_RANK = { major: 0, minor: 1, suggestion: 2 }
