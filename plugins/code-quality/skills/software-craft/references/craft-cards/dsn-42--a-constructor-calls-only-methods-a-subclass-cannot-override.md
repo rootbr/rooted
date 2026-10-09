@@ -2,7 +2,7 @@
 title: A constructor of a class open to subclassing calls, directly or indirectly, only methods a subclass cannot override
 rule_id: DSN-42
 domain: design
-step: [design, implement, review]
+step: [design, implement]
 applies_to: [object-oriented]
 triggers: ['^\s*(public|protected|private)\s+[A-Z]\w*\s*\(', '^\s*[A-Z]\w*\s*\([^)]*\)\s*(throws\s[^{]*)?\{', '^\s*((public|protected|private)\s+)?constructor\s*\(', '^\s*def\s+__(init|post_init|setstate|copy|deepcopy)__\s*\(', '\b(Object|void|[A-Z]\w*)\s+(clone|readObject)\s*\(']
 scope: file

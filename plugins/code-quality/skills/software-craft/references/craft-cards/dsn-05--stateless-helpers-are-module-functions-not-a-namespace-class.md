@@ -2,7 +2,7 @@
 title: Stateless helper functions are module-level functions rather than static members of a class used only as a namespace, and where the language requires a class that class hides its constructor
 rule_id: DSN-05
 domain: design
-step: [design, implement, refactor, review]
+step: [design, implement, refactor]
 applies_to: [universal]
 triggers: ['^\s*((export|default|public|private|protected|internal|final|abstract|static|pub(\([^)]*\))?)\s+)*(class|struct|enum)\s+\w*(Utils?|Utilities|Helpers?|Tools|Constants)\b|^\s*((public|abstract)\s+)?final\s+class\s+\w+|^\s*(pub(\([^)]*\))?\s+)?struct\s+\w+\s*(;|\{\s*\}\s*$)', '^\s*((public|private|protected|export)\s+)?static\s+(readonly\s+)?\w|^\s*@staticmethod\b|^\s*private\s+[A-Z]\w*\s*\(\s*\)\s*\{|^\s+pub(\([^)]*\))?\s+(((const|async|unsafe)\s+)*fn\s+\w+\s*(<[^>]*>)?\s*\((?!\s*(&\s*(\x27\w+\s+)?)?(mut\s+)?self\b)|const\s+[A-Z_][A-Z0-9_]*\s*:)']
 scope: file

@@ -2,7 +2,7 @@
 title: A default used when a caller omits an argument or field is a fresh or immutable object, never one mutable object shared by every call
 rule_id: DSN-72
 domain: design
-step: [implement, review]
+step: [implement]
 applies_to: [universal]
 triggers: ['[(,]\s*(\w+\s*(:\s*[^=,()]+)?=\s*)?(this[.]|self[.])?_?\w*(DEFAULT|[Dd]efault)\w*\s*[,)]', '\b\w+\s*:?=\s*&?(this[.]|self[.]|\w+[.])?(DEFAULT|Default[A-Z]|default[A-Z])\w*\s*;?\s*$']
 scope: file

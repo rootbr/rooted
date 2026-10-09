@@ -2,8 +2,8 @@
 title: An interface that lets one module use another without depending on its implementation is declared in the consuming module with only the methods that consumer calls, unless the interface is a common protocol that many implementations follow
 rule_id: DSN-12
 domain: design
-step: [design, implement, refactor, review]
-applies_to: [static-types]
+step: [design, implement, refactor]
+applies_to: [universal]
 triggers: ['\binterface\s+[A-Z]\w*', '\b\w+(\[[^\]]*\])?\s+interface\s*\{\s*($|\w+\()', '\btrait\s+[A-Z]\w*', '\bclass\s+\w+.*\(.*\b(Protocol|ABC)\b', '\bmetaclass\s*=\s*(abc[.])?ABCMeta\b|\babstract\s+class\s+[A-Z]']
 scope: callers
 check_kind: semantic

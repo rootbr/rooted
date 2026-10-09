@@ -2,7 +2,7 @@
 title: A map or a comprehension is used for the value it builds, and work done for its effects runs in a loop or a for-each
 rule_id: DSN-59
 domain: design
-step: [implement, review]
+step: [implement]
 applies_to: [functional]
 triggers: ['^\s*(let\s+_\s*=\s*|_\s*=\s*|void\s+)?(list\(\s*)?([\w$][\w$.\[\]()]*[.])?map\(', '[.]map\(.*(console[.](log|warn|error)|println!|print\(|System[.]out[.]print|fmt[.]Print)', '[.]map\(.*(=>|->|\|)\s*\{\s*$']
 scope: hunk

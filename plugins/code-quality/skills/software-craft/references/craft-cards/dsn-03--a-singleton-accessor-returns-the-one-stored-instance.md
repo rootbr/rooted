@@ -6,7 +6,7 @@ step: [implement, refactor]
 applies_to: [universal]
 triggers: ['(?i)\b(get_?instance|instance|shared_?instance|default_?instance)\s*\(', '\b(INSTANCE|_instance|__instance|sharedInstance|defaultInstance)\b|\bstatic\b.*\binstance\b', '\bdef\s+__new__\s*\(|\b(sync[.]Once\w*|OnceLock|LazyLock|OnceCell|get_or_init|lazy_static!)', '\breturn\s+(new\s+[A-Z]\w*\s*[(<]|&?[A-Z]\w*\s*\{|[A-Z]\w*::new\s*\(|cls\s*\(|(?!(Ok|Err|Some)\b)[A-Z]\w*\s*\()']
 scope: file
-check_kind: mechanical
+check_kind: semantic
 severity_default: major
 ---
 

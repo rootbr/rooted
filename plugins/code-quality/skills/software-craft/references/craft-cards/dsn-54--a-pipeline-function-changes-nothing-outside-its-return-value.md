@@ -2,7 +2,7 @@
 title: A function passed to a pipeline step other than a terminal for-each changes nothing outside its return value
 rule_id: DSN-54
 domain: design
-step: [implement, review]
+step: [implement]
 applies_to: [functional]
 triggers: ['\b(map|filter|flatMap|flat_map|filter_map|takeWhile|take_while|some|every|find|any|all|sorted|sort|sort_\w+|reduce|fold|Map|Filter|Reduce|Sort\w*|Slice\w*|\w+Func)\(.*(\+=|-=|\+\+|--|[.]\w+\s*=(?![=>])|\{[^}]*\w\]?\s*=(?![=>])|\bappend\(|\b[a-z]\w*::(add|put|offer|push|accept)\b|[.](push|add|append|put|insert|extend|update|set|remove|delete|write|send|inc(?!lude)|getAnd|fetch_)\w*\(|\bprint(ln|f)?!?\(|\bconsole[.]log\()', '[.](forEach|for_each|forEachOrdered)\(.*[.](add|push|append|put|insert|extend|remove|splice|delete|clear|pop|shift)\w*\(', '[.](peek|inspect)\(', '\b(map|filter|flatMap|flat_map|filter_map|takeWhile|take_while|some|every|find|any|all|sort|reduce|fold|forEach|for_each|Map|Filter|Reduce|ForEach|Sort|Slice|\w+Func)\w*\(.*\{\s*$', '[\[{(][^\]}=]*([.](append|add|extend|update|write|send|put|insert)|\bprint)\w*\([^\]}]*\bfor\b', '[\[{(][^\]}=]*\bfor\b[^\]}]*\bif\b[^\]}]*([.](append|add|extend|update|write|send|put|insert)|\bprint)\w*\(']
 scope: hunk

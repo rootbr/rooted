@@ -2,7 +2,7 @@
 title: A closure that runs after its loop iteration ends reads a per-iteration binding, not a variable the loop reassigns
 rule_id: DSN-62
 domain: design
-step: [implement, review]
+step: [implement]
 applies_to: [universal]
 triggers: ['(?:(\bappend\(|[.](append|push|unshift|add|put|set)\().*(=>|->|\blambda\b|\bfunction\b|\bfunc\s*\())|(?:\]\s*=[^=].*(=>|\blambda\b|\bfunction\b|\bfunc\s*\())|(?:\b(setTimeout|setInterval|setImmediate|queueMicrotask|addEventListener|on|once|then|catch|finally|submit|execute|after|call_later|call_soon|Thread|Timer|Go|Run)\(.*(=>|->|lambda\b|func\s*\(|function\b))', '(?:\bfor\s*\(\s*var\s|^\s+function\s+\w+\s*\()|(?:^\s*(go|defer)\s+func\s*\(|\b\w+\s*:=\s*func\s*\()|(?:\blambda\b[^\]]*\bfor\s+[\w\s,()]+?\s+in\b|^(\s{8,}|\t{2,})def\s+\w+\s*\()']
 scope: hunk

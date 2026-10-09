@@ -2,7 +2,7 @@
 title: Identical branches of one conditional, switch or match are merged into one when they hold more than one statement or every branch is the same
 rule_id: DSN-27
 domain: design
-step: [implement, review]
+step: [implement]
 applies_to: [universal]
 triggers: ['^\s*(\}\s*)?(else\s+if|elif|else)\b|^\s*(case\b|default\s*(:|->))|^\s*[\w:|(){}, -]+(\s+if\s[^=]*)?=>|\?[^:?]+:[^:]|\bif\b.+\belse\b']
 scope: file

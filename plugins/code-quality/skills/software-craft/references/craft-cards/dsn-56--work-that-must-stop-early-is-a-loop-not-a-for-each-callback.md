@@ -2,7 +2,7 @@
 title: Per-element work that must stop the iteration early or return from the enclosing routine is written as a loop or a short-circuiting step rather than a for-each callback
 rule_id: DSN-56
 domain: design
-step: [implement, review]
+step: [implement]
 applies_to: [functional]
 triggers: ['\b(forEach\w*|for_each|foreach|each|ForEach)\(', '\b(throw|raise)\s+(new\s+)?\w*(Break|Stop|Exit|Found|Done|BREAK|STOP|EXIT|FOUND|DONE)\w*']
 scope: hunk

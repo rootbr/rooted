@@ -6,7 +6,7 @@ step: [design, implement, refactor]
 applies_to: [object-oriented]
 triggers: ['^\s*(@\w+(\([^)]*\))?\s+)*protected\s+(?!((static|final|transient|volatile|readonly|internal|new|override|unsafe|required)\s+)*(static\s+final|final\s+static|static\s+readonly|readonly\s+static|const|abstract|class|interface|enum|record|void)\b)[^(=;:{]*\s\w+\s*(=(?![>=])(?!\s*(async\s+)?(\([^()]*\)|\w+)\s*(:[^=]*)?=>)|;)', '(^\s*(@\w+(\([^)]*\))?\s+)*|[(,]\s*)protected\s+((override|declare)\s+)?(static\s+(?!readonly\b))?((override|declare)\s+)?(readonly\s+)?\w+\s*[?!]?\s*(:|=(?!>))(?!\s*(async\s+)?(\([^()]*\)|\w+)\s*(:[^=]*)?=>)', '\b(self|cls)[.]_[a-z]\w*\b(?!\s*\()']
 scope: callers
-check_kind: mechanical
+check_kind: semantic
 severity_default: minor
 ---
 

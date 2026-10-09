@@ -425,9 +425,9 @@ Return the ruling object via the structured-output tool.`
 // overlapping after the series; an entry names concepts one card states in the vocabulary
 // of another domain.
 const DEFER_TO = {
-  'DSN-44': 'API-10', // a unit or identifier as a distinct type: on a public operation's parameters API-10 owns the swap
+  'DSN-44': ['API-10', 'DSN-51'], // a unit or identifier as a distinct type: on a public operation's parameters API-10 owns the swap; a duration or instant held as a bare number is DSN-51's (reviewer, design)
   'DSN-47': 'API-10', // a fixed set of values as an enumeration: on a public parameter API-10 owns the closed set
-  'DSN-66': 'API-01', // a private collection returned as a copy or view: where the type keeps an invariant API-01 owns the leaking accessor
+  'DSN-66': ['API-01', 'DSN-69'], // a private collection returned as a copy or view: where the type keeps an invariant API-01 owns the leaking accessor; an accessor of a type presented as immutable that returns its stored mutable collection is DSN-69's (reviewer, design)
   'CODE-73': 'CODE-19', // a multiway branch handles an unmatched value: over an enumerated type CODE-19 owns the missing member
   'CODE-74': 'CODE-13', // an if chain on one value is preferably a switch: a value-returning chain is CODE-13's lookup table
   'CODE-64': 'CODE-75', // an ambiguous construct carries an intended-marker: an unmarked switch fall-through is CODE-75's finding
@@ -441,7 +441,7 @@ const DEFER_TO = {
   'CHG-25': ['API-22', 'CHG-03', 'CHG-02'], // the old form stays working until no use remains: a published element is API-22's, a stale run-time use CHG-03's, an unbound override CHG-02's (reviewer, change)
   'CHG-17': ['CHG-25', 'CHG-03'], // each change builds and passes on its own: a rename with uses left is CHG-25's, a stale run-time use CHG-03's (reviewer, change)
   'API-31': 'CHG-26', // a deprecated element calls its replacement: an old type name kept as a copy, wrapper or subclass during a migration is CHG-26's alias finding
-  'DSN-15': 'CHG-26', // a forwarding wrapper is added only with a purpose: a wrapper that stands in for a migrated type's old name is CHG-26's finding
+  'DSN-15': ['CHG-26', 'DSN-19'], // a forwarding wrapper is added only with a purpose: a wrapper that stands in for a migrated type's old name is CHG-26's finding; a hand-written interface that mirrors an existing interface or generated client only for abstraction or testing is DSN-19's (reviewer, design)
   'CHG-15': 'CHG-29', // one logical change per change: hand edits, dependency updates or reformatting inside a tool-generated change are CHG-29's finding
   'CHG-08': ['CHG-30', 'CHG-31', 'CHG-35'], // an unreferenced private declaration is removed: a migration leftover is CHG-30's, code only a retired flag's branch reached CHG-31's, temporary code under a paid marker CHG-35's (reviewer, change)
   'CHG-33': ['CODE-59', 'DSN-21', 'DSN-26', 'CODE-03', 'CODE-11', 'CODE-26', 'CODE-36'], // added code beside debt meets the clean-code bar: style forms, repeated bodies, re-implemented jobs, names, magic numbers and long routines belong to their own cards (reviewer, change)
@@ -479,7 +479,26 @@ const DEFER_TO = {
   'CODE-78': 'PRF-20', // a loop iterates over elements, not an index: an index loop over a linked list or another sequence with linear positional access is PRF-20's finding (spot-read, algorithm)
   'PRF-19': 'DSN-60', // front or middle removal in a loop takes a deque or a batch pass: a removal from the collection the loop itself traverses is DSN-60's correctness finding, whose single filtering pass satisfies both (spot-read, algorithm)
   'PRF-24': 'PRF-18', // the extreme is taken by a scan, not a full sort: a sort or a scan for the extreme repeated inside a loop that adds elements is PRF-18's heap finding (spot-read, algorithm)
-  'DSN-26': 'PRF-16', // an added routine does not re-implement an existing job: a hand-written sort, binary search, heap or ordered map where the standard library provides it is PRF-16's finding (spot-read, algorithm)
+  'DSN-26': ['PRF-16', 'DSN-21'], // an added routine does not re-implement an existing job: a hand-written sort, binary search, heap or ordered map where the standard library provides it is PRF-16's finding (spot-read, algorithm); an added routine whose body is identical to an existing routine's is DSN-21's textual-copy finding (reviewer, design)
+  'DSN-14': ['DSN-05', 'DSN-61'], // a routine or class that hides nothing: a namespace class is DSN-05's finding, a forwarding lambda handed to a pipeline step DSN-61's (reviewer, design)
+  'DSN-12': ['DSN-19', 'DSN-18'], // a consumer-side interface: an interface with no consumer yet or used only by tests is DSN-19's finding, a method the consumer never calls DSN-18's (reviewer, design)
+  'DSN-18': ['DSN-30', 'API-12'], // public only when used outside: a declaration wider than its uses need is DSN-30's finding, an unused export on the module surface API-12's (reviewer, design)
+  'DSN-30': ['API-12', 'DSN-35'], // the narrowest visibility: an unused export is API-12's finding, a widening whose only outside callers are tests DSN-35's (reviewer, design)
+  'DSN-08': ['DSN-21', 'DSN-28'], // one requirement in one module: a repeated block across modules is DSN-21's finding, a data decision encoded in two modules DSN-28's (reviewer, design)
+  'DSN-21': ['DSN-27', 'API-31'], // a repeated block is written once: two identical branch bodies are DSN-27's finding, a deprecated element copying its replacement API-31's (reviewer, design)
+  'DSN-29': 'DSN-31', // an operation on a type's state lives in the type: outside code that reads a validated field and writes the result back is DSN-31's finding (reviewer, design)
+  'DSN-31': 'API-01', // a validated field changes only through the type's operations: a path that leaves the invariant broken is API-01's finding (reviewer, design)
+  'DSN-45': ['API-01', 'DSN-70'], // a constrained primitive becomes a checked type: a creation path that skips the check is API-01's finding, a stored mutable component without a copy DSN-70's (reviewer, design)
+  'DSN-70': ['API-01', 'DSN-69', 'DSN-71'], // a kept caller-owned object is copied or taken over: a stored object that breaks a validated invariant is API-01's finding, one stored by a type presented as immutable DSN-69's, a copy that shares its mutable elements DSN-71's (reviewer, design)
+  'DSN-39': 'DSN-40', // a type gains only members that belong in its interface: a gained routine that does not apply to the type is DSN-40's finding (reviewer, design)
+  'DSN-40': 'DSN-43', // a class extends only a kind of its base: an override that only refuses or omits an inherited operation is DSN-43's finding (reviewer, design)
+  'DSN-52': 'DSN-53', // a pipeline expression stays flat: an inline callback past ten lines is DSN-53's finding (reviewer, design)
+  'DSN-54': ['DSN-59', 'DSN-60'], // a step function has no outside effect: a map whose result is unused is DSN-59's finding, a step that edits the traversed collection DSN-60's (reviewer, design)
+  'DSN-59': 'DSN-55', // a map is used for its value: a lazy pipeline that nothing consumes is DSN-55's finding (reviewer, design)
+  'API-08': 'DSN-55', // a call keeps the result that is its effect: a discarded lazy pipeline is DSN-55's finding (reviewer, design)
+  'DSN-63': 'DSN-68', // shared mutable state lives in an instance: a constant-named field holding a mutable collection is DSN-68's finding (reviewer, design)
+  'DSN-34': 'API-16', // a visible declaration names its abstraction: a public parameter typed with a concrete implementation type is API-16's finding (reviewer, design)
+  'DSN-24': 'CHG-27', // a schema is declared once: a hand edit of marked generated output inside a migration is CHG-27's finding (reviewer, design)
 }
 const ownersOf = ruleId => [DEFER_TO[ruleId] || []].flat()
 const SEV_RANK = { major: 0, minor: 1, suggestion: 2 }

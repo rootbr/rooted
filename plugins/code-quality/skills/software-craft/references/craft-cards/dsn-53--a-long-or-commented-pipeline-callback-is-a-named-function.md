@@ -2,7 +2,7 @@
 title: A pipeline callback longer than 10 lines or explained by a comment is a named function, not an inline lambda
 rule_id: DSN-53
 domain: design
-step: [implement, refactor, review]
+step: [implement, refactor]
 applies_to: [functional]
 triggers: ['(=>|->)\s*\{?\s*$', '\|[^|]*\|\s*\{\s*$', '[(,]\s*func\s*\(', '[(,]\s*function\b', '(\blambda\b[^:]*:|=>|->)\s*([^\s{].{60,}|.*[(\[]\s*$)', '(\blambda\b[^:]*:|=>|->|\|[^|\s][^|]*\|).*(\s#|//)\s*\S']
 scope: hunk
@@ -33,6 +33,8 @@ good: func isStale(u User) bool { return u.Closed || (!u.Verified && time.Since(
 ## Limits
 A callback of one line or of a few lines that reads without a comment stays inline: that is the case inline functions are for. The comment that calls for a name is one that says what the callback as a whole does; a comment that explains one statement of a longer body is outside that condition. A project tolerance sets the bound: a project that configures another maximum length for inline functions applies that maximum, and one whose style guide prefers a declared function once an inline function spans multiple lines or runs past 60 to 80 characters applies that tighter bound. A callback that is not a step of a data transformation — a test body, a request or event handler, a function started concurrently or deferred — is outside this rule.
 
+
+Where the language's inline functions hold a single expression only, a callback that spans more than one line or runs past 80 characters is past its bound, whether or not the project's style guide says so.
 ## Validator
 Grep the added lines for an inline function passed as an argument: an arrow or closure that opens a block or continues at the end of the line, a function literal or function expression after an opening parenthesis or a comma, a lambda with a long or continued body, and an inline function carrying a trailing comment. Keep a hit whose enclosing call is a step of a data transformation — a map, filter, sort, search, fold or for-each operation over a collection, stream, iterator or sequence — and drop a test body, a request or event handler, and a function started concurrently or deferred. For each kept callback, count the lines from the first line of its body to the last, inclusive, and read the comments inside its body, at the end of its opening line and on the line directly above the call. Use a bound the project context states in place of 10 lines. Validator question: **Does an added inline callback in a data-transformation step exceed its bound — more than 10 lines unless the project context states another — or carry a comment that says what the callback as a whole does?** Yes → flag.
 
@@ -45,4 +47,5 @@ When the validator answers yes, the finder emits one finding (`rule_id: DSN-53`,
 - Google Python Style Guide §2.10 Lambda Functions — "Okay for one-liners."; "Harder to read and debug than local functions. The lack of names means stack traces are more difficult to understand."; "If the code inside the lambda function spans multiple lines or is longer than 60-80 chars, it might be better to define it as a regular nested function." (fetched)
 - PEP 8 §Programming Recommendations — "the name of the resulting function object is specifically 'f' instead of the generic '<lambda>'. This is more useful for tracebacks and string representations in general." (fetched)
 - Python documentation, Functional Programming HOWTO §Small functions and the lambda expression — "2. Write a comment explaining what the heck that lambda does. 3. Study the comment for a while, and think of a name that captures the essence of the comment. 4. Convert the lambda to a def statement, using that name. 5. Remove the comment." (fetched)
+- Google Python Style Guide §2.10 Lambda Functions: "Okay for one-liners."; "Harder to read and debug than local functions. The lack of names means stack traces are more difficult to understand. Expressiveness is limited because the function may only contain an expression."; "If the code inside the lambda function spans multiple lines or is longer than 60-80 chars, it might be better to define it as a regular nested function." (fetched)
 - Caveat: the 10-line bound is two checkers' configurable default and the multiple-line or 60-to-80-character bound one style guide's hedged suggestion, not measured thresholds; the documentation offers the comment-to-name recipe as a style preference its readers are "free to disagree" with, and no source measures the cost of a long callback.

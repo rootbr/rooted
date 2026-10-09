@@ -2,7 +2,7 @@
 title: A method returns or passes on, and does not call into, an object it obtained through another object's getter or field, except along builder calls, collections, transformations, strings and primitives
 rule_id: DSN-09
 domain: design
-step: [implement, refactor, review]
+step: [implement, refactor]
 applies_to: [object-oriented]
 triggers: ['[.][A-Za-z_]\w*\(\)\s*[.]\s*\w+', '\w\(\)\s*[.]\s*\w+\(\)\s*[.]\s*\w+', '\b[a-z_]\w*[.][A-Z]\w*\(\)\s*[.]\s*[A-Z]\w*\(', '\b[a-z_]\w*([.][A-Za-z_]\w*(\(\))?){3,}\s*\(', '\b(?!(?:self|this|super)\b)[a-z_]\w*[.][A-Za-z_]\w*(\(\))?\s*[.]\s*[A-Za-z_]\w*\s*\(']
 scope: file

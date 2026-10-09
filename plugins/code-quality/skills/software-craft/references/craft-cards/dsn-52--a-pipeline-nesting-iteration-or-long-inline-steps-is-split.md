@@ -2,7 +2,7 @@
 title: A pipeline expression that nests a second iteration or passes a step a long inline function is split into named steps or loops
 rule_id: DSN-52
 domain: design
-step: [implement, refactor, review]
+step: [implement, refactor]
 applies_to: [functional]
 triggers: ['^\s*[)}\]]*\s*[.](map|filter|flatMap|flat_map|filter_map|flatten|reduce|fold|collect|sorted|sort_by|sortBy|groupBy|group_by|distinct|zip|takeWhile|take_while)\s*(\(|::<)', '([.](map|filter|flatMap|flat_map|filter_map|flatten|reduce|fold|collect|sorted|distinct|zip|groupBy)\b.*){3}', '\b(flatMap|flat_map|SelectMany|from_iterable)\(.*[.](map|filter|flatMap|flat_map|filter_map|reduce|fold|stream|iter|into_iter)\b', '[.](map|filter|flatMap|flat_map|filter_map|reduce|fold)\(.*(=>|->|\|)\s*[({]\s*$']
 scope: hunk

@@ -2,7 +2,7 @@
 title: A type inherits, embeds or dereferences to another type only when every public member it gains belongs in its own interface, and otherwise holds that type in a field and forwards what it needs
 rule_id: DSN-39
 domain: design
-step: [design, implement, review]
+step: [design, implement]
 applies_to: [universal]
 triggers: ['\bclass\s+\w+(\s*<[^>]*>)?\s+extends\s+[\w.]+', '^\s*class\s+\w+\s*\(\s*(?!(object|Protocol|ABC|Enum|IntEnum|StrEnum|TypedDict|NamedTuple|Exception|BaseException|\w*Error|\w*TestCase)\s*[,)\[])[A-Za-z_][\w.]*', '^\s+\*?([a-z]\w*[.])?[A-Z]\w*\s*(//.*)?$', '\bimpl(<[^>]*>)?\s+((std|core)::ops::)?Deref(Mut)?(<[^>]*>)?\s+for\b']
 scope: callers

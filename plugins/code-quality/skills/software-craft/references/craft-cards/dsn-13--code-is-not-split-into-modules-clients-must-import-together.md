@@ -2,7 +2,7 @@
 title: Code is not split into modules that every client must import together to use either one meaningfully
 rule_id: DSN-13
 domain: design
-step: [design, refactor, review]
+step: [design, refactor]
 applies_to: [universal]
 triggers: ['signal:added_file', '^\s*package\s+[\w.]+\s*;?\s*$', '^\s*(pub(\([\w:]+\))?\s+)?(mod\s+\w+\s*;|use\s+(crate|super|self)::)', '(\bfrom\s+|\b(require|import)\(\s*)[''"][.]{1,2}/', '^\s*from\s+[\w.]+\s+import\b|^\s*import\s+(static\s+)?\w+([.][\w*]+)+', '^\s*(import\s+)?(?!return\s)(\w+\s+|[.]\s+)?"[\w.~-]+/[\w./~-]+"\s*$']
 scope: callers

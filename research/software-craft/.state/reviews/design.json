@@ -1,0 +1,973 @@
+{
+ "domain": "design",
+ "reviewer": "one read-only agent (claude-opus-5-5, effort max), 2026-10-09T04:58 UTC after a first attempt the usage limit cut at 2026-10-08T17:53 UTC, 0.72M sub-agent tokens, 36 minutes; applied by the orchestrator per HANDOVER 5.8 (see the commit that follows this file)",
+ "cards_read": [
+  "DSN-01",
+  "DSN-02",
+  "DSN-03",
+  "DSN-04",
+  "DSN-05",
+  "DSN-06",
+  "DSN-07",
+  "DSN-08",
+  "DSN-09",
+  "DSN-10",
+  "DSN-11",
+  "DSN-12",
+  "DSN-13",
+  "DSN-14",
+  "DSN-15",
+  "DSN-16",
+  "DSN-17",
+  "DSN-18",
+  "DSN-19",
+  "DSN-20",
+  "DSN-21",
+  "DSN-22",
+  "DSN-23",
+  "DSN-24",
+  "DSN-25",
+  "DSN-26",
+  "DSN-27",
+  "DSN-28",
+  "DSN-29",
+  "DSN-30",
+  "DSN-31",
+  "DSN-32",
+  "DSN-33",
+  "DSN-34",
+  "DSN-35",
+  "DSN-36",
+  "DSN-37",
+  "DSN-38",
+  "DSN-39",
+  "DSN-40",
+  "DSN-41",
+  "DSN-42",
+  "DSN-43",
+  "DSN-44",
+  "DSN-45",
+  "DSN-46",
+  "DSN-47",
+  "DSN-48",
+  "DSN-49",
+  "DSN-50",
+  "DSN-51",
+  "DSN-52",
+  "DSN-53",
+  "DSN-54",
+  "DSN-55",
+  "DSN-56",
+  "DSN-57",
+  "DSN-58",
+  "DSN-59",
+  "DSN-60",
+  "DSN-61",
+  "DSN-62",
+  "DSN-63",
+  "DSN-64",
+  "DSN-65",
+  "DSN-66",
+  "DSN-67",
+  "DSN-68",
+  "DSN-69",
+  "DSN-70",
+  "DSN-71",
+  "DSN-72",
+  "DSN-73"
+ ],
+ "overlaps": [
+  {
+   "deferring": "DSN-14",
+   "owner": "DSN-05",
+   "line_kind": "an added class or type, in a language with module-level functions, whose members are all static routines and constants (a namespace class); both cards cite typescript-eslint no-extraneous-class, Google TS 'Container classes' and Google Python §2.17.4",
+   "validator_a": "Does the hunk add a routine whose whole body passes its own parameters, unchanged and in order, to one other routine that all its callers can already call directly, or, in a language with module-level functions, a class used only as a namespace for static members or holding only a constructor that stores no field?",
+   "validator_b": "Is this type a namespace for static functions and constants that either wraps what the language could declare at module level, or, where the language requires the class, leaves a public constructor, or a compiler-generated one on a class that is not itself private?",
+   "taxonomy_owner": "design-patterns-in-construction: DSN-05's whole Thesis is the namespace class and it also covers languages that require the class; complexity-and-deep-modules keeps DSN-14's forwarding routine and constructor-only class"
+  },
+  {
+   "deferring": "DSN-14",
+   "owner": "DSN-61",
+   "line_kind": "an added lambda or one-call function whose body passes its own parameters unchanged to another function and is handed to a pipeline step (e.g. `lambda item: describe(item)` in a map); DSN-14's Caveat: 'the forwarding tool rules check anonymous functions and closures' (Pylint unnecessary-lambda, clippy redundant_closure, which DSN-61 also cites)",
+   "validator_a": "Does the hunk add a routine whose whole body passes its own parameters, unchanged and in order, to one other routine that all its callers can already call directly, or, in a language with module-level functions, a class used only as a namespace for static members or holding only a constructor that stores no field?",
+   "validator_b": "Does the hunk pass a function by name to a step that supplies an argument beyond those the function means to take, or wrap in a pure forwarding lambda a function to which the step supplies only arguments it means to take?",
+   "taxonomy_owner": "functional-style-and-pipelines: DSN-61 owns pipeline callbacks and checks what the step passes before the lambda is dropped"
+  },
+  {
+   "deferring": "DSN-12",
+   "owner": "DSN-19",
+   "line_kind": "an added interface, trait, protocol or abstract base type beside its only implementation with no consumer yet or used only by tests (DSN-19 Thesis: 'An interface defined before it is used, one the implementing side defines only so that tests can mock it ... wait until such a need arrives'); both quote the declaration line",
+   "validator_a": "Does the hunk declare an interface, trait, protocol or abstract base type in the module that holds its only implementation while the code using it sits in other modules, only in tests or nowhere yet, or a consumer's interface with methods that consumer never calls, where the interface is not the product — a common protocol that many different implementations follow, a boundary generated from a schema, or one interface exported to spare many modules identical copies — and does not break an import cycle?",
+   "validator_b": "Does the change add an interface or abstract type declaring behaviour, other than the protocol the module exists to provide, that neither two concrete types handled by the same logic, nor a consumer needing a narrow view of a large type, nor a dependency cycle, nor a material need for a test double, nor a concrete type whose extra methods callers must not reach or whose provider must stay replaceable without a breaking change requires, or an option, hook or extension point that no present caller uses, with no documented performance need, set of disparate customers or planned reuse behind it?",
+   "taxonomy_owner": "complexity-and-deep-modules (DSN-19: an abstraction with no present need); coupling-and-dependency-direction keeps DSN-12's placement of an interface that has a consumer"
+  },
+  {
+   "deferring": "DSN-12",
+   "owner": "DSN-18",
+   "line_kind": "a consumer-declared interface that lists a method the consumer never calls (DSN-12 quotes the interface declaration line, DSN-18 the uncalled method line)",
+   "validator_a": "Does the hunk declare an interface, trait, protocol or abstract base type in the module that holds its only implementation while the code using it sits in other modules, only in tests or nowhere yet, or a consumer's interface with methods that consumer never calls, where the interface is not the product — a common protocol that many different implementations follow, a boundary generated from a schema, or one interface exported to spare many modules identical copies — and does not break an import cycle?",
+   "validator_b": "Does the change make a routine, method, type or interface public although only code inside its module, or only inside the unit a package-wide visibility covers where the language offers one and public reaches beyond that unit, uses it and no library documents it, or declare for a consumer an interface method that the consumer never calls?",
+   "taxonomy_owner": "complexity-and-deep-modules: the design note's concept-ownership row says 'complexity-and-deep-modules keeps module depth and interface width'"
+  },
+  {
+   "deferring": "DSN-15",
+   "owner": "DSN-19",
+   "line_kind": "an added hand-written interface that mirrors an existing interface or a generated RPC client only for abstraction or testing (DSN-15 Thesis: 'does not wrap it in a new hand-written interface just for the sake of abstraction or testing'; DSN-19 Thesis: 'one that wraps a generated RPC client or server in a new manual interface only for abstraction or testing')",
+   "validator_a": "Does the change add a type whose every method other than its constructor or initializer forwards unchanged to one held object, or a hand-written interface that wraps an existing interface or generated client, while hiding or changing nothing for its callers: no implementation type kept out of an exported signature, no wrapped method left out, no interface the wrapped type cannot implement, no subtype that overrides some of its methods, no second implementation outside tests, no dependency cycle broken and no static distinction?",
+   "validator_b": "Does the change add an interface or abstract type declaring behaviour, other than the protocol the module exists to provide, that neither two concrete types handled by the same logic, nor a consumer needing a narrow view of a large type, nor a dependency cycle, nor a material need for a test double, nor a concrete type whose extra methods callers must not reach or whose provider must stay replaceable without a breaking change requires, or an option, hook or extension point that no present caller uses, with no documented performance need, set of disparate customers or planned reuse behind it?",
+   "taxonomy_owner": "complexity-and-deep-modules: DSN-19 owns abstractions with no present need, DSN-15 keeps forwarding wrapper types; the existing 'DSN-15': 'CHG-26' entry becomes ['CHG-26', 'DSN-19']"
+  },
+  {
+   "deferring": "DSN-18",
+   "owner": "DSN-30",
+   "line_kind": "an added public or exported routine, type or interface whose only uses sit inside its module; both quote the added declaration line",
+   "validator_a": "Does the change make a routine, method, type or interface public although only code inside its module, or only inside the unit a package-wide visibility covers where the language offers one and public reaches beyond that unit, uses it and no library documents it, or declare for a consumer an interface method that the consumer never calls?",
+   "validator_b": "Does an added or widened declaration take an access level wider than the narrowest one that admits its uses and requirements, or declare a level wider than its enclosing type or module lets take effect?",
+   "taxonomy_owner": "information-hiding-and-encapsulation: DSN-30 gives every declaration the narrowest level its uses admit; DSN-18 keeps its interface-width clause"
+  },
+  {
+   "deferring": "DSN-18",
+   "owner": "API-12",
+   "line_kind": "an added export on a module's public surface that no code outside the module uses and no documentation presents as API (both cite Google TS 'Only export symbols that are used outside of the module')",
+   "validator_a": "Does the change make a routine, method, type or interface public although only code inside its module, or only inside the unit a package-wide visibility covers where the language offers one and public reaches beyond that unit, uses it and no library documents it, or declare for a consumer an interface method that the consumer never calls?",
+   "validator_b": "Does the change put on a module's public surface a name that no code outside the module uses and that neither the module's documentation nor the project context presents as part of its API?",
+   "taxonomy_owner": "interface row 'API design and use': API-12 owns the module's exported surface, as API-10 owns public parameters in the existing DSN-44/DSN-47 entries"
+  },
+  {
+   "deferring": "DSN-30",
+   "owner": "API-12",
+   "line_kind": "the same added export used only inside its module",
+   "validator_a": "Does an added or widened declaration take an access level wider than the narrowest one that admits its uses and requirements, or declare a level wider than its enclosing type or module lets take effect?",
+   "validator_b": "Does the change put on a module's public surface a name that no code outside the module uses and that neither the module's documentation nor the project context presents as part of its API?",
+   "taxonomy_owner": "interface row 'API design and use' (API-12) for exported names; DSN-30 keeps member, subclass and package-level access"
+  },
+  {
+   "deferring": "DSN-30",
+   "owner": "DSN-35",
+   "line_kind": "a declaration made public, exported or protected whose only callers outside its package are tests",
+   "validator_a": "Does an added or widened declaration take an access level wider than the narrowest one that admits its uses and requirements, or declare a level wider than its enclosing type or module lets take effect?",
+   "validator_b": "Is a declaration outside a separate test-support package made public, exported or protected, its private-name mark dropped, or a test-double implementation exported from the production API that consumes its interface, while every caller outside its own package or module is a test and no enforced restricted-API check limits its callers?",
+   "taxonomy_owner": "information-hiding-and-encapsulation: DSN-35 is the specific test-widening card"
+  },
+  {
+   "deferring": "DSN-08",
+   "owner": "DSN-21",
+   "line_kind": "the same block of four or more lines added to several modules for one requirement; both cards dispatch on signal:duplicate_block and both fixes are one routine the others call",
+   "validator_a": "does the diff carry one requirement's knowledge, such as the same new case, field or format detail, as matching edits in several modules that serve other concerns, where one module could own it and the others call it?",
+   "validator_b": "Does the change add a block of four or more counted lines that repeats another block, identical or differing only in values, names or types, or a routine whose body of two or more lines is identical to another routine's, where the copies are meant to do the same thing so that a change to one would be needed in the other?",
+   "taxonomy_owner": "duplication-and-single-source-of-truth: concept-ownership row 'Duplicated code blocks | duplication-and-single-source-of-truth'"
+  },
+  {
+   "deferring": "DSN-08",
+   "owner": "DSN-28",
+   "line_kind": "a record layout, field, delimiter or format detail added as matching edits to a writer and a reader module (DSN-08 Thesis: 'The requirement's knowledge, such as the list of its cases or the layout of its records, lives in that one module'); both cite Parnas 1972 and the 19-project anti-pattern study",
+   "validator_a": "does the diff carry one requirement's knowledge, such as the same new case, field or format detail, as matching edits in several modules that serve other concerns, where one module could own it and the others call it?",
+   "validator_b": "Does added code encode a decision about the project's data — a format, an encoding, a byte layout or delimiter, record key names or an identifier scheme — that another module also encodes, instead of reaching it through the one module that owns it?",
+   "taxonomy_owner": "information-hiding-and-encapsulation: DSN-28 owns a data decision encoded in two modules; DSN-08 keeps a business-rule case spread over modules"
+  },
+  {
+   "deferring": "DSN-26",
+   "owner": "DSN-21",
+   "line_kind": "an added routine whose body is identical to an existing routine's; both quote the added routine's signature line (DSN-21 Thesis: 'An added routine whose body of two or more lines is identical to another routine's body is the same defect at routine level')",
+   "validator_a": "Does the change add a routine that re-implements, rather than calls, the job an existing routine of the codebase already does for every input the new routine's callers pass, where calling that routine adds no dependency the module is kept free of, or the added routine is more than a small copy?",
+   "validator_b": "Does the change add a block of four or more counted lines that repeats another block, identical or differing only in values, names or types, or a routine whose body of two or more lines is identical to another routine's, where the copies are meant to do the same thing so that a change to one would be needed in the other?",
+   "taxonomy_owner": "duplication-and-single-source-of-truth: DSN-21 owns textual copies, DSN-26 keeps re-implementations written with different code"
+  },
+  {
+   "deferring": "DSN-21",
+   "owner": "DSN-27",
+   "line_kind": "two identical branch bodies of four or more lines in one if chain, switch or match (six or more lines also set signal:duplicate_block)",
+   "validator_a": "Does the change add a block of four or more counted lines that repeats another block, identical or differing only in values, names or types, or a routine whose body of two or more lines is identical to another routine's, where the copies are meant to do the same thing so that a change to one would be needed in the other?",
+   "validator_b": "Does a conditional, switch or match the change adds or edits hold two branches with the same body of two or more statements that can be merged without changing which branch runs, or have every one of its two or more branches carry the same body?",
+   "taxonomy_owner": "duplication-and-single-source-of-truth: DSN-27 is the branch-specific card, whose fix (one branch under a combined condition) fits where DSN-21's extracted routine does not"
+  },
+  {
+   "deferring": "DSN-21",
+   "owner": "API-31",
+   "line_kind": "a deprecated element that keeps its own copy of the logic its replacement carries (API-31 also triggers on signal:duplicate_block)",
+   "validator_a": "Does the change add a block of four or more counted lines that repeats another block, identical or differing only in values, names or types, or a routine whose body of two or more lines is identical to another routine's, where the copies are meant to do the same thing so that a change to one would be needed in the other?",
+   "validator_b": "Does the diff leave a deprecated element carrying its own copy of logic its replacement also carries, where one call of the replacement with values for its added arguments would reproduce the deprecated element's behaviour?",
+   "taxonomy_owner": "api-evolution-and-deprecation (API-31); DSN-21 keeps every other copy"
+  },
+  {
+   "deferring": "DSN-29",
+   "owner": "DSN-31",
+   "line_kind": "outside code that reads a field the type validates and writes the result back directly (e.g. `account.balance = account.balance - amount`)",
+   "validator_a": "Does code outside a type read that type's fields or accessors, decide from them and write the outcome back into the same object, where the type states an invariant or the outside decision keeps a condition on its members that no user of the type may break?",
+   "validator_b": "Does an added line let code outside a type assign a field that the type validates or keeps consistent with another field, through a visibility wider than the narrowest the language offers that no documented tolerance admits, through a setter that only assigns it, or through a direct write from outside the type?",
+   "taxonomy_owner": "information-hiding-and-encapsulation: DSN-31 owns 'changed from outside only through operations of the type'; DSN-29 keeps conditions only the outside decision keeps"
+  },
+  {
+   "deferring": "DSN-31",
+   "owner": "API-01",
+   "line_kind": "a public or subclass-visible field, a setter that only assigns, or an outside write that changes state the type validates or keeps consistent",
+   "validator_a": "Does an added line let code outside a type assign a field that the type validates or keeps consistent with another field, through a visibility wider than the narrowest the language offers that no documented tolerance admits, through a setter that only assigns it, or through a direct write from outside the type?",
+   "validator_b": "Can code outside the type create an instance that breaks its invariant, or leave one broken, through a creation path that skips the check, a public operation that returns or fails with the condition false, or a field, setter, accessor or stored caller-owned object that changes the governed state without the check?",
+   "taxonomy_owner": "contracts-assertions-and-invariants (API-01), by the same reasoning as the existing 'DSN-66': 'API-01' entry"
+  },
+  {
+   "deferring": "DSN-45",
+   "owner": "API-01",
+   "line_kind": "a constructor, factory, conversion, setter or outside-settable field of a validated domain type that skips its check (DSN-45 Validator: 'a public constructor, factory, conversion or setter that skips the check')",
+   "validator_a": "does the change check or rely on one domain constraint of a primitive in many routines rather than in the one creating function of a closed type, or add a path that creates or changes a value of such a type without its check?",
+   "validator_b": "Can code outside the type create an instance that breaks its invariant, or leave one broken, through a creation path that skips the check, a public operation that returns or fails with the condition false, or a field, setter, accessor or stored caller-owned object that changes the governed state without the check?",
+   "taxonomy_owner": "contracts-assertions-and-invariants (API-01: invariant established by every constructor and preserved by every operation); DSN-45 keeps the check repeated across routines"
+  },
+  {
+   "deferring": "DSN-45",
+   "owner": "DSN-70",
+   "line_kind": "a domain type storing a received mutable component without a copy (DSN-45 Validator: 'a mutable component stored without a defensive copy is a path around the check')",
+   "validator_a": "does the change check or rely on one domain constraint of a primitive in many routines rather than in the one creating function of a closed type, or add a path that creates or changes a value of such a type without its check?",
+   "validator_b": "Does an added line keep, in state that outlives the call, a mutable object received from a caller outside the component, neither copied nor taken over by an enforced move, where a later change by the caller could compromise a property the component relies on and no documented contract makes sharing the object the routine's purpose?",
+   "taxonomy_owner": "mutable-state-and-immutability (DSN-70)"
+  },
+  {
+   "deferring": "DSN-70",
+   "owner": "API-01",
+   "line_kind": "a constructor or setter that stores a caller-owned mutable object whose contents the type validated on receipt (API-01's question names 'stored caller-owned object')",
+   "validator_a": "Does an added line keep, in state that outlives the call, a mutable object received from a caller outside the component, neither copied nor taken over by an enforced move, where a later change by the caller could compromise a property the component relies on and no documented contract makes sharing the object the routine's purpose?",
+   "validator_b": "Can code outside the type create an instance that breaks its invariant, or leave one broken, through a creation path that skips the check, a public operation that returns or fails with the condition false, or a field, setter, accessor or stored caller-owned object that changes the governed state without the check?",
+   "taxonomy_owner": "contracts-assertions-and-invariants: the input-side counterpart of the existing 'DSN-66': 'API-01' entry"
+  },
+  {
+   "deferring": "DSN-70",
+   "owner": "DSN-69",
+   "line_kind": "a type presented as immutable (record, frozen class, Readonly type) that stores a received mutable object without a copy",
+   "validator_a": "Does an added line keep, in state that outlives the call, a mutable object received from a caller outside the component, neither copied nor taken over by an enforced move, where a later change by the caller could compromise a property the component relies on and no documented contract makes sharing the object the routine's purpose?",
+   "validator_b": "Does a type that presents itself as immutable store a mutable object, or a mutable element of one, that the sender can still reach, or hand out a stored mutable object or element through which a caller can change the type's state?",
+   "taxonomy_owner": "mutable-state-and-immutability: DSN-69 is the card for types that present themselves as immutable"
+  },
+  {
+   "deferring": "DSN-66",
+   "owner": "DSN-69",
+   "line_kind": "an accessor of a type presented as immutable that returns its stored mutable collection",
+   "validator_a": "Does a routine that callers outside the object can reach hand its caller, without documentation declaring that the result shares the owner's storage, the live mutable collection, array, map, slice or buffer the object keeps in a private field, or a mutable reference to it, or return a view where its name or documentation promises the contents as they stood at the call?",
+   "validator_b": "Does a type that presents itself as immutable store a mutable object, or a mutable element of one, that the sender can still reach, or hand out a stored mutable object or element through which a caller can change the type's state?",
+   "taxonomy_owner": "mutable-state-and-immutability (DSN-69); the existing 'DSN-66': 'API-01' entry becomes ['API-01', 'DSN-69']"
+  },
+  {
+   "deferring": "DSN-70",
+   "owner": "DSN-71",
+   "line_kind": "a defensive copy on receipt that copies only the container of mutable elements (e.g. `this.items = new ArrayList<>(items)`); DSN-70 Validator: 'where it relies on the state of mutable elements, look for the elements' copies too'",
+   "validator_a": "Does an added line keep, in state that outlives the call, a mutable object received from a caller outside the component, neither copied nor taken over by an enforced move, where a later change by the caller could compromise a property the component relies on and no documented contract makes sharing the object the routine's purpose?",
+   "validator_b": "does a copy made to keep two holders apart share by reference a mutable object that makes up the copied value's own state?",
+   "taxonomy_owner": "mutable-state-and-immutability: DSN-71 owns copy depth"
+  },
+  {
+   "deferring": "DSN-39",
+   "owner": "DSN-40",
+   "line_kind": "an added extends clause, embedded field or Deref impl through which the type gains members that do not apply to it or bypass its rules; both cite java.util.Properties extending Hashtable, the Rust book ch. 18.1, the Uber embedding litmus test and the Deref documentation",
+   "validator_a": "Does the outer type gain, through inheritance, embedding or implicit dereference, a public member it would not add directly to its own interface?",
+   "validator_b": "Does an added extension, embedding or dereference give a type the routines of another type of which it is not a kind, so that an inherited or gained routine does not apply to it, accepts a value that breaks its rules, or behaves differently from the base, equality included, when reached through a base-type reference?",
+   "taxonomy_owner": "inheritance-versus-composition: DSN-40 (is-a, major) owns gained routines that do not apply; DSN-39 keeps members that apply but would not be added, such as an embedded lock"
+  },
+  {
+   "deferring": "DSN-40",
+   "owner": "DSN-43",
+   "line_kind": "an override that only throws an unsupported-operation error or does nothing (DSN-40 Validator: 'Look for an override that only throws, does nothing, or gives an inherited routine a different effect')",
+   "validator_a": "Does an added extension, embedding or dereference give a type the routines of another type of which it is not a kind, so that an inherited or gained routine does not apply to it, accepts a value that breaks its rules, or behaves differently from the base, equality included, when reached through a base-type reference?",
+   "validator_b": "Does the subclass override an inherited operation that its base type's documentation does not mark optional so that it only fails or omits the effect that documentation specifies, or redefine more than half of the methods it inherits by a confirmed count?",
+   "taxonomy_owner": "inheritance-versus-composition: DSN-43 owns the refused operation and carries the documented-optional-operation exemption"
+  },
+  {
+   "deferring": "DSN-44",
+   "owner": "DSN-51",
+   "line_kind": "a duration or instant parameter or field typed as a bare number with a unit suffix beside another unit's number (`function poll(timeoutMs: number, retryDelaySecs: number)` matches a trigger of each card)",
+   "validator_a": "Does an added declaration hold a quantity with a unit, or an identifier of one kind of entity, as a bare primitive or an alias of one, while a value of the same primitive with another unit or identifying another kind of entity reaches the same code?",
+   "validator_b": "Does the change hold or pass a period or a point in time as a bare integer or floating-point number where the code or its interface could carry a duration or instant type, or, where neither can, under a name that does not state the unit?",
+   "taxonomy_owner": "domain-modeling-and-domain-language: DSN-51 owns time quantities and fixes them with the standard time type; the existing 'DSN-44': 'API-10' entry becomes ['API-10', 'DSN-51']"
+  },
+  {
+   "deferring": "DSN-52",
+   "owner": "DSN-53",
+   "line_kind": "a block-bodied inline callback longer than ten lines passed to a map, filter or fold step",
+   "validator_a": "Does an added pipeline expression write a second level of iteration, a second filter clause in a comprehension, or a step whose inline function runs past one line or past 80 characters where the language's inline functions hold a single expression only, or past ten lines of code where they can take a statement block, beyond any tolerance the project context documents?",
+   "validator_b": "Does an added inline callback in a data-transformation step exceed its bound — more than 10 lines unless the project context states another — or carry a comment that says what the callback as a whole does?",
+   "taxonomy_owner": "functional-style-and-pipelines: DSN-53's whole Thesis is the long or commented callback; DSN-52 keeps nested iteration and extra filter clauses"
+  },
+  {
+   "deferring": "DSN-54",
+   "owner": "DSN-59",
+   "line_kind": "a map statement whose result is unused and whose callback performs the effect (DSN-54 Thesis: 'An effect that is the purpose of the iteration runs in a terminal for-each step or a plain loop over the pipeline's output, not in a map whose result goes unused')",
+   "validator_a": "Does a function handed to a pipeline step, or an element or condition expression of a comprehension or generator expression, write to state outside itself that its return value does not carry, beyond its own locals, a reduction's accumulator, debugging output, an error logged before a later step discards it, or a terminal for-each effect that adds, removes or replaces no entry of the source being traversed?",
+   "validator_b": "Does an added line use a map or a comprehension whose result is discarded, whose callback returns nothing, or whose result is consumed only to make its callback run?",
+   "taxonomy_owner": "functional-style-and-pipelines: DSN-59 owns the discarded map; DSN-54 keeps effects in steps whose results are read"
+  },
+  {
+   "deferring": "DSN-54",
+   "owner": "DSN-60",
+   "line_kind": "a step function, for-each included, that adds to or removes from the collection the pipeline traverses",
+   "validator_a": "Does a function handed to a pipeline step, or an element or condition expression of a comprehension or generator expression, write to state outside itself that its return value does not carry, beyond its own locals, a reduction's accumulator, debugging output, an error logged before a later step discards it, or a terminal for-each effect that adds, removes or replaces no entry of the source being traversed?",
+   "validator_b": "Does an added line inside a loop body or a pipeline step add an element to, or remove an element from, the collection that loop or pipeline is traversing, other than through the iterator's own call or a collection designed for concurrent modification?",
+   "taxonomy_owner": "functional-style-and-pipelines: DSN-60's whole Thesis"
+  },
+  {
+   "deferring": "DSN-59",
+   "owner": "DSN-55",
+   "line_kind": "a lazy map statement whose result nothing consumes (`keys.stream().map(cache::remove);` is DSN-55's own bad Example and matches DSN-59's trigger)",
+   "validator_a": "Does an added line use a map or a comprehension whose result is discarded, whose callback returns nothing, or whose result is consumed only to make its callback run?",
+   "validator_b": "Does an added line build a lazy pipeline that nothing consumes, or store one that is consumed only after a statement changes its source or a variable or field its steps read?",
+   "taxonomy_owner": "functional-style-and-pipelines: DSN-55 owns the lazy pipeline whose effect never runs (major)"
+  },
+  {
+   "deferring": "API-08",
+   "owner": "DSN-55",
+   "line_kind": "the same discarded lazy pipeline statement (API-08's text names 'a lazy sequence adapter, which does nothing until the sequence is driven')",
+   "validator_a": "Does an added line call an operation and drop the value it returns, where the operation does nothing but return that value, or where the API's documentation obliges the caller to call, close or keep that value?",
+   "validator_b": "Does an added line build a lazy pipeline that nothing consumes, or store one that is consumed only after a statement changes its source or a variable or field its steps read?",
+   "taxonomy_owner": "functional-style-and-pipelines: DSN-55; API-08 keeps discarded results of immutable-value methods, formatting calls and cleanup handles"
+  },
+  {
+   "deferring": "DSN-63",
+   "owner": "DSN-68",
+   "line_kind": "a public constant-named or final module-level field holding a mutable collection (`ALLOWED_ROLES = [\"admin\", \"editor\"]` matches a trigger of each card); DSN-63 Rationale: 'A mutable collection held in a field declared constant can still be changed'; both cite SpotBugs MS_MUTABLE_COLLECTION",
+   "validator_a": "Is a mutable object held at static, module or package level in this hunk either changeable directly from outside its owning module, or internal to that module but changed by one otherwise independent component and changed or observed by another?",
+   "validator_b": "Does a field named as a constant, or declared final or read-only and visible to other packages or modules, refer to an array, collection or object whose contents can still change?",
+   "taxonomy_owner": "mutable-state-and-immutability: DSN-68 owns constant fields; DSN-63 keeps state that independent components change"
+  },
+  {
+   "deferring": "DSN-34",
+   "owner": "API-16",
+   "line_kind": "a public routine's parameter declared with a concrete collection class (ArrayList, HashMap, Vec, dict) where a more general type covers the body's use",
+   "validator_a": "Does an added declaration visible outside its module name, as a parameter type or a result type, a type that is only its implementation choice — a concrete collection class as a parameter type where a more general type covers what the routine does with it, an adapter chain as a result type, or, as a factory's result type, an implementing type with no exported behaviour beyond its interface?",
+   "validator_b": "Does this public operation declare a parameter with a concrete implementation type although an available, more general type provides everything its body requires of that parameter?",
+   "taxonomy_owner": "interface row 'API design and use' (API-16), as API-10 owns public parameters in the existing DSN-44/DSN-47 entries; DSN-34 keeps adapter-chain and factory result types"
+  },
+  {
+   "deferring": "DSN-24",
+   "owner": "CHG-27",
+   "line_kind": "a hunk that hand-edits a file carrying a generated-code marker, inside a migration change",
+   "validator_a": "Does the diff write out by hand a form of a schema, type, enumeration or interface that one declaration in the repository could produce through a derivation feature, a generator or an import, or add generated output without a generated-code marker, or edit marked generated output by hand?",
+   "validator_b": "Does this migration change edit a file that carries a generated-code marker with hunks that are not the output of its generator run again?",
+   "taxonomy_owner": "change row 'large-scale change' (CHG-27); DSN-24 keeps hand-written forms of a schema, type or enumeration"
+  },
+  {
+   "deferring": "DSN-58",
+   "owner": "PRF-17",
+   "line_kind": "a reduce whose combining function copies a growing accumulator on every step (e.g. `reduce((acc, x) => [...acc, x], [])`)",
+   "validator_a": "Does this reduce or fold compute a result that an equivalent named operation of its language computes, or does its combining function mutate the accumulator it receives or copy on every step a whole accumulator that grows with the elements?",
+   "validator_b": "Does a loop, reduction or summation over input-sized data rebuild its accumulated string or collection as a new value that copies the accumulated contents on every iteration?",
+   "taxonomy_owner": "performance row (PRF-17, major) owns the quadratic copy; DSN-58 keeps named-operation replacements and mutated accumulators"
+  }
+ ],
+ "near_misses": [
+  {
+   "a": "DSN-01",
+   "b": "DSN-06",
+   "why_not": "Same strategy/command class line, but DSN-01 asks for a pattern comment and DSN-06 whether a function value would serve; DSN-01 Limits: 'a pattern realized without a type of its own ... lies outside the rule' and 'the rule asks only for the comment'."
+  },
+  {
+   "a": "DSN-01",
+   "b": "DSN-07",
+   "why_not": "DSN-01 Limits skip 'an accept method taking a ShapeVisitor' (the pattern is named in the declaration); DSN-07 asks whether a checked match should replace the visitor."
+  },
+  {
+   "a": "DSN-03",
+   "b": "DSN-04",
+   "why_not": "Accessor returning a new object vs other routes to a second instance; DSN-04 Limits: 'whether an accessor that builds a new object on every call keeps the pattern ... are outside the rule'."
+  },
+  {
+   "a": "DSN-02",
+   "b": "DSN-17",
+   "why_not": "Same constructor signature; DSN-02 asks for five or more optional inputs taken by position, DSN-17 for a value most call sites pass with no default."
+  },
+  {
+   "a": "DSN-02",
+   "b": "CODE-39",
+   "why_not": "Both dispatch on signal:many_parameters, but CODE-39 asks 'more than five parameters' of any routine and DSN-02 asks about optional inputs taken by position on a constructor or factory."
+  },
+  {
+   "a": "DSN-10",
+   "b": "DSN-11",
+   "why_not": "An upward import can trip both, but DSN-10 asks whether it closes a cycle and DSN-11 whether it breaks a declared direction."
+  },
+  {
+   "a": "DSN-14",
+   "b": "DSN-15",
+   "why_not": "DSN-14 excludes forwarding 'on no object that the routine's own instance holds'; its Limits leave that case to the wrapper rule."
+  },
+  {
+   "a": "DSN-14",
+   "b": "DSN-16",
+   "why_not": "DSN-14 excludes 'overrides of an inherited method' and 'constructors that pass their parameters to a parent's constructor', DSN-16's cases."
+  },
+  {
+   "a": "DSN-22",
+   "b": "DSN-25",
+   "why_not": "DSN-22 counts three or more uses of one string literal within a file; DSN-25 a value copied across files or artifacts."
+  },
+  {
+   "a": "DSN-24",
+   "b": "DSN-28",
+   "why_not": "DSN-24 asks about a hand-written form of a type or schema declaration; DSN-28 about code that parses or builds data another module also encodes."
+  },
+  {
+   "a": "DSN-30",
+   "b": "DSN-31",
+   "why_not": "Same public field line; DSN-30 asks whether its uses need the level, DSN-31 whether the type keeps a condition on the field."
+  },
+  {
+   "a": "DSN-31",
+   "b": "DSN-38",
+   "why_not": "Same protected field line; DSN-31 asks about the invariant, DSN-38 about a subclassable class opening data to subclasses."
+  },
+  {
+   "a": "DSN-31",
+   "b": "DSN-33",
+   "why_not": "`cart._subtotal = 0` can trip both; DSN-31 asks about the type's invariant, DSN-33 about the non-public mark's scope."
+  },
+  {
+   "a": "DSN-36",
+   "b": "DSN-41",
+   "why_not": "DSN-36 flags the subclass's override line, DSN-41 the base class's call or declaration line: two sides of one hazard, never one span."
+  },
+  {
+   "a": "DSN-41",
+   "b": "DSN-42",
+   "why_not": "Same constructor call line; DSN-41 asks whether self-use is documented or the class closed, DSN-42 whether construction calls an overridable method; the conflict is listed under contradictions."
+  },
+  {
+   "a": "DSN-08",
+   "b": "DSN-47",
+   "why_not": "`case \"team\":` trips both; DSN-08 asks whether one requirement spreads over modules, DSN-47 whether a fixed set is typed as a string."
+  },
+  {
+   "a": "DSN-47",
+   "b": "DSN-49",
+   "why_not": "`status: string` beside optional fields; DSN-47 asks for an enumeration, DSN-49 for a sum type over the case-dependent fields."
+  },
+  {
+   "a": "DSN-54",
+   "b": "DSN-64",
+   "why_not": "A callback that mutates its element parameter; DSN-54 asks about effects in a step function, DSN-64 about an undeclared change to a caller's argument."
+  },
+  {
+   "a": "DSN-64",
+   "b": "API-18",
+   "why_not": "API-18 asks about a parameter passed only to receive a result; DSN-64 about an undeclared change to an argument the caller still holds."
+  },
+  {
+   "a": "DSN-67",
+   "b": "DSN-29",
+   "why_not": "`price.setAmount(price.amount().multiply(rate))` trips both; DSN-67 asks whether a shared value is changed in place, DSN-29 whether outside code keeps the type's invariant."
+  },
+  {
+   "a": "DSN-68",
+   "b": "DSN-72",
+   "why_not": "In DSN-72's bad Example DSN-68 flags the DEFAULT_PATHS declaration and DSN-72 the lines that hand it out as a default: different lines."
+  },
+  {
+   "a": "DSN-24",
+   "b": "CHG-29",
+   "why_not": "CHG-29 asks what else a tool-generated change holds; DSN-24 asks whether a marked generated file is edited by hand."
+  }
+ ],
+ "contradictions": [
+  {
+   "a": "DSN-15",
+   "b": "DSN-19",
+   "sentence_a": "A wrapper the project owns around a third-party library other than an RPC client, written so that tests double the wrapper instead of the library, hides that library when the library's low-level API, concepts and exceptions stay inside its boundary",
+   "sentence_b": "A thin wrapper the project owns around a third-party library other than an HTTP or RPC client, stating the operations the code needs in the application's own terms so that unit tests double the wrapper rather than the library's types and integration tests run the wrapper against the real library, meets the material need for a test double.",
+   "resolving_limits_sentence": "The project-owned wrapper case leaves out an HTTP client as well as an RPC client: tests of such a client run the production client over the real transport against a test server rather than double a wrapper. (TST-06 states the same: 'An HTTP or RPC client is the exception to wrapping'.)",
+   "carried_by": "DSN-15"
+  },
+  {
+   "a": "DSN-21",
+   "b": "DSN-26",
+   "sentence_a": "When added code repeats a block found elsewhere in the change or in the repository, and the copies are meant to do the same thing, so that a fix or a change of behaviour in one would have to be made in the other, the block is written once as a routine that each place calls.",
+   "sentence_b": "Where calling the routine would make the module depend on a package it is kept free of, a small copy is accepted.",
+   "resolving_limits_sentence": "A small copy kept so that its module stays free of a dependency, which a stated dependency policy or a comment beside the copy naming the avoided package records, is outside the rule.",
+   "carried_by": "DSN-21"
+  },
+  {
+   "a": "DSN-30",
+   "b": "DSN-35",
+   "sentence_a": "A declaration widened only so that a test can reach it meets the rule when it carries the project's marker for test-only visibility.",
+   "sentence_b": "A declaration made public, exported or protected only so that a test can reach it, a private-name mark dropped only for a test, and a test-double implementation exported from the production API that consumes its interface break the rule, whatever a comment or an annotation says about who may call it.",
+   "resolving_limits_sentence": "A declaration widened only so that a test can reach it meets the rule when it carries the project's marker for test-only visibility and reaches no further than the package or module level; a public, exported or protected widening for tests is judged by its own rule.",
+   "carried_by": "DSN-30"
+  },
+  {
+   "a": "DSN-32",
+   "b": "DSN-31",
+   "sentence_a": "... a pair of accessors over one of the object's own fields — a getter and a setter method, or a property's get and set — whose bodies do nothing but return that field and assign their argument to it is replaced by the field itself, made public.",
+   "sentence_b": "Outside code changes such a field only through an operation of the type that applies the type's checks and updates. A setter that only assigns the field is not such an operation, since it differs from a public field only in syntax.",
+   "resolving_limits_sentence": "A pair over a field that the type validates or keeps consistent with other fields in its other operations is outside the rule: there the setter that only assigns is the defect and the field stays private.",
+   "carried_by": "DSN-32"
+  },
+  {
+   "a": "DSN-32",
+   "b": "DSN-65",
+   "sentence_a": "... is replaced by the field itself, made public. (good Example: `count = 0;`)",
+   "sentence_b": "A field that is assigned only while its object is constructed or initialized ... is declared with the no-reassignment modifier or annotation its language offers for fields ... and its type has no setter or other method that assigns it afterwards. A setter that no code calls does not change this",
+   "resolving_limits_sentence": "A pair whose setter no code calls is outside the rule: the field is then assigned only at construction, so the setter goes and the field stays read-only, behind its getter or as a read-only public field.",
+   "carried_by": "DSN-32"
+  },
+  {
+   "a": "DSN-41",
+   "b": "DSN-42",
+   "sentence_a": "It documents that self-use as an extension contract for subclass authors: the doc-comment of each non-private method that calls an overridable method, directly or through private helpers, or the type's documentation, names the methods it calls and how it calls them",
+   "sentence_b": "A call made on purpose, such as a documented hook the constructor invokes, stays within the rule: none of the cited rules exempts it, and one says not to suppress the warning and to redesign the constructor to eliminate the call.",
+   "resolving_limits_sentence": "A call that a constructor, initializer, copy or deserialization routine makes on the object under construction is not made acceptable by documenting it; such a call is judged by its own rule.",
+   "carried_by": "DSN-41"
+  },
+  {
+   "a": "DSN-40",
+   "b": "DSN-43",
+   "sentence_a": "Look for an override that only throws, does nothing, or gives an inherited routine a different effect (Validator), flagged when 'an inherited or gained routine does not apply to it'",
+   "sentence_b": "A base type's documentation may specify some methods as optional and direct an implementation that does not support one to throw an unsupported-operation error, as collection interfaces do; an override that throws there follows the documented contract and is outside the rule.",
+   "resolving_limits_sentence": "An override that refuses an operation its base type's documentation marks optional, by throwing the unsupported-operation error that documentation directs, keeps the base's contract and is outside the rule.",
+   "carried_by": "DSN-40"
+  },
+  {
+   "a": "DSN-44",
+   "b": "DSN-51",
+   "sentence_a": "Where two values share one primitive representation but differ in meaning (a distance in miles and a distance in kilometres, a user id and an order id) and can reach the same parameter, field or routine, each meaning is declared as its own type",
+   "sentence_b": "Where it cannot — a serialization format with no encoding for a duration, an API whose clients would otherwise have to implement one language's duration parsing, a separate specification that mandates integer timestamps — an integer or floating-point number whose name includes the unit is the documented form",
+   "resolving_limits_sentence": "A period or a point in time that an interface cannot carry as a time type, held in a number whose name states its unit, is outside the rule.",
+   "carried_by": "DSN-44"
+  },
+  {
+   "a": "DSN-52",
+   "b": "DSN-53",
+   "sentence_a": "A step whose inline function exceeds the bound for its language, more than one line or more than 80 characters, the top of the documented range, where the language's inline functions hold a single expression only and more than ten lines of code where they can take a statement block, passes a named function instead.",
+   "sentence_b": "A callback of one line or of a few lines that reads without a comment stays inline: that is the case inline functions are for.",
+   "resolving_limits_sentence": "Where the language's inline functions hold a single expression only, a callback that spans more than one line or runs past 80 characters is past its bound, whether or not the project's style guide says so.",
+   "carried_by": "DSN-53"
+  },
+  {
+   "a": "DSN-14",
+   "b": "DSN-61",
+   "sentence_a": "The first is a routine whose whole body is one call passing the routine's own parameters, not counting a receiver it declares among them, to another routine unchanged and in order, with no other argument, ... it is replaced by the routine it calls.",
+   "sentence_b": "When the step supplies more than the function means to take, such as the element's index and the collection beside the element, the step receives a lambda that forwards only the intended arguments, the element and, for a fold, the accumulator with it.",
+   "resolving_limits_sentence": "A function passed as a callback to a step that supplies more arguments than the function it calls means to take, such as an element's index or the collection, forwards only the intended arguments and stays. (DSN-14's trigger matches `const toInt = (s) => parseInt(s);`, whose replacement `strs.map(parseInt)` is DSN-61's [1, NaN, NaN] case.)",
+   "carried_by": "DSN-14"
+  },
+  {
+   "a": "DSN-04",
+   "b": "DSN-63",
+   "sentence_a": "A construct the language itself keeps to one instance meets the rule directly: ... a module that holds the shared state in module-level variables rather than in an instance of a type, which the runtime loads once and shares with every importer. (fix: 'or the singleton rewritten as a single-constant enumeration or a module-level value'; Validator: 'Pass ... a module whose shared state lives in module-level variables')",
+   "sentence_b": "A mutable object that two or more otherwise independent components change, or observe another component changing — a collection, registry, cache or singleton held at static, module or package level — lives instead in an instance that each client creates and passes explicitly, as a dependency, to the code that uses it.",
+   "resolving_limits_sentence": "Module-level variables meet this rule only for state that no otherwise independent components change or observe; moving such shared state into module-level values is no fix this rule offers, and that state is judged by its own rule.",
+   "carried_by": "DSN-04"
+  },
+  {
+   "a": "DSN-17",
+   "b": "API-23",
+   "sentence_a": "A value that each caller must set to match its own runtime environment, such as where its data lives, is hard to give a default in advance and stays required, with no value the module would use in its place.",
+   "sentence_b": "A new input to a published function is added with a default that preserves the old behaviour, and never as a new required parameter",
+   "resolving_limits_sentence": "On a published interface, a new input whose default keeps the behaviour the routine had before the change is outside the rule; making it required waits for a breaking release.",
+   "carried_by": "DSN-17"
+  }
+ ],
+ "gaps": [
+  {
+   "concept": "domain language: code written in the domain's own business terms (ubiquitous language); the slug's second half and PP 'Domain Languages'. No card states it; the only neighbouring entry under ## design in pending-evidence.md is the 'relation between domain concepts is a named operation' entry, a different claim whose search record lists ubiquitous/vocabulary studies",
+   "taxonomy_row_text": "| | `domain-modeling-and-domain-language` | PP \"Domain Languages\", SWEBOK ch. 3 §5.10 |",
+   "source_path": "dotnet/docs — docs/architecture/microservices/microservice-ddd-cqrs-patterns/ddd-oriented-microservice.md, § 'Design a DDD-oriented microservice' (opening section, second paragraph); fetched with one curl",
+   "claim": "\"But the important part is not the patterns themselves, but organizing the code so it is aligned to the business problems, and using the same business terms (ubiquitous language). In addition, DDD approaches should be applied only if you are implementing complex microservices with significant business rules.\" Checkable against a project glossary or the change description's business terms; official guidance, no measured cost. The DSL sense of PP 'Domain Languages' found no GitHub-hosted source."
+  }
+ ],
+ "facet_errors": [
+  {
+   "rule_id": "DSN-04",
+   "facet": "step",
+   "current": "[implement, review]",
+   "proposed": "[implement]",
+   "evidence": "Thesis: \"A type written to have exactly one instance, which code obtains through an accessor, a static field or a package-level value, [...]\" — about the code, not the change's shape, size or description (the taxonomy's review)."
+  },
+  {
+   "rule_id": "DSN-05",
+   "facet": "step",
+   "current": "[design, implement, refactor, review]",
+   "proposed": "[design, implement, refactor]",
+   "evidence": "Thesis: \"A class or other type whose members are all static, meaning functions that take no instance and fields that hold constants, holds [...]\" — about the code, not the change's shape, size or description (the taxonomy's review)."
+  },
+  {
+   "rule_id": "DSN-06",
+   "facet": "step",
+   "current": "[design, implement, refactor, review]",
+   "proposed": "[design, implement, refactor]",
+   "evidence": "Thesis: \"A strategy, command or callback whose interface, declared or expected by its call site, has one abstract operation is supplied as [...]\" — about the code, not the change's shape, size or description (the taxonomy's review)."
+  },
+  {
+   "rule_id": "DSN-07",
+   "facet": "step",
+   "current": "[design, implement, refactor, review]",
+   "proposed": "[design, implement, refactor]",
+   "evidence": "Thesis: \"When an operation runs over a closed set of variant types declared in one place, and the compiler or a static checker the project [...]\" — about the code, not the change's shape, size or description (the taxonomy's review)."
+  },
+  {
+   "rule_id": "DSN-09",
+   "facet": "step",
+   "current": "[implement, refactor, review]",
+   "proposed": "[implement, refactor]",
+   "evidence": "Thesis: \"A method may call any method on its own object and on what its own methods return, on its parameters, on the objects held in its [...]\" — about the code, not the change's shape, size or description (the taxonomy's review)."
+  },
+  {
+   "rule_id": "DSN-10",
+   "facet": "step",
+   "current": "[design, implement, review]",
+   "proposed": "[design, implement]",
+   "evidence": "Thesis: \"An import added from one module of the codebase to another leaves the import graph acyclic: following imports onward from the [...]\" — about the code, not the change's shape, size or description (the taxonomy's review)."
+  },
+  {
+   "rule_id": "DSN-12",
+   "facet": "step",
+   "current": "[design, implement, refactor, review]",
+   "proposed": "[design, implement, refactor]",
+   "evidence": "Thesis: \"When one module uses a capability of another through an interface, trait, protocol or abstract base type rather than through the [...]\" — about the code, not the change's shape, size or description (the taxonomy's review)."
+  },
+  {
+   "rule_id": "DSN-13",
+   "facet": "step",
+   "current": "[design, refactor, review]",
+   "proposed": "[design, refactor]",
+   "evidence": "Thesis: \"When two modules cover closely related topics and a client must import both to use either of them in any meaningful way, [...]\" — about the code, not the change's shape, size or description (the taxonomy's review)."
+  },
+  {
+   "rule_id": "DSN-21",
+   "facet": "step",
+   "current": "[implement, refactor, review]",
+   "proposed": "[implement, refactor]",
+   "evidence": "Thesis: \"When added code repeats a block found elsewhere in the change or in the repository, and the copies are meant to do the same [...]\" — about the code, not the change's shape, size or description (the taxonomy's review)."
+  },
+  {
+   "rule_id": "DSN-26",
+   "facet": "step",
+   "current": "[design, implement, review]",
+   "proposed": "[design, implement]",
+   "evidence": "Thesis: \"Before a change adds a routine such as a helper, a validation or a business rule, the codebase is searched for an existing [...]\" — about the code, not the change's shape, size or description (the taxonomy's review)."
+  },
+  {
+   "rule_id": "DSN-27",
+   "facet": "step",
+   "current": "[implement, review]",
+   "proposed": "[implement]",
+   "evidence": "Thesis: \"Within one if chain, one switch or one match, two branches whose bodies hold the same statements in the same order become one [...]\" — about the code, not the change's shape, size or description (the taxonomy's review)."
+  },
+  {
+   "rule_id": "DSN-29",
+   "facet": "step",
+   "current": "[design, refactor, review]",
+   "proposed": "[design, refactor]",
+   "evidence": "Thesis: \"An operation that reads an object's state, decides from it and writes the outcome back into the same object is implemented in the [...]\" — about the code, not the change's shape, size or description (the taxonomy's review)."
+  },
+  {
+   "rule_id": "DSN-30",
+   "facet": "step",
+   "current": "[design, implement, review]",
+   "proposed": "[design, implement]",
+   "evidence": "Thesis: \"Each declaration that a change adds or widens, whether a type, field, method, function, constant, interface or module, takes the [...]\" — about the code, not the change's shape, size or description (the taxonomy's review)."
+  },
+  {
+   "rule_id": "DSN-31",
+   "facet": "step",
+   "current": "[design, implement, review]",
+   "proposed": "[design, implement]",
+   "evidence": "Thesis: \"A field that its type validates or keeps consistent with other fields (as a stored total or average is kept in step with the [...]\" — about the code, not the change's shape, size or description (the taxonomy's review)."
+  },
+  {
+   "rule_id": "DSN-32",
+   "facet": "step",
+   "current": "[implement, refactor, review]",
+   "proposed": "[implement, refactor]",
+   "evidence": "Thesis: \"In a language whose properties let callers read and assign a value with plain attribute syntax while a getter and a setter run [...]\" — about the code, not the change's shape, size or description (the taxonomy's review)."
+  },
+  {
+   "rule_id": "DSN-33",
+   "facet": "step",
+   "current": "[implement, review]",
+   "proposed": "[implement]",
+   "evidence": "Thesis: \"Code reads, writes, calls and imports another class, module or library only through the members that owner exposes, and uses a [...]\" — about the code, not the change's shape, size or description (the taxonomy's review)."
+  },
+  {
+   "rule_id": "DSN-34",
+   "facet": "step",
+   "current": "[design, implement, review]",
+   "proposed": "[design, implement]",
+   "evidence": "Thesis: \"A function, method or constructor visible outside its module declares its parameters and its results with types that promise what [...]\" — about the code, not the change's shape, size or description (the taxonomy's review)."
+  },
+  {
+   "rule_id": "DSN-35",
+   "facet": "step",
+   "current": "[implement, test, review]",
+   "proposed": "[implement, test]",
+   "evidence": "Thesis: \"A test reaches a hidden member through the public interface, or from a place that already has access to it: a test file in the [...]\" — about the code, not the change's shape, size or description (the taxonomy's review)."
+  },
+  {
+   "rule_id": "DSN-36",
+   "facet": "step",
+   "current": "[design, implement, review]",
+   "proposed": "[design, implement]",
+   "evidence": "Thesis: \"A subclass whose base class is defined in another library, one built and released separately from the subclass (a dependency, the [...]\" — about the code, not the change's shape, size or description (the taxonomy's review)."
+  },
+  {
+   "rule_id": "DSN-37",
+   "facet": "step",
+   "current": "[implement, refactor, review]",
+   "proposed": "[implement, refactor]",
+   "evidence": "Thesis: \"A method that overrides or implements a method declared in a supertype carries the language's explicit override marker wherever [...]\" — about the code, not the change's shape, size or description (the taxonomy's review)."
+  },
+  {
+   "rule_id": "DSN-39",
+   "facet": "step",
+   "current": "[design, implement, review]",
+   "proposed": "[design, implement]",
+   "evidence": "Thesis: \"A type inherits from a class, embeds another type as an unnamed field, or declares implicit dereference to a wrapped type only [...]\" — about the code, not the change's shape, size or description (the taxonomy's review)."
+  },
+  {
+   "rule_id": "DSN-40",
+   "facet": "step",
+   "current": "[design, review]",
+   "proposed": "[design]",
+   "evidence": "Thesis: \"A class extends another class only when it is a kind of the base: every routine it inherits applies to it, no value an inherited [...]\" — about the code, not the change's shape, size or description (the taxonomy's review)."
+  },
+  {
+   "rule_id": "DSN-41",
+   "facet": "step",
+   "current": "[design, document, review]",
+   "proposed": "[design, document]",
+   "evidence": "Thesis: \"A class that code outside its defining library, package or module can subclass, and whose own method bodies call methods a [...]\" — about the code, not the change's shape, size or description (the taxonomy's review)."
+  },
+  {
+   "rule_id": "DSN-42",
+   "facet": "step",
+   "current": "[design, implement, review]",
+   "proposed": "[design, implement]",
+   "evidence": "Thesis: \"A constructor of a class open to subclassing calls on the object under construction only methods a subclass cannot override: [...]\" — about the code, not the change's shape, size or description (the taxonomy's review)."
+  },
+  {
+   "rule_id": "DSN-43",
+   "facet": "step",
+   "current": "[design, implement, refactor, review]",
+   "proposed": "[design, implement, refactor]",
+   "evidence": "Thesis: \"A subclass performs every inherited operation that its base type's documentation does not mark optional, and redefines at most [...]\" — about the code, not the change's shape, size or description (the taxonomy's review)."
+  },
+  {
+   "rule_id": "DSN-52",
+   "facet": "step",
+   "current": "[implement, refactor, review]",
+   "proposed": "[implement, refactor]",
+   "evidence": "Thesis: \"A data transformation written as one expression, a chain of calls or a comprehension, writes one level of iteration, holds at [...]\" — about the code, not the change's shape, size or description (the taxonomy's review)."
+  },
+  {
+   "rule_id": "DSN-53",
+   "facet": "step",
+   "current": "[implement, refactor, review]",
+   "proposed": "[implement, refactor]",
+   "evidence": "Thesis: \"An inline callback that is a step of a data transformation — the function a map, filter, sort, search, fold or for-each operation [...]\" — about the code, not the change's shape, size or description (the taxonomy's review)."
+  },
+  {
+   "rule_id": "DSN-54",
+   "facet": "step",
+   "current": "[implement, review]",
+   "proposed": "[implement]",
+   "evidence": "Thesis: \"A function passed to a pipeline step (a map, filter, flat-map, find, any, all, some, every or take-while step, a sort comparator, [...]\" — about the code, not the change's shape, size or description (the taxonomy's review)."
+  },
+  {
+   "rule_id": "DSN-55",
+   "facet": "step",
+   "current": "[implement, review]",
+   "proposed": "[implement]",
+   "evidence": "Thesis: \"Every lazy pipeline — a source followed by steps that run only when a consumer pulls elements, such as a stream, an [...]\" — about the code, not the change's shape, size or description (the taxonomy's review)."
+  },
+  {
+   "rule_id": "DSN-56",
+   "facet": "step",
+   "current": "[implement, review]",
+   "proposed": "[implement]",
+   "evidence": "Thesis: \"Per-element work that has to stop the iteration before the last element, or to return from the enclosing routine at the element [...]\" — about the code, not the change's shape, size or description (the taxonomy's review)."
+  },
+  {
+   "rule_id": "DSN-57",
+   "facet": "step",
+   "current": "[design, implement, review]",
+   "proposed": "[design, implement]",
+   "evidence": "Thesis: \"A sequence is re-walkable when a new walk over it starts from its first element: a collection, which hands out a fresh iterator [...]\" — about the code, not the change's shape, size or description (the taxonomy's review)."
+  },
+  {
+   "rule_id": "DSN-58",
+   "facet": "step",
+   "current": "[implement, refactor, review]",
+   "proposed": "[implement, refactor]",
+   "evidence": "Thesis: \"A reduce or fold whose result an operation of the language or its standard library computes by name is written as that operation\" — about the code, not the change's shape, size or description (the taxonomy's review)."
+  },
+  {
+   "rule_id": "DSN-59",
+   "facet": "step",
+   "current": "[implement, review]",
+   "proposed": "[implement]",
+   "evidence": "Thesis: \"A map over a collection, an iterator or a stream, a map over an optional or a result value, and a list comprehension are each [...]\" — about the code, not the change's shape, size or description (the taxonomy's review)."
+  },
+  {
+   "rule_id": "DSN-60",
+   "facet": "step",
+   "current": "[implement, review]",
+   "proposed": "[implement]",
+   "evidence": "Thesis: \"A loop body, and every step of a pipeline, adds no element to and removes no element from the collection that the loop or the [...]\" — about the code, not the change's shape, size or description (the taxonomy's review)."
+  },
+  {
+   "rule_id": "DSN-61",
+   "facet": "step",
+   "current": "[implement, review]",
+   "proposed": "[implement]",
+   "evidence": "Thesis: \"A function is passed by name to a pipeline step (a map, a filter, a for-each, a search or a fold) only when every argument the [...]\" — about the code, not the change's shape, size or description (the taxonomy's review)."
+  },
+  {
+   "rule_id": "DSN-62",
+   "facet": "step",
+   "current": "[implement, review]",
+   "proposed": "[implement]",
+   "evidence": "Thesis: \"A function literal, lambda, arrow function or nested function created in a loop body or a comprehension and run after its [...]\" — about the code, not the change's shape, size or description (the taxonomy's review)."
+  },
+  {
+   "rule_id": "DSN-63",
+   "facet": "step",
+   "current": "[design, implement, review]",
+   "proposed": "[design, implement]",
+   "evidence": "Thesis: \"A mutable object that two or more otherwise independent components change, or observe another component changing — a collection, [...]\" — about the code, not the change's shape, size or description (the taxonomy's review)."
+  },
+  {
+   "rule_id": "DSN-64",
+   "facet": "step",
+   "current": "[design, implement, review]",
+   "proposed": "[design, implement]",
+   "evidence": "Thesis: \"A routine changes the contents of an object its caller passed in and still holds — adds to or removes from the caller's [...]\" — about the code, not the change's shape, size or description (the taxonomy's review)."
+  },
+  {
+   "rule_id": "DSN-65",
+   "facet": "step",
+   "current": "[implement, refactor, review]",
+   "proposed": "[implement, refactor]",
+   "evidence": "Thesis: \"A field that is assigned only while its object is constructed or initialized — in its declaration, or in a constructor or an [...]\" — about the code, not the change's shape, size or description (the taxonomy's review)."
+  },
+  {
+   "rule_id": "DSN-67",
+   "facet": "step",
+   "current": "[design, implement, review]",
+   "proposed": "[design, implement]",
+   "evidence": "Thesis: \"An object that stands for a value keeps its state once a component other than the one making a change holds a reference to it: an [...]\" — about the code, not the change's shape, size or description (the taxonomy's review)."
+  },
+  {
+   "rule_id": "DSN-68",
+   "facet": "step",
+   "current": "[implement, review]",
+   "proposed": "[implement]",
+   "evidence": "Thesis: \"A static or module-level field or binding that is named in the style its language reserves for constants, or that is declared [...]\" — about the code, not the change's shape, size or description (the taxonomy's review)."
+  },
+  {
+   "rule_id": "DSN-70",
+   "facet": "step",
+   "current": "[design, implement, review]",
+   "proposed": "[design, implement]",
+   "evidence": "Thesis: \"A constructor, setter or other routine that keeps a mutable object its caller passed in — an array, a slice, a list, a set, a [...]\" — about the code, not the change's shape, size or description (the taxonomy's review)."
+  },
+  {
+   "rule_id": "DSN-71",
+   "facet": "step",
+   "current": "[implement, review]",
+   "proposed": "[implement]",
+   "evidence": "Thesis: \"A copy made so that a change through one holder does not reach the other — a defensive copy, a clone, a copy constructor or copy [...]\" — about the code, not the change's shape, size or description (the taxonomy's review)."
+  },
+  {
+   "rule_id": "DSN-72",
+   "facet": "step",
+   "current": "[implement, review]",
+   "proposed": "[implement]",
+   "evidence": "Thesis: \"When a parameter or a field takes a default whenever the caller omits it, the default is an immutable object or a new object [...]\" — about the code, not the change's shape, size or description (the taxonomy's review)."
+  },
+  {
+   "rule_id": "DSN-73",
+   "facet": "step",
+   "current": "[design, implement, review]",
+   "proposed": "[design, implement]",
+   "evidence": "Thesis: \"An object held as a key of a hash or ordered map, or as an element of a hash or ordered set, keeps its equality, its hash and its [...]\" — about the code, not the change's shape, size or description (the taxonomy's review)."
+  },
+  {
+   "rule_id": "DSN-03",
+   "facet": "check_kind",
+   "current": "mechanical",
+   "proposed": "semantic",
+   "evidence": "Validator: 'Open the file and decide from it whether the type or module is meant to have one instance' and 'For each accessor, overload or variant that the hunk adds or changes, trace every return path, reading the stored field and the other accessors in the file.' — a judgement plus a trace."
+  },
+  {
+   "rule_id": "DSN-37",
+   "facet": "check_kind",
+   "current": "mechanical",
+   "proposed": "semantic",
+   "evidence": "Validator: 'open the supertypes its class extends or implements, searching the repository for their declarations, and decide whether a supertype declares a method that the added method overrides or implements, or one it nearly matches' and 'For a supertype method the hunk renames, removes or adds, search the repository for subtypes'."
+  },
+  {
+   "rule_id": "DSN-65",
+   "facet": "check_kind",
+   "current": "mechanical",
+   "proposed": "semantic",
+   "evidence": "Validator: 'Open the file, then grep the repository for every assignment to the field (plain, compound or increment, through any receiver) and for every call of each setter or method that assigns it.'"
+  },
+  {
+   "rule_id": "DSN-38",
+   "facet": "check_kind",
+   "current": "mechanical",
+   "proposed": "semantic",
+   "evidence": "Validator: 'grep the repository for the field's or the attribute's name to find the class that assigns it and the subclasses that read or write it' — a trace of the hierarchy, not one light context question."
+  },
+  {
+   "rule_id": "DSN-32",
+   "facet": "scope",
+   "current": "file",
+   "proposed": "callers",
+   "evidence": "Validator skips 'a getter and setter method pair the change does not add or that code outside the change calls' and a pair 'overridden by a subtype's own accessor'; Limits: 'A getter and setter method pair that existing code already calls is outside the rule unless the change rewrites each of those calls'; the fix renames uses 'in any subtype or other code that reads or writes it' — all repository-wide."
+  },
+  {
+   "rule_id": "DSN-61",
+   "facet": "scope",
+   "current": "file",
+   "proposed": "callers",
+   "evidence": "Validator: 'open the named function's definition, local or imported, and check whether the step passes any argument beyond those the function means to take' — an imported definition lies outside the file."
+  },
+  {
+   "rule_id": "DSN-12",
+   "facet": "applies_to",
+   "current": "[static-types]",
+   "proposed": "[universal]",
+   "evidence": "The bad Example is a Python ABC ('class Store(ABC):'), two triggers target Python ('\\bclass\\s+\\w+.*\\(.*\\b(Protocol|ABC)\\b', 'metaclass\\s*=\\s*(abc[.])?ABCMeta'), the Rationale covers 'explicit subclassing, registration', and the Limits never restrict the rule to statically checked code."
+  },
+  {
+   "rule_id": "DSN-19",
+   "facet": "severity_default",
+   "current": "minor",
+   "proposed": "major",
+   "evidence": "Rationale: 'Across 395 releases of 30 open-source systems, speculative generality ... affected 80% of the releases; classes were generally more change-prone while they carried it than while they did not, and its removal had a high effect on change-proneness' — measured cost (DSN-08 and DSN-28 are major on association evidence of the same kind)."
+  },
+  {
+   "rule_id": "DSN-43",
+   "facet": "severity_default",
+   "current": "minor",
+   "proposed": "major",
+   "evidence": "Rationale: 'the median change-proneness of the affected classes ... was 43 while they had the smell and 26 while they did not ... the study rates the effect of removing the smell as high on change-proneness' — measured cost for the redefinition form."
+  },
+  {
+   "rule_id": "DSN-37",
+   "facet": "severity_default",
+   "current": "minor",
+   "proposed": "major",
+   "evidence": "Rationale: 'several production outages in multiple typed codebases have been reported as caused by such refactors', and the near-miss case it flags ('a method that was meant to override and never did') is a correctness defect."
+  },
+  {
+   "rule_id": "DSN-61",
+   "facet": "severity_default",
+   "current": "major",
+   "proposed": "major for the argument-mismatch branch only; suggestion for the pure-forwarding-lambda branch",
+   "evidence": "The mismatch branch is tied to wrong results ('[1, NaN, NaN]'; '[2, 3, 5]'), but the second branch rests only on 'a lambda whose body only calls that function with its own parameters adds code and a level of indirection for no benefit' — a style cost the scale rates suggestion."
+  }
+ ],
+ "trigger_errors": [
+  {
+   "rule_id": "DSN-39",
+   "pattern": "all four: '\\bclass\\s+\\w+(\\s*<[^>]*>)?\\s+extends\\s+[\\w.]+' ⊂ DSN-40's '\\bclass\\s+\\w+(\\s*<.*>)?\\s+extends\\s+[\\w.]+'; the Python base-class pattern (larger exclusion list) ⊂ DSN-40's (smaller list); '^\\s+\\*?([a-z]\\w*[.])?[A-Z]\\w*\\s*(//.*)?$' ⊂ DSN-40's embedded-field pattern; the Deref pattern ⊂ DSN-40's '\\bimpl\\b[^{]*\\bDeref(Mut)?\\b[^{]*\\bfor\\b'",
+   "problem": "nested in DSN-40: every dispatch of DSN-39 is a dispatch of DSN-40 (checked with python -c on scratch lines; the only escape is a lone '    Ok', '    None' or '    Self' line, which DSN-40's lookahead excludes). No DSN trigger set fails its own bad Example (DSN-20's [] is the documented always-on class)."
+  }
+ ],
+ "summary": "All 73 design cards were read in full: 34 deferring pairs are proposed (24 within the domain, 10 with API, CHG and PRF cards), and 12 contradictions each get one Limits sentence, among them the HTTP-client wrapper (DSN-15/19), the test-only widening (DSN-30/35), the trivial accessor pair (DSN-32 against DSN-31 and DSN-65), the documented constructor hook (DSN-41/42) and the forwarding callback (DSN-14/61). Facet findings are dominated by 45 cards that list step review for rules about code rather than about the change; the rest are 4 mechanical-to-semantic check kinds, 2 scope widenings, DSN-12's applies_to and 4 severity calibrations. Every card's triggers match its own bad Example, DSN-39's trigger set is nested in DSN-40's, and the one uncovered concept is domain language, for which an official dotnet/docs page states a checkable claim."
+}

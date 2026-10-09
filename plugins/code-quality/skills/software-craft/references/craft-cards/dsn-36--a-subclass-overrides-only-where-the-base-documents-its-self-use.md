@@ -2,7 +2,7 @@
 title: A subclass or trait implementor overrides an implemented method of another library's type only where that type documents which of its own methods call it
 rule_id: DSN-36
 domain: design
-step: [design, implement, review]
+step: [design, implement]
 applies_to: [object-oriented]
 triggers: ['^\s*@(typing[.])?[Oo]verride\b|^\s*((public|protected|internal|private|open|async|static)\s+)*override\b', '\bclass\s+\w+(\s*<[^>]*>)?\s+extends\s+(java[.]util[.])?(Hash(Set|Map|table)|ArrayList|LinkedList|TreeMap|TreeSet|Vector|Properties|Thread|Map|Set|Array)\b', '^\s*class\s+\w+\s*\([^)]*\b(dict|list|set|str|OrderedDict|defaultdict|Counter|deque)\b|^\s*def\s+__(setitem|getitem|delitem|contains|iter|len|missing)__\s*\(', '\bsuper(\([^)]*\))?[.](?!__init__\b)\w+\s*\(', '\bimpl\b(<.*?>)?\s+(?!((std|core)::)?(fmt::)?(Display|Debug|From|TryFrom|Clone|Default|PartialEq|Eq|PartialOrd|Ord|Hash|Drop|Deref|DerefMut|AsRef|AsMut|FromStr|Error|Send|Sync)\b)[\w:]+(<.*?>)?\s+for\s|^\s+fn\s+\w+\s*(<.*?>)?\s*\(\s*&\s*(mut\s+)?self\b', '^\s+(\*([a-z]\w*[.])?[A-Z]\w*|[a-z]\w*[.][A-Z]\w*)\s*(//.*)?$|^func\s+\(\s*\w+\s+\*?[A-Z]\w*(\[[^\]]*\])?\s*\)\s*[A-Z]\w*\s*\(']
 scope: callers

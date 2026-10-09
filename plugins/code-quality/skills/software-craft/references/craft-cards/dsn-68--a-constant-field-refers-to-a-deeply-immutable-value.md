@@ -2,7 +2,7 @@
 title: A field named as a constant, or declared final or read-only and visible to other modules, refers to a deeply immutable value
 rule_id: DSN-68
 domain: design
-step: [implement, review]
+step: [implement]
 applies_to: [universal]
 triggers: ['\b(static\s+final|final\s+static)\s+[\w.]*(\[\]|\b(List|Map|Set|Collection|Queue|Deque|ArrayList|HashMap|HashSet|LinkedList|TreeMap|TreeSet|Date|Calendar|StringBuilder)\b)', '^\s*(export\s+)?(const|let|var)\s+[A-Z][A-Z0-9_]+\s*(:[^=]+)?=\s*(\[|\{|new\s+(Map|Set|Array|Date)\b)(?!.*\bas\s+const\b)', '\bstatic\s+readonly\s+\w+\s*(:[^=]+)?=\s*(\[|\{|new\s+(Map|Set|Array|Date)\b)(?!.*\bas\s+const\b)', '^\s*([A-Z][A-Z0-9_]+\s*(:[^=]+)?|\w+\s*:\s*Final\b[^=]*)=\s*(\[|\{|(list|dict|set|bytearray|defaultdict|OrderedDict|deque)\()', '\bconst\s+[A-Z][A-Z0-9_]*\s*:[^=]*\b(Cell|RefCell|OnceCell|Mutex|RwLock|Atomic\w*)\b']
 scope: hunk

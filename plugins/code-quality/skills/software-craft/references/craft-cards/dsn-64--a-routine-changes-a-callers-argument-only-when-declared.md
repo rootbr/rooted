@@ -2,7 +2,7 @@
 title: A routine changes an object its caller passed in only when its signature, name or documented contract declares the change
 rule_id: DSN-64
 domain: design
-step: [design, implement, review]
+step: [design, implement]
 applies_to: [universal]
 triggers: ['(?:\b\w+[.](append\w*|extend\w*|insert\w*|add|addAll|put\w*|compute\w*|merge|set|set[A-Z_]\w*|remove\w*|delete|discard|retain\w*|truncate|drain|clear|sort\w*|reverse|push\w*|pop\w*|shift|unshift|splice|fill|update|setdefault)\s*\()|(?:^\s*(?!this\b|self\b)[a-z_]\w*(\[[^\]]*\]|[.]\w+)+\s*(([+\-*/|&]?=)(?!=)|\+\+|--))|(?:^\s*\*\s*[a-z_][\w.]*(\([^)]*\)[\w.]*)*(\[[^\]]*\])?\s*(([+\-*/|&%^]?=)(?!=)|\+\+|--))|(?:\b(Collections[.](sort|reverse|shuffle|fill)|Arrays[.](sort|fill)|slices[.](Sort\w*|Reverse|Delete\w*|Insert)|sort[.](Slice\w*|Sort|Stable|Strings|Ints))\s*\(|(?<![\w.])(copy|clear|delete)\s*\(\s*[a-z_]\w*\s*[,)])|(?:^\s*(delete\s+\w+(\[|[.])|del\s+\w+(\[|[.])))|(?:\bObject[.]assign\s*\(\s*[a-z]\w*\s*,)']
 scope: file

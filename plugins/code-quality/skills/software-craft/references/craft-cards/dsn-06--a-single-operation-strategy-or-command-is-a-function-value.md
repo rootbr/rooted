@@ -2,7 +2,7 @@
 title: A single-operation strategy, command or callback is passed as a function value, not as an instance of a class written only to implement that operation
 rule_id: DSN-06
 domain: design
-step: [design, implement, refactor, review]
+step: [design, implement, refactor]
 applies_to: [universal]
 triggers: ['\bnew\s+[A-Z][\w.]*(<[^>]*>)?\s*\([^)]*\)\s*\{', '\b(class|struct|interface|trait|type|impl|implements)\s+\w*(Strategy|Command|Callback|Handler|Policy|Action|Listener|Runnable|Callable|Comparator|Function|Predicate|Supplier|Consumer)\b', '\b(execute|do_?[Ii]t|perform|invoke)\s*\(', '^\s*def\s+__call__\s*\(', '^\s*\([^)]*\)\s*:\s*[\w<>\[\]|]+\s*;?\s*$', '\bclass\s+\w+\s*\([^)]*\b\w*(Strategy|Command|Callback|Handler|Policy|Action|Listener)\b|\btype\s+\w+\s+struct\s*\{\s*\}|^\s*(pub(\([\w:]+\))?\s+)?struct\s+\w+\s*;']
 scope: callers

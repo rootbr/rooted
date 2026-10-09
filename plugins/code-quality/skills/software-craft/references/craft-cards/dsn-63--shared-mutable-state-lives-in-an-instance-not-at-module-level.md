@@ -2,7 +2,7 @@
 title: Mutable state that otherwise independent components change or observe lives in an instance each client creates, not in a static, module or package-level object
 rule_id: DSN-63
 domain: design
-step: [design, implement, review]
+step: [design, implement]
 applies_to: [universal]
 triggers: ['\bstatic\s+(?:(?:volatile|transient)\s+)*(?!final\b|readonly\b|class\b|void\b|interface\b|enum\b|record\b|abstract\b)[\w.]+(?:<[^;=()]*>)?(?:\[\])*\s+\w+\s*[=;]|\bstatic\s+(?!readonly\b|async\b|get\b|set\b|final\b)[A-Za-z_$][\w$]*\s*[?!]?\s*(?::[^=;(]+)?[=;]', '\bstatic\b[^=(]*=\s*new\s+\w*(?:List|Map|Set|Array|Deque|Queue|Dictionary)\b', '^[A-Za-z_]\w*\s*(?::[^=]+)?=\s*(?:\[|\{|(?:dict|list|set|defaultdict|OrderedDict|Counter|deque)\()|^\s*global\s+\w+|\bClassVar\[|^[A-Za-z_]\w*\s*(?::[^=]+)?=\s*(?:[\w.]+[.])?[A-Z]\w*\(', '^var\s*(?:\(|\w+)|^(?:export\s+)?let\b|^(?:export\s+)?(?:const|var)\s+[\w$]+\s*(?::[^=]+)?=\s*(?:new\s+[\w$.]+|\[|\{)|^export\s+default\s+new\b', '^\s*(?:pub(?:\([^)]*\))?\s+)?static\s+(?:mut\s+\w+|\w+\s*:\s*[\w:<]*(?:Mutex|RwLock|RefCell|Cell|OnceCell|OnceLock|LazyLock|Lazy|Atomic\w*)\b)|\bthread_local!', '\bgetInstance\s*\(|^\s*_instance\s*=|\bsync[.]Once\b']
 scope: callers

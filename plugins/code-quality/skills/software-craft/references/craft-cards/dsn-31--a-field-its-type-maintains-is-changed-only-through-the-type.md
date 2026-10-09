@@ -2,7 +2,7 @@
 title: A field that its type validates or keeps consistent with other fields is changed from outside only through operations of the type, never directly or by a setter that only assigns it
 rule_id: DSN-31
 domain: design
-step: [design, implement, review]
+step: [design, implement]
 applies_to: [universal]
 triggers: ['^\s*(public|protected)\s+(?!static\b|final\b|readonly\b|abstract\b|class\b|interface\b|enum\b|record\b|void\b|async\b|get\b|set\b|constructor\b)[\w<>\[\],.?]+\s+\w+\s*(=[^=>]|;)', '^\s*(public|protected)\s+(?!readonly\b|static\b|abstract\b|get\b|set\b|async\b)\w+\s*[?!]?\s*(:\s*[^(=]+)?(=[^=>].*)?;?\s*$|^\s*[a-z_]\w*\s*[?!]?\s*:\s*[^(){};=]+(=[^=>][^;]*)?;\s*$', '(^|[{,])\s*pub(\([^)]*\))?\s+(?!fn\b|struct\b|enum\b|trait\b|mod\b|const\b|static\b|type\b|use\b|crate\b|async\b|unsafe\b|impl\b|extern\b)[a-z_]\w*\s*:', '^\s+[A-Z]\w*(\s*,\s*[A-Z]\w*)*\s+(\*|\[\]|map\[|chan\s)?[\w.\[\]*]+(\s+`[^`]*`)?\s*(//.*)?$', '\b(?!self\b|this\b|super\b|cls\b)[a-z_]\w*[.][A-Za-z_]\w*\s*=(?!=)|^\s*self[.][a-z]\w*\s*(:\s*[^=]+)?=(?!=)', '\b(void\s+set[A-Z]\w*|def\s+set_\w+|fn\s+set_\w+|func\s+\([^)]*\)\s+Set[A-Z]\w*)\s*\(|\bset\s+\w+\s*\(|@\w+[.]setter\b']
 scope: file

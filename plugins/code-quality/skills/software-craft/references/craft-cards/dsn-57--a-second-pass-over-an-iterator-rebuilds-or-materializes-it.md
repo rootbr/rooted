@@ -2,7 +2,7 @@
 title: Code that traverses an iterator or stream more than once rebuilds it from its source or materializes it first unless the iterator is documented as re-walkable
 rule_id: DSN-57
 domain: design
-step: [design, implement, review]
+step: [design, implement]
 applies_to: [universal]
 triggers: ['::iterator\b', '\b(groupby|tee)\(', '(Iterator|Iterable|Generator)\[', '(Stream|Iterator|Iterable|Generator)<', '\biter[.]Seq2?\[', '=\s*\(.*\bfor\b.*\bin\b']
 scope: file

@@ -2,7 +2,7 @@
 title: An added import leaves the dependency graph of modules and packages acyclic, with no path of imports leading back to the importing module
 rule_id: DSN-10
 domain: design
-step: [design, implement, review]
+step: [design, implement]
 applies_to: [universal]
 triggers: ['^\s*import\s+[\w.{*''"]', '^\s*from\s+[.\w]+\s+import\b', '\bfrom\s+[''"]', '\b(require|import)\s*\(\s*[''"]', '\b(use\s+\w+|crate|super)::', '^\s*([\w.]+\s+)?"[\w.\-]+(/[\w.\-]+)+"\s*(//.*)?$']
 scope: callers

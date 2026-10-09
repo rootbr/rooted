@@ -2,7 +2,7 @@
 title: A loop body or pipeline step never adds to or removes from the collection it is traversing
 rule_id: DSN-60
 domain: design
-step: [implement, review]
+step: [implement]
 applies_to: [universal]
 triggers: ['[.](forEach|for_each|map|flatMap|flat_map|filter|peek|some|every|find|reduce|inspect)\(.*\b\w+[.](add|push|remove|splice|append|insert|pop|shift|unshift|clear|delete|discard)\(', '[.](remove|removeAll|retainAll|delete|discard|splice|pop|popitem|shift|unshift|insert|clear)\(', '^\s*(del|delete)\s+[\w.]+\[', '\bdelete\(\s*\w+\s*,', '\b(append\(\s*\w+\[:\s*\w+\s*\]|slices[.](Delete|Insert)\()']
 scope: file

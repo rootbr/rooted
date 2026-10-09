@@ -2,7 +2,7 @@
 title: A declaration visible outside its module names the abstraction its callers need in its signature, and keeps a type that is only its implementation choice inside the module
 rule_id: DSN-34
 domain: design
-step: [design, implement, review]
+step: [design, implement]
 applies_to: [public-api]
 triggers: ['\bpub\s+fn\b.*:\s*&?(mut\s+)?(Vec|HashMap|HashSet|BTreeMap|BTreeSet|VecDeque)\s*<', '\bpub\s+fn\b.*->\s*(Enumerate|Skip|Chain|Zip|Filter|Map|Rev|Peekable)\s*<', '^\s*public\b.*\b(Hash|Tree|Linked|Concurrent|Array|Enum|CopyOnWrite)\w*(Map|List|Set|Deque|Queue)\s*<', '^\s*func\s+((\([^)]*\)\s*)?[A-Z]\w*\s*\([^)]*\)\s*\(?\s*\*?(?!(any|bool|byte|chan|complex64|complex128|error|float32|float64|func|int|int8|int16|int32|int64|interface|map|rune|string|struct|uint|uint8|uint16|uint32|uint64|uintptr)\b)[a-z]\w*|New\w*\s*\()', '^\s*export\s+(default\s+)?(async\s+)?function\b.*:\s*(Map|Set|Array|Record)\s*<', '\bdef\s+(__init__|[a-z]\w*)\s*\(.*:\s*(dict|Dict|defaultdict|OrderedDict|list|List|set|Set)\b', '^\s*(export\s+(default\s+)?|public\s+(final\s+|abstract\s+)?)class\s+\w+.*\bimplements\b']
 scope: file

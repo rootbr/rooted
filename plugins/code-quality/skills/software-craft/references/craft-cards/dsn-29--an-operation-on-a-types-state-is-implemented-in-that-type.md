@@ -2,7 +2,7 @@
 title: An operation on a type's state is implemented in that type, not in outside code that reads its fields, decides and writes the result back, unless the type is a data carrier with no invariant
 rule_id: DSN-29
 domain: design
-step: [design, refactor, review]
+step: [design, refactor]
 applies_to: [object-oriented]
 triggers: ['\b(?!self\b|this\b)([a-z_]\w*)[.](set|Set)[A-Z_]\w*\s*\(.*\b\1[.]\w', '\b(?!self\b|this\b|super\b)([a-z_]\w*)[.][A-Za-z_]\w*\s*([-+*/%|&^]|<<|>>)=', '\b(?!self\b|this\b|super\b)([a-z_]\w*)[.][A-Za-z_]\w*\s*=(?!=)[^;]*\b\1[.]\w', '\b(class|struct|object|type)\s+\w*(Manager|Service|Helper|Utils?|Processor)\b']
 scope: callers

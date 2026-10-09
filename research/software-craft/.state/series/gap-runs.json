@@ -48,6 +48,14 @@
    "claim": "\"The exactness carries over into arithmetic. In decimal floating point, ``0.1 + 0.1 + 0.1 - 0.3`` is exactly equal to zero.\"; \"decimal is preferred in accounting applications which have strict ...\" (equality invariants)",
    "taxonomy_row": "| | `variables-scope-and-numerics` | CC10–13 |",
    "status": "queued"
+  },
+  {
+   "domain": "design",
+   "concept": "domain language: code written in the domain's own business terms (ubiquitous language); the slug's second half and PP 'Domain Languages'. No card states it; the only neighbouring entry under ## design in pending-evidence.md is the 'relation between domain concepts is a named operation' entry, a different claim whose search record lists ubiquitous/vocabulary studies",
+   "source_path": "dotnet/docs — docs/architecture/microservices/microservice-ddd-cqrs-patterns/ddd-oriented-microservice.md, § 'Design a DDD-oriented microservice' (opening section, second paragraph); fetched with one curl",
+   "claim": "\"But the important part is not the patterns themselves, but organizing the code so it is aligned to the business problems, and using the same business terms (ubiquitous language). In addition, DDD approaches should be applied only if you are implementing complex microservices with significant business rules.\" Checkable against a project glossary or the change description's business terms; official guidance, no measured cost. The DSL sense of PP 'Domain Languages' found no GitHub-hosted source.",
+   "taxonomy_row": "| | `domain-modeling-and-domain-language` | PP \"Domain Languages\", SWEBOK ch. 3 §5.10 |",
+   "status": "queued"
   }
  ]
 }

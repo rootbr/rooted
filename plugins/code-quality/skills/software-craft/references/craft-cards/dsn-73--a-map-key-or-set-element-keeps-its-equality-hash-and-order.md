@@ -2,7 +2,7 @@
 title: A hash or ordered map key or set element keeps its equality, hash and ordering unchanged while it is in the collection
 rule_id: DSN-73
 domain: design
-step: [design, implement, review]
+step: [design, implement]
 applies_to: [universal]
 triggers: ['\b(\w*Hash(Map|Set)|\w*Tree(Map|Set)|ConcurrentSkipList(Map|Set)|(Sorted|Navigable|Index)(Map|Set)|Cell|RefCell)\s*(<|::)|\b(set|frozenset|dict|Set|FrozenSet|Dict|Mapping|MutableMapping|MutableSet|AbstractSet|defaultdict|OrderedDict|Counter)\[', '\b__(hash|eq|lt|le|gt|ge)__\b|\b(unsafe_hash|order)\s*=\s*True|\bhashCode\s*\(|\bboolean\s+equals\s*\(|\bcompareTo\s*\(|\bComparator[.]comparing\w*\s*\(|\bimpl\b[^{;]*?\b(Hash|PartialEq|Eq|PartialOrd|Ord)\s+for\b|#\[derive\([^)]*\b(Hash|Ord)\b']
 scope: callers

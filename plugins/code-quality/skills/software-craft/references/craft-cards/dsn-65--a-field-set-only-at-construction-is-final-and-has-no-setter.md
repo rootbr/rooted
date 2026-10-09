@@ -2,11 +2,11 @@
 title: A field that is set only while its object is constructed is declared final or read-only and has no setter
 rule_id: DSN-65
 domain: design
-step: [implement, refactor, review]
+step: [implement, refactor]
 applies_to: [object-oriented]
 triggers: ['^\s*(private|protected)\s+(?!.*\b(final|static|abstract|class|interface|enum|record)\b)[\w.<>\[\], ?]+\s+\w+\s*(=[^=;]*)?;\s*$', '^\s*(private|protected|public)\s+(?!readonly\b|static\b|abstract\b|get\b|set\b|async\b|constructor\b)#?\w+\s*[?!]?\s*[:=]', '^\s*#\w+\s*[:=]', '\bvoid\s+set[A-Z]\w*\s*\(|^\s*def\s+set_\w+\s*\(\s*self|^\s*func\s+\(\w+\s+\*\w+\)\s+Set[A-Z]\w*\s*\(|^\s*(public\s+)?set\s+\w+\s*\(|@\w+[.]setter\b|\bfn\s+set_\w+\s*\(\s*&mut\s+self', '^\s*@(dataclasses[.])?dataclass\b(?!.*\bfrozen\s*=\s*True\b)']
 scope: callers
-check_kind: mechanical
+check_kind: semantic
 severity_default: minor
 ---
 

@@ -2,7 +2,7 @@
 title: A declaration is widened for tests at most to the package or module level a co-located test needs, not to public, exported or protected visibility
 rule_id: DSN-35
 domain: design
-step: [implement, test, review]
+step: [implement, test]
 applies_to: [universal]
 triggers: ['(?i)(//|#|/\*|\*|""").*\b(visible|visibility|public|exported?|exposed?|pub|accessible|protected)\b.*\b(for|by|from|in|so)\s+(that\s+)?(the\s+)?(unit\s+)?test(s|ing|ab(le|ility))?\b', '\b\w*(ForTests?|ForTesting|TestOnly|_for_tests?|_for_testing|_test_only)\b', '^\s*(export\s+|pub(\([\w:\s]+\))?\s+|public\s+)?(type|class|struct|interface|func|fn)\s+(New)?(Fake|Mock|Stub|Spy)[A-Z]\w*']
 scope: callers

@@ -2,7 +2,7 @@
 title: A lazy pipeline is consumed, and consumed before its source or a variable its steps read changes
 rule_id: DSN-55
 domain: design
-step: [implement, review]
+step: [implement]
 applies_to: [functional]
 triggers: ['^\s*([\w.]|\(([^()]|\([^()]*\))*\))*\b(stream|parallelStream|iter|iter_mut|into_iter|values|keys|entries|chars|lines|of|from)\(([^()]|\([^()]*\))*\)\s*[.]\s*(map|filter|flatMap|flat_map|filter_map|peek|inspect|take|drop|skip|zip)\(', '=\s*([\w.]|\(([^()]|\([^()]*\))*\))+[.](stream|parallelStream|iter|iter_mut|into_iter|values|keys|entries|chars|lines|of|from)\(([^()]|\([^()]*\))*\)\s*[.]\s*(map|filter|flatMap|flat_map|filter_map|peek|inspect|take|drop|skip|zip)\(', '\b(Stream|IntStream|LongStream|DoubleStream)\b(<[^=]*>)?\s+\w+\s*=[^=]', '(^\s*|=\s*)(map|filter|zip|itertools[.]\w+)\(', '(^\s*|=\s*)\(.*\bfor\b.*\bin\b.*\)\s*$', ':=\s*(maps|slices|strings|bytes)[.](Keys|Values|All|Backward|Lines|\w+Seq)\(']
 scope: file

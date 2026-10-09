@@ -2,7 +2,7 @@
 title: A routine the change adds does not re-implement a job that an existing routine of the codebase already does, unless it is a small copy and reaching that routine would add a dependency the module is kept free of
 rule_id: DSN-26
 domain: design
-step: [design, implement, review]
+step: [design, implement]
 applies_to: [universal]
 triggers: ['^\s*(pub(\([^)]*\))?\s+)?((async|const|unsafe)\s+)*(fn|def)\s+\w+\s*[<(]', '^\s*func\s+(\([^)]*\)\s*)?\w+\s*[\[(]', '^\s*(export\s+)?(default\s+)?(async\s+)?function\s*\*?\s*\w+\s*[<(]', '^\s*(public|private|protected|static|final|override|async)\s[^=;]*\b\w+\s*\([^;]*$', '^\s*(export\s+)?(const|let|var)\s+\w+\s*(:[^=]+)?=\s*(async\s+)?(\([^)]*\)|\w+)\s*(:\s*[^=]+)?=>', '^\s*(?!(if|for|while|switch|catch|match|return|else|do|try|new|throw|case|await|yield|synchronized|go|defer)\b)([A-Za-z_][\w.]*(<[^()]*>)?(\[\])*\s+)?[a-z_$][\w$]*\s*(<[^()]*>)?\([^;]*\)\s*(:\s*[^={;]+|throws\s+[\w., ]+)?\{\s*$']
 scope: callers

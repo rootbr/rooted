@@ -2,7 +2,7 @@
 title: A component that keeps a mutable object received from a caller keeps its own copy or takes ownership of it
 rule_id: DSN-70
 domain: design
-step: [design, implement, review]
+step: [design, implement]
 applies_to: [universal]
 triggers: ['^\s*(this|self|[a-z]\w*)[.]_?\w+\s*=\s*[a-z_]\w*\s*;?\s*$', '(^|[{,])\s*\w+\s*:\s*[a-z_]\w*\s*(,\s*$|[,}])']
 scope: file

@@ -2,10 +2,10 @@
 title: A named function is passed directly as a pipeline callback exactly when the step supplies no argument beyond those the function means to take
 rule_id: DSN-61
 domain: design
-step: [implement, review]
+step: [implement]
 applies_to: [functional]
 triggers: ['[.](map|filter|forEach|some|every|find|findIndex|findLast|findLastIndex|flatMap|reduce|reduceRight)\(\s*[A-Za-z_$][\w$]*([.][A-Za-z_$][\w$]*)*\s*[,)]', '\blambda\s+(\w+(?:\s*,\s*\w+)*)\s*:\s*[\w.]+\(\s*\1\s*\)', '\|\s*(\w+)\s*\|\s*[\w:.]+\(\s*\1\s*\)', '\b(\w+)\s*->\s*[\w.]+\(\s*\1\s*\)']
-scope: file
+scope: callers
 check_kind: semantic
 severity_default: major
 ---

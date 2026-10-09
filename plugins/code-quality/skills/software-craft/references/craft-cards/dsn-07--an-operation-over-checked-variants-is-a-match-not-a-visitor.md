@@ -2,7 +2,7 @@
 title: Where the compiler or a static checker reports a match over a closed set of variant types that misses a variant, an operation over the variants is written as a match rather than as a visitor's accept and visit double dispatch
 rule_id: DSN-07
 domain: design
-step: [design, implement, refactor, review]
+step: [design, implement, refactor]
 applies_to: [universal]
 triggers: ['\baccept\s*\(.*[Vv]isitor', '\bvisit_?[A-Z]\w*\s*\(|\bvisit_[a-z]\w*\s*\(', '\b(interface|trait|class|struct|type|impl|implements|extends)\b[^{;]*Visitor\b', '\b(fn|def)\s+visit\w*\s*\(|\bfunc\s+\([^)]*\)\s+Visit\w*\s*\(']
 scope: callers

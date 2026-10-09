@@ -2,7 +2,7 @@
 title: Code outside a module uses only the members the module exposes, never one it marks non-public by a modifier, a naming convention or an annotation
 rule_id: DSN-33
 domain: design
-step: [implement, review]
+step: [implement]
 applies_to: [universal]
 triggers: ['\b(?!(self|cls|this|super)\b)[A-Za-z_]\w*(\([^()]*\)|\[[^\]]*\])?[.](?!__\w*__\b)__?[A-Za-z]\w*', '^\s*from\s+[\w.]+\s+import\s+.*\b_[A-Za-z]\w*|^\s*from\s+[\w.]*[.]_[A-Za-z]\w*|^\s*import\s+([\w.]*[.])?_[A-Za-z]\w*|^\s*import\b[^''"]*\{[^}]*\b_[A-Za-z]\w*|\bfrom\s+[''"][^''"]*/_[A-Za-z][\w-]*[''"]', '\bsetAccessible\s*\(\s*true\s*\)|\bgetDeclared(Field|Method|Constructor)s?\s*\(|\b(getattr|setattr|delattr)\s*\([^,]+,\s*[''"]_[A-Za-z]|//\s*go:linkname\b|\bunsafe[.]Pointer\b|\b(FieldByName|UnsafeAddr|NewAt)\s*\(|\bmem::transmute\b', '\bas\s+(any|unknown)\b\s*\)\s*[.\[]|\bas\s+unknown\s+as\b|<any>\s*[\w(]|\[\s*[''"]#?_?[A-Za-z]\w*[''"]\s*\]\s*(=|\()|\[\s*[''"]_[A-Za-z]\w*[''"]\s*\]|@ts-(ignore|expect-error)']
 scope: file

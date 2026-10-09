@@ -2,7 +2,7 @@
 title: A reduce or fold is replaced by a named operation when one expresses it and by a plain loop when it mutates its accumulator or copies a growing one on each step
 rule_id: DSN-58
 domain: design
-step: [implement, refactor, review]
+step: [implement, refactor]
 applies_to: [functional]
 triggers: ['\b(reduce|reduceRight|reducing|fold|rfold|try_fold|Reduce|Fold)(::)?(<.*>|\[[^\]]*\])?([.](call|apply))?\(']
 scope: hunk

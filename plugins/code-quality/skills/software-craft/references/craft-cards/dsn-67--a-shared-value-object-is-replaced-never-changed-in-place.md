@@ -2,7 +2,7 @@
 title: An object that stands for a value and is held by more than one component is never changed in place, and an update produces a new instance
 rule_id: DSN-67
 domain: design
-step: [design, implement, review]
+step: [design, implement]
 applies_to: [universal]
 triggers: ['[.]([sS]et[A-Z]|set_)\w*\s*\(', '^\s*(?!this[.]|self[.])\w+[.]\w+\s*([+\-*/]?=)(?![=>])', '^\s*\w+([.]\w+){2,}\s*([+\-*/]?=)(?![=>])', '\b(Object[.]assign|setattr|__setattr__)\s*\(']
 scope: callers
