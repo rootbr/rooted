@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Where the series stands, from the tree: one row per topic of the design note's taxonomy (note status, cards the
 note's `## Cards derived` table ships, held rules, pending entries, journal and output snapshots, batch records, audit
-samples), then the note<->tree cross-check: every card in the tree is named as shipped by exactly one note and no note
+samples; a gap topic's note outside the taxonomy gets a row with letter "+"), then the note<->tree cross-check: every card in the tree is named as shipped by exactly one note and no note
 names a card the tree lacks (a rule folded into an existing card appears in its own note's table as "folded into <id>",
 which the check reports separately). Run from anywhere; read-only. Usage: check-topics.py"""
 import re, os, glob, json, collections
@@ -14,6 +14,13 @@ tax, cur = [], None
 for full, dom, pre, slug, con in re.findall(r"^\| ((?:[A-J]), `(\w+)`, `(\w+)`)? *\| `([a-z0-9-]+)`( \(contested\))? \|", NOTE, re.M):
     if dom: cur = (dom, pre, full[0])
     tax.append((slug, cur[0], cur[1], cur[2]))
+# a note outside the taxonomy (a gap topic of series/make-gap-bundles.py) is a row of its own, letter "+"
+for f in sorted(glob.glob(f"{ROOT}/research/software-craft/*.md")):
+    _t = open(f, encoding="utf-8").read()
+    _m = re.search(r"^topic: (\S+)", _t, re.M)
+    if _m and _m.group(1) not in {s for s, *_ in tax}:
+        _d, _p = re.search(r"^domain: (\S+)", _t, re.M), re.search(r"^prefix: (\S+)", _t, re.M)
+        tax.append((_m.group(1), _d.group(1) if _d else "?", _p.group(1) if _p else "?", "+"))
 tree = {}
 for f in glob.glob(f"{K}/references/craft-cards/*.md"):
     tree[re.search(r"^rule_id: (\S+)", open(f, encoding="utf-8").read(), re.M).group(1)] = os.path.basename(f)
@@ -55,7 +62,7 @@ print(f"{'g':1s} {'pre':4s} {'topic':45s} {'note':9s} {'cards':5s} {'fold':4s} {
 for r in rows:
     print(f"{r[0]:1s} {r[1]:4s} {r[2]:45s} {r[3]:9s} {r[4]:<5d} {r[5]:<4d} {r[6]:<4d} {r[7]:<4d} {r[8]:<3d} {r[9]:<3d} {r[10]:<3d} {r[11]}")
 st = collections.Counter(r[3] for r in rows)
-print(f"\ntopics: {len(rows)}; by note status: {dict(st)}")
+print(f"\ntopics: {len(rows)} ({sum(1 for r in rows if r[0] == '+')} outside the taxonomy, letter +); by note status: {dict(st)}")
 print(f"cards in tree: {len(tree)} ({dict(per_prefix)}); shipped by notes: {sum(r[4] for r in rows)}; pending entries: {sum(pend.values())}" + (f" ({pend['?']} without a topic slug)" if pend.get('?') else ""))
 problems = []
 for i in sorted(tree):
