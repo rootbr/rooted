@@ -46,6 +46,19 @@
      "status": "done 2026-10-09T16:31 UTC: 15 agents, 1,725,164 sub-agent tokens, 5 cards in its output, 0 pending",
      "bundle": "cont/security-hygiene-in-ordinary-code/r2/continue-security-hygiene-in-ordinary-code-round2-2of2.js: the five rules parameterize-queries, os-command-argument-vector, listener-binds-specific-interface, secure-defaults, vetted-security-primitive"
     }
+   ],
+   "written": "2026-10-09T16:31 UTC: INP-01 to INP-12 written by finish-topic.sh over the r1-sources, r2-1of2 and r2-2of2 outputs (92 agents, 11.7M sub-agent tokens over the three runs); spot-read added ERR-13 -> INP-01 and ERR-14 -> INP-01 to the map and the table"
+  },
+  "parsing-and-grammar-based-input": {
+   "runs": [
+    {
+     "part": "r1",
+     "task": "wvic7oevd",
+     "wf": "wf_4ebd6c39-d19",
+     "launched": "2026-10-09T16:33 UTC",
+     "status": "running",
+     "bundle": "bundles/parsing-and-grammar-based-input.js regenerated after the INP cards landed (12 existing titles)"
+    }
    ]
   }
  }
