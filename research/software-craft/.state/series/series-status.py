@@ -28,7 +28,7 @@ import time
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 STATE = os.path.dirname(HERE)
-STAGES = ["sources", "spine", "draft", "verify", "fix", "verify2", "close1"]
+STAGES = ["sources", "spine", "draft", "verify", "fix", "verify2", "close1", "fix2", "verify3", "close2", "close3", "fix3", "verify4"]
 
 
 def journal_stats(path):
