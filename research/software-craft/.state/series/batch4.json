@@ -2,7 +2,7 @@
  "batch": 4,
  "launched": "2026-10-08T05:25 UTC",
  "kind": "fresh launches of the 22 not-started topics (HANDOVER \u00a75.5), one per free slot under the operator's cap of four workflows",
- "concurrency": "3 (operator, 2026-10-08T17:10 UTC, replacing 4): launch a new workflow only while fewer than 3 run; the four continuation workflows launched at 16:40 UTC run to their end",
+ "concurrency": "2 (operator, 2026-10-09T04:55 UTC; 3 from 2026-10-08T17:10 UTC, 4 before): launch a new workflow only while fewer than 2 run",
  "topics": {
   "unit-testing-and-test-quality": {
    "task": "w4q4wtv46",
@@ -116,5 +116,6 @@
   }
  },
  "launch_stop": "2026-10-08T15:05 UTC: operator instruction \u2014 finish the running workflows, launch no new ones; then update HANDOVER for the next session, save everything and push. Not started after this: runtime-configuration, internationalization-and-text-encoding, reading-and-understanding-code, code-review-as-author-and-reviewer, documentation-beyond-comments, parsing-and-grammar-based-input, security-hygiene-in-ordinary-code.",
- "continuations": "2026-10-08T16:45 UTC: the three runs the session end cut (algorithm fix round done; build-warnings 2 of 10 verified; dependency-management 6 of 11 drafted) continue from their journals (HANDOVER 5.3): algorithm as one --resume-cut-short finish bundle (10 second verdicts, closing edits), the other two as --round 1 bundles split in two; build-warnings r1-2of2 is launched when a slot under the cap of four frees."
+ "continuations": "2026-10-08T16:45 UTC: the three runs the session end cut (algorithm fix round done; build-warnings 2 of 10 verified; dependency-management 6 of 11 drafted) continue from their journals (HANDOVER 5.3): algorithm as one --resume-cut-short finish bundle (10 second verdicts, closing edits), the other two as --round 1 bundles split in two; build-warnings r1-2of2 is launched when a slot under the cap of four frees.",
+ "usage_cut": "2026-10-08T18:30 UTC: the five-hour window closed (reset 21:30 UTC) on the four continuation workflows and the design reviewer; algorithm finish lost 3 closing edits, build-warnings r1-1of2 one closing edit, dependency-management r1-1of2 three second verdicts and two closing edits, r1-2of2 two second verdicts and three closing edits; each run ended completed with its finished cards in its output and the cut rules as pending entries"
 }
