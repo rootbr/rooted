@@ -27,8 +27,24 @@
      "task": "w03jm2mgo",
      "wf": "wf_ced71303-102",
      "launched": "2026-10-09T09:55 UTC",
-     "status": "running",
+     "status": "done 2026-10-09T14:48 UTC: 61 agents, 8,082,686 sub-agent tokens, 12 cards in its output (11 on a closing edit, INP-06 accepted at the second verdict), 1 pending, 12 held (6 folded, 5 not checkable, 1 pending-no-evidence); output outputs/security-hygiene-in-ordinary-code--r1-sources.output.json.gz",
      "bundle": "cont/security-hygiene-in-ordinary-code/continue-security-hygiene-in-ordinary-code-sources.js (research-continue.py --journal <r1 journal> --from-bundle bundles/security-hygiene-in-ordinary-code.js: the two finished layers carried, the workflow runs evidence, the spine and every stage after)"
+    },
+    {
+     "part": "r2-1of2",
+     "task": "wml9xxe9r",
+     "wf": "wf_3da6e9c8-559",
+     "launched": "2026-10-09T14:50 UTC",
+     "status": "running",
+     "bundle": "cont/security-hygiene-in-ordinary-code/r2/continue-security-hygiene-in-ordinary-code-round2-1of2.js (research-continue.py --round 2 --journal <r1 journal> --journal <r1-sources journal> --from-bundle bundles/security-hygiene-in-ordinary-code.js --split 2; the one-bundle form was 659 KB, above the 512 KiB limit): the six rules validate-input-at-trust-boundary, contextual-output-encoding, no-eval-of-untrusted-input, least-privilege-in-what-code-asks-for, no-secret-in-code, csprng-for-unguessable-values"
+    },
+    {
+     "part": "r2-2of2",
+     "task": null,
+     "wf": null,
+     "launched": null,
+     "status": "built, waiting for the cap (launched when r2-1of2 ends)",
+     "bundle": "cont/security-hygiene-in-ordinary-code/r2/continue-security-hygiene-in-ordinary-code-round2-2of2.js: the five rules parameterize-queries, os-command-argument-vector, listener-binds-specific-interface, secure-defaults, vetted-security-primitive"
     }
    ]
   }

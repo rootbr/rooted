@@ -1,6 +1,6 @@
 # Series status
 
-Snapshot taken 2026-10-09T14:30 UTC by `series/series-status.py --snapshot`. Journals under `journals/`, finished runs' outputs under `outputs/`.
+Snapshot taken 2026-10-09T14:48 UTC by `series/series-status.py --snapshot`. Journals under `journals/`, finished runs' outputs under `outputs/`.
 
 `done` counts the agents whose results the journal holds (cached for a continuation); `failed` the agents a usage-limit stop or an error ended, which a continuation re-runs. `cards` is the count in the run's own output; a run whose agents failed shipped none, and its cards come from the continuation. A continuation run (batch 3 and later) is one bundle of a topic, named by its part; a topic is finished when every part's run is complete.
 
@@ -160,4 +160,4 @@ Snapshot taken 2026-10-09T14:30 UTC by `series/series-status.py --snapshot`. Jou
 | 4 | `dependency-management` r2-1of2 | 11 | verify2 3 | - | 5 | run complete |
 | 4 | `dependency-management` r2-2of2 | 11 | verify2 2 | - | 5 | run complete |
 | 5 | `security-hygiene-in-ordinary-code` r1 | ? | sources 2 | sources 1, spine 1 | - | running or stopped |
-| 5 | `security-hygiene-in-ordinary-code` r1-sources | 12 | sources 1, spine 1, draft 12, verify 12, fix 12, verify2 10, close1 2 | - | - | running or stopped |
+| 5 | `security-hygiene-in-ordinary-code` r1-sources | 12 | sources 1, spine 1, draft 12, verify 12, fix 12, verify2 12, close1 11 | - | 12 | run complete |
