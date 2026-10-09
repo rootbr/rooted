@@ -51,8 +51,14 @@
 //   closing_edit: true | false         // true: after the run's last verdict, a "revise" does not pend the rule — the drafter
 //                                      // applies that verdict's required edits verbatim, changes nothing else, and the
 //                                      // card ships with the verdict as its verification record (a "reject" still pends)
+//   written: { <key>: { rule_id, example_language } }
+//                                      // optional: the id and the example language a rule's card already carries in the
+//                                      // tree, used in place of the provisional numbering and the rotation, so a pass that
+//                                      // verifies written cards as they stand (their text as the round's drafts) keeps
+//                                      // their ids and languages
 // A stage whose result the state carries returns it without an agent; ids and example languages are
-// assigned over the whole spine, so a split topic keeps one numbering.
+// assigned over the whole spine, so a split topic keeps one numbering, and `written` overrides both for
+// a rule whose card is already in the tree.
 
 export const meta = {
   name: 'research-craft-topic',
@@ -99,6 +105,8 @@ const ROUND = Number.isInteger(A.round) && A.round >= 1 ? A.round : 1
 const FIX_AFTER_VERIFY = A.fix_after_verify !== false
 const CLOSING_EDIT = A.closing_edit === true
 const CLOSE_LABEL = `close${ROUND}`
+const WRITTEN = (A.written && typeof A.written === 'object' && !Array.isArray(A.written)) ? A.written : {}
+for (const [k, w] of Object.entries(WRITTEN)) if (!w || typeof w.rule_id !== 'string' || !/^[A-Z]+-\d{2}$/.test(w.rule_id)) throw new Error(`research-topic-workflow: written.${k} must carry a rule_id of the form PREFIX-NN`)
 const CHANNEL_NOTE = typeof A.channel_note === 'string' && A.channel_note.trim() ? `\n- This run: ${A.channel_note.trim()}` : ''
 if (ROUND > 1 && !(RESUME && RESUME.spine && RESUME.drafts && RESUME.verdicts)) throw new Error('research-topic-workflow: round above 1 needs resume_state with the spine, the drafts and the verdicts of the previous round')
 const DRAFT_LABEL = ROUND === 1 ? 'draft' : ROUND === 2 ? 'fix' : `fix${ROUND - 1}`
@@ -488,8 +496,9 @@ if (cardRules.length > MAX_RULES) {
 }
 const numbered = cardRules.slice(0, MAX_RULES)
 numbered.forEach((r, i) => {
-  r.rule_id = `${T.prefix}-${String(NEXT_ID + i).padStart(2, '0')}`
-  r.example_language = LANGS[(ROT + i) % LANGS.length]
+  const w = WRITTEN[r.key]
+  r.rule_id = w ? w.rule_id : `${T.prefix}-${String(NEXT_ID + i).padStart(2, '0')}`
+  r.example_language = (w && LANGS.includes(w.example_language)) ? w.example_language : LANGS[(ROT + i) % LANGS.length]
 })
 const drafted = ONLY ? numbered.filter(r => ONLY.has(r.key)) : numbered
 if (ONLY) {

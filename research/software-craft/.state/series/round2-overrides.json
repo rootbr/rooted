@@ -1,0 +1,14 @@
+{
+ "purpose": "cards no run output names, for series/round2-from-tree.py: {slug: {rule_id: {key, from_key?}}}; a renamed card maps by key alone, a card split out of another at the card audit names the spine rule it was split from",
+ "routine-size-and-parameters": {
+  "CODE-37": {
+   "key": "parameter-order-matches-related-routines"
+  }
+ },
+ "unit-testing-and-test-quality": {
+  "TST-39": {
+   "key": "assertion-arguments-take-labelled-positions",
+   "from_key": "failure-report-diagnoses"
+  }
+ }
+}

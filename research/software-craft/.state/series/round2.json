@@ -1,0 +1,6 @@
+{
+ "purpose": "the second-round passes over the series cards in the tree (HANDOVER \u00a75.11): one run per topic, part r2tree, built by series/round2-from-tree.py; `result` is written by its apply step",
+ "batch": "r2",
+ "concurrency": "1 active task (operator, 2026-10-09T06:10 UTC)",
+ "topics": {}
+}

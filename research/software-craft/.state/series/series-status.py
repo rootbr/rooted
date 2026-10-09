@@ -4,7 +4,7 @@ repository, so another session (or another checkout) continues them without re-r
 
 Usage:
   series-status.py [--batches <batchN.json> ...] [--workflows-dir <dir>] [--tasks-dir <dir>] [--snapshot]
-    --batches        the batch records (default: every batch*.json beside this script); each names a topic's
+    --batches        the batch records (default: every batch*.json beside this script, then round2.json); each names a topic's
                      workflow run id (`wf`) and its latest task id (`task`), or, for a topic continued over
                      several bundles, a `runs` list of {part, task, wf} (one row, one journal and one output per run)
     --workflows-dir  the runtime's workflow transcripts: <dir>/<wf id>/journal.jsonl (default: found under
@@ -70,7 +70,7 @@ def main(argv):
             opts[a[2:].replace("-", "_")] = argv[i + 1]; i += 2
         else:
             sys.exit(f"series-status: unexpected argument {a!r}\n{__doc__}")
-    batches = opts["batches"] or sorted(glob.glob(os.path.join(HERE, "batch*.json")))
+    batches = opts["batches"] or sorted(glob.glob(os.path.join(HERE, "batch*.json"))) + [p for p in [os.path.join(HERE, "round2.json")] if os.path.exists(p)]
     topics = []
     for bf in batches:
         b = json.load(open(bf, encoding="utf-8"))
