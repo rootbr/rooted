@@ -1,6 +1,6 @@
 {
- "purpose": "the second-round passes over the series cards in the tree (HANDOVER \u00a75.11): one run per topic, part r2tree, built by series/round2-from-tree.py; `result` is written by its apply step",
+ "purpose": "the second-round passes over the series cards in the tree (HANDOVER §5.11): one run per topic, part r2tree, built by series/round2-from-tree.py; `result` is written by its apply step",
  "batch": "r2",
- "concurrency": "1 active task (operator, 2026-10-09T06:10 UTC)",
+ "concurrency": "2 active tasks (operator, 2026-10-09T16:40 UTC; 1 from 06:10 UTC that day): workflows and reviewer agents counted alike; launch the next when fewer than two run",
  "topics": {}
 }
