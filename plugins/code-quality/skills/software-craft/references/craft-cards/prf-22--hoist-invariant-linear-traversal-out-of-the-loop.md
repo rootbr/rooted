@@ -2,7 +2,7 @@
 title: A linear traversal whose result does not change between iterations runs once before the loop, not in the loop condition or once per iteration
 rule_id: PRF-22
 domain: performance
-step: [implement, refactor, review]
+step: [implement, refactor]
 applies_to: [universal]
 triggers: ['\bfor\s*\([^;]*;[^;]*\w\([^;]*;', '\bfor\s+[^;{(]*;[^;{]*\w\([^;{]*;', '\bObject[.](keys|values|entries)\([^)]*\)[.]length\b', '\b(sum|max|min|sorted|len\(\s*set)\(\s*\w+\s*\)|[.]stream\(\).*[.](count|max|min|sum)\(|[.]iter\(\).*[.](count|max|min|sum)\(', '\bwhile\b[^;{]*\w\(|\bfor\s+[^;{(=]*[<>][^;{]*\w\(', '[.](filter|reduce)\(|\bMath[.](max|min)\([.]{3}']
 scope: file

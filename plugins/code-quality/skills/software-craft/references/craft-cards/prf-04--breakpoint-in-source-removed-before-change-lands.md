@@ -5,7 +5,7 @@ domain: performance
 step: [implement, review]
 applies_to: [universal]
 triggers: ['^\s*debugger\s*;?\s*(//.*)?$', '\b(i?pdb|pudb|rdb)\s*[.]\s*set_trace\s*\(', '(?<![.\w])breakpoint\s*\(\s*\)|\bsys\s*[.]\s*breakpointhook\s*\(', '^\s*(import\s+(i?pdb|pudb|debugpy|ptvsd)\b|from\s+(i?pdb|pudb|debugpy|ptvsd)\b\s+import\b)', '\b(debugpy|ptvsd)\s*[.]\s*(listen|wait_for_client|wait_for_attach|break_into_debugger|breakpoint|enable_attach)\s*\(', '\bruntime\s*[.]\s*Breakpoint\s*\(\s*\)']
-scope: hunk
+scope: file
 check_kind: mechanical
 severity_default: major
 ---

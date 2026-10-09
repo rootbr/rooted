@@ -2,7 +2,7 @@
 title: Matching the elements of two collections that grow with the input builds a hashed index of one collection in a single pass, instead of comparing every pair in nested loops
 rule_id: PRF-23
 domain: performance
-step: [implement, refactor, review]
+step: [implement, refactor]
 applies_to: [universal]
 triggers: ['signal:deep_nesting', '\b\w+[.](\w+)(\(\))?\s*(===?|!==?|[.]equals\(|[.]eq\()\s*\w+[.]\1\b']
 scope: file

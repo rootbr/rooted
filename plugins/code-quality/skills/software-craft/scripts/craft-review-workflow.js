@@ -455,7 +455,7 @@ const DEFER_TO = {
   'CHG-13': 'CHG-29', // a behaviour change reformats only its own lines: reformatting inside a tool-generated change is CHG-29's finding (reviewer, change)
   'CHG-07': 'CODE-22', // a field assigned before every read becomes local: CODE-22's private-field clause, from the same PMD rule, owns the declaration (reviewer, change)
   'TST-13': 'TST-24', // a new test fails without the change: where it cannot fail because its assertion has no two sides, TST-24 owns the assertion
-  'PRF-11': ['PRF-07', 'PRF-14'], // a speed claim rests on a recorded measurement: a tuned form added with no measured need is PRF-07's finding, a figure claimed from too few runs or without a noise verdict PRF-14's (spot-read, profiling)
+  'PRF-11': ['PRF-07', 'PRF-14', 'PRF-09'], // a speed claim rests on a recorded measurement: a tuned form added with no measured need is PRF-07's finding, a figure claimed from too few runs or without a noise verdict PRF-14's (spot-read, profiling); a claim beside a comparison that shows no gain is PRF-09's (reviewer, performance)
   'PRF-14': 'PRF-09', // a speedup rests on repeated runs against the base: a tuning kept while its own comparison shows no gain beyond noise is PRF-09's revert finding (spot-read, profiling)
   'CHG-04': 'PRF-10', // a refactoring restructures only tested code: a routine rewritten for speed with no test against the plain implementation is PRF-10's finding (spot-read, profiling)
   'CODE-03': 'CODE-12', // a variable is a word, not a letter: a one-letter parameter on a public signature is CODE-12's finding (reviewer, code)
@@ -499,6 +499,8 @@ const DEFER_TO = {
   'DSN-63': 'DSN-68', // shared mutable state lives in an instance: a constant-named field holding a mutable collection is DSN-68's finding (reviewer, design)
   'DSN-34': 'API-16', // a visible declaration names its abstraction: a public parameter typed with a concrete implementation type is API-16's finding (reviewer, design)
   'DSN-24': 'CHG-27', // a schema is declared once: a hand edit of marked generated output inside a migration is CHG-27's finding (reviewer, design)
+  'PRF-23': 'PRF-15', // two input-sized collections are matched through a hashed index: a membership test or linear search of one collection inside a loop over the other is PRF-15's finding (reviewer, performance)
+  'PRF-17': 'PRF-19', // a loop appends to a builder: a prepend that builds a new sequence from one element plus the accumulated one is PRF-19's front-insertion finding (reviewer, performance)
 }
 const ownersOf = ruleId => [DEFER_TO[ruleId] || []].flat()
 const SEV_RANK = { major: 0, minor: 1, suggestion: 2 }

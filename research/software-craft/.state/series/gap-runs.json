@@ -56,6 +56,46 @@
    "claim": "\"But the important part is not the patterns themselves, but organizing the code so it is aligned to the business problems, and using the same business terms (ubiquitous language). In addition, DDD approaches should be applied only if you are implementing complex microservices with significant business rules.\" Checkable against a project glossary or the change description's business terms; official guidance, no measured cost. The DSL sense of PP 'Domain Languages' found no GitHub-hosted source.",
    "taxonomy_row": "| | `domain-modeling-and-domain-language` | PP \"Domain Languages\", SWEBOK ch. 3 §5.10 |",
    "status": "queued"
+  },
+  {
+   "domain": "performance",
+   "concept": "I/O issued once per element inside a loop: a database query or remote call per record (N+1 queries) where one batched or eagerly loaded fetch would do. I/O is among the sources of inefficiency under the row's locator CC25.",
+   "source_path": "rails/rails main, guides/source/active_record_querying.md, §Eager Loading Associations > N + 1 Queries Problem (fetched)",
+   "claim": "\"Retrieving a list of records N (where N is a number greater than 1) in a single query can sometimes trigger N extra queries; one for each record.\" / \"The above code executes 1 (to find 10 books) + 10 (one per each book to load the author) = **11** queries in total.\" / \"Active Record lets you specify in advance all the associations that are going to be loaded.\"",
+   "taxonomy_row": "| | `profiling-and-code-tuning` | CC25–26, PoP7, SW4.14 |",
+   "status": "queued"
+  },
+  {
+   "domain": "performance",
+   "concept": "Unbuffered output: each small write goes straight to the underlying file or stream instead of through a buffer (system calls and buffered I/O under the row's locators CC25 and PoP7).",
+   "source_path": "openjdk/jdk tag jdk-21-ga, src/java.base/share/classes/java/io/BufferedWriter.java, class documentation (fetched)",
+   "claim": "\"Unless prompt output is required, it is advisable to wrap a BufferedWriter around any Writer whose write() operations may be costly, such as FileWriters and OutputStreamWriters.\" / \"Without buffering, each invocation of a print() method would cause characters to be converted into bytes that would then be written immediately to the file, which can be very inefficient.\"",
+   "taxonomy_row": "| | `profiling-and-code-tuning` | CC25–26, PoP7, SW4.14 |",
+   "status": "queued"
+  },
+  {
+   "domain": "performance",
+   "concept": "Growing an array: a hand-grown buffer grows its capacity in proportion to its size, not by a fixed increment (PoP2, growing arrays). PRF-17 reaches only a copy made on every append, not growth by a constant step.",
+   "source_path": "python/cpython main, Objects/listobject.c, comment in py_list_resize (fetched)",
+   "claim": "\"This over-allocates proportional to the list size, making room for additional growth.  The over-allocation is mild, but is enough to give linear-time amortized behavior over a long sequence of appends() in the presence of a poorly-performing system realloc().\"",
+   "taxonomy_row": "| | `algorithm-and-data-structure-choice` | PoP2, PP \"Algorithm Speed\" |",
+   "status": "queued"
+  },
+  {
+   "domain": "performance",
+   "concept": "A hash function a type defines for its use as a key sends many keys to the same value, for example a constant or a hash of one field (PoP2, hash tables). PRF-15, PRF-21 and PRF-23 treat dispersion only as a condition in their Limits, and DSN-73 covers keys changed while inside a collection.",
+   "source_path": "openjdk/jdk tag jdk-21-ga, src/java.base/share/classes/java/util/HashMap.java, class documentation (fetched)",
+   "claim": "\"Note that using many keys with the same {@code hashCode()} is a sure way to slow down performance of any hash table.\"",
+   "taxonomy_row": "| | `algorithm-and-data-structure-choice` | PoP2, PP \"Algorithm Speed\" |",
+   "status": "queued"
+  },
+  {
+   "domain": "performance",
+   "concept": "A benchmark or timing run measures an optimized (release) build, not a debug build. PRF-08, PRF-13 and PRF-14 cover dead code, warm-up, forks and run counts, but not the build that is measured.",
+   "source_path": "rust-lang/book main, src/ch01-03-hello-cargo.md, §Building for Release (fetched)",
+   "claim": "\"If you're benchmarking your code's running time, be sure to run `cargo build --release` and benchmark with the executable in _target/release_.\"",
+   "taxonomy_row": "| | `profiling-and-code-tuning` | CC25–26, PoP7, SW4.14 |",
+   "status": "queued"
   }
  ]
 }

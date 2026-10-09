@@ -2,12 +2,12 @@
 title: A loop does not read a linked list or other sequential-access sequence by index or binary-search it, because every positional access walks the nodes, which makes an indexed pass quadratic and each binary search at least linear
 rule_id: PRF-20
 domain: performance
-step: [design, implement, review]
+step: [design, implement]
 applies_to: [universal]
 triggers: ['\bLinkedList\b|\bcontainer/list\b|\blist[.]New\(\)|\bdeque\(', '[.]get\(\s*\w+\s*\)|[.]nth\(\s*\w+\s*\)|\bbinarySearch\(|\bbisect\w*\(']
 scope: file
 check_kind: semantic
-severity_default: major
+severity_default: minor
 ---
 
 # A loop does not read a linked list or other sequential-access sequence by index or binary-search it, because every positional access walks the nodes, which makes an indexed pass quadratic and each binary search at least linear
@@ -37,7 +37,7 @@ Access at either end costs O(1) on a linked list and on the double-ended queue a
 Grep the hunk for a linked-list or double-ended-queue type or constructor, an indexed read `.get(<var>)` or `.nth(<var>)`, a subscript by a loop variable, and a binary-search call. Open the file and trace the receiver of each indexed read or search to its declared or constructed type; keep it when that type is a linked list or a sequence whose indexed access is documented as O(n) away from its ends. Check that the read sits inside a loop whose index varies across the sequence — a counted loop up to the size, or a hand-written binary search that reads the midpoint — or that the binary-search call runs on each iteration of an enclosing loop, and that the index is neither the first nor the last position. Drop the case when the sequence is bounded by construction to a few elements. Validator question: **Does a loop read a linked list or another sequence with O(n) indexed access away from its ends by a varying index, or binary-search such a sequence on each iteration, where the sequence is not bounded to a few elements?** Yes → flag.
 
 ## Finding output
-When the validator answers yes, the finder emits one finding (`rule_id: PRF-20`, severity major, `file`, `symbol`, `code` = the loop header and the indexed read or binary-search call quoted verbatim from the diff, `fix` = the loop rewritten over the sequence's iterator, or the data held in an array-backed list before the indexed pass, in the file's language, `rationale` = the sequence's type, the O(min(i, n − i)) cost of each positional access and the resulting cost, quadratic for a pass that reads every position by index and at least a linear walk per search for a binary search).
+When the validator answers yes, the finder emits one finding (`rule_id: PRF-20`, severity minor, `file`, `symbol`, `code` = the loop header and the indexed read or binary-search call quoted verbatim from the diff, `fix` = the loop rewritten over the sequence's iterator, or the data held in an array-backed list before the indexed pass, in the file's language, `rationale` = the sequence's type, the O(min(i, n − i)) cost of each positional access and the resulting cost, quadratic for a pass that reads every position by index and at least a linear walk per search for a binary search).
 
 ## Source
 - OpenJDK 21 `java.util.RandomAccess` class documentation, openjdk/jdk tag jdk-21-ga, src/java.base/share/classes/java/util/RandomAccess.java (fetched): "The best algorithms for manipulating random access lists (such as ArrayList) can produce quadratic behavior when applied to sequential access lists (such as LinkedList)."; "a List implementation should implement this interface if, for typical instances of the class, this loop: for (int i=0, n=list.size(); i < n; i++) list.get(i); runs faster than this loop: for (Iterator i=list.iterator(); i.hasNext(); ) i.next();"; "some List implementations provide asymptotically linear access times if they get huge, but constant access times in practice."

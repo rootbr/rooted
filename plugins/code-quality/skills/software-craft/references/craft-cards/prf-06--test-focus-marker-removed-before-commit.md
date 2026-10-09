@@ -5,7 +5,7 @@ domain: performance
 step: [test, review]
 applies_to: [tests]
 triggers: ['(?:(?<![.\w])f(?:describe|context|it)|(?<!\w)F(?:Describe(?:Table(?:Subtree)?)?|Context|When|It|Specify|Entry))\s*(?:\(|[.]\s*(?:each|failing)\b)', '\b(?:describe|context|suite|it|test|specify)(?:\s*[.]\s*concurrent)?\s*(?:[.]\s*only|\[\s*[''"]only[''"]\s*\])\s*(?:\(|[.]\s*(?:each|failing)\b)|[,(]\s*(?:\w+\s*[.]\s*)?Focus\s*[,)]']
-scope: hunk
+scope: file
 check_kind: mechanical
 severity_default: major
 ---

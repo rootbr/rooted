@@ -2,11 +2,11 @@
 title: The minimum, the maximum or the few smallest or largest elements of a collection are taken with a linear scan or a bounded heap, not by sorting the whole collection and discarding the rest
 rule_id: PRF-24
 domain: performance
-step: [implement, review]
+step: [implement]
 applies_to: [universal]
 triggers: ['\bsorted\(|[.](sort\w*|toSorted)\(|\bsort[.]\w+\(|\bslices[.]Sort\w*\(']
 scope: file
-check_kind: mechanical
+check_kind: semantic
 severity_default: minor
 ---
 

@@ -3,9 +3,9 @@ title: A benchmark consumes the results of the code it measures, keeps setup out
 rule_id: PRF-08
 domain: performance
 step: [test]
-applies_to: [tests]
+applies_to: [universal]
 triggers: ['@Benchmark\b', '\bfunc\s+Benchmark\w*\s*\(', '(\bbench_function|\bbench_with_input|\bcriterion_group!|\bb[.]iter\w*\s*\(|#\[bench\])', '\b(timeit[.](timeit|repeat|Timer)|perf_counter(_ns)?|System[.]nanoTime|performance[.]now|Instant::now|time[.]Now|process[.]hrtime([.]bigint)?)\s*\(', '\bfor\b.*\bb[.]N\b', '\b(suite|bench)[.]add\s*\(']
-scope: hunk
+scope: file
 check_kind: semantic
 severity_default: major
 ---

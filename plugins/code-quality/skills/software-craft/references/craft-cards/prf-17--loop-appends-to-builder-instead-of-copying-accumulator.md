@@ -2,11 +2,11 @@
 title: A loop builds a string or collection by appending to a builder, a growable array or a list joined once after the loop, not by copying the whole accumulated value on every iteration
 rule_id: PRF-17
 domain: performance
-step: [implement, review]
+step: [implement]
 applies_to: [universal]
 triggers: ['\+=\s*(["''`]|f["'']|\w+\s*\+|str\(|\w+[.](toString|String|join|format)\b)|\b(s|str|out|result|res|text|html|line|buf|acc|output|msg|message)\s*\+=|\b(\w+)\s*=\s*\4\s*\+\s*\S', '\bsum\([^)]*,\s*\[\]\s*\)', '\[\s*[.]{3}\s*\w+\s*,|\{\s*[.]{3}\s*\w+\s*,', '[.]concat\(', '\bformat!\(\s*"\{\w*\}|\bfmt[.]Sprintf\(\s*"%[sv]']
 scope: file
-check_kind: mechanical
+check_kind: semantic
 severity_default: major
 ---
 

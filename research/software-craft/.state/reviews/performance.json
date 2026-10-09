@@ -1,0 +1,383 @@
+{
+ "domain": "performance",
+ "reviewer": "one read-only agent (claude-opus-5-5, effort max), 2026-10-09T05:40 UTC; applied by the orchestrator per HANDOVER 5.8 (see the commit that follows this file)",
+ "cards_read": [
+  "PRF-01",
+  "PRF-02",
+  "PRF-03",
+  "PRF-04",
+  "PRF-05",
+  "PRF-06",
+  "PRF-07",
+  "PRF-08",
+  "PRF-09",
+  "PRF-10",
+  "PRF-11",
+  "PRF-12",
+  "PRF-13",
+  "PRF-14",
+  "PRF-15",
+  "PRF-16",
+  "PRF-17",
+  "PRF-18",
+  "PRF-19",
+  "PRF-20",
+  "PRF-21",
+  "PRF-22",
+  "PRF-23",
+  "PRF-24"
+ ],
+ "overlaps": [
+  {
+   "deferring": "PRF-23",
+   "owner": "PRF-15",
+   "line_kind": "a membership test or linear search of an input-sized sequence that runs inside a loop or pipeline over a second input-sized collection, e.g. `if (ids.contains(item.id()))` inside `for (Item item : items)` (PRF-15's own bad Example) or `orders.filter(o => customers.some(c => c.id === o.id))`, where PRF-15's '[.](find|findIndex|some)\\(' and PRF-23's same-field equality trigger both match. PRF-15's Limits cede only the explicit nested loop (\"a loop nested over a second collection to match its elements, and keys chosen by an attacker to collide, are outside its scope.\"), but PRF-23's Validator also greps \"for a membership test or linear search of a collection inside a loop.\"",
+   "validator_a": "PRF-23: Does a loop over one collection that grows with the input walk a second collection that grows with the input to find elements with an equal hashable key, with no hashed index built for the match?",
+   "validator_b": "PRF-15: Does a loop that runs more than a handful of times test membership in, or search by key, a sequence whose size grows with the input by scanning it on each iteration?",
+   "taxonomy_owner": "Both cards fall under `algorithm-and-data-structure-choice` (PoP2, PP \"Algorithm Speed\"), and the row does not split them. By its title PRF-15 owns \"A membership test or lookup by key that runs on every iteration of a loop\", while PRF-23 keeps the explicit nested loop that compares a key, as in its own Example."
+  },
+  {
+   "deferring": "PRF-17",
+   "owner": "PRF-19",
+   "line_kind": "a loop step that prepends one element by building a new sequence from it plus the accumulated one, e.g. `acc = [r].concat(acc)` (PRF-17's '[.]concat\\(' and PRF-19's '\\[\\s*\\w+\\s*\\][.]concat\\(' both match), `acc = [r, ...acc]` or `acc = [r] + acc`. PRF-17's Thesis covers \"an array or object accumulator spread or concatenated into a new one on each step\", and PRF-19's Validator greps \"a prepend that builds a new sequence from one element plus the old one\".",
+   "validator_a": "PRF-17: Does a loop, reduction or summation over input-sized data rebuild its accumulated string or collection as a new value that copies the accumulated contents on every iteration?",
+   "validator_b": "PRF-19: Does a loop whose iteration count grows with the input remove or insert one element per iteration at the front, or in the middle at positions that one pass could collect or that move a bounded step per iteration, of an array-backed sequence, by a call that shifts or copies every element after that position, on a sequence the domain does not bound to a small constant?",
+   "taxonomy_owner": "Both cards fall under `algorithm-and-data-structure-choice`. Front insertion is PRF-19's concept, and its Validator names the prepend form. PRF-17's Validator names only the append forms (\"a spread of a variable as the first element of an array or object literal, a concat call assigned back to its receiver\"), so PRF-17 keeps the append-copy accumulator."
+  },
+  {
+   "deferring": "PRF-11",
+   "owner": "PRF-09",
+   "line_kind": "a comment on tuned code that claims a speed gain while the comparison it reports shows no gain beyond noise, e.g. PRF-09's own bad line `append = out.append  # timeit: 1.8% faster, within noise`, which PRF-11's 'faster' triggers and PRF-09's noise and small-percentage triggers both match. PRF-11's Validator says \"Count a comparison that marks the difference as indistinguishable from noise as showing no gain.\" The fix is to add PRF-09 to the existing entry, making it 'PRF-11': ['PRF-07', 'PRF-14', 'PRF-09']. Today PRF-11 drops only when PRF-14 also flags the span, and PRF-14 does not flag a claim that carries no figure, such as `// faster (benchstat: ~)`.",
+   "validator_a": "PRF-11: Does an added comment or identifier claim a speed gain while that comment, or the comment at that identifier, neither states a measured before-and-after gain nor names the benchmark that shows it, or does a change description in view make a change for speed or claim a speed gain while lacking the measured before-and-after result, or lacking a benchmark the change includes or names?",
+   "validator_b": "PRF-09: Does the hunk keep a tuning change that adds complexity while the comparison reported with it shows no gain beyond the variation between runs or no significant difference?",
+   "taxonomy_owner": "Both cards fall under `profiling-and-code-tuning` (CC25–26, PoP7, SW4.14). The existing PRF-14 -> PRF-09 entry already gives a tuning kept against its own no-gain comparison to PRF-09, \"whose fix removes the claim with the tuning\" (maintenance.md)."
+  }
+ ],
+ "near_misses": [
+  {
+   "a": "PRF-07",
+   "b": "PRF-10",
+   "why_not": "Both run on the tuned routine's line but ask different things. PRF-07 asks \"Does the change add a form harder to read or change than the plain one for speed or memory, with no profile or realistic benchmark named in the change, a comment at the code, the commit message or a linked issue?\" PRF-10 asks \"Does the change rewrite a routine for speed while no test, in the change or already present, exercises the tuned routine against the plain implementation's results?\" One defect is a missing measurement of need, the other a missing equivalence test, and each has its own fix."
+  },
+  {
+   "a": "PRF-07",
+   "b": "PRF-09",
+   "why_not": "PRF-07 asks whether a profile or benchmark names the need. PRF-09's bad line names one (`# timeit: 1.8% faster, within noise`), so PRF-07 answers no there, and PRF-09 alone asks whether the reported comparison shows a gain."
+  },
+  {
+   "a": "PRF-08",
+   "b": "PRF-13",
+   "why_not": "One hand-timed line, `long t0 = System.nanoTime(); int n = codec.decode(payload); long ns = System.nanoTime() - t0;`, can carry both, but for different defects. PRF-08 asks \"Does the benchmark drop the measured result, feed the measured call a constant input, time its own setup or cleanup, or repeat the measured call in a loop of its own without sinking every iteration's result?\" PRF-13 asks about \"no discarded warm-up\" or one \"execution per timed batch\". Their conflict over the hand-written batch loop is reported under contradictions."
+  },
+  {
+   "a": "PRF-13",
+   "b": "PRF-14",
+   "why_not": "PRF-13's Thesis clause \"and two versions are compared over repeated runs of each rather than over one result per version\" restates PRF-14's concept, but the two flag different lines. PRF-13 quotes \"the line that sets the fork or warm-up count to zero or the measurement, run or repeat count to one, or the clock reads around the timed call\", and PRF-14 quotes \"the line that states the speedup or regression figure\"."
+  },
+  {
+   "a": "PRF-11",
+   "b": "PRF-12",
+   "why_not": "A restructuring for readability claims no speed, and PRF-11's Limits exclude it: \"a change made for another purpose that claims no speed effect falls outside it\". Only PRF-12 asks for its re-measurement."
+  },
+  {
+   "a": "PRF-15",
+   "b": "PRF-22",
+   "why_not": "A membership test inside a loop passes a different key on each iteration. PRF-22 flags only a traversal \"so that every iteration recomputes the same result\", which a varying key is not."
+  },
+  {
+   "a": "PRF-22",
+   "b": "PRF-24",
+   "why_not": "`sorted(xs)[0]` inside a loop over an unchanged xs carries two separate defects. PRF-24 flags a sort read only for its first element and fixes it with a scan; PRF-22 flags an invariant traversal and fixes it by hoisting. The questions differ and the two fixes can both be applied."
+  },
+  {
+   "a": "PRF-16",
+   "b": "PRF-18",
+   "why_not": "PRF-16 asks \"Does the file hand-write a sort, binary search, priority queue or ordered search tree over data whose size grows with the input, where the language's standard library provides that operation?\" PRF-18 asks about a re-sort, sorted insertion or extreme scan repeated on every iteration over a growing collection, and its triggers do not match a hand-written routine's lines such as `def insertion_sort(items):`."
+  },
+  {
+   "a": "PRF-18",
+   "b": "PRF-20",
+   "why_not": "On a binary search inside a loop, PRF-18 asks about sorted insertion into a growing array. PRF-20 asks whether the search runs over a sequential-access sequence (\"binary-search such a sequence on each iteration\"). The receiver's type separates the two."
+  },
+  {
+   "a": "PRF-02",
+   "b": "PRF-03",
+   "why_not": "They flag different lines. PRF-02 quotes the added guard at the failure site; PRF-03 quotes \"a place in scope that the change leaves untouched\" that still carries the mistake."
+  },
+  {
+   "a": "PRF-02",
+   "b": "CHG-34",
+   "why_not": "Both run on `if shape.name == \"square\" { return 0; } // workaround`. CHG-34 asks \"Does the hunk add code that its own comment, name or message presents as temporary or a workaround, with no debt marker at that code referencing a tracked issue for its cleanup?\" and its Limits say \"Whether the shortcut may ship at all is outside this rule\"; PRF-02 asks whether the fault stays in place. These are different defects. If both quote this span with incompatible fixes, though, DOMAIN_PRIORITY (change 2 before performance 3) keeps CHG-34's minor debt-marker fix and supersedes PRF-02's major fix at the fault."
+  },
+  {
+   "a": "PRF-23",
+   "b": "DSN-52",
+   "why_not": "On `orders.filter(o => customers.some(c => c.id === o.id))`, DSN-52 asks \"Does an added pipeline expression write a second level of iteration ...?\", a readability question, while PRF-23 asks about O(n*m) matching. On one span with incompatible fixes, design (2) outranks performance (3), so the split into named steps supersedes the hashed index, even though the index also removes the second level of iteration."
+  },
+  {
+   "a": "PRF-01",
+   "b": "TST-50",
+   "why_not": "TST-50 asks \"Does the change leave a failure that a property found recorded only in a replay seed, a replay blob or a local failure store, with no explicit example of that input that every run executes?\" PRF-01 asks whether the input was reduced. The two agree: TST-50 accepts \"a seed-corpus entry that holds the input value itself\", and PRF-01's Limits say \"A failing input that a fuzzing engine has minimized and written to its seed corpus serves as the regression test as it stands.\""
+  },
+  {
+   "a": "PRF-01",
+   "b": "TST-13",
+   "why_not": "TST-13 asks whether the regression test passes \"against the code without the change\". PRF-01 asks which input the test feeds."
+  },
+  {
+   "a": "PRF-10",
+   "b": "TST-14",
+   "why_not": "TST-14 flags only a change that is \"neither a pure refactoring nor one that handles an emergency\". A speed rewrite with unchanged results is a pure refactoring, so TST-14 does not reach it; only PRF-10 does, and CHG-04 already defers to PRF-10."
+  },
+  {
+   "a": "PRF-05",
+   "b": "ERR-40",
+   "why_not": "ERR-40 asks \"Does an added line write an error, warning or progress message to standard output ...?\" PRF-05 asks whether a print is a debugging remnant that dumps internal state. These are different defects on a print line, and ERR-48, not ERR-40, is the card that already defers to PRF-05."
+  }
+ ],
+ "contradictions": [
+  {
+   "a": "PRF-13",
+   "b": "PRF-08",
+   "sentence_a": "PRF-13 Thesis: \"Timing code written outside a harness first executes the code without recording those results, then times a batch of many executions and repeats that timed batch, so that more than one timed value results rather than one.\" Its good Example, in Java, shows the batch as `for (int r = 0; r < 5; r++) { long t0 = System.nanoTime(); for (int i = 0; i < 100_000; i++) n += codec.decode(payload);`, a hand-written loop that accumulates the result of a call whose input does not change.",
+   "sentence_b": "PRF-08 Thesis: \"... and leaves repetition to the harness: the measured call sits in no loop the benchmark writes around it unless every iteration takes a distinct dataset element or a wrapped input and hands its result to the harness's sink or the wrapper.\" Its Rationale adds \"accumulating lets software pipelining merge otherwise distinct calls\". Its Validator covers \"each interval between paired timer calls\", and its Limits exempt only \"an implementation that executes every call it is given\", which a JIT-compiled Java loop is not.",
+   "resolving_limits_sentence": "The timed batch is itself a loop the benchmark writes around the measured call. Under an optimizing compiler, each iteration takes a distinct input, or one passed through the platform's opaque identity wrapper inside the loop, and hands its result to a sink or that wrapper rather than accumulating it. Where the platform has a benchmark harness, the batch and its repetition are left to the harness.",
+   "carried_by": "PRF-13"
+  },
+  {
+   "a": "PRF-12",
+   "b": "PRF-14",
+   "sentence_a": "PRF-12 Thesis: \"... runs that benchmark on the base version and on the changed version and records both results in the change description.\" Its good Example records `// change description: bench admits vs base, 10 runs each: 1.21 ms before, 1.20 ms after`, with no variation between runs and no significance verdict.",
+   "sentence_b": "PRF-14 Thesis: \"... and the figure is claimed only where the reported variation between runs or the harness's significance verdict distinguishes it from noise.\" Its Validator greps \"a before and after time\", and its first trigger matches '1.21 ms before' in PRF-12's good line. PRF-11 avoids the same clash with a Limits clause (\"How the benchmark is run (warm-up, repetitions, variation against a baseline) ... lie outside this rule\"); PRF-12 has none.",
+   "resolving_limits_sentence": "Whether the recorded results rest on enough runs and carry the variation between runs or a significance verdict lies outside this rule, which asks only that the covering benchmark run on both versions and that both results be recorded.",
+   "carried_by": "PRF-12"
+  },
+  {
+   "a": "PRF-18",
+   "b": "PRF-24",
+   "sentence_a": "PRF-18 Limits: \"A sort placed after the loop, for an order read only at the end, is the form the rule asks for and is not a finding.\" Its Thesis: \"the loop gets its order from one sort after the loop if it reads the order only at the end, from a binary heap if each iteration needs only the smallest or largest element\". Neither sentence separates reading the whole order at the end from reading only its smallest element at the end.",
+   "sentence_b": "PRF-24 Thesis: \"The minimum or the maximum of a collection is taken with one linear pass, and a small number k of its smallest or largest elements with a selection that keeps at most k elements in a heap, not by sorting the whole collection and reading only its first or last elements\". The code shape in question: a loop appends input elements, one sort follows the loop, and only out[0] or the first k elements are read. The existing PRF-24 -> PRF-18 entry covers only a sort repeated inside the loop.",
+   "resolving_limits_sentence": "Where the code after the loop reads only the smallest or largest element, or the first or last few, of what the loop collected, one scan or a bounded heap replaces the sort after the loop.",
+   "carried_by": "PRF-18"
+  },
+  {
+   "a": "PRF-10",
+   "b": "PRF-07",
+   "sentence_a": "PRF-10's good Example puts `// rewritten for speed: SWAR bit tricks; the reference above pins its results` above `popcountFast` and names no profile or benchmark. Its Limits exclude only \"the efficiency that architecture, detailed design decisions, and data-structure and algorithm selection determine\".",
+   "sentence_b": "PRF-07 Thesis: \"... where no measurement shows the need, the code keeps its plain form.\" PRF-07's comment trigger matches \"// rewritten for speed\", and its Validator flags a form harder to read \"with no profile or realistic benchmark named in the change, a comment at the code, the commit message or a linked issue\".",
+   "resolving_limits_sentence": "Whether the rewrite was needed, and whether its speed claim names the profile or benchmark behind it, lie outside this rule, which asks only that the tuned routine be tested against the plain implementation's results.",
+   "carried_by": "PRF-10"
+  },
+  {
+   "a": "PRF-10",
+   "b": "PRF-11",
+   "sentence_a": "PRF-10's good Example names its tuned routine `popcountFast` and comments it `// rewritten for speed: SWAR bit tricks; the reference above pins its results`, stating no measured gain and naming no benchmark.",
+   "sentence_b": "PRF-11 Thesis: \"... a comment that explains code by its speed, or the comment at a name that claims speed, states the measured gain or names that benchmark ...\". Its Limits say \"The rule reaches a change that is made for speed\", and PRF-10's example is such a change.",
+   "resolving_limits_sentence": "Whether the rewrite was needed, and whether its speed claim names the profile or benchmark behind it, lie outside this rule, which asks only that the tuned routine be tested against the plain implementation's results.",
+   "carried_by": "PRF-10"
+  }
+ ],
+ "gaps": [
+  {
+   "concept": "I/O issued once per element inside a loop: a database query or remote call per record (N+1 queries) where one batched or eagerly loaded fetch would do. I/O is among the sources of inefficiency under the row's locator CC25.",
+   "taxonomy_row_text": "| | `profiling-and-code-tuning` | CC25–26, PoP7, SW4.14 |",
+   "source_path": "rails/rails main, guides/source/active_record_querying.md, §Eager Loading Associations > N + 1 Queries Problem (fetched)",
+   "claim": "\"Retrieving a list of records N (where N is a number greater than 1) in a single query can sometimes trigger N extra queries; one for each record.\" / \"The above code executes 1 (to find 10 books) + 10 (one per each book to load the author) = **11** queries in total.\" / \"Active Record lets you specify in advance all the associations that are going to be loaded.\""
+  },
+  {
+   "concept": "Unbuffered output: each small write goes straight to the underlying file or stream instead of through a buffer (system calls and buffered I/O under the row's locators CC25 and PoP7).",
+   "taxonomy_row_text": "| | `profiling-and-code-tuning` | CC25–26, PoP7, SW4.14 |",
+   "source_path": "openjdk/jdk tag jdk-21-ga, src/java.base/share/classes/java/io/BufferedWriter.java, class documentation (fetched)",
+   "claim": "\"Unless prompt output is required, it is advisable to wrap a BufferedWriter around any Writer whose write() operations may be costly, such as FileWriters and OutputStreamWriters.\" / \"Without buffering, each invocation of a print() method would cause characters to be converted into bytes that would then be written immediately to the file, which can be very inefficient.\""
+  },
+  {
+   "concept": "Growing an array: a hand-grown buffer grows its capacity in proportion to its size, not by a fixed increment (PoP2, growing arrays). PRF-17 reaches only a copy made on every append, not growth by a constant step.",
+   "taxonomy_row_text": "| | `algorithm-and-data-structure-choice` | PoP2, PP \"Algorithm Speed\" |",
+   "source_path": "python/cpython main, Objects/listobject.c, comment in py_list_resize (fetched)",
+   "claim": "\"This over-allocates proportional to the list size, making room for additional growth.  The over-allocation is mild, but is enough to give linear-time amortized behavior over a long sequence of appends() in the presence of a poorly-performing system realloc().\""
+  },
+  {
+   "concept": "A hash function a type defines for its use as a key sends many keys to the same value, for example a constant or a hash of one field (PoP2, hash tables). PRF-15, PRF-21 and PRF-23 treat dispersion only as a condition in their Limits, and DSN-73 covers keys changed while inside a collection.",
+   "taxonomy_row_text": "| | `algorithm-and-data-structure-choice` | PoP2, PP \"Algorithm Speed\" |",
+   "source_path": "openjdk/jdk tag jdk-21-ga, src/java.base/share/classes/java/util/HashMap.java, class documentation (fetched)",
+   "claim": "\"Note that using many keys with the same {@code hashCode()} is a sure way to slow down performance of any hash table.\""
+  },
+  {
+   "concept": "A benchmark or timing run measures an optimized (release) build, not a debug build. PRF-08, PRF-13 and PRF-14 cover dead code, warm-up, forks and run counts, but not the build that is measured.",
+   "taxonomy_row_text": "| | `profiling-and-code-tuning` | CC25–26, PoP7, SW4.14 |",
+   "source_path": "rust-lang/book main, src/ch01-03-hello-cargo.md, §Building for Release (fetched)",
+   "claim": "\"If you're benchmarking your code's running time, be sure to run `cargo build --release` and benchmark with the executable in _target/release_.\""
+  }
+ ],
+ "facet_errors": [
+  {
+   "rule_id": "PRF-01",
+   "facet": "step",
+   "current": "[test, review]",
+   "proposed": "[test]",
+   "evidence": "The Thesis states a property of the test, not of the change: \"When an automated test reproduces a failure, the regression test that lands with its fix feeds the code the failing input reduced until removing any single remaining part makes that failure disappear\". The Limits confirm it: \"The rule judges which input the test feeds, not the test's assertions or structure.\" Neither bears on the shape, size or description of the change."
+  },
+  {
+   "rule_id": "PRF-15",
+   "facet": "step",
+   "current": "[design, implement, review]",
+   "proposed": "[design, implement]",
+   "evidence": "Thesis: \"A membership test or a lookup by key that runs on every iteration of a loop that runs more than a handful of times, against a sequence whose size grows with the input, goes to a hashed set or map\". This is a rule about code structure, not about the shape, size or description of the change, which the taxonomy reserves `review` for (\"the self-review before the report: the shape, size and description of the change\"); for comparison, code-level cards in other domains rarely carry it (CODE 5 of 82, DSN 3 of 73), while all ten algorithm cards PRF-15 to PRF-24 do."
+  },
+  {
+   "rule_id": "PRF-16",
+   "facet": "step",
+   "current": "[implement, review]",
+   "proposed": "[implement]",
+   "evidence": "Thesis: \"Where the data grows with the input, sorting it, binary-searching it, keeping it in priority order and keeping it as an ordered map are calls to the standard library's sort, binary search, heap and ordered tree map wherever the standard library provides the operation.\" This is a choice of implementation inside the code; it never bears on the shape, size or description of the change."
+  },
+  {
+   "rule_id": "PRF-17",
+   "facet": "step",
+   "current": "[implement, review]",
+   "proposed": "[implement]",
+   "evidence": "Thesis: \"... a loop, reduction or summation whose iteration count grows with its input builds its string or collection by appending each piece to a string builder, a buffer or a growable array and joining or converting once after the loop.\" This is a loop-body rule, not a rule about the change itself."
+  },
+  {
+   "rule_id": "PRF-18",
+   "facet": "step",
+   "current": "[implement, review]",
+   "proposed": "[implement]",
+   "evidence": "Thesis: \"When a loop adds elements to a collection one at a time and the collection grows with the input, the loop gets its order from one sort after the loop if it reads the order only at the end ...\". This is a loop-body rule, not a rule about the change itself."
+  },
+  {
+   "rule_id": "PRF-19",
+   "facet": "step",
+   "current": "[implement, review]",
+   "proposed": "[implement]",
+   "evidence": "Thesis: \"A loop whose iteration count grows with the input and that removes or inserts one element per iteration at the front or in the middle of an array-backed sequence ... does that work through a double-ended queue ...\". This is a loop-body rule, not a rule about the change itself."
+  },
+  {
+   "rule_id": "PRF-20",
+   "facet": "step",
+   "current": "[design, implement, review]",
+   "proposed": "[design, implement]",
+   "evidence": "Thesis: \"A loop over a linked list, or over a sequence whose indexed access is documented as O(1) at the ends but O(n) in the middle, reads the elements through the sequence's iterator or from an array-backed copy with O(1) indexed access ...\". This is a code rule, not a rule about the change itself."
+  },
+  {
+   "rule_id": "PRF-21",
+   "facet": "step",
+   "current": "[design, implement, review]",
+   "proposed": "[design, implement]",
+   "evidence": "Thesis: \"A map or set whose every use is a lookup, insertion, removal or membership test by key is a hashed map or set ...\". This is a choice of data structure, not a rule about the change itself."
+  },
+  {
+   "rule_id": "PRF-22",
+   "facet": "step",
+   "current": "[implement, refactor, review]",
+   "proposed": "[implement, refactor]",
+   "evidence": "Thesis: \"A call that traverses a whole collection or string ..., and whose input nothing changes while the loop runs, is computed once before the loop ...\". This is a loop rule, not a rule about the change itself."
+  },
+  {
+   "rule_id": "PRF-23",
+   "facet": "step",
+   "current": "[implement, refactor, review]",
+   "proposed": "[implement, refactor]",
+   "evidence": "Thesis: \"When code matches the elements of two collections that both grow with the input on equality of a hashable key, it builds a hashed map or set of one collection ... and probes it from one loop over the other ...\". This is a code rule, not a rule about the change itself."
+  },
+  {
+   "rule_id": "PRF-24",
+   "facet": "step",
+   "current": "[implement, review]",
+   "proposed": "[implement]",
+   "evidence": "Thesis: \"The minimum or the maximum of a collection is taken with one linear pass, and a small number k of its smallest or largest elements with a selection that keeps at most k elements in a heap ...\". This is a code rule, not a rule about the change itself."
+  },
+  {
+   "rule_id": "PRF-08",
+   "facet": "applies_to",
+   "current": "[tests]",
+   "proposed": "[universal]",
+   "evidence": "The Validator reaches beyond test files: \"Open each benchmark body the hunk adds or changes, and each interval between paired timer calls.\" Its triggers fire on clock reads in any file ('System[.]nanoTime|performance[.]now|Instant::now|time[.]Now') and on harness forms whose usual homes (JMH under src/jmh, criterion under benches/) the test_file signal does not classify as tests. The fix includes \"a hand-timed interval moved into a benchmark harness\". The Limits restrict the rule by implementation (\"an implementation that executes every call it is given\"), never by file kind."
+  },
+  {
+   "rule_id": "PRF-13",
+   "facet": "applies_to",
+   "current": "[tests, build-config]",
+   "proposed": "[universal]",
+   "evidence": "The Thesis reaches beyond test and build files: \"Timing code written outside a harness first executes the code without recording those results, then times a batch ...\". The Validator judges \"hand-written timing whose elapsed value is printed, stored or compared\" and has to set aside \"a clock read that serves logging, a metric or a timeout\", which occur in production files. Nothing in the Limits restricts the rule to test or build files."
+  },
+  {
+   "rule_id": "PRF-04",
+   "facet": "scope",
+   "current": "hunk",
+   "proposed": "file",
+   "evidence": "Validator: \"confirm that the name resolves to the debugger entry point rather than to a project symbol of the same name\" and \"For an import, trace whether anything other than such a call uses it.\" An import's other uses, and the imports a name resolves through, lie outside the import's hunk, so both checks need the whole file."
+  },
+  {
+   "rule_id": "PRF-06",
+   "facet": "scope",
+   "current": "hunk",
+   "proposed": "file",
+   "evidence": "Validator: \"confirm that the match is the test framework's focus form in a test file, not a same-named helper such as a curve-fitting `fit` function ...\" and \"Where the hunk binds a focus form to a new name, trace that name to its calls.\" The helper's definition and the alias's calls lie elsewhere in the file."
+  },
+  {
+   "rule_id": "PRF-08",
+   "facet": "scope",
+   "current": "hunk",
+   "proposed": "file",
+   "evidence": "Validator: \"Trace each input of the measured call ... to mutable harness state ... or to a literal, a final constant or a value wrapped once outside that loop\" and \"Check whether data construction, fixture setup or cleanup runs inside the timed body ... rather than in the harness's setup or teardown phase\". In the card's own Example the constant is a field (`static final int SIZE = 42;`) and the setup is an @State/@Setup class, both outside the benchmark method's hunk."
+  },
+  {
+   "rule_id": "PRF-12",
+   "facet": "scope",
+   "current": "callers",
+   "proposed": "base-compare",
+   "evidence": "Validator: \"At scope callers, open the base version of each changed routine and read its comments for a performance reason, and look among the routine's usages across the repository for a benchmark that covers it.\" The taxonomy gives the base version to `base-compare` (\"plus the base version via `git show <base_sha>:<path>`\"), while `callers` grants only \"plus usages of the changed symbols across the repository\". The Validator question is phrased on \"code that the base version marks as performance-critical\", so `base-compare` is its primary reading. The usage search for a covering benchmark also needs `callers`, which a single-valued facet cannot also state."
+  },
+  {
+   "rule_id": "PRF-17",
+   "facet": "check_kind",
+   "current": "mechanical",
+   "proposed": "semantic",
+   "evidence": "Validator: \"Trace the accumulator's type and the operation that rebuilds it: ... string addition the language documents as re-using the left operand's buffer, or string addition on an engine that builds the result as a pair of pointers to the operands, is out. Trace the loop's bound ...\". That is two traces plus a judgement about the language or engine, which is what `semantic` means (\"the finder traces something ... before it can decide\"). The other loop-cost cards, PRF-15, PRF-18, PRF-19, PRF-20, PRF-22 and PRF-23, are semantic."
+  },
+  {
+   "rule_id": "PRF-24",
+   "facet": "check_kind",
+   "current": "mechanical",
+   "proposed": "semantic",
+   "evidence": "Validator: \"trace every read of the sorted result after the call\". It must also check \"whether the collection is a parameter, a field, or a value the enclosing function returns or passes on, and whether a later line of that function, inside or outside the hunk, reads it in order beyond the elements read\", and whether the standard library has a heap. That is a data-flow trace, not one light context question."
+  },
+  {
+   "rule_id": "PRF-13",
+   "facet": "severity_default",
+   "current": "minor",
+   "proposed": "major",
+   "evidence": "Rationale: \"A study of benchmarks in 123 open-source systems lists configuring benchmarks with zero forks among five bad practices, finds each of them prevalent, and finds that these bad practices often significantly impact the benchmark results.\" That ties a measurement-correctness defect to measured impact, which is `major` under the scale. PRF-08 is major on the same study. The Rationale describes no \"clarity or design cost\", which is what `minor` means."
+  },
+  {
+   "rule_id": "PRF-18",
+   "facet": "severity_default",
+   "current": "major",
+   "proposed": "minor",
+   "evidence": "The Rationale derives its cost from documented per-operation classes (\"re-sorting after each of n additions costs at least O(n) per pass and at least O(n²) over the loop\"), and the Source caveat says \"Caveat: the libraries document per-operation costs; the whole-loop totals are those costs multiplied by the loop's n additions.\" The evidence ties the defect to neither failures nor a measured cost, which the scale requires for `major`. A data-structure choice is a design cost."
+  },
+  {
+   "rule_id": "PRF-19",
+   "facet": "severity_default",
+   "current": "major",
+   "proposed": "minor",
+   "evidence": "The Rationale rests on documented costs (\"calling such an operation in a loop can result in quadratic behavior\"), and the caveat says \"the per-call costs above are the ones the library documentation states.\" There is no measured cost and no failure."
+  },
+  {
+   "rule_id": "PRF-20",
+   "facet": "severity_default",
+   "current": "major",
+   "proposed": "minor",
+   "evidence": "Caveat: \"the sources state the cost class of each operation and measure no workload, so the rule names the cost class and no speed-up figure.\" The Rationale cites only documented cost classes (\"Algorithms written for random-access lists can produce quadratic behaviour when applied to sequential-access lists\"), so it gives no measured cost and no failure."
+  }
+ ],
+ "trigger_errors": [
+  {
+   "rule_id": "PRF-12",
+   "pattern": "'(?i)\\b(refactor\\w*|restructur\\w*|simplif(y|ied|ies|ication)|clean\\s*-?up|readability)\\b', '(?i)(//|#|/\\*|\\*)\\s*.*\\b(perf(ormance)?[- ]critical|hot\\s*(path|loop)|fast\\s*path|tight\\s+loop|for\\s+(speed|performance))\\b'",
+   "problem": "does not match the bad Example. Both patterns match only two comment lines that the good half repeats verbatim: the base version's mark `// perf-critical: one loop that stops at the first divisor` and `// change: index loop rewritten as an iterator chain for readability`, which stands for the change description. The one line the restructuring writes, `fn admits(n: u64, ds: &[u64]) -> bool { ds.iter().all(|d| n % d != 0) }`, matches neither pattern (checked with python3 -c on scratch strings). The pre-pass matches added lines only, so the diff this Example depicts does not dispatch the card. Every other PRF card's triggers match its bad Example, and no two PRF trigger sets are identical or nested: PRF-13's clock pattern sits inside PRF-08's, and PRF-10's comment pattern inside PRF-07's, but each card has other patterns the other lacks."
+  }
+ ],
+ "summary": "All 24 PRF cards were read. Three overlaps need DEFER_TO entries (PRF-23 -> PRF-15, PRF-17 -> PRF-19, and PRF-09 added to PRF-11's owners), and five contradictions lack a Limits clause naming the other card's case: PRF-13's accumulating timed loop against PRF-08, PRF-12's figures without variation against PRF-14, PRF-18's sort after the loop against PRF-24, and PRF-10's unmeasured 'rewritten for speed' against PRF-07 and PRF-11. Facet errors are mostly `review` on PRF-01 and on all ten algorithm cards, plus `applies_to`, `scope`, `check_kind` and severity mismatches on PRF-04, 06, 08, 12, 13, 17, 18, 19, 20 and 24; PRF-12's triggers miss the line its own Example changes; and five uncovered concepts have fetched GitHub sources (N+1 queries, unbuffered writes, fixed-increment array growth, colliding hash functions, benchmarking unoptimized builds)."
+}

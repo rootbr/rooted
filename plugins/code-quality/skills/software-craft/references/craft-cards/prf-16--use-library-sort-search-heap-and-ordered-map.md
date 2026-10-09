@@ -2,7 +2,7 @@
 title: Sorting, binary search, priority queues and ordered maps over data whose size grows with the input use the standard library's implementations rather than hand-written ones
 rule_id: PRF-16
 domain: performance
-step: [implement, review]
+step: [implement]
 applies_to: [universal]
 triggers: ['\b([bB]ubble|[iI]nsertion|[sS]election|[qQ]uick|[mM]erge|[hH]eap|[sS]hell)_?[sS]ort\w*\s*\(|\b(class|struct|interface)\s+\w*(Heap|PriorityQueue|BST|BinaryTree|SearchTree|SortedList)\b|\btype\s+\w*(Heap|Tree)\s+struct\b', '\bmid\w*\s*:?=\s*\(?\s*\w+\s*\+\s*\w+\s*\)?\s*(/{1,2}\s*2|>{2,3}\s*1)|\bmid\w*\s*:?=\s*\w+\s*\+\s*\(+\s*\w+\s*-\s*\w+\s*\)|\b(left|right|child)\w*\s*:?=\s*2\s*\*\s*\w+\s*\+\s*[12]|\(\s*\w+\s*-\s*1\s*\)\s*(/{1,2}\s*2|>{2,3}\s*1)', '\[?\s*\w+\[[^\]\n]+\]\s*,\s*\w+\[[^\]\n]+\]\s*\]?\s*=\s*\[?\s*\w+\[[^\]\n]+\]\s*,\s*\w+\[[^\]\n]+\]|\b(tmp|temp)\s*:?=\s*\w+\[']
 scope: file

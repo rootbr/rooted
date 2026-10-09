@@ -2,12 +2,12 @@
 title: A loop that removes or inserts elements one at a time at the front or middle of an array-backed sequence uses a deque, a moving start index or one batch operation, because each such call shifts every later element
 rule_id: PRF-19
 domain: performance
-step: [implement, review]
+step: [implement]
 applies_to: [universal]
 triggers: ['[.](pop|remove)\(\s*0\s*\)|\bdel\s+\w+\[\s*0\s*\]|[.](insert|add|insert_str)\(\s*0\s*,|[.](shift|unshift)\(|[.]splice\(|\bslices[.](Delete|Insert)\(|\bappend\(\s*\[\][\w.*]+\{|[.]removeFirst\(\)|[.](pop|remove)\(\s*[a-z_]\w*\s*\)|\bdel\s+\w+\[\s*[a-z_]\w*\s*\]|[.](insert|add)\(\s*[a-z_]\w*\s*,|\b\w+\s*=\s*\w+\[\s*1\s*:\s*\]|[.]slice\(\s*1\s*\)|\bappend\(\s*\w+\[\s*:[^\]]*\]\s*,\s*\w+\[|\[\s*\w+\s*,\s*[.][.][.]\s*\w+\s*\]|\[\s*\w+\s*\][.]concat\(|=\s*\[\s*\w+\s*\]\s*\+\s*\w+|[.](deleteCharAt|delete)\(\s*0\s*[,)]']
 scope: file
 check_kind: semantic
-severity_default: major
+severity_default: minor
 ---
 
 # A loop that removes or inserts elements one at a time at the front or middle of an array-backed sequence uses a deque, a moving start index or one batch operation, because each such call shifts every later element
@@ -38,7 +38,7 @@ Removal and insertion at the end of the sequence move nothing and are outside th
 Grep the hunk for a removal or insertion at index 0 or at a computed position (`remove(0)`, `pop(0)`, `del x[0]`, `insert(0, …)`), a `shift`, `unshift` or `splice` call, a positional delete or insert helper, a prepend that builds a new sequence from one element plus the old one, a re-slice that drops the first element (`x = x[1:]`, `x.slice(1)`), and `removeFirst()`. Open the file and resolve each hit's receiver: an array-backed sequence, or a structure whose front operation moves nothing (a double-ended queue or ring buffer, a re-slice that shares its underlying array, a byte buffer that advances its start); a slice that copies the remaining elements into a new sequence, as a list slice does, is a removal that copies them all, while a slice that returns a view onto the same buffer moves nothing. Trace the enclosing loop or recursion: check that its iteration count grows with the input, that the call runs once per iteration, and that the position is the front or the middle rather than the end; check whether the domain bounds the sequence to a small constant; for a middle position, check whether one pass over the sequence could collect the positions, or each is computed from the sequence as the earlier edits left it and lies an input-sized distance from the previous one. Validator question: **Does a loop whose iteration count grows with the input remove or insert one element per iteration at the front, or in the middle at positions that one pass could collect or that move a bounded step per iteration, of an array-backed sequence, by a call that shifts or copies every element after that position, on a sequence the domain does not bound to a small constant?** Yes → flag.
 
 ## Finding output
-When the validator answers yes, the finder emits one finding (`rule_id: PRF-19`, severity major, `file`, `symbol`, `code` = the removal or insertion call and the loop header that repeats it, verbatim from the diff, `fix` = the loop rewritten over a double-ended queue, an advancing start index, one batch operation or, where order need not be kept, a removal that moves the last element into the gap, in the file's language, `rationale` = the position of the call, the O(n − k) elements after the position that each call shifts or copies, and the quadratic total over the loop).
+When the validator answers yes, the finder emits one finding (`rule_id: PRF-19`, severity minor, `file`, `symbol`, `code` = the removal or insertion call and the loop header that repeats it, verbatim from the diff, `fix` = the loop rewritten over a double-ended queue, an advancing start index, one batch operation or, where order need not be kept, a removal that moves the last element into the gap, in the file's language, `rationale` = the position of the call, the O(n − k) elements after the position that each call shifts or copies, and the quadratic total over the loop).
 
 ## Source
 - Python documentation, `Doc/library/collections.rst` (python/cpython main), class `deque` (fetched): "Deques support thread-safe, memory efficient appends and pops from either side of the deque with approximately the same O(1) performance in either direction. Though list objects support similar operations, they are optimized for fast fixed-length operations and incur O(n) memory movement costs for pop(0) and insert(0, v) operations"

@@ -2,7 +2,7 @@
 title: A map or set used only for lookups, insertions and removals by key is a hashed one, and a sorted map or set is chosen only where the code uses its key order
 rule_id: PRF-21
 domain: performance
-step: [design, implement, review]
+step: [design, implement]
 applies_to: [universal]
 triggers: ['\bTree(Map|Set)\s*<|\bnew\s+Tree(Map|Set)\b|\bConcurrentSkipList(Map|Set)\b|\bBTree(Map|Set)\b|\bSorted(Dict|Set)\(|\b(btree|treemap)[.]New\w*(\[[^\]]*\])?\(']
 scope: file

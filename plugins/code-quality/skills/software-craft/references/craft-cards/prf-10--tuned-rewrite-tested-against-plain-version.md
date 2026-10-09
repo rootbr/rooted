@@ -34,6 +34,8 @@ good: export function popcountReference(x: number): number {
 ## Limits
 A separate reference routine is one way to pin the tuned routine's results, offered as something to consider; tests that already covered the plain implementation and now exercise the tuned one meet the rule without it. The rule reaches tuning at the code level, and leaves out the efficiency that architecture, detailed design decisions, and data-structure and algorithm selection determine.
 
+
+Whether the rewrite was needed, and whether its speed claim names the profile or benchmark behind it, lie outside this rule, which asks only that the tuned routine be tested against the plain implementation's results.
 ## Validator
 Grep the hunk for a speed-motivated rewrite: a comment naming optimization, speed or a hot path; a routine name carrying fast, naive, reference, scalar, unrolled, simd or vectorized; an unsafe block, platform intrinsics or a vector API; a routine body replaced by bit manipulation or unrolled loops beside a removed plain loop. Name the routine the rewrite changes. Open its callers at the card's scope, the test files in the change and the existing tests among them, and trace whether any test calls the tuned routine and either compares its result with a plain reference implementation or asserts results the plain implementation already produced. Validator question: **Does the change rewrite a routine for speed while no test, in the change or already present, exercises the tuned routine against the plain implementation's results?** Yes → flag.
 

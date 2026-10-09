@@ -2,7 +2,7 @@
 title: A membership test or lookup by key that runs on every iteration of a loop uses a hashed set or map, not a linear scan of a sequence whose size grows with the input
 rule_id: PRF-15
 domain: performance
-step: [design, implement, review]
+step: [design, implement]
 applies_to: [universal]
 triggers: ['[.](contains|includes|indexOf|lastIndexOf)\(', '[.](index|count)\([^)]', '\bslices[.](Contains|Index)(Func)?\(', '[.]iter\(\)[.](any|position|find)\(|[.](find|findIndex|some)\(', '[.]stream\(\)[.](anyMatch|noneMatch|filter)\(', '\b(if|elif|while)\b.*\b(not\s+)?in\s+[\w.]+']
 scope: file

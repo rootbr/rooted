@@ -2,7 +2,7 @@
 title: When a failure reproduces under an automated test, the fix's regression test feeds the code the failing input reduced to what still triggers the failure, not the whole captured input
 rule_id: PRF-01
 domain: performance
-step: [test, review]
+step: [test]
 applies_to: [tests]
 triggers: ['(?i)\b(test_?data|fixtures?)\b[/\\]', '(?i)\b(captured|recorded|dump|crash|repro(duce|duction)?|regression)[-_ ]?\w*[.](json|xml|html?|txt|bin|csv|log|yaml|yml)\b', 'signal:test_file', 'signal:added_file']
 scope: file
