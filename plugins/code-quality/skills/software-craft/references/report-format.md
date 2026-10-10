@@ -4,7 +4,7 @@ The two documents `scripts/render-reports.py` writes from `craft/verdicts.json` 
 
 ### Document 1: Craft Review Report
 
-Saved to the config's `review_output` (with `{TICKET_ID}` substituted) or `craft/craft-review-<task>.md`, where `<task>` is the ticket id, the branch, or `worktree` for an uncommitted diff. It holds confirmed, upgraded, modified and restored findings, plus downgraded findings at their new severity; findings an arbiter left `uncertain` sit in a separate section for the author. A build run adds the developer agent's report under "What was built".
+Saved to the config's `review_output` (with `{TICKET_ID}` substituted) or `craft/craft-review-<task>.md`, where `<task>` is the ticket id, the branch, or `worktree` for an uncommitted diff. It holds confirmed, upgraded, modified and restored findings, plus downgraded findings at their new severity; findings an arbiter left `uncertain` sit in a separate section for the author. A build run adds the developer agent's report under "What was built". Critical and major findings are shown in full, critical first; minor findings and suggestions sit in the table. The gravest severity shown sets the recommendation: Block for a critical finding, Fix before merge for a major one, Merge with fixes for a minor one, Merge otherwise.
 
 ```markdown
 # <task> Craft Review
@@ -12,18 +12,18 @@ Saved to the config's `review_output` (with `{TICKET_ID}` substituted) or `craft
 ## Executive Summary
 - Reviewed: <diff_ref> (<committed | worktree>) — N files (SIZE); languages: <language counts>
 - Passes: N card jobs, M logic slices, K project invariants (fallback, if used)
-- Findings: N (X major, Y minor, Z suggestion)
+- Findings: N (X critical, Y major, Z minor, W suggestion)
 - Verification: N raw → M confirmed, D downgraded, K rejected, U flagged for the author
 - Fix round: <F fixed, L left with their reason | none>
-- Recommendation: Fix before merge / Merge with fixes / Merge
+- Recommendation: Block / Fix before merge / Merge with fixes / Merge
 
 ## What was built
 (the developer agent's report: what changed by path:Symbol, cards applied, what was verified and how, what could not be verified, deviations from the design brief, open questions)
 
-## Major Findings
+## Critical & Major Findings
 
 ### <RULE>.<n>: <title>
-- **Severity**: Major
+- **Severity**: Critical | Major
 - **Rule**: `<rule_id>` — <one-line source>
 - **Location**: `path` · `symbol`
 - **Code**: the flagged snippet, fenced in the file's language

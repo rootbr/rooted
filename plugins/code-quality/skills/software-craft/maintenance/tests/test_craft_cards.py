@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
-"""Unit tests for craft-cards.py --provenance: the lookup of a card's provenance line in the map
-of each --cards-dir (the skill's maintainer directory), on a fixture skill in a temporary directory.
+"""Unit tests for craft-cards.py: --provenance, the lookup of a card's provenance line in the map
+of each --cards-dir (the skill's maintainer directory), and --domain over a domain only a
+language card takes, on a fixture skill in a temporary directory.
 
 Run:  python3 -m unittest discover -s maintenance/tests -p 'test_*.py'   (from the skill directory)
 """
@@ -49,6 +50,24 @@ class Provenance(unittest.TestCase):
         code, _out, err = self.run_script(*self.dirs, "--provenance", "ERR-01", "--step", "design")
         self.assertEqual(code, 1)
         self.assertIn("--provenance takes no filter", err)
+
+
+class DomainFilter(unittest.TestCase):
+    def setUp(self):
+        self.tmp = tempfile.mkdtemp()
+        with open(os.path.join(self.tmp, "java-01--counter.md"), "w", encoding="utf-8") as handle:
+            handle.write("---\ntitle: A shared counter changes atomically\nrule_id: JAVA-01\ndomain: concurrency\n"
+                         "step: [implement]\napplies_to: [java]\ntriggers: []\nscope: hunk\ncheck_kind: semantic\n"
+                         "severity_default: critical\n---\n# A shared counter changes atomically\n")
+
+    def tearDown(self):
+        shutil.rmtree(self.tmp)
+
+    def test_a_language_only_domain_lists_its_cards(self):
+        out = subprocess.run([sys.executable, SCRIPT, "--cards-dir", self.tmp, "--domain", "concurrency"],
+                             capture_output=True, text=True)
+        self.assertEqual((out.returncode, out.stderr), (0, ""))
+        self.assertEqual(out.stdout.splitlines()[0].split(" · ")[:2], ["JAVA-01", "A shared counter changes atomically"])
 
 
 if __name__ == "__main__":

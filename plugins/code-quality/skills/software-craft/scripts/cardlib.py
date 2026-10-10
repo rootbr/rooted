@@ -4,7 +4,7 @@ body blocks and the provenance map.
 Every script that reads a card or a provenance map imports it, so each reads a card the same
 way and finds a map at the one address provenance_map_path computes. A card
 belongs to the universal corpus, whose id prefix names its domain, or to a language corpus,
-whose id prefix names its language and whose cards take any craft domain.
+whose id prefix names its language and whose cards take any domain of CORPUS_DOMAINS.
 Standard library only.
 """
 import os
@@ -13,16 +13,18 @@ import re
 KEYS = ["title", "rule_id", "domain", "step", "applies_to", "triggers", "scope", "check_kind", "severity_default"]
 PREFIX_DOMAIN = {"CODE": "code", "DSN": "design", "API": "interface", "ERR": "errors", "TST": "tests",
                  "CHG": "change", "PRF": "performance", "TOOL": "tooling", "DOC": "docs", "INP": "input",
-                 "ARCH": "architecture"}
-# A language corpus prefix maps to the language its cards apply to; its cards take any domain of PREFIX_DOMAIN.
-LANGUAGE_PREFIXES = {"PY": "python"}
+                 "ARCH": "architecture", "META": "meta"}
+# Every domain a card may take: the universal prefixes' domains, and two that only a language card takes.
+CORPUS_DOMAINS = (*PREFIX_DOMAIN.values(), "concurrency", "security")
+# A language corpus prefix maps to the language its cards apply to; its cards take any domain of CORPUS_DOMAINS.
+LANGUAGE_PREFIXES = {"PY": "python", "JAVA": "java"}
 STEPS = ("design", "implement", "handle-errors", "test", "refactor", "document", "review")
 APPLIES_TO = ("universal", "object-oriented", "functional", "public-api", "service-boundary", "library",
               "exceptions", "result-types", "garbage-collected", "manual-memory", "static-types", "dynamic-types",
-              "tests", "build-config", "prose", "python")
+              "tests", "build-config", "prose", "python", "java")
 SCOPES = ("hunk", "file", "base-compare", "callers")
 CHECK_KINDS = ("mechanical", "semantic")
-SEVERITIES = ("major", "minor", "suggestion")
+SEVERITIES = ("critical", "major", "minor", "suggestion")
 # The structural signals the pre-pass computes; a trigger `signal:<name>` names one of them.
 SIGNALS = ("long_routine", "deep_nesting", "many_parameters", "boolean_argument", "empty_handler", "magic_number",
            "commented_out_code", "todo_marker", "duplicate_block", "test_file", "added_file")
@@ -278,12 +280,12 @@ def check_triggers(triggers):
 
 def prefix_domain_ok(rule_id, domain):
     """Whether the rule_id's prefix admits the domain: a universal prefix admits its own
-    domain, a language prefix admits every craft domain, PROJ admits any."""
+    domain, a language prefix admits every domain of CORPUS_DOMAINS, PROJ admits any."""
     prefix = rule_id.split("-")[0]
     if prefix == "PROJ":
         return True
     if prefix in LANGUAGE_PREFIXES:
-        return domain in PREFIX_DOMAIN.values()
+        return domain in CORPUS_DOMAINS
     return PREFIX_DOMAIN.get(prefix) == domain
 
 
@@ -297,7 +299,8 @@ def read_card(path):
     """Read one card file into its index record. Returns (record, error).
 
     The record is what plan.json and the developer's index carry per card: rule_id,
-    path, title, domain, step, applies_to, triggers, scope, check_kind, severity_default.
+    path, title, domain, step, applies_to, triggers, scope, check_kind, severity_default,
+    and corpus, the name of the directory the card sits in.
     """
     with open(path, encoding="utf-8") as handle:
         text = handle.read()
@@ -330,6 +333,7 @@ def read_card(path):
         "scope": data["scope"].strip(),
         "check_kind": data["check_kind"].strip(),
         "severity_default": data["severity_default"].strip(),
+        "corpus": os.path.basename(os.path.dirname(os.path.abspath(path))),
     }
     if not prefix_domain_ok(rec["rule_id"], rec["domain"]):
         return None, f"rule_id {rec['rule_id']} does not match domain {rec['domain']!r}"

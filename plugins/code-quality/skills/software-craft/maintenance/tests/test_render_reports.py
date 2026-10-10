@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Unit tests for the one-line source pointer of a finding: cardlib.source_pointer on provenance
 lines of each shape, and render-reports.py reading it from the provenance map of a card's
-directory, on a fixture skill in a temporary directory.
+directory, on a fixture skill in a temporary directory; and the severity layout of the review
+report: critical findings beside major ones, their count, and the recommendation each sets.
 
 Run:  python3 -m unittest discover -s maintenance/tests -p 'test_*.py'   (from the skill directory)
 """
@@ -91,6 +92,28 @@ class RenderedRuleLine(unittest.TestCase):
 
     def test_a_card_without_a_provenance_line_shows_its_id_alone(self):
         self.assertEqual(rr.rule_line(self.finding("ERR-09"), self.cards), "`ERR-09`")
+
+
+class SeverityLayout(unittest.TestCase):
+    def logic_finding(self, severity):
+        return {"rule_id": "LOGIC", "id": "LOGIC.1", "severity": severity, "file": "app.py", "symbol": "save",
+                "code": "store.write(row)", "problem": "the row is written twice", "fix": "store.write_once(row)",
+                "rationale": "a retry repeats the write", "verdict": {"verdict": "confirmed", "final_severity": severity}}
+
+    def test_a_confirmed_critical_finding_blocks_and_is_shown_in_full(self):
+        report, _rejections, summary = rr.render([self.logic_finding("critical")], {"cards": []}, "T", "", "", "")
+        self.assertIn("- Findings: 1 (1 critical, 0 major, 0 minor, 0 suggestion)", report)
+        self.assertIn("- Recommendation: Block", summary)
+        marks = ["## Critical & Major Findings", "### LOGIC.1: ", "- **Severity**: Critical", "## Minor & Suggestions"]
+        positions = [report.index(mark) for mark in marks]
+        self.assertEqual(positions, sorted(positions))
+
+    def test_the_gravest_severity_shown_sets_the_recommendation(self):
+        expected = {"critical": "Block", "major": "Fix before merge", "minor": "Merge with fixes", "suggestion": "Merge"}
+        for severity, recommendation in expected.items():
+            with self.subTest(severity=severity):
+                report, _rejections, _summary = rr.render([self.logic_finding(severity)], {"cards": []}, "T", "", "", "")
+                self.assertIn(f"- Recommendation: {recommendation}", report)
 
 
 if __name__ == "__main__":

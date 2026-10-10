@@ -1,0 +1,71 @@
+SEEDS
+  PASS  cc-08-check-then-act-on-shared-map  (JAVA-08 Cache#getOrLoad)  raw=hit  verified as JAVA-08.1 [report]
+  PASS  cc-09-volatile-increment  (JAVA-09 Stats#hit)  raw=hit  verified as JAVA-09.1 [report]
+  PASS  cc-11-compute-updates-same-map  (JAVA-11 Totals#transfer)  raw=hit  verified as JAVA-11.1 [report]
+  PASS  rel-01-jdbc-not-in-try-with-resources  (JAVA-132 Repo#findNameByEmail)  raw=hit  verified as JAVA-132.1 [report]
+  PASS  rel-02-files-lines-unclosed  (JAVA-133 LogScanner#countErrors)  raw=hit  verified as JAVA-133.1 [report]
+  PASS  rel-03-threadlocal-set-null  (JAVA-134 RequestContext#handle)  raw=hit  verified as JAVA-134.1 [report]
+  PASS  meta-01-load-dependent-invariant-without-a-number  (META-01 Inv 2)  raw=hit  verified as META-01.1 [report]
+  PASS  meta-05-aspirational-should  (META-05 Inv 3)  raw=hit  verified as META-05.1 [report]
+  PASS  meta-08-unnumbered-prose-rule  (META-08 Invariants)  raw=hit  verified as META-08.1 [report]
+  PASS  sec-01-sql-concatenation  (JAVA-50 UserLookup#findNameByEmail)  raw=hit  verified as JAVA-50.1 [report]
+  PASS  sec-04-runtime-exec-shell-string  (JAVA-53 UserLookup#convertAvatar)  raw=hit  verified as JAVA-53.1 [downgraded]
+  PASS  sec-31-random-for-reset-token  (JAVA-80 UserLookup#newPasswordResetToken)  raw=hit  verified as JAVA-80.1 [report]
+  PASS  pf-16-pattern-compiled-per-call  (JAVA-115 Formatter#isUpperCase)  raw=hit  verified as JAVA-115.1 [report]
+  PASS  pf-11-string-concat-in-loop  (JAVA-110 Formatter#joinAll)  raw=hit  verified as JAVA-110.1 [report]
+  PASS  pf-02-linkedlist-indexed  (JAVA-101 Formatter#recentAt | Formatter#recent)  raw=hit  verified as JAVA-101.1 [report]
+  PASS  mnt-02-boolean-selector  (JAVA-192 OrderService#render)  raw=hit  verified as JAVA-192.1 [report]
+  PASS  mnt-22-log-and-rethrow  (JAVA-212 OrderService#loadName)  raw=hit  verified as JAVA-212.1 [report]
+  PASS  mnt-34-field-injection  (JAVA-224 OrderService#repo)  raw=hit  verified as JAVA-224.1 [report]
+CONTROLS
+  PASS  cc-08-local-map  (silent: JAVA-08 on Cache#buildIndex)  raw=silent
+  PASS  cc-09-increment-under-lock  (silent: JAVA-09 on Stats#record)  raw=silent
+  PASS  cc-09-documented-approximate-counter  (silent: JAVA-09 on Stats#sample)  raw=silent
+  PASS  cc-11-compute-reads-other-map  (silent: JAVA-11 on Totals#addWithinLimit)  raw=silent
+  PASS  rel-01-try-with-resources  (silent: JAVA-132 on Repo#countActive)  raw=silent
+  PASS  rel-02-collection-stream  (silent: JAVA-133 on LogScanner#countErrorsIn)  raw=silent
+  PASS  rel-03-remove-in-finally  (silent: JAVA-134 on RequestContext#handleSafely)  raw=silent
+  PASS  cc-11-compute-reads-same-map  (silent: JAVA-11 on Totals#mirror)  raw=silent
+  PASS  meta-well-formed-invariant  (silent: META-01, META-02, META-03, META-04, META-05, META-06, META-07, META-08, META-09 on Inv 4)  raw=silent
+  PASS  sec-01-parameterized  (silent: JAVA-50 on UserLookup#findNameById)  raw=silent
+  PASS  sec-04-processbuilder-args  (silent: JAVA-53 on UserLookup#convertAvatarSafely)  raw=silent
+  PASS  sec-31-securerandom-session-id  (silent: JAVA-80 on UserLookup#newSessionId)  raw=silent
+  PASS  sec-31-random-for-non-secret  (silent: JAVA-80 on UserLookup#sampleAvatarIndex)  raw=silent
+  PASS  pf-16-static-pattern  (silent: JAVA-115 on Formatter#isDigits)  raw=silent
+  PASS  pf-11-stringbuilder  (silent: JAVA-110 on Formatter#joinWithBuilder)  raw=silent
+  PASS  pf-02-listiterator-cursor  (silent: JAVA-101 on Formatter#separate)  raw=silent
+  PASS  mnt-02-boolean-setter  (silent: JAVA-192 on OrderService#setArchived)  raw=silent
+  PASS  mnt-22-wrap-without-log  (silent: JAVA-212 on OrderService#loadCount)  raw=silent
+  PASS  mnt-34-constructor-injection  (silent: JAVA-224 on OrderService#formatter)  raw=silent
+OTHER VERIFIED FINDINGS (not graded): 30
+  JAVA-55.1 critical src/main/java/com/example/app/OrderService.java OrderService#render [report]
+  LOGIC.1 critical src/main/java/com/example/app/Totals.java Totals#transfer [report]
+  PROJ-4.1 critical src/main/java/com/example/app/Totals.java Totals#transfer [report]
+  LOGIC.2 critical src/main/java/com/example/app/Totals.java Totals#transfer [report]
+  LOGIC.3 major src/main/java/com/example/app/Cache.java Cache#getOrLoad [report]
+  JAVA-17.1 major src/main/java/com/example/app/Formatter.java Formatter#remember [report]
+  JAVA-179.1 major src/main/java/com/example/app/Formatter.java Formatter#remember [report]
+  LOGIC.7 minor src/main/java/com/example/app/Formatter.java Formatter#remember [report]
+  LOGIC.4 major src/main/java/com/example/app/LogScanner.java LogScanner#countErrors [report]
+  LOGIC.5 major src/main/java/com/example/app/Repo.java Repo#findNameByEmail [report]
+  LOGIC.6 major src/main/java/com/example/app/Stats.java Stats#hit [report]
+  JAVA-135.1 major src/main/java/com/example/app/Totals.java Totals#addWithinLimit [report]
+  JAVA-135.2 major src/main/java/com/example/app/Totals.java Totals#transfer [report]
+  PROJ-3.1 major src/main/java/com/example/app/OrderService.java OrderService#repo [downgraded]
+  JAVA-18.1 major src/main/java/com/example/app/OrderService.java OrderService#setArchived [report]
+  JAVA-199.1 minor src/main/java/com/example/app/Repo.java Repo#countActive [report]
+  JAVA-05.1 minor src/main/java/com/example/app/Stats.java Stats#record [report]
+  JAVA-228.1 minor src/main/java/com/example/app/Totals.java Totals#mirror [report]
+  JAVA-228.2 minor src/main/java/com/example/app/Totals.java Totals#transfer [report]
+  JAVA-219.1 suggestion src/main/java/com/example/app/Cache.java Cache [report]
+  JAVA-219.2 suggestion src/main/java/com/example/app/Formatter.java Formatter [report]
+  JAVA-219.3 suggestion src/main/java/com/example/app/LogScanner.java LogScanner [report]
+  JAVA-219.4 suggestion src/main/java/com/example/app/OrderService.java OrderService [report]
+  JAVA-211.1 suggestion src/main/java/com/example/app/OrderService.java OrderService#OrderService [report]
+  JAVA-219.5 suggestion src/main/java/com/example/app/Repo.java Repo [report]
+  JAVA-219.6 suggestion src/main/java/com/example/app/RequestContext.java RequestContext [report]
+  JAVA-219.7 suggestion src/main/java/com/example/app/Stats.java Stats [report]
+  JAVA-219.8 suggestion src/main/java/com/example/app/Totals.java Totals [report]
+  JAVA-219.9 suggestion src/main/java/com/example/app/UserLookup.java UserLookup [report]
+  JAVA-211.2 suggestion src/main/java/com/example/app/UserLookup.java UserLookup#UserLookup [report]
+RESULT: 37/37 passed

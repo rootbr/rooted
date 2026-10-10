@@ -82,4 +82,4 @@ The adjudicator ranks every surviving finding by **priority**, computed from the
 
 ## Anchor rule
 
-A finding without an **Anchor** — a verbatim quote from the report or a source it is about — is speculation and is rejected at adjudication. "The report probably assumes X" without a quote is not a finding; quote the sentence that carries the assumption. This mirrors the reviewing-java "no diff anchor → no finding" rule: one false positive erodes trust in the whole appraisal.
+A finding without an **Anchor** — a verbatim quote from the report or a source it is about — is speculation and is rejected at adjudication. "The report probably assumes X" without a quote is not a finding; quote the sentence that carries the assumption. This mirrors the software-craft "no diff anchor → no finding" rule: one false positive erodes trust in the whole appraisal.

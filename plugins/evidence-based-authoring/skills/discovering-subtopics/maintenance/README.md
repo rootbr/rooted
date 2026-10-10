@@ -22,8 +22,8 @@ The corpus deliberately mixes domains so breadth is tested across fields, not a 
 | Eval topic | Reference (what coverage is compared against) | Domain |
 |--|--|--|
 | HTTP caching | RFC 9111 + Mark Nottingham's *Web Caching* (O'Reilly) | Technical (standards-body) |
-| Java review — concurrency, security, performance, reliability, maintainability (one topic per domain prefix `cc-`, `sec-`, `pf-`, `rel-`, `mnt-`) | `plugins/code-quality/skills/reviewing-java/references/review-cards/`, the titles of the domain's cards | Technical |
-| Java invariants | `plugins/code-quality/skills/reviewing-java/maintenance/java-invariants-review-checklist.md` | Technical |
+| Java corpus — concurrency, security, performance, reliability, maintainability (one topic per domain) | `plugins/code-quality/skills/software-craft/references/craft-cards-java/`, the titles of the domain's cards | Technical |
+| Java invariants | `plugins/code-quality/skills/software-craft/maintenance/java-invariants-review-checklist.md` | Technical |
 | Psychoanalysis (topic: transference) | PDM-2 syllabus + Laplanche & Pontalis *Vocabulaire de la psychanalyse* | Humanities (multilingual canon) |
 | Container horticulture (topic: tomatoes in 15 L pots) | RHS grow-guides + Bayerische Landesanstalt für Landwirtschaft extension bulletins | Practical / craft |
 

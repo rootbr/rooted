@@ -135,7 +135,7 @@ const LANGS = ['java', 'python', 'typescript', 'go', 'rust']
 const STEPS = ['design', 'implement', 'handle-errors', 'test', 'refactor', 'document', 'review']
 const APPLIES_TO = ['universal', 'object-oriented', 'functional', 'public-api', 'service-boundary', 'library',
   'exceptions', 'result-types', 'garbage-collected', 'manual-memory', 'static-types', 'dynamic-types',
-  'tests', 'build-config', 'prose', 'python']
+  'tests', 'build-config', 'prose', 'python', 'java']
 const SIGNALS = ['long_routine', 'deep_nesting', 'many_parameters', 'boolean_argument', 'empty_handler',
   'magic_number', 'commented_out_code', 'todo_marker', 'duplicate_block', 'test_file', 'added_file']
 const SKILL = `${ROOT}/plugins/code-quality/skills/software-craft`
@@ -207,7 +207,7 @@ const RULE = {
     triggers: { type: 'array', items: { type: 'string' }, description: 'Python re patterns against added lines in any language, or signal:<name>; [] means every diff' },
     scope: { type: 'string', enum: ['hunk', 'file', 'base-compare', 'callers'] },
     check_kind: { type: 'string', enum: ['mechanical', 'semantic'] },
-    severity_default: { type: 'string', enum: ['major', 'minor', 'suggestion'] },
+    severity_default: { type: 'string', enum: ['critical', 'major', 'minor', 'suggestion'] },
   },
   required: ['key', 'title', 'statement', 'formulation', 'contested', 'positions', 'separating_condition', 'evidence', 'checkable_on_diff',
              'disposition', 'hold_reason', 'searched', 'step', 'applies_to', 'triggers', 'scope', 'check_kind', 'severity_default'],

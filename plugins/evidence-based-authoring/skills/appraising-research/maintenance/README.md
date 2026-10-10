@@ -57,7 +57,7 @@ Misses cluster by axis → the corresponding method prompt is the edit candidate
 ### should-not-trigger (all 10 must NOT route to `appraising-research`)
 1. Research X and write me a report. → `researching-topics` (generation, not appraisal)
 2. Map out the questions I should ask about X. → `discovering-subtopics`
-3. Review this Java branch for bugs. → `reviewing-java`
+3. Review this Java branch for bugs. → `software-craft`
 4. Find the config file in this repo. → Grep/Glob
 5. What's the LD50 of X? → single factual lookup (`researching-topics` direct)
 6. Summarize this article for me. → summarization, not appraisal
@@ -66,7 +66,7 @@ Misses cluster by axis → the corresponding method prompt is the edit candidate
 9. Write a rebuttal to this essay. → composition, not appraisal
 10. Explain what GRADE is. → single definition
 
-Failure modes to watch: false-trigger on #1/#5/#8 (generation/lookup asks) and #6 (summarize), overlap with `reviewing-java` on #3.
+Failure modes to watch: false-trigger on #1/#5/#8 (generation/lookup asks) and #6 (summarize), overlap with `software-craft` on #3.
 
 ## Iteration loop
 

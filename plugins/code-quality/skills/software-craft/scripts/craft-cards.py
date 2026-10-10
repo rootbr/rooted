@@ -20,7 +20,7 @@ import os
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from cardlib import read_card, read_provenance, provenance_map_path, STEPS, APPLIES_TO, PREFIX_DOMAIN  # noqa: E402
+from cardlib import read_card, read_provenance, provenance_map_path, STEPS, APPLIES_TO, CORPUS_DOMAINS  # noqa: E402
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 DEFAULT_CARDS = os.path.normpath(os.path.join(HERE, "..", "references", "craft-cards"))
@@ -68,8 +68,8 @@ def main(argv):
         sys.exit(f"craft-cards: --step must be one of {', '.join(STEPS)}")
     if opts["applies_to"] and opts["applies_to"] not in APPLIES_TO:
         sys.exit(f"craft-cards: --applies-to must be one of {', '.join(APPLIES_TO)}")
-    if opts["domain"] and opts["domain"] not in PREFIX_DOMAIN.values():
-        sys.exit(f"craft-cards: --domain must be one of {', '.join(sorted(PREFIX_DOMAIN.values()))}")
+    if opts["domain"] and opts["domain"] not in CORPUS_DOMAINS:
+        sys.exit(f"craft-cards: --domain must be one of {', '.join(sorted(CORPUS_DOMAINS))}")
     missing = [d for d in cards_dirs if not os.path.isdir(d)]
     if missing:
         sys.exit(f"craft-cards: no cards directory at {', '.join(missing)}")

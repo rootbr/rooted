@@ -2,6 +2,8 @@
 
 Card shape since 2026-10-16: a card carries no `## Source` block; its sources live on its provenance line (`research/2026-10-16_source-footer-compaction.md`). The seven-block schema below is this note's original record.
 
+Corpus since 2026-10-16: the `CC-`, `SEC-`, `PF-`, `REL-` and `MNT-` cards are the Java language corpus of `software-craft`, `JAVA-01`..`JAVA-231`, and the `META-` cards are universal cards of its `meta` domain (`research/2026-10-16_software-craft-java-corpus.md`); the `reviewing-java` skill and its two agent types, `review-finder` and `review-verifier`, are gone from the plugin. The note below is the original record.
+
 The `/reviewing-java` skill reviews a Java diff through a corpus of atomic rule cards. A deterministic pre-pass matches each card's triggers against the added lines of the diff and writes a dispatch plan; a Workflow script runs one finder per (card × slice) plus one logic pass per slice, aggregates deterministically, and runs one skeptic per finding; a render script turns findings and verdicts into two Markdown reports. Every card rests on an openable source; a rule with no such source is held in `pending-evidence.md` and ships nowhere.
 
 This note is the design record: the layout, the card schema and its controlled vocabulary, the concept-ownership and priority tables, the `plan.json` contract, the workflow contracts, the source policy, the fixture and grading design, and the deviations from the brief that commissioned the rebuild. The runtime owners of the same facts are named in each section; where this note and a runtime file differ, the runtime file decides. Paths are relative to `plugins/code-quality/skills/reviewing-java/` unless they start with `plugins/`.

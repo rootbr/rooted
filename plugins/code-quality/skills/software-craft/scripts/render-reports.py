@@ -3,8 +3,8 @@
 
 Inputs:
   --verdicts craft/verdicts.json    the workflow's `findings` array after Verify: each
-                                    finding carries `verdict` and, for a rejected Major,
-                                    a `ruling`
+                                    finding carries `verdict` and, for a rejected Critical
+                                    or Major, a `ruling`
   --plan     craft/plan.json        the inventory (diff, files, languages, size) and the
                                     card index; a card's path names its cards directory, whose
                                     provenance map (cardlib.provenance_map_path) holds the line that supplies the
@@ -21,7 +21,10 @@ Writes exactly the two Markdown files; standard library only.
 A finding reaches the review report when its verdict is confirmed, upgraded or
 modified, or when a ruling restored it (`refuted`) or left it uncertain (flagged
 for the author). A rejected or downgraded finding goes to the rejection report;
-a downgraded finding also stays in the review report at its new severity.
+a downgraded finding also stays in the review report at its new severity. Critical and
+major findings are shown in full, minor findings and suggestions in a table; the
+recommendation follows the gravest severity shown: Block for a critical finding, Fix
+before merge for a major one, Merge with fixes for a minor one, else Merge.
 """
 import functools
 import json
@@ -29,9 +32,12 @@ import os
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from cardlib import provenance_map_path, read_provenance, source_pointer  # noqa: E402
+from cardlib import SEVERITIES, provenance_map_path, read_provenance, source_pointer  # noqa: E402
 
-SEV_ORDER = {"major": 0, "minor": 1, "suggestion": 2}
+SEV_ORDER = {severity: rank for rank, severity in enumerate(SEVERITIES)}
+GRAVE = ("critical", "major")   # shown in full; the rest sit in the table
+# The recommendation the gravest severity among the shown findings sets; none of these shown → Merge.
+RECOMMENDATIONS = (("critical", "Block"), ("major", "Fix before merge"), ("minor", "Merge with fixes"))
 
 
 @functools.lru_cache(maxsize=None)
@@ -97,22 +103,22 @@ def render(findings, plan, title, passes, built, fix_round):
     shown = report + [f for f in downgraded]
     shown.sort(key=lambda f: (SEV_ORDER.get(final_severity(f), 9), body_of(f)["file"]))
     counts = {s: sum(1 for f in shown if final_severity(f) == s) for s in SEV_ORDER}
-    grave = [f for f in shown if final_severity(f) == "major"]
+    grave = [f for f in shown if final_severity(f) in GRAVE]
     light = [f for f in shown if final_severity(f) in ("minor", "suggestion")]
-    rec = "Fix before merge" if counts["major"] else ("Merge with fixes" if counts["minor"] else "Merge")
+    rec = recommendation(counts)
     languages = ", ".join(f"{k} {v}" for k, v in sorted((inv.get("languages") or {}).items())) or "n/a"
 
     out = [f"# {title} Craft Review", "", "## Executive Summary",
            f"- Reviewed: `{inv.get('diff_ref', '?')}` ({inv.get('mode', '?')}) — {inv.get('file_count', 0)} files ({inv.get('size_class') or 'n/a'}); languages: {languages}",
            f"- Passes: {passes or default_passes(plan)}",
-           f"- Findings: {len(shown)} ({counts['major']} major, {counts['minor']} minor, {counts['suggestion']} suggestion)",
+           f"- Findings: {len(shown)} ({', '.join(f'{counts[s]} {s}' for s in SEVERITIES)})",
            f"- Verification: {len(findings)} raw findings → {len(report)} confirmed, {len(downgraded)} downgraded, {len(rejected)} rejected, {len(flagged)} flagged for the author",
            f"- Fix round: {fix_round or 'none'}",
            f"- Recommendation: {rec}", ""]
     if built:
         out += ["## What was built", "", built.strip(), ""]
 
-    out.append("## Major Findings")
+    out.append("## Critical & Major Findings")
     out.append("")
     if not grave:
         out.append("None.")
@@ -191,6 +197,11 @@ def render(findings, plan, title, passes, built, fix_round):
                 "- **Verdict**: Downgraded",
                 f"- **Evidence**: {v.get('evidence', '')}", ""]
     return "\n".join(out), "\n".join(rej), out[2:10]
+
+
+def recommendation(counts):
+    """The merge recommendation of RECOMMENDATIONS that the gravest severity shown sets."""
+    return next((advice for severity, advice in RECOMMENDATIONS if counts[severity]), "Merge")
 
 
 def default_passes(plan):

@@ -17,10 +17,13 @@ with the provenance map and --pending — one provenance line per card and no sh
 among the pending entries. The provenance map is --provenance, else the map
 cardlib.provenance_map_path names for the first cards directory when that file exists.
 
-With --language <lang> the cards are a language corpus: ids take that language's prefix
-(PY for python) with any craft domain, applies_to begins with the language, the Example
-is fenced in the language, the Thesis may name it, and the example-language
-distribution is not reported. Without it a language-corpus card is an error.
+Every card's domain is one of cardlib.CORPUS_DOMAINS. A universal card's id prefix names its
+domain (META for meta, the cards that audit a project's config.md). With --language <lang>
+the cards are a language corpus: ids take that language's prefix (PY for python, JAVA for
+java) with any domain of CORPUS_DOMAINS, concurrency and security among them, applies_to
+begins with the language, the Example is fenced in the language, the Thesis may name it,
+and the example-language distribution is not reported. Without it a language-corpus card
+is an error.
 
 Usage:  python3 validate-craft-cards.py [--language <lang>] [--provenance <map.md>] [--pending <pending.md>]
                                         <cards-dir> [<card.md> ...]
@@ -34,7 +37,7 @@ import sys
 SKILL = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.insert(0, os.path.join(SKILL, "scripts"))
 from cardlib import provenance_map_path  # noqa: E402
-from cardlib import (KEYS, PREFIX_DOMAIN, LANGUAGE_PREFIXES, STEPS, APPLIES_TO, SCOPES, CHECK_KINDS,  # noqa: E402
+from cardlib import (KEYS, PREFIX_DOMAIN, CORPUS_DOMAINS, LANGUAGE_PREFIXES, STEPS, APPLIES_TO, SCOPES, CHECK_KINDS,  # noqa: E402
                      SEVERITIES, EXAMPLE_LANGS, BLOCKS, parse_inline_list, parse_frontmatter, strip_quotes,
                      check_triggers, block_problems)
 
@@ -145,8 +148,8 @@ def check_card(path, rep, language=None):
             rep.error(path, f"rule_id prefix {prefix} does not match domain {domain!r}")
         if fm and (fm.group(1).upper() != rm.group(1) or fm.group(2) != rm.group(2)):
             rep.error(path, f"filename {name} does not match rule_id {rule_id}")
-    if domain not in PREFIX_DOMAIN.values():
-        rep.error(path, f"domain {domain!r} not in {sorted(PREFIX_DOMAIN.values())}")
+    if domain not in CORPUS_DOMAINS:
+        rep.error(path, f"domain {domain!r} not in {sorted(CORPUS_DOMAINS)}")
     for field, vocab in (("step", STEPS), ("applies_to", APPLIES_TO)):
         items, ierr = parse_inline_list(data.get(field, ""), bare_ok=True)
         if ierr:

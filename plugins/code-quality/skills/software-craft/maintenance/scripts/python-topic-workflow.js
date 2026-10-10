@@ -118,7 +118,7 @@ const RULE = {
     triggers: { type: 'array', items: { type: 'string' }, description: 'Python re patterns against single added Python lines, or signal:<name>; two to six' },
     scope: { type: 'string', enum: ['hunk', 'file', 'base-compare', 'callers'] },
     check_kind: { type: 'string', enum: ['mechanical', 'semantic'] },
-    severity_default: { type: 'string', enum: ['major', 'minor', 'suggestion'] },
+    severity_default: { type: 'string', enum: ['critical', 'major', 'minor', 'suggestion'] },
     example_seed: { type: 'string', description: 'the bad line in words, and the idiom the good half shows' },
   },
   required: ['key', 'title', 'statement', 'python_reason', 'universal_id', 'formulation', 'contested', 'positions', 'separating_condition',

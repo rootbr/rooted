@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Unit tests for validate-craft-cards.py: the language-corpus mode (--language python)
-against the universal mode, and the body-block check of both modes — six blocks, no `## Source`,
-no other H2 — with the practitioner-text check over the whole card, on cards built in a
-temporary directory.
+"""Unit tests for validate-craft-cards.py: the language-corpus modes (--language python and
+--language java) against the universal mode, the domains and severities each admits, and the
+body-block check of both modes — six blocks, no `## Source`, no other H2 — with the
+practitioner-text check over the whole card, on cards built in a temporary directory.
 
 Run:  python3 -m unittest discover -s maintenance/tests -p 'test_*.py'   (from the skill directory)
 """
@@ -21,17 +21,21 @@ PYTHON_EXAMPLE = """bad:  def parse_port(text):
           raise ValueError("invalid input")
 good: def parse_port(text):
           raise ValueError(f"parse port: {text!r} is not a number")"""
+JAVA_EXAMPLE = """bad:  int next() { return count++; }
+good: int next() { return count.incrementAndGet(); }"""
+JAVA_THESIS = "A Java counter that several threads update changes through one atomic operation."
 
 
-CARD_DEFAULTS = {"domain": "errors", "applies_to": "[python]", "fence": "python", "thesis": UNIVERSAL_THESIS,
+CARD_DEFAULTS = {"domain": "errors", "applies_to": "[python]", "fence": "python", "example": PYTHON_EXAMPLE,
+                 "severity": "minor", "thesis": UNIVERSAL_THESIS,
                  "limits": "A predeclared sentinel compared by identity carries no operand.", "tail": ""}
 
 
 def card_text(rule_id, **overrides):
     """A card valid in the python corpus; each override replaces one of CARD_DEFAULTS."""
     fields = {**CARD_DEFAULTS, **overrides}
-    domain, applies_to, fence = fields["domain"], fields["applies_to"], fields["fence"]
-    thesis, limits, tail = fields["thesis"], fields["limits"], fields["tail"]
+    domain, applies_to, fence, example = fields["domain"], fields["applies_to"], fields["fence"], fields["example"]
+    severity, thesis, limits, tail = fields["severity"], fields["thesis"], fields["limits"], fields["tail"]
     title = f"An error names the failed operation and its values {rule_id.lower()}"
     return f"""---
 title: {title}
@@ -42,7 +46,7 @@ applies_to: {applies_to}
 triggers: ['\\braise\\b']
 scope: hunk
 check_kind: semantic
-severity_default: minor
+severity_default: {severity}
 ---
 
 # {title}
@@ -55,7 +59,7 @@ An error is read after the frame that held the operands is gone, so its message 
 
 ## Example
 ```{fence}
-{PYTHON_EXAMPLE}
+{example}
 ```
 
 ## Limits
@@ -159,7 +163,36 @@ class ValidateLanguageCorpus(CardDirectory):
         self.write("PY-01")
         rc, out = self.run_validator("--language", "cobol")
         self.assertNotEqual(rc, 0)
-        self.assertIn("--language 'cobol' names no language corpus (known: python)", out)
+        self.assertIn("--language 'cobol' names no language corpus (known: java, python)", out)
+
+
+class ValidateJavaCorpusAndDomains(CardDirectory):
+    """The java corpus, the domains only a language card takes, the critical severity, and the
+    META cards of the universal corpus."""
+
+    def write_java(self, rule_id):
+        return self.write(rule_id, domain="concurrency", severity="critical", applies_to="[java]", fence="java",
+                          example=JAVA_EXAMPLE, thesis=JAVA_THESIS)
+
+    def test_a_java_concurrency_card_passes_with_language(self):
+        self.write_java("JAVA-01")
+        self.assert_passes("--language", "java")
+
+    def test_a_java_card_without_language_fails(self):
+        self.write_java("JAVA-01")
+        self.assert_fails_with("rule_id prefix JAVA belongs to the java corpus; the universal corpus takes no language card")
+
+    def test_a_universal_critical_card_passes(self):
+        self.write("ERR-01", applies_to="[universal]", severity="critical")
+        self.assert_passes()
+
+    def test_a_universal_card_of_a_language_only_domain_fails(self):
+        self.write("ERR-01", applies_to="[universal]", domain="concurrency")
+        self.assert_fails_with("rule_id prefix ERR does not match domain 'concurrency'")
+
+    def test_a_meta_card_with_a_java_example_passes_in_the_universal_corpus(self):
+        self.write("META-01", domain="meta", applies_to="[prose]", fence="java", example=JAVA_EXAMPLE)
+        self.assert_passes()
 
 
 class ValidateBodyBlocks(CardDirectory):

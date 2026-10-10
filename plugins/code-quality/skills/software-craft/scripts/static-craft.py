@@ -12,28 +12,39 @@ under review. Nothing else is written; no network is opened.
 
 Every --cards-dir loads its cards into one pool; a rule_id found twice in the pool
 stops the run. A universal card dispatches on files of every language. A card whose
-applies_to carries a language corpus value (python) dispatches only on files of that
+applies_to carries a language corpus value (python, java) dispatches only on files of that
 language, and, when its applies_to also carries build-config, on build and config files.
+A card of the meta domain audits the project's config.md and dispatches onto that file
+alone; it runs when config.md exists and the diff changed it or --meta is passed. The
+config file is never an ordinary reviewed file: it is skipped with the reason
+"review config". The job cap holds per group: the jobs of one cards directory form a group,
+and the META cards' jobs form the group "meta" apart from the directory they come from, so
+an overflowing corpus never drops the config audit; each group's jobs are merged, then
+dropped, against --max-jobs on their own. Beside the language-neutral candidates, a
+file whose language has an entry in LANGUAGE_CANDIDATES (java) gets that language's.
 
 plan.json carries:
   inventory     mode (committed | worktree), base_sha, head_sha or "worktree", changed
                 files with language, kind and hunks (added lines with line numbers and
                 the signals computed per hunk), skipped files with the reason, size
-                class, config state
+                class, config state, and config_file: the record of config.md the META
+                cards read, or null when they do not run
   cards         the index of the dispatched cards: rule_id, path, title, domain, step,
-                applies_to, triggers, scope, check_kind, severity_default
+                applies_to, triggers, scope, check_kind, severity_default, corpus
   jobs          one per (card x slice): the files whose added lines matched the card's
                 patterns or whose hunks carry its signal, with the matching hunks only
   slices        three to eight file groups for the always-on logic pass
   candidates    mechanical hits named outright, tagged needs_verification
   project_cards PROJ-N cards parsed from config.md, plus project card files
+  meta_run      whether the META cards run
 
 Usage:
   python3 static-craft.py --cards-dir <dir> [--cards-dir <dir> ...] [--diff-ref <base...head | a..b | commit>]
-         [--path-filter <subtree>] [--repo <root>] [--out-dir craft]
+         [--path-filter <subtree>] [--repo <root>] [--out-dir craft] [--meta]
          [--max-job-lines 400] [--max-jobs 96] [--config .claude/software-craft/config.md]
-Exit status: 0 with a plan; 2 when the diff holds no reviewable change (an empty plan
-is still written, so the caller can tell "nothing to review" from a crash).
+Exit status: 0 with a plan; 2 when the diff holds no reviewable change and the plan no
+job (an empty plan is still written, so the caller can tell "nothing to review" from a
+crash).
 """
 import json
 import os
@@ -48,6 +59,9 @@ DEFAULT_CONFIG = os.path.join(".claude", "software-craft", "config.md")
 PROJECT_CARDS_DIR = os.path.join(".claude", "software-craft", "cards")
 SIZE_SMALL_MAX, SIZE_MEDIUM_MAX = 19, 49
 MIN_SLICES, MAX_SLICES = 3, 8
+META_DOMAIN = "meta"            # the domain of the cards that audit config.md
+REVIEW_CONFIG = "review config"  # the skip reason of config.md, which only the META cards read
+CONFIG_GROUP = "(config)"       # the group of the config.md record, apart from every reviewed file's
 
 # ---- language detection and the deny-list ---------------------------------------------------
 LANGUAGES = {
@@ -229,13 +243,31 @@ def untracked_records(repo, path_filter):
         if b"\0" in raw[:8000]:
             out.append({"path": rel, "status": "added", "hunks": [], "added_lines": 0, "removed_lines": 0, "binary": True})
             continue
-        text = raw.decode("utf-8", errors="replace")
-        lines = text.split("\n")
-        if lines and lines[-1] == "":
-            lines = lines[:-1]
-        out.append({"path": rel, "status": "added", "binary": False, "removed_lines": 0, "added_lines": len(lines),
-                    "hunks": [{"start": 1, "base_start": 0, "lines": [{"no": i + 1, "text": l} for i, l in enumerate(lines)]}]})
+        hunk = whole_file_hunk(raw.decode("utf-8", errors="replace"), 0)
+        out.append({"path": rel, "status": "added", "binary": False, "removed_lines": 0, "added_lines": len(hunk["lines"]),
+                    "hunks": [hunk]})
     return out
+
+
+def whole_file_hunk(text, base_start):
+    """The text as one hunk of added lines from line 1; the empty piece after a final newline is no line."""
+    lines = text.split("\n")
+    if lines and lines[-1] == "":
+        lines = lines[:-1]
+    return {"start": 1, "base_start": base_start, "lines": [{"no": no, "text": line} for no, line in enumerate(lines, 1)]}
+
+
+def config_file_record(config_rel, config_text, config_diff):
+    """config.md as a file record of the craft shape, read by the META cards alone: the hunks of
+    its diff record when the diff changed it, else the whole file as one hunk with status
+    `unchanged`, so a --meta run reads all of it. The record carries no structural signal."""
+    if config_diff is None:
+        status, hunks, removed = "unchanged", [whole_file_hunk(config_text, 1)], 0
+    else:
+        status, hunks, removed = config_diff["status"], config_diff["hunks"], config_diff["removed_lines"]
+    return {"path": config_rel, "language": "markdown", "kind": "config", "status": status, "group": CONFIG_GROUP,
+            "hunks": [{**h, "signals": {}} for h in hunks], "signals": {},
+            "added_lines": sum(len(h["lines"]) for h in hunks), "removed_lines": removed}
 
 
 def head_text(repo, mode, head_sha, path):
@@ -661,15 +693,16 @@ def hunk_matches(card, f, h):
     return pats, sigs
 
 
-def build_jobs(cards, files, modules, max_job_lines, max_jobs, log):
-    """One job per (card x slice). A job names its card by rule_id and each file's
-    matching hunks by their index in the inventory record, so no hunk text repeats."""
+def build_jobs(cards, files, modules, max_job_lines, max_jobs, log, *, config_files=()):
+    """One job per (card x slice). A META card audits config.md, so its slice is drawn from
+    `config_files`; every other card's from `files`. A job names its card by rule_id and each
+    file's matching hunks by their index in the inventory record, so no hunk text repeats.
+    The job cap holds per cap group (cap_jobs)."""
     jobs = []
-    by_id = {c["rule_id"]: c for c in cards}
     for card in cards:
         card["_compiled"] = {t: re.compile(t) for t in card["triggers"] if not is_signal(t)}
         slice_files = []
-        for f in files:
+        for f in (config_files if card["domain"] == META_DOMAIN else files):
             if not dispatches_on(card, f):
                 continue
             idx, pats, sigs = [], set(), set()
@@ -695,27 +728,53 @@ def build_jobs(cards, files, modules, max_job_lines, max_jobs, log):
         log(f"{card['rule_id']}: {total} matching added lines exceed {max_job_lines}; split into {len(groups)} job(s) by {'module' if modules else 'directory'}")
         for name, sfs in sorted(groups.items()):
             jobs.append(make_job(card["rule_id"], name, sfs))
+    return cap_jobs(jobs, cards, max_jobs, log)
+
+
+def cap_group_of(card):
+    """The cap group of a card's jobs: "meta" for a META card, so an overflowing corpus never
+    drops the config audit, else the corpus, the cards directory the card comes from."""
+    return META_DOMAIN if card["domain"] == META_DOMAIN else card["corpus"]
+
+
+def cap_jobs(jobs, cards, max_jobs, log):
+    """Hold the jobs of each cap group (cap_group_of) within max_jobs on their own (cap_group);
+    the result keeps the order the cards were loaded in."""
+    by_id = {c["rule_id"]: c for c in cards}
+    first_at, by_group = {}, {}
+    for i, j in enumerate(jobs):
+        first_at.setdefault(j["rule_id"], i)
+        by_group.setdefault(cap_group_of(by_id[j["rule_id"]]), []).append(j)
+    capped = [j for group, members in by_group.items() for j in cap_group(members, by_id, max_jobs, group, log)]
+    return sorted(capped, key=lambda j: first_at[j["rule_id"]])
+
+
+def cap_group(jobs, by_id, max_jobs, group, log):
+    """One cap group's jobs within max_jobs: merge the split jobs of one card back first, then
+    drop the smallest suggestion job, then the smallest minor one; a major or critical job is
+    never dropped, so a group left over the cap keeps every job and the log says so."""
+    jobs = list(jobs)
     while len(jobs) > max_jobs:
         per_card = {}
         for j in jobs:
             per_card.setdefault(j["rule_id"], []).append(j)
         multi = sorted((v for v in per_card.values() if len(v) > 1), key=len, reverse=True)
         if multi:
-            group = multi[0]
-            merged_files = [sf for j in group for sf in j["slice"]["files"]]
-            jobs = [j for j in jobs if j not in group] + [make_job(group[0]["rule_id"], "all", merged_files)]
-            log(f"cap {max_jobs}: merged {len(group)} jobs of {group[0]['rule_id']} back into one")
+            split = multi[0]
+            merged_files = [sf for j in split for sf in j["slice"]["files"]]
+            jobs = [j for j in jobs if j not in split] + [make_job(split[0]["rule_id"], "all", merged_files)]
+            log(f"cap {max_jobs} ({group}): merged {len(split)} jobs of {split[0]['rule_id']} back into one")
             continue
         dropped = False
         for sev in ("suggestion", "minor"):
             cands = sorted((j for j in jobs if by_id[j["rule_id"]]["severity_default"] == sev), key=lambda j: j["slice"]["added_lines"])
             if cands:
                 jobs.remove(cands[0])
-                log(f"cap {max_jobs}: dropped job {cands[0]['id']} ({sev}, {cands[0]['slice']['added_lines']} lines)")
+                log(f"cap {max_jobs} ({group}): dropped job {cands[0]['id']} ({sev}, {cands[0]['slice']['added_lines']} lines)")
                 dropped = True
                 break
         if not dropped:
-            log(f"cap {max_jobs}: exceeded by {len(jobs) - max_jobs} with no droppable job left; all {len(jobs)} kept")
+            log(f"cap {max_jobs} ({group}): exceeded by {len(jobs) - max_jobs} with no droppable job left; all {len(jobs)} kept")
             break
     return jobs
 
@@ -807,10 +866,71 @@ COLLECTION_SIG = re.compile(r"(?:List|Set|Map|Collection|Iterable|Array|\[\]|Vec
 RETURN_NULL = re.compile(r"^\s*return\s+(?:null|None|nil|undefined)\s*;?\s*$")
 PRINT_CALL = re.compile(r"\b(?:System\.out\.print|System\.err\.print|console\.log|console\.error|fmt\.Print|println!|print!|eprintln!|print\()")
 
+# Mechanical hits of one language, run only on files of that language. Each test reads one
+# added line and its context (heuristic_context); `rule_id` names the card of that language's
+# corpus that owns the pattern, and an empty value leaves the hit to the logic pass.
+LANGUAGE_CANDIDATES = {
+    "java": [
+        {"id": "pattern-compile-in-method", "rule_id": "JAVA-115",
+         "test": lambda line, ctx: "Pattern.compile(" in line and "static" not in line},
+        {"id": "simple-date-format", "rule_id": "JAVA-116",
+         "test": lambda line, ctx: "new SimpleDateFormat(" in line},
+        {"id": "runtime-exec", "rule_id": "JAVA-53",
+         "test": lambda line, ctx: "Runtime.getRuntime().exec(" in line},
+        {"id": "weak-message-digest", "rule_id": "JAVA-98",
+         "test": lambda line, ctx: re.search(r'MessageDigest\.getInstance\(\s*"(MD5|SHA1|SHA-1)"', line) is not None},
+        {"id": "jackson-default-typing", "rule_id": "JAVA-87",
+         "test": lambda line, ctx: "enableDefaultTyping(" in line or "activateDefaultTyping(" in line},
+        {"id": "random-for-secret", "rule_id": "JAVA-80",
+         "test": lambda line, ctx: "new Random(" in line and re.search(r"token|secret|password|nonce|salt|otp", ctx["window"], re.I) is not None},
+        {"id": "synchronized-wrapper-on-concurrent-map", "rule_id": "JAVA-109",
+         "test": lambda line, ctx: re.search(r"Collections\.synchronized\w+\(\s*new Concurrent", line) is not None},
+        {"id": "print-stack-trace", "rule_id": "JAVA-183",
+         "test": lambda line, ctx: ".printStackTrace()" in line},
+        {"id": "empty-catch", "rule_id": "JAVA-183",
+         "test": lambda line, ctx: re.search(r"catch\s*\([^)]*\)\s*\{\s*\}", line) is not None
+         or (re.search(r"catch\s*\([^)]*\)\s*\{\s*$", line) is not None and re.match(r"\s*\}\s*$", ctx["next"]) is not None)},
+    ],
+}
+CANDIDATE_CONTEXT_LINES = 5   # the lines of a hunk on each side of a line that its heuristic's window holds
 
-def find_candidates(files, head_lines_by_path):
+
+def heuristic_context(lines, i):
+    """What a language heuristic reads beside line i of a hunk: `window`, the hunk's lines within
+    CANDIDATE_CONTEXT_LINES of it, and `next`, the line after it or empty."""
+    window = lines[max(0, i - CANDIDATE_CONTEXT_LINES):i + CANDIDATE_CONTEXT_LINES + 1]
+    return {"window": "\n".join(x["text"] for x in window), "next": lines[i + 1]["text"] if i + 1 < len(lines) else ""}
+
+
+def heuristic_hits(heuristic, text, ctx, where, log):
+    """Whether the heuristic flags the line. Every heuristic runs on its own, so one that raises
+    counts as no hit and is logged with the line `where` names, and the plan goes on."""
+    try:
+        return bool(heuristic["test"](text, ctx))
+    except Exception as error:  # an isolation point: a heuristic is a plug-in, and its fault must not abort the plan
+        log(f"candidate heuristic {heuristic['id']} raised on {where}: {type(error).__name__}: {error}")
+        return False
+
+
+def language_candidates(f, log):
+    """The hits of the LANGUAGE_CANDIDATES of the file's language, none for a language without an
+    entry; a heuristic that raises on a line counts as no hit there and is logged (heuristic_hits)."""
+    heuristics = LANGUAGE_CANDIDATES.get(f["language"], [])
+    out = []
+    for h in (f["hunks"] if heuristics else []):
+        for i, ln in enumerate(h["lines"]):
+            ctx = heuristic_context(h["lines"], i)
+            out += [cand(c["id"], f, ln, c["rule_id"]) for c in heuristics
+                    if heuristic_hits(c, ln["text"], ctx, f"{f['path']}:{ln['no']}", log)]
+    return out
+
+
+def find_candidates(files, head_lines_by_path, log):
+    """The mechanical hits of every file: the language-neutral heuristics, and the language
+    heuristics of a file whose language has them."""
     out = []
     for f in files:
+        out += language_candidates(f, log)
         lines = head_lines_by_path.get(f["path"]) or []
         routines = routines_of(lines, f["language"]) if lines else []
         for h in f["hunks"]:
@@ -845,8 +965,12 @@ def find_candidates(files, head_lines_by_path):
     return out
 
 
-def cand(cid, f, ln):
-    return {"id": cid, "rule_id": CANDIDATE_RULE_IDS.get(cid) or None, "file": f["path"], "line": ln["no"],
+def cand(cid, f, ln, rule_id=None):
+    """One hit, tagged needs_verification. `rule_id` names the card owning its heuristic and
+    defaults to the CANDIDATE_RULE_IDS entry of a language-neutral one; an empty id is None."""
+    if rule_id is None:
+        rule_id = CANDIDATE_RULE_IDS.get(cid, "")
+    return {"id": cid, "rule_id": rule_id or None, "file": f["path"], "line": ln["no"],
             "text": ln["text"].strip(), "status": "needs_verification"}
 
 
@@ -872,6 +996,14 @@ def load_cards(cards_dirs, log):
     return cards
 
 
+def drop_meta_cards(cards, reason, log):
+    """The cards without the META ones, whose skip the log records with its reason."""
+    meta = [c["rule_id"] for c in cards if c["domain"] == META_DOMAIN]
+    if meta:
+        log(f"META cards {meta} not run: {reason}")
+    return [c for c in cards if c["domain"] != META_DOMAIN]
+
+
 def size_class(n):
     if n == 0:
         return None
@@ -884,10 +1016,14 @@ def size_class(n):
 
 def parse_args(argv):
     opts = {"diff_ref": None, "cards_dir": [], "path_filter": "", "repo": ".", "out_dir": "craft",
-            "max_job_lines": 400, "max_jobs": 96, "config": DEFAULT_CONFIG}
+            "meta": False, "max_job_lines": 400, "max_jobs": 96, "config": DEFAULT_CONFIG}
     i = 0
     while i < len(argv):
         a = argv[i]
+        if a == "--meta":
+            opts["meta"] = True
+            i += 1
+            continue
         if a.startswith("--") and i + 1 < len(argv):
             key = a[2:].replace("-", "_")
             if key not in opts:
@@ -924,8 +1060,21 @@ def build_plan(opts, log):
         if opts["path_filter"]:
             args.append(opts["path_filter"])
         files = parse_diff(git(repo, *args)) + untracked_records(repo, opts["path_filter"])
-    kept, skipped, head_lines = [], [], {}
+    config_path = os.path.join(repo, opts["config"])
+    config_rel = os.path.relpath(config_path, repo).replace(os.sep, "/")
+    config, config_text, body, invariants, modules = None, "", "", [], []
+    if os.path.isfile(config_path):
+        with open(config_path, encoding="utf-8") as handle:
+            config_text = handle.read()
+        config, body = parse_config(config_text)
+        invariants = parse_invariants(body)
+        modules = parse_modules(config)
+    kept, skipped, head_lines, config_diff = [], [], {}, None
     for f in files:
+        if f["path"] == config_rel:
+            config_diff = f
+            skipped.append({"path": f["path"], "reason": REVIEW_CONFIG})
+            continue
         if f["binary"]:
             skipped.append({"path": f["path"], "reason": "binary"})
             continue
@@ -946,15 +1095,7 @@ def build_plan(opts, log):
         f["signals"] = {"test_file": f["kind"] == "test", "added_file": f["status"] == "added", "duplicate_block": dup.get(f["path"], 0)}
         for h in f["hunks"]:
             h["signals"] = hunk_signals(head_lines.get(f["path"]), h, f["language"], f["kind"])
-    config_path = os.path.join(repo, opts["config"])
-    config, body, invariants, modules = None, "", [], []
-    if os.path.isfile(config_path):
-        with open(config_path, encoding="utf-8") as handle:
-            config, body = parse_config(handle.read())
-        invariants = parse_invariants(body)
-        modules = parse_modules(config)
-    config_rel = os.path.relpath(config_path, repo).replace(os.sep, "/")
-    config_changed = any(f["path"] == config_rel for f in files) or config_rel in [s["path"] for s in skipped]
+    config_changed = config_diff is not None
     assign_groups(files, modules)
     cards = load_cards(opts["cards_dir"], log)
     project_dir = os.path.join(repo, PROJECT_CARDS_DIR)
@@ -970,9 +1111,14 @@ def build_plan(opts, log):
                 rec["path"] = os.path.abspath(p)
                 cards.append(rec)
                 card_paths.append(os.path.relpath(p, repo).replace(os.sep, "/"))
-    jobs = build_jobs(cards, files, modules, opts["max_job_lines"], opts["max_jobs"], log) if files else []
+    meta_run = (config_changed or opts["meta"]) and config is not None
+    active = cards if meta_run else drop_meta_cards(
+        cards, "no config.md" if config is None else "config.md unchanged and --meta not passed", log)
+    config_files = [config_file_record(config_rel, config_text, config_diff)] if meta_run else []
+    jobs = build_jobs(active, files, modules, opts["max_job_lines"], opts["max_jobs"], log,
+                      config_files=config_files) if (files or config_files) else []
     slices = build_slices(files, log) if files else []
-    candidates = find_candidates(files, head_lines)
+    candidates = find_candidates(files, head_lines, log)
     dispatched = {j["rule_id"] for j in jobs} | {c["rule_id"] for c in candidates if c.get("rule_id")}
     languages = {}
     for f in files:
@@ -989,14 +1135,16 @@ def build_plan(opts, log):
             "config_path": config_rel if config is not None else None,
             "config_changed": config_changed,
             "config": config,
+            "config_file": config_files[0] if config_files else None,
         },
         "cards": [{k: v for k, v in c.items() if not k.startswith("_")} for c in cards if c["rule_id"] in dispatched],
         "jobs": jobs,
         "slices": slices,
         "candidates": candidates,
         "project_cards": {"cards": invariants, "card_paths": card_paths},
+        "meta_run": meta_run,
     }
-    if not files:
+    if not files and not jobs:
         log("No reviewable changes in this scope")
     signal_counts = {}
     for f in files:
@@ -1020,7 +1168,7 @@ def main(argv):
     with open(os.path.join(out_dir, "plan.log"), "w", encoding="utf-8") as handle:
         handle.write("\n".join(log.lines) + "\n")
     print("\n".join(log.lines))
-    return 2 if not plan["inventory"]["files"] else 0
+    return 2 if not plan["inventory"]["files"] and not plan["jobs"] else 0
 
 
 if __name__ == "__main__":

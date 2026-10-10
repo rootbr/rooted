@@ -7,8 +7,8 @@
   "plugins": [
     {
       "name": "code-quality",
-      "description": "Java code review and language-agnostic software-craft build-and-review from corpora of sourced rule cards — a deterministic pre-pass, a finder per triggered card, a skeptic per finding, a developer agent that designs and builds by the cards",
-      "version": "7.3.0",
+      "description": "Software-craft build-and-review from corpora of sourced rule cards — universal, Python and Java — a deterministic pre-pass, a finder per triggered card, a skeptic per finding, a developer agent that designs and builds by the cards",
+      "version": "8.0.0",
       "source": "./plugins/code-quality"
     },
     {

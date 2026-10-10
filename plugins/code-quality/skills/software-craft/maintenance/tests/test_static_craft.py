@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 """Unit tests for static-craft.py: hunk parsing in each fixture language, language
 detection and the deny-list, trigger and signal selection, every structural signal per
-language, slice merge and split, the job cap and its log, the working-tree mode, and
-the empty-diff case, plus end-to-end runs on a temporary git repository.
+language, the dispatch of a language card, slice merge and split, the job cap per corpus
+and for the META cards apart, and its log, the language-neutral and the Java candidates, the working-tree mode, the
+META cards on config.md, and the empty-diff case, plus end-to-end runs on a temporary
+git repository.
 
 Run:  python3 -m unittest discover -s maintenance/tests -p 'test_*.py'   (from the skill directory)
 """
@@ -14,6 +16,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
+from unittest import mock
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 SKILL = os.path.dirname(os.path.dirname(HERE))
@@ -203,9 +206,10 @@ SOURCES = {"java": ("src/Orders.java", JAVA), "python": ("src/orders.py", PYTHON
 
 
 def card(rule_id, domain, triggers, severity="major", scope="file", kind="mechanical"):
+    """A universal card's index record, as cardlib.read_card returns it for the craft-cards directory."""
     return {"rule_id": rule_id, "path": f"/cards/{rule_id.lower()}.md", "title": rule_id, "domain": domain,
             "step": ["implement"], "applies_to": ["universal"], "triggers": triggers, "scope": scope,
-            "check_kind": kind, "severity_default": severity}
+            "check_kind": kind, "severity_default": severity, "corpus": "craft-cards"}
 
 
 def fake_file(path, n_lines, text="x = y;", kind="source", language="python"):
@@ -381,9 +385,11 @@ class TriggerSelection(unittest.TestCase):
         self.assertEqual(jobs[0]["slice"]["files"][0]["hunks"], [0, 1])
 
 
-def python_card(rule_id, triggers, applies_to=("python",)):
-    rec = card(rule_id, "errors", triggers)
+def language_card(rule_id, triggers, applies_to, severity="major"):
+    """A card of the language corpus applies_to[0] names, from the directory that corpus ships in."""
+    rec = card(rule_id, "errors", triggers, severity)
     rec["applies_to"] = list(applies_to)
+    rec["corpus"] = f"craft-cards-{applies_to[0]}"
     return rec
 
 
@@ -399,16 +405,35 @@ class LanguageDispatch(unittest.TestCase):
         return [sf["path"] for j in jobs for sf in j["slice"]["files"]]
 
     def test_a_python_card_runs_on_python_files_only(self):
-        self.assertEqual(self.job_paths(python_card("PY-01", [r"print\("]), [self.py, self.ts, self.pyproject]),
+        self.assertEqual(self.job_paths(language_card("PY-01", [r"print\("], ("python",)), [self.py, self.ts, self.pyproject]),
                          ["src/app/cache.py"])
 
     def test_a_python_build_config_card_also_runs_on_build_files(self):
-        rec = python_card("PY-02", [r"print"], applies_to=("python", "build-config"))
+        rec = language_card("PY-02", [r"print"], ("python", "build-config"))
         self.assertEqual(self.job_paths(rec, [self.py, self.ts, self.pyproject]), ["src/app/cache.py", "pyproject.toml"])
 
     def test_a_universal_card_runs_on_every_language(self):
         self.assertEqual(self.job_paths(card("ERR-01", "errors", [r"print\("]), [self.py, self.ts]),
                          ["src/app/cache.py", "src/web/api.ts"])
+
+
+class JavaDispatch(unittest.TestCase):
+    def setUp(self):
+        self.java = fake_file("src/main/java/App.java", 2, "print(value);", language="java")
+        self.py = fake_file("src/app/cache.py", 2, "print(value)", language="python")
+        self.pom = fake_file("pom.xml", 1, "<print>value</print>", kind="build", language="xml")
+        sc.assign_groups([self.java, self.py, self.pom], [])
+
+    def job_paths(self, rec):
+        jobs = sc.build_jobs([rec], [self.java, self.py, self.pom], [], 400, 96, sc.Log())
+        return [sf["path"] for j in jobs for sf in j["slice"]["files"]]
+
+    def test_a_java_card_runs_on_java_files_only(self):
+        self.assertEqual(self.job_paths(language_card("JAVA-01", [r"print"], ("java",))), ["src/main/java/App.java"])
+
+    def test_a_java_build_config_card_also_runs_on_the_pom(self):
+        self.assertEqual(self.job_paths(language_card("JAVA-02", [r"print"], ("java", "build-config"))),
+                         ["src/main/java/App.java", "pom.xml"])
 
 
 class SlicesAndCap(unittest.TestCase):
@@ -469,6 +494,46 @@ class SlicesAndCap(unittest.TestCase):
         self.assertEqual(len(sc.build_jobs(cards, files, [], 400, 2, log)), 4)
         self.assertTrue(any("exceeded by 2" in l for l in log.lines))
 
+    def test_the_cap_holds_per_corpus(self):
+        files = [fake_file("src/d.py", 1, "bar();"), fake_file("src/App.java", 1, "bar();", language="java")]
+        sc.assign_groups(files, [])
+        cards = [card("CODE-01", "code", [r"bar\("], "suggestion"), card("CODE-02", "code", [r"bar\("], "suggestion"),
+                 language_card("JAVA-01", [r"bar\("], ("java",), "suggestion"),
+                 language_card("JAVA-02", [r"bar\("], ("java",), "suggestion")]
+        log = sc.Log()
+        jobs = sc.build_jobs(cards, files, [], 400, 2, log)
+        self.assertEqual([j["id"] for j in jobs], ["CODE-01:all", "CODE-02:all", "JAVA-01:all", "JAVA-02:all"])
+        self.assertEqual([line for line in log.lines if line.startswith("cap")], [])
+
+    def test_a_corpus_over_the_cap_is_merged_then_dropped_alone(self):
+        files = [fake_file(f"src/{d}/f.py", 300, "foo();") for d in ["a", "b", "c"]]
+        files += [fake_file("src/d.py", 1, "bar();"), fake_file("src/App.java", 1, "bar();", language="java")]
+        sc.assign_groups(files, [])
+        cards = [card("PRF-01", "performance", [r"foo\("]), card("CODE-01", "code", [r"bar\("], "suggestion"),
+                 card("CODE-02", "code", [r"bar\("], "minor"), language_card("JAVA-01", [r"bar\("], ("java",), "suggestion")]
+        log = sc.Log()
+        jobs = sc.build_jobs(cards, files, [], 400, 2, log)
+        self.assertEqual([j["id"] for j in jobs], ["PRF-01:all", "CODE-02:all", "JAVA-01:all"])
+        self.assertEqual([line for line in log.lines if line.startswith("cap")],
+                         ["cap 2 (craft-cards): merged 3 jobs of PRF-01 back into one",
+                          "cap 2 (craft-cards): dropped job CODE-01:all (suggestion, 2 lines)"])
+
+    def test_an_overflowing_corpus_keeps_every_meta_job_on_a_changed_config(self):
+        files = [fake_file(f"src/{d}/f.py", 300, "foo();") for d in ["a", "b", "c"]] + [fake_file("src/d.py", 1, "bar();")]
+        sc.assign_groups(files, [])
+        changed = {"status": "modified", "removed_lines": 0,
+                   "hunks": [{"start": 5, "base_start": 4, "lines": [{"no": 5, "text": "2. **No sleeps**: tests poll."}]}]}
+        config = sc.config_file_record(".claude/software-craft/config.md", "", changed)
+        cards = [card("PRF-01", "performance", [r"foo\("]), card("CODE-01", "code", [r"bar\("], "suggestion"),
+                 card("CODE-02", "code", [r"bar\("], "minor"), card("META-01", "meta", [], "minor"),
+                 card("META-02", "meta", [], "minor")]
+        log = sc.Log()
+        jobs = sc.build_jobs(cards, files, [], 400, 2, log, config_files=[config])
+        self.assertEqual([j["id"] for j in jobs], ["PRF-01:all", "CODE-02:all", "META-01:all", "META-02:all"])
+        self.assertEqual([line for line in log.lines if line.startswith("cap")],
+                         ["cap 2 (craft-cards): merged 3 jobs of PRF-01 back into one",
+                          "cap 2 (craft-cards): dropped job CODE-01:all (suggestion, 1 lines)"])
+
 
 class ConfigParsing(unittest.TestCase):
     def test_frontmatter_modules_and_invariants(self):
@@ -493,20 +558,64 @@ class Candidates(unittest.TestCase):
                 "    render(a, True)", "    try:", "        a()", "    except Exception:", "        pass", "    # x = 1", "    # y = f(2)", "    return []  # TODO later"]
         f = {"path": "src/a.py", "language": "python", "kind": "source",
              "hunks": [{"start": 1, "lines": [{"no": i + 1, "text": t} for i, t in enumerate(text)]}]}
-        ids = [(c["id"], c["line"]) for c in sc.find_candidates([f], {"src/a.py": text})]
+        ids = [(c["id"], c["line"]) for c in sc.find_candidates([f], {"src/a.py": text}, sc.Log())]
         self.assertIn(("null-for-collection", 3), ids)
         self.assertIn(("print-in-production", 4), ids)
         self.assertIn(("boolean-argument", 5), ids)
         self.assertIn(("empty-handler", 8), ids)
         self.assertIn(("commented-out-code", 10), ids)
         self.assertIn(("todo-marker", 12), ids)
-        self.assertTrue(all(c["status"] == "needs_verification" for c in sc.find_candidates([f], {"src/a.py": text})))
+        self.assertTrue(all(c["status"] == "needs_verification" for c in sc.find_candidates([f], {"src/a.py": text}, sc.Log())))
+
+
+JAVA_HITS = ['DateFormat format = new SimpleDateFormat("yyyy-MM-dd");', "error.printStackTrace();",
+             "try { run(); } catch (Exception e) {}"]
+JAVA_IDS = {c["id"] for c in sc.LANGUAGE_CANDIDATES["java"]}
+
+
+class LanguageCandidates(unittest.TestCase):
+    def candidates(self, path, language, log):
+        f = {"path": path, "language": language, "kind": "source",
+             "hunks": [{"start": 1, "lines": [{"no": i + 1, "text": t} for i, t in enumerate(JAVA_HITS)]}]}
+        return sc.find_candidates([f], {path: JAVA_HITS}, log)
+
+    def test_java_heuristics_name_their_hits_in_a_java_file(self):
+        found = [(c["id"], c["line"], c["rule_id"]) for c in self.candidates("src/App.java", "java", sc.Log()) if c["id"] in JAVA_IDS]
+        self.assertEqual(found, [("simple-date-format", 1, "JAVA-116"), ("print-stack-trace", 2, "JAVA-183"), ("empty-catch", 3, "JAVA-183")])
+
+    def test_java_heuristics_skip_a_file_of_another_language(self):
+        ids = {c["id"] for c in self.candidates("src/app.py", "python", sc.Log())}
+        self.assertEqual(ids & JAVA_IDS, set())
+
+    def test_a_heuristic_that_raises_counts_as_no_hit_and_is_logged(self):
+        log = sc.Log()
+        boom = {"id": "boom", "rule_id": "", "test": lambda line, ctx: 1 / 0}
+        with mock.patch.dict(sc.LANGUAGE_CANDIDATES, {"java": [boom]}):
+            found = [c for c in self.candidates("src/App.java", "java", log) if c["id"] == "boom"]
+        self.assertEqual(found, [])
+        self.assertIn("candidate heuristic boom raised on src/App.java:1: ZeroDivisionError: division by zero", log.lines)
+
+
+def run_plan(repo, cards_args, *extra):
+    """Run the pre-pass on the repository; return its exit status, plan.json and plan.log."""
+    rc = sc.main([*cards_args, "--repo", repo, *extra])
+    with open(os.path.join(repo, "craft", "plan.json")) as fh:
+        plan = json.load(fh)
+    with open(os.path.join(repo, "craft", "plan.log")) as fh:
+        log = fh.read()
+    return rc, plan, log
+
+
+def commit_all(repo, message):
+    """Stage every change in the repository and commit it as the test author."""
+    env = {"GIT_AUTHOR_NAME": "t", "GIT_AUTHOR_EMAIL": "t@x", "GIT_COMMITTER_NAME": "t", "GIT_COMMITTER_EMAIL": "t@x",
+           "PATH": os.environ["PATH"], "HOME": repo}
+    subprocess.run(["git", "-C", repo, "add", "."], check=True, env=env)
+    subprocess.run(["git", "-C", repo, "commit", "-q", "-m", message], check=True, env=env)
 
 
 def make_repo(tmp, with_change=True, leave_uncommitted=False):
     subprocess.run(["git", "init", "-q", "-b", "main", tmp], check=True)
-    env = {"GIT_AUTHOR_NAME": "t", "GIT_AUTHOR_EMAIL": "t@x", "GIT_COMMITTER_NAME": "t", "GIT_COMMITTER_EMAIL": "t@x",
-           "PATH": os.environ["PATH"], "HOME": tmp}
     src = os.path.join(tmp, "src", "app")
     os.makedirs(src)
     os.makedirs(os.path.join(tmp, ".claude", "software-craft"))
@@ -516,8 +625,7 @@ def make_repo(tmp, with_change=True, leave_uncommitted=False):
         h.write(CONFIG)
     with open(os.path.join(tmp, "vendor", "lib.js") if os.makedirs(os.path.join(tmp, "vendor"), exist_ok=True) is None else "", "w") as h:
         h.write("var x = 1;\n")
-    subprocess.run(["git", "-C", tmp, "add", "."], check=True, env=env)
-    subprocess.run(["git", "-C", tmp, "commit", "-q", "-m", "base"], check=True, env=env)
+    commit_all(tmp, "base")
     if with_change:
         with open(os.path.join(src, "cache.py"), "w") as h:
             h.write("class Cache:\n    def get(self, key):\n        if key not in self.store: self.store[key] = load(key)\n        return self.store[key]\n")
@@ -529,8 +637,7 @@ def make_repo(tmp, with_change=True, leave_uncommitted=False):
         with open(os.path.join(tmp, "README.md"), "w") as h:
             h.write("docs only\n")
     if not leave_uncommitted:
-        subprocess.run(["git", "-C", tmp, "add", "."], check=True, env=env)
-        subprocess.run(["git", "-C", tmp, "commit", "-q", "-m", "head"], check=True, env=env)
+        commit_all(tmp, "head")
 
 
 class EndToEnd(unittest.TestCase):
@@ -549,12 +656,7 @@ class EndToEnd(unittest.TestCase):
         shutil.rmtree(self.tmp)
 
     def plan_of(self, repo, *extra):
-        rc = sc.main(["--cards-dir", self.cards, "--repo", repo, *extra])
-        with open(os.path.join(repo, "craft", "plan.json")) as fh:
-            plan = json.load(fh)
-        with open(os.path.join(repo, "craft", "plan.log")) as fh:
-            log = fh.read()
-        return rc, plan, log
+        return run_plan(repo, ["--cards-dir", self.cards], *extra)
 
     def test_committed_mode(self):
         repo = os.path.join(self.tmp, "repo")
@@ -611,6 +713,14 @@ class EndToEnd(unittest.TestCase):
         python_job = next(j for j in plan["jobs"] if j["rule_id"] == "PY-01")
         self.assertEqual([f["path"] for f in python_job["slice"]["files"]], ["src/app/cache.py"])
 
+    def test_each_card_records_the_directory_it_comes_from(self):
+        repo = os.path.join(self.tmp, "repo6")
+        make_repo(repo)
+        python_dir = self.write_python_cards()
+        _rc, plan, _log = self.plan_of(repo, "--cards-dir", python_dir, "--diff-ref", "HEAD~1..HEAD")
+        self.assertEqual({c["rule_id"]: c["corpus"] for c in plan["cards"]},
+                         {"CODE-07": "cards", "DSN-01": "cards", "PY-01": "cards-python"})
+
     def test_a_rule_id_in_two_cards_dirs_stops_the_run(self):
         repo = os.path.join(self.tmp, "repo5")
         make_repo(repo)
@@ -632,6 +742,111 @@ class EndToEnd(unittest.TestCase):
         self.assertIsNone(plan["inventory"]["size_class"])
         self.assertEqual(plan["jobs"], [])
         self.assertIn("No reviewable changes in this scope", log)
+
+
+META_CARD = ("---\ntitle: M\nrule_id: META-01\ndomain: meta\nstep: [review]\napplies_to: [prose]\n"
+             "triggers: []\nscope: file\ncheck_kind: semantic\nseverity_default: minor\n---\n# M\n")
+DOC_CARD = ("---\ntitle: D\nrule_id: DOC-01\ndomain: docs\nstep: [document]\napplies_to: [universal]\n"
+            "triggers: []\nscope: file\ncheck_kind: semantic\nseverity_default: suggestion\n---\n# D\n")
+CONFIG_REL = ".claude/software-craft/config.md"
+ADDED_INVARIANT = "4. **No sleeps in tests**: a test polls with a deadline. Violation: a flaky build."
+ADDED_LINE_NO = len(CONFIG.splitlines()) + 1
+
+
+def append_invariant(repo):
+    with open(os.path.join(repo, CONFIG_REL), "a", encoding="utf-8") as h:
+        h.write(ADDED_INVARIANT + "\n")
+
+
+class MetaRun(unittest.TestCase):
+    """The META cards on config.md, beside a universal card whose empty trigger list matches every
+    reviewed file, so a config.md treated as a reviewed file would show up in its job."""
+
+    def setUp(self):
+        self.tmp = tempfile.mkdtemp()
+        self.cards = os.path.join(self.tmp, "cards")
+        os.makedirs(self.cards)
+        for name, text in (("meta-01--x.md", META_CARD), ("doc-01--x.md", DOC_CARD)):
+            with open(os.path.join(self.cards, name), "w", encoding="utf-8") as h:
+                h.write(text)
+        self.repo = os.path.join(self.tmp, "repo")
+
+    def tearDown(self):
+        shutil.rmtree(self.tmp)
+
+    def plan_of(self, *extra):
+        return run_plan(self.repo, ["--cards-dir", self.cards], *extra)
+
+    def slice_paths(self, plan, rule_id):
+        return [[f["path"] for f in j["slice"]["files"]] for j in plan["jobs"] if j["rule_id"] == rule_id]
+
+    def test_a_committed_config_change_is_read_by_the_meta_cards_alone(self):
+        make_repo(self.repo)
+        append_invariant(self.repo)
+        commit_all(self.repo, "config")
+        rc, plan, _log = self.plan_of("--diff-ref", "HEAD~2..HEAD")
+        self.assertEqual(rc, 0)
+        record = plan["inventory"]["config_file"]
+        self.assertIn({"path": CONFIG_REL, "reason": "review config"}, plan["inventory"]["skipped"])
+        self.assertEqual({k: v for k, v in record.items() if k != "hunks"},
+                         {"path": CONFIG_REL, "language": "markdown", "kind": "config", "status": "modified",
+                          "group": "(config)", "signals": {}, "added_lines": 1, "removed_lines": 0})
+        self.assertEqual([(h["lines"], h["signals"]) for h in record["hunks"]],
+                         [([{"no": ADDED_LINE_NO, "text": ADDED_INVARIANT}], {})])
+        self.assertTrue(plan["meta_run"])
+        self.assertEqual(self.slice_paths(plan, "META-01"), [[CONFIG_REL]])
+        self.assertEqual(self.slice_paths(plan, "DOC-01"), [["src/app/cache.py", "src/app/new_module.go"]])
+
+    def test_an_uncommitted_config_edit_is_read_by_the_meta_cards_alone(self):
+        make_repo(self.repo, leave_uncommitted=True)
+        append_invariant(self.repo)
+        rc, plan, _log = self.plan_of()
+        self.assertEqual(rc, 0)
+        self.assertEqual(plan["inventory"]["mode"], "worktree")
+        self.assertIn({"path": CONFIG_REL, "reason": "review config"}, plan["inventory"]["skipped"])
+        self.assertEqual([h["lines"] for h in plan["inventory"]["config_file"]["hunks"]],
+                         [[{"no": ADDED_LINE_NO, "text": ADDED_INVARIANT}]])
+        self.assertTrue(plan["meta_run"])
+        self.assertEqual(self.slice_paths(plan, "META-01"), [[CONFIG_REL]])
+        self.assertEqual(self.slice_paths(plan, "DOC-01"), [["src/app/cache.py", "src/app/new_module.go"]])
+
+    def test_a_diff_of_config_md_alone_plans_meta_jobs_and_no_logic_slice(self):
+        make_repo(self.repo)
+        append_invariant(self.repo)
+        commit_all(self.repo, "config")
+        rc, plan, log = self.plan_of("--diff-ref", "HEAD~1..HEAD")
+        self.assertEqual(rc, 0)
+        self.assertEqual(plan["inventory"]["files"], [])
+        self.assertEqual([j["id"] for j in plan["jobs"]], ["META-01:all"])
+        self.assertEqual(plan["slices"], [])
+        self.assertNotIn("No reviewable changes in this scope", log)
+
+    def test_the_meta_flag_reads_an_unchanged_config_whole(self):
+        make_repo(self.repo)
+        rc, plan, _log = self.plan_of("--diff-ref", "HEAD~1..HEAD", "--meta")
+        self.assertEqual(rc, 0)
+        self.assertTrue(plan["meta_run"])
+        record = plan["inventory"]["config_file"]
+        self.assertEqual(record["status"], "unchanged")
+        self.assertEqual([(h["start"], h["lines"][-1]) for h in record["hunks"]],
+                         [(1, {"no": ADDED_LINE_NO - 1, "text": CONFIG.splitlines()[-1]})])
+        self.assertEqual(self.slice_paths(plan, "META-01"), [[CONFIG_REL]])
+
+    def test_an_unchanged_config_without_the_flag_runs_no_meta_card(self):
+        make_repo(self.repo)
+        rc, plan, log = self.plan_of("--diff-ref", "HEAD~1..HEAD")
+        self.assertEqual(rc, 0)
+        self.assertFalse(plan["meta_run"])
+        self.assertIsNone(plan["inventory"]["config_file"])
+        self.assertEqual(self.slice_paths(plan, "META-01"), [])
+        self.assertIn("META cards ['META-01'] not run: config.md unchanged and --meta not passed", log)
+
+    def test_the_meta_flag_without_a_config_runs_no_meta_card(self):
+        make_repo(self.repo)
+        rc, plan, log = self.plan_of("--diff-ref", "HEAD~1..HEAD", "--meta", "--config", ".claude/software-craft/absent.md")
+        self.assertEqual(rc, 0)
+        self.assertFalse(plan["meta_run"])
+        self.assertIn("META cards ['META-01'] not run: no config.md", log)
 
 
 if __name__ == "__main__":
