@@ -4,7 +4,7 @@ Build-and-review skill for Claude Code; paths in this file are relative to this 
 
 ## What it does
 
-Eight phases — **Scope** → **Context** → **Design** → **Build** → **Pre-pass** → **Workflow** → **Fix round** → **Follow-ups and report** — with one confirmation: on a build run the scope summary with the design brief at the end of Design, on a review-only run the scope summary at the end of Scope. A review-only run skips Design, Build and the Fix round.
+Nine phases — **Scope** → **Context** → **Design** → **Build** → **Pre-pass** → **Workflow** → **Follow-ups** → **Fix round** → **Report** — with one confirmation: on a build run the scope summary with the design brief at the end of Design, on a review-only run the scope summary at the end of Scope. A review-only run skips Design, Build and the Fix round.
 
 A build run names its build model — `fable` for a task that adds or changes a boundary, a data flow across modules, a failure contract, concurrency or a project invariant, `opus` otherwise, or the one the task names. The design dispatch runs on it at `xhigh`; the build at `high` on `fable` and `xhigh` on `opus`, and at `opus` `high` when every step of the brief is mechanical; a dispatch on `fable` that errors repeats once on `opus`. The review runs on `opus` at every tier, so a change built on Fable is judged by another model.
 
@@ -17,7 +17,7 @@ A build run names its build model — `fable` for a task that adds or changes a 
 | Find | one finder per (card by slice) at the card's tier, one logic pass per slice, one finder per project invariant per slice | `scripts/craft-review-workflow.js`, `plugins/code-quality/agents/craft-finder.md` |
 | Aggregate | deterministic: duplicates dropped, spans grouped, compatible fixes folded, conflicts resolved by domain priority | `scripts/craft-review-workflow.js` |
 | Verify | one skeptic per finding tries to refute it with something it opened and calibrates severity; a rejected Critical or Major gets a second skeptic and an arbiter | `scripts/craft-review-workflow.js`, `plugins/code-quality/agents/craft-verifier.md` |
-| Fix round | confirmed findings go back to the developer once, with the same brief; the pre-pass and the verify stage run again on the fix diff | `SKILL.md` §Phase 7 |
+| Fix round | confirmed findings go back to the developer once, with the same brief; the pre-pass and the verify stage run again on the fix diff | `SKILL.md` §Phase 8 |
 | Report | `render-reports.py` writes the review report and the rejection report | `scripts/render-reports.py` |
 
 ## Two consumers of one card

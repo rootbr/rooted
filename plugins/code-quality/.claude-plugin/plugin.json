@@ -1,6 +1,6 @@
 {
   "name": "code-quality",
-  "version": "8.0.0",
+  "version": "8.0.1",
   "description": "Software-craft build-and-review from corpora of sourced rule cards — universal, Python and Java — a deterministic pre-pass, a finder per triggered card, a skeptic per finding, a developer agent that designs and builds by the cards",
   "author": {
     "name": "Aleksei Sheifler",

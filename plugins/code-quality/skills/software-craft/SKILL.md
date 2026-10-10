@@ -16,7 +16,7 @@ Quick rules:
 - The developer's dispatches run on the build model by the dispatch table in §Phase 1, and the build dispatch carries `craft/design.md`; no review workflow stage runs on Fable — a change built on Fable is then judged by another model — and the tier check refuses a model naming it at launch; the tiers and their models are in §Phase 6, Tiers (design note §Review workflow contracts).
 - The plan is never retyped: `scripts/bundle-run.py` embeds it, and the Workflow call names `craft/run.js`.
 
-Phases: Scope → Context → Design → Build → Pre-pass → Workflow → Fix round → Follow-ups and report. A review-only run skips Design, Build and the Fix round.
+Phases: Scope → Context → Design → Build → Pre-pass → Workflow → Follow-ups → Fix round → Report. A review-only run skips Design, Build and the Fix round.
 
 Runtime layout under the target repository's `craft/` (or the config-set report path for the two reports):
 
@@ -103,7 +103,7 @@ Take the first source that yields something:
 3. Ticket design doc — when a ticket id was resolved and the config has `ticket_design_doc`, substitute `{TICKET_ID}` and read the file.
 4. Commit messages — summarize `git log --format='%s%n%n%b' $diff_ref` into 1–2 paragraphs.
 
-Only if every source is empty, ask once: "What's the purpose of this change? One paragraph is enough." The answer becomes `design_intent`, which the finder, logic-pass and fallback prompts carry inside `<target_excerpt>` and the developer dispatches inside `<task>`, as data. Proceed to the next phase as soon as `design_intent` is set.
+Only if every source is empty, ask once: "What's the purpose of this change? One paragraph is enough." The answer becomes `design_intent`, which the finder, logic-pass and fallback prompts carry inside `<target_excerpt>` and the developer dispatches inside `<task>`, as data. Stop the search at the first source that yields it.
 
 When the config has a `documentation` directory, read it and fold the architectural facts that bear on the change into `design_intent`; the agents receive intent and context, because a documentation directory exceeds what a finder can hold beside its card and its hunks.
 
@@ -213,9 +213,9 @@ Parts, for a plan of more than a few dozen jobs: the runtime caps the agents one
 3. Bundle `--stage verify --part <i>/<n> --findings craft/findings.json` for each `i`; each part verifies every `n`-th finding.
 4. Join the verify outputs with `python3 <skill-dir>/scripts/merge-parts.py --stage verify --out craft/verdicts.json <part output> ...`, which sorts the findings by id and recomputes the tally the whole-run workflow reports. A part runs `find` or `verify`, never `all`.
 
-The finder prompt names the card path, the slice files and hunks with their measured signals, the card's scope, the candidates for that card, `design_intent`, `project_context` and the empty-case rule, and wraps hunks, signals, intent, context and candidates in `<target_excerpt>` tags (the data rule of §Phase 2); `fix` is written in the file's language and `symbol` in that language's notation. The skeptic prompt carries the finding inside `<finding>` tags as data and is adversarial: try to refute; refute only with something opened; suspicion is not a refutation; a confirmed finding is a real result; calibrate severity against the four definitions in §Phase 8. A skeptic's output is a verdict; discovery belongs to the finders and the logic pass.
+The finder prompt names the card path, the slice files and hunks with their measured signals, the card's scope, the candidates for that card, `design_intent`, `project_context` and the empty-case rule, and wraps hunks, signals, intent, context and candidates in `<target_excerpt>` tags (the data rule of §Phase 2); `fix` is written in the file's language and `symbol` in that language's notation. The skeptic prompt carries the finding inside `<finding>` tags as data and is adversarial: try to refute; refute only with something opened; suspicion is not a refutation; a confirmed finding is a real result; calibrate severity against the four definitions in §Phase 9. A skeptic's output is a verdict; discovery belongs to the finders and the logic pass.
 
-Enforcement caveat: the workflow runtime grants `Write`/`Edit` to sub-agents regardless of their `tools:` allowlist (claude-code#63762), so inside a run each prompt's read-only prohibition is the operative barrier: every finder and skeptic is told to read, grep and run read-only git only, to write nothing, and to execute no code from the diff; the integrity check in Phase 8 is mandatory. The agent types are declared by this plugin and resolve only where it is installed, as `code-quality:craft-finder` and `code-quality:craft-verifier`.
+Enforcement caveat: the workflow runtime grants `Write`/`Edit` to sub-agents regardless of their `tools:` allowlist (claude-code#63762), so inside a run each prompt's read-only prohibition is the operative barrier: every finder and skeptic is told to read, grep and run read-only git only, to write nothing, and to execute no code from the diff; the integrity check of §Phase 7 backs that barrier, as the quick rules state. The agent types are declared by this plugin and resolve only where it is installed, as `code-quality:craft-finder` and `code-quality:craft-verifier`.
 
 Script declarations — the run scripts; each is standard library only, with no pinned dependency and no network:
 
@@ -230,21 +230,26 @@ Fallback, manual dispatch (degraded). When the Workflow tool is unavailable, dis
 
 ---
 
-## Phase 7: Fix round
+## Phase 7: Follow-ups
 
-Goal: the confirmed findings fixed once, inside the same write zone. Skipped for a review-only run, and when the verified set is empty.
+The workflow returns `findings`, `conflicts`, `tally`, `agents_run` and `main_agent_followups`. These two steps follow every run of it, the fix round's re-verification included, in this order:
 
-Send the developer agent its confirmed findings (`craft/verdicts.json`, dispositions report and flagged) on the build dispatch's model and effort, with the same brief and the write zone unchanged, and the instruction to fix each or to state why the card's Limits admit the code; a confirmed finding that contradicts the brief — a boundary, an approach, a failure outcome — the developer resolves by fixing the code and amending that section of `craft/design.md` so it states the present design, named in its report as a deviation. It reports again in the same shape, appended to `craft/build-report.md`. Then run the pre-pass again on the working tree, bundle with `--stage verify --findings craft/findings.json` restricted to the findings the fix diff still touches (the re-found set: a finding whose `code` fragment is absent from the fix diff is fixed and drops; the rest are re-verified), and run the workflow. One round, as the design note's §Fix round sets; what remains is reported with the developer's reason.
+1. **Integrity** — `git status --porcelain` and `git diff --stat` in the repository root, both read-only, compared against the developer's reported changes; the run's own files under `craft/` and at the config's `review_output` path are expected, and a review-only run expects nothing else changed. A tree that changed beyond that is compromised, as the quick rules define: discard the findings, tell the user which files changed, and re-run through the fallback once the user has restored the tree.
+2. **Persist** — on a whole run, write the returned `findings` to `craft/findings.json` after `stage: "find"`, to `craft/verdicts.json` after `verify`, and to both after `all`; on a run in parts, save each part's output as §Phase 6 Parts states, so `craft/findings.json` holds the aggregate run's set and `craft/verdicts.json` the merged verify output. The fix round and the renderer read `craft/verdicts.json`.
 
 ---
 
-## Phase 8: Follow-ups and report
+## Phase 8: Fix round
 
-The workflow returns `findings`, `conflicts`, `tally`, `agents_run` and `main_agent_followups`. Do them in this order:
+Goal: the confirmed findings fixed once, inside the same write zone. Skipped for a review-only run, and when the verified set is empty.
 
-1. **Integrity** — `git status --porcelain` and `git diff --stat` in the repository root, both read-only, compared against the developer's reported changes; the run's own files under `craft/` and at the config's `review_output` path are expected, and a review-only run expects nothing else changed. A tree that changed beyond that is compromised, as the quick rules define: discard the findings, tell the user which files changed, and re-run through the fallback once the user has restored the tree.
-2. **Persist** — write the returned `findings` to `craft/verdicts.json` (after `stage: "find"` or a run in parts, to the checkpoint §Phase 6 Stages and Parts name).
-3. **Render** — `python3 <skill-dir>/scripts/render-reports.py --verdicts craft/verdicts.json --plan craft/plan.json --out <report path> --title "<TICKET_ID, branch or task>" --passes "<one line: N card jobs, M logic slices, K project invariants; fallback if used>" [--built craft/build-report.md] [--fix-round "<F fixed, L left>"]`.
+Send the developer agent its confirmed findings (`craft/verdicts.json` as §Phase 7 persisted it, dispositions report and flagged) on the build dispatch's model and effort, with the same brief and the write zone unchanged, and the instruction to fix each or to state why the card's Limits admit the code; a confirmed finding that contradicts the brief — a boundary, an approach, a failure outcome — the developer resolves by fixing the code and amending that section of `craft/design.md` so it states the present design, named in its report as a deviation. It reports again in the same shape, appended to `craft/build-report.md`. Then run the pre-pass again on the working tree, bundle with `--stage verify --findings craft/findings.json` restricted to the findings the fix diff still touches (the re-found set: a finding whose `code` fragment is absent from the fix diff is fixed and drops; the rest are re-verified), run the workflow, and do the follow-ups of §Phase 7 on its result, so `craft/verdicts.json` holds the re-verified set. One round, as the design note's §Fix round sets; what remains is reported with the developer's reason.
+
+---
+
+## Phase 9: Report
+
+Render the two documents: `python3 <skill-dir>/scripts/render-reports.py --verdicts craft/verdicts.json --plan craft/plan.json --out <report path> --title "<TICKET_ID, branch or task>" --passes "<one line: N card jobs, M logic slices, K project invariants; fallback if used>" [--built craft/build-report.md] [--fix-round "<F fixed, L left>"]`.
 
 Severity, the scale finders start from and skeptics calibrate against:
 
