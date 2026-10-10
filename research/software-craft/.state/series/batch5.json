@@ -141,7 +141,7 @@
      "task": "wyf2v8m6p",
      "wf": "wf_1feb7b9d-aa2",
      "launched": "2026-10-10T05:13 UTC",
-     "status": "running",
+     "status": "done 2026-10-10T05:23 UTC: 2 agents, 210,384 sub-agent tokens, 1 card in its output (TOOL-11), 0 pending",
      "bundle": "cont/runtime-configuration/r2c/continue-runtime-configuration-round2-1of1.js (research-continue.py --round 2 --skip-fixed --skip-carded): the one rule whose fix2 failed, configuration-change-tested-with-code"
     }
    ]
