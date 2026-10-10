@@ -38,15 +38,3 @@ Grep the hunk for assignments to self.<name> and for setattr(self, ...) inside m
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PY-133`, severity minor, `file`, `symbol`, `code` = the assignment of the attribute outside the attribute-defining methods, `fix` = an assignment of the attribute to a placeholder in `__init__`, such as `self.is_registered = False`, with the later method keeping its reassignment, `rationale` = that the attribute does not exist, and a read raises AttributeError, until the assigning method has run).
-
-## Source
-- Pylint attribute-defined-outside-init (W0201) (pylint-dev/pylint pylint/checkers/classes/class_checker.py) — 'Used when an instance attribute is defined outside the __init__ method.' (fetched)
-- pylint-dev/pylint class_checker.py, option defining-attr-methods and the W0201 check (https://raw.githubusercontent.com/pylint-dev/pylint/main/pylint/checkers/classes/class_checker.py) — '"__init__", "__new__", "setUp", "asyncSetUp", "__post_init__",' (fetched)
-- pylint-dev/pylint class_checker.py, option defining-attr-methods and the W0201 check (https://raw.githubusercontent.com/pylint-dev/pylint/main/pylint/checkers/classes/class_checker.py) — 'or if we have the attribute defined in a setter.' (fetched)
-- pylint-dev/pylint class_checker.py, option defining-attr-methods and the W0201 check (https://raw.githubusercontent.com/pylint-dev/pylint/main/pylint/checkers/classes/class_checker.py) — 'check attribute is defined as a class attribute' (fetched)
-- pylint-dev/pylint class_checker.py, option defining-attr-methods and the W0201 check (https://raw.githubusercontent.com/pylint-dev/pylint/main/pylint/checkers/classes/class_checker.py) — 'if self._defined_in_parent_init(cnode, attr, defining_methods):' (fetched)
-- pylint-dev/pylint class_checker.py, option defining-attr-methods and the W0201 check (https://raw.githubusercontent.com/pylint-dev/pylint/main/pylint/checkers/classes/class_checker.py) — 'If the attribute was set by a call made in any of the defining' (fetched)
-- Pylint attribute-defined-outside-init (W0201) (pylint-dev/pylint doc/data/messages/a/attribute-defined-outside-init/good.py) — 'self.is_registered = False' (fetched)
-- CPython Doc/tutorial/classes.rst §Instance Objects (https://raw.githubusercontent.com/python/cpython/main/Doc/tutorial/classes.rst) — 'Data attributes need not be declared; like local variables, they spring into existence when they are first assigned to.' (fetched)
-- CPython Doc/reference/expressions.rst §Attribute references (https://raw.githubusercontent.com/python/cpython/main/Doc/reference/expressions.rst) — 'The :meth:`!__getattribute__` method is called first and either returns a value or raises :exc:`AttributeError` if the attribute is not available.' (fetched)
-- CPython Doc/reference/expressions.rst §Attribute references (https://raw.githubusercontent.com/python/cpython/main/Doc/reference/expressions.rst) — 'If an :exc:`AttributeError` is raised and the object has a :meth:`!__getattr__` method, that method is called as a fallback.' (fetched)

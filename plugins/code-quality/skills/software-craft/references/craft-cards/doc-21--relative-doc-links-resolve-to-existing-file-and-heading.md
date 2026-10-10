@@ -39,11 +39,3 @@ Grep the hunk for relative links and cross-references in documents and for files
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: DOC-21`, severity minor, `file`, `symbol`, `code` = the link or cross-reference verbatim from the file that holds it, `fix` = the link pointed at the target's current path and heading, or, when the change deletes the target and leaves no successor, the link removed, in the markup of the file that holds it, `rationale` = the file, heading or target the link names and the tree lacks).
-
-## Source
-- DOI 10.1109/ICSE.2019.00122 (ICSE 2019), replication package figure taxonomy-more-numbers.png, Information Content (What) > Up-to-dateness (fetched): "Up-to-dateness 190 [...] Outdated/Obsolete references 37 [...] Broken link 29" (transcribed from the figure).
-- DOI 10.1145/3377811.3380405 (ICSE 2020), Figure 2, Up-to-dateness (fetched): "Outdated/Obsolete references 64%"; legend: "“% important” reports the percentage of surveyed practitioners that indicated the related issue as an important one."
-- markdownlint rule MD051 link-fragments, doc/md051.md and README 'Configuration' (fetched): "This rule is triggered when a link fragment does not match any of the fragments that are automatically generated for headings in a document"; "any HTML tag with an `id` attribute or an `a` tag with a `name` attribute can be used to define a fragment"; `ignored_pattern`: "Pattern for ignoring additional fragments"; "All rules are enabled by default."
-- remark-validate-links, readme.md (fetched): "check that markdown links and images point to existing local files and headings in a Git repo"; "Links to headings in other markdown documents (`examples/foo.md#hello`) and links to files (`license` or `index.js`) are also checked."; "This plugin does not check external URLs".
-- Sphinx, doc/usage/configuration.rst, confvals nitpicky and nitpick_ignore (fetched): "In nitpicky mode, Sphinx will warn about *all* references where the target cannot be found."; "tuples that should be ignored when generating warnings".
-- Caveat: the taxonomy counts broken links without separating repository-relative links from external URLs, so its numbers size the issue class rather than the relative-link share.

@@ -31,6 +31,3 @@ On the triggered hunk find each repository lookup by an id that came from a requ
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: SEC-21`, severity critical, `file`, `symbol`, `code` = the lookup and the operation quoted verbatim from the diff, `fix` = the owner-scoped query or the ownership check before use, `rationale` naming the object type and the identifier a user can change).
-
-## Source
-OWASP Authorization Cheat Sheet, "Ensure Lookup IDs are Not Accessible Even When Guessed or Cannot Be Tampered With" — the `acct_id` example; "A user should not be able to access a resource they do not have permissions simply because they are able to guess and manipulate that object's identifier"; CWE-639, Authorization Bypass Through User-Controlled Key. OWASP Insecure Direct Object Reference Prevention Cheat Sheet, "Mitigation" — "implement access control checks for each object that users try to access... determine the currently authenticated user from session information". OWASP ASVS 5.0 requirement 8.2.2.

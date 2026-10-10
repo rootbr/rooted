@@ -35,6 +35,3 @@ On the triggered hunk find each added `@Deprecated`. Check for the `since` eleme
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: REL-27`, severity suggestion, `file`, `symbol`, `code` = the `@Deprecated` declaration quoted verbatim from the diff, `fix` = `@Deprecated(since)` with a `@deprecated` tag linking the replacement, and `forRemoval = true` where removal is announced, `rationale` naming what the caller cannot learn from the bare annotation).
-
-## Source
-`java.lang.Deprecated` Javadoc, Java SE 21 — "It is strongly recommended that the reason for deprecating a program element be explained in the documentation, using the @deprecated javadoc tag. The documentation should also suggest and link to a recommended replacement API, if applicable. A replacement API often has subtly different semantics, so such issues should be discussed as well"; "It is recommended that a since value be provided with all newly annotated program elements"; `forRemoval` — "A value of true indicates intent to remove the annotated program element in a future version"; "The @Deprecated annotation should always be present if the @deprecated javadoc tag is present, and vice-versa". JEP 277 "Enhanced Deprecation" (unfetched; the Javadoc above is its normative form).

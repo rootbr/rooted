@@ -33,6 +33,3 @@ On the triggered hunk find each field initialized or assigned with an object tha
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: REL-28`, severity major, `file`, `symbol`, `code` = the field initialization quoted verbatim from the diff, `fix` = a `@PreDestroy` method that closes or deregisters the resource, `rationale` naming the socket, thread or listener that outlives the bean).
-
-## Source
-`jakarta.annotation.PreDestroy` Javadoc (`jakartaee/common-annotations-api`) — "The PreDestroy annotation is used on a method as a callback notification to signal that the instance is in the process of being removed by the container. The method annotated with PreDestroy is typically used to release resources that it has been holding". Spring Framework reference, "Customizing the Nature of a Bean", "Destruction Callbacks" — `@PreDestroy`, `DisposableBean`, `destroy-method`; "Spring also supports inference of destroy methods, detecting a public close or shutdown method. This is the default behavior for @Bean methods in Java configuration classes and automatically matches java.lang.AutoCloseable or java.io.Closeable implementations". arXiv:1810.00101 §4.4 — "Non-closed resource at error-free execution" is the most common leak root cause (30.35% of 491 issues).

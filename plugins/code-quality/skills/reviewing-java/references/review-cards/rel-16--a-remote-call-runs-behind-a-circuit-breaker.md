@@ -32,6 +32,3 @@ On the triggered hunk find each remote call. Open the file and the client's defi
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: REL-16`, severity minor, `file`, `symbol`, `code` = the remote call quoted verbatim from the diff, `fix` = the call decorated with a per-dependency circuit breaker, `rationale` naming the timeout cost each call pays while the dependency is down).
-
-## Source
-arXiv:2512.16959 (systematic review of microservice recovery patterns) §VI.B — "Circuit breakers protect services from cascading failures by tripping after repeated errors and later probing recovery in a half-open state"; mini simulation — bounded retries with a circuit breaker gave a 3% error rate against 6% for jittered backoff and 17% for backoff without jitter. arXiv:2608.25403 §VII — the circuit-breaker strategy held the retry amplification factor at 1.00 and the success rate within a point of no retries, where standard retry fell to 41.5%. Resilience4j `io.github.resilience4j.circuitbreaker.CircuitBreaker` Javadoc — the state changes from CLOSED to OPEN "when the failure rate is greater than or equal to a (configurable) threshold. Then, all access to the backend is rejected for a (configurable) time duration"; README "The Golden Rule" — one instance per protected remote service.

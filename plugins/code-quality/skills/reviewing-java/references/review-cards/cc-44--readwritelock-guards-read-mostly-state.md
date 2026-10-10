@@ -33,6 +33,3 @@ On the triggered hunk find the read-write lock and, in the file, the call sites 
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: CC-44`, severity minor, `file`, `symbol`, `code` = the lock declaration and the frequent write site quoted verbatim from the diff, `fix` = a `ReentrantLock`, a `synchronized` block or a concurrent collection, `rationale` naming the write frequency and the bookkeeping cost).
-
-## Source
-`java.util.concurrent.locks.ReentrantReadWriteLock` class Javadoc, Java SE 21 — "ReentrantReadWriteLocks can be used to improve concurrency in some uses of some kinds of Collections. This is typically worthwhile only when the collections are expected to be large, accessed by more reader threads than writer threads, and entail operations with overhead that outweighs synchronization overhead".

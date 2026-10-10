@@ -32,6 +32,3 @@ On the triggered hunk find each logger call whose message argument contains `+` 
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: MNT-31`, severity minor, `file`, `symbol`, `code` = the log call quoted verbatim from the diff, `fix` = the placeholder form with the throwable last, `rationale` naming the eager formatting and, where it applies, the lost stack trace).
-
-## Source
-SLF4J `org.slf4j.Logger` Javadoc — `debug(String format, Object arg)`: "This form avoids superfluous object creation when the logger is disabled for the DEBUG level"; `debug(String format, Object... arguments)`: "This form avoids superfluous string concatenation when the logger is disabled for the DEBUG level … The variants taking one and two arguments exist solely in order to avoid this hidden cost"; `error(String msg, Throwable t)`: "Log an exception (throwable) at the ERROR level with an accompanying message" (fetched from `slf4j-api/src/main/java/org/slf4j/Logger.java`, branch `master`).

@@ -257,7 +257,7 @@ Severity, the scale finders start from and skeptics calibrate against:
 | Minor | a clarity or design cost |
 | Suggestion | style, naming, documentation |
 
-Every finding carries its `rule_id` (`CODE-NN` code inside a function, `DSN-NN` module design, `API-NN` interfaces, `ERR-NN` errors and resilience, `TST-NN` tests, `CHG-NN` changing code, `PRF-NN` diagnostics and performance, `TOOL-NN` tools and hygiene, `DOC-NN` reading and documenting, `INP-NN` input and security hygiene, `PROJ-N` project invariant, `LOGIC` the logic pass), an ordinal (`ERR-03.1`), and a one-line source pointer taken from the card's `## Source`.
+Every finding carries its `rule_id` (`CODE-NN` code inside a function, `DSN-NN` module design, `API-NN` interfaces, `ERR-NN` errors and resilience, `TST-NN` tests, `CHG-NN` changing code, `PRF-NN` diagnostics and performance, `TOOL-NN` tools and hygiene, `DOC-NN` reading and documenting, `INP-NN` input and security hygiene, `PROJ-N` project invariant, `LOGIC` the logic pass), an ordinal (`ERR-03.1`), and a one-line source pointer: the first citation of the card's line in its provenance map, which `scripts/render-reports.py` looks up by `rule_id`.
 
 ### The two documents
 

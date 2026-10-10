@@ -38,12 +38,3 @@ Grep the hunk for if, elif, while and assert lines and conditional expressions w
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PY-07`, severity major, `file`, `symbol`, `code` = the condition line, verbatim, `fix` = the condition that can be false, such as `if user.is_admin():`, `assert all(price > 0 for price in prices)` or `assert price > 0, "price must be positive"`, `rationale` = that the test is an object Python always treats as true, so the branch always runs or the assert never fails).
-
-## Source
-- Python documentation, Built-in Types §Truth Value Testing (https://docs.python.org/3/library/stdtypes.html) — 'By default, an object is considered true unless its class defines either a __bool__() method that returns False or a __len__() method that returns zero, when called with the object.' (fetched)
-- Python documentation, Built-in Types §Truth Value Testing (https://docs.python.org/3/library/stdtypes.html) — 'Any object can be tested for truth value' (fetched)
-- Python documentation, Built-in Types §Truth Value Testing (https://docs.python.org/3/library/stdtypes.html) — 'constants defined to be false: None and False' (fetched)
-- mypy docs/source/error_code_list.rst §truthy-function (https://raw.githubusercontent.com/python/mypy/master/docs/source/error_code_list.rst) — 'Functions will always evaluate to true in boolean contexts.' (fetched)
-- Pylint missing-parentheses-for-call-in-test (W0126) (pylint-dev/pylint doc/data/messages/m/missing-parentheses-for-call-in-test/bad.py) — 'Emitted when a conditional statement (If or ternary if) seems to wrongly call a function due to missing parentheses' (fetched)
-- flake8-bugbear B044 (PyCQA/flake8-bugbear README.rst) — '`assert <generator_expression>` is always true. Did you forget `all()`? Also reported for other values that are always truthy, such as a non-empty string (often a message without its condition, like ``assert "x must be positive"``), a non-zero number, an f-string with literal text, a non-empty list, set or dict literal, or a lambda.' (fetched)
-- SonarSource python S5797 (SonarSource/sonar-python python-checks/src/main/resources/org/sonar/l10n/py/rules/python/S5797.html) — 'When a constant is used as a condition, either it has no effect on the execution flow and it can be removed, or some code will never be executed and it is a bug.' (fetched)

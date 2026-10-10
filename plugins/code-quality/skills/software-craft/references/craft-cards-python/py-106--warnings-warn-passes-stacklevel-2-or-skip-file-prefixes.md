@@ -38,16 +38,3 @@ Grep the hunk for `warnings.warn(` and for a bare `warn(` call; trace a bare `wa
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PY-106`, severity minor, `file`, `symbol`, `code` = the `warnings.warn(...)` call quoted verbatim from the diff, `fix` = the same call with `stacklevel=2`, or the higher level that reaches the caller, or with `skip_file_prefixes=(os.path.dirname(__file__),)` on Python 3.12 and later, `rationale` = names that the default stacklevel of 1 attributes the warning to the warn line instead of to the caller of the function that issues it).
-
-## Source
-- CPython Doc/library/warnings.rst §Available Functions, warn() (https://raw.githubusercontent.com/python/cpython/main/Doc/library/warnings.rst) — 'rather than to the source of ``deprecated_api`` itself (since the latter would defeat the purpose of the warning message)' (fetched)
-- CPython Doc/library/warnings.rst §Available Functions, warn(), skip_file_prefixes (https://raw.githubusercontent.com/python/cpython/main/Doc/library/warnings.rst) — 'can be used to indicate which stack frames are ignored when counting stack levels' (fetched)
-- CPython Doc/library/warnings.rst §Available Functions, warn(), skip_file_prefixes (https://raw.githubusercontent.com/python/cpython/main/Doc/library/warnings.rst) — 'When prefixes are supplied, stacklevel is implicitly overridden to be ``max(2, stacklevel)``' (fetched)
-- CPython Doc/library/warnings.rst §Available Functions, warn(), skip_file_prefixes (https://raw.githubusercontent.com/python/cpython/main/Doc/library/warnings.rst) — 'when a constant *stacklevel* does not fit all call paths or is otherwise challenging to maintain' (fetched)
-- Ruff B028 no-explicit-stacklevel (astral-sh/ruff crates/ruff_linter/src/rules/flake8_bugbear/rules/no_explicit_stacklevel.rs) — 'The `warnings.warn` method uses a `stacklevel` of 1 by default, which will output a stack frame of the line on which the "warn" method is called.' (fetched)
-- Ruff B028 no-explicit-stacklevel (astral-sh/ruff crates/ruff_linter/src/rules/flake8_bugbear/rules/no_explicit_stacklevel.rs) — 'use a `stacklevel` of 2 or higher, to give the caller more context about the warning' (fetched)
-- Ruff B028 no-explicit-stacklevel (astral-sh/ruff crates/ruff_linter/src/rules/flake8_bugbear/rules/no_explicit_stacklevel.rs) §Fix safety — 'is marked as unsafe because it changes the behavior of the code' (fetched)
-- Ruff B028 no-explicit-stacklevel (astral-sh/ruff crates/ruff_linter/src/rules/flake8_bugbear/rules/no_explicit_stacklevel.rs) §Fix safety — 'the fix will assign a stacklevel of 2, while the user may wish to assign a higher stacklevel to address the diagnostic' (fetched)
-- flake8-bugbear B028 (PyCQA/flake8-bugbear README.rst §B028) — 'It is therefore recommended to use a stacklevel of 2 or greater to provide more information to the user.' (fetched)
-- flake8-bugbear B028 (PyCQA/flake8-bugbear README.rst §B028) — 'except for an explicitly empty tuple, which does not affect ``stacklevel``' (fetched)
-- Caveat: `skip_file_prefixes` was added in Python 3.12; on earlier versions `stacklevel` is the only form of the rule.

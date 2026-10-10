@@ -30,4 +30,4 @@ Determine the target model from frontmatter (`model: <id>`) or treat as broad/un
 When auditing constraint density against the declared or inferred model target, emit one patch (`rule_id: R-60`, `location` set to the heading or frontmatter plus the model target, `current` = constraint and ALL-CAPS counts, severity medium) proposing to reduce, increase, or rephrase constraints for the tier; set `needs_human: true` when the intended tier is ambiguous.
 
 ## Source
-Khan 2510.22251 §4.2, §4.4 (+4 pts gpt-4o vs −2.4 pts GPT-5), §6.2.1, §6.3.2 (OpenAI-only; Claude-tier mapping is extrapolation); implicit-rule recovery 44.7% vs 24.5%. Anthropic, Claude prompting best practices + per-model guides (2026: dial back "CRITICAL: You MUST" trigger language on Opus 4.5+; "Skills developed for prior models are often too prescriptive for Claude Fable 5 and can degrade output quality").
+Khan 2510.22251 §4.2, §4.4, §6.2.1, §6.3.2; Anthropic, Claude prompting best practices and the per-model guides.

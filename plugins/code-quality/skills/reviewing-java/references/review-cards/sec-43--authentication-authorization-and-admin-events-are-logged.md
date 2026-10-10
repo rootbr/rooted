@@ -33,6 +33,3 @@ On the triggered hunk find each authentication handler, provider, access-denied 
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: SEC-43`, severity minor, `file`, `symbol`, `code` = the handler or action method signature quoted verbatim from the diff, `fix` = the log or event line with actor, action, resource and outcome, `rationale` naming the attack the missing event would have revealed).
-
-## Source
-OWASP ASVS 5.0 §16.3.1 — "all authentication operations are logged, including successful and unsuccessful attempts"; §16.3.2 — "failed authorization attempts are logged"; §16.2.1 — each log entry includes when, where, who and what. OWASP Logging Cheat Sheet, "Which events to log" — always log authentication successes and failures, authorization (access control) failures, user administration actions, use of administrative privileges, changes to privileges, and encryption key use or rotation. Spring Security reference, "Authentication Events" — the `AuthenticationEventPublisher` and the success and failure events the framework publishes. CWE-778 — by id.

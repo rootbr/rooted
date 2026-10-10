@@ -32,6 +32,3 @@ On the triggered hunk find each dereference or `equals` receiver whose value com
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: REL-39`, severity major, `file`, `symbol`, `code` = the dereference quoted verbatim from the diff, `fix` = a guard, `getOrDefault`, `Optional`, or the literal on the receiver side of `equals`, `rationale` naming the input on which the value is null).
-
-## Source
-`java.util.Map#get(Object)` Javadoc, Java SE 21 — "Returns the value to which the specified key is mapped, or null if this map contains no mapping for the key"; `#getOrDefault`, `#computeIfAbsent`. SpotBugs `NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE` — "The return value from a method is dereferenced without a null check, and the return value of that method is one that should generally be checked for null".

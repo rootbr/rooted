@@ -33,6 +33,3 @@ On the triggered hunk find each `disable()`, `defaultsDisabled()` or `sameOrigin
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: SEC-08`, severity major, `file`, `symbol`, `code` = the `headers(...)` call quoted verbatim from the diff, `fix` = the default kept, or the relaxation moved under a `securityMatcher` with `frame-ancestors` for the allowed origin, `rationale` naming the header removed and the attack it stopped).
-
-## Source
-Spring Security reference, "Security HTTP Response Headers" §Default Security Headers — the default set `Cache-Control: no-cache, no-store, max-age=0, must-revalidate`, `X-Content-Type-Options: nosniff`, `Strict-Transport-Security: max-age=31536000 ; includeSubDomains` (HTTPS requests only), `X-Frame-Options: DENY`; the servlet page's `headers.disable()`, `defaultsDisabled()`, `contentTypeOptions.disable()` and `frameOptions` forms. OWASP HTTP Security Response Headers Cheat Sheet — `X-Content-Type-Options: nosniff`, `X-Frame-Options: DENY`, HSTS. OWASP Clickjacking Defense Cheat Sheet. OWASP ASVS 5.0 requirements 3.4.1, 3.4.4, 3.4.6.

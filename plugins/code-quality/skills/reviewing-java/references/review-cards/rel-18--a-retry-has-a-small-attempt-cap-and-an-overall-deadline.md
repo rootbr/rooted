@@ -35,6 +35,3 @@ On the triggered hunk find each retry loop or policy. Check for an attempt bound
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: REL-18`, severity major, `file`, `symbol`, `code` = the loop or policy quoted verbatim from the diff, `fix` = a constant attempt cap and an overall deadline check, `rationale` naming the load multiplication and the unbounded worst case).
-
-## Source
-arXiv:2608.25403 §III.B–C — RAF = (1 − p^(n+1)) / (1 − p) per tier; down a chain of tiers that each retry "the amplification compounds" to the product of the per-tier factors, (1.875)^3 ≈ 6.59 for three tiers at p = 0.5, n = 3 (the card reads a retry layer inside one caller as such a tier); §VIII.A — "Capping attempts at three pulls back the 43.8% that currently exceed five, which is what the major vendors advise". RFC 9110 §9.2.2 — "A client SHOULD NOT automatically retry a failed automatic retry" (fetched from the httpwg source of the document); caveat: the RFC allows an HTTP client one automatic retry, and the three-attempt bound is the vendors' and the libraries' (§VIII.A, `DEFAULT_MAX_ATTEMPTS`). Resilience4j `RetryConfig.DEFAULT_MAX_ATTEMPTS = 3`; Spring Framework reference, "Resilience Features" — `@Retryable` defaults to `maxRetries = 3`, "total attempts = 1 initial attempt + maxRetries attempts".

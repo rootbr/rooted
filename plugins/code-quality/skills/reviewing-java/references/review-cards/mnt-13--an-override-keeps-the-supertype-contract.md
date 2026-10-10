@@ -33,6 +33,3 @@ On the triggered hunk find each override or interface implementation whose body 
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: MNT-13`, severity major, `file`, `symbol`, `code` = the override quoted verbatim from the diff, `fix` = the narrower interface or the composition that removes the refused operation, `rationale` naming the supertype call that now fails).
-
-## Source
-Liskov, Wing, "A Behavioral Notion of Subtyping", ACM Transactions on Programming Languages and Systems 16(6), 1994, DOI 10.1145/197320.197383 — the subtype requirement: preconditions not strengthened, postconditions and invariants not weakened. `java.lang.UnsupportedOperationException` Javadoc, Java SE 21 — "Thrown to indicate that the requested operation is not supported", a member of the Collections Framework, whose interfaces document their optional operations.

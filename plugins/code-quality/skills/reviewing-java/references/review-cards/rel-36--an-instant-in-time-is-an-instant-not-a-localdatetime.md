@@ -33,6 +33,3 @@ On the triggered hunk find each `LocalDateTime` field, parameter, column or `now
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: REL-36`, severity major, `file`, `symbol`, `code` = the declaration or `now()` call quoted verbatim from the diff, `fix` = `Instant` (or `OffsetDateTime`) with conversion to a zone only at display, `rationale` naming the zone or daylight-saving drift).
-
-## Source
-`java.time.LocalDateTime` class Javadoc, Java SE 21 — "This class does not store or represent a time-zone. Instead, it is a description of the date, as used for birthdays, combined with the local time as seen on a wall clock. It cannot represent an instant on the time-line without additional information such as an offset or time-zone". `java.time.Instant` class Javadoc — "An instantaneous point on the time-line ... This might be used to record event time-stamps in the application".

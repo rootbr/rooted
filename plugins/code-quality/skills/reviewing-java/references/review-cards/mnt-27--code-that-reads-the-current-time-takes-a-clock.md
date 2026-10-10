@@ -32,6 +32,3 @@ On the triggered hunk find each `now()` without a `Clock` argument and each `cur
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: MNT-27`, severity minor, `file`, `symbol`, `code` = the `now()` call quoted verbatim from the diff, `fix` = the `Clock` field or parameter and `now(clock)`, `rationale` naming the test that cannot control time).
-
-## Source
-`java.time.Clock` class Javadoc, Java SE 21 — "Applications use an object to obtain the current time rather than a static method. This can simplify testing"; "Best practice for applications is to pass a Clock into any method that requires the current instant and time-zone. A dependency injection framework is one way to achieve this … This approach allows an alternative clock, such as fixed or offset to be used during testing"; `Clock` "can be used instead of System.currentTimeMillis()".

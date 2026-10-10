@@ -34,6 +34,3 @@ Open the config at HEAD and take each numbered invariant the diff adds or change
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: META-05`, severity minor, `file` = the config path, `symbol` = `Inv <N>` for the invariant's number, `code` = the invariant line quoted verbatim from the diff, `fix` = the invariant rewritten as an obligation with its enforcement, or the line moved under a notes heading, `rationale` naming that a recommendation admits a valid reason to ignore it in each case).
-
-## Source
-RFC 2119 §1 and §3 — MUST: "the definition is an absolute requirement of the specification"; SHOULD: "there may exist valid reasons in particular circumstances to ignore a particular item, but the full implications must be understood and carefully weighed before choosing a different course" (text verified against a mirrored copy; the RFC defines the capitalised keywords for specifications, and the card applies the same levels to a project's lowercase rule text). arXiv:1611.08847 §3.2 — the smell "Loopholes": "phrases that express that the following requirement must be fulfilled only to a certain, imprecisely defined extent", example "As far as possible, inputs are checked for plausibility"; §1 — such phrasing "leaves room for subjective (mis-)interpretation".

@@ -34,6 +34,3 @@ On the triggered hunk take each `compute`, `computeIfAbsent`, `computeIfPresent`
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: CC-11`, severity major, `file`, `symbol`, `code` = the `compute*` or `merge` call with the offending line of its function quoted verbatim from the diff, `fix` = the nested update moved out of the function into a separate call before or after it, `rationale` naming the recursive update and the `IllegalStateException`).
-
-## Source
-`java.util.concurrent.ConcurrentHashMap#computeIfAbsent`, `#compute` Javadoc, Java SE 21 — "The mapping function must not modify this map during computation"; "Some attempted update operations on this map by other threads may be blocked while computation is in progress, so the computation should be short and simple"; throws `IllegalStateException` "if the computation detectably attempts a recursive update to this map that would otherwise never complete". `#merge` — the function "must not attempt to update any other mappings of this Map". Class Javadoc — "Retrieval operations (including get) generally do not block", which is why a read inside the function is outside the rule.

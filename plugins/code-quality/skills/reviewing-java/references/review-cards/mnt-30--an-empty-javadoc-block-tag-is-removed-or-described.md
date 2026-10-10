@@ -36,6 +36,3 @@ On the triggered hunk read each added block tag and its description. Validator q
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: MNT-30`, severity suggestion, `file`, `symbol`, `code` = the tag quoted verbatim from the diff, `fix` = the removal of the empty tag, or the description that carries the missing fact, `rationale` naming the information a reader still lacks).
-
-## Source
-Error Prone `EmptyBlockTag` — "A block tag (@param, @return, @throws, @deprecated) has an empty description. Block tags without descriptions don't add much value for future readers of the code; consider removing the tag entirely or adding a description". Google Java Style Guide §7.3.1 — Javadoc is optional for a member "if there really and truly is nothing else worthwhile to say but 'the foo'", and "it is not appropriate to cite this exception to justify omitting relevant information that a typical reader might need to know", with the `canonicalName` example whose `@param canonicalName the canonical name` would leave a reader who does not know the term without it. Caveat: §7.3.1 makes the Javadoc optional for such members and does not flag a written "the foo" tag, so the name-echo clause reaches only a tag where a typical reader needs more.

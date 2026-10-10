@@ -32,6 +32,3 @@ On the triggered hunk find each retry policy and each request it wraps, or each 
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: REL-19`, severity major, `file`, `symbol`, `code` = the retry policy and the request quoted verbatim from the diff, `fix` = an `Idempotency-Key` generated once per operation and sent on every attempt, or the retry predicate narrowed to failures before the request was sent, `rationale` naming the duplicate side effect).
-
-## Source
-RFC 9110 "HTTP Semantics" §9.2.2 "Idempotent Methods" — "Of the request methods defined by this specification, PUT, DELETE, and safe request methods are idempotent"; "A client SHOULD NOT automatically retry a request with a non-idempotent method unless it has some means to know that the request semantics are actually idempotent, regardless of the method, or some means to detect that the original request was never applied" (fetched from the httpwg source `draft-ietf-httpbis-semantics-latest.xml`). IETF `draft-ietf-httpapi-idempotency-key-header` (`ietf-wg-httpapi/idempotency`, `main`) — "Repeating the request multiple times can result in duplication or incorrect updates ... the client does not know if it can safely retry the request"; the key "MUST be unique and MUST NOT be reused with another request with a different request payload".

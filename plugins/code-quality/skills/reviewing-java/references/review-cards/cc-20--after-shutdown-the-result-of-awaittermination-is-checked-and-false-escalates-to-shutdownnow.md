@@ -37,6 +37,3 @@ On the triggered hunk find each `shutdown()` and each `awaitTermination(...)`. C
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: CC-20`, severity minor, `file`, `symbol`, `code` = the shutdown lines quoted verbatim from the diff, `fix` = the two-phase form with the tested result, `rationale` naming the tasks that may still be running when the caller proceeds).
-
-## Source
-`java.util.concurrent.ExecutorService#awaitTermination` Javadoc, Java SE 21 — "Blocks until all tasks have completed execution after a shutdown request, or the timeout occurs, or the current thread is interrupted, whichever happens first"; returns "true if this executor terminated and false if the timeout elapsed before termination". `ExecutorService` class Javadoc usage example `shutdownAndAwaitTermination` — `shutdown()`, then on `!awaitTermination` a `shutdownNow()` and a second wait, with `Thread.currentThread().interrupt()` on `InterruptedException`. `ThreadPoolExecutor#shutdownNow` — "interrupts tasks via Thread.interrupt; any task that fails to respond to interrupts may never terminate".

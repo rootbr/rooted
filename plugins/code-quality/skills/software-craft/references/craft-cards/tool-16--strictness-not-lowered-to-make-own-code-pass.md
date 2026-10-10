@@ -34,16 +34,3 @@ Grep the hunk for edits to a build, lint, type-checker, test-runner or pipeline 
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: TOOL-16`, severity major, `file`, `symbol`, `code` = the relaxed setting line verbatim from the diff, `fix` = the setting restored to its base value and the change's own code corrected so that it passes the check, in the file's language, `rationale` = the relaxed check and the diagnostic of the change's own code that the relaxation hides).
-
-## Source
-- DOI 10.1007/s10664-019-09785-8, Empirical Software Engineering 25(2), 2020, abstract (fetched): "semi-structured interviews of 13 experts and mining more than 2,300 [...] posts"; "a catalog of 79 CI bad smells belonging to 7 categories"; "a survey involving 26 professional developers"; implications for practitioners: "do not ignore nor hide build failures".
-- DOI 10.1109/MSR.2017.2, MSR 2017, abstract (fetched): "20 Java open source projects hosted on GitHub and using Travis CI"; "build breakages due to static analysis tools are quickly fixed by actually solving the problem, rather than by disabling the warning, and are often properly documented"; caveat: projects of one language on one CI service.
-- OpenSSF Best Practices Badge criteria, `warnings_strict` (fetched): "be maximally strict with warnings in the software produced by the project, where practical"; "Some warnings cannot be effectively enabled on some projects."
-- TypeScript TSConfig reference, `strict` (fetched): "You can then turn off individual strict mode family checks as needed"; "Future versions of TypeScript may introduce additional stricter checking under this flag, so upgrades of TypeScript might result in new type errors in your program."
-- mypy command-line reference, `--strict` (fetched): "Directly specifying a flag of alternate behavior will override the behavior of strict, regardless of the order in which they are passed."
-- Pyright configuration, Diagnostic Settings Defaults (fetched): "In strict type checking mode, overrides may only increase the strictness".
-- rustc documentation, Lint Levels, `forbid` (fetched): "the 'forbid' level can not be overridden to be anything lower than an error. However, lint levels may still be capped with `--cap-lints` [...] so `rustc --cap-lints warn` will make lints set to 'forbid' just warn."
-- `go test` command documentation (fetched): "If go vet finds any problems, go test reports those and does not run the test binary"; "To disable the running of go vet, use the -vet=off flag."
-- Python `warnings` documentation, Updating Code For New Versions of Dependencies (fetched), of the warning categories ignored by default: "includes DeprecationWarning (for every module except __main__), which means developers should make sure to test their code with typically ignored warnings made visible in order to receive timely notifications of future breaking API changes".
-- ESLint Bulk Suppressions (fetched): "Existing violations must be resolved before enabling the rule"; "While the rule will be enforced for new code, the existing violations will not be reported."; "Running the `eslint` command again will not report these violations."
-- Caveat: no study measures the effect of relaxing a check on defects; the research is descriptive.

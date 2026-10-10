@@ -36,8 +36,3 @@ Grep the hunk for `copy.copy(` or a bare `copy(` whose argument is `os.environ` 
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PY-152`, severity major, `file`, `symbol`, `code` = the copy call on `os.environ` verbatim from the diff, `fix` = `env = os.environ.copy()`, `rationale` = names that `os.environ` is a proxy whose item assignments become `putenv` calls, so its shallow copy still writes to the process environment).
-
-## Source
-- Ruff PLW1507 shallow-copy-environ (astral-sh/ruff crates/ruff_linter/src/rules/pylint/rules/shallow_copy_environ.rs) — '`os.environ` is not a `dict` object, but rather, a proxy object. As such, mutating a shallow copy of `os.environ` will also mutate the original object.'; 'If the program modifies the shallow copy at some point, changing it to a deep copy may prevent those modifications from affecting the original data' (fetched)
-- Pylint shallow-copy-environ (W1507) (pylint-dev/pylint pylint/checkers/stdlib.py) — 'Using copy.copy(os.environ). Use os.environ.copy() instead.'; 'os.environ is not a dict object but proxy object, so shallow copy has still effects on original object.' (fetched)
-- CPython Doc/library/os.rst §putenv and §os.environ (https://raw.githubusercontent.com/python/cpython/main/Doc/library/os.rst) — 'Such changes to the environment affect subprocesses started with :func:`os.system`, :func:`popen` or :func:`fork` and :func:`execv`.'; 'Assignments to items in :data:`os.environ` are automatically translated into corresponding calls to :func:`putenv`'; 'so it is actually preferable to assign to items of :data:`os.environ`' (fetched)

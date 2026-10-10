@@ -40,11 +40,3 @@ Grep the hunk for `raise NotImplemented` not followed by `Error`, and for `raise
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PY-10`, severity major, `file`, `symbol`, `code` = the raise statement with its enclosing def line, verbatim, `fix` = `return NotImplemented` in the special method, or `raise NotImplementedError` where `raise NotImplemented` was written, `rationale` = that a returned NotImplemented lets Python try the other operand's reflected method, which a raised NotImplementedError prevents, or that NotImplemented is not an exception and cannot be raised).
-
-## Source
-- CPython Doc/reference/datamodel.rst §NotImplemented (https://raw.githubusercontent.com/python/cpython/main/Doc/reference/datamodel.rst) — 'Numeric methods and rich comparison methods should return this value if they do not implement the operation for the operands provided.  (The interpreter will then try the reflected operation, or some other fallback, depending on the operator.)' (fetched)
-- CPython Doc/reference/datamodel.rst §Emulating numeric types (https://raw.githubusercontent.com/python/cpython/main/Doc/reference/datamodel.rst) — 'If one of those methods does not support the operation with the supplied arguments, it should return :data:`NotImplemented`.' (fetched)
-- SonarSource python S5712 (SonarSource/sonar-python python-checks/src/main/resources/org/sonar/l10n/py/rules/python/S5712.html) — 'the callers would not catch the exception and the reverse operation would not be called.' (fetched)
-- SonarSource python S5712 (SonarSource/sonar-python python-checks/src/main/resources/org/sonar/l10n/py/rules/python/S5712.html) — 'The interpreter will then try the reverse operation, i.e.' (fetched)
-- SonarSource python S5712 (SonarSource/sonar-python python-checks/src/main/resources/org/sonar/l10n/py/rules/python/S5712.html) — 'Below is the list of special methods this rule applies to:' (fetched)
-- Ruff F901 raise-not-implemented (astral-sh/ruff crates/ruff_linter/src/rules/pyflakes/rules/raise_not_implemented.rs) — 'Because `NotImplemented` is not an exception, it cannot be raised. Raise `NotImplementedError` instead, which is used to indicate that a method is abstract or not implemented in the derived class.' (fetched)

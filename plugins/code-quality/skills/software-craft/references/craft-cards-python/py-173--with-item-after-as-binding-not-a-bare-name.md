@@ -35,15 +35,3 @@ Grep the hunk for a `with` or `async with` statement, including a parenthesized 
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PY-173`, severity minor, `file`, `symbol`, `code` = the `with` line, `fix` = the second manager in a nested `with` statement with its own `as`, `rationale` = the bare item is entered as a second context manager whose `__enter__` result is not bound, while the line reads as a tuple bound to two names).
-
-## Source
-- Pylint confusing-with-statement (W0124) (pylint-dev/pylint pylint/checkers/base/basic_checker.py) — 'Following "as" with another context manager looks like a tuple.' (fetched)
-- Pylint confusing-with-statement (W0124) (pylint-dev/pylint pylint/checkers/base/basic_checker.py) — 'Emitted when a `with` statement component returns multiple values and uses name binding with `as` only for a part of those values, as in with ctx() as a, b. This can be misleading' (fetched)
-- Pylint confusing-with-statement (W0124) (pylint-dev/pylint pylint/checkers/base/basic_checker.py) — 'clear if the context manager returns a tuple or if the node without a name binding is another context manager.' (fetched)
-- Pylint confusing-with-statement (W0124) (pylint-dev/pylint doc/data/messages/c/confusing-with-statement/bad.py) — 'with open("file.txt", "w") as fh1, fh2:  # [confusing-with-statement]' (fetched)
-- Pylint confusing-with-statement (W0124) (pylint-dev/pylint doc/data/messages/c/confusing-with-statement/good.py) — '    with open("file.txt", "w", encoding="utf8") as fh2:' (fetched)
-- CPython Doc/reference/compound_stmts.rst §The with statement (https://raw.githubusercontent.com/python/cpython/main/Doc/reference/compound_stmts.rst) — 'with_item: `expression` ["as" `target`]' (fetched)
-- CPython Doc/reference/compound_stmts.rst §The with statement (https://raw.githubusercontent.com/python/cpython/main/Doc/reference/compound_stmts.rst) — 'If a target was included in the :keyword:`with` statement, the return value from :meth:`~object.__enter__` is assigned to it.' (fetched)
-- CPython Doc/reference/compound_stmts.rst §The with statement (https://raw.githubusercontent.com/python/cpython/main/Doc/reference/compound_stmts.rst) — 'With more than one item, the context managers are processed as if multiple :keyword:`with` statements were nested' (fetched)
-- CPython Doc/reference/compound_stmts.rst §The with statement (https://raw.githubusercontent.com/python/cpython/main/Doc/reference/compound_stmts.rst) — 'You can also write multi-item context managers in multiple lines if the items are surrounded by parentheses.' (fetched)
-- Caveat: the checker (`BasicChecker.visit_with` in pylint/checkers/base/basic_checker.py) reports a pair of items only when the earlier one is bound with `as` to a plain name and the later one has no `as` and is not a call, with the code comment that a function call has no way to be mistaken for a name assignment.

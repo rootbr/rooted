@@ -33,6 +33,3 @@ On the triggered hunk find each task handed to a virtual-thread executor or star
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: CC-30`, severity minor, `file`, `symbol`, `code` = the submission and the computation entry quoted verbatim from the diff, `fix` = a platform pool sized to the available processors, or a `ForkJoinPool`, for that task, `rationale` naming the carrier held for the whole duration and the I/O-bound tasks starved of carriers).
-
-## Source
-`java.lang.Thread` class Javadoc, Java SE 21, section "Virtual threads" — "Virtual threads are suitable for executing tasks that spend most of the time blocked, often waiting for I/O operations to complete. Virtual threads are not intended for long running CPU intensive operations"; "Virtual threads typically employ a small set of platform threads used as carrier threads. Locking and I/O operations are examples of operations where a carrier thread may be re-scheduled from one virtual thread to another".

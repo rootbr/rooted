@@ -32,6 +32,3 @@ On the triggered hunk find each `Collections.unmodifiable*(new …(src))` and ea
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PF-08`, severity minor, `file`, `symbol`, `code` = the wrapper or literal construction quoted verbatim from the diff, `fix` = the `copyOf` or `of` call, `rationale` naming the extra wrapper object and the read-through indirection).
-
-## Source
-`java.util.Collections#unmodifiableList` Javadoc, Java SE 21 — "Returns an unmodifiable view of the specified list. Query operations on the returned list 'read through' to the specified list". `java.util.List#copyOf` Javadoc — "Returns an unmodifiable List containing the elements of the given Collection"; implementation note — "If the given Collection is an unmodifiable List, calling copyOf will generally not create a copy". `java.util.List` "Unmodifiable Lists" — "They disallow null elements"; in the JDK 21 source `List.of(e1)` and `List.of(e1, e2)` return a two-field `ImmutableCollections.List12`, larger forms a `ListN` over one array.

@@ -36,6 +36,3 @@ Open the config at HEAD and at the base. List the numbered invariants at the bas
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: META-09`, severity minor, `file` = the config path, `symbol` = `Inv <N>` for the number the rule held at the base, `code` = the invariant line now under that number, or the moved rule's line, quoted verbatim from the diff, `fix` = the base rule kept under its number — marked superseded where it is retired — and the new rule under the next unused number, `rationale` naming the citations by number that the move silently redirects).
-
-## Source
-MADR `template/adr-template.md` (`adr/madr`, `main`) — frontmatter `status: "{proposed | rejected | accepted | deprecated | … | superseded by ADR-0123}"`: a replaced record keeps its file `nnnn-title.md` and takes the status `superseded by ADR-0123`, so a reference by number keeps resolving; `README.md` — "For each ADR, copy the template to `nnnn-title.md`". arXiv:2103.02255 §4.1 — "id: The identifier of the requirement … The id of each requirement should be unique". Neither source says a record or requirement is never renumbered; the card infers it from a superseded record keeping its number and from an id that stays unique.

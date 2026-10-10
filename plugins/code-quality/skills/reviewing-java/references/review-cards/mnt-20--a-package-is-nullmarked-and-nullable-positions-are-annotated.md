@@ -32,6 +32,3 @@ On the triggered hunk find each `return null`, each parameter or field compared 
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: MNT-20`, severity minor, `file`, `symbol`, `code` = the unannotated return, parameter or field quoted verbatim from the diff, `fix` = the `@NullMarked` package-info or the `@Nullable` position, `rationale` naming the dereference a checker would otherwise miss).
-
-## Source
-JSpecify User Guide, "@NullMarked" — "When you apply @NullMarked to a module, package, class, or method, it means that unannotated types in that scope are treated as if they were annotated with @NonNull … packages are not hierarchical; applying @NullMarked to package com.foo does not make package com.foo.bar @NullMarked". Spring Framework reference, Null-safety → JSpecify — `@NullMarked` "is typically set in Spring projects at the package level via a package-info.java file"; "In @NullMarked code, nullable type usage is defined explicitly with @Nullable"; "When overriding a method, JSpecify annotations are not inherited from the original method"; NullAway `NullAway:OnlyNullMarked=true` checks packages annotated with `@NullMarked`.

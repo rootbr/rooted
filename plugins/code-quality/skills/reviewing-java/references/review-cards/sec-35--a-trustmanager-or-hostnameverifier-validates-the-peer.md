@@ -35,6 +35,3 @@ On the triggered hunk read the body of each `checkServerTrusted`, `checkClientTr
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: SEC-35`, severity critical, `file`, `symbol`, `code` = the manager or verifier body quoted verbatim from the diff, `fix` = the default `SSLContext` or a `TrustManagerFactory` over a keystore holding the intended CA, `rationale` naming the check that is skipped and the impersonation it allows).
-
-## Source
-`javax.net.ssl.X509TrustManager#checkServerTrusted` Javadoc, Java SE 21 — "Given the partial or complete certificate chain provided by the peer, build a certificate path to a trusted root and return if it can be validated and is trusted for server SSL authentication"; "@throws CertificateException if the certificate chain is not trusted by this TrustManager". `javax.net.ssl.HostnameVerifier#verify` — "Verify that the host name is an acceptable match with the server's authentication scheme"; "@return true if the host name is acceptable". OWASP ASVS 5.0 §12.3.2 — TLS clients validate certificates before communicating; §12.3.4 — internal or self-signed certificates trusted only for specific CAs or specific certificates. CWE-295 — by id.

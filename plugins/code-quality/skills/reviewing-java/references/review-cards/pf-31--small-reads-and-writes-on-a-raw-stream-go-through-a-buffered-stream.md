@@ -33,6 +33,3 @@ On the triggered hunk find each raw stream construction or accessor. Open the fi
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PF-31`, severity minor, `file`, `symbol`, `code` = the raw stream construction and one small write or read quoted verbatim from the diff, `fix` = the buffered wrapper with a flush where the protocol needs it, `rationale` naming the system call per byte).
-
-## Source
-`java.io.BufferedOutputStream` class Javadoc, Java SE 21 — "By setting up such an output stream, an application can write bytes to the underlying output stream without necessarily causing a call to the underlying system for each byte written"; in the JDK 21 source the default buffer starts at 512 bytes and grows to 8192. `java.io.BufferedInputStream` class Javadoc — "the internal buffer is refilled as necessary from the contained input stream, many bytes at a time". `java.io.BufferedWriter` class Javadoc — "Without buffering, each invocation of a print() method would cause characters to be converted into bytes that would then be written immediately to the file, which can be very inefficient." `java.io.FileOutputStream#write(int)` — "Writes the specified byte to this file output stream."

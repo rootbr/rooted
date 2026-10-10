@@ -36,6 +36,3 @@ On the triggered hunk find each `tryOptimisticRead()` and follow the code to the
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: CC-27`, severity major, `file`, `symbol`, `code` = the optimistic section quoted verbatim from the diff, `fix` = the locals, the validate check and the read-lock fallback, `rationale` naming the torn view when a writer intervenes).
-
-## Source
-`java.util.concurrent.locks.StampedLock` class Javadoc, Java SE 21 — "Method tryOptimisticRead returns a non-zero stamp only if the lock is not currently held in write mode. Method validate returns true if the lock has not been acquired in write mode since obtaining a given stamp"; "Optimistic read sections should only read fields and hold them in local variables for later use after validation. Fields read while in optimistic read mode may be wildly inconsistent, so usage applies only when you are familiar enough with data representations to check consistency and/or repeatedly invoke method validate()"; the design "relies on ... the associated code sections being side-effect-free"; reads between `tryOptimisticRead` and `validate` are ordered after prior writes "only if a later validate returns true; otherwise there is no guarantee that the reads ... obtain a consistent snapshot"; the class's own `distanceFromOrigin` example.

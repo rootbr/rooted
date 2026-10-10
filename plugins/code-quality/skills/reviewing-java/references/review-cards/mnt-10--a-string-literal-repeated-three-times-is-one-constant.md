@@ -31,6 +31,3 @@ On the triggered hunk take each added string literal of five or more characters 
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: MNT-10`, severity suggestion, `file`, `symbol`, `code` = the added literal and one earlier occurrence quoted verbatim from the diff, `fix` = the constant declaration and its use, `rationale` naming the places a change must reach).
-
-## Source
-SonarSource `java:S1192` "String literals should not be duplicated" — "Duplicated string literals make the process of refactoring error-prone, since you must be sure to update all occurrences … constants can be referenced from many places, but only need to be updated in a single place"; default threshold 3, literals under five characters and annotations excluded (rule text from the `sonar-java` 6.15.1 plugin resources). PMD `AvoidDuplicateLiterals` — "Code containing duplicate String literals can usually be improved by declaring the String as a constant field", `maxDuplicateLiterals` default 4, `minimumLength` default 3.

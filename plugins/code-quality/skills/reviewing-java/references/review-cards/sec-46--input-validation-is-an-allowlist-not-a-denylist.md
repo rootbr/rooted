@@ -31,6 +31,3 @@ On the triggered hunk find each check or transformation that names dangerous fra
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: SEC-46`, severity major, `file`, `symbol`, `code` = the denylist check quoted verbatim from the diff, `fix` = the positive pattern, set or parse that replaces it, `rationale` naming a spelling the denylist misses).
-
-## Source
-OWASP Input Validation Cheat Sheet, "Allowlist vs Denylist" — "It is a common mistake to use denylist validation... this is a massively flawed approach as it is trivial for an attacker to bypass such filters"; "Allowlist validation involves defining exactly what IS authorized, and by definition, everything else is not authorized"; denylisting "should supplement - not replace - allowlisting". OWASP ASVS 5.0 requirement 2.2.1 — "positive validation against an allow list of values, patterns, and ranges". OWASP Java Security Cheat Sheet, "General advice to prevent Injection".

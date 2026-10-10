@@ -33,6 +33,3 @@ On the triggered hunk find each decoder or parser construction and the validator
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: SEC-24`, severity major, `file`, `symbol`, `code` = the decoder or parser construction quoted verbatim from the diff, `fix` = the issuer, audience and timestamp validators attached, `rationale` naming the claim that goes unchecked and the token it lets in).
-
-## Source
-OWASP ASVS 5.0 requirements 9.2.1 ("for JWTs, the claims 'nbf' and 'exp' must be verified") and 9.2.3 ("validating the 'aud' claim against an allowlist defined in the service"). Spring Security reference, "OAuth 2.0 Resource Server JWT" — with `issuer-uri`, "Resource Server will default to verifying the iss claim as well as the exp and nbf timestamp claims"; `audiences` and the programmatic `aud` validator; `JwtValidators.createDefaultWithIssuer`. JJWT README — `require(claimName, requiredValue)` and the `requireSubject`-style family. RFC 7519 §4.1 (registered claims); RFC 8725 §3.8 (validate issuer and subject) and §3.9 (use and validate audience).

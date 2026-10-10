@@ -33,6 +33,3 @@ On the triggered hunk find each `MessageDigest`, `DigestUtils`, Guava `Hashing` 
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: SEC-30`, severity major, `file`, `symbol`, `code` = the digest or encoder line quoted verbatim from the diff, `fix` = the `PasswordEncoder` (or Argon2id/bcrypt/PBKDF2 call) that replaces it, `rationale` naming the fast digest and the offline guessing rate it permits).
-
-## Source
-OWASP Password Storage Cheat Sheet — "Fast hashing algorithms such as SHA-256 are not suitable for password storage because they allow attackers to perform large numbers of guesses quickly"; password hashing functions "should be slow (unlike algorithms such as MD5 and SHA-1, which were designed to be fast)"; `bcrypt(md5($password))` as an upgrade step to be replaced on next login. OWASP ASVS 5.0 §11.4.2 (approved, computationally intensive key derivation function for passwords) and §6.5.2 (a standard hash function only for secrets with 112 bits of entropy or more). CWE-916 and CWE-328 — by id.

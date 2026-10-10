@@ -34,6 +34,3 @@ Open the config at HEAD and take each numbered invariant the diff adds or change
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: META-01`, severity minor, `file` = the config path, `symbol` = `Inv <N>` for the invariant's number, `code` = the invariant line quoted verbatim from the diff, `fix` = the invariant rewritten with the rate, budget or target and its unit, `rationale` naming the measure the rule lacks and the comparison it would allow).
-
-## Source
-arXiv:2506.00150 §2 — a quality scenario "is characterized by stimuli to which an architecture (or system) must respond and a way to measure the quality-attribute response triggered by the stimuli". arXiv:1611.08847 §3.2 — the ISO/IEC/IEEE 29148 requirements language criteria, whose violation yields requirements "often difficult or even impossible to verify"; the smell "Ambiguous Adverbs and Adjectives": words "unspecific by nature, such as almost always, significant and minimal". The number-with-unit form is the card's operational reading of "a way to measure"; the sources state the measure requirement and the adjective defect.

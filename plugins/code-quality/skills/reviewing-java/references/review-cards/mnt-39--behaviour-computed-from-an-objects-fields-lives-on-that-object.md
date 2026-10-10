@@ -33,6 +33,3 @@ On the triggered hunk find each method that calls two or more accessors of the s
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: MNT-39`, severity minor, `file`, `symbol`, `code` = the method quoted verbatim from the diff, `fix` = the method moved onto the type, `rationale` naming the representation change that would break the external computation).
-
-## Source
-PMD `DataClass` — "Data Classes are simple data holders, which reveal most of their state, and without complex functionality. The lack of functionality may indicate that their behaviour is defined elsewhere, which is a sign of poor data-behaviour proximity. By directly exposing their internals, Data Classes break encapsulation, and therefore reduce the system's maintainability and understandability … Refactoring a Data Class should focus on restoring a good data-behaviour proximity. In most cases, that means moving the operations defined on the data back into the class"; detected by a weight-of-class under 1/3 with many accessors. PMD `GodClass` — ATFD, "a measure of how much external data the class uses", a class-level metric. Caveat: the "two or more fields" threshold is this card's own reading of the shape; PMD's detection is class-level and states no per-method threshold.

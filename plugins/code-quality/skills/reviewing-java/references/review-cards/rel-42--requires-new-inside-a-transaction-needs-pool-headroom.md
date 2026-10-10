@@ -31,6 +31,3 @@ On the triggered hunk find each `REQUIRES_NEW` declaration or `TransactionTempla
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: REL-42`, severity major, `file`, `symbol`, `code` = the propagation declaration and the transactional call site quoted verbatim from the diff, `fix` = `REQUIRED`, an after-commit synchronization, or a pool sized above the concurrent outer transactions, `rationale` naming the two connections per thread and the pool deadlock).
-
-## Source
-Spring Framework reference, "Transaction Propagation", "Understanding PROPAGATION_REQUIRES_NEW" — "always uses an independent physical transaction for each affected transaction scope, never participating in an existing transaction for an outer scope"; note — "The resources attached to the outer transaction will remain bound there while the inner transaction acquires its own resources such as a new database connection. This may lead to exhaustion of the connection pool and potentially to a deadlock if several threads have an active outer transaction and wait to acquire a new connection for their inner transaction, with the pool not being able to hand out any such inner connection anymore. Do not use PROPAGATION_REQUIRES_NEW unless your connection pool is appropriately sized, exceeding the number of concurrent threads by at least 1".

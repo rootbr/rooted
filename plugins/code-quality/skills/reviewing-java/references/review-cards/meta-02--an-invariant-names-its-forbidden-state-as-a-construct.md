@@ -34,6 +34,3 @@ Open the config at HEAD and take each numbered invariant the diff adds or change
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: META-02`, severity minor, `file` = the config path, `symbol` = `Inv <N>` for the invariant's number, `code` = the invariant line quoted verbatim from the diff, `fix` = the invariant rewritten with a `Violation:` clause naming the construct, `rationale` naming the consequence the clause gives in place of a testable state).
-
-## Source
-arXiv:2312.16652 (FASE 2024) §1–2 — repair is driven by two inferred specifications, the good patterns "required for a run to be successful" and ϕ_violated, "the set of likely suspicious invariants (bad patterns) that result in the bug"; a run is faulty when it fails the stated property (Definition 1); "It is important to categorize and distinguish inferred patterns (invariants) into good and bad patterns … to identify … violated invariants to be repaired when modifying code". ArchUnit user guide §What to Check — a rule written as the forbidden dependency, `noClasses().that().resideInAPackage("..source..").should().dependOnClassesThat().resideInAPackage("..foo..")`, evaluated against imported classes. The paper's patterns are runtime predicates over program state, which the card admits as measurements; the construct form follows the ArchUnit rule shape.

@@ -32,6 +32,3 @@ On the triggered hunk find each `trace`, `debug` or `info` call whose message ar
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PF-19`, severity minor, `file`, `symbol`, `code` = the log call quoted verbatim from the diff, `fix` = the placeholder form with a guard or supplier for the expensive argument, `rationale` naming the evaluation that runs while the level is disabled).
-
-## Source
-SLF4J `org.slf4j.Logger` Javadoc (`slf4j-api`, `master`) — `debug(String format, Object arg)`: "This form avoids superfluous object creation when the logger is disabled for the DEBUG level"; `debug(String format, Object... arguments)`: "This form avoids superfluous string concatenation when the logger is disabled for the DEBUG level"; `atDebug()`: "If this logger is disabled for the DEBUG level, then a NOPLoggingEventBuilder instance is returned. As the name indicates, this builder does not perform any operations. This is the main optimization in the fluent API"; `org.slf4j.spi.LoggingEventBuilder#addArgument(Supplier<?>)` — the deferred-argument form. The same text is carried on the `trace` and `info` overloads.

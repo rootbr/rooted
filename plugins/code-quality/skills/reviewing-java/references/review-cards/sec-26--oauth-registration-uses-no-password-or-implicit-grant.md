@@ -31,6 +31,3 @@ On the triggered hunk find each grant type constant or string in a registration 
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: SEC-26`, severity major, `file`, `symbol`, `code` = the grant type declaration quoted verbatim from the diff, `fix` = the authorization code grant with PKCE or the client credentials grant, `rationale` naming the credential or token exposure of the removed grant).
-
-## Source
-OWASP ASVS 5.0 requirement 10.4.4 — "the grants 'token' (Implicit flow) and 'password' (Resource Owner Password Credentials flow) must no longer be used". OWASP OAuth 2.0 Protocol Cheat Sheet — "Implicit Grant (DEPRECATED — DO NOT USE)"; "The Resource Owner password credentials grant is not used. This grant type insecurely exposes the credentials of the Resource Owner to the client". Spring Authorization Server reference, "Core Model / Components" — the supported `authorizationGrantTypes` list. Spring Security `org.springframework.security.oauth2.core.AuthorizationGrantType` — on 6.5.x `PASSWORD` is `@Deprecated(since = "5.8", forRemoval = true)` citing RFC 9700 §2.4 and no implicit constant exists; on `main` (7.x) `PASSWORD` is gone. RFC 9700 §2.1.2 (implicit grant), §2.4 (resource owner password credentials grant).

@@ -32,6 +32,3 @@ On the triggered hunk find each registered redirect URI and each redirect-URI co
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: SEC-27`, severity major, `file`, `symbol`, `code` = the registration or comparison quoted verbatim from the diff, `fix` = the literal URI and the exact-equality comparison, `rationale` naming the attacker-chosen URI the pattern admits).
-
-## Source
-OWASP ASVS 5.0 requirement 10.4.1 — "validates redirect URIs based on a client-specific allowlist of pre-registered URIs using exact string comparison". Spring Authorization Server reference, "Protocol Endpoints" — the default authorization-request validator "validates the redirect_uri and scope parameters"; the custom-validator example's "Use exact string matching when comparing client redirect URIs against pre-registered URIs" with its localhost development allowance. OWASP OAuth 2.0 Protocol Cheat Sheet — no "open redirectors" that "enable exfiltration of authorization codes and access tokens". RFC 9700 §4.1.3 (redirect URI validation: exact string matching).

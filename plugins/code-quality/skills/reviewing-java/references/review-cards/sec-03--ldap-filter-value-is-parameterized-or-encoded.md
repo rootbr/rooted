@@ -33,6 +33,3 @@ On the triggered hunk find each filter string built with `+`, `format` or a buil
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: SEC-03`, severity critical, `file`, `symbol`, `code` = the filter construction and the search call quoted verbatim from the diff, `fix` = the `{0}` filter-argument form or the builder's `where(...).is(...)` form, `rationale` naming the filter metacharacters the value can carry).
-
-## Source
-OWASP LDAP Injection Prevention Cheat Sheet — "When building LDAP queries in application code, you MUST escape any untrusted data that is added to any LDAP query"; "Insecure vs Secure Java LDAP Query Construction" (the `{0}` filter-argument form). Spring LDAP `org.springframework.ldap.query.LdapQueryBuilder#filter(String)` Javadoc — "Never use direct user input... Doing so opens up for "LDAP injection""; `#filter(String, Object...)` — parameters "properly encoded using LdapEncoder#filterEncode". OWASP ASVS 5.0 requirement 1.2.6. CWE-943.

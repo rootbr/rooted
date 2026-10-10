@@ -35,6 +35,3 @@ On the triggered hunk find each statement string that is built with `+`, `String
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: SEC-01`, severity critical, `file`, `symbol`, `code` = the concatenation and the executing call quoted verbatim from the diff, `fix` = the placeholder form of the statement with `setX` or `setParameter` for the value, `rationale` naming the code-versus-data boundary the concatenation removes).
-
-## Source
-OWASP SQL Injection Prevention Cheat Sheet, "Defense Option 1: Prepared Statements (with Parameterized Queries)" — "the database will always distinguish between code and data, regardless of what user input is supplied", with the Java `PreparedStatement` and HQL named-parameter examples. OWASP Query Parameterization Cheat Sheet, Java and Hibernate examples. OWASP ASVS 5.0 requirement 1.2.4. CWE-89.

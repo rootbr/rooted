@@ -32,6 +32,3 @@ On the triggered hunk find each call to a method of the same class (explicit `th
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: REL-12`, severity major, `file`, `symbol`, `code` = the self-call and the callee's annotation quoted verbatim from the diff, `fix` = the call through an injected self-reference or the method moved to another bean, `rationale` naming the bypassed proxy and the missing transaction).
-
-## Source
-Spring Framework reference, "Proxying Mechanisms" ("Understanding AOP Proxies") — "any method calls that it may make on itself, such as this.bar() or this.foo(), are going to be invoked against the this reference, and not the proxy ... self invocation via an explicit or implicit this reference will bypass the advice"; the options "Avoid self invocation", "Inject a self reference", `AopContext.currentProxy()`. Spring Framework reference, "Using @Transactional" — "self-invocation ... does not lead to an actual transaction at runtime even if the invoked method is marked with @Transactional".

@@ -32,6 +32,3 @@ On the triggered hunk find the declaration or construction of the copy-on-write 
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: CC-40`, severity minor, `file`, `symbol`, `code` = the declaration and the mutating call quoted verbatim from the diff, `fix` = a bounded `BlockingQueue` (`new ArrayBlockingQueue<>(cap)` or `new LinkedBlockingQueue<>(cap)`), `ConcurrentHashMap.newKeySet()` or a locked `ArrayList`, `rationale` naming the full-array copy per mutation).
-
-## Source
-`java.util.concurrent.CopyOnWriteArrayList` class Javadoc, Java SE 21 — "all mutative operations (add, set, and so on) are implemented by making a fresh copy of the underlying array. This is ordinarily too costly, but may be more efficient than alternatives when traversal operations vastly outnumber mutations, and is useful when you cannot or don't want to synchronize traversals, yet need to preclude interference among concurrent threads"; the snapshot iterator "will not reflect additions, removals, or changes to the list since the iterator was created. Element-changing operations on iterators themselves (remove, set, and add) are not supported. These methods throw UnsupportedOperationException".

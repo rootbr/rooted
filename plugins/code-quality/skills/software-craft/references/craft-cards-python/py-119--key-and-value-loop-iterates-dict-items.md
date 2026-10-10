@@ -36,11 +36,3 @@ Grep the hunk for `for <k> in <d>:`, `for <k> in <d>.keys():` and `for <k>, <v> 
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PY-119`, severity minor, `file`, `symbol`, `code` = the `for` line and the `d[k]` read, verbatim from the diff, `fix` = `for k, v in d.items():` with the body using `v`, in Python, `rationale` = items() yields each key together with its value, so extracting the value again by key is unnecessary and less efficient).
-
-## Source
-- CPython Doc/tutorial/datastructures.rst §Looping Techniques (https://raw.githubusercontent.com/python/cpython/main/Doc/tutorial/datastructures.rst) — 'When looping through dictionaries, the key and corresponding value can be retrieved at the same time using the :meth:`~dict.items` method.' (fetched)
-- Ruff PLC0206 dict-index-missing-items (astral-sh/ruff crates/ruff_linter/src/rules/pylint/rules/dict_index_missing_items.rs) — 'Iterating over a dictionary with `.items()` is semantically clearer and more efficient than extracting the value with the key.' (fetched)
-- Ruff PLC0206 dict-index-missing-items (astral-sh/ruff crates/ruff_linter/src/rules/pylint/rules/dict_index_missing_items.rs) — 'Checks for dictionary iterations that extract the dictionary value via explicit indexing, instead of using `.items()`.' (fetched)
-- Pylint consider-using-dict-items (C0206) (pylint-dev/pylint doc/user_guide/checkers/features.rst) — 'Emitted when iterating over the keys of a dictionary and accessing the value by index lookup. Both the key and value can be accessed by iterating using the .items() method of the dictionary instead.' (fetched)
-- Ruff PLR1733 unnecessary-dict-index-lookup (astral-sh/ruff crates/ruff_linter/src/rules/pylint/rules/unnecessary_dict_index_lookup.rs) — 'When iterating over a dict via `.items()`, the current value is already available alongside its key. Using the key to look up the value is unnecessary.' (fetched)
-- Pylint unnecessary-dict-index-lookup (R1733) (pylint-dev/pylint doc/user_guide/checkers/features.rst) — 'Emitted when iterating over the dictionary items (key-item pairs) and accessing the value by index lookup. The value can be accessed directly instead.' (fetched)

@@ -38,16 +38,3 @@ Grep the hunk for `exc_info=` and for `.exception(`. Open each `exception()` cal
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PY-108`, severity minor, `file`, `symbol`, `code` = the `exception()` call with its false `exc_info` quoted verbatim from the diff, `fix` = the same message and arguments logged with `logger.error(...)` and no `exc_info`, or `logger.exception(...)` without `exc_info` where the traceback is wanted, `rationale` = names that a false exc_info disables the capture of the exception and stack trace that exception() adds, and that error() has equivalent behaviour and is clearer in intent).
-
-## Source
-- Ruff LOG007 exception-without-exc-info (astral-sh/ruff crates/ruff_linter/src/rules/flake8_logging/rules/exception_without_exc_info.rs) — 'The `logging.exception()` method captures the exception automatically, but accepts an optional `exc_info` argument to override this behavior.' (fetched)
-- Ruff LOG007 exception-without-exc-info (astral-sh/ruff crates/ruff_linter/src/rules/flake8_logging/rules/exception_without_exc_info.rs) — 'Setting `exc_info` to `False` disables the automatic capture of the exception and stack trace.' (fetched)
-- Ruff LOG007 exception-without-exc-info (astral-sh/ruff crates/ruff_linter/src/rules/flake8_logging/rules/exception_without_exc_info.rs) — 'which has equivalent behavior to `logging.exception()` with `exc_info` set to `False`, but is clearer in intent' (fetched)
-- CPython Doc/library/logging.rst §Logger Objects, Logger.exception (https://raw.githubusercontent.com/python/cpython/main/Doc/library/logging.rst) — 'Logs a message with level :const:`ERROR` on this logger. The arguments are interpreted as for :meth:`debug`. Exception info is added to the logging message.' (fetched)
-- CPython Doc/library/logging.rst §Logger Objects, Logger.exception (https://raw.githubusercontent.com/python/cpython/main/Doc/library/logging.rst) — 'This method should only be called from an exception handler.' (fetched)
-- CPython Doc/library/logging.rst §Logger Objects, Logger.debug (https://raw.githubusercontent.com/python/cpython/main/Doc/library/logging.rst) — 'If *exc_info* does not evaluate as false, it causes exception information to be added to the logging message.' (fetched)
-- CPython Doc/library/logging.rst §Logger Objects, Logger.error (https://raw.githubusercontent.com/python/cpython/main/Doc/library/logging.rst) — 'Logs a message with level :const:`ERROR` on this logger. The arguments are interpreted as for :meth:`debug`.' (fetched)
-- CPython Doc/library/logging.rst §Module-Level Functions, exception() (https://raw.githubusercontent.com/python/cpython/main/Doc/library/logging.rst) — 'Logs a message with level :const:`ERROR` on the root logger.' (fetched)
-- CPython Doc/builtins/stdtypes.rst §Truth Value Testing (https://raw.githubusercontent.com/python/cpython/main/Doc/builtins/stdtypes.rst) — 'constants defined to be false: ``None`` and ``False``' (fetched)
-- CPython Doc/builtins/stdtypes.rst §Truth Value Testing (https://raw.githubusercontent.com/python/cpython/main/Doc/builtins/stdtypes.rst) — 'zero of any numeric type: ``0``' (fetched)
-- Caveat: the disabling effect is stated for `exc_info=False`; for `None` and `0` the card rests on the reference's evaluates-as-false condition.

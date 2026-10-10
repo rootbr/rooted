@@ -33,6 +33,3 @@ On the triggered hunk find each rejection path of a rate limiter, bulkhead or ov
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: REL-22`, severity minor, `file`, `symbol`, `code` = the rejection response quoted verbatim from the diff, `fix` = 429 for a client quota or 503 for server overload, `rationale` naming what the wrong status tells the client to do).
-
-## Source
-RFC 9110 "HTTP Semantics" §15.6.4 "503 Service Unavailable" — "indicates that the server is currently unable to handle the request due to a temporary overload or scheduled maintenance, which will likely be alleviated after some delay"; the server "MAY send a Retry-After header field to suggest an appropriate amount of time for the client to wait before retrying the request"; §10.2.3 "Retry-After" — `Retry-After = HTTP-date / delay-seconds` (fetched from the httpwg source `draft-ietf-httpbis-semantics-latest.xml`). RFC 6585 §4 "429 Too Many Requests" — the user "has sent too many requests in a given amount of time", and the response "MAY include a Retry-After header" (unfetched; cited as its provenance line anchors it). Both RFCs make `Retry-After` optional ("MAY"), so its absence is not a finding of this card.

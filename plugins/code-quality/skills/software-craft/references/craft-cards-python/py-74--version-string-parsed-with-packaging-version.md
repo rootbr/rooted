@@ -35,10 +35,3 @@ Grep the added lines for `map(int, ...)` over a value whose name contains `versi
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PY-74`, severity major, `file`, `symbol`, `code` = the `split(".")` and `int` expression, verbatim, `fix` = the comparison through `packaging.version`, such as `Version(lib.__version__) >= Version("2.0")` with `from packaging.version import Version`, `rationale` = a version segment `int()` fails on, such as `post1`, and the version scheme that allows it).
-
-## Source
-- Ruff RUF048 map-int-version-parsing (astral-sh/ruff crates/ruff_linter/src/rules/ruff/rules/map_int_version_parsing.rs) — 'Checks for calls of the form `map(int, __version__.split("."))`.'; '`__version__` does not always contain integral-like elements.'; 'ValueError: invalid literal for int() with base 10'; 'version.parse(matplotlib.__version__)' (fetched); the rule page's example fails on the piece `post1`
-- PyPA specification Version specifiers §Public version identifiers (pypa/packaging.python.org source/specifications/version-specifiers.rst) — '[N!]N(.N)*[{a|b|rc}N][.postN][.devN]'; 'Public version identifiers are separated into up to five segments' (fetched)
-- PyPA specification Version specifiers §Local version identifiers (pypa/packaging.python.org source/specifications/version-specifiers.rst) — '<public version identifier>[+<local version label>]' (fetched)
-- packaging documentation Version Handling §Usage (pypa/packaging docs/version.rst) — 'for more details on the exact format implemented in this module'; 'from packaging.version import Version, parse'; 'InvalidVersion: Invalid version:' (fetched); its doctest has `parse("1.0a5") < Version("1.0")` evaluate to True
-- CPython Doc/library/sys.rst §sys.version_info (python/cpython Doc/library/sys.rst) — 'All values except *releaselevel* are integers' (fetched)

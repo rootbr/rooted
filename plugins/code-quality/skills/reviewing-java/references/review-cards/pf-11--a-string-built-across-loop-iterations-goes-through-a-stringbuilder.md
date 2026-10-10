@@ -33,6 +33,3 @@ On the triggered hunk find each `+=`, `s = s + …` or `concat` whose target is 
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PF-11`, severity minor, `file`, `symbol`, `code` = the accumulator declaration and the concatenation quoted verbatim from the diff, `fix` = the `StringBuilder` form with a single `toString()`, `rationale` naming the per-iteration copy of the whole accumulated string).
-
-## Source
-`java.lang.String` class Javadoc, Java SE 21 — "Strings are constant; their values cannot be changed after they are created. String buffers support mutable strings"; implementation note — the `+` operator is compiled through `StringBuilder` or `StringConcatFactory` per expression. `java.lang.StringBuilder` class Javadoc — "As long as the length of the character sequence contained in the string builder does not exceed the capacity, it is not necessary to allocate a new internal buffer. If the internal buffer overflows, it is automatically made larger." JLS §15.18.1 — the `String` object is newly created unless the expression is a constant expression — not fetched from the authoring environment. JMH benchmark `ionutbalosin/jvm-performance-benchmarks`, `.../api/string/StringConcatenationBenchmark.java` — `StringBuilder`, `StringBuffer`, `String.concat` and `+` on the same inputs.

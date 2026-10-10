@@ -32,6 +32,3 @@ On the triggered hunk find each `AtomicReference` and each `.get().` chain or fi
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: CC-48`, severity major, `file`, `symbol`, `code` = the `get()` mutation quoted verbatim from the diff, `fix` = the `updateAndGet` with a fresh object built from the old, or an immutable value type, `rationale` naming that the atomicity covers the reference, not the referent).
-
-## Source
-`java.util.concurrent.atomic` package Javadoc, Java SE 21 — "A small toolkit of classes that support lock-free thread-safe programming on single variables"; `java.util.concurrent.atomic.AtomicReference` class Javadoc — "An object reference that may be updated atomically"; `#updateAndGet` — "Atomically updates ... the current value with the results of applying the given function, returning the updated value. The function should be side-effect-free, since it may be re-applied when attempted updates fail due to contention among threads".

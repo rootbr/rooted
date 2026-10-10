@@ -33,6 +33,3 @@ On the triggered hunk find the loop, stream or scope that submits per element to
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: CC-31`, severity major, `file`, `symbol`, `code` = the submission loop and the downstream call quoted verbatim from the diff, `fix` = a `Semaphore` or bounded client around the call, acquired before and released in `finally`, `rationale` naming the unbounded executor and the downstream's capacity).
-
-## Source
-`java.util.concurrent.Executors#newVirtualThreadPerTaskExecutor` Javadoc, Java SE 21 — "The number of threads created by the Executor is unbounded"; `java.util.concurrent.Semaphore` class Javadoc — "Semaphores are often used to restrict the number of threads than can access some (physical or logical) resource", with the bounded-pool example. JEP 444 "Virtual Threads", section "Do not pool virtual threads" — a semaphore to limit concurrent access to a limited resource; unfetched.

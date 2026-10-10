@@ -32,6 +32,3 @@ On the triggered hunk read each logging call with the code around it: what follo
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: MNT-32`, severity suggestion, `file`, `symbol`, `code` = the log call quoted verbatim from the diff, `fix` = the same call at the matching level, `rationale` naming the operator consequence — a false page, a flooded log, a hidden failure).
-
-## Source
-`java.util.logging.Level` Javadoc, Java SE 21 — `SEVERE` "a message level indicating a serious failure … events that are of considerable importance and which will prevent normal program execution"; `WARNING` "indicating a potential problem … events that will be of interest to end users or system managers"; `INFO` "should only be used for reasonably significant messages that will make sense to end users and system administrators"; `FINE`, `FINER`, `FINEST` "intended for relatively detailed tracing". SLF4J `slf4j-jdk14` `JDK14LoggerAdapter` — `error` maps to `SEVERE`, `warn` to `WARNING`, `info` to `INFO`, `debug` to `FINE`, `trace` to `FINEST`.

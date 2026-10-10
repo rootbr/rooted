@@ -30,6 +30,3 @@ On the triggered hunk find each `String.format`, `formatted`, `MessageFormat.for
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PF-25`, severity minor, `file`, `symbol`, `code` = the format call quoted verbatim from the diff, `fix` = the concatenation or builder, `rationale` naming the per-call parse and interpretation of the format string).
-
-## Source
-`java.lang.String#format(String, Object...)` and `java.util.Formatter#format(Locale, String, Object...)`, Java SE 21 source — `String.format` returns `new Formatter().format(format, args).toString()`, and `Formatter.format` calls `parse(format)` on every invocation (an implementation detail, not a documented contract). `java.text.MessageFormat#format(String, Object...)` Javadoc — "Creates a MessageFormat with the given pattern and uses it to format the given arguments"; class Javadoc — "Message formats are not synchronized." JMH benchmarks `kabutz/string-performance`, `.../PlainStringAppendBenchmark.java` — `stringBuilder`, `stringBuilderSized`, `stringBuffer` and `stringFormat` on the same five-argument message; `ionutbalosin/jvm-performance-benchmarks`, `.../api/string/StringFormatBenchmark.java` — `String.format`, `MessageFormat` as a constant versus a per-call instance, and `String.formatted`.

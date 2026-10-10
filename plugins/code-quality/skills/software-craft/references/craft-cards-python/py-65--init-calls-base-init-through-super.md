@@ -36,7 +36,3 @@ Grep the hunk for `def __init__(self` inside a `class` statement that names a ba
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PY-65`, severity major, `file`, `symbol`, `code` = the class line and the `def __init__` line quoted verbatim from the diff, `fix` = the derived `__init__` with `super().__init__(<the base arguments>)` added, `rationale` = the base class whose `__init__` is skipped and the attributes it sets that the instance lacks).
-
-## Source
-- CPython Doc/reference/datamodel.rst §object.__init__ (https://raw.githubusercontent.com/python/cpython/main/Doc/reference/datamodel.rst) — 'Called after the instance has been created (by :meth:`__new__`), but before it is returned to the caller.  The arguments are those passed to the class constructor expression.' ... "the derived class's :meth:`__init__` method, if any, must explicitly call it to ensure proper initialization of the base class part of the instance; for example: ``super().__init__([args...])``." (fetched)
-- Pylint super-init-not-called (W0231) (https://pylint.readthedocs.io/en/stable/user_guide/messages/warning/super-init-not-called.html §Description) — 'Used when an ancestor class method has an __init__ method which is not called by a derived class.' (fetched)

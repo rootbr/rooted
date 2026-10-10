@@ -40,11 +40,3 @@ Grep the hunk for a `with` header that calls `threading.Lock(`, `threading.RLock
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PY-93`, severity major, `file`, `symbol`, `code` = the `with` header that constructs the lock, `fix` = the lock assigned once outside the `with` statement, as `self._lock = threading.Lock()` in `__init__` or a module-level `lock = threading.Lock()`, and `with self._lock:` at the guarded block, `rationale` = that a lock created in the `with` statement is not shared between threads and has no effect).
-
-## Source
-- Ruff PLW2101 useless-with-lock (astral-sh/ruff crates/ruff_linter/src/rules/pylint/rules/useless_with_lock.rs) — 'Creating a lock (via `threading.Lock` or similar) in a `with` statement has no effect, as locks are only relevant when shared between threads.' (fetched)
-- Ruff PLW2101 useless-with-lock (astral-sh/ruff crates/ruff_linter/src/rules/pylint/rules/useless_with_lock.rs) — 'Instead, assign the lock to a variable outside the `with` statement, and share that variable between threads.' (fetched)
-- Ruff PLW2101 useless-with-lock (astral-sh/ruff crates/ruff_linter/src/rules/pylint/rules/useless_with_lock.rs) — 'Checks for lock objects that are created and immediately discarded in `with` statements.' (fetched)
-- Pylint useless-with-lock (W2101) (pylint-dev/pylint doc/data/messages/u/useless-with-lock/bad.py) — 'Used when a new lock instance is created by using with statement which has no effect. Instead, an existing instance should be used to acquire lock.' (fetched)
-- CPython Doc/library/threading.rst §Using locks, conditions, and semaphores in the with statement (https://raw.githubusercontent.com/python/cpython/main/Doc/library/threading.rst) — 'All of the objects provided by this module that have ``acquire`` and ``release`` methods can be used as context managers for a :keyword:`with` statement.  The ``acquire`` method will be called when the block is entered, and ``release`` will be called when the block is exited.' (fetched)
-- CPython Doc/library/threading.rst §Lock objects (https://raw.githubusercontent.com/python/cpython/main/Doc/library/threading.rst) — 'When the state is locked, :meth:`~Lock.acquire` blocks until a call to :meth:`~Lock.release` in another thread changes it to unlocked' (fetched)

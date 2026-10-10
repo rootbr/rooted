@@ -40,9 +40,3 @@ Open each file the change adds that carries decision-record headings — Status,
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: ARCH-45`, severity suggestion, `file`, `symbol` = the record's title, `code` = the decision statement quoted verbatim from the diff, `fix` = the same statement rewritten to name or link the components and connectors it applies to, or to state that it governs the whole system, `rationale` = names the decision whose scope the record leaves unstated and the elements a reader cannot file it under).
-
-## Source
-- adr/madr, template/adr-template.md, § Context and Problem Statement — "Make the scope of the decision explicit, for instance, by calling out or pointing at structural architecture elements (components, connectors, ...)." (fetched)
-- ISO/IEC/IEEE 42010:2011, conceptual model of architecture decisions, in the wording of secondary slides (the 2022 edition carries the topic in cl. 5.2.12 "Architecture decisions and rationale", whose text was not opened) — "Architecture Decision affects AD Elements and pertains to one or more Concerns. By making a Decision, new Concerns may be raised." (relayed); decision-documentation recommendations in the same relay list "Affected AD elements" and organize decisions "According to AD Element" (relayed)
-- doi:10.1109/MS.2005.27, decision description template, field "Related artifacts" — "List the related architecture, design, or scope documents that this decision impacts." (fetched from a reproduction of the template; the paper was not opened)
-- Caveat: the slide listing the recommended decision content names no clause of the standard.

@@ -34,6 +34,3 @@ On the triggered hunk take each class marked by the annotation or supertype. Ope
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: CC-18`, severity major, `file`, `symbol`, `code` = the class annotation, the field and the request-path write quoted verbatim from the diff, `fix` = the field moved into a local, the request, or a request-scoped bean, or the thread-safe type, `rationale` naming the one shared instance and the requests that race on it).
-
-## Source
-Jakarta Servlet Specification, "Servlet Life Cycle" → "Request Handling" → "Multithreading Issues" — "A servlet container may send concurrent requests through the service method of the servlet. To handle the requests, the Application Developer must make adequate provisions for concurrent processing with multiple threads in the service method"; "It is strongly recommended that Developers not synchronize the service method ... because of the detrimental effects on performance". Spring Framework reference, "Bean Scopes" → "The Singleton Scope" — "Only one shared instance of a singleton bean is managed"; "you should use the prototype scope for all stateful beans and the singleton scope for stateless beans". SpotBugs `MSF_MUTABLE_SERVLET_FIELD`; SonarSource RSPEC-2226 "Servlets should not have mutable instance fields".

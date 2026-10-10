@@ -32,6 +32,3 @@ On the triggered hunk find each client construction and each request. Open the f
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: REL-15`, severity major, `file`, `symbol`, `code` = the client construction or request quoted verbatim from the diff, `fix` = the builder with `connectTimeout` and a request `timeout` (or the client's read-timeout setter, or `setQueryTimeout`), `rationale` naming the unbounded wait and the pool it drains).
-
-## Source
-`java.net.http.HttpRequest.Builder#timeout(Duration)` Javadoc, Java SE 21 — "The effect of not setting a timeout is the same as setting an infinite Duration, i.e. block forever"; `java.net.http.HttpClient.Builder#connectTimeout(Duration)` — an `HttpConnectTimeoutException` when the connection cannot be established within the duration. `java.sql.Statement#setQueryTimeout(int)` — "By default there is no limit on the amount of time allowed for a running statement to complete". arXiv:2512.16959 §VI.C — "Timeouts prevent indefinite waiting on unresponsive dependencies".

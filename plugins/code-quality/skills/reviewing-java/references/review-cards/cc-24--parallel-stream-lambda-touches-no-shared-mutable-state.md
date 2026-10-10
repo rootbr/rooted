@@ -31,6 +31,3 @@ On the triggered hunk locate each pipeline and decide whether it is parallel: th
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: CC-24`, severity major, `file`, `symbol`, `code` = the parallel call and the offending lambda quoted verbatim from the diff, `fix` = the reduction (`toList`, `collect`, `reduce`) that replaces the accumulation, or the lambda made stateless, `rationale` naming the data race on the shared state and, where a lock encloses the pipeline, that the worker threads do not hold it).
-
-## Source
-`java.util.stream` package Javadoc, Java SE 21, sections "Non-interference", "Stateless behaviors" and "Side-effects" — behavioral parameters "must be non-interfering, and in most cases must be stateless"; "if you do not synchronize access to that state, you have a data race and therefore your code is broken, but if you do synchronize access to that state, you risk having contention undermine the parallelism you are seeking to benefit from"; no guarantees as to "the visibility of those side-effects to other threads" or "in what thread any behavioral parameter is executed for a given element"; the `forEach(results::add)` example replaced by `toList()`. `java.lang.Object#notify` Javadoc — a monitor is owned by one thread at a time; JLS §17.1 — unfetched.

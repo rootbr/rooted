@@ -33,6 +33,3 @@ On the triggered hunk find each `AtomicLong`/`AtomicInteger` update or compare-a
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PF-12`, severity minor, `file`, `symbol`, `code` = the field and the update quoted verbatim from the diff, `fix` = `LongAdder` with `increment()` or `add()` and `sum()`, `rationale` naming the single contended word and the retry loop).
-
-## Source
-`java.util.concurrent.atomic.LongAdder` class Javadoc, Java SE 21 — "This class is usually preferable to AtomicLong when multiple threads update a common sum that is used for purposes such as collecting statistics, not for fine-grained synchronization control. Under low update contention, the two classes have similar characteristics. But under high contention, expected throughput of this class is significantly higher, at the expense of higher space consumption"; `#sum` — "The returned value is NOT an atomic snapshot; invocation in the absence of concurrent updates returns an accurate result, but concurrent updates that occur while the sum is being calculated might not be incorporated."

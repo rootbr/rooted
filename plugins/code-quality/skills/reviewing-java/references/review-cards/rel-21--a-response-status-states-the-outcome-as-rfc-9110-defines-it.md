@@ -35,6 +35,3 @@ On the triggered hunk find each response construction and each exception handler
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: REL-21`, severity major, `file`, `symbol`, `code` = the response construction quoted verbatim from the diff, `fix` = the status matching the outcome (with `Location` for a creation), `rationale` naming how a client or cache misreads the wrong class).
-
-## Source
-RFC 9110 "HTTP Semantics" §15.3 — the 2xx class "indicates that the client's request was successfully received, understood, and accepted"; §15.3.2 — 201 "has resulted in one or more new resources being created. The primary resource created by the request is identified by either a Location header field in the response or, if no Location header field is received, by the target URI"; §15.5 — 4xx "indicates that the client seems to have erred", and the server SHOULD send "a representation containing an explanation of the error situation"; §15.6 — 5xx "indicates that the server is aware that it has erred or is incapable of performing the requested method"; §15.5.20 — 422 for content that is syntactically correct but cannot be processed; §15.5.10 — 409 for a conflict with the current state (fetched from the httpwg source `draft-ietf-httpbis-semantics-latest.xml`).

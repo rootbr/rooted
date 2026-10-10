@@ -35,6 +35,3 @@ On the triggered hunk find each method declaration with a `boolean` parameter an
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: MNT-02`, severity minor, `file`, `symbol`, `code` = the declaration and one literal-passing call quoted verbatim from the diff, `fix` = the two named methods, `rationale` naming the unreadable literal at the call site).
-
-## Source
-SonarSource `java:S2301` "Public methods should not contain selector arguments" — "A selector argument is a boolean argument that's used to determine which of two paths to take through a method … the maintainers of the code calling the method won't see the parameter name, only its value … Instead, separate methods should be written" (rule text from the `sonar-java` 6.15.1 plugin resources). Error Prone `BooleanParameter` — "Use parameter comments to document ambiguous literals"; a parameter comment on a boolean literal improves readability at the call site.

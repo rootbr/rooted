@@ -32,12 +32,3 @@ Grep the hunk for an exception constructor call, in a `raise` statement or assig
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PY-171`, severity minor, `file`, `symbol`, `code` = the constructor call with the template and its arguments, `fix` = the call with one formatted message, as in `raise RuntimeError(f"timeout after {timeout} s on {host}")`, `rationale` = the exception stores the arguments as `args` and prints them as a tuple, so the placeholders stay unfilled).
-
-## Source
-- Pylint raising-format-tuple (W0715) (pylint-dev/pylint pylint/checkers/exceptions.py) — 'Exception arguments suggest string formatting might be intended' (fetched)
-- Pylint raising-format-tuple (W0715) (pylint-dev/pylint pylint/checkers/exceptions.py) — 'Used when passing multiple arguments to an exception constructor, the first of them a string literal containing what appears to be placeholders intended for formatting' (fetched)
-- Pylint raising-format-tuple (W0715) (pylint-dev/pylint doc/data/messages/r/raising-format-tuple/bad.py) — 'raise RuntimeError("This looks wrong %s %s", ("a", "b"))  # [raising-format-tuple]' (fetched)
-- Pylint raising-format-tuple (W0715) (pylint-dev/pylint doc/data/messages/r/raising-format-tuple/good.py) — 'raise RuntimeError("This looks wrong %s %s" % ("a", "b"))' (fetched)
-- CPython Doc/tutorial/errors.rst §Handling Exceptions (https://raw.githubusercontent.com/python/cpython/main/Doc/tutorial/errors.rst) — 'The variable is bound to the exception instance which typically has an ``args`` attribute that stores the arguments. For convenience, builtin exception types define :meth:`~object.__str__` to print all the arguments without explicitly accessing ``.args``.' (fetched)
-- CPython Doc/builtins/exceptions.rst §Base classes, BaseException (https://raw.githubusercontent.com/python/cpython/main/Doc/builtins/exceptions.rst) — 'If :func:`str` is called on an instance of this class, the representation of the argument(s) to the instance are returned' (fetched)
-- Caveat: the checker (`ExceptionRaiseRefVisitor.visit_call` in pylint/checkers/exceptions.py) treats a first string argument as a template when it contains `%`, or both `{` and `}`, and runs only on the exception expression of a `raise` statement; a constructor built elsewhere and raised later is not in its reach.

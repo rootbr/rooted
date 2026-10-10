@@ -36,6 +36,3 @@ On the triggered hunk find each resolution-and-check of a host, then find the cl
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: SEC-12`, severity major, `file`, `symbol`, `code` = the check and the client call quoted verbatim from the diff, `fix` = the client pinned to the validated addresses, `rationale` naming the second resolution and the address it can return).
-
-## Source
-OWASP Server-Side Request Forgery Prevention Cheat Sheet, §Domain name — a domain allowlist "is still vulnerable to the DNS pinning bypass... a DNS resolution will be made when the business code will be executed", with the internal-resolver and monitoring mitigations; Case 2, step 2 — "retrieve all the IP addresses behind the domain name provided (taking records A + AAAA for IPv4 + IPv6) and... apply the same verification" as for IP addresses; step 7 — build the request "using only validated information". `java.net.InetAddress` Javadoc, Java SE 21, "InetAddress Caching" — successful lookups cached "for a finite (implementation dependent) period of time". CWE-918.

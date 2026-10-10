@@ -39,11 +39,3 @@ Grep the hunk for `.add_note(`. Open the enclosing `except ... as name:` handler
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PY-172`, severity major, `file`, `symbol`, `code` = the handler's `except` line and its `add_note(...)` call, `fix` = the same handler with a bare `raise` after the `add_note()` call, `rationale` = the handler ends without using the noted exception, so the exception and its note are dropped).
-
-## Source
-- flake8-bugbear B040 (PyCQA/flake8-bugbear README.rst) — 'Caught exception with call to ``add_note`` not used. Did you forget to ``raise`` it?' (fetched)
-- CPython Doc/builtins/exceptions.rst §Base classes, BaseException.add_note (https://raw.githubusercontent.com/python/cpython/main/Doc/builtins/exceptions.rst) — 'notes which appear in the standard traceback after the exception string.' (fetched)
-- CPython Doc/tutorial/errors.rst §Enriching Exceptions with Notes (https://raw.githubusercontent.com/python/cpython/main/Doc/tutorial/errors.rst) — 'There are cases where it is useful to add information after the exception was caught.' (fetched)
-- CPython Doc/tutorial/errors.rst §Enriching Exceptions with Notes (https://raw.githubusercontent.com/python/cpython/main/Doc/tutorial/errors.rst) — 'The standard traceback rendering includes all notes, in the order they were added, after the exception.' (fetched)
-- PEP 678 §Abstract (https://raw.githubusercontent.com/python/peps/main/peps/pep-0678.rst) — 'Because further information may be available when the exception is caught and re-raised, or included in an ``ExceptionGroup``, this PEP proposes to add ``BaseException.add_note(note)``' (fetched)
-- PEP 678 header (https://raw.githubusercontent.com/python/peps/main/peps/pep-0678.rst) — 'Python-Version: 3.11' (fetched)

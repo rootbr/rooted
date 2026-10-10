@@ -34,6 +34,3 @@ On the triggered hunk find each error response construction in an exception hand
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: REL-54`, severity suggestion, `file`, `symbol`, `code` = the error response construction quoted verbatim from the diff, `fix` = a `ProblemDetail` (or the project's error type) with a `type`/`code`, `rationale` naming the prose the client would otherwise parse).
-
-## Source
-Spring Framework reference, "Error Responses" (Web MVC) — "the Spring Framework supports the RFC 9457 specification"; `ProblemDetail` is "a representation for an RFC 9457 problem detail"; "You can return ProblemDetail or ErrorResponse from any @ExceptionHandler or from any @RequestMapping method to render an RFC 9457 response"; "The status property of ProblemDetail determines the HTTP status"; extension "properties" for non-standard fields. RFC 9457 "Problem Details for HTTP APIs" — the `type`, `title`, `status`, `detail`, `instance` members and `application/problem+json` (unfetched; cited as its provenance line anchors it).

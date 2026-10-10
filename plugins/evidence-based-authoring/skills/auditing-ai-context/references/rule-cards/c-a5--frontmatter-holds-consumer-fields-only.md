@@ -21,7 +21,7 @@ accepted: frontmatter with retrieval facets only; source + date live in the prov
 ```
 
 ## Limits
-Covers the frontmatter whitelist only. A compact source locator placed in the card body as a footer is a separate matter and is not a frontmatter field. A corpus may legitimately add a retrieval facet to its whitelist; the check flags only fields outside the agreed consumer set.
+Covers the frontmatter whitelist only. A source footer in the card body is provenance in runtime and is R-57's matter. A corpus may legitimately add a retrieval facet to its whitelist; the check flags only fields outside the agreed consumer set.
 
 ## Validator
 Compare each frontmatter key against the allowed consumer-field whitelist; flag any key carrying provenance, dates, authorship, or internal service metadata. Validator question: does the consumer read this field to retrieve or apply the card, or is it maintainer bookkeeping that belongs in the map?

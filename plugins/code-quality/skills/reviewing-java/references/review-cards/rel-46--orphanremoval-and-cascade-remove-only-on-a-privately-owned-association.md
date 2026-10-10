@@ -32,6 +32,3 @@ On the triggered hunk find each `orphanRemoval = true`, `CascadeType.REMOVE` or 
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: REL-46`, severity critical, `file`, `symbol`, `code` = the mapping annotation quoted verbatim from the diff, `fix` = `PERSIST`/`MERGE` cascades without `orphanRemoval` or `REMOVE`, `rationale` naming the shared or re-parented row that is deleted).
-
-## Source
-Jakarta Persistence specification, chapter "Metadata for Object/Relational Mapping", `OneToMany` — "If orphanRemoval is true and an entity that is the target of the relationship is removed from the relationship (either by removal from the collection or by setting the relationship to null), the remove operation will be applied to the entity being orphaned"; "The orphanRemoval functionality is intended for entities that are privately 'owned' by their parent entity. Portable applications must otherwise not depend upon a specific order of removal, and must not reassign an entity that has been orphaned to another relationship or otherwise attempt to persist it". Hibernate ORM user guide, chapter "Associations" — "For @ManyToMany associations, the REMOVE entity state transition doesn't make sense to be cascaded because it will propagate beyond the link table".

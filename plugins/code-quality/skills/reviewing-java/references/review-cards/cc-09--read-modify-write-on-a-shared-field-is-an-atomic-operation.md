@@ -32,6 +32,3 @@ On the triggered hunk find each `++`, `--`, compound assignment, or read-then-wr
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: CC-09`, severity major, `file`, `symbol`, `code` = the field declaration and the update quoted verbatim from the diff, `fix` = the atomic type or the lock region, `rationale` naming the lost update and, where the field is `volatile`, that `volatile` orders single accesses only).
-
-## Source
-jcstress sample `openjdk/jcstress`, `jcstress-samples/.../samples/api/API_01_Simple.java` — two actors each run `++v` on an `int`; outcome `1, 1` "Both actors came up with the same value: atomicity failure" observed at 10.1% of samples. `java.util.concurrent.atomic.AtomicInteger#incrementAndGet` Javadoc, Java SE 21 — "Atomically increments the current value, with memory effects as specified by VarHandle.getAndAdd". SEI CERT Oracle Coding Standard for Java, VNA02-J "Ensure that compound operations on shared variables are atomic" — the `++`, `--` and compound-assignment operators always form compound operations.

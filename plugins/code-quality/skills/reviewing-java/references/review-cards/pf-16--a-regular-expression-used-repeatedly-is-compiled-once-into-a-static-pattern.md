@@ -34,6 +34,3 @@ On the triggered hunk find each `Pattern.compile` inside a method body (not a st
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PF-16`, severity minor, `file`, `symbol`, `code` = the call quoted verbatim from the diff, `fix` = the `static final Pattern` and its use, `rationale` naming the recompilation per call).
-
-## Source
-`java.util.regex.Pattern` class Javadoc, Java SE 21 — "A regular expression, specified as a string, must first be compiled into an instance of this class... All of the state involved in performing a match resides in the matcher, so many matchers can share the same pattern"; "Instances of this class are immutable and are safe for use by multiple concurrent threads. Instances of the Matcher class are not safe for such use"; `Pattern#matches(String, CharSequence)` — "If a pattern is to be used multiple times, compiling it once and reusing it will be more efficient than invoking this method each time." `java.lang.String#matches`, `#replaceAll`, `#replaceFirst` Javadoc — each "yields exactly the same result as" the corresponding `Pattern.compile(regex)…` expression; `#split` — the single-character fast path, otherwise `Pattern.compile(regex)` (JDK 21 source).

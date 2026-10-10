@@ -37,9 +37,9 @@ DOMAIN_TITLES = {"code": "CODE — code inside a function", "design": "DSN — m
                  "architecture": "ARCH — architecture"}
 PROVENANCE_HEADER = """# Craft-cards provenance map
 
-Out-of-runtime maintainer record. Neither consumer receives this file: a card carries the rule, its numbers and a compact `## Source` locator; this map carries the full citation with its fetch status, the topic and research note the card came from, the formulation source where a practitioner text supplied the wording, the reception, and the maintenance notes. Round-trip rule: a card plus its line here plus its topic's research note reconstruct everything known about the rule.
+Out-of-runtime maintainer record. Neither consumer receives this file: a card carries the rule and its numbers. A card's line here is the sole record of its sources: every citation with its URL, fetch status and quoted statements, the formulation the rule follows, and the notes, including `caveat: …` on the evidence's scope. A card carries none of it and is found by its `rule_id`. Round-trip rule: a card plus its line here plus its topic's research note reconstruct everything known about the rule.
 
-One line per card: `rule_id · evidence citation(s) with fetch status and the quoted statement · topic (research note) · formulation source · reception · notes` (evidence strength, ownership, caveats).
+One line per card: `rule_id · evidence citation(s), each with its URL, its fetch status and its quoted statements · topic (research note) · formulation source · reception · notes` (evidence strength, ownership, `caveat: …` on the evidence's scope).
 
 Fetch status per citation, as the design note's source policy defines it: `fetched` — opened from the authoring environment and quoted; **relayed** — the search index's statement of the claim, quoted, the paper itself unopened; **unfetched** — cited from memory, never a card's only anchor. A relayed or unfetched citation is openable by any reader and stands to be re-verified.
 

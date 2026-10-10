@@ -34,13 +34,3 @@ Grep the hunk for `.format(` calls and for `%` applied to a string literal with 
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PY-35`, severity major, `file`, `symbol`, `code` = the template and its arguments as written in the diff, `fix` = the template naming every value it receives, or the surplus argument removed, in Python, `rationale` = Python's str.format and %-mapping formatting drop an unused value without an error, so the text is not the one expected).
-
-## Source
-- SonarSource python S3457 (SonarSource/sonar-python python-checks/src/main/resources/org/sonar/l10n/py/rules/python/S3457.html) — "A string formatted with % will not return the expected text because some arguments are unused."; "A string formatted with str.format will not return the expected string because some arguments are unused."; "they will log an error instead of raising an exception when the provided arguments are invalid"; "any syntax mistake will cause a failure at compile time. However, it is easy to forget curly braces, which will not lead to any detectable errors." (fetched)
-- CPython Doc/library/string.rst §Custom String Formatting (python/cpython Doc/library/string.rst) — "using the same implementation as the built-in"; "Implement checking for unused arguments if desired."; "is assumed to raise an exception if the check fails" (fetched)
-- Ruff F523 string-dot-format-extra-positional-arguments (astral-sh/ruff crates/ruff_linter/src/rules/pyflakes/rules/strings.rs) — "Unused positional arguments are redundant, and often indicative of a mistake." (fetched)
-- Ruff F504 percent-format-extra-named-arguments (astral-sh/ruff crates/ruff_linter/src/rules/pyflakes/rules/strings.rs) — "Unused named placeholders in printf-style format strings are unnecessary, and likely indicative of a mistake." (fetched)
-- Ruff F507 percent-format-positional-count-mismatch (astral-sh/ruff crates/ruff_linter/src/rules/pyflakes/rules/strings.rs) — "When a printf-style format string is provided with too many or too few substitution values, it will raise a TypeError at runtime." (fetched)
-- Pylint unused-format-string-argument (W1304) (pylint-dev/pylint doc/data/messages/u/unused-format-string-argument/bad.py) — 'print("{x} {y}".format(x=1, y=2, z=3))  # [unused-format-string-argument]' (fetched)
-- Pylint unused-format-string-key (W1301) (pylint-dev/pylint doc/data/messages/u/unused-format-string-key/bad.py) — "The quick %(color)s fox jumps over the lazy dog." with the unused key action (fetched)
-- Pylint format-string-without-interpolation (W1310) (pylint-dev/pylint doc/data/messages/f/format-string-without-interpolation/bad.py) — 'print("number".format(1))  # [format-string-without-interpolation]' (fetched)

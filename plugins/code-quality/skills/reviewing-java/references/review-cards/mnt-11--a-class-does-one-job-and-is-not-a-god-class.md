@@ -33,6 +33,3 @@ Open the file at HEAD. List the instance fields and, for each method, the fields
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: MNT-11`, severity minor, `file`, `symbol`, `code` = the class declaration and one method from each disjoint group quoted verbatim from the diff, `fix` = the split classes, `rationale` naming the groups and the reasons they change).
-
-## Source
-PMD `GodClass` — "God classes do too many things, are very big and overly complex. They should be split apart to be more object-oriented"; detection thresholds `WMC_VERY_HIGH = 47`, `FEW_ATFD_THRESHOLD = 5`, `TCC_THRESHOLD = 1/3` in the rule source. Kermansaravi, Rahman, Khomh, Jaafar, Guéhéneuc, "Investigating Design Anti-pattern and Design Pattern Mutations and Their Change- and Fault-proneness", arXiv:2104.00058 — Blob/God Class "a class that is too large and not cohesive"; Blob classes more change-prone (relaying Olbrich et al.), classes in mutated anti-patterns more fault-prone. Spring Framework reference, Constructor-based DI — "a large number of constructor arguments is a bad code smell, implying that the class likely has too many responsibilities".

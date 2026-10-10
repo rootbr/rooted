@@ -37,12 +37,3 @@ Grep the hunk for a call `exit(` or `quit(` that is not an attribute call such a
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PY-49`, severity minor, `file`, `symbol`, `code` = the `exit(...)` or `quit(...)` call, verbatim, `fix` = `import sys` at the top of the module and `sys.exit(...)` with the same exit code, `rationale` = `exit` and `quit` come from the `site` module, which `-S` leaves unimported, while `sys` is always available).
-
-## Source
-- CPython Doc/builtins/constants.rst §Constants added by the site module (python/cpython Doc/builtins/constants.rst) — 'which is imported automatically during startup, except if the :option:`-S` command-line option is given) adds several constants to the built-in namespace.' (fetched)
-- CPython Doc/builtins/constants.rst §Constants added by the site module (python/cpython Doc/builtins/constants.rst) — 'They are useful for the interactive interpreter shell and should not be used in programs.' (fetched)
-- Ruff PLR1722 sys-exit-alias (astral-sh/ruff crates/ruff_linter/src/rules/pylint/rules/sys_exit_alias.rs) — 'However, it is not _guaranteed_ to be imported, and so using these functions may result in a `NameError` at runtime.' (fetched)
-- Ruff PLR1722 sys-exit-alias (astral-sh/ruff crates/ruff_linter/src/rules/pylint/rules/sys_exit_alias.rs) — 'Prefer `sys.exit()`, as the `sys` module is guaranteed to exist in all contexts.' (fetched)
-- Ruff PLR1722 sys-exit-alias (astral-sh/ruff crates/ruff_linter/src/rules/pylint/rules/sys_exit_alias.rs) — 'the original code would raise a `NameError`, while the fixed code would execute normally.' (fetched)
-- Ruff PLR1722 sys-exit-alias (astral-sh/ruff crates/ruff_linter/src/rules/pylint/rules/sys_exit_alias.rs) — '`site.exit` treats tuples as regular objects and always returns exit code 1, while `sys.exit` interprets tuple contents to determine the exit code: an empty tuple () results in exit code 0, and a single-element tuple like (2,) uses that element' (fetched)
-- Pylint consider-using-sys-exit (R1722) (pylint-dev/pylint, the R1722 message description, cached in the harvest index beside doc/data/messages/c/consider-using-sys-exit/bad.py) — 'does not rely on the site module being available' (fetched)

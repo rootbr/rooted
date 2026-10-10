@@ -32,6 +32,3 @@ On the triggered hunk read each added type, method, field, parameter and local d
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: MNT-03`, severity suggestion, `file`, `symbol`, `code` = the declaration quoted verbatim from the diff, `fix` = the renamed declaration, `rationale` naming the convention broken).
-
-## Source
-Google Java Style Guide §5.1 "Rules common to all identifiers" — "special prefixes or suffixes are not used. For example, these names are not Google Style: name_, mName, s_name and kName"; §5.2.2 "Class names are written in UpperCamelCase. Class names are typically nouns or noun phrases"; §5.2.3 "Method names are written in lowerCamelCase. Method names are typically verbs or verb phrases"; §5.2.5–5.2.7 non-constant fields, parameters and locals in lowerCamelCase.

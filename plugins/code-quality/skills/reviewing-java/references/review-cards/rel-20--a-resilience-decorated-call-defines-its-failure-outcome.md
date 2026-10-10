@@ -33,6 +33,3 @@ On the triggered hunk find each fallback lambda, `fallbackMethod`, `recover` or 
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: REL-20`, severity major, `file`, `symbol`, `code` = the fallback handler quoted verbatim from the diff, `fix` = a fallback that returns a recognizable degraded value or throws a typed exception carrying the cause, `rationale` naming the hidden outage).
-
-## Source
-arXiv:2512.16959 §VI.D — "Fallbacks (cached or approximate responses) maintain UX during partial outages"; §VI.A — retries "should be bounded, avoid non-idempotent operations, and be instrumented". Resilience4j `io.github.resilience4j.decorators.Decorators` Javadoc — composition `Fallback(Retry(CircuitBreaker(Supplier)))`, "Each Decorator makes its own determination whether an exception represents a failure". Google Java Style Guide §6.2 — "It is very rarely correct to do nothing in response to a caught exception".

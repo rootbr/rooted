@@ -32,6 +32,3 @@ On the triggered hunk find each `Thread.sleep` or `TimeUnit.sleep` inside a `whi
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PF-20`, severity minor, `file`, `symbol`, `code` = the loop quoted verbatim from the diff, `fix` = the blocking wait on a latch, condition, future or queue, `rationale` naming the timer-bound over-sleep and the wake-ups that find nothing).
-
-## Source
-`java.lang.Thread#sleep(long)` Javadoc, Java SE 21 — "Causes the currently executing thread to sleep (temporarily cease execution) for the specified number of milliseconds, subject to the precision and accuracy of system timers and schedulers." `java.util.concurrent.locks.LockSupport#parkNanos(long)` — returns on `unpark`, on interrupt, when "The specified waiting time elapses", or spuriously; "Callers should re-check the conditions which caused the thread to park in the first place." `java.util.concurrent.CountDownLatch` class Javadoc — "The await methods block until the current count reaches zero due to invocations of the countDown method". `java.lang.Thread#onSpinWait` — the documented form for a loop that spins "until some flag is set outside of that method".

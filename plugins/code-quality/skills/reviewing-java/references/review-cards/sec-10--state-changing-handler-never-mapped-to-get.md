@@ -32,6 +32,3 @@ On the triggered hunk take each GET-mapped or method-less handler and read its b
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: SEC-10`, severity major, `file`, `symbol`, `code` = the mapping annotation and the mutating call quoted verbatim from the diff, `fix` = the same handler under `@PostMapping`, `@PutMapping`, `@PatchMapping` or `@DeleteMapping`, `rationale` naming the token exemption and the `Lax` navigation that a safe method keeps).
-
-## Source
-Spring Security reference, "Cross Site Request Forgery (CSRF)" §Safe Methods Must be Read-only — "requests with the HTTP GET, HEAD, OPTIONS, and TRACE methods should not change the state of the application"; "For either protection against CSRF to work" they must be read-only. OWASP Cross-Site Request Forgery Prevention Cheat Sheet — "Do not use GET requests for state changing operations"; §Limitations of SameSite — "Lax only blocks unsafe methods... If any state-changing operation in the application is reachable via a GET request, SameSite=Lax will not stop it". OWASP ASVS 5.0 requirement 3.5.3. RFC 9110 §9.2.1 "Safe Methods" — a method is safe when "the client does not request, and does not expect, any state change on the origin server as a result of applying a safe method to a target resource".

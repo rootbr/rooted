@@ -33,6 +33,3 @@ On the triggered hunk take each added import whose package belongs to this codeb
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: MNT-08`, severity minor, `file`, `symbol`, `code` = the added import line quoted verbatim from the diff, `fix` = the moved type or the inverted dependency, `rationale` naming the two packages and the reverse import that completes the cycle).
-
-## Source
-ArchUnit User Guide, "What to Check" → "Cycle Checks" — `slices().matching("com.myapp.(*)..").should().beFreeOfCycles()` and the three-package cycle it detects. Feng, Liu, Ji, Ma, Liang, "An Empirical Study of Untangling Patterns of Two-Class Dependency Cycles", arXiv:2306.10599 — "Dependency cycles pose a significant challenge to software quality and maintainability", relaying Oyetoyan et al.: "most defects and defective components are concentrated in cyclic-dependent components, either directly or indirectly". Oyetoyan, Cruzes, Conradi, "A study of cyclic dependencies on defect profile of software components", Journal of Systems and Software 86(12), 2013, 3162–3182.

@@ -33,6 +33,3 @@ On the triggered hunk find each `return` of a field holding a mutable type and e
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: MNT-16`, severity minor, `file`, `symbol`, `code` = the return or the assignment quoted verbatim from the diff, `fix` = the `copyOf` or unmodifiable form, `rationale` naming the mutation path around the class).
-
-## Source
-SpotBugs `EI_EXPOSE_REP` — "Returning a reference to a mutable object value stored in one of the object's fields exposes the internal representation of the object … Returning a new copy of the object is better approach in many situations"; `EI_EXPOSE_REP2` — "This code stores a reference to an externally mutable object into the internal representation of the object … Storing a copy of the object is better approach"; both cite CWE-374. `java.util.List#copyOf` Javadoc, Java SE 21 — "Returns an unmodifiable List containing the elements of the given Collection … If the given Collection is subsequently modified, the returned List will not reflect such modifications".

@@ -33,6 +33,3 @@ On the triggered hunk find each authorization annotation or check on a controlle
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: SEC-20`, severity major, `file`, `symbol`, `code` = the controller rule and the unchecked service method quoted verbatim from the diff, `fix` = the rule on the service method, `rationale` naming the caller that bypasses the controller).
-
-## Source
-OWASP Authorization Cheat Sheet, "Validate the Permissions on Every Request" — "regardless of whether the request was initiated by an AJAX script, server-side, or any other source... an attacker only needs to find one way in. Even if just a single access control check is "missed", the confidentiality and/or integrity of a resource can be jeopardized". Spring Security reference, "Method Security" — method authorization "is handy for... Enforcing security at the service layer". OWASP ASVS 5.0 requirement 8.3.1.

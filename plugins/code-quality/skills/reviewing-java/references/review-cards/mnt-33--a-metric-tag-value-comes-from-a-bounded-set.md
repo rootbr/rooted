@@ -32,6 +32,3 @@ On the triggered hunk find each tag key/value pair. Open the file and trace each
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: MNT-33`, severity major, `file`, `symbol`, `code` = the tag expression quoted verbatim from the diff, `fix` = the normalized or bucketed value, or the value moved to a log or trace attribute, `rationale` naming the series growth per distinct value).
-
-## Source
-Micrometer reference, Concepts → Naming Meters → Tag Values — "Beware of the potential for tag values coming from user-supplied sources to blow up the cardinality of a metric. You should always carefully normalize and add bounds to user-supplied input … Consider the URI tag for recording HTTP requests on service endpoints. If we do not constrain 404's to a value like NOT_FOUND, the dimensionality of the metric would grow with each resource that cannot be found" (fetched from `docs/modules/ROOT/pages/concepts/naming.adoc`, branch `main`).

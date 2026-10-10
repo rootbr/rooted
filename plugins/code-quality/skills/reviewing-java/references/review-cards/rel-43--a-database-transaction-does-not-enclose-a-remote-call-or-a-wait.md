@@ -31,6 +31,3 @@ On the triggered hunk find each transactional method or template callback and op
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: REL-43`, severity major, `file`, `symbol`, `code` = the transactional boundary and the enclosed call quoted verbatim from the diff, `fix` = the remote call moved outside the transaction or into an after-commit synchronization or outbox, `rationale` naming the connection and locks held for the remote's latency).
-
-## Source
-Hibernate ORM user guide, chapter "Transactions and concurrency control" — "To reduce lock contention in the database, the physical database transaction needs to be as short as possible. Long-running database transactions prevent your application from scaling to a highly-concurrent load. Do not hold a database transaction open during end-user-level work, but open it after the end-user-level work is finished"; chapter "Batching" — "long-running transactions can deplete a connection pool so other transactions don't get a chance to proceed".

@@ -35,6 +35,3 @@ On the triggered hunk find each client call and each URL or URI construction, an
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: SEC-11`, severity critical, `file`, `symbol`, `code` = the client call and the URL construction quoted verbatim from the diff, `fix` = the allowlist lookup or the parse-check-reject sequence before the call, `rationale` naming the internal destination the request can reach).
-
-## Source
-OWASP Server-Side Request Forgery Prevention Cheat Sheet — Case 1, allowlist of "identified and trusted applications"; "Match the host against an allowlist, and build the request yourself"; "Treat parser disagreement as a rejection"; Case 2, block-list of private, loopback and link-local ranges; "Deny-list (Last Resort)" table (`169.254.169.254`, `127.0.0.0/8`, `0.0.0.0/8`, `::1/128`, RFC 1918 ranges). OWASP ASVS 5.0 requirement 13.2.4. `java.net.InetAddress#isLoopbackAddress`, `#isLinkLocalAddress`, `#isSiteLocalAddress`, `#isAnyLocalAddress` Javadoc, Java SE 21. CWE-918.

@@ -31,6 +31,3 @@ On the triggered hunk find each `@RequestBody`, `@ModelAttribute` or `@RequestPa
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: SEC-14`, severity major, `file`, `symbol`, `code` = the parameter declaration quoted verbatim from the diff, `fix` = the parameter with `@Valid`, `rationale` naming the constraints that never run).
-
-## Source
-Spring Framework reference, Web MVC "Validation" — Bean Validation "is applied individually to an @ModelAttribute, @RequestBody, and @RequestPart method parameter annotated with @jakarta.validation.Valid or Spring's @Validated"; method validation applies "when @Constraint annotations such as @Min, @NotBlank and others are declared directly on method parameters"; "@Valid is not a constraint annotation... by itself @Valid does not lead to method validation"; NOTE — with a class-level `@Validated`, method validation "is applied through an AOP proxy", as against "the Spring MVC built-in support for method validation added in Spring Framework 6.1". OWASP Bean Validation Cheat Sheet — add constraints to the model "and then utilize the @Valid annotation when passing your model around". OWASP Input Validation Cheat Sheet — "Input validation must be implemented on the server-side". OWASP ASVS 5.0 requirement 2.2.1.

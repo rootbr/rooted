@@ -33,6 +33,3 @@ On the triggered hunk find each `PUT` or `DELETE` mapping, read the handler body
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: REL-23`, severity major, `file`, `symbol`, `code` = the mapping and the state-changing call quoted verbatim from the diff, `fix` = the operation remapped to `POST`, or the handler made a replacement keyed by the URI, `rationale` naming the automatic repeat that performs the side effect twice).
-
-## Source
-RFC 9110 "HTTP Semantics" §9.2.2 "Idempotent Methods" — "the intended effect on the server of multiple identical requests with that method is the same as the effect for a single such request"; "PUT, DELETE, and safe request methods are idempotent"; "the idempotent property only applies to what has been requested by the user; a server is free to log each request separately, retain a revision control history, or implement other non-idempotent side effects for each idempotent request"; "Idempotent methods are distinguished because the request can be repeated automatically if a communication failure occurs before the client is able to read the server's response" (fetched from the httpwg source `draft-ietf-httpbis-semantics-latest.xml`).

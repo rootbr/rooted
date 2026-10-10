@@ -32,6 +32,3 @@ On the triggered hunk find each `requireProofKey`, each custom authorization-req
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: SEC-28`, severity major, `file`, `symbol`, `code` = the `requireProofKey` setting or the resolver quoted verbatim from the diff, `fix` = PKCE required for the public client, `rationale` naming the intercepted code that an unbound flow lets an attacker redeem).
-
-## Source
-Spring Security reference, "OAuth 2.0 Client Authorization Grants" — PKCE "is automatically used when... client-secret is omitted (or empty)... client-authentication-method is set to none... or when ClientRegistration.clientSettings.requireProofKey is true"; the tip on disabling it only for confidential clients whose provider lacks PKCE. OWASP ASVS 5.0 requirements 10.2.1, 10.4.6. OWASP OAuth 2.0 Protocol Cheat Sheet, "PKCE" — clients "must use the Authorization Code Grant with PKCE (response_type=code) for all client types". RFC 9700 §2.1.1 (protecting redirect-based flows), §4.5 (authorization code injection).

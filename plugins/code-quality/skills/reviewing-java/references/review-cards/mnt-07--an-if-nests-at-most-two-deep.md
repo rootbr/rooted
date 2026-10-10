@@ -35,6 +35,3 @@ On the triggered hunk find each added `if`; open the file and count the `if` sta
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: MNT-07`, severity minor, `file`, `symbol`, `code` = the nested `if` chain quoted verbatim from the diff, `fix` = the guard clause or the extracted method, `rationale` naming the conditions the reader must stack).
-
-## Source
-PMD `AvoidDeeplyNestedIfStmts` — "Avoid creating deeply nested if-then statements since they are harder to read and error-prone to maintain", `problemDepth` default 3 (the third nested `if` is reported). Checkstyle `NestedIfDepth` — default `max = 1` nested `if`. SonarSource `java:S134` "Control flow statements should not be nested too deeply" — nested `if`, `for`, `while`, `switch` and `try` statements "are key ingredients for making what's known as 'Spaghetti code'. Such code is hard to read, refactor and therefore maintain"; default threshold 3 for the mixed case (rule text from the `sonar-java` 6.15.1 plugin resources).

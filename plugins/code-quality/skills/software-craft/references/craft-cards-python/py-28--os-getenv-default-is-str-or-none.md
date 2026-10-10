@@ -34,11 +34,3 @@ Grep the hunk for `getenv(` calls that pass a second positional argument or `def
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PY-28`, severity major, `file`, `symbol`, `code` = the `os.getenv(...)` call quoted verbatim, `fix` = the default written as a string with the result converted, such as `int(os.getenv("PORT", "8080"))`, `rationale` = `os.getenv` returns a `str` when the variable is set and the default unchanged when it is not, so a non-string default makes the result type depend on the environment).
-
-## Source
-- CPython Doc/library/os.rst §os.getenv (https://raw.githubusercontent.com/python/cpython/main/Doc/library/os.rst) — 'Return the value of the environment variable *key* as a string if it exists, or *default*' (fetched)
-- CPython Doc/library/os.rst §os.getenvb (https://raw.githubusercontent.com/python/cpython/main/Doc/library/os.rst) — 'Return the value of the environment variable *key* as bytes if it exists' (fetched)
-- Ruff PLW1508 invalid-envvar-default (astral-sh/ruff crates/ruff_linter/src/rules/pylint/rules/invalid_envvar_default.rs) — 'If an environment variable is set, `os.getenv` will return its value as a string.' (fetched)
-- Ruff PLW1508 invalid-envvar-default (astral-sh/ruff crates/ruff_linter/src/rules/pylint/rules/invalid_envvar_default.rs) — 'will return `None`, or the default value if one is provided.' (fetched)
-- Ruff PLW1508 invalid-envvar-default (astral-sh/ruff crates/ruff_linter/src/rules/pylint/rules/invalid_envvar_default.rs) — 'If the default value is not a string or `None`, then it will be inconsistent with the return type of `os.getenv`, which can lead to confusing behavior.' (fetched)
-- Ruff PLW1508 invalid-envvar-default (astral-sh/ruff crates/ruff_linter/src/rules/pylint/rules/invalid_envvar_default.rs) — 'int(os.getenv("FOO", "1"))' (fetched)

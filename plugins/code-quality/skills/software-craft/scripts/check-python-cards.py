@@ -11,7 +11,8 @@ object {key, status, filename, card_markdown, provenance_line, pending_entry, ch
 scripts/python-topic-workflow.js defines it. A file holding a top-level "spine" key is not a
 draft and is passed over; a draft whose status is "pending" is skipped with a note. A key with
 no <key>.json but a <key>.md is read from the markdown alone, its filename built from the rule_id
-and the title, and its provenance line goes unchecked with a note.
+and the title; it has no provenance line, so the source, fragment and provenance checks are
+passed over with a note.
 
 Checks per card:
   validator   scripts/validate-craft-cards.py --language python, run once on a temporary
@@ -22,21 +23,29 @@ Checks per card:
               body `pass`, parses with ast.parse.
   triggers    every regex trigger compiles and at least one matches a line of the bad group; a
               card whose triggers are all signal: passes with a note.
-  source      every `- ` bullet of ## Source is one locator: Ruff <CODE>, Pylint <symbol> [(<code>)],
-              SonarSource python S<n>, Bandit B<nnn> and flake8-bugbear B<nnn> resolve against
-              items.jsonl and the cache under <harvest>/src/; PEP <n> and arXiv:<id> resolve by an
-              HTTP 200 from peps.python.org and arxiv.org/abs; any other bullet resolves by its
-              https:// URL or its (<owner>/<repo> <path>) GitHub locator on raw.githubusercontent.com
-              (branch main, then master). A Caveat: bullet is passed over; a bullet of no known
-              shape fails.
-  fragment    every quoted span of a Source bullet and of the provenance line's citations — between
-              straight double quotes, or straight single quotes when longer than 25 characters —
-              occurs in its locator's text after whitespace collapsing, with Markdown backticks and
-              asterisks ignored (the first 80 characters of a longer fragment; each part of a
-              fragment elided with ... or …). A bullet marked (relayed), and a provenance fragment
-              followed by a relayed marker, is exempt with a note.
+  source      every citation of the provenance line — its first field after `- **<rule_id>** · `,
+              split at each `; ` outside quoted spans and parentheses and not after an author's
+              initial, a piece of quotes alone joining the citation before it
+              (cardlib.split_citations) — names one locator, read with its quoted spans blanked:
+              Ruff <CODE>, Pylint <symbol> [(<code>)], SonarSource python S<n>, Bandit B<nnn> and
+              flake8-bugbear B<nnn> at the citation's start resolve against items.jsonl and the
+              cache under <harvest>/src/; PEP <n> and arXiv:<id>
+              resolve by an HTTP 200 from peps.python.org and arxiv.org/abs; any other citation
+              resolves by its https:// URLs or its (<owner>/<repo> <path>) GitHub locator on
+              raw.githubusercontent.com (branch main, then master). A citation of no known shape
+              fails, and so does a line with no citation; a citation whose every fetch status is
+              relayed is not fetched, with a note.
+  fragment    every quoted span of a citation — between straight double quotes, or straight single
+              quotes when longer than 25 characters — occurs in the text that citation's locator
+              resolved to, after whitespace collapsing, with Markdown backticks and asterisks ignored
+              (the first 80 characters of a longer fragment; each part of a fragment elided with ...
+              or …). A quote's status is the one in parentheses right after it, else the last one
+              written before it in its citation (`<citation>, **relayed** — "<quote>"`); a relayed
+              quote is exempt with a note, and a quote whose citation has no text (--no-network, a
+              locator that failed) is noted rather than failed.
   title       with --universal: the title and the H1 equal no universal card title.
-  provenance  the line begins with `- **<rule_id>** · ` and holds ` · topic: `.
+  provenance  the draft carries a provenance line; it begins with `- **<rule_id>** · ` and holds
+              ` · topic: `.
 
 Fetched pages are cached under <dir>/../check-cache/<sha256 of the URL>; a cached page is not
 fetched again. --no-network skips every fetch with a note. A fetch waits 20 s, is retried once on
@@ -66,20 +75,25 @@ import urllib.request
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
-from cardlib import parse_frontmatter, parse_inline_list, read_card, strip_quotes, is_signal  # noqa: E402
+from cardlib import (parse_frontmatter, parse_inline_list, read_card, strip_quotes, is_signal,  # noqa: E402
+                     provenance_citations, citation_locator, blank_quotes, quoted_spans as spans_of)
 
 USER_AGENT = "Mozilla/5.0 (check-python-cards)"
 TIMEOUT_SECONDS = 20
 FRAGMENT_PREFIX = 80
-LABEL_CHARS = 60  # how much of a bullet or a fragment a failure line quotes
+LABEL_CHARS = 60  # how much of a citation or a fragment a failure line quotes
 ELISION = re.compile(r"^(\s*)(?:\.\.\.|\{\s*\.\.\.\s*\})\s*$")
 ELISION_AFTER_COLON = re.compile(r"^(.*:)\s*(?:\.\.\.|\{\s*\.\.\.\s*\})\s*$")
 DOUBLE_QUOTED = re.compile(r'"([^"\n]+)"')
 # An apostrophe inside a word (Python's) neither opens nor closes a single-quoted span.
 SINGLE_QUOTED = re.compile(r"(?<!\w)'([^\n]{26,}?)'(?!\w)")
+QUOTE_PATTERNS = (DOUBLE_QUOTED, SINGLE_QUOTED)
 GITHUB_LOCATOR = re.compile(r"\(([A-Za-z0-9_.-]+)/([A-Za-z0-9_.-]+)\s+([^\s)]+)\)")
 CATALOG_KINDS = ("ruff", "pylint", "sonar", "bandit", "bugbear")
 URL = re.compile(r"https://[^\s)>\]'\"`]+")
+FETCH_STATUS = re.compile(r"\b(fetched|relayed|unfetched)\b", re.I)
+# A status in parentheses right after a quote, the form `'<quote>' (relayed)`.
+TRAILING_STATUS = re.compile(r"\s*\(\**(fetched|relayed|unfetched)\**\)", re.I)
 
 
 class InputError(Exception):
@@ -307,21 +321,20 @@ def card_frontmatter(path, markdown):
     return data.get("rule_id", "").strip(), strip_quotes(data.get("title", "")), triggers, terr or err
 
 
-def source_bullets(markdown):
-    """The `- ` bullets of ## Source, each with its continuation lines joined."""
-    bullets = []
-    for line in body_sections(markdown).get("Source", "").split("\n"):
-        if line.startswith("- "):
-            bullets.append(line[2:].strip())
-        elif line.strip() and bullets:
-            bullets[-1] += " " + line.strip()
-    return bullets
+# ---- citations, locators and fragments ----------------------------------------------------------------
+
+def citations_of(line):
+    """The citations of a provenance line, split with this check's quote shapes."""
+    return provenance_citations(line, QUOTE_PATTERNS)
 
 
-# ---- locators and fragments -------------------------------------------------------------------------
+def locator_of(citation):
+    """The citation with its quoted spans blanked, so a quoted word never reads as a locator."""
+    return blank_quotes(citation, QUOTE_PATTERNS).strip()
 
-def classify(bullet):
-    """Return (kind, value, symbol) for a Source bullet; kind None when the shape is unknown."""
+
+def classify(locator):
+    """Return (kind, value, symbol) for a citation's locator; kind None when the shape is unknown."""
     patterns = (
         ("ruff", r"Ruff\s+([A-Z]+[0-9]+)\b"),
         ("pylint", r"Pylint\s+([a-z][a-z0-9-]*)(?:\s+\(([A-Z]\d{4})\))?"),
@@ -332,25 +345,25 @@ def classify(bullet):
         ("arxiv", r"arXiv:\s*(\d{4}\.\d{4,5}(?:v\d+)?)"),
     )
     for kind, pattern in patterns:
-        m = re.match(pattern, bullet)
+        m = re.match(pattern, locator)
         if m:
             if kind == "pylint":
                 return kind, m.group(2), m.group(1)
             return kind, m.group(1), None
-    m = re.search(r"arxiv\.org/abs/(\d{4}\.\d{4,5}(?:v\d+)?)", bullet)
+    m = re.search(r"arxiv\.org/abs/(\d{4}\.\d{4,5}(?:v\d+)?)", locator)
     if m:
         return "arxiv", m.group(1), None
-    if URL.search(bullet) or GITHUB_LOCATOR.search(bullet):
+    if URL.search(locator) or GITHUB_LOCATOR.search(locator):
         return "web", None, None
     return None, None, None
 
 
-def web_targets(bullet):
-    """The URL candidates of a web bullet: each https URL, else the GitHub locator on main then master."""
-    urls = [u.rstrip(".,;:") for u in URL.findall(bullet)]
+def web_targets(locator):
+    """The URL candidates of a web locator: each https URL, else the GitHub locator on main then master."""
+    urls = [u.rstrip(".,;:") for u in URL.findall(locator)]
     if urls:
         return [[u] for u in urls]
-    owner, repo, path = GITHUB_LOCATOR.search(bullet).groups()
+    owner, repo, path = GITHUB_LOCATOR.search(locator).groups()
     return [[f"https://raw.githubusercontent.com/{owner}/{repo}/{branch}/{path}" for branch in ("main", "master")]]
 
 
@@ -359,23 +372,44 @@ def normalise(text):
     return " ".join(text.replace("`", "").replace("*", "").split())
 
 
-def quoted_fragments(text):
-    """Return [(fragment, end offset)] of the double-quoted and long single-quoted spans."""
-    found = [(m.group(1), m.end()) for m in DOUBLE_QUOTED.finditer(text)]
-    found += [(m.group(1), m.end()) for m in SINGLE_QUOTED.finditer(text)]
-    return found
+def quoted_spans(text):
+    """Return [(fragment, start, end)] of the double-quoted and long single-quoted spans, in text order."""
+    return spans_of(text, QUOTE_PATTERNS)
+
+
+def quote_statuses(citations):
+    """Return [(fragment, start, status)] for the quoted spans of a citation, the status lower-case or ""
+    where none is written. A status in parentheses right after a quote is that quote's; any other quote
+    takes the last status written before it outside the quotes."""
+    spans = quoted_spans(citations)
+    masked, trailing = list(citations), {}
+    for _fragment, start, end in spans:
+        after = TRAILING_STATUS.match(citations, end)
+        stop = after.end() if after else end
+        if after:
+            trailing[start] = after.group(1).lower()
+        masked[start:stop] = [" "] * (stop - start)
+    masked = "".join(masked)
+    statuses = []
+    for fragment, start, _end in spans:
+        status = trailing.get(start)
+        if status is None:
+            before = FETCH_STATUS.findall(masked[:start])
+            status = before[-1].lower() if before else ""
+        statuses.append((fragment, start, status))
+    return statuses
+
+
+def is_relayed(statuses, locator):
+    """Whether every fetch status a citation carries — its quotes', else its locator's — is relayed."""
+    found = [status for _fragment, _start, status in statuses if status] or [s.lower() for s in FETCH_STATUS.findall(locator)]
+    return bool(found) and all(status == "relayed" for status in found)
 
 
 def fragment_found(fragment, haystack):
     parts = [normalise(p) for p in re.split(r"\.\.\.|…", fragment)]
     parts = [p for p in parts if p]
     return all(p[:FRAGMENT_PREFIX] in haystack for p in parts)
-
-
-def is_relayed_after(text, end):
-    """Whether the status written after a quote, up to the next quote, marks it relayed."""
-    tail = re.split(r"[\"']", text[end:], maxsplit=1)[0]
-    return "relayed" in tail.lower()
 
 
 # ---- one card --------------------------------------------------------------------------------------
@@ -392,14 +426,14 @@ class CardResult:
         self.notes.append(f"{check}: {detail}")
 
 
-def fetch_bullet(bullet, kind, value, fetcher, result):
-    """Return (text, checkable) of a PEP, arXiv or web bullet: every target must answer 200."""
+def fetch_locator(locator, kind, value, fetcher, result, label):
+    """Return (text, checkable) of a PEP, arXiv or web locator: every target must answer 200."""
     if kind == "pep":
         targets = [[f"https://peps.python.org/pep-{int(value):04d}/"]]
     elif kind == "arxiv":
         targets = [[f"https://arxiv.org/abs/{value}"]]
     else:
-        targets = web_targets(bullet)
+        targets = web_targets(locator)
     text, checkable = "", True
     for alternatives in targets:
         fetched, error = None, ""
@@ -409,17 +443,19 @@ def fetch_bullet(bullet, kind, value, fetcher, result):
                 fetched = page
                 break
         if fetched is None:
-            result.fail("source", f"{alternatives[-1]} answered {error}: {bullet[:LABEL_CHARS]}")
+            result.fail("source", f"{alternatives[-1]} answered {error}: {label}")
             checkable = False
         else:
             text += "\n" + fetched
     return text, checkable
 
 
-def resolve_bullet(bullet, harvest, fetcher, result):
-    """Return (text, checkable) of one Source bullet, or None when its locator fails."""
-    label = bullet[:LABEL_CHARS]
-    kind, value, symbol = classify(bullet)
+def resolve_citation(citation, statuses, harvest, fetcher, result):
+    """Return (text, complete) of one citation, or None when its locator fails; complete is False when
+    the citation's text stays unread although the fragment check needs it."""
+    label = citation_locator(citation, LABEL_CHARS)
+    locator = locator_of(citation)
+    kind, value, symbol = classify(locator)
     if kind is None:
         result.fail("source", f"locator not recognised: {label}")
         return None
@@ -428,59 +464,46 @@ def resolve_bullet(bullet, harvest, fetcher, result):
             result.fail("source", f"no {kind} entry {symbol or value} in the harvest: {label}")
             return None
         return harvest.text_for(kind, value, symbol), True
-    if "(relayed)" in bullet.lower():
+    if is_relayed(statuses, locator):
         result.note("source", f"relayed, not fetched: {label}")
-        return "", False
+        return "", True
     if not fetcher.network:
         result.note("source", f"--no-network, not fetched: {label}")
         return "", False
-    return fetch_bullet(bullet, kind, value, fetcher, result)
+    return fetch_locator(locator, kind, value, fetcher, result, label)
 
 
-def check_sources(markdown, harvest, fetcher, result):
-    """Run the source and fragment checks of the Source bullets; return the normalised texts resolved."""
-    texts = []
-    for bullet in source_bullets(markdown):
-        if bullet.startswith("Caveat:"):
-            continue
-        label = bullet[:LABEL_CHARS]
-        relayed = "(relayed)" in bullet.lower()
-        resolved = resolve_bullet(bullet, harvest, fetcher, result)
-        if resolved is None:
-            continue
-        text, checkable = resolved
+def check_citations(line, harvest, fetcher, result):
+    """Run the source check on every citation of the provenance line, then the fragment check of each
+    citation's quotes against the text its locator resolved to."""
+    citations = citations_of(line)
+    if not citations:
+        result.fail("source", "the provenance line names no citation")
+    for citation in citations:
+        statuses = quote_statuses(citation)
+        resolved = resolve_citation(citation, statuses, harvest, fetcher, result)
+        text, complete = resolved if resolved else ("", False)
         haystack = normalise(text)
-        if text:
-            texts.append(haystack)
-        if relayed:
-            if quoted_fragments(bullet):
-                result.note("fragment", f"relayed, fragments not checked: {label}")
-            continue
-        for fragment, _end in quoted_fragments(bullet):
-            if not checkable:
-                result.note("fragment", f"not checked, no text: {fragment[:LABEL_CHARS]}")
+        label = citation_locator(citation, LABEL_CHARS)
+        for fragment, _start, status in statuses:
+            shown = fragment[:LABEL_CHARS]
+            if status == "relayed":
+                result.note("fragment", f"relayed, not checked: {shown}")
+            elif not complete:
+                result.note("fragment", f"not checked, no text: {shown}")
             elif not fragment_found(fragment, haystack):
-                result.fail("fragment", f"{label}: not found: {fragment[:LABEL_CHARS]}")
-    return texts
+                result.fail("fragment", f"{label}: not found: {shown}")
 
 
-def check_provenance(line, rule_id, texts, result):
+def check_provenance(line, rule_id, result):
+    """Check that the draft carries a provenance line and the line's shape."""
     if not line:
-        result.note("provenance", "no provenance line to check")
+        result.fail("provenance", "the draft carries no provenance line")
         return
     if not rule_id or not line.startswith(f"- **{rule_id}** · "):
         result.fail("provenance", f"does not begin with '- **{rule_id}** · '")
     if " · topic: " not in line:
         result.fail("provenance", "holds no ' · topic: '")
-    citations = line.split(" · topic: ", 1)[0]
-    haystack = "\n".join(texts)
-    for fragment, end in quoted_fragments(citations):
-        if is_relayed_after(citations, end):
-            result.note("fragment", f"provenance fragment marked relayed, not checked: {fragment[:LABEL_CHARS]}")
-        elif not haystack:
-            result.note("fragment", f"provenance fragment not checked, no source text: {fragment[:LABEL_CHARS]}")
-        elif not fragment_found(fragment, haystack):
-            result.fail("fragment", f"provenance: not found in any Source text: {fragment[:LABEL_CHARS]}")
 
 
 @dataclasses.dataclass(frozen=True)
@@ -527,7 +550,6 @@ def check_card(draft, path, context, result):
         if perr:
             result.fail("example", perr)
     check_trigger_match(triggers, ferr, bad, result)
-    texts = check_sources(markdown, context.harvest, context.fetcher, result)
     universal_titles = context.universal_titles
     if universal_titles is not None:
         for label, value in (("title", title), ("H1", h1_of(markdown))):
@@ -535,9 +557,13 @@ def check_card(draft, path, context, result):
             if value and hit:
                 result.fail("title", f"the {label} equals the title of universal card {hit}")
     if draft.get("_from_markdown"):
-        result.note("provenance", f"read {draft['key']}.md without {draft['key']}.json; provenance not checked")
-    else:
-        check_provenance(draft.get("provenance_line", ""), rule_id, texts, result)
+        result.note("provenance", f"read {draft['key']}.md without {draft['key']}.json; provenance not checked, "
+                                  "nor the source and fragment checks that read it")
+        return
+    line = draft.get("provenance_line", "")
+    check_provenance(line, rule_id, result)
+    if line:
+        check_citations(line, context.harvest, context.fetcher, result)
 
 
 # ---- the run -----------------------------------------------------------------------------------------

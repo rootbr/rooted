@@ -35,15 +35,3 @@ Grep the hunk for a str literal followed by the % operator or by .format(, and o
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PY-37`, severity minor, `file`, `symbol`, `code` = the literal with its % operand or .format call, quoted verbatim from the diff, `fix` = the same text as an f-string, e.g. `f"Sent {count} messages"`, or inside a logging call the %-template with the values as the call's arguments, `rationale` = printf-style formatting has quirks and reads worse than f-strings, which are generally preferred over str.format, while a logger formats its template only for a record it emits).
-
-## Source
-- Ruff UP031 printf-string-formatting (astral-sh/ruff crates/ruff_linter/src/rules/pyupgrade/rules/printf_string_formatting.rs) — '`printf`-style string formatting has a number of quirks, and leads to less readable code than using `str.format` calls or f-strings.' (fetched)
-- Ruff UP031 printf-string-formatting (astral-sh/ruff crates/ruff_linter/src/rules/pyupgrade/rules/printf_string_formatting.rs) — 'In cases where the format string contains a single generic format specifier (e.g. `%s`), and the right-hand side is an ambiguous expression, we cannot offer a safe fix.' (fetched)
-- Ruff UP031 printf-string-formatting (astral-sh/ruff crates/ruff_linter/src/rules/pyupgrade/rules/printf_string_formatting.rs) — 'Both of these would resolve to the same formatted string when using `printf`-style formatting, but resolve differently when using f-strings' (fetched)
-- Ruff UP031 printf-string-formatting (astral-sh/ruff crates/ruff_linter/src/rules/pyupgrade/rules/printf_string_formatting.rs) — 'print("{}".format(val))  # "(1,)"' (fetched)
-- Ruff UP032 f-string (astral-sh/ruff crates/ruff_linter/src/rules/pyupgrade/rules/f_strings.rs) — 'f-strings are more readable and generally preferred over `str.format` calls.' (fetched)
-- Ruff UP032 f-string (astral-sh/ruff crates/ruff_linter/src/rules/pyupgrade/rules/f_strings.rs) — 'Checks for `str.format` calls that can be replaced with f-strings.' (fetched)
-- Pylint consider-using-f-string (C0209) (pylint-dev/pylint doc/data/messages/c/consider-using-f-string/details.rst) — 'Formatted string literals (f-strings) give a concise, consistent syntax that can replace most use cases for the ``%`` formatting operator, ``str.format()`` and ``string.Template``.' (fetched)
-- Pylint consider-using-f-string (C0209) (pylint-dev/pylint doc/data/messages/c/consider-using-f-string/details.rst) — 'Inside ``logging`` calls, applying this message would trigger ``logging-fstring-interpolation`` instead.' (fetched)
-- Pylint consider-using-f-string (C0209) (pylint-dev/pylint doc/data/messages/c/consider-using-f-string/details.rst) — 'Passing the arguments to the logger (``logging.debug("msg %s", arg)``) avoids both messages' (fetched)
-- Pylint consider-using-f-string (C0209) (pylint-dev/pylint doc/data/messages/c/consider-using-f-string/details.rst) — 'lets the logger skip formatting entirely when the record is filtered out by level. This matters when the arguments have an expensive ``__str__`` or ``__repr__``.' (fetched)

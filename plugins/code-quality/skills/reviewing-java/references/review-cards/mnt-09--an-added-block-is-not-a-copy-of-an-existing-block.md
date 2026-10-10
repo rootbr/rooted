@@ -33,6 +33,3 @@ For each added block of three or more statements, open the file and look for a b
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: MNT-09`, severity minor, `file`, `symbol`, `code` = the added block and the first line of its twin quoted verbatim from the diff, `fix` = the one method with the difference as a parameter, `rationale` naming the two places a change must now reach).
-
-## Source
-Juergens, Deissenboeck, Hummel, Wagner, "Do Code Clones Matter?", ICSE 2009, DOI 10.1109/ICSE.2009.5070547 — inconsistent changes to clones are frequent and a significant fraction of the unintentional ones are faults. PMD CPD documentation — the copy-paste detector reports duplicates at or above a token count (`--minimum-tokens`), the mechanical form of this check.

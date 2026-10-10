@@ -33,6 +33,3 @@ On the triggered hunk find each method that writes two or more fields of the sam
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: CC-10`, severity major, `file`, `symbol`, `code` = the sequence of field writes or the combined read quoted verbatim from the diff, `fix` = one lock region around the whole update and read, or the immutable snapshot replaced through an `AtomicReference`, `rationale` naming the mixed old-and-new state a reader can observe).
-
-## Source
-`java.util.concurrent.locks.StampedLock` class Javadoc, Java SE 21 — the `Point` sample: `move` updates `x` and `y` under one `writeLock`; readers `validate` the stamp before using both. `java.util.concurrent.atomic.AtomicReference#updateAndGet` Javadoc — "Atomically updates ... the current value with the results of applying the given function"; "The function should be side-effect-free, since it may be re-applied when attempted updates fail due to contention among threads". jcstress sample `jmm/basic/BasicJMM_06_Causality.java`, `PlainReads` — `1, 0` (new `y`, old `x`) observed in 0.09% of samples.

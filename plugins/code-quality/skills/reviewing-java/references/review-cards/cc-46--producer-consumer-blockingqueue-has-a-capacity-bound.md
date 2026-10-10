@@ -31,6 +31,3 @@ On the triggered hunk find each `LinkedBlockingQueue` or `LinkedBlockingDeque` c
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: CC-46`, severity major, `file`, `symbol`, `code` = the construction without a capacity quoted verbatim from the diff, `fix` = the same constructor with a capacity and the producer's handling of a blocking `put` or a `false` from `offer`, `rationale` naming the `Integer.MAX_VALUE` default and the heap growth under a slow consumer).
-
-## Source
-`java.util.concurrent.LinkedBlockingQueue` class Javadoc, Java SE 21 — "The optional capacity bound constructor argument serves as a way to prevent excessive queue expansion. The capacity, if unspecified, is equal to Integer.MAX_VALUE"; `java.util.concurrent.PriorityBlockingQueue` — "An unbounded blocking queue ... While this queue is logically unbounded, attempted additions may fail due to resource exhaustion (causing OutOfMemoryError)"; `java.util.concurrent.BlockingQueue#offer` — "false if no space is currently available".

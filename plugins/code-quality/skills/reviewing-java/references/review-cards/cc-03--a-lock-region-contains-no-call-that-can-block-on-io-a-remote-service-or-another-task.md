@@ -33,6 +33,3 @@ On the triggered hunk take each `synchronized` block or method and each `lock()`
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: CC-03`, severity major, `file`, `symbol`, `code` = the lock region's opening line and the blocking call quoted verbatim from the diff, `fix` = the call moved outside the region with a snapshot before it and a short apply region after it, `rationale` naming the wait every contender inherits and the single-lock deadlock the blocked call can form).
-
-## Source
-SEI CERT Oracle Coding Standard for Java, LCK09-J "Do not perform operations that can block while holding a lock". SpotBugs `SWL_SLEEP_WITH_LOCK_HELD` — calling `Thread.sleep()` with a lock held "may result in very poor performance and scalability, or a deadlock, since other threads may be waiting to acquire the lock" (CWE-667 Improper Locking).

@@ -34,6 +34,3 @@ On the triggered hunk count the `verify` calls per test method and check whether
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: MNT-26`, severity minor, `file`, `symbol`, `code` = the verify lines quoted verbatim from the diff, `fix` = the outcome assertion and the one interaction that matters, `rationale` naming the refactoring that would break the test without changing behaviour).
-
-## Source
-Mockito `org.mockito.Mockito` class Javadoc — §8 "Finding redundant invocations": `verifyNoMoreInteractions()` "is not recommended to use in every test method … Abusing it leads to overspecified, less maintainable tests"; §2 on stubbing: "Although it is possible to verify a stubbed invocation, usually it's just redundant. If your code cares what get(0) returns, then something else breaks (often before verify() even gets executed). If your code doesn't care what get(0) returns, then it should not be stubbed" (fetched from `mockito-core/src/main/java/org/mockito/Mockito.java`, branch `main`).

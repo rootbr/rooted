@@ -34,10 +34,3 @@ Grep the hunk for `== None`, `!= None`, `None ==`, `None !=`, `isinstance(..., t
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PY-03`, severity minor, `file`, `symbol`, `code` = the None comparison as written, `fix` = `x is None` or `x is not None`, such as `if result is None:`, `rationale` = None is the only instance of its type, so the test is an identity test, and `==` runs the operand's `__eq__`).
-
-## Source
-- Style Guide for Python Code (PEP 8) §Programming Recommendations (python/peps peps/pep-0008.rst) — 'Comparisons to singletons like None should always be done with ``is`` or ``is not``, never the equality operators.' (fetched)
-- Python language reference §Identity comparisons (https://docs.python.org/3/reference/expressions.html#is-not) — '``x is y`` is true if and only if *x* and *y* are the same object.' (fetched)
-- Ruff E711 none-comparison (astral-sh/ruff crates/ruff_linter/src/rules/pycodestyle/rules/literal_comparisons.rs) — 'This rule's fix is marked as unsafe, as it may alter runtime behavior when used with libraries that override the `==`/`__eq__` or `!=`/`__ne__` operators. In these cases, `is`/`is not` may not be equivalent to `==`/`!=`.' (fetched)
-- Ruff FURB168 isinstance-type-none (astral-sh/ruff crates/ruff_linter/src/rules/refurb/rules/isinstance_type_none.rs) — 'There is only ever one instance of `None`, so it is more efficient and readable to use the `is` operator to check if an object is `None`.' (fetched)
-- Ruff FURB169 type-none-comparison (astral-sh/ruff crates/ruff_linter/src/rules/refurb/rules/type_none_comparison.rs) — 'There is only ever one instance of `None`, so it is more efficient and readable to use the `is` operator to check if an object is `None`.' (fetched)

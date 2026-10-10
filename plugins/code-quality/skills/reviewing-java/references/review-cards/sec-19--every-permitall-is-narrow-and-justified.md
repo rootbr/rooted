@@ -30,6 +30,3 @@ On the triggered hunk take each `permitAll` or anonymous grant and its matcher. 
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: SEC-19`, severity major, `file`, `symbol`, `code` = the grant and its matcher quoted verbatim from the diff, `fix` = the matcher narrowed to the public paths with the reason beside it (a comment or a self-describing matcher), `rationale` naming the endpoints the grant opens beyond the public ones).
-
-## Source
-OWASP Authorization Cheat Sheet, "Deny by Default" — "One should be able to explicitly justify why a specific permission was granted to a particular user or group rather than assuming access to be the default position"; "Validate the Permissions on Every Request" — "an attacker only needs to find one way in". OWASP ASVS 5.0 requirement 8.2.1. Spring Security reference, "Authorize HttpServletRequests" — `permitAll`: "The request requires no authorization and is a public endpoint".

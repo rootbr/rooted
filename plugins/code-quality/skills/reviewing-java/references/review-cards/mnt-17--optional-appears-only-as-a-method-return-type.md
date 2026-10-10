@@ -34,6 +34,3 @@ On the triggered hunk find each `Optional<…>` in a field declaration, a parame
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: MNT-17`, severity minor, `file`, `symbol`, `code` = the declaration quoted verbatim from the diff, `fix` = the `@Nullable` reference, the overload, or the plain element type, `rationale` naming the third state the wrapper adds).
-
-## Source
-`java.util.Optional` class Javadoc, Java SE 21, API note — "Optional is primarily intended for use as a method return type where there is a clear need to represent 'no result,' and where using null is likely to cause errors. A variable whose type is Optional should never itself be null; it should always point to an Optional instance". SonarSource `java:S3553` "Optional should not be used for parameters" — "With an Optional parameter, you go from having 2 possible inputs: null and not-null, to three: null, non-null-without-value, and non-null-with-value … overloading has long been available to convey that some parameters are optional" (rule text from the `sonar-java` 6.15.1 plugin resources).

@@ -35,6 +35,3 @@ On the triggered hunk find each chain of two or more type tests over the same va
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: MNT-12`, severity minor, `file`, `symbol`, `code` = the type-test chain or the tagged switch quoted verbatim from the diff, `fix` = the sealed interface with a pattern switch, or the method moved onto the types, `rationale` naming the variant a future change forgets).
-
-## Source
-JEP 409 "Sealed Classes" and JEP 441 "Pattern Matching for switch" — a `switch` over a sealed hierarchy with type patterns must be exhaustive and the compiler checks it; JLS §14.11.1.1 "Exhaustive Switch Blocks". OpenJDK `javac` `compiler.properties` (tag `jdk-21-ga`) — `compiler.err.not.exhaustive.statement`: "the switch statement does not cover all possible input values". Error Prone `PatternMatchingInstanceof` — pattern matching replaces an `instanceof` followed by a separate cast.

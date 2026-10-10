@@ -34,6 +34,3 @@ Open the config at HEAD and take each numbered invariant the diff adds or change
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: META-03`, severity minor, `file` = the config path, `symbol` = `Inv <N>` for the invariant's number, `code` = the invariant line quoted verbatim from the diff, `fix` = the invariant with an `Enforced by` clause naming the handle, `rationale` naming that a runtime rule cannot be verified by reading the diff).
-
-## Source
-MADR `template/adr-template.md` (`adr/madr`, `main`) §Confirmation — "Describe how the implementation / compliance of the ADR can/will be confirmed. Is there any automated or manual fitness function? If so, list it and explain how it is applied … a design/code review or a test with a library such as ArchUnit can help validate this"; the template marks the section optional and notes it "is included in many ADRs". ArchUnit user guide §Introduction — "ArchUnit's main focus is to automatically test architecture and coding rules, using any plain Java unit testing framework". The runtime/structural bound, and the reading of a rule without a handle as a statement of intent, are the card's narrowing of that optional section; the sources state that compliance is confirmed by a listed fitness function and that rules are testable automatically.

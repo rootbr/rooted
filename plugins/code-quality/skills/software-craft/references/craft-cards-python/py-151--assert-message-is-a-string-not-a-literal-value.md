@@ -34,8 +34,3 @@ Grep the hunk for `assert` statements and find the comma that separates the test
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PY-151`, severity major, `file`, `symbol`, `code` = the assert statement verbatim from the diff, `fix` = the literal moved into a comparison before the comma with a string message after it, `assert len(rows) == 3, "expected three rows"`, or only a string message where the comparison already stands before the comma, `rationale` = names that the expression after the comma is only the AssertionError argument, so the assert tests just the truth of the first expression).
-
-## Source
-- CPython Doc/reference/simple_stmts.rst §The assert statement (https://raw.githubusercontent.com/python/cpython/main/Doc/reference/simple_stmts.rst) — 'The extended form, ``assert expression1, expression2``, is equivalent to :: if __debug__: if not expression1: raise AssertionError(expression2)' (fetched)
-- Ruff RUF040 invalid-assert-message-literal-argument (astral-sh/ruff crates/ruff_linter/src/rules/ruff/rules/invalid_assert_message_literal_argument.rs) — 'An assert message which is a non-string literal was likely intended to be used in a comparison assertion, rather than as a message.'; 'assert len(fruits), 2  # True unless the list is empty' (fetched)
-- CPython Doc/library/ast.rst §Literals (https://raw.githubusercontent.com/python/cpython/main/Doc/library/ast.rst) — 'The values represented can be instances of :class:`str`, :class:`bytes`, :class:`int`, :class:`float`, :class:`complex`, and :class:`bool`, and the constants :data:`None` and :data:`Ellipsis`.' (fetched)

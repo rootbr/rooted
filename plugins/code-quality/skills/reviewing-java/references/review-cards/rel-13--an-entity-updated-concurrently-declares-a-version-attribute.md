@@ -32,6 +32,3 @@ On the triggered hunk find each `@Entity` class added or modified, and each `mer
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: REL-13`, severity major, `file`, `symbol`, `code` = the entity declaration or the merge/save call quoted verbatim from the diff, `fix` = a `@Version` attribute on the entity, `rationale` naming the lost update).
-
-## Source
-Jakarta Persistence specification, chapter "Entity Operations", section "Optimistic Locking" — "Optimistic lock verification ensures that an update of a given item is successful only when no intervening transaction has already updated the item, preventing the loss of updates"; "The persistence provider is required to perform optimistic locking automatically for every entity with a version"; on conflict the provider must "throw an OptimisticLockException and mark the current transaction for rollback"; "Applications are strongly encouraged to enable optimistic locking for every entity which may be concurrently accessed or which may be merged from a detached state. Failure to make use of optimistic locking often leads to inconsistent entity state, lost updates, and other anomalies". Hibernate ORM user guide, chapter "Locking", "Optimistic" and "Mapping optimistic locking".

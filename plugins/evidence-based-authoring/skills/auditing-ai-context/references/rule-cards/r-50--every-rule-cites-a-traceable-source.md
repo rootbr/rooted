@@ -31,4 +31,4 @@ For each rule sentence, look in the surrounding 5 lines for a source pattern: `(
 When auditing a rule sentence with no source in its surrounding lines, emit one patch (`rule_id: R-50`, `location.section` = heading, severity medium) proposing either a citation appended or the rule marked provisional / cut; set `needs_human: true` because the sub-agent cannot invent a citation — the patch is a request to supply one or accept removal.
 
 ## Source
-Repo CLAUDE.md "Evidence-Based Rule" ("No traceable source → do not add"); Yang 2505.13360 §3.4 (bundling tax — each retained requirement must justify its slot).
+Repo CLAUDE.md "Evidence-Based Rule"; Yang 2505.13360 §3.4.

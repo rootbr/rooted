@@ -39,16 +39,3 @@ Grep the added lines for four or more logical and/or operators on one line, and 
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: CODE-85`, severity minor, `file`, `symbol`, `code` = the whole boolean expression as the diff shows it, across its lines, `fix` = the condition with its parts named as boolean variables or a predicate routine and every guarded operand kept after its guard, in the file's language, `rationale` = the operator count against the bound and the short-circuit dependency the fix preserves).
-
-## Source
-- Checkstyle BooleanExpressionComplexity, Description and property `max` (default 3) (fetched): "Restricts the number of boolean operators (&&, ||, &, | and ^) in an expression. Rationale: Too many conditions leads to code that is difficult to read and hence debug and maintain."
-- Sonar RSPEC S1067, Why is this an issue and Exceptions (fetched): "With the default threshold value of 3"; "No issue is reported inside equals methods, because it is common to compare all the fields of a class for equality inside this kind of method."
-- Pylint R0916 too-many-boolean-expressions, option `max-bool-expr` (fetched): "Maximum number of boolean expressions in an if statement"; default 5; "a and (b or c or (d and e)) ==> 5 boolean expressions".
-- Ruff PLR0916 too-many-boolean-expressions (fetched): "By default, this rule allows up to 5 expressions. This can be configured using the [`lint.pylint.max-bool-expr`] option."; "`if` statements with many Boolean expressions are harder to understand and maintain. Consider assigning the result of the Boolean expression, or any of its sub-expressions, to a variable."
-- Sonar RSPEC S3776, How to fix it (fetched): "Mixed operators in condition will increase complexity. Extracting the condition in a new function with an appropriate name will reduce cognitive load."
-- Google Go Style Guide, decisions.md § Conditionals and loops (fetched): "If the short-circuit behavior is not required, the boolean operands can be extracted directly".
-- Google Go Style Guide, guide.md § Maintainability (fetched): "The ! in the middle of this line is very easy to miss."; "both could be written in a more explicit fashion"; "leap := leap4 && (!leap100 || leap400)"; "a helper function that hides critical logic or an important edge-case could make it easy for a future change to fail to account for it properly."
-- C++ Core Guidelines ES.40, Example and Enforcement (fetched): "auto t1 = 0 <= x;        // bad: unnecessarily verbose"; "Writing computations as statements with one operation each is also confusing."; "more than N operators (and what should N be?)".
-- Google Engineering Practices, review/reviewer/looking-for.md § Complexity (fetched): "\"Too complex\" usually means \"can't be understood quickly by code readers.\""
-- DOI 10.1007/s10664-018-9628-3, abstract and a quoted sentence as posted in the neverworkintheory review (fetched): "220 professional programmers"; "some but not all negations make a predicate harder"; "More ranges also led to higher error rates, but this was not significant after Bonferroni correction."
-- Caveat: three is a linter default, not a measured threshold; the study's ranges result did not survive correction.

@@ -32,6 +32,3 @@ On the triggered hunk find each `StampedLock` region. Open the file and follow e
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: CC-43`, severity major, `file`, `symbol`, `code` = the region and the nested acquisition quoted verbatim from the diff, `fix` = a lock-free variant of the callee used inside the region, the call moved outside the region, or a `tryConvertToWriteLock`, `rationale` naming the self-deadlock on a non-reentrant lock).
-
-## Source
-`java.util.concurrent.locks.StampedLock` class Javadoc, Java SE 21 — "StampedLocks are designed for use as internal utilities in the development of thread-safe components. Their use relies on knowledge of the internal properties of the data, objects, and methods they are protecting. They are not reentrant, so locked bodies should not call other unknown methods that may try to re-acquire locks (although you may pass a stamp to other methods that can use or convert it)"; "Unlike Semaphore or Lock implementations, StampedLocks have no notion of ownership"; `#tryConvertToWriteLock`, `#tryConvertToReadLock`.

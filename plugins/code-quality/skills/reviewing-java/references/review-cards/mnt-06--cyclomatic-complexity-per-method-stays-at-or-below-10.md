@@ -34,6 +34,3 @@ On the triggered hunk locate each method containing added lines and open the fil
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: MNT-06`, severity minor, `file`, `symbol`, `code` = the method signature and its densest decision block quoted verbatim from the diff, `fix` = the extracted methods that split the decision logic, `rationale` naming the count and the paths that go untested).
-
-## Source
-McCabe, "A Complexity Measure", IEEE Transactions on Software Engineering SE-2(4), 1976, DOI 10.1109/TSE.1976.233837 — the measure and the upper bound of 10. Checkstyle `CyclomaticComplexity` — "The complexity is equal to the number of decision points + 1", `DEFAULT_COMPLEXITY_VALUE = 10`. PMD `CyclomaticComplexity` — "Concentrating too much decisional logic in a single method makes its behaviour hard to read and change", `methodReportLevel` default 10. SonarSource `java:S1541` "Methods should not be too complex" — "Complex code … will in any case be difficult to understand and therefore to maintain", `equals`/`hashCode` exempt (rule text from the `sonar-java` 6.15.1 plugin resources).

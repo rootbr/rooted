@@ -34,6 +34,3 @@ On the triggered hunk find each class that declares only `private final` fields 
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: MNT-15`, severity suggestion, `file`, `symbol`, `code` = the class header and one accessor or the `equals` quoted verbatim from the diff, `fix` = the record declaration with any compact constructor, `rationale` naming the drift risk in the hand-written members).
-
-## Source
-`java.lang.Record` class Javadoc, Java SE 21 — "A record class is a shallowly immutable, transparent carrier for a fixed set of values, called the record components"; the mandated canonical constructor, private final fields and public accessors; `equals`, `hashCode` and `toString` "derived from all of the component fields"; explicit declarations serve "to validate constructor arguments, perform defensive copies on mutable components, or normalize groups of components"; the invariant `new R(r.c1(), r.c2(), ..., r.cn())` equals `r`; JLS §8.10. JEP 395 "Records".

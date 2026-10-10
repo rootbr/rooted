@@ -34,9 +34,3 @@ Grep the hunk for a backslash inside a string or bytes literal followed by a cha
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PY-32`, severity major, `file`, `symbol`, `code` = the literal as written in the diff, `fix` = the same literal with an `r` prefix or each lone backslash doubled, such as `r"C:\data\reports"`, `rationale` = Python keeps the backslash of an unrecognised escape, warns with SyntaxWarning since 3.12 and states that a future version raises SyntaxError, while the same literal may hold recognised escapes such as `\r`).
-
-## Source
-- CPython Doc/reference/lexical_analysis.rst §Escape sequences (python/cpython Doc/reference/lexical_analysis.rst) — "all unrecognized escape sequences are left in the string unchanged, that is, the backslash is left in the result"; "Unrecognized escape sequences produce a :exc:`DeprecationWarning`."; "Unrecognized escape sequences produce a :exc:`SyntaxWarning`."; "In a future Python version they will raise a :exc:`SyntaxError`."; "Note that for bytes literals, the escape sequences only recognized in string"; "fall into the category of unrecognized escapes"; "ASCII Carriage Return (CR)"; "escape sequence denotes a single backslash character" (fetched)
-- CPython Doc/reference/lexical_analysis.rst §Raw string literals (python/cpython Doc/reference/lexical_analysis.rst) — "treat backslashes as literal characters"; "a raw literal cannot end in a single backslash" (fetched)
-- Ruff W605 invalid-escape-sequence (astral-sh/ruff crates/ruff_linter/src/rules/pycodestyle/rules/invalid_escape_sequence.rs) — "Invalid escape sequences are deprecated in Python 3.6." (fetched)
-- Pylint anomalous-backslash-in-string (W1401) (pylint-dev/pylint doc/data/messages/a/anomalous-backslash-in-string/details.rst) — "\z is same as \\z because there's no escape sequence for z. But it is not clear for the reader of the code." (fetched)

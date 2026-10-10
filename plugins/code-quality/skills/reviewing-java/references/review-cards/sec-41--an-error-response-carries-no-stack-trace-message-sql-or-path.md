@@ -35,6 +35,3 @@ On the triggered hunk find each handler, error controller, error-attributes bean
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: SEC-41`, severity major, `file`, `symbol`, `code` = the response-building line quoted verbatim from the diff, `fix` = a generic message with a correlation id and a server-side `log.error` carrying the exception, `rationale` naming the internal detail exposed and what a scanner learns from it).
-
-## Source
-OWASP ASVS 5.0 §16.5.1 — "a generic message is returned to the consumer when an unexpected or security-sensitive error occurs, ensuring no exposure of sensitive internal system data such as stack traces, queries, secret keys, and tokens". OWASP Error Handling Cheat Sheet — "a generic response is returned by the application but the error details are logged server side for investigation, and not returned to the user"; a 5xx response should "not provide any content as part of the response that would reveal implementation details"; the Spring `@RestControllerAdvice` example returning `ProblemDetail.forStatusAndDetail(INTERNAL_SERVER_ERROR, "An error occur, please retry")`. Spring Boot reference, "Servlet Web Applications → Error Handling" — the `/error` mapping and `ErrorController`/`ErrorAttributes` as the customisation points. CWE-209 — by id.

@@ -34,11 +34,3 @@ Grep each `def` and `lambda` signature in the hunk for a parameter with a defaul
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PY-165`, severity minor, `file`, `symbol`, `code` = the signature with the defaulted parameter before `*args`, verbatim, `fix` = the signature with that parameter moved after `*args`, as in `def func(*args, x=None):`, and its positional callers switched to the keyword, `rationale` = a defaulted parameter before `*args` takes the first positional argument and gets multiple values when also passed by keyword).
-
-## Source
-- Pylint keyword-arg-before-vararg (W1113) (pylint-dev/pylint pylint/checkers/typecheck.py) — 'When defining a keyword argument before variable positional arguments, one can end up in having multiple values passed for the aforementioned parameter in case the method is called with keyword arguments.' (fetched)
-- Pylint keyword-arg-before-vararg (W1113) (pylint-dev/pylint doc/data/messages/k/keyword-arg-before-vararg/bad.py) — 'def func(x=None, *args):  # [keyword-arg-before-vararg]' (fetched)
-- Pylint keyword-arg-before-vararg (W1113) (pylint-dev/pylint doc/data/messages/k/keyword-arg-before-vararg/good.py) — 'def func(*args, x=None):' (fetched)
-- CPython Doc/tutorial/controlflow.rst §Arbitrary Argument Lists (python/cpython Doc/tutorial/controlflow.rst) — 'meaning that they can only be used as keywords rather than positional arguments'; 'Before the variable number of arguments, zero or more normal arguments may occur.'; 'def write_multiple_items(file, separator, *args):' (fetched)
-- CPython Doc/tutorial/controlflow.rst §Positional-Only Parameters (python/cpython Doc/tutorial/controlflow.rst) — 'the parameters cannot be passed by keyword' (fetched)
-- CPython Doc/reference/expressions.rst §Calls (python/cpython Doc/reference/expressions.rst) — 'If there are N positional arguments, they are placed in the first N slots.'; 'If the slot is already filled, a :exc:`TypeError` exception is raised.'; 'that formal parameter receives a tuple containing the excess positional arguments' (fetched)

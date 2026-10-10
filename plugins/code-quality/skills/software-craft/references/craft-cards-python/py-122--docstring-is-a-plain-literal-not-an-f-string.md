@@ -36,9 +36,3 @@ Grep the hunk for a line that opens with a string literal carrying an `f` or `F`
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PY-122`, severity minor, `file`, `symbol`, `code` = the f-prefixed literal that opens the body, verbatim, `fix` = the same text as a plain `"""..."""` literal with each replacement field rewritten as words, `rationale` = an f-string in the docstring position is no docstring, so `__doc__` stays `None` and documentation tooling never sees the text).
-
-## Source
-- Ruff B021 f-string-docstring (astral-sh/ruff crates/ruff_linter/src/rules/flake8_bugbear/rules/f_string_docstring.rs) — 'Python will interpret the f-string as a joined string, rather than as a docstring. As such, the "docstring" will not be accessible via the `__doc__` attribute, nor will it be picked up by any automated documentation tooling.' (fetched)
-- flake8-bugbear B021 (PyCQA/flake8-bugbear README.rst) — 'f-string used as docstring. This will be interpreted by python as a joined string rather than a docstring.' (fetched)
-- CPython Doc/reference/lexical_analysis.rst §f-strings (https://raw.githubusercontent.com/python/cpython/main/Doc/reference/lexical_analysis.rst) — 'Formatted string literals cannot be used as :term:`docstrings <docstring>`, even if they do not include expressions' and its doctest '>>> print(foo.__doc__) None' (fetched)
-- PEP 257 Docstring Conventions §What is a Docstring? (https://raw.githubusercontent.com/python/peps/main/peps/pep-0257.rst) — 'A docstring is a string literal that occurs as the first statement in a module, function, class, or method definition.' and 'Such a docstring becomes the ``__doc__`` special attribute of that object.' and 'Use ... raw triple double quotes ... if you use any backslashes in your docstrings.' (fetched)

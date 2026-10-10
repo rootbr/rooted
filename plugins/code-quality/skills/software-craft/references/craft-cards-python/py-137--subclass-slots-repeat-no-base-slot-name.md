@@ -38,8 +38,3 @@ For each `__slots__` assignment the hunk adds or changes in a class body, read t
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PY-137`, severity major, `file`, `symbol`, `code` = the subclass's `__slots__` line, `fix` = the `__slots__` with the repeated name removed, such as `__slots__ = ('d',)`, `rationale` = the repeated name and the base class whose `__slots__` already declares it).
-
-## Source
-- CPython Doc/reference/datamodel.rst §Notes on using __slots__ (python/cpython Doc/reference/datamodel.rst) — 'If a class defines a slot also defined in a base class, the instance variable defined by the base class slot is inaccessible (except by retrieving its descriptor directly from the base class). This renders the meaning of the program undefined.  In the future, a check may be added to prevent this.' ; '*__slots__* declared in parents are available in child classes.' ; '*__slots__* (which should only contain names of any *additional* slots)' ; 'are implemented at the class level by creating :ref:`descriptors <descriptors>`' ; 'otherwise, the class attribute would overwrite the descriptor' (fetched)
-- Ruff PLW0244 redefined-slots-in-subclass (astral-sh/ruff crates/ruff_linter/src/rules/pylint/rules/redefined_slots_in_subclass.rs) — 'If a class defines a slot also defined in a base class, the instance variable defined by the base class slot is inaccessible (except by retrieving its descriptor directly from the base class).' (fetched)
-- Pylint redefined-slots-in-subclass (W0244) (pylint-dev/pylint pylint/checkers/classes/class_checker.py) — 'Used when a slot is re-defined in a subclass.' (fetched)

@@ -32,6 +32,3 @@ On the triggered hunk find each `==`, `!=`, `equals`, `Double.compare(...) == 0`
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: REL-32`, severity minor, `file`, `symbol`, `code` = the comparison quoted verbatim from the diff, `fix` = `Math.abs(a - b) < epsilon` or an `assertEquals` with a delta, `rationale` naming the rounding that makes exact equality fail).
-
-## Source
-SpotBugs `FE_FLOATING_POINT_EQUALITY` — "This operation compares two floating point values for equality. Because floating point calculations may involve rounding, calculated float and double values may not be accurate ... For values that need not be precise, consider comparing for equality within some range, for example: if ( Math.abs(x - y) < .0000001 ). See the Java Language Specification, section 4.2.4". JLS §4.2.4 "Floating-Point Operations" (unfetched; cited as the analyser anchors it).

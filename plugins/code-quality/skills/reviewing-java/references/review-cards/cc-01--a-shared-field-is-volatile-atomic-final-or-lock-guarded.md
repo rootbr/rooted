@@ -34,6 +34,3 @@ On the triggered hunk find each field the added lines write or read from a threa
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: CC-01`, severity major, `file`, `symbol`, `code` = the field declaration and the racing write or read quoted verbatim from the diff, `fix` = the `volatile` modifier, the atomic type, or the lock region enclosing every access, `rationale` naming the missing happens-before edge and the stale or reordered read it permits).
-
-## Source
-`java.util.concurrent` package Javadoc, Java SE 21, "Memory Consistency Properties" — "The results of a write by one thread are guaranteed to be visible to a read by another thread only if the write operation happens-before the read operation", with the `synchronized`, `volatile`, `Thread.start` and `Thread.join` edges enumerated. jcstress sample `jmm/basic/BasicJMM_06_Causality.java` — `PlainReads` observes `1, 0` in 0.09% of samples; `VolatileGuard` forbids it, zero samples. JLS §17.4.5 happens-before order.

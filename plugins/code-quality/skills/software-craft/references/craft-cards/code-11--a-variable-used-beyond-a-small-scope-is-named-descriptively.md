@@ -34,14 +34,3 @@ Grep the hunk for added declarations whose name is one to three characters, a wo
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: CODE-11`, severity minor, `file`, `symbol`, `code` = the added declaration carrying the short name, verbatim from the diff, `fix` = the declaration renamed to a descriptive name and one of its distant uses renamed with it, in the file's language, `rationale` = the name's visibility or the line distance from its declaration to its last use, and what a reader at that use cannot tell from the name).
-
-## Source
-- C++ Core Guidelines NL.7 (isocpp/CppCoreGuidelines, CppCoreGuidelines.md) (fetched): "The larger the scope the greater the chance of confusion and of an unintended name clash."; "int open;   // bad: global variable with a short, popular name".
-- clang-tidy `readability-identifier-length`, option `LineCountThreshold` (llvm/llvm-project, clang-tools-extra/docs/clang-tidy/checks/readability/identifier-length.md) (fetched): "a warning is always issued when a global variable has a short name, because globals can potentially be used across multiple files."
-- Google Go Style Guide, Style Decisions, Naming → Variable names (google/styleguide, go/decisions.md) (fetched): "the length of a name should be proportional to the size of its scope and inversely proportional to the number of times that it is used within that scope"; "A small scope is one in which one or two small operations are performed, say 1-7 lines."
-- Go Code Review Comments, Variable Names (golang/wiki, CodeReviewComments.md) (fetched): "the further from its declaration that a name is used, the more descriptive the name must be."
-- Google C++ Style Guide, Naming → Choosing Names (google/styleguide, cppguide.html) (fetched): "descriptiveness should be proportional to the name's scope of visibility"; "const int kNum = ...;  // Unclear meaning within broad scope".
-- Google TypeScript Style Guide, Descriptive names (google/styleguide, tsguide.html) (fetched): "Variables that are in scope for 10 lines or fewer, including arguments that are not part of an exported API, may use short (e.g. single letter) variable names."
-- Google Python Style Guide §3.16.1 Names to Avoid and §3.16.5 Mathematical Notation (google/styleguide, pyguide.md) (fetched): "`i` might be a fine name for 5-line code block but within multiple nested scopes, it is likely too vague."; "For mathematically-heavy code, short variable names that would otherwise violate the style guide are preferred when they match established notation in a reference paper or algorithm."
-- Linux kernel coding style §4 Naming (torvalds/linux, Documentation/process/coding-style.rst) (fetched): "GLOBAL variables [...] need to have descriptive names, as do global functions."
-- Caveat: the evidence is style-guide and tool-rule documentation; the line counts are those guides' baselines, not measured thresholds.

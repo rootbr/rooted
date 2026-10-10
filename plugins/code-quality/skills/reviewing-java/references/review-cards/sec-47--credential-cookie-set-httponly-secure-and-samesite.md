@@ -32,6 +32,3 @@ On the triggered hunk find each cookie construction and the attributes set on it
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: SEC-47`, severity major, `file`, `symbol`, `code` = the cookie construction quoted verbatim from the diff, `fix` = the same cookie with `HttpOnly`, `Secure`, `SameSite` and a `__Host-` (or `__Secure-`) prefix, `rationale` naming the attribute missing and the exposure it opens).
-
-## Source
-OWASP Session Management Cheat Sheet — `Secure` "is mandatory to prevent the disclosure of the session ID through MitM (Man-in-the-Middle) attacks"; `HttpOnly` "is mandatory to prevent session ID stealing through XSS attacks"; "Session cookies must explicitly set SameSite=Strict (preferred) or SameSite=Lax... do not rely on the browser-default value"; the `__Host-` prefix ("Recommended for session IDs"; `__Secure-` "only when subdomain sharing is required"). OWASP ASVS 5.0 requirement 3.3.1 — cookies have the `Secure` attribute "and if the '__Host-' prefix is not used for the cookie name, the '__Secure-' prefix must be used for the cookie name"; 3.3.2, 3.3.4. Jakarta Servlet `Cookie#setSecure` Javadoc — "The default value is false"; `#setHttpOnly`.

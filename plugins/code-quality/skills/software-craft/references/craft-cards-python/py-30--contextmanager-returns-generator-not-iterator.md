@@ -38,18 +38,3 @@ Grep the hunk for `@contextmanager`, `@asynccontextmanager` or their `contextlib
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PY-30`, severity minor, `file`, `symbol`, `code` = the decorator and the `def` line with its return annotation quoted verbatim, `fix` = the annotation as `Generator[T, None, None]` or `AsyncGenerator[T, None]`, or `Generator[T]` and `AsyncGenerator[T]` on Python 3.13 and later, `rationale` = these decorators require generators, which support `throw`, and typeshed deprecates their iterator overloads).
-
-## Source
-- Ruff UP052 context-manager-iterator (astral-sh/ruff crates/ruff_linter/src/rules/pyupgrade/rules/context_manager_iterator.rs) — '`contextlib.contextmanager` and `contextlib.asynccontextmanager` require generators, which support methods such as `throw` that are not guaranteed by the iterator protocols.' (fetched)
-- Ruff UP052 context-manager-iterator (astral-sh/ruff crates/ruff_linter/src/rules/pyupgrade/rules/context_manager_iterator.rs) — 'The iterator overloads of these decorators are deprecated in' (fetched)
-- Ruff UP052 context-manager-iterator (astral-sh/ruff crates/ruff_linter/src/rules/pyupgrade/rules/context_manager_iterator.rs) — 'On Python 3.13 and later, the fix omits the default type arguments and uses `Generator[int]` or `AsyncGenerator[int]`.' (fetched)
-- Ruff UP052 context-manager-iterator (astral-sh/ruff crates/ruff_linter/src/rules/pyupgrade/rules/context_manager_iterator.rs) — 'For a generator that returns a value, the fix uses `object` as the return type to accommodate any return value.' (fetched)
-- Ruff UP052 context-manager-iterator (astral-sh/ruff crates/ruff_linter/src/rules/pyupgrade/rules/context_manager_iterator.rs) — 'The rule checks functions whose innermost decorator is a contextlib context manager and whose bodies contain a `yield` or `yield from`.' (fetched)
-- CPython Doc/library/contextlib.rst §contextlib.contextmanager (https://raw.githubusercontent.com/python/cpython/main/Doc/library/contextlib.rst) — 'The function being decorated must return a :term:`generator`-iterator when called.' (fetched)
-- CPython Doc/library/contextlib.rst §contextlib.contextmanager (https://raw.githubusercontent.com/python/cpython/main/Doc/library/contextlib.rst) — 'If an unhandled exception occurs in the block, it is reraised inside the generator at the point where the yield occurred.' (fetched)
-- CPython Doc/library/contextlib.rst §contextlib.asynccontextmanager (https://raw.githubusercontent.com/python/cpython/main/Doc/library/contextlib.rst) — 'It must be applied to an :term:`asynchronous generator` function.' (fetched)
-- CPython Doc/library/typing.rst §Annotating generators and coroutines (https://raw.githubusercontent.com/python/cpython/main/Doc/library/typing.rst) — 'A generator can be annotated using the generic type :class:`Generator[YieldType, SendType, ReturnType] <collections.abc.Generator>`.' (fetched)
-- CPython Doc/library/typing.rst §Annotating generators and coroutines (https://raw.githubusercontent.com/python/cpython/main/Doc/library/typing.rst) — 'The ``SendType`` and ``ReturnType`` parameters default to :const:`!None`' (fetched)
-- CPython Doc/library/typing.rst §Annotating generators and coroutines (https://raw.githubusercontent.com/python/cpython/main/Doc/library/typing.rst) — ':class:`AsyncGenerator[YieldType, SendType] <collections.abc.AsyncGenerator>`' (fetched)
-- CPython Doc/library/typing.rst §Annotating generators and coroutines (https://raw.githubusercontent.com/python/cpython/main/Doc/library/typing.rst) — 'Simple generators that only ever yield values can also be annotated as having a return type of either' (fetched)
-- Caveat: Ruff UP052 is a preview rule.

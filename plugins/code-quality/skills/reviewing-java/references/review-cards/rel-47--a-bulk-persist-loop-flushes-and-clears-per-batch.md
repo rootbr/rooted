@@ -34,6 +34,3 @@ On the triggered hunk find each loop that persists or saves per element, or a `s
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: REL-47`, severity major, `file`, `symbol`, `code` = the loop quoted verbatim from the diff, `fix` = `persist` with `flush()`/`clear()` every batch, or a `StatelessSession`, `rationale` naming the growing first-level cache and the long transaction).
-
-## Source
-Hibernate ORM user guide, chapter "Batching" — "Hibernate caches all the newly inserted Person instances in the session-level cache, so, when the transaction ends, 100 000 entities are managed by the persistence context. If the maximum memory allocated to the JVM is rather low, this example could fail with an OutOfMemoryException"; "long-running transactions can deplete a connection pool so other transactions don't get a chance to proceed"; "JDBC batching is not enabled by default, so every insert statement requires a database round trip. To enable JDBC batching, set the hibernate.jdbc.batch_size property to an integer between 10 and 50"; "Batch inserts" — "When you make new objects persistent, employ methods flush() and clear() to the session regularly, to control the size of the first-level cache"; "Hibernate disables insert batching at the JDBC level transparently if you use an identity identifier generator".

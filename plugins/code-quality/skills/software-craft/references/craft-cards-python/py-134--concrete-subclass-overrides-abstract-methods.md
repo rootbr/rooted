@@ -40,18 +40,3 @@ Grep the hunk for class statements with bases, abstractmethod decorators and rai
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PY-134`, severity major, `file`, `symbol`, `code` = the class statement of the concrete class and the abstract base method it leaves undefined, `fix` = the concrete class with its own definition of that method, `rationale` = that the incomplete class instantiates, or under ABCMeta fails only at instantiation, and the missing method runs the base's placeholder body).
-
-## Source
-- Pylint abstract-method (W0223) (pylint-dev/pylint pylint/checkers/classes/class_checker.py) — 'Used when an abstract method (i.e. raise NotImplementedError) is not overridden in concrete class.' (fetched)
-- Pylint abstract-method (W0223) (pylint-dev/pylint doc/data/messages/a/abstract-method/bad/abstract_method.py) — 'class Panther(WildAnimal):  # [abstract-method]' (fetched)
-- pylint-dev/pylint utils.py, class_is_abstract (https://raw.githubusercontent.com/pylint-dev/pylint/main/pylint/checkers/utils.py) — 'Only check for explicit metaclass=ABCMeta on this specific class' (fetched)
-- pylint-dev/pylint utils.py, class_is_abstract (https://raw.githubusercontent.com/pylint-dev/pylint/main/pylint/checkers/utils.py) — 'As well as direct abc.ABC inheritance' (fetched)
-- pylint-dev/pylint utils.py, class_is_abstract (https://raw.githubusercontent.com/pylint-dev/pylint/main/pylint/checkers/utils.py) — 'Protocol classes are considered' (fetched)
-- pylint-dev/pylint utils.py, class_is_abstract (https://raw.githubusercontent.com/pylint-dev/pylint/main/pylint/checkers/utils.py) — 'if method.is_abstract(pass_is_abstract=False):' (fetched)
-- PEP 3119 §The abc Module, Implementation (https://raw.githubusercontent.com/python/peps/main/peps/pep-3119.rst) — 'The ``@abstractmethod`` decorator sets the function attribute ``__isabstractmethod__`` to the value ``True``.' (fetched)
-- PEP 3119 §The abc Module, Implementation (https://raw.githubusercontent.com/python/peps/main/peps/pep-3119.rst) — 'The ``ABCMeta.__new__`` method computes the type attribute ``__abstractmethods__`` as the set of all method names that have an ``__isabstractmethod__`` attribute whose value is true.' (fetched)
-- PEP 3119 §The abc Module, Implementation (https://raw.githubusercontent.com/python/peps/main/peps/pep-3119.rst) — 'If the resulting ``__abstractmethods__`` set is non-empty, the class is considered abstract, and attempts to instantiate it will raise ``TypeError``.' (fetched)
-- CPython Doc/library/abc.rst §abc.abstractmethod (https://raw.githubusercontent.com/python/cpython/main/Doc/library/abc.rst) — 'Using this decorator requires that the class's metaclass is :class:`ABCMeta` or is derived from it.' (fetched)
-- CPython Doc/library/abc.rst §abc.abstractmethod (https://raw.githubusercontent.com/python/cpython/main/Doc/library/abc.rst) — 'A class that has a metaclass derived from :class:`!ABCMeta` cannot be instantiated unless all of its abstract methods and properties are overridden.' (fetched)
-- Python documentation, Built-in Exceptions §NotImplementedError (https://docs.python.org/3/library/exceptions.html) — 'In user defined base classes, abstract methods should raise this exception when they require derived classes to override the method' (fetched)
-- CPython Doc/tutorial/controlflow.rst §Defining Functions (https://raw.githubusercontent.com/python/cpython/main/Doc/tutorial/controlflow.rst) — 'even functions without a :keyword:`return` statement do return a value, albeit a rather boring one.' (fetched)

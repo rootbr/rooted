@@ -31,6 +31,3 @@ On the triggered hunk find each `ThreadLocal` declaration or `withInitial`. Read
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: CC-33`, severity minor, `file`, `symbol`, `code` = the `ThreadLocal` declaration quoted verbatim from the diff, `fix` = a shared immutable object, a per-task instance, or a bounded pool, `rationale` naming one copy per virtual thread and the retained heap).
-
-## Source
-`java.lang.Thread` class Javadoc, Java SE 21, section "Virtual threads" — "a single Java virtual machine may support millions of virtual threads"; `java.lang.ThreadLocal` class Javadoc — "each thread that accesses one (via its get or set method) has its own, independently initialized copy of the variable", and "Each thread holds an implicit reference to its copy of a thread-local variable as long as the thread is alive"; `java.lang.ScopedValue` Javadoc, Java SE 21 (preview API) — "A ThreadLocal has an unbounded lifetime and thus continues to have a value after a method completes, unless explicitly removed". JEP 444 "Virtual Threads", section "Thread-local variables" — a thread-local used to cache expensive objects, one copy per thread, does not pay off with millions of virtual threads; unfetched.

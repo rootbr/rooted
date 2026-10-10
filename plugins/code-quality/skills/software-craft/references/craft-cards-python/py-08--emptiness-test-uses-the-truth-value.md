@@ -38,13 +38,3 @@ Grep the hunk for `len(...)` used alone as the test of if, elif, while or assert
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PY-08`, severity suggestion, `file`, `symbol`, `code` = the condition with `len()` or the empty-literal comparison, verbatim, `fix` = the truth-value test, such as `if pending:` or `if not name:`, `rationale` = that an empty str, list or tuple is false, so the call or the comparison is unnecessary, with the value's type that makes the rewrite equivalent).
-
-## Source
-- PEP 8 §Programming Recommendations (https://raw.githubusercontent.com/python/peps/main/peps/pep-0008.rst) — 'For sequences, (strings, lists, tuples), use the fact that empty sequences are false:' (fetched)
-- Ruff PLC1802 len-test (astral-sh/ruff crates/ruff_linter/src/rules/pylint/rules/len_test.rs) — 'Empty sequences are considered false in a boolean context. You can either remove the call to `len` or compare the length against a scalar.' (fetched)
-- Pylint use-implicit-booleaness-not-len (C1802) (pylint-dev/pylint doc/data/messages/u/use-implicit-booleaness-not-len/bad.py) — 'or compare the length against a scalar (``if len(x) > 1``).' (fetched)
-- Pylint use-implicit-booleaness-not-comparison (C1803) (pylint-dev/pylint doc/data/messages/u/use-implicit-booleaness-not-comparison/bad.py) — 'Following this check blindly in weakly typed code base can create hard to debug issues. If the value can be something else that is falsey but not a sequence (for example ``None``, an empty string, or ``0``) the code will not be equivalent.' (fetched)
-- Pylint use-implicit-booleaness-not-comparison-to-string (C1804) (pylint-dev/pylint doc/data/messages/u/use-implicit-booleaness-not-comparison-to-string/bad.py) — 'Empty string are considered false in a boolean context. Following this check blindly in weakly typed code base can create hard to debug issues.' (fetched)
-- Ruff PLC1901 compare-to-empty-string (astral-sh/ruff crates/ruff_linter/src/rules/pylint/rules/compare_to_empty_string.rs) — 'An empty string is falsy, so it is unnecessary to compare it to `""`. If the value can be something else Python considers falsy, such as `None`, `0`, or another empty container, then the code is not equivalent.' (fetched)
-- Ruff PLC1901 compare-to-empty-string (astral-sh/ruff crates/ruff_linter/src/rules/pylint/rules/compare_to_empty_string.rs) — 'High false positive rate, as the check is context-insensitive and does not consider the type of the variable being compared' (fetched)
-- Caveat: the style guide states the idiom for sequences (strings, lists, tuples); dict and set comparisons are not carried.

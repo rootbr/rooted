@@ -31,6 +31,3 @@ On the triggered hunk find each `then*` chain and follow it to its end in the fi
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: REL-59`, severity major, `file`, `symbol`, `code` = the chain quoted verbatim from the diff, `fix` = a terminal `whenComplete`/`handle`/`exceptionally` that records the failure, or the future returned to a caller that joins it, `rationale` naming the skipped stages and the unobserved exception).
-
-## Source
-`java.util.concurrent.CompletionStage` class Javadoc, Java SE 21 — "Two method forms (handle and whenComplete) support unconditional computation whether the triggering stage completed normally or exceptionally. Method exceptionally supports computation only when the triggering stage completes exceptionally"; "if a stage's computation terminates abruptly with an (unchecked) exception or error, then all dependent stages requiring its completion complete exceptionally as well, with a CompletionException holding the exception as its cause". `java.util.concurrent.CompletableFuture` class Javadoc — `isCompletedExceptionally`, `join` throwing the `CompletionException`.

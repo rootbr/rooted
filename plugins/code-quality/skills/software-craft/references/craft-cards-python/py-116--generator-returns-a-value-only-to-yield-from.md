@@ -39,14 +39,3 @@ Grep the hunk for a return statement followed by an expression. Open the enclosi
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PY-116`, severity major, `file`, `symbol`, `code` = the `return <value>` line and one `yield` line of the same function, verbatim from the diff, `fix` = `yield from <value>` followed by a bare `return`, or a bare `return` where the value is not needed, in Python, `rationale` = the returned value becomes `StopIteration.value`, which a for loop, list() or sum() discards, so the caller silently receives nothing for that branch).
-
-## Source
-- SonarSource/sonar-python rule S2712, Python (SonarSource/sonar-python python-checks/src/main/resources/org/sonar/l10n/py/rules/python/S2712.html) — 'Most callers iterate generators with a for loop, which swallows StopIteration automatically and discards the returned value entirely.' (fetched)
-- SonarSource/sonar-python rule S2712, Python (SonarSource/sonar-python python-checks/src/main/resources/org/sonar/l10n/py/rules/python/S2712.html) — 'A bare return (without a value) in a generator is fine — it simply ends the generator’s execution early' (fetched)
-- Ruff B901 return-in-generator (astral-sh/ruff crates/ruff_linter/src/rules/flake8_bugbear/rules/return_in_generator.rs) — 'the `return` statement will cause the generator to raise `StopIteration` with the value provided, rather than returning the value to the caller.' (fetched)
-- Ruff B901 return-in-generator (astral-sh/ruff crates/ruff_linter/src/rules/flake8_bugbear/rules/return_in_generator.rs) — 'Checks for `return {value}` statements in functions that also contain `yield` or `yield from` statements.' (fetched)
-- Ruff B901 return-in-generator (astral-sh/ruff crates/ruff_linter/src/rules/flake8_bugbear/rules/return_in_generator.rs) — 'in reality, though, `list(get_file_paths())` evaluates to `[]`' (fetched)
-- flake8-bugbear B901 (PyCQA/flake8-bugbear README.rst) — 'In Python 3 ``return x`` can be used in a generator as a return value in conjunction with ``yield from``.' (fetched)
-- CPython Doc/reference/simple_stmts.rst §The return statement (https://raw.githubusercontent.com/python/cpython/main/Doc/reference/simple_stmts.rst) — 'The returned value (if any) is used as an argument to construct :exc:`StopIteration` and becomes the :attr:`StopIteration.value` attribute.' (fetched)
-- CPython Doc/reference/expressions.rst §Yield expressions (https://raw.githubusercontent.com/python/cpython/main/Doc/reference/expressions.rst) — 'When the underlying iterator is complete, the :attr:`~StopIteration.value` attribute of the raised :exc:`StopIteration` instance becomes the value of the yield expression.' (fetched)
-- Caveat: the ruff rule is a preview rule; the Sonar rule flags every return with a value in a generator, and the yield from pairing rests on the flake8-bugbear README and the language reference.

@@ -52,16 +52,16 @@ One line per card: `rule_id · source · origin-file · notes` (ownership / non-
 
 ## G5 — sourcing  ·  default `[context-file, skill, agent-prompt]`
 
-- **R-50** · repo CLAUDE.md Evidence-Based Rule; Yang 2505.13360 §3.4 (bundling tax) · g5-sourcing.md · owns source-presence; `needs_human` always (cannot invent a citation)
+- **R-50** · repo CLAUDE.md Evidence-Based Rule ("No traceable source → do not add"); Yang 2505.13360 §3.4 (bundling tax — each retained requirement must justify its slot) · g5-sourcing.md · owns source-presence; `needs_human` always (cannot invent a citation)
 - **R-52** · Gloaguen 2602.11988 §4.2; Li 2602.12670 v4 §5.1.1 + App. D.6 · gate exemption SkillOpt 2605.23904 §3.5, CoEvoSkills 2604.01687 §4.2 · g5-sourcing.md · owns self-authoring audit; house signal-table threshold
 - **R-54** · Yang 2505.13360 §3.3 (5.9% regress >20%, ~2×) · g5-sourcing.md · owns number-presence; mechanical
 - **R-55** · convention (token economy) · g5-sourcing.md · house convention; low
 - **R-56** · Maynez 2005.00661 (ACL 2020; entailment >> n-gram for faithfulness) · g5-sourcing.md · **owns faithfulness**; house four-drift table; `needs_human` when source not re-fetched
-- **R-57** · Anthropic, Effective context engineering (smallest high-signal set) · g5-sourcing.md · **owns provenance-vs-finding**; house grep heuristic (ISO dates, tmp/ paths, run-IDs)
+- **R-57** · Anthropic, Effective context engineering — context is "the smallest possible set of high-signal tokens"; for the `kb-card` source block, the same source plus verified hands-on measurement: the `## Source` blocks held 2.25 of 5.85 MB (38 %, median 4 148 bytes per card, p90 6 592) of the universal craft-card corpus, 0.45 of 1.12 MB (40 %, median 2 313) of the Python craft-card corpus and 0.18 of 1.00 MB (18 %, median 708) of the Java review-card corpus, every consumer of the three reads a card whole and none opens a source at runtime — dated record `research/2026-10-16_source-footer-compaction.md` · g5-sourcing.md · **owns provenance-vs-finding**, the KB-card source block included; house grep heuristic (ISO dates, tmp/ paths, run-IDs; on a `kb-card`, a citation block its corpus taxonomy does not document, and quoted evidence or fetch markers in a documented footer); non-default `applies_to_target` adds `kb-card` for the source-block check
 
 ## G6 — constraints  ·  default `[context-file, skill, agent-prompt]`
 
-- **R-60** · Khan 2510.22251 §4.2, §4.4 (+4 gpt-4o vs −2.4 GPT-5), §6.2.1, §6.3.2 (OpenAI-only; Claude-tier = extrapolation; implicit-rule recovery 44.7% vs 24.5%) · g6-constraints.md · owns density-vs-tier; semantic
+- **R-60** · Khan 2510.22251 §4.2, §4.4 (+4 gpt-4o vs −2.4 GPT-5), §6.2.1, §6.3.2 (OpenAI-only; Claude-tier = extrapolation; implicit-rule recovery 44.7% vs 24.5%); Anthropic, Claude prompting best practices and the per-model guides (2026: dial back "CRITICAL: You MUST" trigger language on Opus 4.5+; "Skills developed for prior models are often too prescriptive for Claude Fable 5 and can degrade output quality") · g6-constraints.md · owns density-vs-tier; semantic
 - **R-61** · Promptomatix §B.1.1; Khan 2510.22251 §5.3 · g6-constraints.md · owns positive framing; house two-place exception
 - **R-62** · Anthropic skill-creator guidance; Yang 2505.13360 §3.4 (bundling tax) · g6-constraints.md · owns ALL-CAPS count; house ≤3 ceiling
 - **R-63** · RFC 2119 · g6-constraints.md · owns RFC-2119 keyword consistency; house NEVER/ALWAYS/ONLY-as-extensions

@@ -34,6 +34,3 @@ On the triggered hunk find each `new` of a type whose name or package marks it a
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: MNT-14`, severity minor, `file`, `symbol`, `code` = the `new` expression quoted verbatim from the diff, `fix` = the constructor parameter and final field, `rationale` naming the concrete implementation the class is bound to and the test that cannot substitute it).
-
-## Source
-Spring Framework reference, The IoC Container → Dependencies → Dependency Injection — "Code is cleaner with the DI principle, and decoupling is more effective when objects are provided with their dependencies. The object does not look up its dependencies and does not know the location or class of the dependencies. As a result, your classes become easier to test, particularly when the dependencies are on interfaces or abstract base classes, which allow for stub or mock implementations to be used in unit tests".

@@ -32,6 +32,3 @@ On the triggered hunk find each loop condition comparing an index with `size()`,
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: REL-34`, severity major, `file`, `symbol`, `code` = the loop condition or index expression quoted verbatim from the diff, `fix` = `<` in place of `<=`, or the corrected end index, `rationale` naming the element read past the end or dropped).
-
-## Source
-`java.util.List#get(int)` Javadoc, Java SE 21 — `@throws IndexOutOfBoundsException if the index is out of range (index < 0 || index >= size())`; `java.lang.String#charAt(int)` — "An index ranges from 0 to length() - 1"; `java.lang.String#substring(int, int)` — `endIndex` exclusive, `IndexOutOfBoundsException` if `endIndex` is larger than the length.

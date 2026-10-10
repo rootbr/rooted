@@ -32,6 +32,3 @@ On the triggered hunk find each `Files.lines`, `Files.list`, `Files.walk`, `File
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: REL-02`, severity major, `file`, `symbol`, `code` = the stream-opening expression quoted verbatim from the diff, `fix` = the same expression as a `try` resource, `rationale` naming the open file, directory or cursor that the terminal operation leaves open).
-
-## Source
-`java.nio.file.Files#lines(Path, Charset)` Javadoc, Java SE 21 — "The returned stream contains a reference to an open file. The file is closed by closing the stream"; its API note — "This method must be used within a try-with-resources statement or similar control structure to ensure that the stream's open file is closed promptly after the stream's operations have completed". `Files#list`, `#walk`, `#find` — "The directory is closed by closing the stream", with the same API note. `java.lang.AutoCloseable` Javadoc — try-with-resources is "in general unnecessary when using non-I/O-based forms" of `Stream`. Hibernate ORM `org.hibernate.query.SelectionQuery#getResultStream` Javadoc — "The client should call Stream.close() after processing the stream so that resources are freed as soon as possible".

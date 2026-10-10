@@ -33,6 +33,3 @@ On the triggered hunk take each collaborator added to a bean's constructor, fiel
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: MNT-35`, severity minor, `file`, `symbol`, `code` = the added constructor parameter or field quoted verbatim from the diff, `fix` = the extracted bean, the event, or the inverted interface, `rationale` naming the two beans and the reverse path).
-
-## Source
-Spring Framework reference, Dependencies → Dependency Injection → "Circular dependencies" — with constructor injection "The Spring IoC container detects this circular reference at runtime, and throws a BeanCurrentlyInCreationException"; "a circular dependency between bean A and bean B forces one of the beans to be injected into the other prior to being fully initialized itself (a classic chicken-and-egg scenario)". Spring Boot 2.6 Release Notes, "Circular References Prohibited by Default" — "Circular references between beans are now prohibited by default. If your application fails to start due to a BeanCurrentlyInCreationException you are strongly encouraged to update your configuration to break the dependency cycle"; `spring.main.allow-circular-references`, or the setter on `SpringApplication` and `SpringApplicationBuilder`, restores the old behaviour.

@@ -33,6 +33,3 @@ On the triggered hunk find each `put`, `add` or `computeIfAbsent` on a collectio
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: REL-48`, severity major, `file`, `symbol`, `code` = the collection declaration and the growing insertion quoted verbatim from the diff, `fix` = a bounded cache with a maximum size or expiry, or a removal on the matching event, `rationale` naming the entries the process can never reclaim).
-
-## Source
-arXiv:1810.00101 (Ghanavati, Costa, Seboek, Lo, Andrzejak, "Memory and Resource Leak Defects and their Repairs in Java Projects") §4.4 — "Collection mismanagement (collection) is the most common root cause for memory leaks (39% of the cases)"; "Leaks due to collection mismanagement can lead to severe memory waste, in particular when the collection is used as a static member. The reason is that the static fields are never garbage-collected"; Table 5 — "Dead objects referenced by a collection" 93 of 491 issues, "Over-sized cache or buffer" 14. `java.util.LinkedHashMap#removeEldestEntry` Javadoc, Java SE 21 — "This is useful if the map represents a cache: it allows the map to reduce memory consumption by deleting stale entries ... maintaining a steady state of 100 entries".

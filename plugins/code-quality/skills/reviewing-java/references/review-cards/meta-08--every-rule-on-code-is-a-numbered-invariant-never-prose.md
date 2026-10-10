@@ -33,6 +33,3 @@ Open the config at HEAD. In the diff's added lines, find every sentence outside 
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: META-08`, severity minor, `file` = the config path, `symbol` = the nearest heading above the sentence, `code` = the prose sentence quoted verbatim from the diff, `fix` = the sentence rewritten as the next numbered invariant with a `Violation:` clause, `rationale` naming that a finding cites an invariant by number).
-
-## Source
-MADR `README.md` (`adr/madr`, `main`) — "For each ADR, copy the template to `nnnn-title.md`": every record is a numbered file. arXiv:2103.02255 §4.1 — the requirement tuple's first element, "id: The identifier of the requirement … The id of each requirement should be unique".

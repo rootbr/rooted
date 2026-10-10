@@ -32,6 +32,3 @@ On the triggered hunk find each `lock()`, `lockInterruptibly()` and `tryLock()` 
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: CC-07`, severity major, `file`, `symbol`, `code` = the acquisition and release lines quoted verbatim from the diff, `fix` = `lock()` before the `try` and `unlock()` in its `finally`, `rationale` naming the unreleased lock or the `IllegalMonitorStateException` on the failed-acquisition path).
-
-## Source
-`java.util.concurrent.locks.Lock` Javadoc, Java SE 21 — the idiom `l.lock(); try { … } finally { l.unlock(); }`, and "care must be taken to ensure that all code that is executed while the lock is held is protected by try-finally or try-catch to ensure that the lock is released when necessary"; `ReentrantLock` class Javadoc — "It is recommended practice to always immediately follow a call to lock with a try block"; `ReentrantLock#unlock` — throws `IllegalMonitorStateException` "if the current thread does not hold this lock". SpotBugs `UL_UNRELEASED_LOCK` and `UL_UNRELEASED_LOCK_EXCEPTION_PATH` (CWE-413, CWE-459).

@@ -33,6 +33,3 @@ On the triggered hunk find each `cancel(true)` and `shutdownNow()`, and each lon
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: CC-23`, severity major, `file`, `symbol`, `code` = the cancellation call or the loop header quoted verbatim from the diff, `fix` = the `isInterrupted()` check with an exit from the loop, `rationale` naming the interrupt status nothing reads).
-
-## Source
-`java.util.concurrent.Future#cancel` Javadoc, Java SE 21 — `mayInterruptIfRunning` "true if the thread executing this task should be interrupted (if the thread is known to the implementation); otherwise, in-progress tasks are allowed to complete". `java.lang.Thread#interrupt` — when the thread is not blocked in an interruptible method, "this thread's interrupt status will be set"; `Thread#interrupted` — "The interrupted status of the thread is cleared by this method". `ThreadPoolExecutor#shutdownNow` — "any task that fails to respond to interrupts may never terminate". `java.lang.InterruptedException` class Javadoc — the idiom `if (Thread.interrupted()) throw new InterruptedException();`.

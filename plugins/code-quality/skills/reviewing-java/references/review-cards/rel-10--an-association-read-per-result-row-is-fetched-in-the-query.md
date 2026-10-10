@@ -33,6 +33,3 @@ On the triggered hunk find each loop or stream over a query result and list the 
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: REL-10`, severity minor, `file`, `symbol`, `code` = the query and the per-element association access quoted verbatim from the diff, `fix` = the query with `join fetch`, an `@EntityGraph`, a `@BatchSize` or a DTO projection, `rationale` naming the association and the statement count that scales with the rows).
-
-## Source
-Hibernate ORM user guide, chapter "Fetching" — the SELECT fetch strategy "is the strategy generally termed N+1"; "If you forget to JOIN FETCH all EAGER associations, Hibernate is going to issue a secondary select for each and every one of those which, in turn, can lead to N + 1 query issue"; "Batch fetching" — "Without @BatchSize, you'd run into a N + 1 query issue", and "most of the time, a DTO projection or a JOIN FETCH is a much better alternative"; "Dynamic fetching via Jakarta Persistence entity graph".

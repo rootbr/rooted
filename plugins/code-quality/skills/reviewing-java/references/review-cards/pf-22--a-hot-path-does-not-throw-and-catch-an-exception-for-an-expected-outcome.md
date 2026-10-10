@@ -34,6 +34,3 @@ On the triggered hunk find each `try`/`catch` whose catch block returns a defaul
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PF-22`, severity minor, `file`, `symbol`, `code` = the `try`/`catch` or the throw quoted verbatim from the diff, `fix` = the test or the non-throwing API, `rationale` naming the stack-trace capture per throw).
-
-## Source
-`java.lang.Throwable#fillInStackTrace` Javadoc, Java SE 21 — "Fills in the execution stack trace. This method records within this Throwable object information about the current state of the stack frames for the current thread"; `Throwable(String, Throwable, boolean enableSuppression, boolean writableStackTrace)` — the constructor that skips the stack trace when `writableStackTrace` is false. JMH benchmarks `ionutbalosin/jvm-performance-benchmarks`, `.../compiler/StackTraceBenchmark.java` — "the costs of constructing a stack trace are proportional to the depth of the Java stack at the moment of exception instantiation"; with the HotSpot default `-XX:+OmitStackTraceInFastThrow` "the compiler may choose a faster approach using pre-allocated exceptions that do not include a stack trace" for hot exceptions in optimized code; `.../compiler/NpeThrowBenchmark.java` — implicit versus explicit null-pointer exceptions at 0%, 50% and 100% throw rates.

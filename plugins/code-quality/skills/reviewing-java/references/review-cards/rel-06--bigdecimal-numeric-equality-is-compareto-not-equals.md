@@ -32,6 +32,3 @@ On the triggered hunk find each `equals` call, `assertEquals` argument pair, `Ha
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: REL-06`, severity major, `file`, `symbol`, `code` = the comparison or collection use quoted verbatim from the diff, `fix` = `compareTo(...) == 0` or a normalized scale before the hash collection, `rationale` naming the scale-sensitive `equals`).
-
-## Source
-`java.math.BigDecimal#equals(Object)` Javadoc, Java SE 21 — returns true "if and only if the specified Object is a BigDecimal whose value and scale are equal to this BigDecimal's"; `#compareTo(BigDecimal)` — "Note: this class has a natural ordering that is inconsistent with equals"; comparing its result to 0 "is analogous to checking the numerical equality of double values". Error Prone `BigDecimalEquals` — `new BigDecimal("1.0").equals(new BigDecimal("1.00"))` is false.

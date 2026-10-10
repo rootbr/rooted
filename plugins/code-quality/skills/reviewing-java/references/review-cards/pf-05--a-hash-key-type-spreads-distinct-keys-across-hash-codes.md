@@ -32,6 +32,3 @@ On the triggered hunk read each `hashCode` override. Open the file to see the fi
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PF-05`, severity minor, `file`, `symbol`, `code` = the `hashCode` body quoted verbatim from the diff, `fix` = a hash over the fields `equals` uses, `rationale` naming the bucket collision and the linear or tree scan it forces).
-
-## Source
-`java.lang.Object#hashCode` Javadoc, Java SE 21 — "the programmer should be aware that producing distinct integer results for unequal objects may improve the performance of hash tables". `java.util.HashMap` class Javadoc — "Note that using many keys with the same hashCode() is a sure way to slow down performance of any hash table. To ameliorate impact, when keys are Comparable, this class may use comparison order among keys to help break ties"; implementation notes in the same source — `TREEIFY_THRESHOLD = 8` and `MIN_TREEIFY_CAPACITY = 64`: a bin is converted to a tree when it holds that many nodes and the table has at least that many buckets; `treeifyBin` resizes instead below that.

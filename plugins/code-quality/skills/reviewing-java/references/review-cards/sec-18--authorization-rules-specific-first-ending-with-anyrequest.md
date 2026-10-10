@@ -36,6 +36,3 @@ On the triggered hunk read the rules in order. For each pair of rules, check whe
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: SEC-18`, severity critical, `file`, `symbol`, `code` = the shadowing rule and the shadowed rule quoted verbatim from the diff, `fix` = the rules reordered narrow-first, ending with `anyRequest().authenticated()` (or `denyAll()`) where the list has no terminal rule, `rationale` naming the first-match evaluation and the paths the earlier rule opens).
-
-## Source
-Spring Security reference, "Authorize HttpServletRequests" — "AuthorizationFilter processes these pairs in the order listed, applying only the first match to the request"; "Each rule is considered in the order they were declared"; "Any URL that has not already been matched on is denied access. This is a good strategy if you do not want to accidentally forget to update your authorization rules"; "Denying the request by default is a healthy security practice since it turns the set of rules into an allow list". OWASP Authorization Cheat Sheet, "Deny by Default".

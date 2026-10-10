@@ -32,6 +32,3 @@ On the triggered hunk find each `HashMap`, `HashSet`, `LinkedHashMap`, `TreeMap`
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PF-07`, severity minor, `file`, `symbol`, `code` = the construction quoted verbatim from the diff, `fix` = the `EnumMap` or `EnumSet` form, `rationale` naming the array-by-ordinal or bit-vector representation).
-
-## Source
-`java.util.EnumMap` class Javadoc, Java SE 21 — "Enum maps are represented internally as arrays. This representation is extremely compact and efficient"; "Null keys are not permitted." `java.util.EnumSet` class Javadoc — "Enum sets are represented internally as bit vectors. This representation is extremely compact and efficient... Even bulk operations (such as containsAll and retainAll) should run very quickly if their argument is also an enum set."

@@ -32,6 +32,3 @@ On the triggered hunk find each two-level (or deeper) loop nest indexing an arra
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PF-03`, severity minor, `file`, `symbol`, `code` = the loop headers and the indexed access quoted verbatim from the diff, `fix` = the interchanged nest, `rationale` naming the per-iteration row jump and the cache miss it causes).
-
-## Source
-JMH benchmark `ionutbalosin/jvm-performance-benchmarks`, `.../compiler/LoopInterchangeBenchmark.java` — `initial_loop` (`lA[j][i]` with `i` outer) against `manual_loop_interchange` (`j` outer) over a 2048 × 2048 `int[][]`; its note: interchange "is often done to ensure that the elements of a multi-dimensional array are accessed in the order in which they are present in memory, improving locality of reference". JLS §10.2 and §15.10.2 — a multidimensional array is an array whose components are arrays, each a separately created object — not fetched from the authoring environment.

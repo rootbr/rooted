@@ -34,6 +34,3 @@ On the triggered hunk find each mutable `static` field in a test class, each `@B
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: MNT-28`, severity minor, `file`, `symbol`, `code` = the shared field or the ordering annotation and the dependent test quoted verbatim from the diff, `fix` = the self-contained test, `rationale` naming the run — alone, filtered, parallel — that fails).
-
-## Source
-JUnit Jupiter `org.junit.jupiter.api.TestInstance` Javadoc — the lifecycle "will implicitly default to PER_METHOD", under which "a new test instance will be created for each test method"; `PER_CLASS` enables "shared test instance state between test methods". `org.junit.jupiter.api.TestMethodOrder` Javadoc — without it "test methods will be ordered using a default algorithm that is deterministic but intentionally nonobvious" (both fetched from `junit-team/junit-framework`, branch `main`). JUnit User Guide, "Test Instance Lifecycle" — "In order to allow individual test methods to be executed in isolation and to avoid unexpected side effects due to mutable test instance state, JUnit creates a new instance of each test class before executing each test method" (`junit-team/junit-framework`, tag `r5.11.4`, `documentation/src/docs/asciidoc/user-guide/writing-tests.adoc`, line 932).

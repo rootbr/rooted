@@ -33,6 +33,3 @@ On the triggered hunk find each acquisition made while another lock is held: nes
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: CC-06`, severity major, `file`, `symbol`, `code` = the nested acquisition quoted verbatim from the diff, `fix` = the ordered acquisition by stable key, or the global order applied to the path that violates it, `rationale` naming the two paths whose orders differ and the cycle they form).
-
-## Source
-SEI CERT Oracle Coding Standard for Java, LCK07-J "Avoid deadlock by requesting and releasing locks in the same order". jcstress sample `problems/classic/Classic_01_DiningPhilosophers.java`, `ResourceHierarchy` — "The trivial deadlock in this problem is when every philosopher holds one fork, and waits for other fork to drop"; the resource-hierarchy solution "avoids the deadlock by asking the last philosopher to take the forks in the different order", no deadlock across 6,325,295,104 samples.

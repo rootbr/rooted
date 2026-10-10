@@ -34,15 +34,3 @@ Grep the hunk for `class` statements whose bases name `BaseException`, `SystemEx
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PY-17`, severity major, `file`, `symbol`, `code` = the `class` line with its bases, `fix` = `class RetryAbort(Exception):` or a subclass of an existing `Exception` subclass, `rationale` = a class that inherits from `BaseException` instead of `Exception` is not caught by code that catches `Exception`).
-
-## Source
-- PEP 8 §Programming Recommendations (python/peps peps/pep-0008.rst) — 'Derive exceptions from ``Exception`` rather than ``BaseException``'; 'Direct inheritance from ``BaseException`` is reserved for exceptions where catching them is almost always the wrong thing to do.' (fetched)
-- CPython Doc/library/exceptions.rst §BaseException (https://docs.python.org/3/library/exceptions.html) — 'The base class for all built-in exceptions. It is not meant to be directly inherited by user-defined classes' (fetched)
-- CPython Doc/library/exceptions.rst §Built-in Exceptions (https://docs.python.org/3/library/exceptions.html) — 'programmers are encouraged to derive new exceptions from the Exception class or one of its subclasses, and not from BaseException' (fetched)
-- CPython Doc/library/exceptions.rst §Exception (https://docs.python.org/3/library/exceptions.html) — 'All built-in, non-system-exiting exceptions are derived from this class. All user-defined exceptions should also be derived from this class.' (fetched)
-- CPython Doc/library/exceptions.rst §SystemExit (https://docs.python.org/3/library/exceptions.html) — 'It inherits from BaseException instead of Exception so that it is not accidentally caught by code that catches Exception' (fetched)
-- CPython Doc/library/exceptions.rst §GeneratorExit (https://docs.python.org/3/library/exceptions.html) — 'It directly inherits from BaseException instead of Exception since it is technically not an error.' (fetched)
-- CPython Doc/tutorial/errors.rst §User-defined Exceptions (python/cpython Doc/tutorial/errors.rst) — 'Exceptions should typically be derived from the :exc:`Exception` class, either directly or indirectly.' (fetched)
-- SonarSource python S5709 (SonarSource/sonar-python python-checks/src/main/resources/org/sonar/l10n/py/rules/python/S5709.html) — 'PEP-352 created the root class BaseException from which SystemExit, KeyboardInterrupt and Exception derive. Thus developers can use except Exception: without preventing the software from stopping.' (fetched)
-- SonarSource python S5709 (SonarSource/sonar-python python-checks/src/main/resources/org/sonar/l10n/py/rules/python/S5709.html) — 'Both exceptions are expected to propagate up until the application stops.' (fetched)
-- SonarSource python S5709 (SonarSource/sonar-python python-checks/src/main/resources/org/sonar/l10n/py/rules/python/S5709.html) — 'This rule raises an issue when a class derives from one of the following exception classes: BaseException, KeyboardInterrupt, SystemExit or GeneratorExit.' (fetched)

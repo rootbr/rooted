@@ -34,6 +34,3 @@ On the triggered hunk find each log call, MDC put and exception construction, an
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: SEC-44`, severity major, `file`, `symbol`, `code` = the log or exception line quoted verbatim from the diff, `fix` = the same line with the value omitted, masked or replaced by a correlation hash, `rationale` naming the secret and where the log carries it).
-
-## Source
-OWASP Logging Cheat Sheet, "Data to exclude" — session identification values, access tokens, authentication passwords, database connection strings, encryption keys and other primary secrets, bank account or payment card holder data, and sensitive personal data "should usually not be recorded directly in the logs, but instead should be removed, masked, sanitized, hashed, or encrypted". OWASP ASVS 5.0 §16.2.5 — certain data such as credentials or payment details may not be logged; session tokens only hashed or masked. CWE-532 — by id.

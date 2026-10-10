@@ -1,8 +1,11 @@
-"""Shared parsing for the review-card corpus: frontmatter and the trigger list.
+"""Shared parsing for the review-card corpus: frontmatter, the trigger list, the body blocks
+and the provenance map.
 
 Imported by static-review.py (the pre-pass) and validate-review-cards.py (the
-validator) so the two read a card the same way. Standard library only.
+validator) so the two read a card the same way; the report renderer reads the
+provenance map through it. Standard library only.
 """
+import os
 import re
 
 KEYS = ["title", "rule_id", "domain", "triggers", "scope", "check_kind", "severity_default"]
@@ -12,6 +15,148 @@ SCOPES = ("hunk", "file", "base-compare", "callers")
 CHECK_KINDS = ("mechanical", "semantic")
 SEVERITIES = ("critical", "major", "minor", "suggestion")
 FRONTMATTER = re.compile(r"---\n(.*?)\n---\n", re.S)
+
+# The body of a card: these H2 blocks in this order and no other H2. A card carries no citation; its
+# sources live on its provenance line, found by rule_id in the provenance map beside its cards directory.
+BLOCKS = ["Thesis", "Rationale", "Example", "Limits", "Validator", "Finding output"]
+SOURCE_BLOCK_ERROR = ("a `## Source` block is present; a card carries no citation — its sources live on its "
+                      "provenance line, keyed by rule_id")
+PROVENANCE_SUFFIX = "-provenance.md"
+PROVENANCE_LINE = re.compile(r"^- \*\*([A-Z]+-\d+)\*\* · ")
+# A quoted span: straight or curly double quotes, or straight single quotes around 26 characters or more
+# that open and close outside a word, so an apostrophe never delimits one.
+QUOTED_SPANS = (re.compile(r'"([^"\n]+)"'), re.compile(r"“([^”\n]+)”"), re.compile(r"(?<!\w)'([^\n]{26,}?)'(?!\w)"))
+# A quoted statement opens right after a dash or a colon (`fetched — "…"`, `(fetched): "…"`); a quoted
+# span anywhere else is part of the locator, a document or section title.
+STATEMENT_OPENER = re.compile(r"[—–:]\s*$")
+FIELD_SEPARATOR = re.compile(r" · ")
+# Citations are separated by `; ` outside parentheses, except after an author's initial (`Soto, J.; McCall, J.`).
+CITATION_SEPARATOR = re.compile(r"(?<![A-Z]\.);\s+")
+FETCH_STATUS_WORD = re.compile(r"\b(?:fetched|relayed|unfetched)\b", re.I)
+LOCATOR_WORD = re.compile(r"[A-Za-z0-9]{2,}")
+STATUS_AFTER_DASH = re.compile(r"\s[—–]\s*\**(?:fetched|relayed|unfetched)\b", re.I)
+POINTER_TAIL = re.compile(r"(?:[\s,;:—–(]|\**\b(?:fetched|relayed|unfetched)\b\**\)?(?:\s+from\b)?)+$", re.I)
+POINTER_CHARS = 160
+
+
+def block_problems(heads):
+    """Return the errors of a card's H2 headings against BLOCKS: a `## Source` block, any other H2
+    outside BLOCKS, and the blocks missing or out of order."""
+    problems = []
+    if "Source" in heads:
+        problems.append(SOURCE_BLOCK_ERROR)
+    extra = [h for h in heads if h not in BLOCKS and h != "Source"]
+    if extra:
+        problems.append(f"H2 {extra} outside the body blocks {BLOCKS}")
+    known = [h for h in heads if h in BLOCKS]
+    if known != BLOCKS:
+        problems.append(f"body blocks {known} must be exactly {BLOCKS} in that order")
+    return problems
+
+
+def quoted_spans(text, patterns=QUOTED_SPANS):
+    """Return [(fragment, start, end)] of the quoted spans in text order; a span that starts inside an
+    earlier one is dropped."""
+    found = sorted(((m.group(1), m.start(), m.end()) for p in patterns for m in p.finditer(text)), key=lambda s: s[1])
+    spans, reach = [], 0
+    for span in found:
+        if span[1] >= reach:
+            spans.append(span)
+            reach = span[2]
+    return spans
+
+
+def split_outside(text, separator, spans):
+    """Split text at each match of the compiled `separator` that lies outside every span."""
+    parts, start = [], 0
+    for m in separator.finditer(text):
+        if m.start() >= start and not any(s <= m.start() < e for _f, s, e in spans):
+            parts.append(text[start:m.start()])
+            start = m.end()
+    return parts + [text[start:]]
+
+
+def provenance_map_path(cards_dir):
+    """The provenance map beside a cards directory: references/review-cards → references/review-cards-provenance.md."""
+    return os.path.normpath(cards_dir) + PROVENANCE_SUFFIX
+
+
+def read_provenance(map_path):
+    """Return {rule_id: provenance line} of a provenance map; {} when the file is absent."""
+    if not os.path.isfile(map_path):
+        return {}
+    lines = {}
+    with open(map_path, encoding="utf-8") as handle:
+        for line in handle:
+            m = PROVENANCE_LINE.match(line)
+            if m:
+                lines.setdefault(m.group(1), line.rstrip("\n"))
+    return lines
+
+
+def blank_quotes(text, patterns=QUOTED_SPANS):
+    """The text with its quoted spans blanked, so a quoted word never reads as a locator."""
+    chars = list(text)
+    for _fragment, start, end in quoted_spans(text, patterns):
+        chars[start:end] = " " * (end - start)
+    return "".join(chars)
+
+
+def split_citations(field, patterns=QUOTED_SPANS):
+    """Split a citation field at each CITATION_SEPARATOR outside quoted spans and parentheses; a piece
+    that holds only quotes and fetch statuses continues the citation before it."""
+    ends = {start: end for _fragment, start, end in quoted_spans(field, patterns)}
+    pieces, start, depth, i = [], 0, 0, 0
+    while i < len(field):
+        if i in ends:
+            i = ends[i]
+            continue
+        sep = CITATION_SEPARATOR.match(field, i) if depth == 0 else None
+        if sep:
+            pieces.append(field[start:i])
+            start = i = sep.end()
+            continue
+        depth = max(depth + {"(": 1, ")": -1}.get(field[i], 0), 0)
+        i += 1
+    pieces.append(field[start:])
+    citations = []
+    for piece in (p.strip() for p in pieces):
+        if piece and citations and not LOCATOR_WORD.search(FETCH_STATUS_WORD.sub("", blank_quotes(piece, patterns))):
+            citations[-1] += "; " + piece
+        elif piece:
+            citations.append(piece)
+    return citations
+
+
+def provenance_citations(line, patterns=QUOTED_SPANS):
+    """The citations of a provenance line: its first field after `- **<rule_id>** · `, split by
+    split_citations."""
+    m = PROVENANCE_LINE.match(line)
+    rest = line[m.end():] if m else line
+    return split_citations(split_outside(rest, FIELD_SEPARATOR, quoted_spans(rest, patterns))[0], patterns)
+
+
+def citation_locator(citation, limit=POINTER_CHARS):
+    """A citation cut before its first quoted statement and before a fetch status set off by a dash, its
+    trailing fetch status and separators stripped, and cut at `limit` characters with an ellipsis,
+    closing a code span the cut opened."""
+    for _fragment, start, _end in quoted_spans(citation):
+        if STATEMENT_OPENER.search(citation[:start].replace("**", "")):
+            citation = citation[:start]
+            break
+    status = STATUS_AFTER_DASH.search(blank_quotes(citation))
+    citation = POINTER_TAIL.sub("", citation[:status.start()] if status else citation).strip()
+    if len(citation) <= limit:
+        return citation
+    cut = citation[:limit - 1].rstrip() + "…"
+    return cut + "`" if cut.count("`") % 2 else cut
+
+
+def source_pointer(line, limit=POINTER_CHARS):
+    """The one-line source pointer of a provenance line: its first citation's locator."""
+    citations = provenance_citations(line)
+    return citation_locator(citations[0], limit) if citations else ""
+
 
 
 def parse_inline_list(raw):

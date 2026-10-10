@@ -1,27 +1,49 @@
 #!/usr/bin/env python3
-"""The developer agent's card index: list craft cards by facet as `rule_id · title · path`.
+"""The developer agent's card index: list craft cards by facet as `rule_id · title · path`; and the
+reader's lookup of a card's sources: print its provenance line.
 
 Usage:  python3 craft-cards.py [--step <step>] [--domain <domain>] [--applies-to <scope>]
                               [--cards-dir <dir> ...] [--format lines|json]
+        python3 craft-cards.py --provenance <RULE_ID> [--provenance <RULE_ID> ...] [--cards-dir <dir> ...]
 Each --cards-dir adds a directory to the listing, so one call lists the universal and a
 language corpus together; without one the universal corpus is listed. Filters combine with
 AND; a card matches --step when its step list holds the value, --applies-to when its list
 holds the value or `universal`. With no filter every card is listed. The developer scans the titles and opens the cards whose titles apply.
-Reads only the cards; writes nothing; no network; stdlib only.
+--provenance prints each named id's line from the provenance map beside each --cards-dir
+(references/craft-cards → references/craft-cards-provenance.md): a card carries no citation, and
+the line holds its sources — citations, quoted statements, fetch status, formulation, reception,
+notes. It takes no filter; an id no map holds is named on stderr and the exit status is 1.
+Reads only the cards and the provenance maps; writes nothing; no network; stdlib only.
 """
 import json
 import os
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from cardlib import read_card, STEPS, APPLIES_TO, PREFIX_DOMAIN  # noqa: E402
+from cardlib import read_card, read_provenance, provenance_map_path, STEPS, APPLIES_TO, PREFIX_DOMAIN  # noqa: E402
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 DEFAULT_CARDS = os.path.normpath(os.path.join(HERE, "..", "references", "craft-cards"))
 
 
+def print_provenance(rule_ids, cards_dirs):
+    """Print each id's provenance line from the maps beside the cards directories; return the exit status."""
+    lines = {}
+    for cards_dir in cards_dirs:
+        for rule_id, line in read_provenance(provenance_map_path(cards_dir)).items():
+            lines.setdefault(rule_id, line)
+    missing = [r for r in rule_ids if r not in lines]
+    for rule_id in rule_ids:
+        if rule_id in lines:
+            print(lines[rule_id])
+    if missing:
+        maps = ", ".join(os.path.basename(provenance_map_path(d)) for d in cards_dirs)
+        print(f"craft-cards: no provenance line for {', '.join(missing)} in {maps}", file=sys.stderr)
+    return 1 if missing else 0
+
+
 def main(argv):
-    opts = {"step": None, "domain": None, "applies_to": None, "cards_dir": [], "format": "lines"}
+    opts = {"step": None, "domain": None, "applies_to": None, "cards_dir": [], "provenance": [], "format": "lines"}
     i = 0
     while i < len(argv):
         a = argv[i]
@@ -32,12 +54,16 @@ def main(argv):
         key = a[2:].replace("-", "_")
         if key not in opts:
             sys.exit(f"craft-cards: unknown option {a}")
-        if key == "cards_dir":
+        if key in ("cards_dir", "provenance"):
             opts[key].append(argv[i + 1])
         else:
             opts[key] = argv[i + 1]
         i += 2
     cards_dirs = opts["cards_dir"] or [DEFAULT_CARDS]
+    if opts["provenance"]:
+        if any(opts[k] for k in ("step", "domain", "applies_to")):
+            sys.exit("craft-cards: --provenance takes no filter")
+        return print_provenance(opts["provenance"], cards_dirs)
     if opts["step"] and opts["step"] not in STEPS:
         sys.exit(f"craft-cards: --step must be one of {', '.join(STEPS)}")
     if opts["applies_to"] and opts["applies_to"] not in APPLIES_TO:

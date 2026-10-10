@@ -33,6 +33,3 @@ On the triggered hunk find each socket or channel the diff opens or accepts. Ope
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PF-28`, severity minor, `file`, `symbol`, `code` = the socket or channel creation quoted verbatim from the diff, `fix` = the `TCP_NODELAY` option set before the first write, `rationale` naming the coalescing delay per round trip).
-
-## Source
-`java.net.StandardSocketOptions#TCP_NODELAY` Javadoc, Java SE 21 — "Disable the Nagle algorithm... TCP/IP uses an algorithm known as The Nagle Algorithm to coalesce short segments and improve network efficiency. The default value of this socket option is FALSE. The socket option should only be enabled in cases where it is known that the coalescing impacts performance... Once the option is enabled, it is system dependent whether it can be subsequently disabled"; its `@spec` reference is RFC 1122. RFC 1122 §4.2.3.4 (the Nagle algorithm, which an application must be able to turn off) and §4.2.3.2 (delayed acknowledgements) — not fetched from the authoring environment.

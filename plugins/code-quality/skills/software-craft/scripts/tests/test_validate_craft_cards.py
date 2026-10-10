@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Unit tests for validate-craft-cards.py: the language-corpus mode (--language python)
-against the universal mode, on cards built in a temporary directory.
+against the universal mode, and the body-block check of both modes — six blocks, no `## Source`,
+no other H2 — with the practitioner-text check over the whole card, on cards built in a
+temporary directory.
 
 Run:  python3 -m unittest discover -s scripts/tests -p 'test_*.py'   (from the skill directory)
 """
@@ -22,14 +24,14 @@ good: def parse_port(text):
 
 
 CARD_DEFAULTS = {"domain": "errors", "applies_to": "[python]", "fence": "python", "thesis": UNIVERSAL_THESIS,
-                 "limits": "A predeclared sentinel compared by identity carries no operand."}
+                 "limits": "A predeclared sentinel compared by identity carries no operand.", "tail": ""}
 
 
 def card_text(rule_id, **overrides):
     """A card valid in the python corpus; each override replaces one of CARD_DEFAULTS."""
     fields = {**CARD_DEFAULTS, **overrides}
     domain, applies_to, fence = fields["domain"], fields["applies_to"], fields["fence"]
-    thesis, limits = fields["thesis"], fields["limits"]
+    thesis, limits, tail = fields["thesis"], fields["limits"], fields["tail"]
     title = f"An error names the failed operation and its values {rule_id.lower()}"
     return f"""---
 title: {title}
@@ -64,13 +66,12 @@ Grep the added lines for a raise. Validator question: **Does the raised error le
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: {rule_id}`, severity minor, `file`, `symbol`, `code` = the raise, `fix` = the raise with the operand, `rationale` = the missing operand).
-
-## Source
-- DOI 10.1109/SBES.2014.19 — "Uninformative or wrong error message" (relayed)
-"""
+{tail}"""
 
 
-class ValidateLanguageCorpus(unittest.TestCase):
+class CardDirectory(unittest.TestCase):
+    """A temporary cards directory and the validator run over it."""
+
     def setUp(self):
         self.tmp = tempfile.mkdtemp()
 
@@ -98,6 +99,8 @@ class ValidateLanguageCorpus(unittest.TestCase):
         self.assertEqual(rc, 1, out)
         self.assertIn(fragment, out)
 
+
+class ValidateLanguageCorpus(CardDirectory):
     def test_python_card_of_a_non_code_domain_passes_with_language(self):
         self.write("PY-01", domain="errors")
         self.write("PY-02", domain="tests")
@@ -157,6 +160,36 @@ class ValidateLanguageCorpus(unittest.TestCase):
         rc, out = self.run_validator("--language", "cobol")
         self.assertNotEqual(rc, 0)
         self.assertIn("--language 'cobol' names no language corpus (known: python)", out)
+
+
+class ValidateBodyBlocks(CardDirectory):
+    """The body is the six blocks: a `## Source` block or any other H2 is an error in both modes, and a
+    practitioner text is an error anywhere in the card."""
+
+    def test_six_blocks_pass_in_both_modes(self):
+        self.write("PY-01")
+        self.assert_passes("--language", "python")
+        shutil.rmtree(self.tmp)
+        os.makedirs(self.tmp)
+        self.write("ERR-01", applies_to="[universal]")
+        self.assert_passes()
+
+    def test_a_source_block_fails_in_both_modes(self):
+        tail = "\n## Source\n- DOI 10.1109/SBES.2014.19, §Results\n"
+        self.write("PY-01", tail=tail)
+        self.assert_fails_with("error: a `## Source` block is present; a card carries no citation", "--language", "python")
+        shutil.rmtree(self.tmp)
+        os.makedirs(self.tmp)
+        self.write("ERR-01", applies_to="[universal]", tail=tail)
+        self.assert_fails_with("error: a `## Source` block is present; a card carries no citation")
+
+    def test_another_h2_fails(self):
+        self.write("ERR-01", applies_to="[universal]", tail="\n## Notes\nA maintainer note.\n")
+        self.assert_fails_with("error: H2 ['Notes'] outside the body blocks")
+
+    def test_a_practitioner_text_outside_the_six_blocks_fails(self):
+        self.write("ERR-01", applies_to="[universal]", tail="\n## Source\n- Clean Code, chapter 7\n")
+        self.assert_fails_with("error: attribution 'Clean Code' in the card")
 
 
 if __name__ == "__main__":

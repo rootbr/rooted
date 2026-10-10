@@ -33,6 +33,3 @@ On the triggered hunk find each `new InetSocketAddress(String, int)` and each `I
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PF-30`, severity minor, `file`, `symbol`, `code` = the address construction quoted verbatim from the diff, `fix` = the pre-resolved address, the worker-thread lookup or `createUnresolved`, `rationale` naming the blocking lookup on the loop thread).
-
-## Source
-`java.net.InetSocketAddress(String hostname, int port)` Javadoc, Java SE 21 — "Creates a socket address from a hostname and a port number. An attempt will be made to resolve the hostname into an InetAddress. If that attempt fails, the address will be flagged as unresolved"; `#createUnresolved` — "No attempt will be made to resolve the hostname into an InetAddress." `java.net.InetAddress#getByName` Javadoc — "Determines the IP address of a host, given the host's name... If a literal IP address is supplied, only the validity of the address format is checked."

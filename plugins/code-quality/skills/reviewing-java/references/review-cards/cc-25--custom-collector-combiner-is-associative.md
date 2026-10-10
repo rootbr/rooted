@@ -32,6 +32,3 @@ On the triggered hunk read the supplier, accumulator, combiner and finisher; ope
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: CC-25`, severity major, `file`, `symbol`, `code` = the combiner quoted verbatim from the diff, `fix` = a combiner that merges both containers completely and symmetrically, `rationale` naming the split-dependent result).
-
-## Source
-`java.util.stream.Collector` Javadoc, Java SE 21 — "To ensure that sequential and parallel executions produce equivalent results, the collector functions must satisfy an identity and an associativity constraints"; the identity constraint: a partial result `a` "must be equivalent to `combiner.apply(a, supplier.get())`"; the associativity constraint: the unsplit result `finisher.apply(a1)` must be equivalent to the split result `finisher.apply(combiner.apply(a2, a3))`.

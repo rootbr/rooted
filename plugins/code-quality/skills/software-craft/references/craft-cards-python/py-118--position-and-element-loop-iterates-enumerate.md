@@ -34,12 +34,3 @@ Grep the hunk for `in range(len(`, for `for <a>, <b> in enumerate(`, and for `<n
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PY-118`, severity minor, `file`, `symbol`, `code` = the `for` line and the `seq[i]` read or the `+= 1` line, verbatim from the diff, `fix` = `for i, item in enumerate(seq):`, with `start=` where the count begins elsewhere, and the body using `item`, in Python, `rationale` = enumerate yields the count and the element together, so indexing by range(len()) or a hand-kept counter re-implements the builtin).
-
-## Source
-- CPython Doc/tutorial/datastructures.rst §Looping Techniques (https://raw.githubusercontent.com/python/cpython/main/Doc/tutorial/datastructures.rst) — 'When looping through a sequence, the position index and corresponding value can be retrieved at the same time using the :func:`enumerate` function.' (fetched)
-- Python documentation library/functions.html §enumerate (https://docs.python.org/3/library/functions.html#enumerate) — 'returns a tuple containing a count (from start which defaults to 0) and the values obtained from iterating over iterable.' (fetched)
-- Pylint consider-using-enumerate (C0200) (pylint-dev/pylint doc/user_guide/checkers/features.rst) — 'Emitted when code that iterates with range and len is encountered. Such code can be simplified by using the enumerate builtin.' (fetched)
-- Ruff SIM113 enumerate-for-loop (astral-sh/ruff crates/ruff_linter/src/rules/flake8_simplify/rules/enumerate_for_loop.rs) — 'Prefer the `enumerate` builtin over manually incrementing a counter variable within the loop, as `enumerate` is more concise and idiomatic.' (fetched)
-- Ruff SIM113 enumerate-for-loop (astral-sh/ruff crates/ruff_linter/src/rules/flake8_simplify/rules/enumerate_for_loop.rs) — 'Checks for `for` loops with explicit loop-index variables that can be replaced with `enumerate()`.' (fetched)
-- Ruff PLR1736 unnecessary-list-index-lookup (astral-sh/ruff crates/ruff_linter/src/rules/pylint/rules/unnecessary_list_index_lookup.rs) — 'When iterating over a list with `enumerate`, the current item is already available alongside its index. Using the index to look up the item is unnecessary.' (fetched)
-- Pylint unnecessary-list-index-lookup (R1736) (pylint-dev/pylint doc/user_guide/checkers/features.rst) — 'Emitted when iterating over an enumeration and accessing the value by index lookup. The value can be accessed directly instead.' (fetched)

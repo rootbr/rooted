@@ -35,6 +35,3 @@ On the triggered hunk find each `permitAll` or `anonymous` attached to a matcher
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: SEC-40`, severity major, `file`, `symbol`, `code` = the matcher and its `permitAll` quoted verbatim from the diff, `fix` = `permitAll` narrowed to the health endpoint with `anyRequest().hasRole(…)` after it, `rationale` naming the endpoints opened and what each discloses or does).
-
-## Source
-Spring Boot reference, "Actuator → Endpoints → Security" — "only the /health endpoint is exposed over HTTP by default"; "If Spring Security is on the classpath and no other SecurityFilterChain bean is present, all actuators other than /health are secured by Spring Boot auto-configuration. If you define a custom SecurityFilterChain bean, Spring Boot auto-configuration backs off and lets you fully control the actuator access rules"; the typical configuration matching `EndpointRequest.toAnyEndpoint()` with `hasRole("ENDPOINT_ADMIN")`; "Exposing Endpoints" — "Since Endpoints may contain sensitive information, you should carefully consider when to expose them"; "Sanitize Sensitive Values" — `/env` and `/configprops` values sanitised by default. OWASP ASVS 5.0 §13.4.5 — documentation and monitoring endpoints not exposed unless explicitly intended. CWE-200 — by id.

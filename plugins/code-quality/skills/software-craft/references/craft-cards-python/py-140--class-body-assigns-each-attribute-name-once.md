@@ -37,10 +37,3 @@ For each assignment or annotation the hunk adds or changes directly in a class b
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PY-140`, severity minor, `file`, `symbol`, `code` = both assignments of the name, `fix` = one assignment of the name holding the value that was intended, `rationale` = the name, the value the later assignment silently discards and the value that reaches the class).
-
-## Source
-- Ruff PIE794 duplicate-class-field-definition (astral-sh/ruff crates/ruff_linter/src/rules/flake8_pie/rules/duplicate_class_field_definition.rs) — 'Defining a field multiple times in a class body is redundant and likely a mistake.' ; 'This fix is always marked as unsafe since we cannot know for certain which assignment was intended.' (fetched)
-- Source of crates/ruff_linter/src/rules/flake8_pie/rules/duplicate_class_field_definition.rs §duplicate_class_field_definition (astral-sh/ruff crates/ruff_linter/src/rules/flake8_pie/rules/duplicate_class_field_definition.rs) — 'If this is an unrolled augmented assignment (e.g., `x = x + 1`), skip it.' ; 'let [Expr::Name(target)] = targets.as_slice() else {' ; 'Stmt::AnnAssign(ast::StmtAnnAssign { target, value, .. }) => {' ; '_ => continue,' (fetched)
-- CPython Doc/reference/compound_stmts.rst §Class definitions (python/cpython Doc/reference/compound_stmts.rst) — 'The class's suite is then executed in a new execution frame' ; 'using a newly created local namespace and the original global namespace.' ; 'the saved local namespace for the attribute dictionary.' (fetched)
-- CPython Doc/reference/simple_stmts.rst §Assignment statements (python/cpython Doc/reference/simple_stmts.rst) — 'The name is rebound if it was already bound.' (fetched)
-- CPython Doc/howto/enum.rst §Duplicating enum members and values (python/cpython Doc/howto/enum.rst) — 'Having two enum members with the same name is invalid' ; 'TypeError: 'SQUARE' already defined as 2' (fetched)

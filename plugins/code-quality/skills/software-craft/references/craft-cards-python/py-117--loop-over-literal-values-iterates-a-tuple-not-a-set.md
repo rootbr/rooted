@@ -36,15 +36,3 @@ Grep the hunk for `for ... in {` whose braces hold comma-separated values and no
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PY-117`, severity minor, `file`, `symbol`, `code` = the `for ... in {...}` line verbatim from the diff, `fix` = the same values as a tuple literal in the intended order, such as `for env in ("dev", "staging", "prod"):`, in Python, `rationale` = iterating a set is less efficient than iterating a sequence, and for str or bytes elements the set's iteration order can change between runs because their hashes are salted per process).
-
-## Source
-- Ruff PLC0208 iteration-over-set (astral-sh/ruff crates/ruff_linter/src/rules/pylint/rules/iteration_over_set.rs) — 'Iterating over a `set` is less efficient than iterating over a sequence type, such as `list` or `tuple`.' (fetched)
-- Ruff PLC0208 iteration-over-set (astral-sh/ruff crates/ruff_linter/src/rules/pylint/rules/iteration_over_set.rs) — 'Checks for iteration over a `set` literal in which each element is a literal.' (fetched)
-- Pylint use-sequence-for-iteration (C0208) (pylint-dev/pylint doc/data/messages/u/use-sequence-for-iteration/details.rst) — 'This example script shows a significant increase in performance when using a list, tuple or range over a set in python version 3.11.1.' (fetched)
-- CPython Doc/reference/datamodel.rst §object.__hash__ (https://raw.githubusercontent.com/python/cpython/main/Doc/reference/datamodel.rst) — 'Although they remain constant within an individual Python process, they are not predictable between repeated invocations of Python.' (fetched)
-- CPython Doc/reference/datamodel.rst §object.__hash__ (https://raw.githubusercontent.com/python/cpython/main/Doc/reference/datamodel.rst) — 'Changing hash values affects the iteration order of sets. Python has never made guarantees about this ordering (and it typically varies between 32-bit and 64-bit builds).' (fetched)
-- CPython Doc/reference/datamodel.rst §object.__hash__ (https://raw.githubusercontent.com/python/cpython/main/Doc/reference/datamodel.rst) — 'Hash randomization is enabled by default.' (fetched)
-- CPython Doc/reference/datamodel.rst §Sequences (https://raw.githubusercontent.com/python/cpython/main/Doc/reference/datamodel.rst) — 'These represent finite ordered sets indexed by non-negative numbers.' (fetched)
-- CPython Doc/using/cmdline.rst §PYTHONHASHSEED (https://raw.githubusercontent.com/python/cpython/main/Doc/using/cmdline.rst) — 'If this variable is not set or set to ``random``, a random value is used to seed the hashes of str and bytes objects.' (fetched)
-- CPython Doc/using/cmdline.rst §PYTHONHASHSEED (https://raw.githubusercontent.com/python/cpython/main/Doc/using/cmdline.rst) — 'it is used as a fixed seed for generating the hash() of the types covered by the hash randomization.' (fetched)
-- Caveat: the catalogs give efficiency as their reason, and the pylint message rests it on an example script run on Python 3.11.1; the order between runs rests on the language reference and the command-line documentation.

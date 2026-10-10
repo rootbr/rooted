@@ -32,6 +32,3 @@ On the triggered hunk find each string or numeric literal that names a host, URL
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: MNT-36`, severity minor, `file`, `symbol`, `code` = the literal quoted verbatim from the diff, `fix` = the property binding, `rationale` naming the rebuild the literal forces).
-
-## Source
-Spring Boot reference, Core Features → Externalized Configuration — "Spring Boot lets you externalize your configuration so that you can work with the same application code in different environments. You can use a variety of external configuration sources including Java properties files, YAML files, environment variables, and command-line arguments. Property values can be injected directly into your beans by using the @Value annotation, accessed through Spring's Environment abstraction, or be bound to structured objects through @ConfigurationProperties"; the property-source order is "designed to allow sensible overriding of values".

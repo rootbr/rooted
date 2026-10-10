@@ -39,12 +39,3 @@ In the hunk, find each class whose bases name an exception type (a name ending i
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PY-170`, severity major, `file`, `symbol`, `code` = the `__init__` signature and its `super().__init__(...)` call, `fix` = the `__init__` passing every parameter, as in `super().__init__(key, source)`, with the message built in `__str__` from stored attributes, `rationale` = `args` no longer matches what `__init__` takes, so `copy.copy()` and pickling of the exception break).
-
-## Source
-- flake8-bugbear B042 (PyCQA/flake8-bugbear README.rst) — 'Exception classes with a custom `__init__` should pass all args to `super().__init__()` to work correctly with `copy.copy` and `pickle`.' (fetched)
-- flake8-bugbear B042 (PyCQA/flake8-bugbear README.rst) — 'Both `BaseException.__reduce__` and `BaseException.__str__` rely on the `args` attribute being set correctly, which is set in `BaseException.__new__` and `BaseException.__init__`.' (fetched)
-- flake8-bugbear B042 (PyCQA/flake8-bugbear README.rst) — 'If you define `__init__` yourself without passing all arguments to `super().__init__` it is very easy to break pickling, especially if they pass keyword arguments which both `BaseException.__new__` and `BaseException.__init__` ignore.' (fetched)
-- flake8-bugbear B042 (PyCQA/flake8-bugbear README.rst) — 'also important that `__init__` not accept any keyword-only parameters.' (fetched)
-- flake8-bugbear B042 (PyCQA/flake8-bugbear README.rst) — 'Alternately you can define both `__str__` and `__reduce__` to bypass the need for correct handling of `args`.' (fetched)
-- flake8-bugbear B042 (PyCQA/flake8-bugbear README.rst) — 'If you define `__str__/__reduce__` in super classes this check is unable to detect it' (fetched)
-- CPython Doc/builtins/exceptions.rst §Base classes, BaseException.args (https://raw.githubusercontent.com/python/cpython/main/Doc/builtins/exceptions.rst) — 'The tuple of arguments given to the exception constructor.' (fetched)

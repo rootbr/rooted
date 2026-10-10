@@ -34,6 +34,3 @@ On the triggered hunk find each field or static declaration whose type is one of
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: CC-17`, severity major, `file`, `symbol`, `code` = the field declaration and one shared use quoted verbatim from the diff, `fix` = the thread-safe type, the per-thread or per-call instance, or the lock region, `rationale` quoting the type's own thread-safety statement).
-
-## Source
-`java.text.SimpleDateFormat` Javadoc, Java SE 21, "Synchronization" — "Date formats are not synchronized. It is recommended to create separate format instances for each thread. If multiple threads access a format concurrently, it must be synchronized externally"; `java.text.DecimalFormat` — the same wording for decimal formats. `java.util.HashMap` and `java.util.ArrayList` class Javadoc — "Note that this implementation is not synchronized. If multiple threads access [it] concurrently, and at least one of the threads modifies [it] structurally, it must be synchronized externally". `java.lang.StringBuilder` — "Instances of StringBuilder are not safe for use by multiple threads". `java.time.format.DateTimeFormatter` — "This class is immutable and thread-safe". SpotBugs `STCAL_STATIC_SIMPLE_DATE_FORMAT_INSTANCE`; SonarSource RSPEC-2885 "Non-thread-safe fields should not be static".

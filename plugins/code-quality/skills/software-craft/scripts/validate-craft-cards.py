@@ -6,11 +6,12 @@ references/craft-cards-taxonomy.md states: frontmatter keys and their order, the
 rule_id / domain / filename agreement, the controlled vocabulary of every facet
 (step, applies_to, scope, check_kind, severity_default), that every trigger
 compiles as a Python regular expression or names a known structural signal, the
-H1 / title agreement, the seven body blocks in order, the bad:/good: example in one
-of the five example languages within its line budget, the single bold validator
-question, the Finding-output block naming the card's own rule_id, the Source block,
-and self-containment (no sibling rule id, no deixis, no practitioner attribution,
-no language named in the Thesis). Corpus-level: unique ids and titles, contiguous
+H1 / title agreement, the six body blocks in order with no `## Source` and no other
+H2 (cardlib.block_problems), the bad:/good: example in one of the five example
+languages within its line budget, the single bold validator question, the
+Finding-output block naming the card's own rule_id, and self-containment (no sibling
+rule id, no deixis, no practitioner attribution anywhere in the card, no language
+named in the Thesis). Corpus-level: unique ids and titles, contiguous
 numbering per id prefix (a gap is a warning), the example-language distribution, and —
 with --provenance and --pending — one provenance line per card and no shipped id
 among the pending entries.
@@ -31,9 +32,9 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from cardlib import (KEYS, PREFIX_DOMAIN, LANGUAGE_PREFIXES, STEPS, APPLIES_TO, SCOPES, CHECK_KINDS,  # noqa: E402
-                     SEVERITIES, EXAMPLE_LANGS, parse_inline_list, parse_frontmatter, strip_quotes, check_triggers)
+                     SEVERITIES, EXAMPLE_LANGS, BLOCKS, parse_inline_list, parse_frontmatter, strip_quotes,
+                     check_triggers, block_problems)
 
-BLOCKS = ["Thesis", "Rationale", "Example", "Limits", "Validator", "Finding output", "Source"]
 PREFIXES = "|".join([*PREFIX_DOMAIN, *LANGUAGE_PREFIXES])
 CORPUS_LANGUAGES = set(LANGUAGE_PREFIXES.values())
 FILENAME = re.compile(rf"^({PREFIXES.lower()})-(\d{{2,3}})--([a-z0-9]+(?:-[a-z0-9]+)*)\.md$")
@@ -43,7 +44,7 @@ BOLD_QUESTION = re.compile(r"\*\*[^*\n]+\?\*\*")
 DEIXIS = re.compile(r"\b(?:the skill|this skill|see above|see below|the checklist|this checklist|as noted|as mentioned|"
                     r"sibling card|another card|the other card|earlier in this|the previous card|the next card)\b", re.I)
 # Practitioner texts, their authors and the forums: a formulation source at most, never
-# evidence, never named in a card. Paper authors a Source may cite are not listed.
+# evidence, never named in a card. Paper authors are evidence, cited on the provenance line, and are not listed.
 ATTRIBUTION = re.compile(r"\b(?:McConnell|Code Complete|Pragmatic Programmer|Clean Code|Clean Architecture|Clean Coder|"
                          r"Uncle Bob|Robert C\. Martin|Ousterhout|Philosophy of Software Design|Feathers|"
                          r"Working Effectively with Legacy Code|Kernighan|Rob Pike|Practice of Programming|"
@@ -189,9 +190,8 @@ def check_card(path, rep, language=None):
     pre = blocks[0][1]
     if re.sub(r"^# .+$", "", pre, flags=re.M).strip():
         rep.error(path, "text between the H1 and '## Thesis'")
-    heads = [h for h, _, _ in blocks[1:]]
-    if heads != BLOCKS:
-        rep.error(path, f"body blocks {heads} must be exactly {BLOCKS} in that order")
+    for problem in block_problems([h for h, _, _ in blocks[1:]]):
+        rep.error(path, problem)
     bt = {h: t for h, t, _ in blocks[1:]}
     for h in BLOCKS:
         if h in bt and not bt[h].strip():
@@ -238,20 +238,16 @@ def check_card(path, rep, language=None):
     if fo.count("## ") > 0:
         rep.error(path, "Finding output holds a nested heading")
 
-    src = bt.get("Source", "")
-    if ATTRIBUTION.search(src):
-        rep.error(path, f"Source names a practitioner text ({ATTRIBUTION.search(src).group(0)!r}); cite the openable evidence and put the formulation in the provenance map")
-
-    prose = "\n".join(bt.get(h, "") for h in BLOCKS if h != "Source")
-    others = {m for m in ANY_RULE_ID.findall(prose + src) if m != rule_id}
+    prose = "\n".join(bt.get(h, "") for h in BLOCKS)
+    others = {m for m in ANY_RULE_ID.findall(body) if m != rule_id}
     if others:
         rep.error(path, f"names sibling rule id(s) {sorted(others)} — a card is self-contained")
     dm = DEIXIS.search(prose)
     if dm:
         rep.error(path, f"deixis {dm.group(0)!r} in the body")
-    am = ATTRIBUTION.search(prose)
+    am = ATTRIBUTION.search(text)
     if am:
-        rep.error(path, f"attribution {am.group(0)!r} in the body; the prose stays attribution-free")
+        rep.error(path, f"attribution {am.group(0)!r} in the card; a practitioner text is named only on the provenance line, as the formulation")
     caps = re.findall(r"\b(MUST NOT|MUST|NEVER|ALWAYS|ONLY|SHALL)\b", prose)
     if len(caps) > 3:
         rep.error(path, f"{len(caps)} ALL-CAPS markers; at most three")

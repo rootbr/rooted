@@ -31,6 +31,3 @@ On the triggered hunk find each `catch (InterruptedException …)` and each `cat
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: CC-22`, severity major, `file`, `symbol`, `code` = the catch block quoted verbatim from the diff, `fix` = the rethrow, or `Thread.currentThread().interrupt()` with the early exit, `rationale` naming the cleared status and the caller whose cancellation is lost).
-
-## Source
-`java.lang.Thread#interrupt` Javadoc, Java SE 21 — a thread blocked in `wait`, `join` or `sleep` has "its interrupt status ... cleared and it will receive an InterruptedException"; `Thread#sleep` — "The interrupted status of the current thread is cleared when this exception is thrown". `java.util.concurrent.ExecutorService` class Javadoc usage example — on `InterruptedException`, "Preserve interrupt status" with `Thread.currentThread().interrupt()`. Error Prone `InterruptedExceptionSwallowed` — "It is important for correctness and performance that thread interruption is handled properly". SonarSource RSPEC-2142 "InterruptedException and ThreadDeath should not be ignored".

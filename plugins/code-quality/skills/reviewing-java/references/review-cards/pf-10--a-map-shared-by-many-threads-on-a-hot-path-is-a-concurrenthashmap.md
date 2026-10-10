@@ -31,6 +31,3 @@ On the triggered hunk find each `Collections.synchronizedMap` or `synchronizedSe
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PF-10`, severity minor, `file`, `symbol`, `code` = the wrapper or `Hashtable` construction quoted verbatim from the diff, `fix` = `ConcurrentHashMap`, `rationale` naming the single monitor every operation takes).
-
-## Source
-`java.util.concurrent.ConcurrentHashMap` class Javadoc, Java SE 21 — "A hash table supporting full concurrency of retrievals and high expected concurrency for updates"; "Retrieval operations (including get) generally do not block, so may overlap with update operations". `java.util.Collections#synchronizedMap` Javadoc — "Returns a synchronized (thread-safe) map backed by the specified map. In order to guarantee serial access, it is critical that all access to the backing map is accomplished through the returned map"; in the JDK 21 source every method of the returned `SynchronizedMap` runs inside `synchronized (mutex)`. `java.util.Hashtable` class Javadoc — "If a thread-safe highly-concurrent implementation is desired, then it is recommended to use ConcurrentHashMap in place of Hashtable."

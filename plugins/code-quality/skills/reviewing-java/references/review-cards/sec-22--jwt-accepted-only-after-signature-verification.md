@@ -31,6 +31,3 @@ On the triggered hunk find each parse, decode or manual Base64 split of a token,
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: SEC-22`, severity critical, `file`, `symbol`, `code` = the parse or decode call and the claim read quoted verbatim from the diff, `fix` = the signed-parse call with the server key, `rationale` naming the unsigned or unverified path through which forged claims are accepted).
-
-## Source
-JJWT README — signed parsing with `verifyWith(key)` and `parseSignedClaims`; "If a JWS and signature verification fails... the JWT cannot be safely trusted and should be discarded"; the unprotected-JWT walkthrough with `"alg": "none"` and the warning that such a token "offers no security protection at all"; `parseUnprotectedClaims`. The 0.12 rejection of an unsecured token unless enabled is not stated in the README cited. OWASP ASVS 5.0 requirement 9.1.1 — tokens "validated using their digital signature or MAC to protect against tampering before accepting the token's contents". Spring Security reference, "OAuth 2.0 Resource Server JWT" — the decoder validates the signature against the JWK Set key. RFC 8725 §3.1 (perform algorithm verification), §3.2 (use appropriate algorithms).

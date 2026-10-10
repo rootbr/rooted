@@ -38,16 +38,3 @@ Grep the file for a quoted name beside `|`. Open the module header and note whet
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PY-29`, severity major, `file`, `symbol`, `code` = the union with its quoted member quoted verbatim, `fix` = the entire union quoted, such as `"Node | None"`, or for an annotation `from __future__ import annotations` with `Node | None`, `rationale` = a string member within an evaluated `X | Y` union causes a runtime error).
-
-## Source
-- Ruff TC010 runtime-string-union (astral-sh/ruff crates/ruff_linter/src/rules/flake8_type_checking/rules/runtime_string_union.rs) — 'type annotations can typically be wrapped in strings to avoid runtime evaluation, the use of a string member within an `X | Y`-style union type will cause a runtime error.' (fetched)
-- Ruff TC010 runtime-string-union (astral-sh/ruff crates/ruff_linter/src/rules/flake8_type_checking/rules/runtime_string_union.rs) — 'remove the quotes, wrap the _entire_ union in quotes, or use `from __future__ import annotations` to disable runtime evaluation of annotations entirely.' (fetched)
-- PEP 604 §Proposal (https://raw.githubusercontent.com/python/peps/main/peps/pep-0604.rst) — 'this proposal adds operator' (fetched)
-- PEP 604 §Proposal (https://raw.githubusercontent.com/python/peps/main/peps/pep-0604.rst) — 'With this new operator, it is possible to write ``int | str`` instead of' (fetched)
-- mypy docs runtime_troubles.rst §Future annotations import (https://raw.githubusercontent.com/python/mypy/master/docs/source/runtime_troubles.rst) — 'This can be thought of as automatic string literal-ification of all function and variable annotations.' (fetched)
-- mypy docs runtime_troubles.rst §Future annotations import (https://raw.githubusercontent.com/python/mypy/master/docs/source/runtime_troubles.rst) — 'Even with the ``__future__`` import, there are some scenarios that could still require string literals or result in errors, typically involving use of forward references or generics in:' (fetched)
-- mypy docs runtime_troubles.rst §Future annotations import (https://raw.githubusercontent.com/python/mypy/master/docs/source/runtime_troubles.rst) — ':ref:`type aliases <type-aliases>` not defined using the ``type`` statement;' (fetched)
-- CPython Doc/whatsnew/3.14.rst §Deferred evaluation of annotations (https://raw.githubusercontent.com/python/cpython/main/Doc/whatsnew/3.14.rst) — 'on functions, classes, and modules are no longer evaluated eagerly.' (fetched)
-- CPython Doc/whatsnew/3.14.rst §Deferred evaluation of annotations (https://raw.githubusercontent.com/python/cpython/main/Doc/whatsnew/3.14.rst) — 'evaluated only when necessary (except if ``from __future__ import annotations`` is used).' (fetched)
-- CPython Doc/whatsnew/3.14.rst §Deferred evaluation of annotations (https://raw.githubusercontent.com/python/cpython/main/Doc/whatsnew/3.14.rst) — 'it remains possible to introspect annotations at runtime.' (fetched)
-- CPython Doc/whatsnew/3.14.rst §Deferred evaluation of annotations (https://raw.githubusercontent.com/python/cpython/main/Doc/whatsnew/3.14.rst) — 'It is no longer necessary to enclose annotations in strings if they contain forward references.' (fetched)

@@ -32,6 +32,3 @@ On the triggered hunk find each `LinkedList` construction or declaration. Open t
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PF-02`, severity minor, `file`, `symbol`, `code` = the `LinkedList` construction or declaration quoted verbatim from the diff, `fix` = the `ArrayList`, `ArrayDeque`, `TreeMap` or `TreeSet` form, `rationale` naming the per-index traversal and the per-node pointer chase).
-
-## Source
-`java.util.LinkedList` class Javadoc, Java SE 21 — "Operations that index into the list will traverse the list from the beginning or the end, whichever is closer to the specified index". `java.util.ArrayList` class Javadoc — "The size, isEmpty, get, set, iterator, and listIterator operations run in constant time. The add operation runs in amortized constant time... The constant factor is low compared to that for the LinkedList implementation". `java.util.ArrayDeque` class Javadoc — "Null elements are prohibited. This class is likely to be faster than Stack when used as a stack, and faster than LinkedList when used as a queue."

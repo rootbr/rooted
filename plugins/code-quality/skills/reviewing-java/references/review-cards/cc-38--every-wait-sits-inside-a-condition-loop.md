@@ -30,6 +30,3 @@ On the triggered hunk take each `wait`/`await` call and look at the statement th
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: CC-38`, severity major, `file`, `symbol`, `code` = the wait and its guard quoted verbatim from the diff, `fix` = the `while (!condition) wait();` form, `rationale` naming spurious wakeups and notifications meant for other conditions).
-
-## Source
-`java.lang.Object#wait(long, int)` Javadoc, Java SE 21 — "A thread can wake up without being notified, interrupted, or timing out, a so-called spurious wakeup ... applications must guard against it by testing for the condition that should have caused the thread to be awakened, and continuing to wait if the condition is not satisfied"; API note — "The recommended approach to waiting is to check the condition being awaited in a while loop around the call to wait". `java.util.concurrent.locks.Condition` Javadoc — "a Condition should always be waited upon in a loop, testing the state predicate that is being waited for". SpotBugs `WA_NOT_IN_LOOP` "Wait not in loop" (fetched from `spotbugs/etc/messages.xml`, `master`). SEI CERT THI03-J "Always invoke wait() and await() methods inside a loop" — unfetched.

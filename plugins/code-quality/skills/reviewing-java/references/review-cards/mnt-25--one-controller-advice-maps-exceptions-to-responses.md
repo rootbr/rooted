@@ -34,6 +34,3 @@ On the triggered hunk find each `catch` inside a controller handler method that 
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: MNT-25`, severity minor, `file`, `symbol`, `code` = the catch and the error `ResponseEntity` quoted verbatim from the diff, `fix` = the propagating handler and the `@ExceptionHandler` in a `@RestControllerAdvice`, `rationale` naming the per-handler drift of status and body).
-
-## Source
-Spring Framework reference, Web MVC → Annotated Controllers → Controller Advice — `@ExceptionHandler` methods "declared in an @ControllerAdvice or @RestControllerAdvice class … apply to any controller"; Exceptions — `@Controller` and `@ControllerAdvice` classes "can have @ExceptionHandler methods to handle exceptions from controller methods", matching "a top-level exception being propagated … or … a nested cause within a wrapper exception".

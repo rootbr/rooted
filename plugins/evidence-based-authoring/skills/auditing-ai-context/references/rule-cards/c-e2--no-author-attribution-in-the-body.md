@@ -21,7 +21,7 @@ accepted: Split any meeting longer than 90 minutes into two sessions.
 ```
 
 ## Limits
-Covers attribution of an idea to its originator inside the card. A compact source locator in a dedicated footer block is the sanctioned place for provenance and is a separate matter. Using a person's name as a domain role the consumer acts on — not as the credited originator of the idea — is not attribution.
+Covers attribution of an idea to its originator inside the card. A source footer in the card body is provenance in runtime and is R-57's matter. Using a person's name as a domain role the consumer acts on — not as the credited originator of the idea — is not attribution.
 
 ## Validator
 Scan the title, thesis, rationale, and terminology against the store's source-name list and for possessive or citation patterns ("<Name>'s method", "the <Name> technique", "as <Author> showed", "per <publication>"). Flag any idea named by its originator. Validator question: is this idea named by what it is, or by who wrote it?

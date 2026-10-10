@@ -35,6 +35,3 @@ Open the config at HEAD and take each numbered invariant the diff adds or change
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: META-06`, severity minor, `file` = the config path, `symbol` = `Inv <N>` for the added invariant's number, `code` = the two invariant lines quoted verbatim, the added one from the diff, `fix` = the added invariant rewritten with the `Refines Inv N` or `Supersedes Inv N` clause and, for a replacement, the older line marked superseded, `rationale` naming the two findings one change would draw and the copy that drifts).
-
-## Source
-MADR `template/adr-template.md` (`adr/madr`, `main`) — frontmatter `status: "{proposed | rejected | accepted | deprecated | … | superseded by ADR-0123}"`: a replaced record keeps its number and points at its successor. arXiv:2103.02255 §2.1 — "the duplication of two requirements may cause inconsistency when one requirement is changed while another not". arXiv:2412.01657 §1 — duplicate requirements, "where the same functionality is described differently", "lead to unintentional redundancy in implementation efforts".

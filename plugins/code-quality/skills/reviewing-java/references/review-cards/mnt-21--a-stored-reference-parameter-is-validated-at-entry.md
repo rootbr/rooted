@@ -32,6 +32,3 @@ On the triggered hunk find each constructor assignment `this.f = p` and each pub
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: MNT-21`, severity suggestion, `file`, `symbol`, `code` = the assignment or dereference quoted verbatim from the diff, `fix` = the `requireNonNull` with a message, `rationale` naming the later, misleading NPE).
-
-## Source
-`java.util.Objects#requireNonNull(T, String)` Javadoc, Java SE 21 — "Checks that the specified object reference is not null and throws a customized NullPointerException if it is. This method is designed primarily for doing parameter validation in methods and constructors with multiple parameters"; returns `obj` if not `null`; `#requireNonNull(T)` — "designed primarily for doing parameter validation in methods and constructors". SEI CERT Oracle Coding Standard for Java, `MET00-J` "Validate method arguments" — the obligation to validate a method's arguments at entry.

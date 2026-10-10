@@ -34,6 +34,3 @@ On the triggered hunk find each `csrf(...)` disable or `ignoringRequestMatchers`
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: SEC-09`, severity major, `file`, `symbol`, `code` = the `csrf(...)` call quoted verbatim from the diff, `fix` = the protection restored, or the disable moved to a separate stateless bearer-token chain under its own `securityMatcher`, `rationale` naming the cookie-carried credential the browser attaches).
-
-## Source
-Spring Security reference, "Cross Site Request Forgery (CSRF)" — "Our recommendation is to use CSRF protection for any request that could be processed by a browser by normal users. If you are creating a service that is used only by non-browser clients, you likely want to disable CSRF protection"; "Requiring the actual CSRF token in a cookie does not work because cookies are automatically included in the HTTP request by the browser"; servlet page §Disable CSRF Protection with `ignoringRequestMatchers`. OWASP Cross-Site Request Forgery Prevention Cheat Sheet — "CSRF tokens are still essential for web applications that rely on cookies for authentication"; §Employing Custom Request Headers for AJAX/API. OWASP ASVS 5.0 requirement 3.5.1. CWE-352.

@@ -32,6 +32,3 @@ On the triggered hunk find each loop whose variable, accumulator or per-iteratio
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PF-15`, severity minor, `file`, `symbol`, `code` = the loop header and the boxed accumulator quoted verbatim from the diff, `fix` = the primitive form, `rationale` naming the per-iteration allocation outside the boxing cache).
-
-## Source
-`java.lang.Integer#valueOf(int)` and `java.lang.Long#valueOf(long)` Javadoc, Java SE 21 — "This method will always cache values in the range -128 to 127, inclusive, and may cache other values outside of this range"; the constructor is avoided because `valueOf` "is likely to yield significantly better space and time performance by caching frequently requested values". JLS §5.1.7 boxing conversion (the compiler inserts `valueOf` for boxing and the unboxing calls for arithmetic on boxed operands) — not fetched from the authoring environment.

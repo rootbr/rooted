@@ -31,6 +31,3 @@ On the triggered hunk find each expression that calls an accessor on the result 
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: MNT-40`, severity minor, `file`, `symbol`, `code` = the chain quoted verbatim from the diff, `fix` = the method on the first object, `rationale` naming the intermediate types the client is now bound to).
-
-## Source
-PMD `LawOfDemeter` — "only talk to friends … It forbids fetching data from 'too far away', for some definition of distance, in order to reduce coupling between classes or objects of different levels of abstraction"; the degree of `this` is 0, of a parameter, a new object or a static variable 1, of a getter expression the degree of its receiver plus 1; `trustRadius` default 1 "corresponds to the original law of Demeter (you're only allowed one getter call on untrusted values)". Lieberherr, Holland, "Assuring Good Style for Object-Oriented Programs", IEEE Software 6(5), 1989, DOI 10.1109/52.35588 — the Law of Demeter. Caveat: the card's three-object threshold is one hop wider than the default `trustRadius` of 1, by design.

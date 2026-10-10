@@ -34,6 +34,3 @@ On the triggered hunk find each `+`, `-`, `*` on `int` or `long` operands and ea
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: REL-04`, severity major, `file`, `symbol`, `code` = the arithmetic expression quoted verbatim from the diff, `fix` = the same computation through `Math.addExact`, `multiplyExact`, `toIntExact` or a `long` widening before the operation, `rationale` naming the value that wraps and what it corrupts).
-
-## Source
-`java.lang.Math#addExact(int, int)`, `#multiplyExact`, `#toIntExact(long)` Javadoc, Java SE 21 — "Returns the sum of its arguments, throwing an exception if the result overflows an int"; `@throws ArithmeticException if the result overflows an int`; `toIntExact` — "throwing an exception if the value overflows an int". SEI CERT Oracle Coding Standard for Java, NUM00-J "Detect or prevent integer overflow". SpotBugs `ICAST_INTEGER_MULTIPLY_CAST_TO_LONG` — an `int` multiplication cast to `long` overflows before the widening.

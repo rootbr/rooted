@@ -31,6 +31,3 @@ On the triggered hunk find each null-rejecting factory call and read each argume
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: REL-40`, severity major, `file`, `symbol`, `code` = the factory call quoted verbatim from the diff, `fix` = a null filter or default before the factory, or a null-permitting collection, `rationale` naming the `NullPointerException` on an absent value).
-
-## Source
-`java.util.List` class Javadoc, Java SE 21, "Unmodifiable Lists" — "They disallow null elements. Attempts to create them with null elements result in NullPointerException"; `java.util.Set` and `java.util.Map` class Javadoc carry the same characteristic for `Set.of`, `Map.of`, `Map.entry` and `copyOf`; `java.util.stream.Stream#toList()` implSpec — the list is built "as if by" `Collections.unmodifiableList(new ArrayList<>(Arrays.asList(this.toArray())))`, which admits null; `java.util.stream.Collectors#toUnmodifiableList()` — "The returned Collector disallows null values and will throw NullPointerException if it is presented with a null value".

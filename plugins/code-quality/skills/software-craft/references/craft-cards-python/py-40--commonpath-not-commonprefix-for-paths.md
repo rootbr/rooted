@@ -34,23 +34,3 @@ Grep the hunk for os.path.commonprefix( and for a bare commonprefix( imported fr
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PY-40`, severity major, `file`, `symbol`, `code` = the commonprefix call, quoted verbatim from the diff, `fix` = the same call with os.path.commonpath, e.g. `os.path.commonpath(["/usr/lib", "/usr/local/lib"])`, with ValueError handled where the input can mix absolute and relative paths or be empty, `rationale` = commonprefix compares character by character, returns /usr/l for /usr/lib and /usr/local/lib, is not secure for a common path prefix and is deprecated from Python 3.15).
-
-## Source
-- CPython Doc/library/os.path.rst §commonprefix (https://raw.githubusercontent.com/python/cpython/main/Doc/library/os.path.rst) — 'This function may return invalid paths because it works a character at a time.' (fetched)
-- CPython Doc/library/os.path.rst §commonprefix (https://raw.githubusercontent.com/python/cpython/main/Doc/library/os.path.rst) — 'then the algorithm implemented in this function is not secure' (fetched)
-- CPython Doc/library/os.path.rst §commonprefix (https://raw.githubusercontent.com/python/cpython/main/Doc/library/os.path.rst) — 'Deprecated in favor of :func:`os.path.commonpath` for path prefixes.' (fetched)
-- CPython Doc/library/os.path.rst §commonprefix (https://raw.githubusercontent.com/python/cpython/main/Doc/library/os.path.rst) — 'is being deprecated due to having a misleading name and module. The function is not safe to use for path prefixes despite being included in a module about path manipulation' (fetched)
-- CPython Doc/library/os.path.rst §commonprefix (https://raw.githubusercontent.com/python/cpython/main/Doc/library/os.path.rst) — 'meaning it is easy to accidentally introduce path traversal vulnerabilities into Python programs by using this function' (fetched)
-- CPython Doc/library/os.path.rst §commonprefix (https://raw.githubusercontent.com/python/cpython/main/Doc/library/os.path.rst) — 'Return the longest string prefix (taken character-by-character) that is a prefix of all strings in *list*.' (fetched)
-- CPython Doc/library/os.path.rst §commonprefix (https://raw.githubusercontent.com/python/cpython/main/Doc/library/os.path.rst) — 'If *list* is empty, return the empty string' (fetched)
-- CPython Doc/library/os.path.rst §commonpath (https://raw.githubusercontent.com/python/cpython/main/Doc/library/os.path.rst) — 'Return the longest common sub-path of each pathname in the iterable' (fetched)
-- CPython Doc/library/os.path.rst §commonpath (https://raw.githubusercontent.com/python/cpython/main/Doc/library/os.path.rst) — 'Unlike :func:`commonprefix`, this returns a valid path.' (fetched)
-- CPython Doc/library/os.path.rst §commonpath (https://raw.githubusercontent.com/python/cpython/main/Doc/library/os.path.rst) — 'if *paths* contain both absolute and relative pathnames, if *paths* are on different drives, or if *paths* is empty' (fetched)
-- Ruff RUF071 os-path-commonprefix (astral-sh/ruff crates/ruff_linter/src/rules/ruff/rules/os_path_commonprefix.rs) — '`os.path.commonprefix` performs a character-by-character string comparison rather than comparing path components.' (fetched)
-- Ruff RUF071 os-path-commonprefix (astral-sh/ruff crates/ruff_linter/src/rules/ruff/rules/os_path_commonprefix.rs) — 'Returns "/usr/l" — not a valid directory!' (fetched)
-- Ruff RUF071 os-path-commonprefix (astral-sh/ruff crates/ruff_linter/src/rules/ruff/rules/os_path_commonprefix.rs) — '`os.path.commonpath` correctly compares path components.' (fetched)
-- Ruff RUF071 os-path-commonprefix (astral-sh/ruff crates/ruff_linter/src/rules/ruff/rules/os_path_commonprefix.rs) — 'Returns "/usr" — correct common path' (fetched)
-- Ruff RUF071 os-path-commonprefix (astral-sh/ruff crates/ruff_linter/src/rules/ruff/rules/os_path_commonprefix.rs) — '`os.path.commonprefix` is deprecated as of Python 3.15.' (fetched)
-- Ruff RUF071 os-path-commonprefix (astral-sh/ruff crates/ruff_linter/src/rules/ruff/rules/os_path_commonprefix.rs) — 'finding a common prefix among arbitrary strings like version numbers or identifiers' (fetched)
-- Ruff RUF071 os-path-commonprefix (astral-sh/ruff crates/ruff_linter/src/rules/ruff/rules/os_path_commonprefix.rs) — 'os.path.commonprefix(["12345", "12378"])  # "123"' (fetched)
-- Ruff RUF071 os-path-commonprefix (astral-sh/ruff crates/ruff_linter/src/rules/ruff/rules/os_path_commonprefix.rs) — 'os.path.commonpath(["12345", "12378"])  # ""' (fetched)

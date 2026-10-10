@@ -32,6 +32,3 @@ On the triggered hunk find each read of the token's algorithm header and each ve
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: SEC-23`, severity critical, `file`, `symbol`, `code` = the algorithm read or key selection quoted verbatim from the diff, `fix` = the verifier pinned to the configured family with typed keys, `rationale` naming the header-chosen algorithm and the confusion or `none` path it opens).
-
-## Source
-OWASP ASVS 5.0 requirement 9.1.2 — "only algorithms on an allowlist can be used to create and verify self-contained tokens... must not include the 'None' algorithm. If both symmetric and asymmetric must be supported, additional controls will be needed to prevent key confusion". Spring Security reference, "OAuth 2.0 Resource Server JWT" §Configuring Trusted Algorithms — "By default, NimbusJwtDecoder, and hence Resource Server, will only trust and verify tokens using RS256". JJWT README — `verifyWith(publicKey) // publicKey, not privateKey`. RFC 8725 §2.1 (weak signatures and insufficient signature validation), §3.1 (perform algorithm verification).

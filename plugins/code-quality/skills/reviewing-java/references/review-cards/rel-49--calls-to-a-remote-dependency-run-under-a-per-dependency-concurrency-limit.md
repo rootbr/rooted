@@ -32,6 +32,3 @@ On the triggered hunk find each remote call and each bulkhead or pool definition
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: REL-49`, severity minor, `file`, `symbol`, `code` = the remote call or the shared limit quoted verbatim from the diff, `fix` = a per-dependency bulkhead or pool around the call, `rationale` naming the request pool the stall would drain).
-
-## Source
-Resilience4j `io.github.resilience4j.bulkhead.Bulkhead` Javadoc — "A Bulkhead represent an entity limiting the amount of parallel operations ... can be used to shed load, and, where it makes sense, limit resource use (i.e. limit amount of threads/actors involved in a particular flow, etc). ... If the bulkhead is full, no additional operations will be permitted to execute until space is available"; Resilience4j README — "The Golden Rule: Create a unique instance (with a unique ID) for each protected remote service or backend you communicate with"; "Separate Bulkhead for each service ... DON'T" share one. arXiv:2512.16959 §VI.E — "Bulkheads isolate failure domains with separate pools/quotas to prevent cross-service collapse"; Table I — "Resource Exhaustion: CPU/memory leaks, thread starvation".

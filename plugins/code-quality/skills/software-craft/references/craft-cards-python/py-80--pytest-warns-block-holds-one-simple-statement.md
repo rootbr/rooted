@@ -36,14 +36,3 @@ Grep the hunk for `with pytest.warns(`, whether it is the only context manager o
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PY-80`, severity minor, `file`, `symbol`, `code` = the `with pytest.warns(...)` line and the statements of its body, verbatim from the diff, `fix` = the Python test with setup and further calls moved before or after the block and only the call expected to warn left inside it, `rationale` = names the statement in the block, other than the call under test, that could issue the expected warning and let the test pass).
-
-## Source
-- Ruff PT031 pytest-warns-with-multiple-statements (astral-sh/ruff crates/ruff_linter/src/rules/flake8_pytest_style/rules/warns.rs) — 'When `pytest.warns` is used as a context manager and contains multiple statements, it can lead to the test passing when it should instead fail.' (fetched)
-- Ruff PT031 pytest-warns-with-multiple-statements (astral-sh/ruff crates/ruff_linter/src/rules/flake8_pytest_style/rules/warns.rs) — 'A `pytest.warns` context manager should only contain a single simple statement that triggers the expected warning.' (fetched)
-- Ruff PT031 pytest-warns-with-multiple-statements (astral-sh/ruff crates/ruff_linter/src/rules/flake8_pytest_style/rules/warns.rs) — 'False negative if setup triggers a warning but foo does not.' (fetched)
-- Ruff PT031 pytest-warns-with-multiple-statements (astral-sh/ruff crates/ruff_linter/src/rules/flake8_pytest_style/rules/warns.rs) — 'This rule allows `pytest.warns` bodies to contain `for` loops with empty bodies (e.g., `pass` or `...` statements), to test iterator behavior.' (fetched)
-- SonarSource python S9088 (SonarSource/sonar-python python-checks/src/main/resources/org/sonar/l10n/py/rules/python/S9088.html) — 'If you put several method calls inside a pytest.warns block, or chain multiple invocations in the tested expression, it becomes ambiguous which specific call is expected to emit the warning.' (fetched)
-- SonarSource python S9088 (SonarSource/sonar-python python-checks/src/main/resources/org/sonar/l10n/py/rules/python/S9088.html) — 'By isolating the method call you want to test, you make the test explicit and unambiguous.' (fetched)
-- pytest src/_pytest/recwarn.py §pytest.warns docstring (https://raw.githubusercontent.com/pytest-dev/pytest/main/src/_pytest/recwarn.py) — 'the code inside the ``with`` block must issue at least one warning of that class or classes.' (fetched)
-- pytest src/_pytest/recwarn.py §pytest.warns docstring (https://raw.githubusercontent.com/pytest-dev/pytest/main/src/_pytest/recwarn.py) — 'one for each warning emitted (regardless of whether it is an ``expected_warning`` or not).' (fetched)
-- CPython Doc/library/warnings.rst §warnings (https://raw.githubusercontent.com/python/cpython/main/Doc/library/warnings.rst) — 'where that condition (normally) doesn't warrant raising an exception and terminating the program.' (fetched)

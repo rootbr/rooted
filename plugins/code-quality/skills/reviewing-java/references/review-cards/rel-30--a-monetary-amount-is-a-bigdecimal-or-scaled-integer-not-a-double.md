@@ -33,6 +33,3 @@ On the triggered hunk find each `double`/`float`/`Double` field, parameter, loca
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: REL-30`, severity major, `file`, `symbol`, `code` = the declaration or arithmetic quoted verbatim from the diff, `fix` = the same value as `BigDecimal` with an explicit `RoundingMode`, or a `long` in minor units, `rationale` naming the representation error).
-
-## Source
-`java.math.BigDecimal#BigDecimal(double)` Javadoc, Java SE 21 — "0.1 cannot be represented exactly as a double (or, for that matter, as a binary fraction of any finite length)". SpotBugs `FE_FLOATING_POINT_EQUALITY` — "Because floating point calculations may involve rounding, calculated float and double values may not be accurate. For values that must be precise, such as monetary values, consider using a fixed-precision type such as BigDecimal". SEI CERT Oracle Coding Standard for Java, NUM04-J "Do not use floating-point numbers if precise computation is required" (unfetched; cited as its provenance line anchors it).

@@ -34,6 +34,3 @@ On the triggered hunk find each path or file construction with a non-constant co
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: SEC-15`, severity critical, `file`, `symbol`, `code` = the path construction and the file operation quoted verbatim from the diff, `fix` = the resolve-normalize-startsWith sequence against the base, `rationale` naming the traversal the raw component allows).
-
-## Source
-`java.nio.file.Path#normalize` Javadoc, Java SE 21 — "Eliminating ".." and a preceding name from a path may result in the path that locates a different file than the original path. This can arise when the preceding name is a symbolic link"; `#toRealPath` — an absolute path with symbolic links resolved, throwing if the file does not exist; `#startsWith(Path)` — "this path starts with the same name elements as the given path". Jakarta Servlet `ServletContext#getRealPath` Javadoc — "This method bypasses both implicit (no direct access to WEB-INF or META-INF) and explicit (defined by the web application) security constraints. Care should be taken both when constructing the path (e.g. avoid unsanitized user provided data)". OWASP ASVS 5.0 requirement 5.3.2. OWASP File Upload Cheat Sheet, "Filename Safety". SEI CERT FIO16-J; CWE-22.

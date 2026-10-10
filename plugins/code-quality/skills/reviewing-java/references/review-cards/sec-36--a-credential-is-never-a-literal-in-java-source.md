@@ -32,6 +32,3 @@ On the triggered hunk find each string literal assigned to or passed for a field
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: SEC-36`, severity major, `file`, `symbol`, `code` = the literal's line quoted verbatim from the diff with the secret value replaced by `…`, `fix` = the same field read from configuration or the environment, `rationale` naming the system the credential opens and the rotation the leak now requires).
-
-## Source
-OWASP ASVS 5.0 §13.3.1 — a secrets management solution stores backend secrets; "Secrets must not be included in application source code or included in build artifacts". OWASP Secrets Management Cheat Sheet — §1, secrets "hardcoded within the source code in plaintext" as the problem addressed; §3.2, a CI/CD secret store "is not the same as committing it to code"; §2.7.3, a secret found in code persists in commit history unless the history is rewritten. Spring Security reference, "Password Storage" — a password placed in source through `withDefaultPasswordEncoder` "is still exposed in memory and in the compiled source code" and "not considered secure for a production environment". CWE-798 — by id.

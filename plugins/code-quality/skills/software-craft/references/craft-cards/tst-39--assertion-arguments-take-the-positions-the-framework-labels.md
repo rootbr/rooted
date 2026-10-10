@@ -32,10 +32,3 @@ Grep the hunk for equality, identity and comparison assertions that take two val
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: TST-39`, severity minor, `file`, `symbol`, `code` = the assertion quoted verbatim from the diff, `fix` = the assertion with its two arguments reordered, in the file's language, `rationale` = which value sits under which label and the misleading or inconsistent failure message that results).
-
-## Source
-- SonarSource java:S3415 (fetched): "will not alter the outcome of tests, (succeed/fail when it should) but the error messages will contain misleading information"; "a hard-coded value as the expected value, while the actual value of the assertion should derive from the portion of code that you want to test".
-- SonarSource python:S3415 (fetched): "It raises only when the same file mixes both orders: readers must then re-interpret each assertion, and failure messages become harder to scan".
-- google/styleguide go/decisions.md, 'Got before want' (fetched): "Test outputs should include the actual value that the function returned before printing the value that was expected. A standard format for printing test outputs is `YourFunc(%v) = %v, want %v`"; "Whichever diff order you use in your failure messages, you should explicitly indicate it".
-- rust-lang/book src/ch11-01-writing-tests.md (fetched): "the order in which we specify the value we expect and the value the code produces doesn’t matter".
-- Caveat: the anchors are tool rules and framework documentation; no study measures the effect of a swapped pair on the time a failure takes to diagnose.

@@ -35,15 +35,3 @@ Grep the file for `exec(` and `eval(` not preceded by a name character or a dot,
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PY-99`, severity major, `file`, `symbol`, `code` = the eval or exec call and the line that reads its untrusted text, verbatim from the diff, `fix` = the input parsed as data and dispatched to functions the program defines, with no eval or exec, `rationale` = eval and exec run the text as code, and overriding __builtins__ is not a security mechanism because the executed code can still access all builtins).
-
-## Source
-- CPython Doc/library/functions §exec (https://docs.python.org/3/library/functions.html) — 'Overriding __builtins__ can be used to restrict or change the available names, but this is not a security mechanism: the executed code can still access all builtins.' (fetched)
-- CPython Doc/library/functions §exec, warning (https://docs.python.org/3/library/functions.html) — 'This function executes arbitrary code. Calling it with untrusted user-supplied input will lead to security vulnerabilities.' (fetched)
-- CPython Doc/library/functions §exec, globals (https://docs.python.org/3/library/functions.html) — 'a reference to the dictionary of the built-in module builtins is inserted under that key' (fetched)
-- Pylint exec-used (W0122) (pylint-dev/pylint doc/data/messages/e/exec-used/details.rst) — 'However, use of ``exec()`` is still insecure if you allow some functions like ``__import__`` or ``open``.' (fetched)
-- Pylint exec-used (W0122), restriction (pylint-dev/pylint doc/data/messages/e/exec-used/details.rst) — 'You can restrict the use of these variables and methods by passing optional globals' (fetched)
-- Pylint exec-used (W0122), compliant example (pylint-dev/pylint doc/data/messages/e/exec-used/good.py) — 'all builtins are allowed. You need to be explicit about it being disallowed.' (fetched)
-- Pylint exec-used (W0122), compliant example disable comment (pylint-dev/pylint doc/data/messages/e/exec-used/good.py) — 'pylint: disable-next=exec-used' (fetched)
-- Pylint exec-used (W0122), unrestrained code (pylint-dev/pylint doc/data/messages/e/exec-used/details.rst) — 'and then execute code unrestrained by the' (fetched)
-- Ruff S102 exec-builtin (astral-sh/ruff crates/ruff_linter/src/rules/flake8_bandit/rules/exec_used.rs) — 'The `exec()` function is insecure as it allows for arbitrary code execution.' (fetched)
-- Bandit B102 (PyCQA/bandit doc/source/plugins/b102_exec_used.rst) — 'The Python docs succinctly describe why the use of `exec` is risky.' (fetched)

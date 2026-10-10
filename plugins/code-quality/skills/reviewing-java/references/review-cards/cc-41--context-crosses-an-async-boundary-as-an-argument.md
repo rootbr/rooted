@@ -32,6 +32,3 @@ On the triggered hunk find each task body or stage lambda and each `ThreadLocal.
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: CC-41`, severity major, `file`, `symbol`, `code` = the thread-local read inside the task and the set outside it quoted verbatim from the diff, `fix` = the value read before submission and captured or passed in, or the propagating executor, `rationale` naming the other thread's own copy, empty or stale from a previous task).
-
-## Source
-`java.lang.ThreadLocal` class Javadoc, Java SE 21 — "each thread that accesses one (via its get or set method) has its own, independently initialized copy of the variable"; `java.lang.InheritableThreadLocal` — "when a child thread is created, the child receives initial values for all inheritable thread-local variables for which the parent has values"; `java.util.concurrent.CompletableFuture` class Javadoc — "Actions supplied for dependent completions of non-async methods may be performed by the thread that completes the current CompletableFuture, or by any other caller of a completion method"; "All async methods without an explicit Executor argument are performed using the ForkJoinPool.commonPool()".

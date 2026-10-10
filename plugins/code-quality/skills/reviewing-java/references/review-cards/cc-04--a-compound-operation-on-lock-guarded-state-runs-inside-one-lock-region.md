@@ -32,6 +32,3 @@ On the triggered hunk find each pair of calls on the same lock-guarded object or
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: CC-04`, severity major, `file`, `symbol`, `code` = both calls quoted verbatim from the diff, `fix` = one region on the object's own lock enclosing both, `rationale` naming the interleaving between the two regions).
-
-## Source
-`java.util.Collections#synchronizedList` Javadoc, Java SE 21 — "In order to guarantee serial access, it is critical that all access to the backing list is accomplished through the returned list"; "It is imperative that the user manually synchronize on the returned list when traversing it"; "Failure to follow this advice may result in non-deterministic behavior". jcstress sample `problems/racecondition/RaceCondition_02_CheckThenReact.java` — `Racy`: a check-then-set on a `volatile` flag, both actors enter the section in 12.36% of samples; `Sync`: the same under `synchronized (this)`, forbidden, zero samples. SEI CERT VNA03-J "Do not assume that a group of calls to independently atomic methods is atomic".

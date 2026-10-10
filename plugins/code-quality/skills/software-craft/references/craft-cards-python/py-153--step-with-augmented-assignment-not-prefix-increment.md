@@ -34,9 +34,3 @@ Grep the hunk for `++` or `--` directly before a name, a call or a parenthesis, 
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PY-153`, severity major, `file`, `symbol`, `code` = the statement with the `++` or `--` prefix verbatim from the diff, `fix` = the augmented assignment, `retries += 1` or `retries -= 1`, `rationale` = names that Python has no prefix increment or decrement operator and that `++x` and `--x` are two unary signs equivalent to `x`).
-
-## Source
-- Ruff B002 unary-prefix-increment-decrement (astral-sh/ruff crates/ruff_linter/src/rules/flake8_bugbear/rules/unary_prefix_increment_decrement.rs) — 'Python does not support the unary prefix increment or decrement operator. Writing `++n` is equivalent to `+(+(n))` and writing `--n` is equivalent to `-(-(n))`. In both cases, it is equivalent to `n`.' (fetched)
-- flake8-bugbear B002 (PyCQA/flake8-bugbear README.rst) — 'Python does not support the unary prefix increment. Writing ``++n`` is equivalent to ``+(+(n))``, which equals ``n``.' (fetched)
-- Pylint nonexistent-operator (E0107) (pylint-dev/pylint pylint/checkers/base/basic_error_checker.py) — 'Used when you attempt to use the C-style pre-increment or pre-decrement operator -- and ++' (fetched)
-- CPython Doc/reference/expressions.rst §Unary arithmetic and bitwise operations (https://raw.githubusercontent.com/python/cpython/main/Doc/reference/expressions.rst) — 'u_expr: `power` | "-" `u_expr` | "+" `u_expr` | "~" `u_expr`'; 'The unary ``+`` (plus) operator yields its numeric argument unchanged; the operation can be overridden with the :meth:`~object.__pos__` special method.'; 'The unary ``-`` (minus) operator yields the negation of its numeric argument; the operation can be overridden with the :meth:`~object.__neg__` special method.' (fetched)

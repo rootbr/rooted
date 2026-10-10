@@ -36,15 +36,3 @@ Grep the hunk for `assert (`, `if (`, `elif (` and `while (` lines. For each hit
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PY-06`, severity major, `file`, `symbol`, `code` = the assert, if, elif or while line with its parenthesised tuple, verbatim, `fix` = the statement with the enclosing parentheses removed, such as `assert user.is_active, "user must be active"`, or the values joined with `and`, such as `if count > 0 and limit > 0:`, `rationale` = that a non-empty tuple is always true, so the assert can never fail or the branch always runs).
-
-## Source
-- CPython Doc/reference/simple_stmts.rst §The assert statement (https://raw.githubusercontent.com/python/cpython/main/Doc/reference/simple_stmts.rst) — 'The extended form, ``assert expression1, expression2``, is equivalent to ::' (fetched)
-- Python documentation, Expressions §Boolean operations (https://docs.python.org/3/reference/expressions.html) — 'and also when expressions are used by control flow statements, the following values are interpreted as false:' (fetched)
-- Python documentation, Expressions §Boolean operations (https://docs.python.org/3/reference/expressions.html) — 'numeric zero of all types, and empty strings and containers (including strings, tuples, lists, dictionaries, sets and frozensets). All other values are interpreted as true.' (fetched)
-- Python documentation, Built-in Types §Truth Value Testing (https://docs.python.org/3/library/stdtypes.html) — 'constants defined to be false: None and False' (fetched)
-- Ruff F631 assert-tuple (astral-sh/ruff crates/ruff_linter/src/rules/pyflakes/rules/assert_tuple.rs) — 'Non-empty tuples are always `True`, so an `assert` statement with a non-empty tuple as its test condition will always pass.' (fetched)
-- Ruff F634 if-tuple (astral-sh/ruff crates/ruff_linter/src/rules/pyflakes/rules/if_tuple.rs) — 'Non-empty tuples are always `True`, so an `if` statement with a non-empty tuple as its test condition will always pass.' (fetched)
-- Pylint assert-on-tuple (W0199) (pylint-dev/pylint doc/data/messages/a/assert-on-tuple/details.rst) — 'Directly asserting a non-empty tuple will always pass. The solution is to test something that could fail, or not assert at all.' (fetched)
-- SonarSource python S5905 (SonarSource/sonar-python python-checks/src/main/resources/org/sonar/l10n/py/rules/python/S5905.html) — 'The assert statement does not take parentheses around its parameters. Calling assert(x, y) will test if the tuple (x, y) is True, which is always the case.' (fetched)
-- SonarSource python S5905 (SonarSource/sonar-python python-checks/src/main/resources/org/sonar/l10n/py/rules/python/S5905.html) — 'test each value separately' (fetched)
-- Caveat: the analysers name assert and if; the while case rests on the truth-testing rule, which covers every control flow statement.

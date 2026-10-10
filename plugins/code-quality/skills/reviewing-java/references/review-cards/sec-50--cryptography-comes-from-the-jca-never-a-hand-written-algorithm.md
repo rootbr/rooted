@@ -36,6 +36,3 @@ On the triggered hunk find each method that promises confidentiality, integrity 
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: SEC-50`, severity major, `file`, `symbol`, `code` = the method's operative lines quoted verbatim from the diff, `fix` = the JCA or library call that provides the claimed property, `rationale` naming the scheme and how it is reversed or forged).
-
-## Source
-OWASP Cryptographic Storage Cheat Sheet, "Custom Algorithms" — "Don't do this"; "Algorithms" — AES with a secure mode as the symmetric preference. OWASP ASVS 5.0 §11.2.1 — "industry-validated implementations (including libraries and hardware-accelerated implementations) are used for cryptographic operations"; §14.1.1 — data "that is only encoded and therefore easily decoded, such as Base64 strings". CWE-1240 "Use of a Cryptographic Primitive with a Risky Implementation" — by id.

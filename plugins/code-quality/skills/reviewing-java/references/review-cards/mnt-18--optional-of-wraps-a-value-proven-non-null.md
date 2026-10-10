@@ -32,6 +32,3 @@ On the triggered hunk find each `Optional.of(expr)`. Open the file and trace `ex
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: MNT-18`, severity major, `file`, `symbol`, `code` = the `Optional.of` call quoted verbatim from the diff, `fix` = `Optional.ofNullable`, `rationale` naming the path on which the argument is `null`).
-
-## Source
-`java.util.Optional#of(T)` Javadoc, Java SE 21 — "Returns an Optional describing the given non-null value … @throws NullPointerException if value is null"; `#ofNullable(T)` — "Returns an Optional describing the given value, if non-null, otherwise returns an empty Optional".

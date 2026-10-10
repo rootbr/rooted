@@ -32,6 +32,3 @@ On the triggered hunk find each `throw new ...` inside a `catch` and check its a
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: REL-57`, severity minor, `file`, `symbol`, `code` = the throw or the match quoted verbatim from the diff, `fix` = the caught exception (or its `getCause()`) passed as the cause or matched on, `rationale` naming the stack trace and type that are lost).
-
-## Source
-`java.lang.Throwable` class Javadoc, Java SE 21 — "the throwable can also contain a cause: another throwable that caused this throwable to be constructed. The recording of this causal information is referred to as the chained exception facility"; "Throwing a 'wrapped exception' (i.e., an exception containing a cause) allows the upper layer to communicate the details of the failure to its caller"; `#Throwable(String, Throwable)`. `java.util.concurrent.ExecutionException` — "Exception thrown when attempting to retrieve the result of a task that aborted by throwing an exception. This exception can be inspected using the getCause() method". Error Prone `UnusedException` — "Throwing a new exception without supplying the caught one as a cause means the stack trace will terminate at the catch block".

@@ -37,11 +37,3 @@ Grep the hunk for `def __exit__` and open the method in the file. Name its excep
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PY-20`, severity minor, `file`, `symbol`, `code` = the `raise` line in `__exit__`, `fix` = the `raise` removed and `return False` so the exception propagates normally, `rationale` = re-raising the passed-in exception is the caller's responsibility and raising it from `__exit__` makes the stack trace difficult to understand).
-
-## Source
-- CPython Doc/reference/datamodel.rst §object.__exit__ (python/cpython Doc/reference/datamodel.rst) — 'If an exception is supplied, and the method wishes to suppress the exception (i.e., prevent it from being propagated), it should return a true value.' (fetched)
-- CPython Doc/reference/datamodel.rst §object.__exit__ (python/cpython Doc/reference/datamodel.rst) — 'Otherwise, the exception will be processed normally upon exit from this method.' (fetched)
-- CPython Doc/reference/datamodel.rst §object.__exit__ (python/cpython Doc/reference/datamodel.rst) — 'Note that :meth:`~object.__exit__` methods should not reraise the passed-in exception' (fetched)
-- SonarSource python S5706 (SonarSource/sonar-python python-checks/src/main/resources/org/sonar/l10n/py/rules/python/S5706.html) — 'The special method __exit__ should only raise an exception when it fails. It should never raise the provided exception, it is the caller’s responsibility.' (fetched)
-- SonarSource python S5706 (SonarSource/sonar-python python-checks/src/main/resources/org/sonar/l10n/py/rules/python/S5706.html) — 'Raising this exception will make the stack trace difficult to understand.' (fetched)
-- SonarSource python S5706 (SonarSource/sonar-python python-checks/src/main/resources/org/sonar/l10n/py/rules/python/S5706.html) — 'an __exit__ method has a bare raise outside of an except block.' (fetched)

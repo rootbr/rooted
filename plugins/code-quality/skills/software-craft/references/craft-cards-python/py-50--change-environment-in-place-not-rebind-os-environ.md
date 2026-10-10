@@ -34,15 +34,3 @@ Grep the hunk for `os.environ =` that is not a comparison, and for `environ = {`
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PY-50`, severity major, `file`, `symbol`, `code` = the assignment to `os.environ`, verbatim, `fix` = the change made in place, such as `os.environ["PATH"] = "/usr/bin"` or `os.environ.clear()` followed by item assignments, or the subprocess call with `env={**os.environ, "PATH": "/usr/bin"}`, `rationale` = reassigning `os.environ` does not clear the environment, so subprocesses see outdated variables).
-
-## Source
-- CPython Doc/library/os.rst §os.environ (python/cpython Doc/library/os.rst) — 'This mapping may be used to modify the environment as well as query the environment.' (fetched)
-- CPython Doc/library/os.rst §os.environ (python/cpython Doc/library/os.rst) — ':func:`putenv` will be called automatically when the mapping is modified.' (fetched)
-- CPython Doc/library/os.rst §os.environ (python/cpython Doc/library/os.rst) — ':func:`unsetenv` will be called automatically when an item is deleted from :data:`os.environ`, and when one of the :meth:`~dict.pop` or :meth:`~dict.clear` methods is called.' (fetched)
-- CPython Doc/library/os.rst §os.environ (python/cpython Doc/library/os.rst) — 'Calling :func:`putenv` directly does not change :data:`os.environ`' (fetched)
-- CPython Doc/library/os.rst §os.environ (python/cpython Doc/library/os.rst) — 'better to modify :data:`os.environ`.' (fetched)
-- CPython Doc/library/os.rst §os.environ (python/cpython Doc/library/os.rst) — 'On some platforms, including FreeBSD and macOS, setting ``environ`` may cause memory leaks.' (fetched)
-- Ruff B003 assignment-to-os-environ (astral-sh/ruff crates/ruff_linter/src/rules/flake8_bugbear/rules/assignment_to_os_environ.rs) — 'Checks for assignments to `os.environ`.' (fetched)
-- Ruff B003 assignment-to-os-environ (astral-sh/ruff crates/ruff_linter/src/rules/flake8_bugbear/rules/assignment_to_os_environ.rs) — 'However, reassigning to `os.environ` does not clear the environment. Instead, it merely updates the `os.environ` for the current process.' (fetched)
-- Ruff B003 assignment-to-os-environ (astral-sh/ruff crates/ruff_linter/src/rules/flake8_bugbear/rules/assignment_to_os_environ.rs) — 'Instead, use `os.environ.clear()` to clear the environment, or use the `env` argument of `subprocess.Popen` to pass a custom environment to a subprocess.' (fetched)
-- flake8-bugbear B003 (PyCQA/flake8-bugbear README.rst) — 'Subprocesses are going to see outdated variables, in disagreement with the current process.' (fetched)

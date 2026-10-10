@@ -40,13 +40,3 @@ Grep the hunk for a `raise` line with no expression and for `finally:` lines. Op
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PY-19`, severity major, `file`, `symbol`, `code` = the bare `raise` line and the block header that encloses it, `fix` = in a `finally` block the bare `raise` removed so the exception propagates on its own; elsewhere `raise ValidationError(message)` naming the exception, or the bare `raise` moved into the caller's own `except` body, `rationale` = a bare raise re-raises whatever exception is active when it runs and raises `RuntimeError` when none is).
-
-## Source
-- CPython Doc/reference/simple_stmts.rst §The raise statement (python/cpython Doc/reference/simple_stmts.rst) — 'If no expressions are present, :keyword:`raise` re-raises the exception that is currently being handled, which is also known as the *active exception*.' (fetched)
-- CPython Doc/reference/simple_stmts.rst §The raise statement (python/cpython Doc/reference/simple_stmts.rst) — 'a :exc:`RuntimeError` exception is raised indicating that this is an error.' (fetched)
-- SonarSource python S5747 (SonarSource/sonar-python python-checks/src/main/resources/org/sonar/l10n/py/rules/python/S5747.html) — 'If the raise statement is not in an except or finally block, no exception is active and a RuntimeError is raised instead.' (fetched)
-- SonarSource python S5747 (SonarSource/sonar-python python-checks/src/main/resources/org/sonar/l10n/py/rules/python/S5747.html) — 'If the bare raise statement is in a function called in an except block, the exception caught by the except will be re-raised. However, this behavior is not reliable as nothing prevents a developer from calling the function from a different context.' (fetched)
-- SonarSource python S5747 (SonarSource/sonar-python python-checks/src/main/resources/org/sonar/l10n/py/rules/python/S5747.html) — 'make sure to specify which exception needs to be raised when outside of an except block.' (fetched)
-- SonarSource python S5747 (SonarSource/sonar-python python-checks/src/main/resources/org/sonar/l10n/py/rules/python/S5747.html) — 'In both cases, it is better to let the exception propagate automatically than to re-raise it.' (fetched)
-- SonarSource python S5704 (SonarSource/sonar-python python-checks/src/main/resources/org/sonar/l10n/py/rules/python/S5704.html) — 'it will only have an active exception to re-raise when an exception from the try block is not caught or when an exception is raised by an except or else block.' (fetched)
-- SonarSource python S5704 (SonarSource/sonar-python python-checks/src/main/resources/org/sonar/l10n/py/rules/python/S5704.html) — 'It is simpler to let the exception raise automatically.' (fetched)

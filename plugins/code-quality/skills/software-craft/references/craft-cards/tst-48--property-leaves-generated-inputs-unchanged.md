@@ -40,12 +40,3 @@ Grep the hunk for in-place mutators (sort, reverse, push, pop, insert, remove, c
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: TST-48`, severity minor, `file`, `symbol`, `code` = the statement that changes the input in place, `fix` = the predicate cloning the input into a local, deep enough that the changed part shares nothing with the input, and changing the local, in the file's language, `rationale` = the input changed in place and the bad shrinking and wrong display on error it can lead to).
-
-## Source
-- fast-check documentation, Properties > Basic, warning "Beware of side effects" (dubzzz/fast-check main, website/docs/core-blocks/properties.md) (fetched): "The predicate function should not change the inputs it received. If it needs to, it has to clone them before going on. Impacting the inputs might led to bad shrinking and wrong display on error."
-- Go standard library, package testing, doc comment of `(*F).Fuzz` (golang/go master, src/testing/fuzz.go) (fetched): "No mutable input arguments, or pointers to them, should be retained between executions of the fuzz function, as the memory backing them may be mutated during a subsequent invocation. ff must not modify the underlying data of the arguments provided by the fuzzing engine."
-- quickcheck for Rust, `testable_fn!` in src/tester.rs (BurntSushi/quickcheck master) (fetched): "let ( $($name,)* ) = a.clone(); let mut r = safe(move || {self_($($name),*)}).result(g); if r.is_failure() { let mut a = a.shrink();" and, for a shrunk failure, "r_new.arguments = Some(debug_reprs(&[$($name),*]));" bound from the kept tuple.
-- MDN Web Docs, Spread syntax (mdn/content main, files/en-us/web/javascript/reference/operators/spread_syntax/index.md) (fetched): "Spread syntax effectively goes one level deep while copying an array."
-- OpenJDK, `java.util.ArrayList`, doc comment of `clone()` (openjdk/jdk master, src/java.base/share/classes/java/util/ArrayList.java) (fetched): "Returns a shallow copy of this {@code ArrayList} instance. (The elements themselves are not copied.)"
-- fast-check documentation, Arbitraries > Others, `fc.context()` (dubzzz/fast-check main, website/docs/core-blocks/arbitraries/others.md) (fetched): "The produced value - let's call it ctx - can be used as a logger that will be specific to this run (and only this run)."
-- Caveat: the explicit statements come from two frameworks' documentation, a TypeScript property-testing library and Go's fuzzing engine; no research paper states the rule.

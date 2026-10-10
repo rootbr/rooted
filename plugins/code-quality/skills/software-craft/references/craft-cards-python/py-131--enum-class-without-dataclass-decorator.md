@@ -37,14 +37,3 @@ Grep the hunk for a @dataclass or @dataclasses.dataclass decorator line, with or
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PY-131`, severity major, `file`, `symbol`, `code` = the decorator line and the class statement it decorates, `fix` = the same enum without the decorator, with any per-member fields moved into a `@dataclass` mixin base as in `class Status(StatusData, Enum)`, `rationale` = that the generated `__eq__` makes distinct members compare equal while the class is created without error).
-
-## Source
-- CPython Doc/howto/enum.rst §Dataclass support (https://raw.githubusercontent.com/python/cpython/main/Doc/howto/enum.rst) — 'Adding :deco:`~dataclasses.dataclass` decorator to :class:`Enum` and its subclasses is not supported. It will not raise any errors, but it will produce very strange results at runtime, such as members being equal to each other' (fetched)
-- CPython Doc/howto/enum.rst §Dataclass support (https://raw.githubusercontent.com/python/cpython/main/Doc/howto/enum.rst) — '>>> Color.RED == Color.BLUE  # problem is here: they should not be equal' (fetched)
-- CPython Doc/howto/enum.rst §Dataclass support (https://raw.githubusercontent.com/python/cpython/main/Doc/howto/enum.rst) — '>>> Color.RED is Color.BLUE' (fetched)
-- CPython Doc/howto/enum.rst §Dataclass support (https://raw.githubusercontent.com/python/cpython/main/Doc/howto/enum.rst) — '>>> class Creature(CreatureDataMixin, Enum):' (fetched)
-- CPython Doc/library/dataclasses.rst §Module contents (https://raw.githubusercontent.com/python/cpython/main/Doc/library/dataclasses.rst) — 'A ``field`` is defined as a class variable that has a :term:`type annotation <variable annotation>`.' (fetched)
-- CPython Doc/library/dataclasses.rst §Module contents, eq (https://raw.githubusercontent.com/python/cpython/main/Doc/library/dataclasses.rst) — 'This method compares the class by comparing each field in order.' (fetched)
-- Ruff RUF049 dataclass-enum (astral-sh/ruff crates/ruff_linter/src/rules/ruff/rules/dataclass_enum.rs) — 'Decorating an enum with `@dataclass()` does not cause any errors at runtime, but may cause erroneous results:' (fetched)
-- astral-sh/ruff dataclass_enum.rs, the RUF049 check (https://raw.githubusercontent.com/astral-sh/ruff/main/crates/ruff_linter/src/rules/ruff/rules/dataclass_enum.rs) — 'let Some((DataclassKind::Stdlib, decorator)) = dataclass_kind(class_def, semantic) else {' (fetched)
-- SonarSource/sonar-python S8490.html, rule python:S8490 (https://raw.githubusercontent.com/SonarSource/sonar-python/master/python-checks/src/main/resources/org/sonar/l10n/py/rules/python/S8490.html) — 'The @dataclass decorator and Enum classes are incompatible and should not be used together.' (fetched); caveat: the page's impact section expects a TypeError when the class is created, which the Enum HOWTO note and its example contradict.

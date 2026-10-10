@@ -32,6 +32,3 @@ On the triggered hunk find each read of a `ConcurrentMap` — `containsKey`, `ge
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: CC-08`, severity major, `file`, `symbol`, `code` = the read and the write quoted verbatim from the diff, `fix` = the single `computeIfAbsent`, `compute` or `merge` call, `rationale` naming the lost update).
-
-## Source
-`java.util.concurrent.ConcurrentHashMap#computeIfAbsent`, `#compute`, `#merge` Javadoc, Java SE 21 — "The entire method invocation is performed atomically. The supplied function is invoked exactly once per invocation of this method"; class Javadoc — "Retrieval operations (including get) generally do not block, so may overlap with update operations". `ConcurrentMap` class Javadoc — "A Map providing thread safety and atomicity guarantees", with `putIfAbsent` among the methods implementations override to keep them.

@@ -34,11 +34,3 @@ Grep the hunk for a `type(...)` call followed by `==` or `!=`, and for `== type(
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PY-05`, severity minor, `file`, `symbol`, `code` = the type comparison as written, `fix` = `isinstance(value, int)`, with a tuple of classes for several, or `type(value) is int` where the code means an exact type match, `rationale` = a direct type comparison ignores the inheritance hierarchy, so instances of subclasses fail the test).
-
-## Source
-- PEP 8 §Programming Recommendations (python/peps peps/pep-0008.rst) — 'Object type comparisons should always use isinstance() instead of comparing types directly:' (fetched)
-- Ruff E721 type-comparison (astral-sh/ruff crates/ruff_linter/src/rules/pycodestyle/rules/type_comparison.rs) — 'Unlike a direct type comparison, `isinstance` will also check if an object is an instance of a class or a subclass thereof. If you want to check for an exact type match, use `is` or `is not`.' (fetched)
-- Ruff E721 type-comparison (astral-sh/ruff crates/ruff_linter/src/rules/pycodestyle/rules/type_comparison.rs) — 'Checks for object type comparisons using `==` and other comparison operators.' (fetched)
-- Ruff E721 type-comparison (astral-sh/ruff crates/ruff_linter/src/rules/pycodestyle/rules/type_comparison.rs) — 'When using libraries that override the `==` (`__eq__`) operator (such as NumPy, Pandas, and SQLAlchemy), this rule may produce false positives, as converting from `==` to `is` or `is not` will change the behavior of the code.' (fetched)
-- SonarSource python S6660 (SonarSource/sonar-python python-checks/src/main/resources/org/sonar/l10n/py/rules/python/S6660.html) — 'In Python, using the isinstance() function is generally preferred over direct type comparison for several reasons' (fetched)
-- SonarSource python S6660 (SonarSource/sonar-python python-checks/src/main/resources/org/sonar/l10n/py/rules/python/S6660.html) — 'Compatibility with inheritance: isinstance() considers inheritance hierarchy, whereas direct type comparison does not.' (fetched)

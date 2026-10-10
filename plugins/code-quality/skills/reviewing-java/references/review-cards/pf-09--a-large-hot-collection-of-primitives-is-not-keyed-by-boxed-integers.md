@@ -33,6 +33,3 @@ On the triggered hunk find each collection typed over a boxed primitive. Open th
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PF-09`, severity minor, `file`, `symbol`, `code` = the collection declaration quoted verbatim from the diff, `fix` = the array or primitive-specialized collection, `rationale` naming the per-entry boxed objects and the pointer chase).
-
-## Source
-`java.lang.Integer#valueOf(int)` and `java.lang.Long#valueOf(long)` Javadoc, Java SE 21 — "This method will always cache values in the range -128 to 127, inclusive, and may cache other values outside of this range"; the cache is preferred to the constructor because it "is likely to yield significantly better space and time performance", so a value outside it is a fresh object. `java.util.HashMap` source, Java SE 21 — each mapping is a `Node` holding `hash`, `key`, `value` and `next`. JMH benchmarks `eclipse-collections/eclipse-collections`, `jmh-tests/.../jmh/IntListJMHTest.java` (boxed `List<Integer>` pipelines beside `IntArrayList`) and `IntIntMapTest.java` (`IntIntHashMap` get and put from 64 to 6.4 million entries) — the primitive forms and their harness; no figures are carried here.

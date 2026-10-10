@@ -39,8 +39,3 @@ Grep the hunk for a property declaration, a decorator, annotation, macro or call
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: TST-40`, severity minor, `file`, `symbol`, `code` = the property declarations for the unit quoted verbatim from the diff, `fix` = the added property asserting the unasserted guarantee, in the file's language, `rationale` = names the guarantee no property asserts and a wrong implementation that passes every property).
-
-## Source
-- fast-check documentation, 'Why Property-Based Testing?', section 'Document the code' (dubzzz/fast-check main, website/docs/introduction/why-property-based.md) (fetched): "it can help to document the behavior of your code in a high-level way. For example, when testing a sorting algorithm, you can use property-based tests to specify all the invariants that users can expect from the algorithm, such as the resulting array having the same values as the source array and being sorted in ascending order."
-- 'What good are strong specifications?', ICSE 2013, DOI 10.1109/ICSE.2013.6606572, abstract as recorded in maxxbw54/Paper-Repository paper_data/conf/icse/2013/conf-icse-2013.json (fetched): "We introduce a methodology that extends Design by Contract to write strong specifications of functional properties in the form of preconditions, postconditions, and invariants. ... In our extensive experiments, testing against strong specifications detects twice as many bugs as standard contracts, with a reasonable overhead in terms of annotation burden and run-time performance while testing."
-- Caveat: the experiments tested data-structure implementations written in Eiffel and C# against in-code contracts; property sets in test files were not measured.

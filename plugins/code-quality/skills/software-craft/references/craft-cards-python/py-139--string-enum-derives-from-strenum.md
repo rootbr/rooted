@@ -36,9 +36,3 @@ For each class in the hunk whose bases are `str` and `Enum` (or `enum.Enum`) in 
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PY-139`, severity minor, `file`, `symbol`, `code` = the `class` line with the `str` and `Enum` bases, `fix` = the class deriving from `StrEnum`, such as `class Color(StrEnum):`, with `from enum import StrEnum`, `rationale` = the minimum supported Python and the formatted output a member gives under the mixin against under `StrEnum`).
-
-## Source
-- CPython Doc/whatsnew/3.11.rst §enum (python/cpython Doc/whatsnew/3.11.rst) — 'Changed :meth:`Enum.__format__() <enum.Enum.__format__>` (the default for :func:`format`, :meth:`str.format` and :term:`f-string`\s) to always produce the same result as :meth:`Enum.__str__() <enum.Enum.__str__>`:  for enums inheriting from :class:`~enum.ReprEnum` it will be the member's value; for all other enums it will be the enum and member name (e.g. ``Color.RED``).' ; 'with members that can be used as (and must be) strings.' (fetched)
-- CPython Doc/library/enum.rst §Module contents (python/cpython Doc/library/enum.rst) — 'Used by :class:`IntEnum`, :class:`StrEnum`, and :class:`IntFlag` to keep the :class:`str() <str>` of the mixed-in type.' (fetched)
-- Ruff UP042 replace-str-enum (astral-sh/ruff crates/ruff_linter/src/rules/pyupgrade/rules/replace_str_enum.rs) — 'Python 3.11 introduced `enum.StrEnum`, which is preferred over inheriting from both `str` and `enum.Enum`.' ; 'In Python 3.11, the formatted representation of `Foo.BAR` changed as follows:' ; 'Migrating from `str` and `enum.Enum` to `enum.StrEnum` will restore the previous behavior' ; 'As such, migrating to `enum.StrEnum` will introduce a behavior change for code that relies on the Python 3.11 behavior.' (fetched)
-- Caveat: the rule applies only where the minimum supported Python is 3.11 or later, the version that added `StrEnum`.

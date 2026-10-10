@@ -37,10 +37,3 @@ Grep the hunk for a `class` line with an `Enum`, `IntEnum`, `StrEnum`, `Flag` or
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PY-69`, severity minor, `file`, `symbol`, `code` = the two member assignment lines that share the value, quoted verbatim from the diff, `fix` = a distinct value for the new member with `@enum.unique` above the class, or a comment marking the name as an intended alias, in Python, `rationale` = the earlier member the new name aliases and the iteration that omits it).
-
-## Source
-- CPython Doc/howto/enum.rst §Duplicating enum members and values (https://raw.githubusercontent.com/python/cpython/main/Doc/howto/enum.rst) — 'However, an enum member can have other names associated with it.' ... '``B`` is an alias for the member ``A``.' ... 'By-name lookup of ``B`` will also return the member ``A``' (fetched)
-- CPython Doc/howto/enum.rst §Ensuring unique enumeration values (https://raw.githubusercontent.com/python/cpython/main/Doc/howto/enum.rst) — 'By default, enumerations allow multiple names as aliases for the same value. When this behavior isn't desired, you can use the :deco:`unique` decorator' (fetched)
-- CPython Doc/howto/enum.rst §Iteration (https://raw.githubusercontent.com/python/cpython/main/Doc/howto/enum.rst) — 'Iterating over the members of an enum does not provide the aliases' (fetched)
-- CPython Doc/library/enum.rst §unique (https://raw.githubusercontent.com/python/cpython/main/Doc/library/enum.rst) — 'It searches an enumeration's :attr:`~EnumType.__members__`, gathering any aliases it finds; if any are found :exc:`ValueError` is raised with the details' (fetched)
-- Ruff PIE796 non-unique-enums (astral-sh/ruff crates/ruff_linter/src/rules/flake8_pie/rules/non_unique_enums.rs) — 'Enum values should be unique. Non-unique values are redundant and likely a mistake.' (fetched)

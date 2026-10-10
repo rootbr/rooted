@@ -32,6 +32,3 @@ On the triggered hunk find each `long` or `double` field declaration and each wr
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: CC-12`, severity major, `file`, `symbol`, `code` = the field declaration and the write quoted verbatim from the diff, `fix` = the `volatile` modifier, the `AtomicLong`, or the lock region, `rationale` naming the torn read the language permits and the visibility edge the fix adds).
-
-## Source
-JLS §17.7 "Non-atomic Treatment of double and long" — a single write to a non-volatile `long` or `double` may be treated as two separate 32-bit writes; writes and reads of `volatile` `long` and `double` values are always atomic. jcstress sample `jmm/basic/BasicJMM_02_AccessAtomicity.java` — `Longs`: torn values `-4294967296` (0.08%) and `4294967295` observed on x86_32; `VolatileLongs`: other outcomes forbidden, none observed; `Integers`: tearing forbidden for `int`.

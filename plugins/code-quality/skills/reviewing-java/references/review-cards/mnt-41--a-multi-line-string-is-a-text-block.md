@@ -35,6 +35,3 @@ On the triggered hunk find each string expression built from three or more liter
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: MNT-41`, severity suggestion, `file`, `symbol`, `code` = the concatenation quoted verbatim from the diff, `fix` = the text block, `rationale` naming the join errors the fragments invite).
-
-## Source
-SonarSource `java:S6126` "Text blocks should be used" — "The most common pattern for multiline strings in Java < 15 was to write String concatenation. Now it's possible to do it in a more natural way using Text Blocks", with the `"<html>\n" + " <body>\n" …` versus `"""` example (rule text from the `sonar-java` 6.15.1 plugin resources). JEP 378 "Text Blocks" — a text block makes it easy to express strings that span several lines of source code while avoiding escape sequences in common cases.

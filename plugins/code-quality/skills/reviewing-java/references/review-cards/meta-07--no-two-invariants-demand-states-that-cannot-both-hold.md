@@ -36,6 +36,3 @@ Open the config at HEAD and take each numbered invariant the diff adds or change
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: META-07`, severity minor, `file` = the config path, `symbol` = `Inv <N>` for the added invariant's number, `code` = the two invariant lines quoted verbatim, the added one from the diff, `fix` = one invariant rewritten with the path split or the mechanism that satisfies both, `rationale` naming the implementation that neither rule admits).
-
-## Source
-arXiv:2103.02255 §5.1.1, Definition 5.1 — "If two requirements Req1 and Req2 cannot be satisfied meanwhile, there is an inconsistency relation between them". arXiv:2506.00150 §2 — "the tradeoffs for each scenario reflect the tensions between two or more qualities, thus a criterion must be used to prioritize and select between several scenarios during the brainstorming sessions"; the paper's criterion selects between scenarios, and the remedy of resolving the tension in the text of one invariant is the card's reading of a tradeoff decided by a criterion.

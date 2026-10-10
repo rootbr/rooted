@@ -34,6 +34,3 @@ On the triggered hunk find each first-element read and look upward in the same m
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: REL-33`, severity major, `file`, `symbol`, `code` = the read quoted verbatim from the diff, `fix` = the guard, or a lookup that returns a default or throws a named exception when the value is empty, `rationale` naming the input that makes the value empty).
-
-## Source
-`java.util.List#get(int)` Javadoc, Java SE 21 — `@throws IndexOutOfBoundsException if the index is out of range (index < 0 || index >= size())`; `java.util.Iterator#next()` — `@throws NoSuchElementException if the iteration has no more elements`.

@@ -36,11 +36,3 @@ For each call in the hunk that passes a keyword argument, resolve the callee and
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PY-164`, severity major, `file`, `symbol`, `code` = the call with the keyword argument, verbatim, `fix` = the call passing that value by position in the parameter's place, as in `print_name("Jacob")`, `rationale` = the keyword lands in the callee's `**kwargs` because the parameter is positional-only, so the parameter keeps its default or the call raises TypeError).
-
-## Source
-- Pylint kwarg-superseded-by-positional-arg (W1117) (pylint-dev/pylint pylint/checkers/typecheck.py) — 'Emitted when a function is called with a keyword argument that has the same name as a positional-only parameter and the function contains a keyword variadic parameter dict.'; 'will be included in %r since a positional-only parameter with this name already exists' (fetched)
-- Pylint kwarg-superseded-by-positional-arg (W1117) (pylint-dev/pylint doc/data/messages/k/kwarg-superseded-by-positional-arg/bad.py) — 'print_name(name="Jacob")  # [kwarg-superseded-by-positional-arg]'; '# Will print "Sarah"' (fetched)
-- Pylint kwarg-superseded-by-positional-arg (W1117) (pylint-dev/pylint doc/data/messages/k/kwarg-superseded-by-positional-arg/good.py) — 'print_name("Jacob") # Will print "Jacob"' (fetched)
-- CPython Doc/tutorial/controlflow.rst §Function Examples (python/cpython Doc/tutorial/controlflow.rst) — 'In other words, the names of positional-only parameters can be used in ``**kwds`` without ambiguity.' (fetched)
-- CPython Doc/tutorial/controlflow.rst §Positional-Only Parameters (python/cpython Doc/tutorial/controlflow.rst) — 'the parameters cannot be passed by keyword' (fetched)
-- CPython Doc/reference/expressions.rst §Calls (python/cpython Doc/reference/expressions.rst) — 'When all arguments have been processed, the slots that are still unfilled are filled with the corresponding default value from the function definition.'; 'If there are any unfilled slots for which no default value is specified, a :exc:`TypeError` exception is raised.'; 'If any keyword argument does not correspond to a formal parameter name, a :exc:`TypeError` exception is raised, unless a formal parameter using the syntax ``**identifier`` is present' (fetched)

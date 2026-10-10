@@ -33,8 +33,3 @@ Grep the added lines for an assignment, an augmented assignment or a return whos
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PY-146`, severity major, `file`, `symbol`, `code` = the statement with its trailing comma, quoted verbatim from the diff, `fix` = the statement without the comma, such as `timeout = settings.get("timeout")`, or with explicit parentheses, `(value,)`, where a tuple is meant, `rationale` = the one-element tuple the comma creates and the place where the code uses it as one value).
-
-## Source
-- Python documentation, Built-in Types §Tuples (https://docs.python.org/3/library/stdtypes.html) — 'Note that it is actually the comma which makes a tuple, not the parentheses.' (fetched)
-- CPython Doc/reference/expressions.rst §Expression lists (https://raw.githubusercontent.com/python/cpython/main/Doc/reference/expressions.rst) — 'Except when part of a list or set display, an expression list containing at least one comma yields a tuple.'; 'The length of the tuple is the number of expressions in the list.'; 'A trailing comma is required only to create a one-item tuple, such as ``1,``; it is optional in all other cases.'; "A single expression without a trailing comma doesn't create a tuple, but rather yields the value of that expression." (fetched)
-- Pylint trailing-comma-tuple (R1707) (pylint-dev/pylint pylint/checkers/refactoring/refactoring_checker.py, message R1707) — 'In Python, a tuple is actually created by the comma symbol, not by the parentheses. Unfortunately, one can actually create a tuple by misplacing a trailing comma, which can lead to potential weird bugs in your code. You should always use parentheses explicitly for creating a tuple.' (fetched)

@@ -34,6 +34,3 @@ On the triggered hunk take the class that the annotation, name or shared referen
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: CC-14`, severity major, `file`, `symbol`, `code` = the class header and the offending field or accessor quoted verbatim from the diff, `fix` = the `final` modifier and the copy or unmodifiable wrapper, `rationale` naming the partially constructed or externally mutated state another thread can observe).
-
-## Source
-jcstress sample `jmm/basic/BasicJMM_08_Finals.java` — `PlainInit`: "Seeing partially constructed object" observed on x86_64 and AArch64; `FinalInit`: "If we put them on all critical fields, then the only observed state is full object", other outcomes forbidden, none observed. Error Prone `Immutable` — the conservative definition of an immutable object: "All fields are final; All reference fields are of immutable type, or null; It is properly constructed (the this reference does not escape the constructor)". JLS §17.5 final field semantics.

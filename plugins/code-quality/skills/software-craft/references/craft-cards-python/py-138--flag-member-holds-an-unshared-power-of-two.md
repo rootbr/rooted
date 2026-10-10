@@ -39,11 +39,3 @@ For each `Flag` or `IntFlag` subclass the hunk adds or changes, write the value 
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PY-138`, severity major, `file`, `symbol`, `code` = the member assignment whose value overlaps, `fix` = the member given the next free power of two, such as `EXECUTE = 4`, or written as the `|` of the members it combines, `rationale` = the bits the value shares and with which members, and that the member is an alias left out of iteration and returned by combining them).
-
-## Source
-- CPython Doc/howto/enum.rst §Flag Classes (python/cpython Doc/howto/enum.rst) — 'to be canonical, the value of a flag needs to be a power-of-two value, and not a duplicate name.' ; 'a flag with no value (a.k.a. ``0``) or with more than one power-of-two value (e.g. ``3``) is considered an alias.' ; §Flag and IntFlag minutia — 'single-bit flags are canonical' ; 'multi-bit and zero-bit flags are aliases' ; 'only canonical flags are returned during iteration' ; 'multi-bit flags, aka aliases, can be returned from operations' ; §Flag Members — '(Note that ``BLACK``, ``PURPLE``, and ``WHITE`` do not show up.)' ; §Flag Classes — 'Flags have an expanded view of aliasing' (fetched)
-- CPython Doc/howto/enum.rst §Combining members of Flag (python/cpython Doc/howto/enum.rst) — 'Color(3)  # named combination' ; '<Color.YELLOW: 3>' (fetched)
-- CPython Doc/whatsnew/3.11.rst §enum (python/cpython Doc/whatsnew/3.11.rst) — 'to only consider primary values (power of two) canonical while composite values (``3``, ``6``, ``10``, etc.) are considered aliases' (fetched)
-- Pylint implicit-flag-alias (W0213) (pylint-dev/pylint pylint/checkers/classes/class_checker.py) — 'Used when multiple integer values declared within an enum.IntFlag class share a common bit position.' (fetched)
-- Pylint implicit-flag-alias (W0213) (pylint-dev/pylint doc/data/messages/i/implicit-flag-alias/bad.py) — 'EXECUTE = 3  # [implicit-flag-alias]' (fetched)
-- Caveat: the message names `enum.IntFlag`; the canonical-value rule of the documentation covers `Flag` and `IntFlag` alike.

@@ -33,6 +33,3 @@ On the triggered hunk find each `if (field == null)` outside a lock followed by 
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: CC-13`, severity major, `file`, `symbol`, `code` = the field declaration and the accessor quoted verbatim from the diff, `fix` = `volatile` with the single-read local, or the holder class, `rationale` naming the reference visible before the constructor's writes).
-
-## Source
-Error Prone `DoubleCheckedLocking` — "Using double-checked locking on mutable objects in non-volatile fields is not thread-safe"; "the compiler and JVM can re-order code from the object's constructor to occur after the object is written to the field"; its canonical correct form with `volatile` and a local, and the holder-class and synchronized-accessor alternatives. SpotBugs `DC_DOUBLECHECK` — "not correct according to the semantics of the Java memory model" (CWE-609 Double-Checked Locking). SEI CERT LCK10-J "Use a correct form of the double-checked locking idiom".

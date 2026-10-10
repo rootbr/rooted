@@ -35,6 +35,3 @@ On the triggered hunk locate each method the added lines belong to and open the 
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: MNT-05`, severity minor, `file`, `symbol`, `code` = the method signature and its deepest nested block quoted verbatim from the diff, `fix` = the extracted helper or guard clause that brings the count under 15, `rationale` naming the count and the nesting that drives it).
-
-## Source
-SonarSource `java:S3776` "Cognitive Complexity of methods should not be too high" — "Cognitive Complexity is a measure of how hard the control flow of a method is to understand. Methods with high Cognitive Complexity will be difficult to maintain" (rule text from the `sonar-java` 6.15.1 plugin resources; the default threshold of 15 is `CognitiveComplexityMethodCheck.DEFAULT_MAX` in the `sonar-java` check source). Muñoz Barón, Wyrich, Wagner, "An Empirical Validation of Cognitive Complexity as a Measure of Source Code Understandability", ESEM 2020, arXiv:2007.12520, DOI 10.1145/3382494.3410636 — the three counting rules (no increment for shorthand structures; an increment per break in linear flow; an increment per level of nesting) and the meta-analysis result. Campbell, "Cognitive Complexity — A new way of measuring understandability", SonarSource white paper 2018 — the counting specification.

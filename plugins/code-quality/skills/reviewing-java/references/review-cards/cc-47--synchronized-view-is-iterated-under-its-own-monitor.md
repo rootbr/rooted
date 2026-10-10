@@ -32,6 +32,3 @@ On the triggered hunk find each traversal of a synchronized view — identify th
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: CC-47`, severity major, `file`, `symbol`, `code` = the traversal quoted verbatim from the diff, `fix` = the `synchronized (view)` block around it, or a copy taken under the monitor, `rationale` naming the calls between which no lock is held and the fail-fast backing collection).
-
-## Source
-`java.util.Collections#synchronizedList` Javadoc, Java SE 21 — "It is imperative that the user manually synchronize on the returned list when traversing it via Iterator, Spliterator or Stream ... Failure to follow this advice may result in non-deterministic behavior"; `#synchronizedMap` — the same for the map's collection views, with the example synchronizing on the map rather than on the view; `#synchronizedSortedSet` — "synchronized (s) {  // Note: s, not s2!!!" for a sub-view.

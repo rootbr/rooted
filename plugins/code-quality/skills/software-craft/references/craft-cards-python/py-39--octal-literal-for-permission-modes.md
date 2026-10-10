@@ -36,24 +36,3 @@ Grep the hunk for os.chmod, os.fchmod, os.lchmod, os.mkdir, os.makedirs, os.open
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PY-39`, severity major, `file`, `symbol`, `code` = the call with its mode literal, quoted verbatim from the diff, `fix` = the call with the mode as a 0o literal, e.g. `os.chmod(script_path, 0o755)`, or the 0o form of the same value where review shows a decimal mode was deliberate, `rationale` = Python reads the literal as decimal, so 755 applies 0o1363 rather than the intended 0o755 and leaves the file with permissions the author did not intend).
-
-## Source
-- Ruff RUF064 non-octal-permissions (astral-sh/ruff crates/ruff_linter/src/rules/ruff/rules/non_octal_permissions.rs) — 'Numeric modes are made up of one to four octal digits. Converting a non-octal integer to octal may not be the mode the author intended.' (fetched)
-- Ruff RUF064 non-octal-permissions (astral-sh/ruff crates/ruff_linter/src/rules/ruff/rules/non_octal_permissions.rs) — 'Checks for standard library functions which take a numeric `mode` argument where a non-octal integer literal is passed.' (fetched)
-- Ruff RUF064 non-octal-permissions (astral-sh/ruff crates/ruff_linter/src/rules/ruff/rules/non_octal_permissions.rs) — '`644` corresponds to `0o1204`' (fetched)
-- Ruff RUF064 non-octal-permissions (astral-sh/ruff crates/ruff_linter/src/rules/ruff/rules/non_octal_permissions.rs) — '`256` corresponds to `0o400` (`u=r,go=`) and `493` corresponds to `0o755`' (fetched)
-- Ruff RUF064 non-octal-permissions (astral-sh/ruff crates/ruff_linter/src/rules/ruff/rules/non_octal_permissions.rs) — 'The second category is decimal literals which are recognised as likely valid but in decimal form' (fetched)
-- Ruff RUF064 non-octal-permissions (astral-sh/ruff crates/ruff_linter/src/rules/ruff/rules/non_octal_permissions.rs) — 'Both of these fixes keep runtime behavior unchanged.' (fetched)
-- Ruff RUF064 non-octal-permissions (astral-sh/ruff crates/ruff_linter/src/rules/ruff/rules/non_octal_permissions.rs) — 'Ruff will suggest a safe fix for multi-digit zeros to add the `0o` prefix.' (fetched)
-- Ruff RUF064 non-octal-permissions (astral-sh/ruff crates/ruff_linter/src/rules/ruff/rules/non_octal_permissions.rs) — 'As a special case, zero is allowed to omit the `0o` prefix unless it has multiple digits' (fetched)
-- SonarSource python S9160 (SonarSource/sonar-python python-checks/src/main/resources/org/sonar/l10n/py/rules/python/S9160.html) — 'When the same digits are written without the 0o prefix, Python treats them as decimal.' (fetched)
-- SonarSource python S9160 (SonarSource/sonar-python python-checks/src/main/resources/org/sonar/l10n/py/rules/python/S9160.html) — 'applies decimal 755, which is octal 0o1363, not the common executable mode' (fetched)
-- SonarSource python S9160 (SonarSource/sonar-python python-checks/src/main/resources/org/sonar/l10n/py/rules/python/S9160.html) — 'where 755 is interpreted as octal' (fetched)
-- SonarSource python S9160 (SonarSource/sonar-python python-checks/src/main/resources/org/sonar/l10n/py/rules/python/S9160.html) — 'The resulting mode is therefore not the permission set the author usually intends.' (fetched)
-- SonarSource python S9160 (SonarSource/sonar-python python-checks/src/main/resources/org/sonar/l10n/py/rules/python/S9160.html) — 'Those digits describe user, group, and other permissions in base 8.' (fetched)
-- SonarSource python S9160 (SonarSource/sonar-python python-checks/src/main/resources/org/sonar/l10n/py/rules/python/S9160.html) — 'files or directories may be more or less accessible than intended' (fetched)
-- SonarSource python S9160 (SonarSource/sonar-python python-checks/src/main/resources/org/sonar/l10n/py/rules/python/S9160.html) — 'secrets or configuration files can end up readable or writable by unintended users' (fetched)
-- SonarSource python S9160 (SonarSource/sonar-python python-checks/src/main/resources/org/sonar/l10n/py/rules/python/S9160.html) — 'scripts or services may fail when an expected execute or write bit is missing' (fetched)
-- SonarSource python S9160 (SonarSource/sonar-python python-checks/src/main/resources/org/sonar/l10n/py/rules/python/S9160.html) — 'The literal 0 is clear on its own and does not need an octal prefix.' (fetched)
-- SonarSource python S9160 (SonarSource/sonar-python python-checks/src/main/resources/org/sonar/l10n/py/rules/python/S9160.html) — 'Intentional decimal mode literals are rare.' (fetched)
-- SonarSource python S9160 (SonarSource/sonar-python python-checks/src/main/resources/org/sonar/l10n/py/rules/python/S9160.html) — 'only after review confirms the decimal value is deliberate rather than a mistaken shell-style octal' (fetched)

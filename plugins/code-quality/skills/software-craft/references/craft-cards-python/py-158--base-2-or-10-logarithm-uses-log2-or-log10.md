@@ -39,9 +39,3 @@ Grep the hunk for `math.log(` or a bare `log(` whose second argument is `2`, `10
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PY-158`, severity minor, `file`, `symbol`, `code` = the `math.log(x, base)` call verbatim from the diff, `fix` = `math.log2(x)`, `math.log10(x)` or `math.log(x)`, in Python, `rationale` = the dedicated function is usually more accurate than the two-argument form, which is calculated as `log(x)/log(base)`, or the `math.e` base is redundant).
-
-## Source
-- CPython Doc/library/math.rst §math.log2 (https://raw.githubusercontent.com/python/cpython/main/Doc/library/math.rst) — 'Return the base-2 logarithm of *x*. This is usually more accurate than ``log(x, 2)``.' (fetched)
-- CPython Doc/library/math.rst §math.log10 (https://raw.githubusercontent.com/python/cpython/main/Doc/library/math.rst) — 'Return the base-10 logarithm of *x*.  This is usually more accurate than ``log(x, 10)``.' (fetched)
-- CPython Doc/library/math.rst §math.log (https://raw.githubusercontent.com/python/cpython/main/Doc/library/math.rst) — 'With one argument, return the natural logarithm of *x* (to base *e*).'; 'With two arguments, return the logarithm of *x* to the given *base*, calculated as ``log(x)/log(base)``.' (fetched)
-- Ruff FURB163 redundant-log-base (astral-sh/ruff crates/ruff_linter/src/rules/refurb/rules/redundant_log_base.rs) — 'Instead of passing 2 or 10 as the base, use `math.log2` or `math.log10` respectively, as these dedicated variants are typically more accurate than `math.log`.'; 'The default base of `math.log` is `e`, so specifying it explicitly is redundant.'; 'may differ due to floating-point rounding' (fetched)

@@ -32,14 +32,3 @@ Grep the hunk for `extra=` in a call of a logger method (`debug`, `info`, `warni
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PY-107`, severity major, `file`, `symbol`, `code` = the logging call with its `extra` mapping quoted verbatim from the diff, `fix` = the same call with the clashing key renamed to a name of its own, such as `extra={"user_name": user.name}`, and any format string that reads the key renamed with it, `rationale` = names the LogRecord attribute the key clashes with and that a clashing key raises KeyError when the LogRecord is constructed).
-
-## Source
-- Ruff G101 logging-extra-attr-clash (astral-sh/ruff crates/ruff_linter/src/rules/flake8_logging_format/violations.rs) — 'These values are then passed to the `LogRecord` constructor.' (fetched)
-- Ruff G101 logging-extra-attr-clash (astral-sh/ruff crates/ruff_linter/src/rules/flake8_logging_format/violations.rs) — 'Providing a value via `extra` that clashes with one of the attributes of the `LogRecord` constructor will raise a `KeyError` when the `LogRecord` is constructed.' (fetched)
-- SonarSource python S8554 (SonarSource/sonar-python python-checks/src/main/resources/org/sonar/l10n/py/rules/python/S8554.html) §Attribute Name Collisions — 'is constructed, causing the logging statement to fail at runtime' (fetched)
-- CPython Doc/library/logging.rst §Logger Objects, Logger.debug (https://raw.githubusercontent.com/python/cpython/main/Doc/library/logging.rst) — 'The keys in the dictionary passed in *extra* should not clash with the keys used by the logging system.' (fetched)
-- CPython Doc/library/logging.rst §Logger Objects, Logger.debug (https://raw.githubusercontent.com/python/cpython/main/Doc/library/logging.rst) — 'created for the logging event with user-defined attributes. These custom attributes can then be used as you like.' (fetched)
-- CPython Doc/library/logging.rst §Logger Objects, Logger.debug (https://raw.githubusercontent.com/python/cpython/main/Doc/library/logging.rst) — 'has been set up with a format string which expects' (fetched)
-- CPython Doc/library/logging.rst §Logger Objects, Logger.debug (https://raw.githubusercontent.com/python/cpython/main/Doc/library/logging.rst) — 'If these are missing, the message will not be logged because a string formatting exception will occur.' (fetched)
-- CPython Doc/library/logging.rst §LogRecord attributes (https://raw.githubusercontent.com/python/cpython/main/Doc/library/logging.rst) — 'The following table lists (in alphabetical order) the attribute names, their meanings and the corresponding placeholder in a %-style format string.' (fetched)
-- Caveat: the KeyError is stated for the attributes of the LogRecord constructor and for the eighteen names the Sonar rule lists; for the other names of the table the evidence states the should-not-clash norm only.

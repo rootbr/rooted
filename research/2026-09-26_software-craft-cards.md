@@ -1,5 +1,7 @@
 # Design note — `software-craft` on atomic rule cards
 
+Card shape since 2026-10-16: a card carries no `## Source` block; its sources live on its provenance line (`research/2026-10-16_source-footer-compaction.md`). The seven-block schema below is this note's original record.
+
 The `/software-craft` skill builds code and reviews it against one corpus of atomic craft cards — the general, language-agnostic craft of programming, one checkable rule per card, an openable source per card. A developer agent designs the change into a brief written to the `design` cards and, once the brief is confirmed, implements it by the cards, listing the cards for each step of its work and reading the ones whose titles apply; a deterministic pre-pass then matches the cards' dispatch conditions against the agent's own diff, a Workflow script runs one finder per (card × slice) plus a logic pass per slice, aggregates deterministically and runs one skeptic per finding; one fix round returns the confirmed findings to the developer; a render script writes two Markdown reports. A rule with no openable source is held in `pending-evidence.md` and ships nowhere.
 
 This note is the design record. Each fact names its runtime owner; where this note and a runtime file differ, the runtime file decides. Paths are relative to `plugins/code-quality/skills/software-craft/` unless they start with `plugins/` or `research/`.

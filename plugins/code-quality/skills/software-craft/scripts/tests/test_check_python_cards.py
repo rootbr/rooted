@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 """Unit tests for check-python-cards.py: each of the seven checks on a fixture harvest and
-draft files, the elision replacement, the relayed and --no-network exemptions, the fetch
-retry and cache, the pending and spine skips, the markdown fallback and the command line.
+draft files — the source and fragment checks on the provenance line's citations, their quotes
+and their statuses — the citation split, the elision replacement, the relayed and --no-network
+exemptions, the fetch retry and cache, the pending and spine skips, the markdown fallback and
+the command line.
 Offline: the fetch opener is a fake and no socket opens.
 
 Run:  python3 -m unittest scripts/tests/test_check_python_cards.py   (from the skill directory)
@@ -30,32 +32,34 @@ SONAR_HTML = ("<p>In Python, function parameters can have default values.</p>\n<
               "which are evalutated when the function is defined, i.e. only once.</p>")
 PEP_PAGE = "<html><body><p>Default values are computed once.</p></body></html>"
 TITLE = "A mutable default argument is replaced by None and a fresh object created in the body"
-SOURCE = [
-    "- Ruff B006 mutable-argument-default (astral-sh/ruff crates/ruff_linter/src/rules/flake8_bugbear/rules/mutable_argument_default.rs)"
-    " — 'Function defaults are evaluated once, when the function is defined.' (fetched)",
-    "- Pylint dangerous-default-value (W0102) (pylint-dev/pylint doc/data/messages/d/dangerous-default-value/details.rst)"
-    " — \"Default argument values are evaluated once\" (fetched)",
-    "- SonarSource python S5717 (SonarSource/sonar-python python-checks/src/main/resources/S5717.html)"
-    " — 'These default values are expressions which are evalutated when the function is defined' (fetched)",
-    "- PEP 8 §Programming Recommendations (python/peps peps/pep-0008.rst) — \"Default values are computed once.\" (fetched)",
-    "- Caveat: the rules ignore an immutable default.",
-]
 BAD = ["bad:  def append_to(item, bucket=[]):", "          bucket.append(item)", "          return bucket"]
 GOOD = ["good: def append_to(item, bucket=None):", "          if bucket is None:", "              ...",
         "          return bucket"]
-PROVENANCE = ("- **PY-01** · Ruff B006 — 'Function defaults are evaluated once, when the function is defined.' (fetched)"
-              " · topic: python-data-model-and-idioms (research/software-craft-python/python-data-model-and-idioms.md)"
-              " · formulation: none · reception: not contested · notes: confidence high")
+CITATIONS = ("Ruff B006 mutable-argument-default (astral-sh/ruff mutable_argument_default.rs), fetched — "
+             "'Function defaults are evaluated once, when the function is defined.'; "
+             "Pylint dangerous-default-value (W0102), fetched — \"Default argument values are evaluated once\"; "
+             "SonarSource python S5717 — 'These default values are expressions which are evalutated when the function is defined' (fetched); "
+             "PEP 8 §Programming Recommendations (https://peps.python.org/pep-0008/), fetched — \"Default values are computed once.\"")
+
+
+def provenance(citations, rule_id="PY-01"):
+    """A provenance line in the map's shape around the given citations."""
+    return (f"- **{rule_id}** · {citations}"
+            " · topic: python-data-model-and-idioms (research/software-craft-python/python-data-model-and-idioms.md)"
+            " · formulation: none · reception: not contested · notes: confidence high")
+
+
+PROVENANCE = provenance(CITATIONS)
 
 
 DEFAULT_TRIGGERS = "['def\\s+\\w+\\([^)]*=\\s*(\\[\\]|\\{\\})']"
 
 
 def card(**overrides):
-    """A card in the corpus schema; overrides replace title, triggers, good, source or rule_id."""
+    """A card in the corpus schema; overrides replace title, triggers, good or rule_id, and `tail`
+    is appended after the last block."""
     title = overrides.get("title", TITLE)
     triggers = overrides.get("triggers", DEFAULT_TRIGGERS)
-    source = overrides.get("source", SOURCE)
     rule_id = overrides.get("rule_id", "PY-01")
     example = "\n".join(BAD) + "\n" + "\n".join(overrides.get("good", GOOD))
     return f"""---
@@ -91,10 +95,7 @@ Grep the hunk for a def whose default is a list or dict literal. Validator quest
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: {rule_id}`, severity major, `file`, `symbol`, `code` = the def line, `fix` = the None default, `rationale` = the shared default).
-
-## Source
-{chr(10).join(source)}
-"""
+{overrides.get("tail", "")}"""
 
 
 def draft(**overrides):
@@ -205,66 +206,111 @@ class Checks(Fixture):
         self.assertIn("triggers: signal triggers only; nothing to match", results["mutable-default"].notes)
 
     def test_an_unknown_ruff_code_fails(self):
-        source = ["- Ruff B999 nothing (astral-sh/ruff x.rs) — 'Function defaults are evaluated once' (fetched)"]
-        self.save(draft(card_markdown=card(source=source), provenance_line=PROVENANCE.replace("Ruff B006", "Ruff B999")))
+        self.save(draft(provenance_line=PROVENANCE.replace("Ruff B006", "Ruff B999")))
         failures = self.failures()
-        self.assertEqual(len([f for f in failures if f.startswith("source: no ruff entry B999")]), 1, failures)
+        self.assertEqual(failures, ["source: no ruff entry B999 in the harvest: "
+                                    "Ruff B999 mutable-argument-default (astral-sh/ruff mutable_…"])
 
-    def test_a_fragment_absent_from_the_explanation_fails(self):
-        source = ["- Ruff B006 mutable-argument-default (astral-sh/ruff x.rs) — 'Defaults are re-created on each call of the function' (fetched)"]
-        self.save(draft(card_markdown=card(source=source)))
-        failures = self.failures()
-        self.assertEqual(len(failures), 1, failures)
-        self.assertTrue(failures[0].startswith("fragment: Ruff B006 mutable-argument-default"), failures[0])
-        self.assertTrue(failures[0].endswith(": not found: Defaults are re-created on each call of the function"), failures[0])
+    def test_a_fragment_absent_from_its_citations_text_fails(self):
+        citations = "Ruff B006 mutable-argument-default, fetched — 'Defaults are re-created on each call of the function'"
+        self.save(draft(provenance_line=provenance(citations)))
+        self.assertEqual(self.failures(), ["fragment: Ruff B006 mutable-argument-default: not found: "
+                                           "Defaults are re-created on each call of the function"])
+
+    def test_a_fragment_is_checked_against_its_own_citation_alone(self):
+        citations = ("Ruff B006 mutable-argument-default, fetched — \"Default argument values are evaluated once\"; "
+                     "Pylint dangerous-default-value (W0102), fetched — \"Default argument values are evaluated once\"")
+        self.save(draft(provenance_line=provenance(citations)))
+        self.assertEqual(self.failures(), ["fragment: Ruff B006 mutable-argument-default: not found: "
+                                           "Default argument values are evaluated once"])
 
     def test_a_fragment_found_with_markup_and_elision_passes(self):
-        source = ["- Pylint dangerous-default-value (W0102) — \"evaluated `once`, when the def statement runs\" (fetched)",
-                  "- Ruff B006 mutable-argument-default — 'Function defaults are evaluated once ... shared across all calls' (fetched)"]
-        self.save(draft(card_markdown=card(source=source)))
+        citations = ("Pylint dangerous-default-value (W0102), fetched — \"evaluated `once`, when the def statement runs\"; "
+                     "Ruff B006 mutable-argument-default — 'Function defaults are evaluated once ... shared across all calls' (fetched)")
+        self.save(draft(provenance_line=provenance(citations)))
         self.assertEqual(self.failures(), [])
+
+    def test_a_source_block_in_the_card_fails_the_validator(self):
+        tail = "\n## Source\n- Ruff B006 mutable-argument-default (astral-sh/ruff x.rs)\n"
+        self.save(draft(card_markdown=card(tail=tail)))
+        self.assertEqual(self.failures(), ["validator: a `## Source` block is present; a card carries no citation — "
+                                           "its sources live on its provenance line, keyed by rule_id"])
 
     def test_a_title_equal_to_a_universal_title_fails(self):
         self.save(draft(card_markdown=card(title="A routine does one thing")))
         self.assertIn("title: the title equals the title of universal card CODE-09", self.failures())
 
-    def test_a_relayed_bullet_is_exempt_from_the_fetch_and_the_fragment_check(self):
-        source = SOURCE[:1] + ["- arXiv:2301.12633 — 'a statement no fetched text holds anywhere at all' (relayed)"]
-        self.save(draft(card_markdown=card(source=source)))
+    def test_a_relayed_citation_is_exempt_from_the_fetch_and_the_fragment_check(self):
+        citations = (CITATIONS.split("; ")[0] + "; arXiv:2301.12633, abstract, **relayed** — "
+                     "\"a statement no fetched text holds anywhere at all\"")
+        self.save(draft(provenance_line=provenance(citations)))
         results, _, _ = self.check()
+        notes = results["mutable-default"].notes
         self.assertEqual(results["mutable-default"].failures, [])
-        self.assertTrue(any(n.startswith("source: relayed, not fetched: arXiv:2301.12633") for n in results["mutable-default"].notes))
+        self.assertIn("source: relayed, not fetched: arXiv:2301.12633, abstract", notes)
+        self.assertIn("fragment: relayed, not checked: a statement no fetched text holds anywhere at all", notes)
         self.assertEqual(self.opener.calls, [])
 
+    def test_a_status_after_a_quote_belongs_to_that_quote_alone(self):
+        citations = ("arXiv:2301.12633 — 'a statement no fetched text holds anywhere at all' (relayed); "
+                     "Ruff B006 mutable-argument-default — 'Defaults are re-created on each call of the function' (fetched)")
+        self.save(draft(provenance_line=provenance(citations)))
+        self.assertEqual(self.failures(), ["fragment: Ruff B006 mutable-argument-default: not found: "
+                                           "Defaults are re-created on each call of the function"])
+        self.assertEqual(self.opener.calls, [])
+
+    def test_quote_statuses_read_the_leading_and_the_trailing_form(self):
+        citations = ("A, fetched — \"one quote of the first citation\", \"two quote of the first citation\"; "
+                     "B, **relayed** — \"three quote of the second citation\"; "
+                     "C — 'four quote of the third citation in single quotes' (fetched)")
+        self.assertEqual([(f.split()[0], s) for f, _start, s in cpc.quote_statuses(citations)],
+                         [("one", "fetched"), ("two", "fetched"), ("three", "relayed"), ("four", "fetched")])
+
+    def test_citations_split_at_semicolons_outside_quotes_and_after_no_initial(self):
+        line = provenance("Soto, J.; McCall, J., SE-0117 (https://example.org/se-0117), fetched — \"one; two\"; "
+                          "Ruff B006 mutable-argument-default")
+        self.assertEqual(cpc.citations_of(line), ["Soto, J.; McCall, J., SE-0117 (https://example.org/se-0117), fetched — \"one; two\"",
+                                                  "Ruff B006 mutable-argument-default"])
+
+    def test_a_semicolon_inside_parentheses_or_before_a_bare_quote_splits_no_citation(self):
+        line = provenance("Ruff B006 mutable-argument-default (astral-sh/ruff a.rs; b.rs), fetched — \"one\"; \"two\" (fetched); "
+                          "Pylint dangerous-default-value (W0102)")
+        self.assertEqual(cpc.citations_of(line), ["Ruff B006 mutable-argument-default (astral-sh/ruff a.rs; b.rs), fetched — "
+                                                  "\"one\"; \"two\" (fetched)", "Pylint dangerous-default-value (W0102)"])
+
     def test_no_network_skips_pep_and_url_fetches_with_a_note(self):
-        source = SOURCE + ["- CPython Doc/reference/compound_stmts.rst §Function definitions "
-                           "(https://docs.python.org/3/reference/compound_stmts.html) — \"evaluated from left to right\" (fetched)"]
-        self.save(draft(card_markdown=card(source=source)))
+        citations = (CITATIONS + "; CPython Doc/reference/compound_stmts.rst §Function definitions "
+                     "(https://docs.python.org/3/reference/compound_stmts.html), fetched — \"evaluated from left to right\"")
+        self.save(draft(provenance_line=provenance(citations)))
         results, _, _ = self.check(network=False)
         notes = results["mutable-default"].notes
         self.assertEqual(results["mutable-default"].failures, [])
         self.assertEqual(len([n for n in notes if n.startswith("source: --no-network, not fetched")]), 2, notes)
+        self.assertEqual(len([n for n in notes if n.startswith("fragment: not checked, no text")]), 2, notes)
         self.assertEqual(self.opener.calls, [])
 
     def test_a_github_locator_is_fetched_from_main_then_master(self):
         url = "https://raw.githubusercontent.com/python/cpython/master/Doc/tutorial/controlflow.rst"
         self.opener.pages[url] = "The default value is evaluated only once."
-        source = ["- CPython Doc/tutorial/controlflow.rst §Default Argument Values (python/cpython Doc/tutorial/controlflow.rst)"
-                  " — \"The default value is evaluated only once.\" (fetched)"]
-        self.save(draft(card_markdown=card(source=source), provenance_line=PROVENANCE.replace("'Function defaults are evaluated once, when the function is defined.'", "x")))
+        citations = ("CPython Doc/tutorial/controlflow.rst §Default Argument Values (python/cpython Doc/tutorial/controlflow.rst), "
+                     "fetched — \"The default value is evaluated only once.\"")
+        self.save(draft(provenance_line=provenance(citations)))
         self.assertEqual(self.failures(), [])
         self.assertEqual(self.opener.calls, [url.replace("/master/", "/main/"), url])
 
     def test_a_page_that_answers_404_fails_the_source_check(self):
-        source = ["- PEP 9999 §Nothing (python/peps peps/pep-9999.rst) — \"anything\" (fetched)"]
-        self.save(draft(card_markdown=card(source=source), provenance_line=PROVENANCE.replace("'Function defaults are evaluated once, when the function is defined.'", "x")))
+        self.save(draft(provenance_line=provenance("PEP 9999 §Nothing (python/peps peps/pep-9999.rst), fetched — \"anything\"")))
         failures = self.failures()
         self.assertEqual(len(failures), 1, failures)
         self.assertTrue(failures[0].startswith("source: https://peps.python.org/pep-9999/ answered HTTP 404"), failures[0])
 
-    def test_an_unrecognised_bullet_fails(self):
-        self.save(draft(card_markdown=card(source=SOURCE[:1] + ["- a book I once read"])))
+    def test_an_unrecognised_citation_fails(self):
+        self.save(draft(provenance_line=provenance(CITATIONS + "; a book I once read, fetched — \"a line of that book\"")))
         self.assertIn("source: locator not recognised: a book I once read", self.failures())
+
+    def test_a_card_draft_without_a_provenance_line_fails(self):
+        self.save(draft(provenance_line=""))
+        self.assertEqual(self.failures(), ["provenance: the draft carries no provenance line"])
 
     def test_a_provenance_line_without_its_rule_id_and_topic_fails(self):
         self.save(draft(provenance_line="- **PY-02** · Ruff B006"))

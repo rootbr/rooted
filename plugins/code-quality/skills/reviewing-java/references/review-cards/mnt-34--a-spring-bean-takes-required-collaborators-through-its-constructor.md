@@ -34,6 +34,3 @@ On the triggered hunk find each `@Autowired`, `@Inject` or `@Resource` on a fiel
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: MNT-34`, severity minor, `file`, `symbol`, `code` = the annotated field or setter quoted verbatim from the diff, `fix` = the constructor parameter and the `final` field, `rationale` naming the partially initialized object a test or subclass can create).
-
-## Source
-Spring Framework reference, Dependencies → Dependency Injection → Constructor-based or setter-based DI — "The Spring team generally advocates constructor injection, as it lets you implement application components as immutable objects and ensures that required dependencies are not null. Furthermore, constructor-injected components are always returned to the client (calling) code in a fully initialized state … Setter injection should primarily only be used for optional dependencies that can be assigned reasonable default values within the class"; "a large number of constructor arguments is a bad code smell". ArchUnit `GeneralCodingRules.NO_CLASSES_SHOULD_USE_FIELD_INJECTION` — the library rule that flags `@Autowired`, `@Inject` and `@Resource` on fields.

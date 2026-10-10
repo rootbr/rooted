@@ -34,6 +34,3 @@ Open the config at HEAD and take each numbered invariant the diff adds or change
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: META-04`, severity minor, `file` = the config path, `symbol` = `Inv <N>` for the invariant's number, `code` = the invariant line quoted verbatim from the diff, `fix` = the invariant with the term replaced by identifiers or by a reference to its one definition, `rationale` naming the term and the two readings it admits).
-
-## Source
-arXiv:1611.08847 §3.2 — smells derived from the ISO/IEC/IEEE 29148 requirements language criteria, whose violation results "in requirements that are often difficult or even impossible to verify or may allow for multiple interpretations"; "Subjective Language refers to words of which the semantics is not objectively defined"; "Open-ended, non-verifiable terms are hard to verify as they offer a choice of possibilities". ISO/IEC/IEEE 29148:2011, requirements language criteria — quoted through the paper (its p. 12 anchor); the standard itself was not fetched from the authoring environment.

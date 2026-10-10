@@ -33,6 +33,3 @@ On the triggered hunk find each `throw` whose enclosing `try` in the same method
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: MNT-24`, severity minor, `file`, `symbol`, `code` = the try/catch quoted verbatim from the diff, `fix` = the plain test or the early return, `rationale` naming the real failure the catch would swallow).
-
-## Source
-PMD `ExceptionAsFlowControl` — "This rule reports exceptions thrown and caught in an enclosing try statement. This use of exceptions as a form of goto statement is discouraged, as that may hide actual exceptions, and obscures control flow, especially when debugging. To fix a violation, add the necessary validation or use an alternate control structure". PMD `AvoidCatchingGenericException` — `NullPointerException` "usually indicates a programming error … Rather than catching it, code should be written to avoid null pointer dereferences through null checks". Caveat: the rule states the throw-and-catch-in-one-try form; the tested-rather-than-caught form (the index loop) rests on its "add the necessary validation" remedy, and a parse whose only failure signal is an exception is not this rule.

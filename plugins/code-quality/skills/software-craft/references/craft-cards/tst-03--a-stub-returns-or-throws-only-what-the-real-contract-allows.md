@@ -36,12 +36,3 @@ Grep the hunk's added lines for stubbing calls: a then-return, then-throw, then-
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: TST-03`, severity minor, `file`, `symbol`, `code` = the stubbing line verbatim from the diff, `fix` = the stub rewritten to return or raise what the real method's contract gives for the test's situation, in the file's language, `rationale` = the excluded value or error and the signature or doc-comment line of the real method that excludes it).
-
-## Source
-- Error Prone bug pattern `MockIllegalThrows` (google/error-prone, `core/src/main/java/com/google/errorprone/bugpatterns/MockIllegalThrows.java`): "This exception can't be thrown by the mocked method."; "%s is not throwable by this method; only unchecked exceptions can be thrown." (fetched)
-- Mockito `OngoingStubbing#thenThrow` Javadoc (mockito/mockito, `mockito-core/src/main/java/org/mockito/stubbing/OngoingStubbing.java`): "If throwables contain a checked exception then it has to match one of the checked exceptions of method signature."; the violation raises "Checked exception is invalid for this method!" (`internal/exceptions/Reporter.java`) (fetched)
-- DOI 10.1109/MSR.2017.61, abstract: "collect data from three OSS projects and one industrial system [...] we manually analyze how more than 2,000 test dependencies are treated [...] a structured survey with more than 100 professionals [...] developers report that maintaining the behavior of the mock compatible with the behavior of original class is hard and that mocking increases the coupling between the test and the production code." (fetched)
-- arXiv:2208.01321, §1: "for it to be useful, the behavior of the mock should resemble, as closely as possible, that of a real object" (fetched)
-- mockall README (asomers/mockall), Overview: "They can be used [...] to inject edge and error cases that would be difficult or impossible to create when using the full stack." (fetched)
-
-Caveat: the two tool checks reach only a checked error outside a declared list; a value, and an error the documentation excludes, rest on the two studies — one reports keeping a mock's behaviour compatible with the original class as a key challenge, the other states that, to be useful, a mock's behaviour should resemble the real object's as closely as possible — and neither counts defects caused by an out-of-contract stub.

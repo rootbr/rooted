@@ -33,6 +33,3 @@ On the triggered hunk find each client construction or factory and its redirect 
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: SEC-13`, severity major, `file`, `symbol`, `code` = the client construction or redirect setting quoted verbatim from the diff, `fix` = redirects disabled with `Location` validated before any re-issue, `rationale` naming the second request the redirect issues without validation).
-
-## Source
-OWASP Server-Side Request Forgery Prevention Cheat Sheet — "Disable the support for the following of the redirection in your web client in order to prevent the bypass of the input validation"; Case 2, step 7 — "don't forget to disable the support for redirection in the web client used". `java.net.http.HttpClient.Builder#followRedirects` Javadoc, Java SE 21 — newly built clients "will use a default redirection policy of NEVER"; `HttpClient.Redirect.NORMAL` — "Always redirect, except from HTTPS URLs to HTTP URLs". `java.net.HttpURLConnection#setFollowRedirects` Javadoc — redirects "automatically followed by this class. True by default". CWE-918.

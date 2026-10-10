@@ -31,6 +31,3 @@ On the triggered hunk find each `catch` of `Exception`, `RuntimeException`, `Thr
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: MNT-23`, severity minor, `file`, `symbol`, `code` = the catch clause quoted verbatim from the diff, `fix` = the specific types the try body throws, `rationale` naming what the broad clause hides).
-
-## Source
-PMD `AvoidCatchingGenericException` — "Catching overly broad exception types makes it difficult to understand what can actually go wrong in your code and can hide real problems"; catching `Exception` "means you're handling all possible checked exceptions the same way", `RuntimeException` "represent programming errors … Catching them can hide bugs", `Throwable` "means you're trying to handle both recoverable exceptions and serious errors (like OutOfMemoryError) the same way, which is dangerous". SonarSource `java:S1181` "Throwable and Error should not be caught" — "Catching either Throwable or Error will also catch OutOfMemoryError and InternalError, from which an application should not attempt to recover" (rule text from the `sonar-java` 6.15.1 plugin resources); CWE-396. SEI CERT ERR08-J "Do not catch NullPointerException or any of its ancestors".

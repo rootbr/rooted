@@ -36,8 +36,3 @@ Grep the hunk for `.readlines()` as the iterable of a `for` statement or a compr
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PY-124`, severity minor, `file`, `symbol`, `code` = the loop header with `.readlines()`, verbatim, `fix` = the same header over the file object, such as `for line in fp:`, `rationale` = `readlines()` reads every line into a list before the loop starts, while the file object yields the lines itself).
-
-## Source
-- Ruff FURB129 readlines-in-for (astral-sh/ruff crates/ruff_linter/src/rules/refurb/rules/readlines_in_for.rs) — 'Checks for uses of `readlines()` when iterating over a file line-by-line.' and 'Rather than iterating over all lines in a file by calling `readlines()`,' (fetched)
-- CPython Doc/library/io.rst §I/O base classes, class IOBase (https://raw.githubusercontent.com/python/cpython/main/Doc/library/io.rst) — 'supports the iterator protocol, meaning' and 'stream is a binary stream (yielding bytes), or a text stream (yielding' and 'Read and return a list of lines from the stream.' and 'no more lines will be read if the' and 'hint values of ``0`` or less, as well as ``None``, are treated as no' and 'already possible to iterate on file objects using' (fetched)
-- CPython Doc/tutorial/inputoutput.rst §Methods of file objects (https://raw.githubusercontent.com/python/cpython/main/Doc/tutorial/inputoutput.rst) — 'For reading lines from a file, you can loop over the file object.' and 'efficient, fast, and leads to simple code' and 'If you want to read all the lines of a file in a list you can also use' (fetched)

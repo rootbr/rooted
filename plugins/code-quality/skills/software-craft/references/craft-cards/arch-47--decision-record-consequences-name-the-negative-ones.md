@@ -40,9 +40,3 @@ Grep the hunk for an added decision record: a consequences heading, "Good, becau
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: ARCH-47`, severity suggestion, `file`, `symbol` = the record's title, `code` = the consequences heading and its items quoted verbatim from the diff, `fix` = the same section with the negative consequences added in the record's own format, such as what becomes more difficult, a quality compromised or a risk that will need to be mitigated, `rationale` = names that a consequences section carries both the positive and the negative consequences of the decision, and that the risks the decision introduces will need to be mitigated).
-
-## Source
-- alphagov/gds-way, `source/standards/architecture-decisions.html.md.erb`, introduction: "It is important to preserve the reasoning so the current team can include it as context when making their own decisions about changes they need to make."; § How to document decisions: "**Consequences**: both positive and negative consequences of the decision" (fetched)
-- npryce/adr-tools, `src/template.md`, § Consequences: "What becomes easier or more difficult to do and any risks introduced by the change that will need to be mitigated." (fetched)
-- adr/madr, `template/adr-template.md` (develop), § Consequences: "<!-- This is an optional element. Feel free to remove. --> ### Consequences * Good, because {positive consequence, e.g., improvement of one or more desired qualities, …} * Bad, because {negative consequence, e.g., compromising one or more desired qualities, …}" (fetched)
-- Caveat: the sources are record templates and an engineering standard that state what a consequences section contains; none measures the effect of leaving the negative consequences out.

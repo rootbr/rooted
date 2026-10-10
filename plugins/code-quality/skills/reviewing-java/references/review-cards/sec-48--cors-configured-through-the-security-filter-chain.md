@@ -34,6 +34,3 @@ On the triggered hunk find each CORS declaration. Grep the repository for `cors(
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: SEC-48`, severity minor, `file`, `symbol`, `code` = the MVC-level CORS declaration quoted verbatim from the diff, `fix` = a `CorsConfigurationSource` bean with `http.cors(...)` on the chain, `rationale` naming the preflight the security chain rejects before the annotation runs).
-
-## Source
-Spring Security reference, "CORS" — "CORS must be processed before Spring Security, because the pre-flight request does not contain any cookies (that is, the JSESSIONID). If the request does not contain any cookies and Spring Security is first, the request determines that the user is not authenticated (since there are no cookies in the request) and rejects it"; "The easiest way to ensure that CORS is handled first is to use the CorsFilter"; §Spring MVC Integration; "If you have more than one CorsConfigurationSource bean, Spring Security won't automatically configure CORS support for you".

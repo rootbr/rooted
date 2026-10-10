@@ -33,6 +33,3 @@ On the triggered hunk find each `wait()` and `Condition.await()`; identify its m
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: CC-36`, severity major, `file`, `symbol`, `code` = the wait and the enclosing lock acquisition quoted verbatim from the diff, `fix` = the wait moved to the outermost lock, or the outer lock released before waiting, or a `Condition` of the single governing lock, `rationale` naming the lock still held while waiting and the notifier that needs it).
-
-## Source
-`java.lang.Object#wait(long, int)` Javadoc, Java SE 21 — "This method causes the current thread ... to place itself in the wait set for this object and then to relinquish any and all synchronization claims on this object. Note that only the locks on this object are relinquished; any other objects on which the current thread may be synchronized remain locked while the thread waits"; `java.util.concurrent.locks.Condition#await` Javadoc — "The lock associated with this Condition is atomically released", that lock alone. SpotBugs `TLW_TWO_LOCK_WAIT` "Wait with two locks held" — "Performing a wait only releases the lock on the object being waited on, not any other locks" (fetched from `spotbugs/etc/messages.xml`, `master`; CWE-833).

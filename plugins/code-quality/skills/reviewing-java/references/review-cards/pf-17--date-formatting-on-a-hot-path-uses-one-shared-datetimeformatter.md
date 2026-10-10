@@ -34,6 +34,3 @@ On the triggered hunk find each `new SimpleDateFormat(...)` and each `DateTimeFo
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PF-17`, severity minor, `file`, `symbol`, `code` = the constructor or `ofPattern` call quoted verbatim from the diff, `fix` = the `static final DateTimeFormatter` and its use, `rationale` naming the per-call pattern parse and allocation).
-
-## Source
-`java.time.format.DateTimeFormatter` class Javadoc, Java SE 21 — "A formatter created from a pattern can be used as many times as necessary, it is immutable and is thread-safe"; implementation specification — "This class is immutable and thread-safe". `java.text.SimpleDateFormat` class Javadoc — "Date formats are not synchronized. It is recommended to create separate format instances for each thread"; API note — "Consider using java.time.format.DateTimeFormatter as an immutable and thread-safe alternative."

@@ -31,6 +31,3 @@ On the triggered hunk find each pool constructor — `newFixedThreadPool`, `newC
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: CC-29`, severity minor, `file`, `symbol`, `code` = the pool constructor with the virtual factory quoted verbatim from the diff, `fix` = `newVirtualThreadPerTaskExecutor()`, with a `Semaphore` where downstream concurrency must be bounded, `rationale` naming the concurrency cap and the queue the pool reintroduces).
-
-## Source
-`java.util.concurrent.Executors#newVirtualThreadPerTaskExecutor` Javadoc, Java SE 21 — "Creates an Executor that starts a new virtual Thread for each task. The number of threads created by the Executor is unbounded"; `java.lang.Thread` class Javadoc, section "Virtual threads" — "Virtual threads will typically require few resources and a single Java virtual machine may support millions of virtual threads"; `Executors#newFixedThreadPool` — "At any point, at most nThreads threads will be active processing tasks. If additional tasks are submitted when all threads are active, they will wait in the queue until a thread is available". JEP 444 "Virtual Threads", section "Do not pool virtual threads" — unfetched.

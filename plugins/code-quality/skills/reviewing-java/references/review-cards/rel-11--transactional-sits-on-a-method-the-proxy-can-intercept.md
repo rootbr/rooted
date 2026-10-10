@@ -32,6 +32,3 @@ On the triggered hunk find each `@Transactional` on a method and read the method
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: REL-11`, severity major, `file`, `symbol`, `code` = the annotation and the method signature quoted verbatim from the diff, `fix` = the method made `public` (or moved to a public entry point of the bean), `rationale` naming the silently missing transaction).
-
-## Source
-Spring Framework reference, "Using @Transactional", note "Method visibility and @Transactional in proxy mode" — "The @Transactional annotation is typically used on methods with public visibility. As of 6.0, protected or package-visible methods can also be made transactional for class-based proxies by default. Note that transactional methods in interface-based proxies must always be public and defined in the proxied interface. For both kinds of proxies, only external method calls coming in through the proxy are intercepted"; "the mere presence of the @Transactional annotation is not enough to activate the transactional behavior".

@@ -30,6 +30,3 @@ On the triggered hunk find each `divide(` on a `BigDecimal` and count its argume
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: REL-31`, severity major, `file`, `symbol`, `code` = the division quoted verbatim from the diff, `fix` = `divide(divisor, scale, RoundingMode.X)` or `divide(divisor, mathContext)`, `rationale` naming the `ArithmeticException` on a non-terminating quotient).
-
-## Source
-`java.math.BigDecimal#divide(BigDecimal)` Javadoc, Java SE 21 — "Returns a BigDecimal whose value is (this / divisor), and whose preferred scale is (this.scale() - divisor.scale()); if the exact quotient cannot be represented (because it has a non-terminating decimal expansion) an ArithmeticException is thrown"; `#divide(BigDecimal, int, RoundingMode)` and `#divide(BigDecimal, MathContext)` — the rounded forms.

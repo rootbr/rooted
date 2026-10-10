@@ -38,12 +38,3 @@ Grep the file for `raise StopIteration` and for `next(` calls with a single argu
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PY-55`, severity major, `file`, `symbol`, `code` = the `raise StopIteration` statement or the `next()` call, `fix` = `return` in place of the raise, or `next(iterator, None)` followed by a `return` when the result is the default, `rationale` = since Python 3.7 a `StopIteration` that leaves a generator becomes `RuntimeError` instead of ending the iteration).
-
-## Source
-- PEP 479 §Proposal (raw.githubusercontent.com/python/peps/main/peps/pep-0479.rst) — 'If a ``StopIteration`` is about to bubble out of a generator frame, it is replaced with ``RuntimeError``, which causes the ``next()`` call (which invoked the generator) to fail, passing that exception out.' (fetched)
-- PEP 479 §Transition plan (raw.githubusercontent.com/python/peps/main/peps/pep-0479.rst) — 'Python 3.7: Enable new semantics everywhere.' (fetched)
-- CPython Doc/builtins/exceptions.rst §StopIteration (https://raw.githubusercontent.com/python/cpython/main/Doc/builtins/exceptions.rst) — 'If a generator code directly or indirectly raises :exc:`StopIteration`, it is converted into a :exc:`RuntimeError` (retaining the :exc:`StopIteration` as the new exception's cause).' (fetched)
-- CPython Doc/builtins/exceptions.rst §StopIteration (https://raw.githubusercontent.com/python/cpython/main/Doc/builtins/exceptions.rst) — ':meth:`~iterator.__next__` method to signal that there are no further items produced by the iterator.' (fetched)
-- CPython Doc/builtins/functions.rst §next (https://raw.githubusercontent.com/python/cpython/main/Doc/builtins/functions.rst) — 'If *default* is given, it is returned if the iterator is :term:`exhausted`, otherwise :exc:`StopIteration` is raised.' (fetched)
-- Ruff PLR1708 stop-iteration-return (astral-sh/ruff crates/ruff_linter/src/rules/pylint/rules/stop_iteration_return.rs) — 'Raising `StopIteration` in a generator function causes a `RuntimeError` when the generator is iterated over. Instead of `raise StopIteration`, use `return` in generator functions.' (fetched)
-- Pylint stop-iteration-return (R1708) (pylint-dev/pylint doc/data/messages/s/stop-iteration-return/details.rst) — 'It's possible to give a default value to ``next`` or catch the ``StopIteration``, or return directly. A ``StopIteration`` cannot be propagated from a generator.' (fetched)

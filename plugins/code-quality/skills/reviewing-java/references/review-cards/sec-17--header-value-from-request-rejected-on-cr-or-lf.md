@@ -34,6 +34,3 @@ On the triggered hunk find each header-setting call with a non-constant value an
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: SEC-17`, severity major, `file`, `symbol`, `code` = the header-setting call quoted verbatim from the diff, `fix` = the CR/LF rejection or the allowlist mapping before the call, `rationale` naming the header or body an injected line break can add).
-
-## Source
-RFC 9110 §5.5 "Field Values" — "Field values containing CR, LF, or NUL characters are invalid and dangerous, due to the varying ways that implementations might parse and interpret those characters; a recipient of CR, LF, or NUL within a field value MUST either reject the message or replace each of those characters with SP before further processing or forwarding of that message" (any field, request or response). CWE-113, Improper Neutralization of CRLF Sequences in HTTP Headers ('HTTP Response Splitting'). OWASP ASVS 5.0 requirement 4.2.4 — for HTTP/2 and HTTP/3 requests, header fields and values must not contain CR, LF or CRLF sequences, "to prevent header injection attacks" (stated for inbound requests; the response side of this card rests on RFC 9110 §5.5). `java.net.http.HttpRequest.Builder#header` Javadoc, Java SE 21 — throws "if the header name or value is not valid, see RFC 7230 section-3.2".

@@ -33,6 +33,3 @@ On the triggered hunk find each `@ConfigurationProperties` class and each `@Valu
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: MNT-37`, severity minor, `file`, `symbol`, `code` = the properties class header or the placeholder quoted verbatim from the diff, `fix` = `@Validated` with the constraints, or the placeholder without an empty default, `rationale` naming the later failure that startup validation would have reported).
-
-## Source
-Spring Boot reference, Externalized Configuration → Type-safe Configuration Properties → "@ConfigurationProperties Validation" — "Spring Boot attempts to validate @ConfigurationProperties classes whenever they are annotated with Spring's @Validated annotation. You can use JSR-303 jakarta.validation constraint annotations directly on your configuration class … add constraint annotations to your fields"; also triggered by `@Validated` on the `@Bean` method; "Property Placeholders" — "${name:default}" syntax. Spring Framework reference, Using @Value — a `PropertySourcesPlaceholderConfigurer` "ensures Spring initialization failure if any ${} placeholder could not be resolved", and "Spring Boot configures by default a PropertySourcesPlaceholderConfigurer bean".

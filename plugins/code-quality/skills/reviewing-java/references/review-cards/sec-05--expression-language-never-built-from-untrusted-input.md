@@ -34,6 +34,3 @@ On the triggered hunk find each `parseExpression`, `getValue`, OGNL or EL evalua
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: SEC-05`, severity critical, `file`, `symbol`, `code` = the parse or evaluation call and the expression source quoted verbatim from the diff, `fix` = the constant expression with the value passed as a variable, `rationale` naming the arbitrary code execution an evaluated expression grants and that the evaluation context does not bound it).
-
-## Source
-Spring Framework reference, "Expression Evaluation" §Security Considerations — "evaluating a SpEL expression obtained from an untrusted source is inherently dangerous and should generally be avoided, since doing so can effectively grant that source the ability to execute arbitrary code within the application, regardless of which EvaluationContext implementation is used"; `StandardEvaluationContext` "must never be used to evaluate an expression obtained from an untrusted source". `org.springframework.expression.spel.support.SimpleEvaluationContext` Javadoc — "must not be considered safe for evaluating a SpEL expression obtained from an untrusted source". OWASP ASVS 5.0 requirement 1.3.2. CWE-94.

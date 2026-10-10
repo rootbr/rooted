@@ -31,6 +31,3 @@ On the triggered hunk find each stage function; read it and the methods it calls
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: CC-42`, severity major, `file`, `symbol`, `code` = the stage call and its blocking body quoted verbatim from the diff, `fix` = the `*Async` overload with the module's executor, `rationale` naming the completing thread or common pool it would otherwise run on).
-
-## Source
-`java.util.concurrent.CompletableFuture` class Javadoc, Java SE 21 — "Actions supplied for dependent completions of non-async methods may be performed by the thread that completes the current CompletableFuture, or by any other caller of a completion method"; "All async methods without an explicit Executor argument are performed using the ForkJoinPool.commonPool() (unless it does not support a parallelism level of at least two, in which case, a new Thread is created to run each task)"; `java.util.concurrent.ForkJoinPool` class Javadoc — "no such adjustments are guaranteed in the face of blocked I/O or other unmanaged synchronization".

@@ -34,6 +34,3 @@ On the triggered hunk read the argument of each `maxInboundMessageSize` and `max
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: SEC-39`, severity major, `file`, `symbol`, `code` = the builder call quoted verbatim from the diff, `fix` = the same call with a bound sized to the largest legitimate message, `rationale` naming the per-message allocation a remote client can force).
-
-## Source
-`io.grpc.ServerBuilder#maxInboundMessageSize` Javadoc — "Sets the maximum message size allowed to be received on the server. If not called, defaults to 4 MiB. The default provides protection to servers who haven't considered the possibility of receiving large messages while trying to be large enough to not be hit in normal usage"; "This method is advisory… the only known transport to not enforce this is InProcessServer". `io.grpc.ManagedChannelBuilder#maxInboundMessageSize` — the same for channels. OWASP ASVS 5.0 §15.2.2 — defenses against loss of availability from resource-demanding functionality. CWE-400 — by id.

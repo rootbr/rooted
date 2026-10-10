@@ -32,6 +32,3 @@ On the triggered hunk find each executor construction. For a factory method, fla
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: CC-21`, severity major, `file`, `symbol`, `code` = the construction quoted verbatim from the diff, `fix` = the `ThreadPoolExecutor` with a finite maximum and a bounded queue, `rationale` naming which resource grows without bound).
-
-## Source
-`java.util.concurrent.Executors` Javadoc, Java SE 21 — `#newCachedThreadPool` "Creates a thread pool that creates new threads as needed"; `#newFixedThreadPool` "Creates a thread pool that reuses a fixed number of threads operating off a shared unbounded queue". `ThreadPoolExecutor` class Javadoc, "Queuing" — direct handoffs admit "the possibility of unbounded thread growth when commands continue to arrive on average faster than they can be processed"; unbounded queues admit "the possibility of unbounded work queue growth" under the same condition; "A bounded queue ... helps prevent resource exhaustion when used with finite maximumPoolSizes"; "Rejected tasks" — the four predefined handlers, "In the default ThreadPoolExecutor.AbortPolicy, the handler throws a runtime RejectedExecutionException upon rejection". `LinkedBlockingQueue` class Javadoc — "The capacity, if unspecified, is equal to Integer.MAX_VALUE".

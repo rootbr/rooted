@@ -32,6 +32,3 @@ On the triggered hunk find each fixed-offset construction — `ZoneOffset.of`, `
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: REL-08`, severity major, `file`, `symbol`, `code` = the offset construction quoted verbatim from the diff, `fix` = the region `ZoneId.of("Region/City")`, `rationale` naming the half of the year in which the offset is wrong).
-
-## Source
-`java.time.ZoneId` class Javadoc, Java SE 21 — "There are two distinct types of ID: Fixed offsets - a fully resolved offset from UTC/Greenwich, that uses the same offset for all local date-times; Geographical regions - an area where a specific set of rules for finding the offset from UTC/Greenwich apply"; "The actual rules, describing when and how the offset changes, are defined by ZoneRules". `java.time.ZoneOffset` class Javadoc — "The rules for how offsets vary by place and time of year are captured in the ZoneId class. For example, Paris is one hour ahead of Greenwich/UTC in winter and two hours ahead in summer".

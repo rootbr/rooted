@@ -33,6 +33,3 @@ On the triggered hunk find each method that returns a collection field, and each
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: CC-16`, severity major, `file`, `symbol`, `code` = the accessor and, where present, the later modification quoted verbatim from the diff, `fix` = the copy under the owner's lock, or the view with the backing collection frozen after publication, `rationale` naming the unguarded mutation or the read-through).
-
-## Source
-`java.util.Collections#unmodifiableList` Javadoc, Java SE 21 — "Returns an unmodifiable view of the specified list. Query operations on the returned list 'read through' to the specified list, and attempts to modify the returned list ... result in an UnsupportedOperationException". `java.util.List#copyOf` Javadoc — "If the given Collection is subsequently modified, the returned List will not reflect such modifications". `java.util.concurrent.CopyOnWriteArrayList` class Javadoc — the "snapshot" style iterator "will not reflect additions, removals, or changes to the list since the iterator was created". SEI CERT OBJ05-J "Do not return references to private mutable class members".

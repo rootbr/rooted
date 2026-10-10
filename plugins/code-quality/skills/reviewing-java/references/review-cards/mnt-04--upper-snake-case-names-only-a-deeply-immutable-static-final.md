@@ -34,6 +34,3 @@ On the triggered hunk take each added `static final` field. Decide whether its i
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: MNT-04`, severity suggestion, `file`, `symbol`, `code` = the field declaration quoted verbatim from the diff, `fix` = the renamed field, or an immutable initializer that earns the caps name, `rationale` naming the false promise of immutability).
-
-## Source
-Google Java Style Guide §5.2.4 "Constant names" — "Constants are static final fields whose contents are deeply immutable and whose methods have no detectable side effects … If any of the instance's observable state can change, it is not a constant. Merely intending to never mutate the object is not enough"; listed non-constants include `static final Set<String> mutableCollection = new HashSet<String>()`, `static final Logger logger` and `static final String[] nonEmptyArray`; `static final SomeMutableType[] EMPTY_ARRAY = {}` is a constant.

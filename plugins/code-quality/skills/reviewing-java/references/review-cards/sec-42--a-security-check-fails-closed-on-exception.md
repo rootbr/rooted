@@ -33,6 +33,3 @@ On the triggered hunk find each `catch`, fallback method, `exceptionally`/`onErr
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: SEC-42`, severity critical, `file`, `symbol`, `code` = the `catch` or fallback quoted verbatim from the diff, `fix` = the same handler ending in a denial or a rethrow, `rationale` naming the failure an attacker can provoke and the access it then grants).
-
-## Source
-OWASP ASVS 5.0 §16.5.3 — "the application fails gracefully and securely, including when an exception occurs, preventing fail-open conditions"; §16.5.2 — the application "continues to operate securely when external resource access fails, for example, by using patterns such as circuit breakers"; §11.2.5 — cryptographic modules fail securely and errors are handled in a way that does not enable vulnerabilities. CWE-636 "Not Failing Securely ('Failing Open')" — by id.

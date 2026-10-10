@@ -33,6 +33,3 @@ On the triggered hunk find each `length()` comparison, `substring` cut or `charA
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: REL-38`, severity minor, `file`, `symbol`, `code` = the length check or cut quoted verbatim from the diff, `fix` = `codePointCount`/`offsetByCodePoints` or a `BreakIterator`, `rationale` naming the miscounted limit or the split surrogate pair).
-
-## Source
-`java.lang.String#length()` Javadoc, Java SE 21 — "The length is equal to the number of Unicode code units in the string"; `#charAt(int)` — "If the char value specified by the index is a surrogate, the surrogate value is returned"; `#codePointCount(int, int)` — "the number of Unicode code points in the specified text range"; `#offsetByCodePoints(int, int)`.

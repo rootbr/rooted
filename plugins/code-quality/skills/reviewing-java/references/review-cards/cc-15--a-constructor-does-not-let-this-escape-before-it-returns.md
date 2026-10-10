@@ -32,6 +32,3 @@ On the triggered hunk find each use of `this` inside a constructor as an argumen
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: CC-15`, severity major, `file`, `symbol`, `code` = the escaping line and the fields assigned after it quoted verbatim from the diff, `fix` = the private constructor plus the static factory that publishes after construction, `rationale` naming the default-valued fields the early reader can observe).
-
-## Source
-SEI CERT Oracle Coding Standard for Java, TSM01-J "Do not let the this reference escape during object construction". JLS §17.5 — "An object is considered to be completely initialized when its constructor finishes. A thread that can only see a reference to an object after that object has been completely initialized is guaranteed to see the correctly initialized values for that object's final fields". SpotBugs `SC_START_IN_CTOR` — a thread started in a constructor "will be started before the subclass constructor is started". Error Prone `Immutable` — properly constructed means "the this reference does not escape the constructor".

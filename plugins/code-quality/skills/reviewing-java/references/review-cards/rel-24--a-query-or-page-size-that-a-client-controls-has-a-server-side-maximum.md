@@ -34,6 +34,3 @@ On the triggered hunk find each client-supplied size or limit and each query wit
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: REL-24`, severity major, `file`, `symbol`, `code` = the parameter or query quoted verbatim from the diff, `fix` = `Math.min(size, MAX)` or `setMaxResults`/`limit`/a keyset cursor, `rationale` naming the heap the unbounded result fills).
-
-## Source
-Spring Data Commons `org.springframework.data.web.PageableHandlerMethodArgumentResolverSupport#setMaxPageSize` Javadoc — "Configures the maximum page size to be accepted. This allows to put an upper boundary of the page size to prevent potential attacks trying to issue an OutOfMemoryError. Defaults to DEFAULT_MAX_PAGE_SIZE" (2000). Hibernate ORM user guide, "Hibernate Query Language", "Limits and offsets" — "It's often useful to place a hard upper limit on the number of results that may be returned by a query. The limit and offset clauses are an alternative to the use of setMaxResults() and setFirstResult()". `java.sql.Statement#setMaxRows(int)` Javadoc, Java SE 21 — the driver drops rows beyond the limit. The query-limit half of the Thesis is the card's extension of the page-size rule to the query the page size feeds: the Hibernate sentence is advice and `setMaxRows` defines an API; only the page-size cap carries a stated motive.

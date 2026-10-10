@@ -33,6 +33,3 @@ On the triggered hunk find each encoder constructor, `PBEKeySpec`, `Argon2Parame
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: SEC-29`, severity major, `file`, `symbol`, `code` = the constructor or key-spec call quoted verbatim from the diff, `fix` = the same call with baseline parameters for its algorithm, `rationale` naming the parameter below baseline and the cost reduction per guess it grants an attacker).
-
-## Source
-OWASP Password Storage Cheat Sheet — "Use Argon2id with a minimum configuration of 19 MiB of memory, an iteration count of 2, and 1 degree of parallelism"; scrypt with N = 2^17, r = 8, p = 1 and the four equal-cost scrypt rows (2^16/8/2, 2^15/8/3, 2^14/8/5, 2^13/8/10, "a similar minimal level of defense"); bcrypt "work factor of 10 or more"; PBKDF2 "600,000 or more" with HMAC-SHA-256 (HMAC-SHA512: 220,000); the equal-cost Argon2id rows; a hash "should take less than one second". OWASP ASVS 5.0 §11.4.2 — passwords stored with an approved, computationally intensive key derivation function "with parameter settings configured based on current guidance". Spring Security reference, "Password Storage" — work factor tuned to about one second; `BCryptPasswordEncoder` default strength 10; `Argon2PasswordEncoder` and `Pbkdf2PasswordEncoder` sources for the `defaultsForSpringSecurity_v5_8` values.

@@ -30,4 +30,4 @@ For each aligned block, inspect every character against the fixed-width set the 
 When auditing an aligned block containing a glyph of indeterminate width, emit one patch (`rule_id: S-09`, `location` set to the block and line hint, `current` = the offending line, `proposed` = the line with a determinate glyph or the spelled-out word, severity low). Membership in the ambiguous and emoji sets is decidable from the character, so no `needs_human` flag.
 
 ## Source
-Unicode Standard Annex #11, *East Asian Width* (<https://www.unicode.org/reports/tr11/>) — six property values (Wide, Fullwidth, Halfwidth, Narrow, Ambiguous, Neutral) resolving to two abstract widths; "The East_Asian_Width property is not intended for use by modern terminal emulators without appropriate tailoring on a case-by-case basis"; "Ambiguous characters require additional information not contained in the character code to further resolve their width", defaulting to narrow where context cannot be established.
+Unicode Standard Annex #11, *East Asian Width* (<https://www.unicode.org/reports/tr11/>).

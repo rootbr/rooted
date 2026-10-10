@@ -37,6 +37,3 @@ On the triggered hunk find each loop body (or per-element callback) that evaluat
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PF-26`, severity minor, `file`, `symbol`, `code` = the allocating expression inside the loop quoted verbatim from the diff, `fix` = the hoisted lambda, the null check or the reused instance, `rationale` naming the per-iteration allocation).
-
-## Source
-`java.lang.invoke.InnerClassLambdaMetafactory#buildCallSite`, Java SE 21 source — "In the case of a non-capturing lambda, we optimize linkage by pre-computing a single instance" behind a `ConstantCallSite`, while a capturing lambda's call site is bound to the lambda class's constructor (an implementation detail of the reference implementation). `java.util.Optional#empty` Javadoc, Java SE 21 — "There is no guarantee that it is a singleton"; class API note — `Optional` "is primarily intended for use as a method return type". JLS §15.27.4 — evaluation of a lambda either allocates a new instance or references an existing one — not fetched from the authoring environment. JMH benchmark `ionutbalosin/jvm-performance-benchmarks`, `.../compiler/ScalarReplacementBenchmark.java` — the escape states `NoEscape`, `ArgEscape` and `GlobalEscape`, and which allocations the compiler removes.

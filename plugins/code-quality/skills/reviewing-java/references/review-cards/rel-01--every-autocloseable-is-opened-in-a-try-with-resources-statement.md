@@ -35,6 +35,3 @@ On the triggered hunk find each expression that opens a handle-holding `AutoClos
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: REL-01`, severity major, `file`, `symbol`, `code` = the opening expression quoted verbatim from the diff, `fix` = the same expression as a `try` resource with dependents declared in wrapping order, `rationale` naming the exit path that leaks and the pool or descriptor limit it exhausts).
-
-## Source
-`java.lang.AutoCloseable` Javadoc, Java SE 21 — "The close() method of an AutoCloseable object is called automatically when exiting a try-with-resources block for which the object has been declared in the resource specification header. This construction ensures prompt release, avoiding resource exhaustion exceptions and errors that may otherwise occur"; its API note that try-with-resources is unnecessary for non-I/O-based forms. JLS §14.20.3 — resources closed in reverse order of initialization, exceptions from `close()` suppressed.

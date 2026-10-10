@@ -36,22 +36,3 @@ Grep the added lines of the hunk for os.path functions (join, exists, isfile, is
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PY-38`, severity suggestion, `file`, `symbol`, `code` = the os, os.path or glob call, quoted verbatim from the diff, `fix` = the Path form, e.g. `Path(base_dir) / "config" / "app.toml"` or `config_path.exists()`, with a note where resolve or glob behaves differently, `rationale` = pathlib's high-level API can improve readability and type safety over the string functions of os.path, os and glob).
-
-## Source
-- Ruff PTH118 os-path-join (astral-sh/ruff crates/ruff_linter/src/rules/flake8_use_pathlib/violations.rs) — 'When possible, using `Path` object methods such as `Path.joinpath()` or the `/` operator can improve readability over the `os.path` module's counterparts' (fetched)
-- Ruff PTH118 os-path-join (astral-sh/ruff crates/ruff_linter/src/rules/flake8_use_pathlib/violations.rs) — 'While using `pathlib` can improve the readability and type safety of your code, it can be less performant than the lower-level alternatives that work directly with strings, especially on older versions of Python.' (fetched)
-- Ruff PTH118 os-path-join (astral-sh/ruff crates/ruff_linter/src/rules/flake8_use_pathlib/violations.rs) — 'Path(ROOT_PATH) / "folder" / "file.py"' (fetched)
-- Ruff PTH110 os-path-exists (astral-sh/ruff crates/ruff_linter/src/rules/flake8_use_pathlib/rules/os_path_exists.rs) — '`pathlib` offers a high-level API for path manipulation, as compared to the lower-level API offered by `os.path`.' (fetched)
-- Ruff PTH100 os-path-abspath (astral-sh/ruff crates/ruff_linter/src/rules/flake8_use_pathlib/rules/os_path_abspath.rs) — 'This rule's fix is always marked as unsafe because `Path.resolve()` resolves symlinks, while `os.path.abspath()` does not.' (fetched)
-- Ruff PTH100 os-path-abspath (astral-sh/ruff crates/ruff_linter/src/rules/flake8_use_pathlib/rules/os_path_abspath.rs) — '`os.path.abspath()` returns `str` or `bytes` (`AnyStr`), while `Path.resolve()` returns a `Path` object.' (fetched)
-- Ruff PTH100 os-path-abspath (astral-sh/ruff crates/ruff_linter/src/rules/flake8_use_pathlib/rules/os_path_abspath.rs) — 'This change in return type can break code that uses the return value.' (fetched)
-- Ruff PTH207 glob (astral-sh/ruff crates/ruff_linter/src/rules/flake8_use_pathlib/rules/glob_rule.rs) — 'as compared to the lower-level API offered by `os` and `glob`' (fetched)
-- Ruff PTH207 glob (astral-sh/ruff crates/ruff_linter/src/rules/flake8_use_pathlib/rules/glob_rule.rs) — 'Note that `glob.glob()` and `Path.glob()` are not exact equivalents' (fetched)
-- Ruff PTH207 glob (astral-sh/ruff crates/ruff_linter/src/rules/flake8_use_pathlib/rules/glob_rule.rs) — 'Under the hood, `glob.glob()` simply converts the iterator to a list.' (fetched)
-- Ruff PTH207 glob (astral-sh/ruff crates/ruff_linter/src/rules/flake8_use_pathlib/rules/glob_rule.rs) — '`Path.glob()` returns a lazy iterator.' (fetched)
-- Ruff PTH207 glob (astral-sh/ruff crates/ruff_linter/src/rules/flake8_use_pathlib/rules/glob_rule.rs) — 'Hidden files are excluded by default.' (fetched)
-- Ruff PTH207 glob (astral-sh/ruff crates/ruff_linter/src/rules/flake8_use_pathlib/rules/glob_rule.rs) — 'Includes hidden files by default.' (fetched)
-- CPython Doc/library/pathlib.rst §introduction (https://raw.githubusercontent.com/python/cpython/main/Doc/library/pathlib.rst) — 'is most likely what you need' (fetched)
-- CPython Doc/library/pathlib.rst §introduction (https://raw.githubusercontent.com/python/cpython/main/Doc/library/pathlib.rst) — 'The pathlib module -- object-oriented filesystem paths.' (fetched)
-- CPython Doc/library/pathlib.rst §introduction (https://raw.githubusercontent.com/python/cpython/main/Doc/library/pathlib.rst) — 'For low-level path manipulation on strings, you can also use the' (fetched)
-- CPython Doc/library/pathlib.rst §Corresponding tools (https://raw.githubusercontent.com/python/cpython/main/Doc/library/pathlib.rst) — 'Below is a table mapping various :mod:`os` functions to their corresponding' (fetched)

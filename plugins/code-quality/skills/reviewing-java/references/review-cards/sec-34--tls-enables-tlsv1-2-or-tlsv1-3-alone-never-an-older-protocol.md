@@ -33,6 +33,3 @@ On the triggered hunk read each protocol name string or array and each write to 
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: SEC-34`, severity major, `file`, `symbol`, `code` = the protocol selection quoted verbatim from the diff, `fix` = the same call naming `TLSv1.3` and `TLSv1.2` only, `rationale` naming the old version and the downgrade it permits).
-
-## Source
-OWASP Transport Layer Security Cheat Sheet, "Only Support Strong Protocols" — "TLS 1.0 and TLS 1.1 are formally deprecated by RFC 8996 (March 2021) and must be disabled… SSLv2 and SSLv3 must always be disabled". OWASP ASVS 5.0 §12.1.1 — only the latest recommended TLS versions enabled, such as TLS 1.2 and 1.3. JDK 21 `conf/security/java.security` — `jdk.tls.disabledAlgorithms=SSLv3, TLSv1, TLSv1.1, DTLSv1.0, RC4, DES, …`. `javax.net.ssl.SSLSocket#setEnabledProtocols` Javadoc, Java SE 21 — "only protocols listed in the protocols parameter are enabled for use". RFC 8996 and NIST SP 800-52 Rev. 2 §3.1 — by number.

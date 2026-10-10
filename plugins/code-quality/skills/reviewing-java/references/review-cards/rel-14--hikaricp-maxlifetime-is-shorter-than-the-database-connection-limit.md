@@ -31,6 +31,3 @@ On the triggered hunk find each `setMaxLifetime` call and each `HikariConfig`/`H
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: REL-14`, severity major, `file`, `symbol`, `code` = the `setMaxLifetime` call, or the pool construction lacking one, quoted verbatim from the diff, `fix` = `setMaxLifetime` set some seconds below the server limit, `rationale` naming the server-side cut and the failing first statement).
-
-## Source
-HikariCP README (`brettwooldridge/HikariCP`, `dev`), configuration property `maxLifetime` — "This property controls the maximum lifetime of a connection in the pool. An in-use connection will never be retired, only when it is closed will it then be removed ... We strongly recommend setting this value, and it should be several seconds shorter than any database or infrastructure imposed connection time limit. A value of 0 indicates no maximum lifetime (infinite lifetime), subject of course to the idleTimeout setting. The minimum allowed value is 30000ms (30 seconds). Default: 1800000 (30 minutes)".

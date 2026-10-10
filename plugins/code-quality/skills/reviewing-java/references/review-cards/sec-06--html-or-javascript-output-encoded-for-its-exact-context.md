@@ -32,6 +32,3 @@ On the triggered hunk find each write of markup that includes a non-constant ope
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: SEC-06`, severity critical, `file`, `symbol`, `code` = the output statement quoted verbatim from the diff, `fix` = the same statement with the encoder of the landing context, `rationale` naming the context and the metacharacters the applied encoding leaves live).
-
-## Source
-OWASP Cross Site Scripting Prevention Cheat Sheet — output encoding per context ("HTML Contexts", "HTML Attribute Contexts", "JavaScript Contexts": "the only 'safe' location for placing variables in JavaScript is inside a 'quoted data value'"; "Dangerous Contexts"); the interceptor anti-pattern — "JavaScript and HTML encoding are not interchangeable". OWASP ASVS 5.0 requirements 1.1.2, 1.2.1, 1.2.3. OWASP Java Encoder project README — "Contextual Output Encoding". CWE-79.

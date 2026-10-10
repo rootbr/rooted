@@ -59,7 +59,7 @@ D01_TARGETS = ("context-file", "skill", "agent-prompt", "doc", "code")
 D03_TARGETS = ("code", "doc")
 D04_TARGETS = ("code",)
 D05_TARGETS = ("doc", "context-file", "skill", "agent-prompt")
-R57_TARGETS = ("context-file", "skill", "agent-prompt", "doc", "code")
+R57_TARGETS = ("context-file", "skill", "agent-prompt", "kb-card", "doc", "code")
 MARKER_GATES = (("D-01", D01_TARGETS), ("D-03", D03_TARGETS), ("D-04", D04_TARGETS),
                 ("D-05", D05_TARGETS), ("R-57", R57_TARGETS))
 

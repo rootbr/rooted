@@ -32,6 +32,3 @@ On the triggered hunk find each `csrfTokenRequestHandler(...)` and the handler c
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: SEC-45`, severity minor, `file`, `symbol`, `code` = the handler installation quoted verbatim from the diff, `fix` = the Xor handler or the delegating SPA handler, `rationale` naming the unmasked token a compressed response reflects).
-
-## Source
-Spring Security reference, "Cross Site Request Forgery (CSRF) for Servlet Environments" — "By default, the XorCsrfTokenRequestAttributeHandler is used for providing BREACH protection of the CsrfToken. Spring Security also provides the CsrfTokenRequestAttributeHandler for opting out of BREACH protection"; "BREACH protection is provided by encoding randomness into the CSRF token value to ensure the returned CsrfToken changes on every request"; §Single-Page Applications configuration; `CsrfConfigurer#spa()` — `@since 7.0`. OWASP Cross-Site Request Forgery Prevention Cheat Sheet, "Synchronizer Token Pattern".

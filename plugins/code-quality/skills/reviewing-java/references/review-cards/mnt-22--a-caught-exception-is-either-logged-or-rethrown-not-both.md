@@ -34,6 +34,3 @@ On the triggered hunk find each `catch` block containing both a logger call at a
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: MNT-22`, severity minor, `file`, `symbol`, `code` = the log line and the throw quoted verbatim from the diff, `fix` = the throw alone with the context in its message, `rationale` naming the duplicate stack traces per layer).
-
-## Source
-SonarSource `java:S2139` "Exceptions should be either logged or rethrown but not both" — "you end up with miles-long logs that contain multiple instances of the same exception. In multi-threaded applications debugging this type of log can be particularly hellish because messages from other threads will be interwoven with the repetitions of the logged-and-thrown Exception. Instead, exceptions should be either logged or rethrown, not both" (rule text from the `sonar-java` 6.15.1 plugin resources).

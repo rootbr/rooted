@@ -30,6 +30,3 @@ On the triggered hunk find each `exec(String)`, each `ProcessBuilder` or `exec(S
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: SEC-04`, severity critical, `file`, `symbol`, `code` = the `exec` or `ProcessBuilder` call quoted verbatim from the diff, `fix` = the argument-list form with the untrusted value as one element after `--`, `rationale` naming the shell or tokenizer split that lets the value become commands or options).
-
-## Source
-`java.lang.Runtime#exec(String)` Javadoc, Java SE 21 — "@deprecated This method is error-prone and should not be used, the corresponding method exec(String[]) or ProcessBuilder should be used instead. The command string is broken into tokens using only whitespace characters"; `#exec(String, String[], File)` — tokens from "a StringTokenizer created by the call new StringTokenizer(command)". OWASP OS Command Injection Defense Cheat Sheet — "In Java, use ProcessBuilder and the command must be separated from its arguments"; `Runtime.exec` "does NOT try to invoke the shell at any point"; the `--` end-of-options guideline. OWASP ASVS 5.0 requirement 1.2.5. SEI CERT IDS07-J; CWE-78.

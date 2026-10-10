@@ -34,16 +34,3 @@ Grep the added signature lines of the hunk for a parameter whose name is one let
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: CODE-12`, severity minor, `file`, `symbol`, `code` = the added signature line carrying the one-letter parameter, verbatim from the diff, `fix` = the same signature with each flagged parameter renamed to the word or words for the value it carries, in the file's language, `rationale` = the domain value the letter stands for and that callers read the parameter name through the signature, documentation and parameter hints without the body).
-
-## Source
-- Google Java Style Guide §5.2.6 Parameter names: "One-character parameter names in public methods should be avoided." (fetched)
-- Google TypeScript Style Guide, Naming, Descriptive names: "Variables that are in scope for 10 lines or fewer, including arguments that are not part of an exported API, may use short (e.g. single letter) variable names." (fetched)
-- Google Python Style Guide §3.16.5 Mathematical Notation: "Prefer PEP 8-compliant `descriptive_names` for public APIs, which are much more likely to be encountered out of context." (fetched)
-- DOI 10.1109/ICPC.2017.27, abstract: "Results show that parameter names are more significant for comprehension than local variables." (relayed)
-- clang-tidy `readability-identifier-length`, options `MinimumParameterNameLength` and `IgnoredParameterNames`: "All function parameter names are expected to have a length of at least [...] Default is `3`"; "Default is `^[n]$` for historical reasons." (fetched)
-- C++ Core Guidelines NL.7: "The use of `p` for pointer and `x` for a floating-point variable is conventional and non-confusing in a restricted scope." (fetched)
-- Google Go Style Guide, Style Decisions, Single-letter variable names: "For a method receiver variable, a one-letter or two-letter name is preferred"; "`r` for an `io.Reader` or `*http.Request`", "`w` for an `io.Writer` or `http.ResponseWriter`". (fetched)
-- Google Java Style Guide §5.2.8 Type variable names: "A single capital letter, optionally followed by a single numeral (such as E, T, X, T2)". (fetched)
-- PEP 570, Motivation, Challenges for Library Authors: "If a caller of an API starts using a keyword argument, the library author cannot rename the parameter because it would be a breaking change." (fetched)
-- pylint `arguments-renamed` (W0237): "Used when a method parameter has a different name than in the implemented interface or in an overridden method." (fetched)
-- Caveat: the experiment had nine developers and six methods and compared original names with meaningless single letters, not with conventional letters.

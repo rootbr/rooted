@@ -190,7 +190,7 @@ Severity, the scale finders start from and skeptics calibrate against:
 | Minor | a performance cost, a clarity problem, missing error handling for an unlikely scenario |
 | Suggestion | style, documentation, naming |
 
-Every finding carries its `rule_id` (`CC-NN` concurrency, `SEC-NN` security, `PF-NN` performance, `REL-NN` reliability, `MNT-NN` maintainability, `META-NN` config audit, `PROJ-N` project invariant, `LOGIC` the logic pass), an ordinal (`CC-08.1`), and a one-line source pointer taken from the card's `## Source`.
+Every finding carries its `rule_id` (`CC-NN` concurrency, `SEC-NN` security, `PF-NN` performance, `REL-NN` reliability, `MNT-NN` maintainability, `META-NN` config audit, `PROJ-N` project invariant, `LOGIC` the logic pass), an ordinal (`CC-08.1`), and a one-line source pointer: the first citation of the card's line in `references/review-cards-provenance.md`, which `scripts/render-reports.py` looks up by `rule_id`.
 
 ### The two documents
 

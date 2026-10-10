@@ -38,12 +38,3 @@ Grep the hunk for `not` followed by an operand and then `in`, `is` or `==`. Conf
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PY-157`, severity suggestion, `file`, `symbol`, `code` = the negated test verbatim from the diff, `fix` = the same test written `x not in y`, `x is not y` or `a != b`, in Python, `rationale` = the operator form computes the same result as `not` over the positive test and is the more readable one).
-
-## Source
-- PEP 8 §Programming Recommendations (https://peps.python.org/pep-0008/) — 'Use ``is not`` operator rather than ``not ... is``'; 'While both expressions are functionally identical, the former is more readable and preferred' (fetched)
-- Ruff E713 not-in-test (astral-sh/ruff crates/ruff_linter/src/rules/pycodestyle/rules/not_tests.rs) — 'Testing membership with `{element} not in {collection}` is more readable.' (fetched)
-- Ruff E714 not-is-test (astral-sh/ruff crates/ruff_linter/src/rules/pycodestyle/rules/not_tests.rs) — 'identity with `is not` is more readable.' (fetched)
-- SonarSource/sonar-python rule S1940 (https://raw.githubusercontent.com/SonarSource/sonar-python/master/python-checks/src/main/resources/org/sonar/l10n/py/rules/python/S1940.html) — 'It is needlessly complex to invert the result of a boolean comparison. The opposite comparison should be made instead.' (fetched); caveat: the rule also rewrites `not i < 10` as `i >= 10`, which the not-a-number case narrows here to equality.
-- CPython Doc/reference/expressions.rst §Membership test operations (https://docs.python.org/3/reference/expressions.html) — '``x not in s`` returns the negation of ``x in s``' (fetched)
-- CPython Doc/reference/expressions.rst §Identity comparisons (https://docs.python.org/3/reference/expressions.html) — '``x is not y`` yields the inverse truth value.' (fetched)
-- CPython Doc/reference/expressions.rst §Value comparisons (https://docs.python.org/3/reference/expressions.html) — 'User-defined classes that customize their comparison behavior should follow some consistency rules, if possible'; 'Inverse comparison should result in the boolean negation.'; '``x == y`` and ``not x != y``'; '``not x >= y`` (for total ordering)'; 'Any ordered comparison of a number to a not-a-number value is false.' (fetched)

@@ -33,6 +33,3 @@ On the triggered hunk find each `ORDER BY`, `GROUP BY`, table or column fragment
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: SEC-02`, severity critical, `file`, `symbol`, `code` = the appended identifier expression quoted verbatim from the diff, `fix` = the map or enum lookup with rejection of unknown keys, `rationale` naming that identifiers cannot be bound and that escaping them fails or injects).
-
-## Source
-OWASP SQL Injection Prevention Cheat Sheet, "Defense Option 3: Allow-list Input Validation" — "parts of SQL queries that can't use bind variables, such as table names, column names, or sort order indicators (ASC or DESC)... developers should map the parameter values to the legal/expected table or column names". OWASP ASVS 5.0, V1.2 note — table and column names "(including "ORDER BY" column names) cannot be escaped. Including escaped user-supplied data in these fields results in failed queries or SQL injection". CWE-89. The Spring Data `Sort`-on-native-query case is not stated by these sources; the card carries it on the identifier mechanism alone.

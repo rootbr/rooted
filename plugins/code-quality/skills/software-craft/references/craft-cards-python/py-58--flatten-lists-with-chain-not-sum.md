@@ -35,16 +35,3 @@ Validator question: **Does a `sum()` call take an empty list as its start value 
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PY-58`, severity major, `file`, `symbol`, `code` = the sum call with its empty-list start, `fix` = `list(itertools.chain.from_iterable(lists))` or `[item for sublist in lists for item in sublist]`, `rationale` = sum adds with `+`, which creates a new list and copies every element accumulated so far at each step, so the flattening is quadratic in the number of lists).
-
-## Source
-- Ruff RUF017 quadratic-list-summation (astral-sh/ruff crates/ruff_linter/src/rules/ruff/rules/quadratic_list_summation.rs) — 'The use of `sum()` to flatten lists of lists is quadratic in the number of lists, as `sum()` creates a new list for each element in the summation.' (fetched)
-- Ruff RUF017 quadratic-list-summation (astral-sh/ruff crates/ruff_linter/src/rules/ruff/rules/quadratic_list_summation.rs) — 'The following methods are all linear in the number of lists' (fetched)
-- Ruff RUF017 quadratic-list-summation (astral-sh/ruff crates/ruff_linter/src/rules/ruff/rules/quadratic_list_summation.rs) — 'the replacement may accept any iterable where `sum` previously required lists' (fetched)
-- Ruff RUF017 quadratic-list-summation (astral-sh/ruff crates/ruff_linter/src/rules/ruff/rules/quadratic_list_summation.rs) — 'code that previously raised an error may silently succeed' (fetched)
-- SonarSource python S8520 (SonarSource/sonar-python python-checks/src/main/resources/org/sonar/l10n/py/rules/python/S8520.html) — 'creates a new list and copies all previous elements into it, the overall operation has quadratic time complexity' (fetched)
-- SonarSource python S8520 (SonarSource/sonar-python python-checks/src/main/resources/org/sonar/l10n/py/rules/python/S8520.html) — 'each intermediate concatenation allocates a new list, creating unnecessary memory overhead' (fetched)
-- SonarSource python S8520 (SonarSource/sonar-python python-checks/src/main/resources/org/sonar/l10n/py/rules/python/S8520.html) — 'creates an iterator that yields elements from each sub-list in sequence without creating intermediate list copies' (fetched)
-- SonarSource python S8520 (SonarSource/sonar-python python-checks/src/main/resources/org/sonar/l10n/py/rules/python/S8520.html) — 'code that works fine in development with small datasets may become unusable in production' (fetched)
-- CPython Doc/builtins/functions.rst §sum (https://raw.githubusercontent.com/python/cpython/main/Doc/builtins/functions.rst) — 'Sums *start* and the items of an *iterable* from left to right and returns the total.' (fetched)
-- CPython Doc/builtins/functions.rst §sum (https://raw.githubusercontent.com/python/cpython/main/Doc/builtins/functions.rst) — 'The *iterable*'s items are normally numbers' (fetched)
-- CPython Doc/builtins/functions.rst §sum (https://raw.githubusercontent.com/python/cpython/main/Doc/builtins/functions.rst) — 'To concatenate a series of iterables, consider using :func:`itertools.chain`.' (fetched)

@@ -32,6 +32,3 @@ On the triggered hunk find each logger call with three or more arguments after t
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: PF-21`, severity minor, `file`, `symbol`, `code` = the call quoted verbatim from the diff, `fix` = the guard, the fluent form or the fixed-arity overload, `rationale` naming the `Object[]` allocated per call).
-
-## Source
-SLF4J `org.slf4j.Logger` Javadoc (`slf4j-api`, `master`) — `debug(String format, Object... arguments)`: "this variant incurs the hidden (and relatively small) cost of creating an Object[] before invoking the method, even if this logger is disabled for DEBUG. The variants taking one and two arguments exist solely in order to avoid this hidden cost"; `atDebug()`: a `NOPLoggingEventBuilder` is returned when the level is disabled, "the main optimization in the fluent API". JMH benchmark `ionutbalosin/jvm-performance-benchmarks`, `.../compiler/VarArgsBenchmark.java` — "Using varargs in Java will cause the caller to wrap the arguments in an array and pass the array to the callee. If the callee is inlined, then the array allocation is removed." JLS §15.12.4.2 (a variable-arity invocation creates the array) — not fetched from the authoring environment.

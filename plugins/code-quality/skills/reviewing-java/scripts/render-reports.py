@@ -5,8 +5,10 @@ Inputs:
   --verdicts review/verdicts.json   the workflow's `findings` array after Verify: each
                                     finding carries `verdict` and, for a rejected
                                     Critical or Major, a `ruling`
-  --plan     review/plan.json       the inventory (diff, files, size) and the card index,
-                                    whose paths supply each finding's one-line source
+  --plan     review/plan.json       the inventory (diff, files, size) and the card index; a
+                                    card's path names the provenance map beside its cards
+                                    directory, whose line for the rule_id supplies the
+                                    finding's one-line source (cardlib.source_pointer)
   --out      <path>                 the review report; the rejection report lands next to
                                     it with a `-rejections` suffix
   --title    <text>                 the report title (ticket id or branch)
@@ -19,23 +21,27 @@ for the author). A rejected or downgraded finding goes to the rejection report;
 a downgraded finding also stays in the review report at its new severity when
 that severity is still reported.
 """
+import functools
 import json
 import os
-import re
 import sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from cardlib import provenance_map_path, read_provenance, source_pointer  # noqa: E402
 
 SEV_ORDER = {"critical": 0, "major": 1, "minor": 2, "suggestion": 3}
 
 
-def source_line(card_path):
-    """The first line of a card's ## Source block, as the one-line source pointer."""
-    try:
-        with open(card_path, encoding="utf-8") as handle:
-            text = handle.read()
-    except OSError:
-        return ""
-    m = re.search(r"^## Source\n+(.+?)$", text, re.M)
-    return m.group(1).strip() if m else ""
+@functools.lru_cache(maxsize=None)
+def provenance_lines(map_path):
+    return read_provenance(map_path)
+
+
+def source_line(card_path, rule_id):
+    """The one-line source pointer of a card: the first citation of its provenance line, looked up by
+    rule_id in the map beside the card's directory; empty when the map holds no line for it."""
+    line = provenance_lines(provenance_map_path(os.path.dirname(os.path.abspath(card_path)))).get(rule_id, "")
+    return source_pointer(line)
 
 
 def final_severity(f):
@@ -196,7 +202,8 @@ def title_of(f, cards, plan=None):
 
 def rule_line(f, cards):
     if f["rule_id"] in cards:
-        return f"`{f['rule_id']}` — {source_line(cards[f['rule_id']]['path'])}"
+        pointer = source_line(cards[f["rule_id"]]["path"], f["rule_id"])
+        return f"`{f['rule_id']}` — {pointer}" if pointer else f"`{f['rule_id']}`"
     if f["rule_id"] == "LOGIC":
         return "`LOGIC` — logic and correctness pass (no card)"
     return f"`{f['rule_id']}` — project invariant from config.md"

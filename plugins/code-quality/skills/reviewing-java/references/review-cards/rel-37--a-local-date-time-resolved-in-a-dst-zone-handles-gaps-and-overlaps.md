@@ -32,6 +32,3 @@ On the triggered hunk find each `ZonedDateTime.of(LocalDateTime, ZoneId)` and ea
 
 ## Finding output
 When the validator answers yes, the finder emits one finding (`rule_id: REL-37`, severity minor, `file`, `symbol`, `code` = the conversion quoted verbatim from the diff, `fix` = `ofStrict` with an offset from `ZoneRules.getValidOffsets`, or a comment stating the accepted adjustment, `rationale` naming the gap or overlap day).
-
-## Source
-`java.time.ZonedDateTime#of(LocalDateTime, ZoneId)` Javadoc, Java SE 21 — "Time-zone rules, such as daylight savings, mean that not every local date-time is valid for the specified zone, thus the local date-time may be adjusted ... In the case of an overlap, when clocks are set back, there are two valid offsets. This method uses the earlier offset typically corresponding to 'summer'. In the case of a gap, when clocks jump forward, there is no valid offset. Instead, the local date-time is adjusted to be later by the length of the gap"; `#ofStrict(LocalDateTime, ZoneOffset, ZoneId)` — "If the offset is invalid, an exception is thrown".
