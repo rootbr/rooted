@@ -16,7 +16,7 @@ Dispatcher for seven complementary critique methods plus an adjudicator, an adve
 3. **Retrieval grounding** — factual and source claims are checked against fresh external retrieval, not the report's restatements.
 4. **No conclusion leak** — the agent tests the report's claims and is never told which answer is hoped for.
 
-Theory and primary sources for all methods: [references/appraisal-methodology.md](references/appraisal-methodology.md). Finding shape and ranking: [references/finding-schema.md](references/finding-schema.md). On-disk layout and restart: [references/checkpointing-protocol.md](references/checkpointing-protocol.md). Eval and quality gate: [references/validation-protocol.md](references/validation-protocol.md).
+Theory and primary sources for all methods: [references/appraisal-methodology.md](references/appraisal-methodology.md). Finding shape and ranking: [references/finding-schema.md](references/finding-schema.md). On-disk layout and restart: [references/checkpointing-protocol.md](references/checkpointing-protocol.md). Evaluation, iteration and the gate before a commit, for a maintainer: `maintenance/README.md`.
 
 ## Inputs
 

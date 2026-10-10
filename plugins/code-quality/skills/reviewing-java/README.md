@@ -28,7 +28,7 @@ Six phases — **Scope** → **Context** → **Pre-pass** → **Workflow** → *
 | `MNT-` | maintainability: function shape, naming, complexity, SOLID, API design, testability, logging, DI | same |
 | `META-` | the quality of your own `config.md` invariants | `config.md` changed in the diff, or `--meta` |
 
-Each card is one checkable claim with a Thesis, a Rationale, a Java `bad:`/`good:` pair, its Limits (when the pattern is correct), a Validator ending in one binary question, and what the finder emits; it carries no citation. Its sources — a JDK 21 Javadoc entry, a JLS section, a JEP, a Spring or Hibernate reference section, an OWASP cheat sheet, a CWE, a SEI CERT rule, an RFC, a paper, or a jcstress sample — live on its line in `references/review-cards-provenance.md`, with the fetch status, every quoted statement, the origin section in the checklist the card came from and any formulation it follows; a finding's one-line source pointer in the review report comes from that line. A rule with no openable source waits in `references/pending-evidence.md` and ships nowhere. The corpus schema is `references/review-cards-taxonomy.md`; `scripts/validate-review-cards.py` checks every card against it.
+Each card is one checkable claim with a Thesis, a Rationale, a Java `bad:`/`good:` pair, its Limits (when the pattern is correct), a Validator ending in one binary question, and what the finder emits; it carries no citation. Its sources — a JDK 21 Javadoc entry, a JLS section, a JEP, a Spring or Hibernate reference section, an OWASP cheat sheet, a CWE, a SEI CERT rule, an RFC, a paper, or a jcstress sample — live on its line in `maintenance/review-cards-provenance.md`, with the fetch status, every quoted statement, the origin section in the checklist the card came from and any formulation it follows; a finding's one-line source pointer in the review report comes from that line. A rule with no openable source waits in `maintenance/pending-evidence.md` and ships nowhere. The corpus schema is `maintenance/review-cards-taxonomy.md`; `maintenance/scripts/validate-review-cards.py` checks every card against it.
 
 ## Quickstart
 
@@ -89,6 +89,30 @@ modules: [{"name": "core", "packages": ["com.acme.core"]}, {"name": "web", "pack
 - **Tolerances** reject findings: a skeptic that finds "lost increments are accepted" on the flagged counter rejects the race finding with that sentence as evidence. Write them in the vocabulary of the cards' Limits — "approximate counter", "confined to one thread", "debug-only path", "duplicate load accepted".
 - **Invariants** become project cards `PROJ-N`: the bold title, the rule, and the sentence after `Violation:` as the forbidden state; a number in the item (`~50 M invocations/day`) becomes the scale the finder multiplies by. Number them, make them checkable against code, and state the consequence.
 - **`modules`** names the module boundaries the pre-pass slices by; without it, slicing follows package prefixes.
-- **`cards/`** holds full cards in the corpus schema (`references/review-cards-taxonomy.md`); they run like shipped cards.
+- **`cards/`** holds full cards in the corpus schema (`maintenance/review-cards-taxonomy.md`); they run like shipped cards.
 
-See [Java Invariants Review Checklist](references/java-invariants-review-checklist.md) for discovering, documenting and verifying invariants, and `references/gotchas.md` when a review misfires.
+See [Java Invariants Review Checklist](maintenance/java-invariants-review-checklist.md) for discovering, documenting and verifying invariants, `references/gotchas.md` when a review misfires, and `maintenance/README.md` before changing a card, a script, a prompt or a tier.
+
+## Layout
+
+This skill's instance of the repository `README.md` §Skill layout:
+
+| Path | Who reads or runs it | When |
+|--|--|--|
+| `SKILL.md` | the orchestrating session | on `/reviewing-java`, whole |
+| `references/review-cards/` | the pre-pass (frontmatter), each finder (its one card) | every review |
+| `references/gotchas.md` | the orchestrating session | when a review misfires |
+| `references/report-format.md` | the orchestrating session | writing or checking the two reports |
+| `scripts/static-review.py` | the orchestrating session | the pre-pass of every review |
+| `scripts/bundle-run.py` | the orchestrating session | before the workflow call |
+| `scripts/review-workflow.js` | the Workflow tool, as `review/run.js` | every review |
+| `scripts/render-reports.py` | the orchestrating session | after the verify stage |
+| `scripts/cardlib.py` | imported by the scripts above and by the validator | with them |
+| `maintenance/README.md` | a maintainer | before changing a card, a script, a prompt or a tier |
+| `maintenance/review-cards-provenance.md` | a maintainer; `scripts/render-reports.py` through `cardlib.provenance_map_path` | authoring a card; a finding's source pointer in the report |
+| `maintenance/review-cards-taxonomy.md` | a maintainer, the validator | authoring a card or a facet value |
+| `maintenance/pending-evidence.md` | a maintainer | authoring |
+| `maintenance/java-invariants-review-checklist.md` | a maintainer, a project writing its invariants | writing `config.md` invariants |
+| `maintenance/scripts/validate-review-cards.py` | a maintainer | before committing a card |
+| `maintenance/tests/` | a maintainer | after any script change |
+| `evals/` | a maintainer | a model or tier change, the fixture grading |

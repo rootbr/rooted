@@ -26,3 +26,5 @@ A trade book is not a source class. When a rule's wording comes from a practitio
 ## Quality Gate
 
 MUST run `/auditing-ai-context` on every SKILL.md or agent prompt change before committing.
+
+`python3 check-skill-layout.py` passes before a commit that touches `plugins/`.

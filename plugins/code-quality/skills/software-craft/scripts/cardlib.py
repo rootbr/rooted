@@ -1,9 +1,8 @@
 """Shared parsing for the craft-card corpus: frontmatter, the facet lists, the trigger list, the
 body blocks and the provenance map.
 
-Imported by static-craft.py (the pre-pass), craft-cards.py (the developer's card index)
-and validate-craft-cards.py (the validator) so the three read a card the same way; the
-report renderer and check-python-cards.py read the provenance map through it. A card
+Every script that reads a card or a provenance map imports it, so each reads a card the same
+way and finds a map at the one address provenance_map_path computes. A card
 belongs to the universal corpus, whose id prefix names its domain, or to a language corpus,
 whose id prefix names its language and whose cards take any craft domain.
 Standard library only.
@@ -32,11 +31,12 @@ FRONTMATTER = re.compile(r"---\n(.*?)\n---\n", re.S)
 SIGNAL_PREFIX = "signal:"
 
 # The body of a card: these H2 blocks in this order and no other H2. A card carries no citation; its
-# sources live on its provenance line, found by rule_id in the provenance map beside its cards directory.
+# sources live on its provenance line, found by rule_id in its corpus's provenance map (provenance_map_path).
 BLOCKS = ["Thesis", "Rationale", "Example", "Limits", "Validator", "Finding output"]
 SOURCE_BLOCK_ERROR = ("a `## Source` block is present; a card carries no citation — its sources live on its "
                       "provenance line, keyed by rule_id")
 PROVENANCE_SUFFIX = "-provenance.md"
+MAINTAINER_DIR = "maintenance"
 PROVENANCE_LINE = re.compile(r"^- \*\*([A-Z]+-\d+)\*\* · ")
 # A quoted span: straight or curly double quotes, or straight single quotes around 26 characters or more
 # that open and close outside a word, so an apostrophe never delimits one.
@@ -92,8 +92,12 @@ def split_outside(text, separator, spans):
 
 
 def provenance_map_path(cards_dir):
-    """The provenance map beside a cards directory: references/craft-cards → references/craft-cards-provenance.md."""
-    return os.path.normpath(cards_dir) + PROVENANCE_SUFFIX
+    """The provenance map of a cards directory `<skill>/references/<name>`: `<name>-provenance.md` in the
+    skill's MAINTAINER_DIR, the skill being two directories above the cards directory. The one place
+    that knows the address."""
+    cards_dir = os.path.normpath(cards_dir)
+    skill = os.path.dirname(os.path.dirname(cards_dir))
+    return os.path.join(skill, MAINTAINER_DIR, os.path.basename(cards_dir) + PROVENANCE_SUFFIX)
 
 
 def read_provenance(map_path):

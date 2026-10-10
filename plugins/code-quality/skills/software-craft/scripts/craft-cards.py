@@ -9,8 +9,8 @@ Each --cards-dir adds a directory to the listing, so one call lists the universa
 language corpus together; without one the universal corpus is listed. Filters combine with
 AND; a card matches --step when its step list holds the value, --applies-to when its list
 holds the value or `universal`. With no filter every card is listed. The developer scans the titles and opens the cards whose titles apply.
---provenance prints each named id's line from the provenance map beside each --cards-dir
-(references/craft-cards → references/craft-cards-provenance.md): a card carries no citation, and
+--provenance prints each named id's line from the provenance map of each --cards-dir
+(cardlib.provenance_map_path): a card carries no citation, and
 the line holds its sources — citations, quoted statements, fetch status, formulation, reception,
 notes. It takes no filter; an id no map holds is named on stderr and the exit status is 1.
 Reads only the cards and the provenance maps; writes nothing; no network; stdlib only.
@@ -27,7 +27,7 @@ DEFAULT_CARDS = os.path.normpath(os.path.join(HERE, "..", "references", "craft-c
 
 
 def print_provenance(rule_ids, cards_dirs):
-    """Print each id's provenance line from the maps beside the cards directories; return the exit status."""
+    """Print each id's provenance line from the provenance maps of the cards directories; return the exit status."""
     lines = {}
     for cards_dir in cards_dirs:
         for rule_id, line in read_provenance(provenance_map_path(cards_dir)).items():

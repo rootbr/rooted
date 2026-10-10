@@ -114,7 +114,7 @@ A card the loader or grep cannot find does not exist.
 | **C-A1** | `title` is one complete declarative thesis; never a question or a bare topic. | The index scan shows only the title; the agent decides from it whether to read the body (proposition-level retrieval — Dense X Retrieval). |
 | **C-A2** | The `slug` matches the title's thesis; if you rewrite the thesis, realign the title or the slug. | The slug is the stable key in every `links:`; drift breaks navigation. |
 | **C-A3** | Fill every facet from the store's taxonomy; where cards are foldered by plane-1, the folder must equal a plane-1 value. | Facets are the retrieval index — a wrong facet makes the card invisible to the consumer. |
-| **C-A4** | `defines`/`uses` carry the exact terms an agent will grep, in the **consumer's** vocabulary, not only the source's — and `uses`/`tags` carry, beside the canonical terms, the **symptom vocabulary**: 2–5 terms a practitioner greps *before knowing the canonical term* (`<symptom phrase>`, `<lay paraphrase>` beside `<canonical term>` — e.g. `high blood pressure` beside `hypertension`). Symptom terms must be the common words of the symptom, defensible without sight of any evaluation set — never echoes of specific queries, which is overfitting to a benchmark, not retrievability. | Grep is blind to source-only vocabulary; such a card is unreachable. The consumer needs a card most exactly when it does not yet know the card's term: in an internal, unpublished retrieval eval over symptom-phrased queries every miss was this gap — the card indexed in the author's terms, the query phrased in the situation's words — and adding symptom terms to 24 cards lifted recall@5 from 0.63 to 0.80. |
+| **C-A4** | `defines`/`uses` carry the exact terms an agent will grep, in the **consumer's** vocabulary, not only the source's — and `uses`/`tags` carry, beside the canonical terms, the **symptom vocabulary**: 2–5 terms a practitioner greps *before knowing the canonical term* (`<symptom phrase>`, `<lay paraphrase>` beside `<canonical term>` — e.g. `high blood pressure` beside `hypertension`). Symptom terms must be the common words of the symptom, defensible without sight of any evaluation set — never echoes of specific queries, which is overfitting to a benchmark, not retrievability. | Grep is blind to source-only vocabulary; such a card is unreachable. The consumer needs a card most exactly when it does not yet know the card's term: in a retrieval eval over symptom-phrased queries every miss was this gap — the card indexed in the author's terms, the query phrased in the situation's words — and adding symptom terms to 24 cards lifted recall@5 from 0.63 to 0.80. |
 | **C-A5** | Frontmatter contains consumer fields only; provenance and dates go to the provenance map. | Smallest set of high-signal tokens; service fields confuse retrieval and application. |
 
 Title contrast (C-A1):
@@ -173,9 +173,9 @@ accepted: Split any meeting longer than 90 minutes into two sessions with separa
 
 Two independent sources converge on the same unit of knowledge for an LLM consumer, and a third names the wording the rule follows:
 
-1. **Dense X Retrieval** (Chen et al., EMNLP 2024) — *evidence*. The best indexing unit is the *proposition*: "atomic expressions within text, each encapsulating a distinct factoid and presented in a concise, self-contained natural language format". Proposition-level indexing beats passage-level retrieval (up to +9–12 points Recall@5 with retrievers not tuned to the corpus) and improves downstream QA under a fixed token budget — and an agent assembling its working context operates exactly in that fixed-budget, untuned regime. An ideal card is a proposition.
-2. **Anthropic** (*Effective context engineering for AI agents*) — *evidence*. Context engineering means finding "the smallest possible set of high-signal tokens that maximize the likelihood of some desired outcome", written at the right altitude — the Goldilocks zone between brittle hardcoded logic and vague guidance — and "minimal does not necessarily mean short".
-3. **Zettelkasten** (zettelkasten.de, "Atomicity"; Matuschak, "Evergreen notes should be atomic") — **the formulation this rule follows, never its evidence.** A permanent note holds "one idea and one idea only", written in full sentences, in your own words, as if for someone else. A note that needs "as mentioned above" to be understood is an essay fragment, not a note. Atomic does not mean small: notes should be "only about one thing — but which, as much as possible, capture the entirety of that thing". Both pages call this a convention — "not a rigid law, but a guiding compass", with "no clear litmus test" — so the rule rests on the measurement in item 1 and takes only its wording here.
+1. **Dense X Retrieval** (Chen et al., EMNLP 2024) — evidence. The best indexing unit is the *proposition*: "atomic expressions within text, each encapsulating a distinct factoid and presented in a concise, self-contained natural language format". Proposition-level indexing beats passage-level retrieval (up to +9–12 points Recall@5 with retrievers not tuned to the corpus) and improves downstream QA under a fixed token budget — and an agent assembling its working context operates exactly in that fixed-budget, untuned regime. An ideal card is a proposition.
+2. **Anthropic** (*Effective context engineering for AI agents*) — evidence. Context engineering means finding "the smallest possible set of high-signal tokens that maximize the likelihood of some desired outcome", written at the right altitude — the Goldilocks zone between brittle hardcoded logic and vague guidance — and "minimal does not necessarily mean short".
+3. **Zettelkasten** (zettelkasten.de, "Atomicity"; Matuschak, "Evergreen notes should be atomic") — **the formulation C-B1 follows, never its evidence.** A permanent note holds "one idea and one idea only", written in full sentences, in your own words, as if for someone else. A note that needs "as mentioned above" to be understood is an essay fragment, not a note. Atomic does not mean small: notes should be "only about one thing — but which, as much as possible, capture the entirety of that thing" (Matuschak). Both pages call this a convention — "not a rigid law, but a guiding compass", with "no clear litmus test" — so the rule rests on the measurement in item 1 and takes only its wording here.
 
 Consequences for any KB pipeline:
 
@@ -222,6 +222,8 @@ Everything else in this specification is uniform across all stores.
 
 ## Sources
 
+Evidence:
+
 - Anthropic. *Contextual Retrieval* (2024). anthropic.com/news/contextual-retrieval
 - Anthropic. *Effective context engineering for AI agents* (2025). anthropic.com/engineering/effective-context-engineering-for-ai-agents
 - Anthropic. *Skill authoring best practices*. platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices
@@ -229,7 +231,7 @@ Everything else in this specification is uniform across all stores.
 - Maynez, J., et al. "On Faithfulness and Factuality in Abstractive Summarization." *ACL 2020*. arXiv:2005.00661
 - Zhang, Q., et al. "Agentic Context Engineering: Evolving Contexts for Self-Improving Language Models" (ACE). arXiv:2510.04618
 
-Formulation a rule follows — never a rule's evidence. The atomicity rule rests on Dense X Retrieval, which measures proposition-level indexing; these supply how the rule is worded, and each calls it a convention:
+Formulation a rule follows — never a rule's evidence. C-B1 rests on Dense X Retrieval, which measures proposition-level indexing; these supply how the rule is worded, and each calls it a convention:
 
 - zettelkasten.de. "Atomicity." zettelkasten.de/atomicity/guide/ — "not a rigid law, but a guiding compass"
 - Matuschak, A. "Evergreen notes should be atomic." notes.andymatuschak.org/Evergreen_notes_should_be_atomic — "no clear litmus test"

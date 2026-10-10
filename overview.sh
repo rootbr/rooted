@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Print structured overview of plugins, skills, agents, and references.
+# Print structured overview of plugins, skills, agents, references and maintainer files.
 set -euo pipefail
 cd "$(dirname "$0")"
 
@@ -77,17 +77,33 @@ for plugin_json in plugins/*/.claude-plugin/plugin.json; do
     # References: a card corpus (a directory of one-rule cards under references/)
     # prints as one line with its count; every other reference file is listed.
     refs=()
-    for card_dir in "$skill_dir"/references/*-cards; do
+    for card_dir in "$skill_dir"/references/*-cards*; do
       [ -d "$card_dir" ] || continue
       n="$(find "$card_dir" -maxdepth 1 -name '*.md' | wc -l | tr -d ' ')"
       refs+=("$(echo "$card_dir" | sed "s|${skill_dir}/||")/ (${n} cards)")
     done
     while IFS= read -r -d '' f; do
-      case "$f" in */references/*-cards/*) continue ;; esac
+      case "$f" in */references/*-cards*/*) continue ;; esac
       refs+=("$(echo "$f" | sed "s|${skill_dir}/||")")
-    done < <(find "$skill_dir" -path '*/references/*.md' -print0 2>/dev/null)
+    done < <(find "$skill_dir" -path '*/references/*.md' -not -path "$skill_dir/maintenance/*" -print0 2>/dev/null)
     if [ ${#refs[@]} -gt 0 ]; then
       echo "    References: $(IFS=','; echo "${refs[*]}" | sed 's/,/, /g')"
+    fi
+
+    # Maintenance: the maintainer set under maintenance/ — a file by name, a directory by its file count.
+    maint=()
+    for entry in "$skill_dir"/maintenance/*; do
+      [ -e "$entry" ] || continue
+      if [ -d "$entry" ]; then
+        n="$(find "$entry" -type f -not -path '*/__pycache__/*' -not -name '.*' | wc -l | tr -d ' ')"
+        if [ "$n" = 1 ]; then noun=file; else noun=files; fi
+        maint+=("$(basename "$entry")/ (${n} ${noun})")
+      else
+        maint+=("$(basename "$entry")")
+      fi
+    done
+    if [ ${#maint[@]} -gt 0 ]; then
+      echo "    Maintenance: $(IFS=','; echo "${maint[*]}" | sed 's/,/, /g')"
     fi
   done
   echo

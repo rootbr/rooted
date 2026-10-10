@@ -77,7 +77,7 @@ The workflow runs in the background and returns when done; the runtime caps a ru
 
 **Fallback — manual parallel dispatch.** When Workflow is unavailable (older Claude Code, off-by-default on Pro, or org-disabled), glob `references/rule-cards/*.md`, read each card's frontmatter, and for every card whose `applies_to_target` includes the target's `target_type` spawn a sub-agent in one message (parallel tool calls). Each reads the target path, the inventory path, and its one card; tools `Read`, `Grep`, `Glob` — read-only, no `Write`/`Edit`/`Bash` (prefer the declarative `evidence-based-authoring:audit-subagent` type — the Task tool, unlike the workflow runtime, enforces its `tools:` allowlist; R-83 in G8). The main agent then runs Phase 2 by hand.
 
-The rule groups G1–G11 survive only as the `rule_id` prefix and the conflict-priority tier (Phase 2a). The per-rule source, origin, and ownership live in `references/rule-cards-provenance.md`; the card schema and controlled vocabulary in `references/rule-cards-taxonomy.md` — both out-of-runtime.
+The rule groups G1–G11 survive only as the `rule_id` prefix and the conflict-priority tier (Phase 2a). The per-rule source, origin and ownership, and the card schema with its controlled vocabulary, are maintainer files that §Maintenance points to; a run reads neither.
 
 Sub-agent prompt template — the workflow script encodes this in its `prompt()` function; the fallback path issues it verbatim:
 
@@ -277,16 +277,7 @@ Self-authoring regresses on average — see G-05 for the numbers, citations, and
 
 ## Maintenance
 
-- Add to an existing section if conceptually fits; new section only when no match (verified on this repo's own context files; the dated record lives in the research log).
-- Merge exact duplicates immediately (exact only — never bulk-paraphrase, per ACE).
-- After codebase changes: grep context files for references to renamed/removed entities (R-73).
-- Pin model version in evals; re-run on every model upgrade (Yang §3.3: minor model bump silently dropped one rule's compliance by 48%). On upgrade, first try *removing* scaffolding and prescriptive language — skills authored for prior models are often too prescriptive for newer tiers (G-25).
-- When iterating a skill against eval results, apply bounded add/delete/replace edits and accept each only if a held-out validation set improves; keep rejected edits as negative feedback (SkillOpt 2605.23904 §3.4–3.5).
-- On every body edit that changes scope (new tool, new file access, new external call), update description in the same commit (R-77).
-- A rule is one card in `references/rule-cards/`; adding or removing one means adding/removing its card plus its `references/rule-cards-provenance.md` line (and a `references/rule-cards-taxonomy.md` value if a facet is new). When the ownership map, patch format, or sub-agent prompt changes, update `scripts/audit-workflow.js` (its `DEFER_TO`, `GROUP_PRIORITY`, `PATCH_SCHEMA`, `prompt()`) and `../../agents/audit-subagent.md` / `../../agents/audit-indexer.md` in the same commit — the script encodes this skill's contract. A mechanical validator changed on a card covered by the static pre-pass means the same change in `scripts/static-audit.py`.
-- A new `rule_id` prefix earns a `groupOf()` branch and a `GROUP_PRIORITY` tier in the same commit as its first card; the function throws on an unmapped prefix rather than letting it inherit safety priority and win every conflict it enters. A new target type earns a `TARGET_TYPES` entry in both scripts and a check set in `scripts/static-audit.py`. Widening a card's `applies_to_target` means re-reading the Phase 1 dispatch bullets, which paraphrase the facets and go stale silently.
-- Anchor tokens in runtime files (`R-xx`, `G-xx`, `claude-code#NNNNN`, `house convention`) stay one-token — `references/maintenance-map.md` decodes them for reviewers and keeps the living dossiers of volatile dependencies with their flip sites.
-- Capture developer knowledge not found in docs or source code — context files measurably help only as the sole source: with repo docs removed they flip from net-negative to +2.7% (Gloaguen App. B).
+`maintenance/README.md` holds the rules for changing this skill — its cards, scripts, sub-agent prompts, evals and anchor tokens — and its maintainer files.
 
 ## Gotchas
 

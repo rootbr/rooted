@@ -14,7 +14,6 @@ Quick rules:
 - Read-only on the repository: the scripts write only under `review/` and the finders and skeptics read; a tree that changed during the run is a compromised review, so the integrity check in Follow-ups is mandatory.
 - No stage runs on Fable — the tier check refuses a model naming it at launch; the tiers are the models and efforts in the Phase 4 tier table.
 - The plan is never retyped: `scripts/bundle-run.py` embeds it, and the Workflow call names `review/run.js`.
-- Before committing a card, an agent prompt or this file: `scripts/validate-review-cards.py` on the corpus, then the audit (repository Quality Gate).
 
 Phases: Scope → Context → Pre-pass → Workflow → Follow-ups → Report.
 
@@ -161,7 +160,7 @@ The finder prompt names the card path, the slice files and hunks, the card's sco
 
 Enforcement caveat: the workflow runtime grants `Write`/`Edit` to sub-agents regardless of their `tools:` allowlist (claude-code#63762), so inside a run each prompt's read-only prohibition is the operative barrier: every finder and skeptic is told to read, grep and run read-only git only, to write nothing, and to execute no code from the diff; the integrity check in Phase 5 is mandatory. The two agent types are declared by this plugin and resolve only where it is installed, as `code-quality:review-finder` and `code-quality:review-verifier`; in a repository checkout, omit `agentTypes`.
 
-Script declarations: `scripts/review-workflow.js` orchestrates only — it reads its arguments, writes no files, and its sole privilege is spawning sub-agents; zero external dependencies. `scripts/static-review.py` reads the repository and the cards and writes the two plan files. `scripts/bundle-run.py` reads the plan, the intent and the context and writes `review/run.js`. `scripts/validate-review-cards.py` reads the cards and the two maps and writes nothing; `scripts/tests/` reads a fixture repository it builds under a temporary directory. Every script is standard library only, no network; a change to any of them re-runs `scripts/tests/` and the fixture grading, as `references/maintenance.md` states. `scripts/render-reports.py` reads `plan.json` and `verdicts.json` and writes the two reports.
+Script declarations: `scripts/review-workflow.js` orchestrates only — it reads its arguments, writes no files, and its sole privilege is spawning sub-agents; zero external dependencies. `scripts/static-review.py` reads the repository and the cards and writes the two plan files. `scripts/bundle-run.py` reads the plan, the intent and the context and writes `review/run.js`. `scripts/render-reports.py` reads `plan.json`, `verdicts.json` and the provenance map (`cardlib.provenance_map_path`) and writes the two reports. Every script is standard library only, no network.
 
 Fallback, manual dispatch (degraded). When the Workflow tool is unavailable, dispatch one Agent-tool sub-agent per triggered domain — `plan.jobs` grouped by `card.domain` — with `Read, Grep, Glob, Bash` as its tools (Bash for read-only git), giving each the paths of its cards, the slices from the plan, `design_intent`, `project_context` and the same `FINDINGS` schema, using the `code-quality:review-finder` type (the Agent tool enforces its allowlist and runs the model and effort its definition names; in a workflow run the tier overrides them). Then aggregate by hand per §Aggregation, and dispatch one `code-quality:review-verifier` sub-agent per finding with the skeptic prompt from the script. This path bundles a domain's cards into one agent, so it misses more than the primary path; name it as degraded in the report's Executive Summary.
 
@@ -190,7 +189,7 @@ Severity, the scale finders start from and skeptics calibrate against:
 | Minor | a performance cost, a clarity problem, missing error handling for an unlikely scenario |
 | Suggestion | style, documentation, naming |
 
-Every finding carries its `rule_id` (`CC-NN` concurrency, `SEC-NN` security, `PF-NN` performance, `REL-NN` reliability, `MNT-NN` maintainability, `META-NN` config audit, `PROJ-N` project invariant, `LOGIC` the logic pass), an ordinal (`CC-08.1`), and a one-line source pointer: the first citation of the card's line in `references/review-cards-provenance.md`, which `scripts/render-reports.py` looks up by `rule_id`.
+Every finding carries its `rule_id` (`CC-NN` concurrency, `SEC-NN` security, `PF-NN` performance, `REL-NN` reliability, `MNT-NN` maintainability, `META-NN` config audit, `PROJ-N` project invariant, `LOGIC` the logic pass), an ordinal (`CC-08.1`), and a one-line source pointer: the first citation of the card's line in its provenance map, which `scripts/render-reports.py` looks up by `rule_id`.
 
 ### The two documents
 
@@ -208,7 +207,7 @@ Deterministic; the definitions here are canonical and `scripts/review-workflow.j
 
 1. Drop exact duplicates — same `rule_id`, `file`, `symbol` and whitespace-normalized `code`.
 2. Group by span — (`file`, `symbol`, normalized `code`).
-3. Ownership — `DEFER_TO` maps a deferring `rule_id` to its owner(s); a finding drops when its owner also flagged the span. The pairs, found by the corpus reviewers where one concept is stated twice, are tabled in `references/maintenance.md` and encoded in `scripts/review-workflow.js`.
+3. Ownership — `DEFER_TO` maps a deferring `rule_id` to its owner(s); a finding drops when its owner also flagged the span. The pairs, found by the corpus reviewers where one concept is stated twice, are encoded in `scripts/review-workflow.js` (`DEFER_TO`).
 4. Fold compatible fixes — two fixes are compatible when their whitespace-normalized code is equal or one contains the other. Within a group, compatible findings collapse into the one with the highest domain priority, then the highest severity; the others' rule ids go to `also`, their problem and rationale to `folded`, and the kept finding takes the highest severity among them. A leak flagged as performance is carried by reliability; a lock-scope span flagged by concurrency and performance is carried by concurrency with the performance note folded in.
 5. Conflict — incompatible fixes on one span: `DOMAIN_PRIORITY` security (0) > concurrency = reliability = project = logic (1) > performance (2) > maintainability = meta (3); the highest wins, the losers' rule ids go to its `also` and their problem, rationale and fix to `superseded`; a tie at the top keeps both, marks them `conflict`, and lists them for the author.
 6. Sort by severity (critical, major, minor, suggestion), then file, then symbol; ids are `<rule_id>.<ordinal>` in that order.
@@ -219,7 +218,7 @@ The finder's dispatched card is authoritative for `rule_id`: a finding a finder 
 
 ## Maintenance
 
-Adding, removing or changing a card, a script, a prompt or a tier: `references/maintenance.md` names what changes together and what to re-run.
+`maintenance/README.md` names what changes together and what to re-run.
 
 ## Gotchas
 

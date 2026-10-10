@@ -26,7 +26,7 @@ Every card serves two readers. The developer retrieves cards before a step of it
 
 ## The card corpus
 
-`references/craft-cards/` holds one file per rule — `<prefix>-NN--<slug>.md` — 520 cards across eleven domains, with 173 further rules waiting in `references/pending-evidence.md` for an openable source. `references/craft-cards-python/` holds the Python language corpus beside it — 178 cards `PY-NN` across twelve topics, the rules that hold because of Python itself, with their own maps `references/craft-cards-python-provenance.md` and `references/pending-evidence-python.md` (5 rules waiting), researched through `scripts/python-topic-workflow.js` into the notes under `research/software-craft-python/` and recorded in `research/2026-10-15_software-craft-python-cards.md`; both consumers take the directory as a second `--cards-dir`, and the pre-pass dispatches a Python card only onto Python files:
+`references/craft-cards/` holds one file per rule — `<prefix>-NN--<slug>.md` — 520 cards across eleven domains, with 173 further rules waiting in `maintenance/pending-evidence.md` for an openable source. `references/craft-cards-python/` holds the Python language corpus beside it — 178 cards `PY-NN` across twelve topics, the rules that hold because of Python itself, with their own maps `maintenance/craft-cards-python-provenance.md` and `maintenance/pending-evidence-python.md` (5 rules waiting), researched through `maintenance/scripts/python-topic-workflow.js` into the notes under `research/software-craft-python/` and recorded in `research/2026-10-15_software-craft-python-cards.md`; both consumers take the directory as a second `--cards-dir`, and the pre-pass dispatches a Python card only onto Python files:
 
 | Prefix | Domain | Topics |
 |--|--|--|
@@ -41,7 +41,7 @@ Every card serves two readers. The developer retrieves cards before a step of it
 | `DOC-` | reading and documenting | reading code, code review as author and reviewer, documentation beyond comments |
 | `INP-` | input and security hygiene | parsing and grammar-based input, security hygiene in ordinary code |
 
-Each card is one checkable claim with a Thesis, a Rationale, a `bad:`/`good:` pair in one language, its Limits (when the pattern is correct — for a contested rule, the sourced condition that separates the cases), a Validator ending in one binary question, and what the finder emits; it carries no citation. Its sources — a paper by arXiv id or DOI, a standard or official documentation page by section, a static-analysis rule page, or a fixture test — live on its line in `references/craft-cards-provenance.md`, with the fetch status, every quoted statement, the topic's research note, the formulation the rule follows and the reception it met; `python3 scripts/craft-cards.py --provenance <RULE_ID>` prints that line (with `--cards-dir references/craft-cards-python` for a `PY-` id), and a finding's one-line source pointer in the review report comes from it. A rule with no openable evidence, or a contested rule with no separating condition, waits in `references/pending-evidence.md` and ships nowhere. The corpus schema is `references/craft-cards-taxonomy.md`; `scripts/validate-craft-cards.py` checks every card against it. Each topic was researched through `scripts/research-topic-workflow.js`, whose notes sit under `research/software-craft/` at the repository root; the design is `research/2026-09-26_software-craft-cards.md`.
+Each card is one checkable claim with a Thesis, a Rationale, a `bad:`/`good:` pair in one language, its Limits (when the pattern is correct — for a contested rule, the sourced condition that separates the cases), a Validator ending in one binary question, and what the finder emits; it carries no citation. Its sources — a paper by arXiv id or DOI, a standard or official documentation page by section, a static-analysis rule page, or a fixture test — live on its line in `maintenance/craft-cards-provenance.md`, with the fetch status, every quoted statement, the topic's research note, the formulation the rule follows and the reception it met; `python3 scripts/craft-cards.py --provenance <RULE_ID>` prints that line (with `--cards-dir references/craft-cards-python` for a `PY-` id), and a finding's one-line source pointer in the review report comes from it. A rule with no openable evidence, or a contested rule with no separating condition, waits in `maintenance/pending-evidence.md` and ships nowhere. The corpus schema is `maintenance/craft-cards-taxonomy.md`; `maintenance/scripts/validate-craft-cards.py` checks every card against it. Each topic was researched through `maintenance/scripts/research-topic-workflow.js`, whose notes sit under `research/software-craft/` at the repository root; the design is `research/2026-09-26_software-craft-cards.md`.
 
 ## Quickstart
 
@@ -104,6 +104,31 @@ modules: [{"name": "core", "paths": ["src/core"]}, {"name": "web", "paths": ["sr
 - **Tolerances** reject findings: a skeptic that finds "physical constants stay inline" on the flagged literal rejects the magic-number finding with that sentence as evidence. Write them in the vocabulary of the cards' Limits.
 - **Invariants** become project cards `PROJ-N`: the bold title, the rule, and the sentence after `Violation:` as the forbidden state; a number in the item becomes the scale the finder multiplies by. Number them, make them checkable against code, and state the consequence.
 - **`modules`** names the module boundaries the pre-pass slices by; without it, slicing follows directory prefixes, with test files sliced apart.
-- **`cards/`** holds full cards in the corpus schema (`references/craft-cards-taxonomy.md`); they run like shipped cards.
+- **`cards/`** holds full cards in the corpus schema (`maintenance/craft-cards-taxonomy.md`); they run like shipped cards.
 
-See `references/gotchas.md` when a run misfires and `references/maintenance.md` before changing a card, a script, a signal or a tier.
+See `references/gotchas.md` when a run misfires and `maintenance/README.md` before changing a card, a script, a signal or a tier.
+
+## Layout
+
+This skill's instance of the repository `README.md` §Skill layout:
+
+| Path | Who reads or runs it | When |
+|--|--|--|
+| `SKILL.md` | the orchestrating session | on `/software-craft`, whole |
+| `references/craft-cards/`, `references/craft-cards-python/` | the pre-pass (frontmatter), the developer agent (the cards whose titles apply), each finder (its one card) | every build and review |
+| `references/gotchas.md` | the orchestrating session | when a run misfires |
+| `references/report-format.md` | the orchestrating session | writing or checking the two reports |
+| `scripts/static-craft.py` | the orchestrating session, the developer agent | the pre-pass of a review, the developer's self-review |
+| `scripts/craft-cards.py` | the developer agent; a reader with `--provenance` | before each design and build step |
+| `scripts/bundle-run.py` | the orchestrating session | before each workflow call |
+| `scripts/craft-review-workflow.js` | the Workflow tool, as `craft/run.js` | every review |
+| `scripts/merge-parts.py` | the orchestrating session | a review run in parts |
+| `scripts/render-reports.py` | the orchestrating session | after the verify stage |
+| `scripts/cardlib.py` | imported by the scripts above and by the authoring scripts | with them |
+| `maintenance/README.md` | a maintainer | before changing a card, a script, a prompt, a signal or a tier |
+| `maintenance/craft-cards-provenance.md`, `maintenance/craft-cards-python-provenance.md` | a maintainer; `scripts/render-reports.py` and `scripts/craft-cards.py --provenance` through `cardlib.provenance_map_path` | authoring a card; a finding's source pointer in the report |
+| `maintenance/craft-cards-taxonomy.md` | a maintainer, the validator, the research agents | authoring a card or a facet value |
+| `maintenance/pending-evidence.md`, `maintenance/pending-evidence-python.md` | a maintainer, `maintenance/scripts/write-topic-result.py` | authoring |
+| `maintenance/scripts/` | a maintainer | researching a topic, harvesting the Python catalogs, validating the cards (`maintenance/README.md` §Scripts) |
+| `maintenance/tests/` | a maintainer | after any script change |
+| `evals/` | a maintainer | a model or tier change, the fixture grading, the smoke task |

@@ -31,4 +31,4 @@ On a `code` target read only the comment spans the static pre-pass extracts for 
 When a run of comment lines is disabled code, emit one patch (`rule_id: D-04`, `location.section` + `line_hint`, `current` = the exact commented-out block including any "kept just in case" preamble line, `proposed: ""`, severity medium) deleting it. The block's status is decidable from its syntax, so no `needs_human` flag in the clear case; set it only where a comment line is ambiguous between disabled code and an inline example.
 
 ## Source
-Verified hands-on experience — eval seed 5, `plugins/evidence-based-authoring/skills/auditing-ai-context/evals/seeds/seed5_dead_code.swift`: a commented-out render path kept "just in case" beside the live one, whose cleanup deletes the block and preserves the current call.
+Verified hands-on experience — eval seed 5, `seed5_dead_code.swift` of the audit skill's eval suite: a commented-out render path kept "just in case" beside the live one, whose cleanup deletes the block and preserves the current call.

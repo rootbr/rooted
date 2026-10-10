@@ -6,8 +6,8 @@ Inputs:
                                     finding carries `verdict` and, for a rejected Major,
                                     a `ruling`
   --plan     craft/plan.json        the inventory (diff, files, languages, size) and the
-                                    card index; a card's path names the provenance map beside
-                                    its cards directory, whose line for the rule_id supplies the
+                                    card index; a card's path names its cards directory, whose
+                                    provenance map (cardlib.provenance_map_path) holds the line that supplies the
                                     finding's one-line source (cardlib.source_pointer)
   --out      <path>                 the review report; the rejection report lands next to
                                     it with a `-rejections` suffix

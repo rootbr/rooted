@@ -39,6 +39,15 @@ Five evidence-based skills. Three form a preparation pipeline — research → e
 | `/software-craft` | Build-and-review from a corpus of language-agnostic craft cards across eleven domains (code, design, interfaces, errors, tests, change, performance, tooling, documentation, input, architecture), each resting on an openable source: a developer agent designs the change into a brief and builds by the cards, a deterministic pre-pass matches cards to the diff, one workflow runs a finder per triggered card and a skeptic per finding, and a fix round closes the loop; a Python language corpus adds the rules that hold because of Python itself, dispatched only onto Python files. [Details](plugins/code-quality/skills/software-craft/README.md) |
 | `/committing-changes` | Review changes and create atomic commits following Conventional Commits |
 
+## Skill layout
+
+Every skill directory keeps what a run loads or executes apart from what only a maintainer reads.
+
+- **Run set** — `SKILL.md`, `references/`, `scripts/`, `agents/` and `assets/`, plus the plugin's own `agents/`. `SKILL.md` enters the conversation when the skill is invoked; a reference is read when an instruction names it; a script runs when a phase calls it.
+- **Maintainer set** — `maintenance/`: the provenance maps, taxonomies and pending-evidence files of the card corpora, the authoring scripts, the unit tests and the maintainer guide `maintenance/README.md`; `evals/`: the eval definitions, fixtures and graded runs.
+
+No run-set file names a path under `maintenance/` or `evals/`, apart from one line of `SKILL.md` that points to `maintenance/README.md`; the provenance map behind a finding's source pointer is resolved by `cardlib.provenance_map_path` alone. A plugin install copies the whole plugin directory, so both sets ship. [`check-skill-layout.py`](check-skill-layout.py) enforces the layout (`--table` prints it per skill), and each skill's `README.md` §Layout maps its own files.
+
 ## Installation
 
 Add the marketplace:
@@ -153,7 +162,7 @@ Sources behind the `S-` and `D-` rule cards — what an agent writes, as opposed
 
 ### Java review sources
 
-Sources behind the `/reviewing-java` rule cards — the papers first, then the standards. A card carries no citation: its sources live on its line in [`review-cards-provenance.md`](plugins/code-quality/skills/reviewing-java/references/review-cards-provenance.md), found by `rule_id`, with the full citation, every quoted statement and the origin of the rule. Javadoc, JEP and JLS citations were verified against the OpenJDK sources at tag `jdk-21-ga`; a citation the authoring environment could not open is marked as such in the provenance map and stands to be re-verified.
+Sources behind the `/reviewing-java` rule cards — the papers first, then the standards. A card carries no citation: its sources live on its line in [`review-cards-provenance.md`](plugins/code-quality/skills/reviewing-java/maintenance/review-cards-provenance.md), found by `rule_id`, with the full citation, every quoted statement and the origin of the rule. Javadoc, JEP and JLS citations were verified against the OpenJDK sources at tag `jdk-21-ga`; a citation the authoring environment could not open is marked as such in the provenance map and stands to be re-verified.
 
 67. McCabe (1976). *A Complexity Measure.* [doi:10.1109/TSE.1976.233837](https://doi.org/10.1109/TSE.1976.233837) — Cyclomatic complexity and its upper bound of 10 per method (`MNT-06`).
 68. Lieberherr & Holland (1989). *Assuring Good Style for Object-Oriented Programs.* [doi:10.1109/52.35588](https://doi.org/10.1109/52.35588) — The Law of Demeter behind the accessor-chain rule (`MNT-40`).
@@ -176,7 +185,7 @@ Standards the cards cite by section: RFC 1122, RFC 1918, RFC 4086, RFC 6585, RFC
 
 ### Software craft sources
 
-Sources behind the `/software-craft` craft cards. Every card rests on an openable source — a paper by DOI or arXiv id, a standard or official documentation by section, a static-analysis rule page, or a hands-on check recorded with the card — and carries no citation itself: the full citation, its fetch status, every quoted statement and the formulation each rule follows (a practitioner text is named there only, never in a card) live on the card's line in [`craft-cards-provenance.md`](plugins/code-quality/skills/software-craft/references/craft-cards-provenance.md), found by `rule_id` (`scripts/craft-cards.py --provenance <RULE_ID>` prints it), and the research behind each topic, with its candidate rules, verdicts and the rules held back for want of an openable source, in the notes under [`research/software-craft/`](research/software-craft/). Rules whose only anchor is a trade book or a talk are not cards; they wait in [`pending-evidence.md`](plugins/code-quality/skills/software-craft/references/pending-evidence.md) with the source class they need.
+Sources behind the `/software-craft` craft cards. Every card rests on an openable source — a paper by DOI or arXiv id, a standard or official documentation by section, a static-analysis rule page, or a hands-on check recorded with the card — and carries no citation itself: the full citation, its fetch status, every quoted statement and the formulation each rule follows (a practitioner text is named there only, never in a card) live on the card's line in [`craft-cards-provenance.md`](plugins/code-quality/skills/software-craft/maintenance/craft-cards-provenance.md), found by `rule_id` (`scripts/craft-cards.py --provenance <RULE_ID>` prints it), and the research behind each topic, with its candidate rules, verdicts and the rules held back for want of an openable source, in the notes under [`research/software-craft/`](research/software-craft/). Rules whose only anchor is a trade book or a talk are not cards; they wait in [`pending-evidence.md`](plugins/code-quality/skills/software-craft/maintenance/pending-evidence.md) with the source class they need.
 
 ## License
 
