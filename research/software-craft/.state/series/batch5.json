@@ -133,7 +133,7 @@
      "task": "wgw7wkbpe",
      "wf": "wf_93d872ea-edf",
      "launched": "2026-10-10T05:13 UTC",
-     "status": "running",
+     "status": "done 2026-10-10T05:52 UTC: 12 agents, 1,372,405 sub-agent tokens, 7 cards in its output, 0 pending",
      "bundle": "cont/runtime-configuration/r2c/continue-runtime-configuration-round2-finish-1of1.js (research-continue.py --round 2 --resume-cut-short over the r1, r1-rest, r2-1of2 and r2-2of2 journals, --skip-carded both part outputs): 7 rules with their fix2 drafts, TOOL-01 with its recorded revise verdict; the missing third verdicts and the closing edits"
     },
     {
