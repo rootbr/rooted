@@ -117,7 +117,7 @@
      "task": "wmd0730cq",
      "wf": "wf_3dbaf4d8-ab0",
      "launched": "2026-10-09T22:36 UTC",
-     "status": "running",
+     "status": "cut by the usage limit about 2026-10-09T23:10 UTC (window reset 2026-10-10T01:10 UTC): 5 fix2 done, 3 verify3 done (TOOL-03 and TOOL-05 accepted, TOOL-01 revise), 2 verify3 and 1 closing edit failed; 2 cards in its output (11 agents, 1,019,560 sub-agent tokens)",
      "bundle": "cont/runtime-configuration/r2/continue-runtime-configuration-round2-1of2.js (research-continue.py --round 2 over the r1 and r1-rest journals, --split 2): deploy-varying-value-read-from-configuration, option-only-where-a-user-must-choose, debug-switch-off-by-default, configuration-error-names-setting-and-source, unapplied-setting-reported"
     },
     {
@@ -125,8 +125,24 @@
      "task": "wobswkms0",
      "wf": "wf_4c8d6d37-255",
      "launched": "2026-10-09T22:59 UTC",
-     "status": "running",
+     "status": "cut by the usage limit about 2026-10-09T23:10 UTC: 4 fix2 done, the fix2 of configuration-change-tested-with-code and 4 verify3 failed; 0 cards in its output (9 agents, 407,129 sub-agent tokens)",
      "bundle": "cont/runtime-configuration/r2/continue-runtime-configuration-round2-2of2.js: configuration-read-at-entry-point, secret-never-a-command-line-argument, option-constraints-documented, invalid-value-rejected-not-overruled, configuration-change-tested-with-code"
+    },
+    {
+     "part": "r2-finish",
+     "task": "wgw7wkbpe",
+     "wf": "wf_93d872ea-edf",
+     "launched": "2026-10-10T05:13 UTC",
+     "status": "running",
+     "bundle": "cont/runtime-configuration/r2c/continue-runtime-configuration-round2-finish-1of1.js (research-continue.py --round 2 --resume-cut-short over the r1, r1-rest, r2-1of2 and r2-2of2 journals, --skip-carded both part outputs): 7 rules with their fix2 drafts, TOOL-01 with its recorded revise verdict; the missing third verdicts and the closing edits"
+    },
+    {
+     "part": "r2-rest",
+     "task": "wyf2v8m6p",
+     "wf": "wf_1feb7b9d-aa2",
+     "launched": "2026-10-10T05:13 UTC",
+     "status": "running",
+     "bundle": "cont/runtime-configuration/r2c/continue-runtime-configuration-round2-1of1.js (research-continue.py --round 2 --skip-fixed --skip-carded): the one rule whose fix2 failed, configuration-change-tested-with-code"
     }
    ]
   }

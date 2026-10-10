@@ -1,6 +1,6 @@
 # Series status
 
-Snapshot taken 2026-10-09T23:01 UTC by `series/series-status.py --snapshot`. Journals under `journals/`, finished runs' outputs under `outputs/`.
+Snapshot taken 2026-10-10T05:13 UTC by `series/series-status.py --snapshot`. Journals under `journals/`, finished runs' outputs under `outputs/`.
 
 `done` counts the agents whose results the journal holds (cached for a continuation); `failed` the agents a usage-limit stop or an error ended, which a continuation re-runs. `cards` is the count in the run's own output; a run whose agents failed shipped none, and its cards come from the continuation. A continuation run (batch 3 and later) is one bundle of a topic, named by its part; a topic is finished when every part's run is complete.
 
@@ -170,5 +170,7 @@ Snapshot taken 2026-10-09T23:01 UTC by `series/series-status.py --snapshot`. Jou
 | 5 | `parsing-and-grammar-based-input` r2-2of2 | 12 | fix2 5, verify3 5, close2 3 | - | 5 | run complete |
 | 5 | `runtime-configuration` r1 | 11 | sources 3, spine 1, draft 11, verify 8 | verify 3, fix 8 | 0 | run ended, agents failed |
 | 5 | `runtime-configuration` r1-rest | 11 | verify 3, fix 11, verify2 11, close1 10 | - | 11 | run complete |
-| 5 | `runtime-configuration` r2-1of2 | ? | fix2 5, verify3 2 | - | - | running or stopped |
-| 5 | `runtime-configuration` r2-2of2 | ? | fix2 1 | - | - | running or stopped |
+| 5 | `runtime-configuration` r2-1of2 | 11 | fix2 5, verify3 3 | verify3 2, close2 1 | 2 | run ended, agents failed |
+| 5 | `runtime-configuration` r2-2of2 | 11 | fix2 4 | fix2 1, verify3 4 | 0 | run ended, agents failed |
+| 5 | `runtime-configuration` r2-finish | ? | - | - | - | running or stopped |
+| 5 | `runtime-configuration` r2-rest | ? | - | - | - | running or stopped |
