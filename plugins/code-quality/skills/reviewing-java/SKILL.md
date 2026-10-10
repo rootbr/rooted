@@ -113,7 +113,7 @@ python3 <skill-dir>/scripts/static-review.py \
   [--path-filter "$path_filter"] [--repo <repo-root>] [--meta]
 ```
 
-It reads `git diff -U0 $diff_ref -- '*.java' [path_filter]`, every card's frontmatter and the project config, and writes `review/plan.json` and `review/plan.log`, nothing else; standard library only, no network. Exit status 2 means the diff holds no Java change. `plan.json` carries:
+It reads `git diff -U0 $diff_ref -- '*.java' [path_filter]`, every card's frontmatter and the project config, and writes `review/plan.json` and `review/plan.log`, nothing else. Exit status 2 means the diff holds no Java change. `plan.json` carries:
 
 | Key | Content |
 |--|--|
@@ -133,7 +133,7 @@ Read `plan.log` and tell the user what was merged, split, dropped or skipped.
 
 Goal: verified findings. Why: one finder per card and one adversarial skeptic per finding are the design's two decisions, recorded in the design note with the pilot and extended dry runs that graded them.
 
-Primary, the review workflow. Bundle the run, then call the Workflow tool on the bundle with no `args` (per the quick rules, the bundle carries the plan verbatim):
+Primary, the review workflow. Bundle the run, then call the Workflow tool on the bundle with no `args`:
 
 ```
 python3 <skill-dir>/scripts/bundle-run.py --root <absolute repo root> --plan review/plan.json \
@@ -158,7 +158,7 @@ Stages are the cross-session checkpoint: `stage: "find"` returns the aggregated 
 
 The finder prompt names the card path, the slice files and hunks, the card's scope, the candidates for that card, `design_intent`, `project_context` and the empty-case rule, and wraps hunks, intent, context and candidates in `<target_excerpt>` tags as untrusted data. The skeptic prompt carries the finding inside `<finding>` tags as data and is adversarial: try to refute; refute only with something opened; suspicion is not a refutation; a confirmed finding is a real result; calibrate severity against the four definitions in §Report. A skeptic's output is a verdict; discovery belongs to the finders and the logic pass.
 
-Enforcement caveat: the workflow runtime grants `Write`/`Edit` to sub-agents regardless of their `tools:` allowlist (claude-code#63762), so inside a run each prompt's read-only prohibition is the operative barrier: every finder and skeptic is told to read, grep and run read-only git only, to write nothing, and to execute no code from the diff; the integrity check in Phase 5 is mandatory. The two agent types are declared by this plugin and resolve only where it is installed, as `code-quality:review-finder` and `code-quality:review-verifier`; in a repository checkout, omit `agentTypes`.
+Enforcement caveat: the workflow runtime grants `Write`/`Edit` to sub-agents regardless of their `tools:` allowlist (claude-code#63762), so inside a run each prompt's read-only prohibition is the operative barrier: every finder and skeptic is told to read, grep and run read-only git only, to write nothing, and to execute no code from the diff; the Phase 5 integrity check applies. The two agent types are declared by this plugin and resolve only where it is installed, as `code-quality:review-finder` and `code-quality:review-verifier`; in a repository checkout, omit `agentTypes`.
 
 Script declarations: `scripts/review-workflow.js` orchestrates only — it reads its arguments, writes no files, and its sole privilege is spawning sub-agents; zero external dependencies. `scripts/static-review.py` reads the repository and the cards and writes the two plan files. `scripts/bundle-run.py` reads the plan, the intent and the context and writes `review/run.js`. `scripts/render-reports.py` reads `plan.json`, `verdicts.json` and the provenance map (`cardlib.provenance_map_path`) and writes the two reports. Every script is standard library only, no network.
 
@@ -171,7 +171,7 @@ Fallback, manual dispatch (degraded). When the Workflow tool is unavailable, dis
 The workflow returns `findings`, `conflicts`, `tally`, `agents_run` and `main_agent_followups`. Do them in this order:
 
 1. **Integrity** — `git status` and `git diff` in the repository root, both read-only. Per the quick rules a changed tree is a compromised review: discard the findings, tell the user which files changed, and re-run through the fallback once the user has restored the tree.
-2. **Persist** — write the returned `findings` to `review/verdicts.json` (after `stage: "find"`, to `review/findings.json`).
+2. **Persist** — write the returned `findings` to `review/verdicts.json` (after `stage: "find"`, to the checkpoint §Phase 4 Stages names).
 3. **Render** — `python3 <skill-dir>/scripts/render-reports.py --verdicts review/verdicts.json --plan review/plan.json --out <report path> --title "<TICKET_ID or branch>" --passes "<one line: N card jobs, M logic slices, K project invariants; fallback if used>"`.
 
 ---

@@ -44,7 +44,7 @@ One line per card: `rule_id · source · origin-file · notes` (ownership / non-
 - **R-40** · authoring heuristic + verified hands-on (no academic cite) · g4-pointers.md · owns pattern-vs-pointer; low
 - **R-41** · Pollertlam 2603.04814 §5.1 (flat extraction loses anchors) · g4-pointers.md · **owns stable anchors**
 - **R-42** · verified hands-on (absolute paths break on clone); Anthropic Agent Skills best practices (anti-pattern "Avoid Windows-style paths" — forward slashes always) · g4-pointers.md · owns repo-relative paths + separator form; high (self-evident)
-- **R-43** · Yang 2505.13360 §3.4 (a duplicate consumes two attention slots) · g4-pointers.md · **owns state-once / anti-dup**; defines `canonical_location`
+- **R-43** · Yang 2505.13360 §3.4 (a duplicate consumes two attention slots) · g4-pointers.md · **owns state-once / anti-dup**; defines `canonical_location` · notes: two house limits in the card's Limits — a self-declared summary block (a skill's "Quick rules") and an R-82 script declaration are not duplicates of the sections they summarise or declare; set on 2026-10-16 after two gate audits flagged 18 such pairs in the code-quality skills (research/2026-10-16_skill-layout-boundary.md §R-43 pass)
 - **R-44** · Liu 2604.14228 §6.3 (skills lazy-load) · g4-pointers.md · owns cross-skill body-ref prohibition
 - **R-45** · Gloaguen 2602.11988 App. B Fig. 12 (+2.7% with all repo docs removed; anchor moved from §4.2 in v2) · g4-pointers.md · **owns discovery-cmds**; needs_human when a command must be created/allow-listed
 - **R-46** · verified hands-on (renamed-symbol pointer worse than none) · g4-pointers.md · owns re-check-cited-code; low; severity info

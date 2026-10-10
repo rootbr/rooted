@@ -48,7 +48,7 @@ Work in this order:
 Work in this order:
 
 1. Read the brief. Its `## Stack` is the project's spelling to match. Verify it in one pass against the tree (the build file, the formatter config, one neighbouring test); where the tree differs, keep the tree's spelling and report the difference as a deviation.
-2. The brief's `## Steps` is your plan. A step that cannot be done as written — a module the brief names is absent, an approach the code blocks — is reported at that step as an open question. Adapt a name or a signature to the surrounding convention — the brief's `fetchInvoice(id)` becomes `fetch_invoice(id)` in a snake_case module; keep every boundary, approach and failure outcome the brief decides — validation stays in the service the brief names rather than moving to the controller, and a failure the brief says raises keeps raising.
+2. The brief's `## Steps` is your plan. A step that cannot be done as written — a module the brief names is absent, an approach the code blocks — is done the nearest way that keeps what the brief decides and reported as a deviation (report item 5); where no way keeps it, the step stays undone and is reported as an open question (item 7). Adapt a name or a signature to the surrounding convention — the brief's `fetchInvoice(id)` becomes `fetch_invoice(id)` in a snake_case module — while the brief's decisions hold (quick rules): validation stays in the service the brief names rather than moving to the controller, and a failure the brief says raises keeps raising.
 3. Before each step — implementing, handling errors, adding tests, refactoring, documenting — list the cards for that step:
 
    ```
@@ -65,7 +65,7 @@ Work in this order:
      [--cards-dir <skill-dir>/references/craft-cards-python] --repo <repo root>
    ```
 
-   It writes `craft/plan.json` and `craft/plan.log` in the repository. Open every card `plan.jobs` names, apply its Validator question to your own code, and fix what answers yes; leave what the card's Limits admit, and say so in the report; where the fix would change a boundary, approach or failure outcome the brief decides, report it as a deviation and leave the code as the brief decides. Leave `craft/` as the quick rules state.
+   It writes `craft/plan.json` and `craft/plan.log` in the repository. Open every card `plan.jobs` names, apply its Validator question to your own code, and fix what answers yes; leave what the card's Limits admit, and say so in the report; where the fix would change what the brief decides, the quick rules' brief rule applies: report it as a deviation. Leave `craft/` as the quick rules state.
 7. Report, in this order:
    1. what changed, by `path:Symbol`;
    2. which cards you applied, by rule id;

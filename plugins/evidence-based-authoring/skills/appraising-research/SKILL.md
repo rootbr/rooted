@@ -35,7 +35,7 @@ Phase 4  Debate — defender+challenger+judge triad per flagged finding → outp
 Phase 5  Synthesize — 1 agent → {report-slug}-appraisal.md + -rejections.md; copy to cwd
 ```
 
-Phase 2 is parallel; Phases 1, 3, 5 are single agents; Phase 4 fans out triads. Restart skips any stage whose output already ends with the completion marker. Full decision tree and file layout: [references/checkpointing-protocol.md](references/checkpointing-protocol.md).
+Phase 2 is parallel; Phases 1, 3, 5 are single agents; Phase 4 fans out triads. A restart is §Phase 0. Full decision tree and file layout: [references/checkpointing-protocol.md](references/checkpointing-protocol.md).
 
 **Dispatch discipline (every phase).** Two rules govern how the dispatcher spawns each sub-agent:
 
@@ -95,7 +95,7 @@ tmp/appraisal-{report-slug}/
 
 ## Resuming a partial run
 
-The skill is idempotent. Re-invoking with the same report reads `run.md`, skips any stage whose output ends with `<!-- COMPLETE -->`, and re-dispatches every incomplete stage from its saved prompt on disk. To force a stage to re-run, delete its output file.
+The skill is idempotent: a re-invocation with the same report enters §Phase 0, which resumes from `run.md`. To force a stage to re-run, delete its output file.
 
 ## Error handling
 
