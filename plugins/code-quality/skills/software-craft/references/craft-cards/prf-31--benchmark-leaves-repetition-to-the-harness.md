@@ -1,0 +1,43 @@
+---
+title: A benchmark leaves repetition to its harness, so the measured call sits in no loop the benchmark writes around it unless every iteration takes a distinct or wrapped input and hands its result to the harness's sink
+rule_id: PRF-31
+domain: performance
+step: [test]
+applies_to: [universal]
+triggers: ['@Benchmark\b', '\bfunc\s+Benchmark\w*\s*\(', '(\bbench_function|\bbench_with_input|\bcriterion_group!|\bb[.]iter\w*\s*\(|#\[bench\])', '\b(timeit[.](timeit|repeat|Timer)|perf_counter(_ns)?|System[.]nanoTime|performance[.]now|Instant::now|time[.]Now|process[.]hrtime([.]bigint)?)\s*\(', '\bfor\b.*\bb[.]N\b', '\b(suite|bench)[.]add\s*\(']
+scope: file
+check_kind: semantic
+severity_default: major
+---
+
+# A benchmark leaves repetition to its harness, so the measured call sits in no loop the benchmark writes around it unless every iteration takes a distinct or wrapped input and hands its result to the harness's sink
+
+## Thesis
+A benchmark leaves repetition to its harness: the measured call sits in no loop the benchmark writes around it unless every iteration takes a distinct dataset element or an input passed through the opaque identity wrapper inside the loop and hands its result to the harness's sink or the wrapper.
+
+## Rationale
+Looping inside the benchmark in the hope of minimizing the overhead of calling the measured method lets the optimizer merge the loop iterations: the loop is heavily unrolled and pipelined and the measured operation hoisted out of it, so the larger the repetition count, the lower the perceived cost, down to 1/20 ns per addition, well beyond what hardware can actually do. A loop the benchmark writes still measures every call in full when each iteration takes a distinct input and sinks its result, while saving each result into one variable lets the compiler evaluate only the last call, accumulating lets software pipelining merge otherwise distinct calls, and an input wrapped once outside the loop leaves the call loop-invariant, so the compiler can hoist it and leave nothing to time. A static-analysis study of the benchmarks of 123 open-source systems, all written for one harness, found each of five bad practices with that harness prevalent, among them using accumulation to consume values inside a loop (loop optimization), and its experiments found that bad practices often significantly impact the benchmark results.
+
+## Example
+```rust
+bad:  b.iter(|| { for _ in 0..1000 { contains(&haystack, needle); } });
+good: b.iter(|| contains(black_box(&haystack), black_box(needle)));
+```
+
+## Limits
+A loop over the iteration count the harness supplies is the harness's own repetition protocol, and so is the harness's keep-alive loop construct; a benchmark uses one of them, not both, and neither is a loop the benchmark writes around the call. A loop inside the measured routine is part of the measured work; the rule reaches only the loop a benchmark writes around the measured call. A loop whose every iteration takes a distinct dataset element or a wrapped input and hands its result to the harness's sink or the wrapper is no finding, and a timing routine the harness asks to measure its own execution time repeats the call as the harness directs. The rule guards against an optimizing compiler; where the timed code runs on an implementation that executes every call it is given, a loop around the call removes nothing from the timing and is no finding. Whether the measured result is consumed and whether setup runs inside the timed region are separate defects of a benchmark, outside this rule.
+
+## Validator
+Grep the hunk for a benchmark declaration, a harness registration or a timer call. Open each benchmark body the hunk adds or changes, and each interval between paired timer calls. Check whether the benchmark wraps the measured call in a loop of its own, other than a loop over the harness-supplied iteration count or the harness's loop construct, whose iterations do not each take a distinct dataset element or a wrapped input and hand the result to the harness's sink or the wrapper. Validator question: **Does the benchmark repeat the measured call in a loop of its own without a distinct or wrapped input and a sunk result on every iteration?** Yes → flag.
+
+## Finding output
+When the validator answers yes, the finder emits one finding (`rule_id: PRF-31`, severity major, `file`, `symbol`, `code` = the loop header the benchmark writes around the measured call, `fix` = the loop removed so that the harness repeats the call, or every iteration given a distinct or wrapped input and its result handed to the harness's sink, in the file's language, `rationale` = the merging, hoisting or last-call evaluation the loop exposes the timing to).
+
+## Source
+- openjdk/jmh master, JMHSample_11_Loops (fetched): "Looping is done in the hope of minimizing the overhead of calling the test method ... Don't buy this argument; you will see there is more magic happening when we allow optimizers to merge the loop iterations."; "the larger the repetitions count, the lower the "perceived" cost of the operation being measured. Up to the point we do each addition with 1/20 ns, well beyond what hardware can actually do. This happens because the loop is heavily unrolled/pipelined, and the operation to be measured is hoisted from the loop."
+- openjdk/jmh master, JMHSample_34_SafeLooping (fetched): "Sometimes, however, one needs to traverse through several elements in a dataset. This is hard to do without loops, and therefore we need to devise a scheme for safe looping."; "figure out only the last work() call needs to be evaluated"; "software pipelining effects in action, that can merge the operations between two otherwise distinct work() bodies"; "A very straight-forward way to break the merging is to sink each result to Blackhole. This will force runtime to compute every work() call in full."
+- rust-lang/rust master, library/core/src/hint.rs, fn black_box (fetched): "`black_box`'s functionality can generally be relied upon for benchmarking, and should be used there."; "When benchmarking a function, you usually want to wrap its inputs in `black_box` so the compiler cannot make optimizations that would be unrealistic in real-life use."; "only (and can only be) provided on a "best-effort" basis. The extent to which it can block optimisations may vary depending upon the platform and code-gen backend used."; example `for _ in 0..10 { black_box(contains(black_box(&haystack), black_box(needle))); }`; "Prevent the compiler from making assumptions about the input."
+- bheisler/criterion.rs master, src/bencher.rs, fn iter_custom (fetched): "Times a `routine` by executing it many times and relying on `routine` to measure its own execution time."; example `for _i in 0..iters { std::hint::black_box(foo()); }`
+- golang/go master, src/testing/benchmark.go, func (*B) Loop (fetched): "any setup performed prior to starting the benchmark loop does not count toward the benchmark measurement"; "arguments to and results from function calls and assigned variables within the loop are kept alive, preventing the compiler from fully optimizing away the loop body."; "This applies only to statements syntactically between the curly braces of the loop, and the loop condition must be written exactly as "b.Loop()"."; "Benchmarks should either use Loop or contain a loop to b.N, but not both."; "Currently, this is implemented as a compiler transformation that wraps such variables with a runtime.KeepAlive intrinsic call."; "Likewise, when it returns false, it stops the timer so cleanup code is not measured."
+- DOI 10.1109/tse.2019.2925345, abstract and bad-practice table as reproduced on a review page (fetched): "We present a tool that leverages static analysis to identify 5 bad JMH practices. Our empirical study of 123 open source Java-based systems shows that each of these 5 bad practices are prevalent in open source software. ... bad practices often significantly impact the benchmark results."; "RETU — Not using a returned computation — Dead code elimination"; "LOOP — Using accumulation to consume values inside a loop — Loop optimization"; "FINAL — Using a final primitive for benchmark input — Constant folding"; "INVO — Running fixture methods for each benchmark method invocation — JMH overhead"
+- Caveat: the loop-merging figures come from one harness's samples; the safe-looping form rests on that harness's sample and on another language's opaque-identity documentation, and the exemption for an implementation that executes every call rests on the timeit examples and a hands-on bytecode check (CPython 3.13, `dis`: `for i in range(10): oct(i)` compiles to CALL 1 then POP_TOP, so the call runs on every iteration).

@@ -1,0 +1,47 @@
+---
+title: A change that rewrites stored snapshot, golden or approved output rewrites only the entries its own intended behaviour change explains
+rule_id: CHG-21
+domain: change
+step: [test, review]
+applies_to: [tests]
+triggers: ['[.]toMatch(Inline)?Snapshot\(|\bassert_\w*snapshot!|\bApprovals?[.]verify\w*\(', 'signal:test_file']
+scope: base-compare
+check_kind: semantic
+severity_default: major
+---
+
+# A change that rewrites stored snapshot, golden or approved output rewrites only the entries its own intended behaviour change explains
+
+## Thesis
+A change that re-records stored snapshot, golden or approved output rewrites only the entries whose difference from the base version its intended behaviour change explains. Every failing entry is triaged before anything is re-recorded and assigned one of three causes: an error the change introduced, which is fixed before re-recording so that the buggy behaviour is not recorded; an intended change of visible behaviour, which the failing test corroborates and for which the entry is updated; or a test so sensitive that it fails on an inconsequential change, which is made to stop depending on the observation that varies. Re-recording every failing test at once is sound only when each failure has the second cause; otherwise the other failures are resolved first, or re-recording is limited to the tests whose failure the intended change explains. A change that intends no visible behaviour change therefore rewrites no stored entry except one whose own test it edits, as when it makes a test stop depending on an observation that varies.
+
+## Rationale
+A stored-output test compares the current output with a recorded copy and depends on the precise output, so any change, even a minor one, can fail it; in a review of 50 grey-literature documents on snapshot testing, this fragility was the most prominent drawback, identified in 14 documents (28%). The recorded copy shows only what the output was before and what it is now, and whether a difference is a fixed bug or a new one is decided by the person who re-records it. An update command that re-generates the stored output of every failing test at once records, for a test that fails because of an unintentional bug, the buggy behaviour as its expected output. The same review reports that updating stored output without understanding why the test failed can mask regressions and lead to decreasing confidence in the suite. Re-recording can be limited to the tests whose names match a pattern, and an update is checked by comparing the old expected value with the new one.
+
+## Example
+```typescript
+bad:  // intent: label the total "Total due"; every failing snapshot re-recorded
+      expect(totalLine(invoice)).toMatchInlineSnapshot(`"Total due: 10.00"`);
+      expect(taxLine(invoice)).toMatchInlineSnapshot(`"Tax: 0.00"`); // was "Tax: 1.90"; no intent explains it
+good: // intent: label the total "Total due"; only the matching test re-recorded
+      expect(totalLine(invoice)).toMatchInlineSnapshot(`"Total due: 10.00"`);
+      expect(taxLine(invoice)).toMatchInlineSnapshot(`"Tax: 1.90"`); // kept; the tax bug is fixed first
+```
+
+## Limits
+A test with no stored entry in the base version is recorded for the first time: its current output becomes the stored copy, and there is no earlier entry to compare it with. A regression suite produced by a test generator may, once its failures are traced to an intended change of visible behaviour, be discarded and generated anew in whole rather than updated entry by entry; the triage of each failure still comes first. The rule judges which stored entries a change rewrites; whether a stored output is focused and short enough to review is a question of test design it does not reach. An entry whose own test the change edits, in its input or in a matcher, redaction, sort or normalisation that stops it depending on an observation that varies, is explained in the part of its difference that edit accounts for.
+
+## Validator
+List every stored-output entry the hunk rewrites: entries of snapshot files, inline snapshot arguments, approved files, and golden files, the expected-output files a test compares its output against wherever they are stored; skip entries added for a new test. Open the base version of each rewritten entry at base-compare and diff its old value against the new one. Read the change's description and its production-code hunks to establish which visible behaviour the change intends to alter, and the hunks that edit the test owning each rewritten entry. Trace each rewritten entry to the code path it records: a difference that the intended alteration accounts for, in an entry whose test a production hunk reaches, or that an edit to the entry's own test accounts for, is explained; any other difference is unexplained, and a change described as preserving behaviour has only the second kind of explained rewrite. Validator question: **Does the change rewrite a stored snapshot, golden or approved entry whose difference from its base version neither the change's intended behaviour change nor an edit to that entry's own test explains?** Yes → flag.
+
+## Finding output
+When the validator answers yes, the finder emits one finding (`rule_id: CHG-21`, severity major, `file`, `symbol`, `code` = the rewritten entry's old and new value as the diff shows them, `fix` = the entry restored to its base value with the bug fixed in the code under test, the intended behaviour change named for that entry, or the entry's test made to stop depending on the observation that varies (a matcher, redaction, sort or normalisation), in the file's language, `rationale` = the difference no intended behaviour change explains and the regression or unstable value it would record as expected output).
+
+## Source
+- Jest documentation, Snapshot Testing (jestjs/jest docs/SnapshotTesting.md), §Updating Snapshots: "This will re-generate snapshot artifacts for all failing snapshot tests. If we had any additional failing snapshot tests due to an unintentional bug, we would need to fix the bug before re-generating snapshots to avoid recording snapshots of the buggy behavior."; "pass an additional `--testNamePattern` flag to re-record snapshots only for those tests that match the pattern"; §Property Matchers: "they will force the snapshot to fail on every run"; "These matchers are checked before the snapshot is written or tested, and then saved to the snapshot file instead of the received value"; §Best Practices 1: "fight against the habit of regenerating snapshots when test suites fail instead of examining the root causes of their failure"; "keeping them focused, short" — https://raw.githubusercontent.com/jestjs/jest/main/docs/SnapshotTesting.md (fetched)
+- Randoop Manual (randoop/randoop src/docs/manual/index.html), §Regression test failures: "there are three possible causes. You need to debug the test failure to determine which is the cause, and then take the appropriate action."; "You have introduced an error"; "You have intentionally changed the visible behavior of your program. The regression test has corroborated the change. ... Most commonly, you will just discard them and generate new ones."; "The tests are too sensitive, and they have failed even though you made an inconsequential change" ... "not to depend on observations that may vary from run to run" — https://raw.githubusercontent.com/randoop/randoop/master/src/docs/manual/index.html (fetched)
+- ApprovalTests.Python README, §Overview: "If no golden master exists you can create a snapshot of the current test results and use that as the golden master."; "Either you will update the master because you expected the changes and they are good, or you will go back to your code and update or roll back your changes" — https://raw.githubusercontent.com/approvals/ApprovalTests.Python/main/README.md (fetched)
+- insta Settings (mitsuhiko/insta insta/src/settings.rs), doc comments of `set_sort_maps` and `add_filter`: "Enables forceful sorting of maps before serialization."; "Filters are similar to redactions but are applied as regex onto the final snapshot value."; "This is useful to perform some cleanup procedures on the snapshot for unstable values." — https://raw.githubusercontent.com/mitsuhiko/insta/master/insta/src/settings.rs (fetched)
+- gotest.tools/v3/golden package overview: "To ensure the update is correct compare the diff of the old expected value to the new expected value." — https://pkg.go.dev/gotest.tools/v3/golden (fetched)
+- Master's dissertation, PPGCC/UFMG, 2024, ch. 3, grey-literature review of 50 documents, RQ3.2 (material of Journal of Systems and Software 204 (2023) 111797): "The most prominent concern, identified in 14 documents (28%), is the fragility of snapshot tests"; "Any change, even a minor one, can cause the test to fail"; "a snapshot just tells you what the component looked like before and what it looks like now. The decision whether you’ve fixed a bug, or introduced one, is entirely on you"; "This practice, which was noted by several authors, can mask regressions and lead to decreasing confidence in the test suite." — https://raw.githubusercontent.com/VictorGazzinelli/dissertacao-mestrado-ppgcc-ufmg/main/exemplo-victor/exemplo.tex (fetched)
+- Caveat: the evidence is tool documentation and a review of practitioner documents; no controlled study measures how often a wholesale re-record records a regression.

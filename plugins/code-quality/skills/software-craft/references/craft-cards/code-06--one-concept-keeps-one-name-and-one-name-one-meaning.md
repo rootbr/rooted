@@ -1,0 +1,52 @@
+---
+title: One concept keeps one name across the codebase, and one name keeps one meaning
+rule_id: CODE-06
+domain: code
+step: [design, implement, refactor]
+applies_to: [universal]
+triggers: ['\b(get|fetch|retrieve|load|read|find|lookup|query|remove|delete|erase|destroy|drop|create|make|build|construct|generate|Get|Fetch|Retrieve|Load|Read|Find|Lookup|Query|Remove|Delete|Erase|Destroy|Drop|Create|Make|Build|Construct|Generate)(_|[A-Z])\w*', '\w+(Manager|Controller|Handler|Service|Helper|Processor|Util|Utils|Count|Num|Total|Size|Length|Index|Idx)\b|\w+_(count|num|total|size|length|index|idx)\b|\b(count|num|total|size|length|index|idx)(_|[A-Z])\w*', '\b(toString|ToString|to_string|String|[rR]ead|[wW]rite|[cC]lose|[fF]lush|equals|Equals|eq|__eq__|hashCode|GetHashCode|hash|__hash__|compareTo|CompareTo|cmp|partial_cmp|Less|__lt__|__str__|__repr__|[aA]s_?[tT]ext|[aA]s_?[sS]tr(ing)?|[tT]o_?[tT]ext)\s*\(|\b(fn|def)\s+(add|sub|mul|div|rem|neg|not)\s*[(<]']
+scope: callers
+check_kind: semantic
+severity_default: minor
+---
+
+# One concept keeps one name across the codebase, and one name keeps one meaning
+
+## Thesis
+Each concept in a codebase has one name, and each name has one meaning. A name that new code introduces uses the word the codebase already uses for that concept: the same verb for the same operation (not a fetch beside a get that performs the same read), the same noun for the same role (not a controller beside a manager of the same kind), and the same word order as the related names around it (a point total beside a point count, not a total of points beside a point count). New code gives no existing word a second, different meaning. The standard library's well-known names count as existing names: a method takes one of them only when it has that name's conventional signature and meaning, and a method with that meaning takes that name and signature rather than a synonym, reaching it through the standard interface the standard library documents for that operation where it documents one.
+
+## Rationale
+About 70% of a system's source code consists of identifiers, so a reader learns a codebase largely through its names, learning each name's meaning once and reusing it at every later site. Consistent naming is a one-to-one mapping between the codebase's concepts and its names. Two names for one concept make the reader establish whether they denote one thing or two, and a search for one name misses the code written under the other; one name for two concepts makes the learned meaning wrong at one of its sites. Consistency cannot be left to each author's independent choice: in the first of a sequence of naming experiments with 334 subjects in all, the median probability over 47 naming instances that two developers chose the same name was 6.9%, while a name, once chosen, was usually understood by most developers. Consistency therefore comes from reusing the name the codebase, its glossary or its standard library already holds. The standard library's names (string conversion, equality, read, write, close) are names every reader of the language already knows: a method that takes one of them with another signature or meaning misleads every reader who knows it, and a method that performs the standard operation under a private synonym hides it from them; a method that takes the standard name outside the standard interface promises the behaviour that interface carries, such as an operator, a formatting call or a resource statement that works on the type, and does not give it. Word order is part of the name: which order a codebase uses matters less than keeping one order across related names, since a changed order reads as a different concept.
+
+## Example
+```java
+bad:  Order getOrder(long id) { ... }
+      Invoice fetchInvoice(long id) { ... }
+      int totalPoints, pointCount;
+      String asText() { ... }
+good: Order getOrder(long id) { ... }
+      Invoice getInvoice(long id) { ... }
+      int pointTotal, pointCount;
+      @Override public String toString() { ... }
+```
+
+## Limits
+Two words are correct when they name two concepts: where the codebase's glossary, documentation or project context gives each word its own meaning (a get that reads a local cache beside a fetch that makes a remote call), the two names are the consistent choice, and such a documented distinction rejects the finding. The rule prescribes no particular verb, noun or word order; it asks for the one already in use. Where the codebase already uses two words for one concept, an added name that takes either of them passes; renaming the existing names is a separate change. Names dictated from outside the codebase keep the external name: a framework callback, a generated client, a wire-format or database field, a third-party interface being implemented. A type that keeps the standard string-conversion name for one representation and adds a differently named method for another (a user-facing display format beside a diagnostic form) names two concepts. The rule compares names within the repository under review and against its language's standard library, not across independently owned codebases.
+
+## Validator
+List the names the added lines declare: routines, types, fields, variables, parameters and constants. Split each into its words and search the repository for declarations sharing its object word (the Invoice in fetchInvoice), its qualifier (the Total in totalPoints) or its role noun: the verbs other routines apply to sibling objects in the same module, the nouns other types of the same role carry, the word order of related names in the same type or file. Open one existing routine or type under the competing word and compare it with the added one; count the two words as one concept when the two routines perform the same operation with the same effects, whatever type they act on (a lookup of a stored record by its key, as getOrder and fetchInvoice both perform), or when the two types play the same role. For an added name that reuses an existing word, open that word's existing declarations and compare their meaning. For an added method that bears a standard-library name, or whose body performs a standard operation (string conversion, equality, hashing, ordering, read, write, close), compare its signature and meaning with the standard library's, and check that it goes through the standard interface the standard library documents for that operation where it documents one. Check the project context and any glossary for a documented distinction before flagging. Validator question: **Does an added name give a concept a different word or word order than the codebase already uses for it, give an existing word a different meaning, or take a standard-library name against its conventional signature and meaning, outside the standard interface the standard library documents for that operation, or a synonym in its place?** Yes → flag.
+
+## Finding output
+When the validator answers yes, the finder emits one finding (`rule_id: CODE-06`, severity minor, `file`, `symbol`, `code` = the added declaration line carrying the name, `fix` = that declaration renamed to the word and word order the codebase already uses for its concept, or to the standard-library name with its conventional signature through the standard interface the standard library documents for that operation where it documents one, or, where the added name takes an existing word or a standard-library name for a different concept, renamed to a word that names its own concept and that neither the codebase nor the standard library already uses for another, in the file's language, `rationale` = the existing or standard-library name it duplicates or collides with, quoted with its file or its standard interface, and the concept each denotes).
+
+## Source
+- Effective Go, Names → Interface names (golang/website `_content/doc/effective_go.html`): "don't give your method one of those names unless it has the same signature and meaning. Conversely, if your type implements a method with the same meaning as a method on a well-known type, give it the same name and signature" (fetched)
+- Rust API Guidelines, C-WORD-ORDER (rust-lang/api-guidelines `src/naming.md`): "The particular choice of word order is not important, but pay attention to consistency within the crate and consistency with similar functionality in the standard library." (fetched)
+- clippy `should_implement_trait` (rust-lang/rust-clippy `clippy_lints/src/methods/mod.rs`): "Checks for methods that should live in a trait implementation of a `std` trait [...] instead of an inherent implementation. [...] people seeing a `mul(...)` method may expect `*` to work equally" (fetched)
+- Rust standard library, `Display` trait (rust-lang/rust `library/core/src/fmt/mod.rs`): "Format trait for an empty format, `{}`. Implementing this trait for a type will automatically implement the `ToString` trait for the type, allowing the usage of the `.to_string()` method." (fetched)
+- Java SE API, `java.lang.AutoCloseable` (openjdk/jdk `src/java.base/share/classes/java/lang/AutoCloseable.java`): "The `close()` method of an `AutoCloseable` object is called automatically when exiting a `try`-with-resources block for which the object has been declared in the resource specification header." (fetched)
+- Swift API Design Guidelines, Use Terminology Well (swiftlang/swift-org-website `documentation/api-design-guidelines/index.md`): "Stick to the established meaning if you do use a term of art." (fetched)
+- DOI 10.1109/WPC.2005.14, Concise and consistent naming: "Approximately 70% of the source code of a software system consists of identifiers. [...] A formal model, based on bijective mappings between concepts and names, provides a solid foundation for the definition of precise rules for concise and consistent naming." (relayed)
+- arXiv:2103.07487, DOI 10.1109/TSE.2020.2976920, How Developers Choose Names: "a total of 334 subjects are required to choose names in given programming scenarios. The first experiment shows that the probability that two developers would select the same name is low: in the 47 instances in our experiments the median probability was only 6.9 percent. At the same time, given that a specific name is chosen, it is usually understood by the majority of developers." (relayed)
+
+The standard-name clause is stated for three languages' standard interfaces and read here for each language's standard library; the research anchors model and motivate consistency and measure no comprehension cost of a synonym.

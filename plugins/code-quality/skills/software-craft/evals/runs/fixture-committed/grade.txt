@@ -1,0 +1,108 @@
+SEEDS
+  PASS  code-01-seed  (CODE-01 InvoiceLedger#hasOpenDisputes)  raw=hit  verified as CODE-01.1 [report]
+  PASS  code-02-seed  (CODE-02 SessionCache::idle_sessions)  raw=hit  verified as CODE-02.1 [report]
+  PASS  code-03-seed  (CODE-03 InvoiceLedger#computeLateFee)  raw=hit  verified as CODE-03.1 [report]
+  PASS  code-04-seed  (CODE-04 Stockroom.ReserveUnits)  raw=hit  verified as CODE-04.1 [report]
+  PASS  code-05-seed  (CODE-05 RouteTable::hub_status)  raw=hit  verified as CODE-05.1 [report]
+  PASS  code-06-seed  (CODE-06 Money::to_text)  raw=hit  verified as CODE-06.4 [report]
+  PASS  code-07-seed  (CODE-07 SupplierClient.WebhookTarget)  raw=hit  verified as CODE-07.1 [report]
+  PASS  code-08-seed  (CODE-08 ShipmentPlanner#countShipmentsByCarrier)  raw=hit  verified as CODE-08.1 [report]
+  PASS  code-09-seed  (CODE-09 Stockroom.AvailableUnits)  raw=hit  verified as CODE-09.1 [report]
+  PASS  code-10-seed  (CODE-10 SessionCache::remaining_lifetime)  raw=hit  verified as LOGIC.12 [report]
+  PASS  code-11-seed  (CODE-11 InvoiceLedger#reconcilePayments)  raw=hit  verified as CODE-11.1 [report]
+  PASS  code-12-seed  (CODE-12 Stockroom.ReleaseReservation)  raw=hit  verified as CODE-12.1 [report]
+  PASS  err-01-seed  (ERR-01 parse_age_field_with_vague_message)  raw=hit  verified as ERR-01.2 [report]
+  PASS  err-02-seed  (ERR-02 saveDraftSwallowsError)  raw=hit  verified as ERR-02.1 [report]
+  PASS  err-03-seed  (ERR-03 restockFromRowReturnsMinusOne)  raw=hit  verified as ERR-03.1 [report]
+  PASS  err-04-seed  (ERR-04 transfer_credits_after_failed_debit)  raw=hit  verified as ERR-04.1 [report]
+  PASS  err-05-seed  (ERR-05 PriceOfProductLeaksDriverError | Catalog.PriceOfProductLeaksDriverError | (*Catalog).PriceOfProductLeaksDriverError)  raw=hit  verified as ERR-05.1 [report]
+  PASS  err-06-seed  (ERR-06 monthlyPriceFallsBackToZero)  raw=hit  verified as ERR-06.1 [report]
+  PASS  err-07-seed  (ERR-07 appendAuditLineIgnoresWriteError)  raw=hit  verified as ERR-07.2 [report]
+  PASS  err-08-seed  (ERR-08 load_plugin_config_catches_everything)  raw=hit  verified as ERR-08.1 [report]
+  PASS  err-09-seed  (ERR-09 reserveQuotaThrowsString)  raw=hit  verified as ERR-09.1 [report]
+  PASS  err-10-seed  (ERR-10 hashtagsOfPostOrNull)  raw=hit  verified as ERR-10.1 [report]
+  PASS  err-11-seed  (ERR-11 load_settings_drops_cause)  raw=hit  verified as ERR-11.1 [report]
+  PASS  err-12-seed  (ERR-12 retryDelayExitsOnBadHeader)  raw=hit  verified as ERR-12.1 [report]
+  PASS  tst-01-seed  (TST-01 checkoutTotalStubsDiscountRules | "checkoutTotalStubsDiscountRules" | 'checkoutTotalStubsDiscountRules' | test("checkoutTotalStubsDiscountRules") | test('checkoutTotalStubsDiscountRules'))  raw=hit  verified as TST-01.4 [report]
+  PASS  tst-02-seed  (TST-02 reserveStubsEveryInventoryGatewayMethod)  raw=hit  verified as TST-02.1 [report]
+  PASS  tst-03-seed  (TST-03 test_profile_name_is_guest_when_directory_raises_key_error)  raw=hit  verified as TST-03.1 [report]
+  PASS  tst-04-seed  (TST-04 quoteTotalMocksMoneyValue)  raw=hit  verified as TST-04.1 [report]
+  PASS  tst-05-seed  (TST-05 InMemoryOrderRepository | latestOrderIsTheNewestPlaced | "latestOrderIsTheNewestPlaced" | 'latestOrderIsTheNewestPlaced' | test("latestOrderIsTheNewestPlaced") | test('latestOrderIsTheNewestPlaced'))  raw=hit  verified as TST-05.1 [report]
+  PASS  tst-06-seed  (TST-06 test_render_notes_patches_markdown_package)  raw=hit  verified as TST-06.1 [report]
+  PASS  tst-07-seed  (TST-07 placeOrderPricesSaleItemsInsideTheStub)  raw=hit  verified as TST-07.1 [report]
+  PASS  tst-08-seed  (TST-08 shippingQuoteSurfacesPrimaryCarrierFailure | "shippingQuoteSurfacesPrimaryCarrierFailure" | 'shippingQuoteSurfacesPrimaryCarrierFailure' | test("shippingQuoteSurfacesPrimaryCarrierFailure") | test('shippingQuoteSurfacesPrimaryCarrierFailure'))  raw=hit  verified as TST-08.1 [report]
+  PASS  tst-09-seed  (TST-09 shipSendsShippedNotice)  raw=hit  verified as TST-09.1 [report]
+  PASS  tst-10-seed  (TST-10 test_welcome_mail_addresses_member_by_name)  raw=hit  verified as TST-10.1 [report]
+  PASS  tst-11-seed  (TST-11 test_checkout_pays_through_bare_gateway_mock)  raw=hit  verified as TST-11.1 [report]
+  PASS  tst-12-seed  (TST-12 invoiceTotalStubsItsOwnTaxMethod | "invoiceTotalStubsItsOwnTaxMethod" | 'invoiceTotalStubsItsOwnTaxMethod' | test("invoiceTotalStubsItsOwnTaxMethod") | test('invoiceTotalStubsItsOwnTaxMethod'))  raw=hit  verified as TST-12.1 [report]
+CONTROLS
+  PASS  code-01-control  (silent: CODE-01 on InvoiceLedger#isOverdueOn)  raw=silent
+  PASS  code-02-control  (silent: CODE-02 on Invoice::grand_total)  raw=silent
+  PASS  code-03-control  (silent: CODE-03 on ShipmentPlanner#distanceFromDepot)  raw=silent
+  PASS  code-04-control  (silent: CODE-04 on Stockroom.StockChart)  raw=silent
+  PASS  code-05-control  (silent: CODE-05 on RouteTable::close_hub)  raw=silent
+  PASS  code-06-control  (silent: CODE-06 on <Money as Add>::add)  raw=silent
+  PASS  code-07-control  (silent: CODE-07 on webhookFromProto)  raw=silent
+  PASS  code-08-control  (silent: CODE-08 on RateCardImporter#parseRateRow)  raw=silent
+  PASS  code-09-control  (silent: CODE-09 on Stockroom.LowStockCSV)  raw=silent
+  PASS  code-10-control  (silent: CODE-10 on RouteTable::grid_distance_km)  raw=silent
+  PASS  code-11-control  (silent: CODE-11 on ShipmentPlanner#composeDelayNotice)  raw=silent
+  PASS  code-12-control  (silent: CODE-12 on Stockroom.ServeStockLevels)  raw=silent
+  PASS  err-01-control  (silent: ERR-01 on authenticate_token_names_secret_by_role)  raw=silent
+  PASS  err-02-control  (silent: ERR-02 on prefetchOrderIgnoresMissByDesign)  raw=silent
+  PASS  err-03-control  (silent: ERR-03 on compareItemsBySKUForSort)  raw=silent
+  PASS  err-04-control  (silent: ERR-04 on refresh_balance_cache_best_effort)  raw=silent
+  PASS  err-05-control  (silent: ERR-05 on scanProductRowForCatalog)  raw=silent
+  PASS  err-06-control  (silent: ERR-06 on regionSurchargeDefaultsToNone)  raw=silent
+  PASS  err-07-control  (silent: ERR-07 on renderReceiptLinesDiscardsBufferErrors)  raw=silent
+  PASS  err-08-control  (silent: ERR-08 on run_queued_jobs_isolating_failures)  raw=silent
+  PASS  err-09-control  (silent: ERR-09 on renderQuotaBannerThrowsPlainError)  raw=silent
+  PASS  err-10-control  (silent: ERR-10 on listTagFilesNullWhenNotDirectory)  raw=silent
+  PASS  err-11-control  (silent: ERR-11 on parse_timeout_setting_keeps_input)  raw=silent
+  PASS  err-12-control  (silent: ERR-12 on mustParseBuiltinTemplate)  raw=silent
+  PASS  tst-01-control  (silent: TST-01 on ['checkoutTotalOnATuesdayTakesTenPercentOff', '"checkoutTotalOnATuesdayTakesTenPercentOff"', "'checkoutTotalOnATuesdayTakesTenPercentOff'", 'test("checkoutTotalOnATuesdayTakesTenPercentOff")', "test('checkoutTotalOnATuesdayTakesTenPercentOff')"])  raw=silent
+  PASS  tst-02-control  (silent: TST-02 on deliveryDaysAddHandlingToTheWarehouseEstimate)  raw=silent
+  PASS  tst-03-control  (silent: TST-03 on test_profile_name_reports_directory_outage)  raw=silent
+  PASS  tst-04-control  (silent: TST-04 on quoteStaysValidForFourteenDaysFromTheClock)  raw=silent
+  PASS  tst-05-control  (silent: TST-05 on ['FakeSessionStore', 'sessionGuardResolvesTheLoggedInUser', '"sessionGuardResolvesTheLoggedInUser"', "'sessionGuardResolvesTheLoggedInUser'", 'test("sessionGuardResolvesTheLoggedInUser")', "test('sessionGuardResolvesTheLoggedInUser')"])  raw=silent
+  PASS  tst-06-control  (silent: TST-06 on test_render_notes_through_project_renderer)  raw=silent
+  PASS  tst-07-control  (silent: TST-07 on placeOrderReturnsTheOrderAsStored)  raw=silent
+  PASS  tst-08-control  (silent: TST-08 on ['shippingQuoteLeavesFallbackUntouchedWhenPrimaryAnswers', '"shippingQuoteLeavesFallbackUntouchedWhenPrimaryAnswers"', "'shippingQuoteLeavesFallbackUntouchedWhenPrimaryAnswers'", 'test("shippingQuoteLeavesFallbackUntouchedWhenPrimaryAnswers")', "test('shippingQuoteLeavesFallbackUntouchedWhenPrimaryAnswers')"])  raw=silent
+  PASS  tst-09-control  (silent: TST-09 on repeatedLookupsReadTheCatalogueOnce)  raw=silent
+  PASS  tst-10-control  (silent: TST-10 on test_dry_run_welcome_leaves_mailer_untouched)  raw=silent
+  PASS  tst-11-control  (silent: TST-11 on test_checkout_reports_receipt_to_paid_callback)  raw=silent
+  PASS  tst-12-control  (silent: TST-12 on ['legacyInvoicePrintPutsHeaderFirst', '"legacyInvoicePrintPutsHeaderFirst"', "'legacyInvoicePrintPutsHeaderFirst'", 'test("legacyInvoicePrintPutsHeaderFirst")', "test('legacyInvoicePrintPutsHeaderFirst')"])  raw=silent
+OTHER VERIFIED FINDINGS (not graded): 32
+  CODE-06.1 minor code/go/supplier_client.go (*SupplierClient).WebhookTarget [report]
+  CODE-06.2 minor code/java/InvoiceLedger.java InvoiceLedger#hasOpenDisputes [report]
+  CODE-06.3 minor code/java/InvoiceLedger.java InvoiceLedger#reconcilePayments [report]
+  CODE-06.5 minor errors/py/settings.py settings.ConfigError [report]
+  ERR-01.1 minor errors/go/receipts.go func appendAuditLineIgnoresWriteError [report]
+  ERR-01.3 minor errors/py/settings.py settings.load_settings_drops_cause [report]
+  ERR-03.2 minor errors/go/notify.go func retryDelayExitsOnBadHeader [report]
+  ERR-05.2 minor errors/py/settings.py settings.load_settings_drops_cause [report]
+  ERR-07.1 major code/go/stock_http.go Stockroom.ServeStockLevels [report]
+  ERR-08.2 major errors/ts/orders.ts prefetchOrderIgnoresMissByDesign [report]
+  ERR-08.3 major errors/ts/orders.ts saveDraftSwallowsError [report]
+  LOGIC.1 major code/java/InvoiceLedger.java InvoiceLedger#reconcilePayments [report]
+  LOGIC.2 major code/java/ShipmentPlanner.java ShipmentPlanner#distanceFromDepot [report]
+  LOGIC.3 major errors/go/catalog.go Catalog.PriceOfProductLeaksDriverError [report]
+  LOGIC.4 major errors/go/notify.go func retryDelayExitsOnBadHeader [report]
+  LOGIC.5 major errors/go/receipts.go func appendAuditLineIgnoresWriteError [report]
+  LOGIC.6 major errors/ts/orders.ts orders.saveDraftSwallowsError [report]
+  LOGIC.7 major errors/ts/pricing.ts pricing.monthlyPriceFallsBackToZero [report]
+  LOGIC.8 minor code/go/stockroom.go (*Stockroom).ReleaseReservation [report]
+  LOGIC.9 minor code/java/InvoiceLedger.java InvoiceLedger#computeLateFee [report]
+  LOGIC.10 minor code/java/RateCardImporter.java RateCardImporter#parseRateRow [report]
+  LOGIC.11 minor code/rust/session_cache.rs SessionCache::idle_sessions [report]
+  LOGIC.13 minor code/rust/session_cache.rs SessionCache::remaining_lifetime [report]
+  LOGIC.14 minor errors/go/inventory.go func restockFromRowReturnsMinusOne [report]
+  LOGIC.15 minor errors/ts/tags.ts tags.hashtagsOfPostOrNull [report]
+  LOGIC.16 minor tests/java/shop/OrderServiceTest.java OrderServiceTest#placeOrderReturnsTheOrderAsStored [report]
+  LOGIC.17 minor tests/ts/checkout.test.ts test("checkoutTotalOnATuesdayTakesTenPercentOff") [report]
+  LOGIC.18 minor tests/ts/order-history.test.ts InMemoryOrderRepository#save [report]
+  LOGIC.19 suggestion tests/ts/shipping.test.ts test("shippingQuoteSurfacesPrimaryCarrierFailure") [report]
+  TST-01.1 minor tests/java/shop/QuoteServiceTest.java QuoteServiceTest#quoteTotalMocksMoneyValue [report]
+  TST-01.2 minor tests/python/test_release_notes.py test_release_notes.test_render_notes_patches_markdown_package [report]
+  TST-01.3 minor tests/python/test_release_notes.py test_release_notes.test_render_notes_through_project_renderer [report]
+RESULT: 72/72 passed
