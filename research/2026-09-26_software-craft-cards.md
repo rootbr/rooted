@@ -1,6 +1,6 @@
 # Design note — `software-craft` on atomic rule cards
 
-The `/software-craft` skill builds code and reviews it against one corpus of atomic craft cards — the general, language-agnostic craft of programming, one checkable rule per card, an openable source per card. A developer agent writes code by the cards, listing the cards for each step of its work and reading the ones whose titles apply; a deterministic pre-pass then matches the cards' dispatch conditions against the agent's own diff, a Workflow script runs one finder per (card × slice) plus a logic pass per slice, aggregates deterministically and runs one skeptic per finding; one fix round returns the confirmed findings to the developer; a render script writes two Markdown reports. A rule with no openable source is held in `pending-evidence.md` and ships nowhere.
+The `/software-craft` skill builds code and reviews it against one corpus of atomic craft cards — the general, language-agnostic craft of programming, one checkable rule per card, an openable source per card. A developer agent designs the change into a brief written to the `design` cards and, once the brief is confirmed, implements it by the cards, listing the cards for each step of its work and reading the ones whose titles apply; a deterministic pre-pass then matches the cards' dispatch conditions against the agent's own diff, a Workflow script runs one finder per (card × slice) plus a logic pass per slice, aggregates deterministically and runs one skeptic per finding; one fix round returns the confirmed findings to the developer; a render script writes two Markdown reports. A rule with no openable source is held in `pending-evidence.md` and ships nowhere.
 
 This note is the design record. Each fact names its runtime owner; where this note and a runtime file differ, the runtime file decides. Paths are relative to `plugins/code-quality/skills/software-craft/` unless they start with `plugins/` or `research/`.
 
@@ -41,13 +41,15 @@ plugins/code-quality/
 research/
 |-- 2026-09-26_software-craft-cards.md   # this note
 `-- software-craft/<topic-slug>.md       # one research note per topic, retained
+<repository under review>/craft/
+`-- design.md                            # the developer's design brief (build runs)
 ```
 
-The plugin-level `agents/` directory holds the three agent types because a Claude Code plugin resolves agent types only from that directory, under `<plugin>:<name>`. The progress table under §Progress says which of these files exist; a path listed here and marked open there is a deliverable of a later step.
+`craft/` sits in the repository under review: §Design → Build contract owns the brief, and SKILL.md's runtime layout lists the run's other files. The plugin-level `agents/` directory holds the three agent types because a Claude Code plugin resolves agent types only from that directory, under `<plugin>:<name>`. The progress table under §Progress says which of these files exist; a path listed here and marked open there is a deliverable of a later step.
 
 ## Two consumers of one card
 
-1. The developer while writing. Before a step — designing a module, implementing, adding tests, handling errors, refactoring, documenting — the developer agent lists the cards for that step by facet through `scripts/craft-cards.py`, reads the titles, opens the cards whose titles apply, and writes to them. This is the base card specification's retrieval model: a facet filter followed by an index scan of titles.
+1. The developer while writing. Before a step — designing on the design dispatch, then implementing, adding tests, handling errors, refactoring and documenting on the build — the developer agent lists the cards for that step by facet through `scripts/craft-cards.py`, reads the titles, opens the cards whose titles apply, and writes to them. This is the base card specification's retrieval model: a facet filter followed by an index scan of titles.
 2. The finder during self-review. After the step, the pre-pass matches each card's dispatch conditions — regular expressions against the added lines, or a structural signal the pre-pass computes — and the review workflow dispatches one finder per (card × slice) and one skeptic per finding. The finder reads the card whole, in isolation, with the hunks.
 
 The schema serves both: `step` and `applies_to` are the first consumer's retrieval facets; `triggers`, `scope` and `check_kind` are the second consumer's dispatch facets; both consumers apply the Validator. Every shipped card has a Validator with one binary question. A principle with no checkable form on a diff becomes the Rationale of a checkable card, or is recorded in its topic's research note under "held back" and yields no card.
@@ -171,7 +173,7 @@ Reserved specialties are outside the corpus and outside the developer agent's ma
 
 `references/craft-cards-taxonomy.md` owns the allowed values and their definitions. The design reasons:
 
-- `step` has seven values, listed in the Card schema table, because the developer agent's work has seven moments at which it loads cards. A card lists every moment at which its rule is applied while writing, not only the one where the defect is found; `review` is reserved for rules about the shape and description of the change itself.
+- `step` has seven values, listed in the Card schema table, because the developer agent's work has seven moments at which it loads cards: `design` on its design dispatch, six on its build. A card lists every moment at which its rule is applied while writing, not only the one where the defect is found; `review` is reserved for rules about the shape and description of the change itself.
 - `applies_to` is `universal` for a rule that holds in every mainstream language and paradigm; otherwise it names a paradigm (`object-oriented`, `functional`), a boundary kind (`public-api`, `service-boundary`, `library`), a language trait (`exceptions`, `result-types`, `garbage-collected`, `manual-memory`, `static-types`, `dynamic-types`) or a file kind (`tests`, `build-config`, `prose`). A rule that holds only in one language is not carded here; it belongs to a language-specific corpus.
 - `scope`, `check_kind` and the tiers keep the Java review corpus's meanings, so the two review workflows read a card the same way.
 - Severity has three values:
@@ -284,6 +286,35 @@ Logic-pass slices are three to eight file groups by module or directory prefix, 
 
 Candidates are mechanical hits the pre-pass names outright, tagged `needs_verification`: the `empty_handler`, `boolean_argument`, `commented_out_code` and `todo_marker` signals per line, plus a `return null` / `return None` / `return nil` from a routine whose signature declares a collection type, and a `print` / `console.log` / `System.out` / `fmt.Println` / `println!` outside a test or a `main`. Project cards follow the Java review's shape: the numbered invariants in the body of `config.md` become `PROJ-N` cards (the invariant shape is `N. **Title**: rule. Violation: consequence.`), and files under `.claude/software-craft/cards/*.md` are indexed as written.
 
+## Design → Build contract
+
+A build run dispatches the developer agent twice: a design dispatch writes the brief `craft/design.md`, the user confirms it, and a build dispatch implements it. The brief is the one artifact the user confirms before any code is written, and the build, the fix round and the report read it; two dispatches of one agent type let each take its own model and effort and let the build start from a confirmed brief. The runtime owners are SKILL.md §Phase 1 Build model, §Phase 3 Design and §Phase 4 Build and `plugins/code-quality/agents/software-developer.md`.
+
+The design dispatch carries the task, the write zone, `design_intent` and `project_context` as data, and a finished design the caller holds — a module contract from a plan, a ticket design document — which the agent keeps as the brief's base and completes. The agent opens the code of the write zone and its neighbours, lists the cards of `step: design` through `scripts/craft-cards.py --step design` and opens the ones whose titles apply; the brief's `## Design` section answers each applied card's Validator, and the design dispatch applies no other step's cards. The brief has seven sections, in this order, every one present (an empty one says "none"):
+
+| Section | Content |
+|--|--|
+| `## Task` | the task in one paragraph and the write zone as paths |
+| `## Stack` | build and test tooling, formatter and linter configuration, the naming, layout and error-handling idioms of the surrounding code, the existing test style; each a fact read from a named file |
+| `## Design` | the modules and types to add or change by `path:Symbol`, each with its responsibility and boundary; the data flow; the invariants the change upholds; the chosen approach with the present-tense fact that decides it |
+| `## Failure paths` | every failure path the change meets and its decided outcome, one line each |
+| `## Tests` | the behaviours the tests demonstrate, by test location and name |
+| `## Steps` | numbered steps, each with its step kind (`implement`, `handle-errors`, `test`, `refactor`, `document`), the files it touches inside the write zone and the behaviour it adds or preserves; `mechanical` marks an edit by example or a move by format that needs no judgement |
+| `## Out of scope` | reserved specialties the design meets and leaves to the operator; changes outside the write zone, as proposals |
+
+- Build model. The scope names the build model, `fable` or `opus`: the model the task text names, else `fable` for a task that adds or changes a boundary, a data flow across modules, a failure contract, concurrency or a project invariant, else `opus`. The dispatches run by the table below; the review runs on `opus` at every tier, so a change built on Fable is judged by another model.
+
+| Dispatch | Build model `fable` | Build model `opus` |
+|--|--|--|
+| design | `fable` `xhigh` | `opus` `xhigh` |
+| build and fix round of a brief with a step that is not `mechanical` | `fable` `high` | `opus` `xhigh` |
+| build and fix round of a brief whose every step is `mechanical` | `opus` `high` | `opus` `high` |
+
+- Retry. A dispatch on `fable` that errors or returns no report runs once more on `opus` at `xhigh` with the same prompt, and the record names the model that answered.
+- Confirmation. A build run's one confirmation closes Design: the session shows the scope summary with the build model and `craft/design.md` together and asks "Proceed?" once; an answer naming a model changes the build model for the dispatches that follow. A review-only run confirms at the end of Scope.
+- Dispatch. The build dispatch's `<task>` block carries the task, the write zone, `design_intent`, `project_context` and the brief's full text as data; a build dispatch without the brief is a defect of the skill, not a choice of the agent.
+- Deviation. The developer verifies `## Stack` against the tree in one pass and keeps the tree's spelling where the two differ; it adapts a name or a signature to the surrounding convention and changes no boundary, approach or failure outcome the confirmed brief decides; a step it cannot do as written is an open question at that step; its report lists each deviation with the fact that forced it.
+
 ## Review workflow contracts
 
 `scripts/craft-review-workflow.js`, run as a bundle: `scripts/bundle-run.py` embeds `root`, `stage`, `plan`, `design_intent`, `project_context`, `findings`, `tiers` and `agentTypes` as `const EMBEDDED_ARGS` after the script's `meta` block and writes `craft/run.js`, which the orchestrator calls through `Workflow({ scriptPath })` with no `args`. The phases:
@@ -293,13 +324,13 @@ Candidates are mechanical hits the pre-pass names outright, tagged `needs_verifi
 3. Verify — one skeptic per finding.
 4. Refute — a rejected Major gets a second skeptic and, when the defense holds, an arbiter.
 
-Tiers, overridable through `tiers`; no stage runs on Fable, and the workflow script's tier check rejects a model naming Fable loud:
+Tiers, overridable through `tiers`; no stage runs on Fable — a change built on Fable is then judged by another model — and the workflow script's tier check rejects a model naming Fable loud:
 
 | Tier | Model | Effort | Runs |
 |--|--|--|--|
-| `mechanical` | `claude-opus-5-5` | `high` | finders of mechanical cards |
-| `semantic` | `claude-opus-5-5` | `xhigh` | finders of semantic cards, the logic pass, project cards; skeptics of Minor and Suggestion findings |
-| `verdict` | `claude-opus-5-5` | `max` | skeptics of Major findings; every second skeptic and arbiter |
+| `mechanical` | `opus` | `high` | finders of mechanical cards |
+| `semantic` | `opus` | `xhigh` | finders of semantic cards, the logic pass, project cards; skeptics of Minor and Suggestion findings |
+| `verdict` | `opus` | `xhigh` | skeptics of Major findings; every second skeptic and arbiter |
 
 Schemas: `FINDINGS` — `{ findings: [ { rule_id, severity ∈ {major, minor, suggestion}, file, symbol, code, problem, fix, rationale } ] }`, `code` verbatim from the diff and `fix` in the file's language; `VERDICT` — `{ verdict ∈ {confirmed, rejected, downgraded, upgraded, modified}, evidence, final_severity, note, corrected_finding? }`; `REFUTATION` — `{ refuted, evidence, note }`; `RULING` — `{ ruling ∈ {upheld, refuted, uncertain}, evidence, final_severity, note }`. Stages: `find` returns the aggregated findings for `craft/findings.json`; `verify` takes them back and skips Find; `all` runs both. `main_agent_followups` carries the integrity check, because the workflow runtime grants Write and Edit to sub-agents regardless of their `tools:` allowlist (claude-code#63762).
 
@@ -307,7 +338,7 @@ The finder prompt names the card path, the slice files and hunks with their sign
 
 ## Fix round
 
-Confirmed findings go back to the developer agent once, with the write zone unchanged; the pre-pass and the workflow run again on the fix diff at `stage: verify` over the re-found set. One round; what remains is reported. The developer agent launches no sub-agents and performs no version-control write; the skill performs none either.
+Confirmed findings go back to the developer agent once, on the build dispatch's model and effort, with the same brief and the write zone unchanged. A confirmed finding that contradicts the brief — a boundary, an approach, a failure outcome — the developer resolves: it fixes the code, amends that section of `craft/design.md` so it states the present design, and names the amendment in its report as a deviation; a finding that survived the review's skeptics outranks the confirmed brief, where the developer's own self-review does not. The pre-pass and the workflow run again on the fix diff at `stage: verify` over the re-found set. One round; what remains is reported. The developer agent launches no sub-agents and performs no version-control write; the skill performs none either.
 
 ## Research workflow
 
@@ -319,7 +350,7 @@ Confirmed findings go back to the developer agent once, with the write zone unch
 4. Verify — one skeptic per draft checks entailment of the Thesis by the evidence, self-containment, the Example's compilability in its language, the trigger's sanity and the separating condition of a contested rule, and returns a verdict with the edit it requires.
 5. Fix — the drafter applies the verdict once per round, and the skeptic verifies the fixed draft again. A run is one round; a further round continues from the journal (`scripts/research-continue.py --round N`), carrying the fixed drafts and the last verdicts as its state and drafting only the rules the verdict sent back with `revise`, so a rule with verdict `accept` is done and a rule with verdict `reject` stays pending. Every topic gets two rounds: a fresh run is round 1, round 2 continues from the journal, and a topic whose cards were written after one round gets its second round as a pass over its cards as they stand in the tree, one verdict per card and a closing edit where the verdict asks for one (§Cost carries both costs). After the round's last verdict, a rule with verdict `accept` ships; a rule with verdict `revise` ships after a closing edit, in which the drafter applies that verdict's required edits verbatim and changes nothing else, and the verdict is the card's verification record in the research note; a rule goes to pending when its verdict is `reject` or when its closing edit cannot be applied without a source the drafter lacks.
 
-Every agent names `model: 'claude-opus-5-5'`; effort `xhigh` for the source, spine and draft agents and `max` for the skeptic. The workflow writes no files: it returns the research note body, the cards, the provenance lines and the pending entries, and the orchestrator writes them, runs the validator and the audit, and commits. The research note's frontmatter `status: researched | drafted | verified | done` is the run's durable state: on start, the work list is derived from these files and continues from the first topic not `done`.
+Every agent names `model: 'opus'` and effort `xhigh`. The workflow writes no files: it returns the research note body, the cards, the provenance lines and the pending entries, and the orchestrator writes them, runs the validator and the audit, and commits. The research note's frontmatter `status: researched | drafted | verified | done` is the run's durable state: on start, the work list is derived from these files and continues from the first topic not `done`.
 
 ## Source policy
 
@@ -350,6 +381,7 @@ The tree is the state: each topic's research note carries `status`, each card ex
 | 5 Series: every remaining topic in batches, one reviewer per domain, corpus audit, fixture to three seeds per domain | validator, audit and grading clean, `pending-evidence.md` complete, every note `done`, provenance round-trip holds | done except the extended fixture's grading run, open for the operator, and the docs and input seeds the fixture still lacks: every topic in §Topic taxonomy and the gap runs of every domain are written, each topic through two fix rounds (the series topics' second round as a pass over the cards in the tree), ten domain reviewers applied, the closing card audit run over a sample of two cards per topic (49 cards) and over the ten cards split or added at the close, the validator and the note-to-tree cross-check clean; the fixture carries three seeds and three controls for the other domains |
 | 6 Close: SKILL.md, READMEs, maintenance, gotchas, report format, `overview.sh`, versions, final audit | final audit clean | done: the skill, the three agents, this note and the references audited at the close |
 | 7 Group K, architecture: seven topics through two rounds and a closing edit, the domain registered in the scripts and the taxonomy, ownership pairs in `DEFER_TO` | validator clean, a card audit over two cards per topic, `pending-evidence.md` carrying the rules without a separating condition | done for the corpus: 48 cards, 18 pending entries, 57 held rules; open — fixture seeds for the architecture domain and the review grading over them, like the docs and input seeds of step 5 |
+| 8 Design step: the developer's design dispatch and the brief as the build's input, the build model and the dispatch table, §Design → Build contract | tests pass, SKILL.md and the developer agent audit clean | done for the skill, the agent, this note and the references; open for the operator — the smoke task re-graded on the two dispatches (`evals/evals.json`, `smoke_task.contract`) |
 
 ## Cost
 
@@ -366,7 +398,7 @@ Per topic, the research workflow runs 3 source agents, 1 spine agent and, per ca
 | Closing edits | 9–11 | 0.6–0.8 M |
 | Topic in all | 85–87 | 13.0–14.0 M |
 
-Yield: every one of the 36 drafts drew a `revise` on its first verdict; 1 of 36 was accepted after the first fix round and 5 of 35 after the second, each remaining verdict carrying exact edits (a dropped precondition, a number recast, a correlation stated as a cause), none a rejection for missing evidence. The one-round pipeline (draft, verdict, fix, verdict, closing edit) costs about 9.5–10 M tokens and 55 agents per topic, the two-round pipeline of the table above 13–14 M; at 12 rules a topic, the 45 series topics project to 430–450 M sub-agent tokens on one round. A skeptic verdict is 210–240 k tokens at `max` effort and is the largest line; running the second verdict at `xhigh` is the one cut the design admits; I have not measured its effect on the verdict's findings, so I cannot say it leaves what ships unchanged.
+Yield: every one of the 36 drafts drew a `revise` on its first verdict; 1 of 36 was accepted after the first fix round and 5 of 35 after the second, each remaining verdict carrying exact edits (a dropped precondition, a number recast, a correlation stated as a cause), none a rejection for missing evidence. The one-round pipeline (draft, verdict, fix, verdict, closing edit) costs about 9.5–10 M tokens and 55 agents per topic, the two-round pipeline of the table above 13–14 M; at 12 rules a topic, the 45 series topics project to 430–450 M sub-agent tokens on one round. A skeptic verdict is 210–240 k tokens at `max` effort and is the largest line; §Research workflow runs the skeptic at `xhigh`, and I have not measured that effort's effect on the verdict's findings, so I cannot say it leaves what ships unchanged.
 
 Measured over the series, from the cost lines of the research notes (56 notes: the 48 topics and the gap runs of eight domains, the tree pass over the series cards included): 2,945 agents and about 345 M sub-agent tokens, a median of 5.6 M per topic, with the card prompts' working-method block bounding a skeptic's reads. The ten domain reviewers cost about 6 M, the closing card audit over 59 cards, the 49-card sample and the ten cards split or added at the close, about 84 M (about 220 single-rule agents per run of ten cards, on haiku for mechanical checks and sonnet for semantic ones), and the tree pass's skeptic on the Fable model at `high` about 0.1 M per card, against the 0.3–0.4 M an opus skeptic at `max` costs.
 
@@ -384,4 +416,4 @@ The brief is the operator's handover message that commissioned this build; it is
 6. Skill name. The brief names the skill `software-craft`. The audit's naming rule (R-01) asks for a verb and an object in a skill name; the brief's name stays, because the layout, the developer agent's `skills:` field and the marketplace README address the skill by it, and its description carries the verbs and the objects.
 7. Fix rounds. The brief's decision says one fix round. The pilot's yield (§Cost) shows a verdict that accepts is the exception and not the point of convergence. §Research workflow therefore gives a topic two fix rounds and a closing edit, and the research note records which card shipped on a closing edit; §Cost carries the measured cost of that choice.
 8. Search budget. The brief's research protocol assumes the search tool for the reception and evidence layers. The runtime caps the search tool at 200 calls per session for all sub-agents together (`CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION`), and the cap was spent before the pilot's source layer ran, so a paper enters a card only through a GitHub-hosted copy (`fetched`) or through a snippet the orchestrator's own search relayed into the topic's `candidate_evidence` with its URL (`relayed`); every series bundle carries the cap and the GitHub paper mirrors as the workflow's `channel_note`. Raising the cap in the environment's settings before a series run is open for the operator.
-9. Skeptic model of the second round. §Research workflow names `claude-opus-5-5` for every agent. The series topics written after one round got their second round as a pass over the cards in the tree, and on the operator's decision its one verdict per card ran on `claude-fable-5-1` at `high`, with the closing edit that applies the verdict's exact edits on opus at `high`; the first topic of the pass measured the closing edits against their verdicts and kept `high`. The operator's words: the audit stays, and the skeptic per card runs on Fable at high.
+9. Skeptic model of the second round. §Research workflow names `opus` for every agent. The series topics written after one round got their second round as a pass over the cards in the tree, and on the operator's decision its one verdict per card ran on `claude-fable-5-1` at `high`, with the closing edit that applies the verdict's exact edits on opus at `high`; the first topic of the pass measured the closing edits against their verdicts and kept `high`. The operator's words: the audit stays, and the skeptic per card runs on Fable at high.

@@ -38,10 +38,10 @@ export const meta = {
   name: 'review-java',
   description: 'Card-dispatched Java diff review: one finder per triggered rule card, deterministic aggregation, one skeptic per finding',
   phases: [
-    { title: 'Find', detail: 'one finder per (card x slice) from plan.json, plus a logic pass per slice', model: 'claude-opus-5-5' },
+    { title: 'Find', detail: 'one finder per (card x slice) from plan.json, plus a logic pass per slice', model: 'opus' },
     { title: 'Aggregate', detail: 'deterministic JS: dedup by span, ownership by domain, conflict priority, severity sort' },
-    { title: 'Verify', detail: 'one skeptic per finding tries to refute it and calibrates severity', model: 'claude-opus-5-5' },
-    { title: 'Refute', detail: 'a rejected Critical/Major gets a second skeptic and an arbiter', model: 'claude-opus-5-5' },
+    { title: 'Verify', detail: 'one skeptic per finding tries to refute it and calibrates severity', model: 'opus' },
+    { title: 'Refute', detail: 'a rejected Critical/Major gets a second skeptic and an arbiter', model: 'opus' },
   ],
 }
 
@@ -73,11 +73,11 @@ const CANDIDATES = Array.isArray(PLAN.candidates) ? PLAN.candidates : []
 
 // ---- tiers: model + effort per check_kind; overridable, validated loud ------
 const EFFORTS = ['low', 'medium', 'high', 'xhigh', 'max']
-const DEFAULT_MODEL = 'claude-opus-5-5'
+const DEFAULT_MODEL = 'opus'
 const TIERS = {
   mechanical: { model: DEFAULT_MODEL, effort: 'high' },
   semantic: { model: DEFAULT_MODEL, effort: 'xhigh' },
-  verdict: { model: DEFAULT_MODEL, effort: 'max' },
+  verdict: { model: DEFAULT_MODEL, effort: 'xhigh' },
 }
 for (const [k, v] of Object.entries(A.tiers || {})) {
   if (!TIERS[k]) throw new Error(`review-workflow: tiers.${k} is not a tier (expected mechanical|semantic|verdict)`)
@@ -85,7 +85,7 @@ for (const [k, v] of Object.entries(A.tiers || {})) {
   else throw new Error(`review-workflow: tiers.${k} must be an object { model?, effort? }`)
 }
 for (const [k, v] of Object.entries(TIERS)) {
-  if (typeof v.model !== 'string' || !v.model) throw new Error(`review-workflow: tiers.${k}.model must be a non-empty model id`)
+  if (typeof v.model !== 'string' || !v.model) throw new Error(`review-workflow: tiers.${k}.model must be a non-empty model alias or id`)
   if (/fable/i.test(v.model)) throw new Error(`review-workflow: tiers.${k}.model = "${v.model}" — no review stage runs on Fable`)
   if (!EFFORTS.includes(v.effort)) throw new Error(`review-workflow: tiers.${k}.effort = "${v.effort}" (expected one of ${EFFORTS.join('|')})`)
 }

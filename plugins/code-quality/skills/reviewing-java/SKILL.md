@@ -10,9 +10,9 @@ You orchestrate a Java code review and deliver verified findings. The rules live
 
 Quick rules:
 
-- One confirmation with the user, at the end of Scope; no other question unless every context source is empty.
+- One confirmation with the user, at the end of Scope; ask further questions only when the arguments do not parse, no base branch resolves, or every context source is empty.
 - Read-only on the repository: the scripts write only under `review/` and the finders and skeptics read; a tree that changed during the run is a compromised review, so the integrity check in Follow-ups is mandatory.
-- No stage runs on Fable; the tiers are `claude-opus-5-5` at `high`, `xhigh` and `max`.
+- No stage runs on Fable — the tier check refuses a model naming it at launch; the tiers are the models and efforts in the Phase 4 tier table.
 - The plan is never retyped: `scripts/bundle-run.py` embeds it, and the Workflow call names `review/run.js`.
 - Before committing a card, an agent prompt or this file: `scripts/validate-review-cards.py` on the corpus, then the audit (repository Quality Gate).
 
@@ -149,11 +149,11 @@ Phases inside the run: **Find** — one finder per job at the card's tier, one l
 
 | Tier | Model | Effort | Runs |
 |--|--|--|--|
-| `mechanical` | `claude-opus-5-5` | `high` | finders of mechanical cards |
-| `semantic` | `claude-opus-5-5` | `xhigh` | finders of semantic cards, the logic pass, project invariants; skeptics of Minor and Suggestion findings |
-| `verdict` | `claude-opus-5-5` | `max` | skeptics of Critical and Major findings; every second skeptic and arbiter |
+| `mechanical` | `opus` | `high` | finders of mechanical cards |
+| `semantic` | `opus` | `xhigh` | finders of semantic cards, the logic pass, project invariants; skeptics of Minor and Suggestion findings |
+| `verdict` | `opus` | `xhigh` | skeptics of Critical and Major findings; every second skeptic and arbiter |
 
-Effort values are validated loud; a model naming Fable is rejected.
+Effort values are validated loud; the Fable restriction is the one in §Quick rules.
 
 Stages are the cross-session checkpoint: `stage: "find"` returns the aggregated findings — write them to `review/findings.json`; `stage: "verify"` takes `findings` from that file and skips Find. There are no per-agent files.
 
@@ -163,7 +163,7 @@ Enforcement caveat: the workflow runtime grants `Write`/`Edit` to sub-agents reg
 
 Script declarations: `scripts/review-workflow.js` orchestrates only — it reads its arguments, writes no files, and its sole privilege is spawning sub-agents; zero external dependencies. `scripts/static-review.py` reads the repository and the cards and writes the two plan files. `scripts/bundle-run.py` reads the plan, the intent and the context and writes `review/run.js`. `scripts/validate-review-cards.py` reads the cards and the two maps and writes nothing; `scripts/tests/` reads a fixture repository it builds under a temporary directory. Every script is standard library only, no network; a change to any of them re-runs `scripts/tests/` and the fixture grading, as `references/maintenance.md` states. `scripts/render-reports.py` reads `plan.json` and `verdicts.json` and writes the two reports.
 
-Fallback, manual dispatch (degraded). When the Workflow tool is unavailable, dispatch one Agent-tool sub-agent per triggered domain — `plan.jobs` grouped by `card.domain` — with `Read, Grep, Glob, Bash` as its tools (Bash for read-only git), giving each the paths of its cards, the slices from the plan, `design_intent`, `project_context` and the same `FINDINGS` schema, using the `code-quality:review-finder` type (the Agent tool enforces its allowlist). Then aggregate by hand per §Aggregation, and dispatch one `code-quality:review-verifier` sub-agent per finding with the skeptic prompt from the script. This path bundles a domain's cards into one agent, so it misses more than the primary path; name it as degraded in the report's Executive Summary.
+Fallback, manual dispatch (degraded). When the Workflow tool is unavailable, dispatch one Agent-tool sub-agent per triggered domain — `plan.jobs` grouped by `card.domain` — with `Read, Grep, Glob, Bash` as its tools (Bash for read-only git), giving each the paths of its cards, the slices from the plan, `design_intent`, `project_context` and the same `FINDINGS` schema, using the `code-quality:review-finder` type (the Agent tool enforces its allowlist and runs the model and effort its definition names; in a workflow run the tier overrides them). Then aggregate by hand per §Aggregation, and dispatch one `code-quality:review-verifier` sub-agent per finding with the skeptic prompt from the script. This path bundles a domain's cards into one agent, so it misses more than the primary path; name it as degraded in the report's Executive Summary.
 
 ---
 

@@ -1,6 +1,8 @@
 ---
 name: review-verifier
 description: Read-only skeptic for the reviewing-java skill, used when the review workflow, or its Agent-tool fallback, dispatches one finding to refute against the code, the git history and the project context, calibrate its severity, and return a schema-validated verdict; the same definition serves the second skeptic and the arbiter on a rejected Critical or Major. It adds no findings and edits nothing. NOT for finding defects or applying fixes.
+model: opus
+effort: xhigh
 tools: Read, Grep, Glob, Bash
 ---
 

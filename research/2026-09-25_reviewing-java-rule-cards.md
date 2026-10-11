@@ -210,9 +210,9 @@ Tiers, overridable through `args.tiers`:
 
 | Tier | Model | Effort | Used by |
 |--|--|--|--|
-| `mechanical` | `claude-opus-5-5` | `high` | finders of mechanical cards |
-| `semantic` | `claude-opus-5-5` | `xhigh` | finders of semantic cards, the logic pass, PROJ finders, skeptics of minor and suggestion findings |
-| `verdict` | `claude-opus-5-5` | `max` | skeptics of critical and major findings, the second skeptic, the arbiter |
+| `mechanical` | `opus` | `high` | finders of mechanical cards |
+| `semantic` | `opus` | `xhigh` | finders of semantic cards, the logic pass, PROJ finders, skeptics of minor and suggestion findings |
+| `verdict` | `opus` | `xhigh` | skeptics of critical and major findings, the second skeptic, the arbiter |
 
 No stage uses Fable.
 

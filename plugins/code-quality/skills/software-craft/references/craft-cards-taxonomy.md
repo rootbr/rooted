@@ -27,7 +27,7 @@ Exactly these keys, all required, in this order; the validator rejects any other
 | `title` | the rule as one complete, checkable declarative claim (C-A1); identical to the H1 |
 | `rule_id` | stable id `<PREFIX>-NN`; the finder stamps it on every finding and the workflow dedups and applies ownership by it. A finding is `<rule_id>.<ordinal>` |
 | `domain` | the owning topic group; decides conflict priority. The prefix and the domain agree by the table under Allowed values |
-| `step` | inline list of the moments in the developer's work at which the developer loads the card; the developer's retrieval facet |
+| `step` | inline list of the moments in the developer's work at which it loads the card — `design` on its design dispatch, the rest on its build; the developer's retrieval facet |
 | `applies_to` | inline list: `[universal]`, or the named scopes where the rule holds; a self-restriction (C-C3) |
 | `triggers` | inline list of Python `re` patterns, each matched with `re.search` against one added line of the diff at a time in any language, or `signal:<name>` naming a structural signal the pre-pass computes; a card runs on a file when any pattern matches any added line or any hunk carries the named signal. `[]` means every diff and is reserved for a handful of always-on cards |
 | `scope` | what the finder reads beyond the matched hunk |

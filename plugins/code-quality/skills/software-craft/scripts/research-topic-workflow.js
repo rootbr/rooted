@@ -32,7 +32,7 @@
 //     max_rules: 12,                      // cap on candidate rules drafted; the rest is logged and held
 //     rotation_start: 0                   // index into the example-language rotation for this topic
 //   }})
-// Every agent runs on claude-opus-5-5: xhigh for the source, spine and draft agents, max for the skeptic.
+// Every agent runs on opus at xhigh.
 //
 // Continuation: a run cut short (a session limit, a killed process) is continued from its journal rather
 // than replayed — the runtime's resume replays only the unchanged prefix of agent calls, and the pipeline's
@@ -53,10 +53,10 @@
 //   closing_edit: true | false         // true: after the run's last verdict, a "revise" does not pend the rule — the drafter
 //                                      // applies that verdict's required edits verbatim, changes nothing else, and the
 //                                      // card ships with the verdict as its verification record (a "reject" still pends)
-//   skeptic_model: "claude-...", skeptic_effort: "high" | "xhigh" | "max"
+//   skeptic_model: "opus" | "fable" | ..., skeptic_effort: "high" | "xhigh" | "max"
 //                                      // optional: the model and effort of the skeptic agents of this run in place of the
 //                                      // defaults below (the operator's choice for the second-round pass over written cards:
-//                                      // claude-fable-5-1 at high); the drafter, the sources and the spine keep the defaults
+//                                      // fable at high); the drafter, the sources and the spine keep the defaults
 //   closing_effort: "high" | "xhigh" | "max"
 //                                      // optional: the effort of the closing-edit agents alone (the drafter applying the last
 //                                      // verdict's exact edits), in place of the drafter's default; the other drafter runs keep it
@@ -73,11 +73,11 @@ export const meta = {
   name: 'research-craft-topic',
   description: 'Research one software-craft topic: three source layers in parallel, a spine of candidate rules, one drafter and one skeptic per rule, one fix round per run',
   phases: [
-    { title: 'Sources', detail: 'formulation, reception and evidence agents in parallel', model: 'claude-opus-5-5' },
-    { title: 'Spine', detail: 'one agent merges the layers into candidate rules with evidence anchors', model: 'claude-opus-5-5' },
-    { title: 'Draft', detail: 'one drafter per candidate rule: the card, its provenance line, its pending entry', model: 'claude-opus-5-5' },
-    { title: 'Verify', detail: 'one skeptic per draft: entailment, self-containment, example, triggers, separating condition', model: 'claude-opus-5-5' },
-    { title: 'Fix', detail: 'the drafter applies the verdict once per round; a rule the skeptic does not accept after this round goes to pending', model: 'claude-opus-5-5' },
+    { title: 'Sources', detail: 'formulation, reception and evidence agents in parallel', model: 'opus' },
+    { title: 'Spine', detail: 'one agent merges the layers into candidate rules with evidence anchors', model: 'opus' },
+    { title: 'Draft', detail: 'one drafter per candidate rule: the card, its provenance line, its pending entry', model: 'opus' },
+    { title: 'Verify', detail: 'one skeptic per draft: entailment, self-containment, example, triggers, separating condition', model: 'opus' },
+    { title: 'Fix', detail: 'the drafter applies the verdict once per round; a rule the skeptic does not accept after this round goes to pending', model: 'opus' },
   ],
 }
 
@@ -123,8 +123,8 @@ const VERIFY_LABEL = ROUND === 1 ? 'verify' : `verify${ROUND}`
 const FIX_LABEL = ROUND === 1 ? 'fix' : `fix${ROUND}`
 const VERIFY_AGAIN_LABEL = `verify${ROUND + 1}`
 
-const MODEL = 'claude-opus-5-5'
-const EFFORT = { source: 'xhigh', spine: 'xhigh', draft: 'xhigh', skeptic: 'max' }
+const MODEL = 'opus'
+const EFFORT = { source: 'xhigh', spine: 'xhigh', draft: 'xhigh', skeptic: 'xhigh' }
 const EFFORTS = ['low', 'medium', 'high', 'xhigh', 'max']
 const SKEPTIC_MODEL = (typeof A.skeptic_model === 'string' && A.skeptic_model.trim()) ? A.skeptic_model.trim() : MODEL
 const SKEPTIC_EFFORT = A.skeptic_effort === undefined ? EFFORT.skeptic : A.skeptic_effort

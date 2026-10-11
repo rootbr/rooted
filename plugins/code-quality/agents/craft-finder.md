@@ -1,6 +1,8 @@
 ---
 name: craft-finder
 description: Read-only finder for the software-craft skill, used when the craft review workflow, or its Agent-tool fallback, dispatches one language-agnostic rule card, one project invariant, or the logic pass onto one slice of a diff in any language; it returns schema-validated findings anchored in the diff and edits nothing. NOT for reviewing a whole repository, for a Java-specific review, or for applying fixes.
+model: opus
+effort: xhigh
 tools: Read, Grep, Glob, Bash
 ---
 

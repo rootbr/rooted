@@ -20,7 +20,7 @@
   },
   "models": {
     "subject": {
-      "note": "The models under test are the workflow's own tiers (args.tiers in SKILL.md §Phase 4). Re-run this harness on every model change; a minor model bump silently dropped one rule's compliance by 48% in the audit skill's evidence base (Yang 2505.13360 §3.3).",
+      "note": "The models under test are the tiers the graded run used, as model ids; args.tiers in SKILL.md §Phase 4 names the live defaults by alias. Re-run this harness on every model change; a minor model bump silently dropped one rule's compliance by 48% in the audit skill's evidence base (Yang 2505.13360 §3.3).",
       "mechanical_tier": "claude-opus-5-5 / effort high",
       "semantic_tier": "claude-opus-5-5 / effort xhigh",
       "verdict_tier": "claude-opus-5-5 / effort max",

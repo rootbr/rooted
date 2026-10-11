@@ -18,7 +18,7 @@ Saved to the config's `review_output` (with `{TICKET_ID}` substituted) or `craft
 - Recommendation: Fix before merge / Merge with fixes / Merge
 
 ## What was built
-(the developer agent's report: what changed by path:Symbol, cards applied, what was verified and how, what could not be verified, open questions)
+(the developer agent's report: what changed by path:Symbol, cards applied, what was verified and how, what could not be verified, deviations from the design brief, open questions)
 
 ## Major Findings
 

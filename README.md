@@ -36,7 +36,7 @@ Five evidence-based skills. Three form a preparation pipeline — research → e
 | Skill | Description |
 |--|--|
 | `/reviewing-java` | Java code review from a corpus of atomic rule cards, each resting on an openable source: a deterministic pre-pass matches cards to the diff, one workflow runs a finder per triggered card and a skeptic per finding, and two reports land under `review/`. [Details](plugins/code-quality/skills/reviewing-java/README.md) |
-| `/software-craft` | Build-and-review from a corpus of language-agnostic craft cards across eleven domains (code, design, interfaces, errors, tests, change, performance, tooling, documentation, input, architecture), each resting on an openable source: a developer agent writes by the cards, a deterministic pre-pass matches cards to the diff, one workflow runs a finder per triggered card and a skeptic per finding, and a fix round closes the loop. [Details](plugins/code-quality/skills/software-craft/README.md) |
+| `/software-craft` | Build-and-review from a corpus of language-agnostic craft cards across eleven domains (code, design, interfaces, errors, tests, change, performance, tooling, documentation, input, architecture), each resting on an openable source: a developer agent designs the change into a brief and builds by the cards, a deterministic pre-pass matches cards to the diff, one workflow runs a finder per triggered card and a skeptic per finding, and a fix round closes the loop. [Details](plugins/code-quality/skills/software-craft/README.md) |
 | `/committing-changes` | Review changes and create atomic commits following Conventional Commits |
 
 ## Installation

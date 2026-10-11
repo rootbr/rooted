@@ -1,28 +1,29 @@
 ---
 name: software-craft
-description: Build code by the craft cards and review it against them, in any mainstream language (Java, Python, TypeScript, Go, Rust first-class). Trigger on "build", "implement", "extend", "refactor", "add tests" ("implement rate limiting with tests") — the developer agent writes the code and a card-dispatched craft review gates it — and on a standalone craft review of a diff ("review this change for craft", "check PR #42 against the craft rules"). Any git repository, zero config (optional .claude/software-craft/config.md tunes invariants and report paths); runs read-only git diff and gh pr view, a pre-pass matching rule cards to the diff, one Workflow with a finder per card and a skeptic per finding, one fix round, two reports under craft/. NOT for a Java-specific review, which another skill covers; NOT for debugging as the primary task; NOT for the reserved specialties (low-latency or HFT tuning, concurrency correctness, security-critical design, ML or algorithm research); NOT for codebase search.
+description: Build code by the craft cards and review it against them, in any mainstream language (Java, Python, TypeScript, Go, Rust first-class). Trigger on "build", "implement", "extend", "refactor", "add tests" ("implement rate limiting with tests") — a developer agent designs the change into a brief, then builds the confirmed brief, and a card-dispatched craft review gates it — and on a standalone craft review of a diff ("review this change for craft", "check PR #42 against the craft rules"). Any git repository, zero config (optional .claude/software-craft/config.md tunes invariants and report paths); runs read-only git diff and gh pr view, a pre-pass matching rule cards to the diff, one Workflow with a finder per card and a skeptic per finding, one fix round, two reports under craft/. NOT for a Java-specific review; NOT for debugging as the primary task; NOT for the reserved specialties (low-latency or HFT tuning, concurrency correctness, security-critical design, ML or algorithm research); NOT for codebase search.
 disallowed-tools: Edit, NotebookEdit
 ---
 
 # Software Craft
 
-You orchestrate a build and its craft review, or a craft review alone, and deliver verified findings. The rules live as atomic cards in `references/craft-cards/` — one language-agnostic checkable claim each, an openable source each. A developer agent writes code by those cards: before each step it lists the cards for that step by facet and reads the ones whose titles apply. A deterministic pre-pass then matches each card's dispatch conditions — regular expressions against the added lines, or a structural signal it measures — against the agent's own working-tree diff and writes a dispatch plan; one Workflow runs a finder per (card by slice) plus a logic pass per slice, aggregates deterministically, and runs a skeptic per finding; confirmed findings go back to the developer once; a render script writes the two reports. Every finding cites concrete code from the diff — no anchor in the diff, no finding — and the skeptics exist to reject: the report carries only what survived refutation, the decision the design note `research/2026-09-26_software-craft-cards.md` at the repository root records.
+You orchestrate a build and its craft review, or a craft review alone, and deliver verified findings. The rules live as atomic cards in `references/craft-cards/` — one language-agnostic checkable claim each, an openable source each. On a build run a developer agent is dispatched twice: first to design the change into the brief `craft/design.md` to the `design` cards, then, once the brief is confirmed, to implement it by the other cards — before each step it lists the cards for that step by facet and reads the ones whose titles apply. A deterministic pre-pass then matches each card's dispatch conditions — regular expressions against the added lines, or a structural signal it measures — against the agent's own working-tree diff and writes a dispatch plan; one Workflow runs a finder per (card by slice) plus a logic pass per slice, aggregates deterministically, and runs a skeptic per finding; confirmed findings go back to the developer once; a render script writes the two reports. Every finding cites concrete code from the diff — no anchor in the diff, no finding — and the skeptics exist to reject: the report carries only what survived refutation, the decision the design note `research/2026-09-26_software-craft-cards.md` at the repository root records.
 
 Quick rules:
 
-- One confirmation with the user, at the end of Scope; ask further questions only when every context source is empty or no base branch resolves.
-- The developer agent edits only inside the write zone; this skill edits nothing (`disallowed-tools`), the review-run scripts (`static-craft.py`, `bundle-run.py`, `render-reports.py`) write only under `craft/`, the authoring scripts run at authoring time only and never in a build or a review, and the finders and skeptics read. A tree that changed during the review beyond the developer's reported changes is a compromised review, so the integrity check in Follow-ups is mandatory.
+- One confirmation with the user: at the end of Design on a build run, where the scope summary with the build model and `craft/design.md` are shown together, and at the end of Scope on a review-only run; ask further questions only when every context source is empty or no base branch resolves.
+- The developer agent edits only inside the write zone, plus `craft/design.md` on its design dispatch and where a fix round amends it; this skill edits nothing (`disallowed-tools`) and writes only the run's record under `craft/`, the review-run scripts (`static-craft.py`, `bundle-run.py`, `render-reports.py`) write only under `craft/`, plus the two reports at the config's `review_output` path when it is set, the authoring scripts run at authoring time only and never in a build or a review, and the finders and skeptics read. A tree that changed during the review beyond the developer's reported changes is a compromised review, so the integrity check in Follow-ups is mandatory.
 - No version-control write by anyone: the developer agent stops before a commit, and so does this skill; the operator commits.
-- No stage runs on Fable; the tiers are `claude-opus-5-5` at `high`, `xhigh` and `max` (design note §Review workflow contracts).
+- The developer's dispatches run on the build model by the dispatch table in §Phase 1, and the build dispatch carries `craft/design.md`; no review workflow stage runs on Fable — a change built on Fable is then judged by another model — and the tier check refuses a model naming it at launch; the tiers and their models are in §Phase 6, Tiers (design note §Review workflow contracts).
 - The plan is never retyped: `scripts/bundle-run.py` embeds it, and the Workflow call names `craft/run.js`.
 - Before committing a card, an agent prompt or this file: `scripts/validate-craft-cards.py` on the corpus, then the audit (repository Quality Gate).
 
-Phases: Scope → Context → Build → Pre-pass → Workflow → Fix round → Follow-ups and report. A review-only run skips Build and the Fix round.
+Phases: Scope → Context → Design → Build → Pre-pass → Workflow → Fix round → Follow-ups and report. A review-only run skips Design, Build and the Fix round.
 
 Runtime layout under the target repository's `craft/` (or the config-set report path for the two reports):
 
 ```
 craft/
+|-- design.md                       # the design brief the developer writes in §Phase 3 and builds from in §Phase 4 (build runs)
 |-- plan.json                       # pre-pass output: inventory with signals, card index, jobs, slices, candidates, project cards
 |-- plan.log                        # every skip, merge, split and drop the pre-pass performed
 |-- run.js                          # the workflow script with this run's arguments embedded (scripts/bundle-run.py)
@@ -40,7 +41,7 @@ Paths below are relative to this skill's directory unless they start with `craft
 
 ## Phase 1: Scope
 
-Goal: decide whether this is a build or a review, resolve the repository, the write zone or the diff, and confirm with the user before spending anything.
+Goal: decide whether this is a build or a review, resolve the repository, the write zone or the diff and the build model, and show the scope summary before any agent is dispatched.
 
 `$ARGUMENTS` is free-form text. Parse it by looking at what is there:
 
@@ -61,13 +62,26 @@ Try in order: `--base` from arguments → `base_branch` from the project config 
 1. Inside a git working tree (not bare) — otherwise stop: "Not a git working tree."
 2. A review-only run: `git diff $diff_ref --name-only $path_filter` returns at least one path — otherwise: "No changes in this scope." A build run: the working tree is clean, or the user has named the dirty files as theirs to keep — the developer's diff must be separable from earlier edits.
 
-### Show the scope summary and confirm
+### Build model
+
+A build run names its build model, `fable` or `opus`, in the scope summary. The task text decides it when it names a model ("on fable", "on opus"). Otherwise `fable` when the task adds or changes a boundary — a module, a public interface, a service edge — a data flow across modules, a failure contract, concurrency, or an invariant `project_context` names; `opus` otherwise: logic behind an existing boundary, a test, a rename, a move. The developer's dispatches run on it by this table (design note §Design → Build contract); the review runs on `opus` at every tier whichever it is.
+
+| Dispatch | Build model `fable` | Build model `opus` |
+|--|--|--|
+| design | `fable` `xhigh` | `opus` `xhigh` |
+| build and fix round of a brief with a step that is not `mechanical` | `fable` `high` | `opus` `xhigh` |
+| build and fix round of a brief whose every step is `mechanical` | `opus` `high` | `opus` `high` |
+
+A dispatch on `fable` that errors or returns no report runs once more on `opus` at `xhigh` with the same prompt; tell the user, and the record names the model that answered — the confirmation for the brief, the first line of `craft/build-report.md` for the build.
+
+### Scope summary and confirmation
 
 ```
 Scope:
   Mode: build | review
   Task: <one line>               (build)  |  Diff: <branch> vs <base> / <commit> / <PR> / working tree  (review)
   Write zone: <paths or "inferred from the task">   (build)
+  Build model: fable | opus — <the fact that decides it>   (build)
   Files changed: N files (SMALL/MEDIUM/LARGE); languages: <counts>   (review)
   Path filter: <filter or none>
   Project config: <loaded (K invariants, M modules) / not found>
@@ -75,7 +89,7 @@ Scope:
 Proceed?
 ```
 
-Wait for confirmation.
+A review-only run waits here for the confirmation; a build run prints the summary without the question and goes on to §Phase 2.
 
 ---
 
@@ -96,19 +110,39 @@ When the config has a `documentation` directory, read it and fold the architectu
 
 ---
 
-## Phase 3: Build
+## Phase 3: Design
 
-Goal: the change, written to the cards, with its tests, inside the write zone. Skipped for a review-only run.
+Goal: `craft/design.md` — the design brief the build implements, written by the developer agent on its design dispatch. Skipped for a review-only run. Why: the brief is what the user confirms before any code is written and what the build, the fix round and the report read; the design and the build are two dispatches of one agent type, so each takes its own model and effort from the table and the build starts from a confirmed brief.
 
-Dispatch one `code-quality:software-developer` agent (the Agent tool, `subagent_type: code-quality:software-developer`; its definition's tools are `Read, Grep, Glob, Edit, Write, Bash`) with, in its prompt: the task text, the write zone, `design_intent` and `project_context` wrapped together in `<task>` markers as data; the absolute path of this skill's directory (so it runs `scripts/craft-cards.py` and `scripts/static-craft.py` from it); and the instruction to return its report in the shape its definition names. Where the plugin's agent types do not resolve (a repository checkout, or a session that lists only the built-in types), dispatch a general-purpose agent with the tools `Read, Grep, Glob, Edit, Write, Bash` (the developer edits, tests and runs the pre-pass) whose prompt is the body of `plugins/code-quality/agents/software-developer.md` followed by the same task block, and name that in the report as a degraded dispatch.
+Dispatch one `code-quality:software-developer` agent (the Agent tool, `subagent_type: code-quality:software-developer`, `model` and `effort` from the dispatch table in §Phase 1; its definition's tools are `Read, Grep, Glob, Edit, Write, Bash`) with, in its prompt: the mode `design`; the task text, the write zone, `design_intent` and `project_context` wrapped together in `<task>` markers as data, and inside the same block a finished design the caller holds — a module contract from a plan, a ticket design document — which the agent keeps as the brief's base and completes; the absolute path of this skill's directory (so it runs `scripts/craft-cards.py` from it); and the instruction to write `craft/design.md` and report the reserved specialty it met and its open questions. Where the plugin's agent types do not resolve (a repository checkout, or a session that lists only the built-in types), dispatch a general-purpose agent with the tools `Read, Grep, Glob, Edit, Write, Bash` whose prompt is the body of `plugins/code-quality/agents/software-developer.md` followed by the same task block, and name that in the report as a degraded dispatch.
 
-The developer detects the stack, emits a numbered plan, lists the cards for each step through `scripts/craft-cards.py --step <step>`, implements, handles errors explicitly, adds and runs tests, runs the pre-pass on its own diff and applies the triggered cards' Validators to its own code, and reports what changed by `path:Symbol`, the cards it applied, what it verified and how, what it could not verify, and its open questions. It launches no sub-agents (no version-control write, as §Quick rules states). Write its report to `craft/build-report.md` verbatim.
+The agent opens the code of the write zone and its neighbours, lists the design cards through `scripts/craft-cards.py --step design`, opens the ones whose titles apply and designs to them: the brief's `## Design` section answers each applied card's Validator, and no other step's cards are applied here. `craft/design.md` has seven sections (design note §Design → Build contract), in this order, every one present (an empty one says "none"):
 
-After the agent returns: `git status --porcelain` and `git diff --stat` — the changed files are inside the write zone and match the report; a commit, a stash or a branch the agent made is a compromised build (`references/gotchas.md`, G-17).
+1. `## Task` — the task in one paragraph and the write zone as paths.
+2. `## Stack` — build and test tooling, formatter and linter configuration, the naming, layout and error-handling idioms of the surrounding code, the existing test style; each as a fact read from a named file (`pyproject.toml`, `build.gradle`, a neighbouring test).
+3. `## Design` — the solution: the modules and types to add or change by `path:Symbol`, each with its responsibility and boundary; the data flow; the invariants the change upholds; the chosen approach with the present-tense fact that decides it (a rejected option appears only as the subject of a fact that blocks it).
+4. `## Failure paths` — every failure path the change meets and its decided outcome (raise which error, return which value, log what), one line each.
+5. `## Tests` — the behaviours the tests demonstrate, by test location and name.
+6. `## Steps` — the numbered steps of the build; each names its step kind (`implement`, `handle-errors`, `test`, `refactor`, `document`), the files it touches inside the write zone and the behaviour it adds or preserves. A step marked `mechanical` is an edit by example or a move by format that needs no judgement.
+7. `## Out of scope` — reserved specialties the design meets and leaves to the operator; changes outside the write zone, stated as proposals.
+
+After the agent returns, `git status --porcelain` in the repository root shows `craft/design.md` and nothing else new. Then show the scope summary of §Phase 1 with the text of `craft/design.md` and ask "Proceed?" once: this is the build run's one confirmation. Wait for it; an answer that names a model changes the build model for the dispatches that follow.
 
 ---
 
-## Phase 4: Pre-pass
+## Phase 4: Build
+
+Goal: the change, implemented from `craft/design.md` by the cards, with its tests, inside the write zone. Skipped for a review-only run.
+
+Dispatch one `code-quality:software-developer` agent (the Agent tool, `subagent_type: code-quality:software-developer`, `model` and `effort` from the dispatch table in §Phase 1 by the brief's `## Steps`; its tools as §Phase 3 states) with, in its prompt: the mode `build`; the task text, the write zone, `design_intent`, `project_context` and the full text of `craft/design.md` wrapped together in `<task>` markers as data; the absolute path of this skill's directory (so it runs `scripts/craft-cards.py` and `scripts/static-craft.py` from it); and the instruction to return its report in the shape its definition names. The brief is required: a build dispatch without one is a defect of this skill. Where the plugin's agent types do not resolve, dispatch a general-purpose agent as §Phase 3 does, with the same task block.
+
+The developer reads the brief and verifies its `## Stack` against the tree, follows its `## Steps` as the plan, lists the cards for each step through `scripts/craft-cards.py --step <step>`, implements each failure path's outcome as `## Failure paths` states, adds and runs the tests `## Tests` names, runs the pre-pass on its own diff and applies the triggered cards' Validators to its own code, and reports what changed by `path:Symbol`, the cards it applied, what it verified and how, what it could not verify, its deviations from the brief with the fact that forced each, and its open questions. It adapts a name or a signature to the surrounding convention and keeps the boundary, the approach and the failure outcomes as the brief states them; a step it cannot do as written is an open question at that step. It launches no sub-agents (no version-control write, as §Quick rules states). Write its report to `craft/build-report.md` verbatim, under a first line naming the model and effort that produced it.
+
+After the agent returns: `git status --porcelain` and `git diff --stat` in the repository root — the changed files are inside the write zone and match the report, with the run's own files under `craft/` expected; a commit, a stash or a branch the agent made is a compromised build (`references/gotchas.md`, G-17).
+
+---
+
+## Phase 5: Pre-pass
 
 Goal: `craft/plan.json` — the whole dispatch decided without an LLM. Why: a script reads the diff, measures the structural signals and reads the card frontmatter deterministically, so the same diff yields the same plan, and the plan is the checkpoint a resumed session starts from.
 
@@ -117,7 +151,7 @@ python3 <skill-dir>/scripts/static-craft.py --cards-dir "<skill-dir>/references/
   [--diff-ref "$diff_ref"] [--path-filter "$path_filter"] [--repo <repo-root>]
 ```
 
-Without `--diff-ref` it reads the working tree against `HEAD` — staged, unstaged and untracked — which is the build run's diff; with one it reads `git diff -U0 $diff_ref`. It reads every card's frontmatter and the project config, and writes `craft/plan.json` and `craft/plan.log`, nothing else (the dependency rule is in §Phase 5, Script declarations). Exit status 2 means the diff holds no reviewable change. `plan.json` carries:
+Without `--diff-ref` it reads the working tree against `HEAD` — staged, unstaged and untracked — which is the build run's diff; with one it reads `git diff -U0 $diff_ref`. It reads every card's frontmatter and the project config, and writes `craft/plan.json` and `craft/plan.log`, nothing else (the dependency rule is in §Phase 6, Script declarations). Exit status 2 means the diff holds no reviewable change. `plan.json` carries:
 
 | Key | Content |
 |--|--|
@@ -134,7 +168,7 @@ Read `plan.log` and tell the user what was skipped, merged, split or dropped.
 
 ---
 
-## Phase 5: Workflow
+## Phase 6: Workflow
 
 Goal: verified findings. Why: one finder per card and one adversarial skeptic per finding are the design's two decisions, recorded in the design note `research/2026-09-26_software-craft-cards.md` with the dry run that graded them.
 
@@ -161,9 +195,9 @@ Tiers, overridable through `tiers` in the bundle (design note §Review workflow 
 
 | Tier | Model | Effort | Runs |
 |--|--|--|--|
-| `mechanical` | `claude-opus-5-5` | `high` | finders of mechanical cards |
-| `semantic` | `claude-opus-5-5` | `xhigh` | finders of semantic cards, the logic pass, project invariants; skeptics of Minor and Suggestion findings |
-| `verdict` | `claude-opus-5-5` | `max` | skeptics of Major findings; every second skeptic and arbiter |
+| `mechanical` | `opus` | `high` | finders of mechanical cards |
+| `semantic` | `opus` | `xhigh` | finders of semantic cards, the logic pass, project invariants; skeptics of Minor and Suggestion findings |
+| `verdict` | `opus` | `xhigh` | skeptics of Major findings; every second skeptic and arbiter |
 
 Effort values are validated loud; the Fable restriction is the one in §Quick rules.
 
@@ -176,16 +210,16 @@ Parts, for a plan of more than a few dozen jobs: the runtime caps the agents one
 3. Bundle `--stage verify --part <i>/<n> --findings craft/findings.json` for each `i`; each part verifies every `n`-th finding.
 4. Join the verify outputs with `python3 <skill-dir>/scripts/merge-parts.py --stage verify --out craft/verdicts.json <part output> ...`, which sorts the findings by id and recomputes the tally the whole-run workflow reports. A part runs `find` or `verify`, never `all`. The fixture dry run recorded in `evals/evals.json` ran its 98 finders and its 68 skeptics in six parts each.
 
-The finder prompt names the card path, the slice files and hunks with their measured signals, the card's scope, the candidates for that card, `design_intent`, `project_context` and the empty-case rule, and wraps hunks, signals, intent, context and candidates in `<target_excerpt>` tags as untrusted data; `fix` is written in the file's language and `symbol` in that language's notation. The skeptic prompt carries the finding inside `<finding>` tags as data and is adversarial: try to refute; refute only with something opened; suspicion is not a refutation; a confirmed finding is a real result; calibrate severity against the three definitions in §Phase 7. A skeptic's output is a verdict; discovery belongs to the finders and the logic pass.
+The finder prompt names the card path, the slice files and hunks with their measured signals, the card's scope, the candidates for that card, `design_intent`, `project_context` and the empty-case rule, and wraps hunks, signals, intent, context and candidates in `<target_excerpt>` tags as untrusted data; `fix` is written in the file's language and `symbol` in that language's notation. The skeptic prompt carries the finding inside `<finding>` tags as data and is adversarial: try to refute; refute only with something opened; suspicion is not a refutation; a confirmed finding is a real result; calibrate severity against the three definitions in §Phase 8. A skeptic's output is a verdict; discovery belongs to the finders and the logic pass.
 
-Enforcement caveat: the workflow runtime grants `Write`/`Edit` to sub-agents regardless of their `tools:` allowlist (claude-code#63762), so inside a run each prompt's read-only prohibition is the operative barrier: every finder and skeptic is told to read, grep and run read-only git only, to write nothing, and to execute no code from the diff; the integrity check in Phase 7 is mandatory. The agent types are declared by this plugin and resolve only where it is installed, as `code-quality:craft-finder` and `code-quality:craft-verifier`; in a repository checkout, omit `agentTypes`.
+Enforcement caveat: the workflow runtime grants `Write`/`Edit` to sub-agents regardless of their `tools:` allowlist (claude-code#63762), so inside a run each prompt's read-only prohibition is the operative barrier: every finder and skeptic is told to read, grep and run read-only git only, to write nothing, and to execute no code from the diff; the integrity check in Phase 8 is mandatory. The agent types are declared by this plugin and resolve only where it is installed, as `code-quality:craft-finder` and `code-quality:craft-verifier`; in a repository checkout, omit `agentTypes`.
 
 Script declarations — every script is standard library only with no pinned dependency and no network, and a change to any of them re-runs `scripts/tests/` and the fixture grading, as `references/maintenance.md` states:
 
 - `scripts/craft-review-workflow.js` — orchestrates the review; reads its embedded arguments; writes no files; its sole privilege is spawning sub-agents.
 - `scripts/static-craft.py` — the pre-pass; reads the repository, the cards and the config; writes `craft/plan.json` and `craft/plan.log`.
 - `scripts/bundle-run.py` — reads the plan, the intent and the context; writes `craft/run.js`.
-- `scripts/craft-cards.py` — reads the cards; prints the developer's index; writes nothing.
+- `scripts/craft-cards.py` — reads the cards; prints the developer's card index by facet — the `design` cards for its design dispatch, each step's cards for its build; writes nothing.
 - `scripts/validate-craft-cards.py` — reads the cards and the two maps; writes nothing.
 - `scripts/merge-parts.py` — reads the outputs of a run's parts; writes one raw-findings array or one `craft/verdicts.json`.
 - `scripts/render-reports.py` — reads `craft/plan.json` and `craft/verdicts.json`; writes the two reports.
@@ -194,24 +228,24 @@ Script declarations — every script is standard library only with no pinned dep
 - `scripts/research-continue.py` — reads a research run's journals and output; writes continuation bundles of the research workflow that carry the finished stages, for a cut-short run or for the second fix round.
 - `scripts/tests/` — reads a fixture repository it builds under a temporary directory.
 
-Fallback, manual dispatch (degraded). When the Workflow tool is unavailable, dispatch one Agent-tool sub-agent per triggered domain — `plan.jobs` grouped by `card.domain` — with `Read, Grep, Glob, Bash` as its tools (Bash for read-only git), giving each the paths of its cards, the slices from the plan, `design_intent` and `project_context` wrapped in `<target_excerpt>` tags as data, and the same `FINDINGS` schema, using the `code-quality:craft-finder` type (the Agent tool enforces its allowlist). Then aggregate by hand per §Aggregation, and dispatch one `code-quality:craft-verifier` sub-agent per finding with `Read, Grep, Glob, Bash` as its tools and the skeptic prompt from the script. This path bundles a domain's cards into one agent, so it misses more than the primary path; name it as degraded in the report's Executive Summary.
+Fallback, manual dispatch (degraded). When the Workflow tool is unavailable, dispatch one Agent-tool sub-agent per triggered domain — `plan.jobs` grouped by `card.domain` — with `Read, Grep, Glob, Bash` as its tools (Bash for read-only git), giving each the paths of its cards, the slices from the plan, `design_intent` and `project_context` wrapped in `<target_excerpt>` tags as data, and the same `FINDINGS` schema, using the `code-quality:craft-finder` type (the Agent tool enforces its allowlist and runs the model and effort its definition names; in a workflow run the tier overrides them). Then aggregate by hand per §Aggregation, and dispatch one `code-quality:craft-verifier` sub-agent per finding with `Read, Grep, Glob, Bash` as its tools and the skeptic prompt from the script. This path bundles a domain's cards into one agent, so it misses more than the primary path; name it as degraded in the report's Executive Summary.
 
 ---
 
-## Phase 6: Fix round
+## Phase 7: Fix round
 
 Goal: the confirmed findings fixed once, inside the same write zone. Skipped for a review-only run, and when the verified set is empty.
 
-Send the developer agent its confirmed findings (`craft/verdicts.json`, dispositions report and flagged) with the write zone unchanged and the instruction to fix each or to state why the card's Limits admit the code; it reports again in the same shape, appended to `craft/build-report.md`. Then run the pre-pass again on the working tree, bundle with `--stage verify --findings craft/findings.json` restricted to the findings the fix diff still touches (the re-found set: a finding whose `code` fragment is absent from the fix diff is fixed and drops; the rest are re-verified), and run the workflow. One round, as the design note's §Fix round sets; what remains is reported with the developer's reason, not looped.
+Send the developer agent its confirmed findings (`craft/verdicts.json`, dispositions report and flagged) on the build dispatch's model and effort, with the same brief and the write zone unchanged, and the instruction to fix each or to state why the card's Limits admit the code; a confirmed finding that contradicts the brief — a boundary, an approach, a failure outcome — the developer resolves by fixing the code and amending that section of `craft/design.md` so it states the present design, named in its report as a deviation. It reports again in the same shape, appended to `craft/build-report.md`. Then run the pre-pass again on the working tree, bundle with `--stage verify --findings craft/findings.json` restricted to the findings the fix diff still touches (the re-found set: a finding whose `code` fragment is absent from the fix diff is fixed and drops; the rest are re-verified), and run the workflow. One round, as the design note's §Fix round sets; what remains is reported with the developer's reason.
 
 ---
 
-## Phase 7: Follow-ups and report
+## Phase 8: Follow-ups and report
 
 The workflow returns `findings`, `conflicts`, `tally`, `agents_run` and `main_agent_followups`. Do them in this order:
 
-1. **Integrity** — `git status --porcelain` and `git diff --stat` in the repository root, both read-only, compared against the developer's reported changes (a review-only run expects an unchanged tree). A tree that changed beyond them is compromised, as the quick rules define: discard the findings, tell the user which files changed, and re-run through the fallback once the user has restored the tree.
-2. **Persist** — write the returned `findings` to `craft/verdicts.json` (after `stage: "find"`, to `craft/findings.json`; after a run in parts, as §Phase 5 Parts states).
+1. **Integrity** — `git status --porcelain` and `git diff --stat` in the repository root, both read-only, compared against the developer's reported changes; the run's own files under `craft/` and at the config's `review_output` path are expected, and a review-only run expects nothing else changed. A tree that changed beyond that is compromised, as the quick rules define: discard the findings, tell the user which files changed, and re-run through the fallback once the user has restored the tree.
+2. **Persist** — write the returned `findings` to `craft/verdicts.json` (after `stage: "find"`, to `craft/findings.json`; after a run in parts, as §Phase 6 Parts states).
 3. **Render** — `python3 <skill-dir>/scripts/render-reports.py --verdicts craft/verdicts.json --plan craft/plan.json --out <report path> --title "<TICKET_ID, branch or task>" --passes "<one line: N card jobs, M logic slices, K project invariants; fallback if used>" [--built craft/build-report.md] [--fix-round "<F fixed, L left>"]`.
 
 Severity, the scale finders start from and skeptics calibrate against:
@@ -230,7 +264,7 @@ Document 1, the review report, is saved to the config's `review_output` (with `{
 
 ### Report to the user
 
-Print the Executive Summary to the conversation with the paths of both documents, then: what was built (by `path:Symbol`), the findings fixed, the findings left with their reason, the developer's open questions. With zero rejections, say "0 rejected" and still write the rejection report, which then holds only the summary. No commit: name the files the operator will commit.
+Print the Executive Summary to the conversation with the paths of both documents, then: what was built (by `path:Symbol`), the findings fixed, the findings left with their reason, the developer's deviations from the brief and its open questions. With zero rejections, say "0 rejected" and still write the rejection report, which then holds only the summary. No commit: name the files the operator will commit.
 
 ---
 

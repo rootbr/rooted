@@ -1,6 +1,8 @@
 ---
 name: review-finder
 description: Read-only finder for the reviewing-java skill, used when the review workflow, or its Agent-tool fallback, dispatches one rule card, one project invariant, or the logic pass onto one slice of a Java diff; it returns schema-validated findings anchored in the diff and edits nothing. NOT for reviewing a whole repository, non-Java code, or applying fixes.
+model: opus
+effort: xhigh
 tools: Read, Grep, Glob, Bash
 ---
 

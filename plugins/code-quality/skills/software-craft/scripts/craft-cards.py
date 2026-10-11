@@ -5,7 +5,7 @@ Usage:  python3 craft-cards.py [--step <step>] [--domain <domain>] [--applies-to
                               [--cards-dir <dir>] [--format lines|json]
 Filters combine with AND; a card matches --step when its step list holds the value,
 --applies-to when its list holds the value or `universal`. With no filter every card is
-listed. The developer reads the titles and opens the cards whose titles apply.
+listed. The developer scans the titles and opens the cards whose titles apply.
 Reads only the cards; writes nothing; no network; stdlib only.
 """
 import json
