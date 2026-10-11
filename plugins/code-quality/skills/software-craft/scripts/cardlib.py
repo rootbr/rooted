@@ -1,7 +1,9 @@
 """Shared parsing for the craft-card corpus: frontmatter, the facet lists and the trigger list.
 
 Imported by static-craft.py (the pre-pass), craft-cards.py (the developer's card index)
-and validate-craft-cards.py (the validator) so the three read a card the same way.
+and validate-craft-cards.py (the validator) so the three read a card the same way. A card
+belongs to the universal corpus, whose id prefix names its domain, or to a language corpus,
+whose id prefix names its language and whose cards take any craft domain.
 Standard library only.
 """
 import re
@@ -10,10 +12,12 @@ KEYS = ["title", "rule_id", "domain", "step", "applies_to", "triggers", "scope",
 PREFIX_DOMAIN = {"CODE": "code", "DSN": "design", "API": "interface", "ERR": "errors", "TST": "tests",
                  "CHG": "change", "PRF": "performance", "TOOL": "tooling", "DOC": "docs", "INP": "input",
                  "ARCH": "architecture"}
+# A language corpus prefix maps to the language its cards apply to; its cards take any domain of PREFIX_DOMAIN.
+LANGUAGE_PREFIXES = {"PY": "python"}
 STEPS = ("design", "implement", "handle-errors", "test", "refactor", "document", "review")
 APPLIES_TO = ("universal", "object-oriented", "functional", "public-api", "service-boundary", "library",
               "exceptions", "result-types", "garbage-collected", "manual-memory", "static-types", "dynamic-types",
-              "tests", "build-config", "prose")
+              "tests", "build-config", "prose", "python")
 SCOPES = ("hunk", "file", "base-compare", "callers")
 CHECK_KINDS = ("mechanical", "semantic")
 SEVERITIES = ("major", "minor", "suggestion")
@@ -124,6 +128,23 @@ def check_triggers(triggers):
     return None
 
 
+def prefix_domain_ok(rule_id, domain):
+    """Whether the rule_id's prefix admits the domain: a universal prefix admits its own
+    domain, a language prefix admits every craft domain, PROJ admits any."""
+    prefix = rule_id.split("-")[0]
+    if prefix == "PROJ":
+        return True
+    if prefix in LANGUAGE_PREFIXES:
+        return domain in PREFIX_DOMAIN.values()
+    return PREFIX_DOMAIN.get(prefix) == domain
+
+
+def language_of_card(rec):
+    """The language value the card's applies_to carries, or None for a card of no language corpus."""
+    languages = set(LANGUAGE_PREFIXES.values())
+    return next((a for a in rec["applies_to"] if a in languages), None)
+
+
 def read_card(path):
     """Read one card file into its index record. Returns (record, error).
 
@@ -162,8 +183,7 @@ def read_card(path):
         "check_kind": data["check_kind"].strip(),
         "severity_default": data["severity_default"].strip(),
     }
-    prefix = rec["rule_id"].split("-")[0]
-    if PREFIX_DOMAIN.get(prefix) != rec["domain"] and prefix != "PROJ":
+    if not prefix_domain_ok(rec["rule_id"], rec["domain"]):
         return None, f"rule_id {rec['rule_id']} does not match domain {rec['domain']!r}"
     if rec["scope"] not in SCOPES or rec["check_kind"] not in CHECK_KINDS or rec["severity_default"] not in SEVERITIES:
         return None, f"facet outside the controlled vocabulary in {path}"

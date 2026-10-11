@@ -47,6 +47,8 @@ research/
 
 `craft/` sits in the repository under review: §Design → Build contract owns the brief, and SKILL.md's runtime layout lists the run's other files. The plugin-level `agents/` directory holds the three agent types because a Claude Code plugin resolves agent types only from that directory, under `<plugin>:<name>`. The progress table under §Progress says which of these files exist; a path listed here and marked open there is a deliverable of a later step.
 
+A language corpus sits beside the universal cards under the same schema: `references/craft-cards-python/` holds the rules that hold because of Python itself (`PY-NN`, `applies_to` beginning with `python`, a `python` Example fence), with its own maps `craft-cards-python-provenance.md` and `pending-evidence-python.md`, its research notes under `research/software-craft-python/` and its own design record, `research/2026-10-15_software-craft-python-cards.md`. Both consumers take it as a second `--cards-dir`, and the pre-pass dispatches a language card only onto that language's files.
+
 ## Two consumers of one card
 
 1. The developer while writing. Before a step — designing on the design dispatch, then implementing, adding tests, handling errors, refactoring and documenting on the build — the developer agent lists the cards for that step by facet through `scripts/craft-cards.py`, reads the titles, opens the cards whose titles apply, and writes to them. This is the base card specification's retrieval model: a facet filter followed by an index scan of titles.

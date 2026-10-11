@@ -6,7 +6,7 @@ disallowed-tools: Edit, NotebookEdit
 
 # Software Craft
 
-You orchestrate a build and its craft review, or a craft review alone, and deliver verified findings. The rules live as atomic cards in `references/craft-cards/` — one language-agnostic checkable claim each, an openable source each. On a build run a developer agent is dispatched twice: first to design the change into the brief `craft/design.md` to the `design` cards, then, once the brief is confirmed, to implement it by the other cards — before each step it lists the cards for that step by facet and reads the ones whose titles apply. A deterministic pre-pass then matches each card's dispatch conditions — regular expressions against the added lines, or a structural signal it measures — against the agent's own working-tree diff and writes a dispatch plan; one Workflow runs a finder per (card by slice) plus a logic pass per slice, aggregates deterministically, and runs a skeptic per finding; confirmed findings go back to the developer once; a render script writes the two reports. Every finding cites concrete code from the diff — no anchor in the diff, no finding — and the skeptics exist to reject: the report carries only what survived refutation, the decision the design note `research/2026-09-26_software-craft-cards.md` at the repository root records.
+You orchestrate a build and its craft review, or a craft review alone, and deliver verified findings. The rules live as atomic cards in `references/craft-cards/` — one language-agnostic checkable claim each, an openable source each. A language corpus `references/craft-cards-python/` holds the Python-specific rules (`PY-NN`, `applies_to` beginning with `python`) with its own maps `craft-cards-python-provenance.md` and `pending-evidence-python.md`, and the pre-pass dispatches such a card only onto that language's files. On a build run a developer agent is dispatched twice: first to design the change into the brief `craft/design.md` to the `design` cards, then, once the brief is confirmed, to implement it by the other cards — before each step it lists the cards for that step by facet and reads the ones whose titles apply. A deterministic pre-pass then matches each card's dispatch conditions — regular expressions against the added lines, or a structural signal it measures — against the agent's own working-tree diff and writes a dispatch plan; one Workflow runs a finder per (card by slice) plus a logic pass per slice, aggregates deterministically, and runs a skeptic per finding; confirmed findings go back to the developer once; a render script writes the two reports. Every finding cites concrete code from the diff — no anchor in the diff, no finding — and the skeptics exist to reject: the report carries only what survived refutation, the decision the design note `research/2026-09-26_software-craft-cards.md` at the repository root records.
 
 Quick rules:
 
@@ -148,6 +148,7 @@ Goal: `craft/plan.json` — the whole dispatch decided without an LLM. Why: a sc
 
 ```
 python3 <skill-dir>/scripts/static-craft.py --cards-dir "<skill-dir>/references/craft-cards" \
+  --cards-dir "<skill-dir>/references/craft-cards-python" \
   [--diff-ref "$diff_ref"] [--path-filter "$path_filter"] [--repo <repo-root>]
 ```
 
@@ -220,7 +221,7 @@ Script declarations — every script is standard library only with no pinned dep
 - `scripts/static-craft.py` — the pre-pass; reads the repository, the cards and the config; writes `craft/plan.json` and `craft/plan.log`.
 - `scripts/bundle-run.py` — reads the plan, the intent and the context; writes `craft/run.js`.
 - `scripts/craft-cards.py` — reads the cards; prints the developer's card index by facet — the `design` cards for its design dispatch, each step's cards for its build; writes nothing.
-- `scripts/validate-craft-cards.py` — reads the cards and the two maps; writes nothing.
+- `scripts/validate-craft-cards.py` — reads the cards and the two maps, a language corpus with `--language <lang>` and its own two maps; writes nothing.
 - `scripts/merge-parts.py` — reads the outputs of a run's parts; writes one raw-findings array or one `craft/verdicts.json`.
 - `scripts/render-reports.py` — reads `craft/plan.json` and `craft/verdicts.json`; writes the two reports.
 - `scripts/research-topic-workflow.js` — orchestrates the authoring of one topic (authoring time only, never in a build or a review); writes no files; spawns sub-agents that read the web through the fetch channel.

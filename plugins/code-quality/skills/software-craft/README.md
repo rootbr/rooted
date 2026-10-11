@@ -26,7 +26,7 @@ Every card serves two readers. The developer retrieves cards before a step of it
 
 ## The card corpus
 
-`references/craft-cards/` holds one file per rule — `<prefix>-NN--<slug>.md` — 520 cards across eleven domains, with 173 further rules waiting in `references/pending-evidence.md` for an openable source:
+`references/craft-cards/` holds one file per rule — `<prefix>-NN--<slug>.md` — 520 cards across eleven domains, with 173 further rules waiting in `references/pending-evidence.md` for an openable source. `references/craft-cards-python/` holds the Python language corpus beside it — 178 cards `PY-NN` across twelve topics, the rules that hold because of Python itself, with their own maps `references/craft-cards-python-provenance.md` and `references/pending-evidence-python.md` (5 rules waiting), researched through `scripts/python-topic-workflow.js` into the notes under `research/software-craft-python/` and recorded in `research/2026-10-15_software-craft-python-cards.md`; both consumers take the directory as a second `--cards-dir`, and the pre-pass dispatches a Python card only onto Python files:
 
 | Prefix | Domain | Topics |
 |--|--|--|

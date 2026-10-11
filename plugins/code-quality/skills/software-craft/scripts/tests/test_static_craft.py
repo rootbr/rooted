@@ -380,6 +380,36 @@ class TriggerSelection(unittest.TestCase):
         self.assertEqual(jobs[0]["slice"]["files"][0]["hunks"], [0, 1])
 
 
+def python_card(rule_id, triggers, applies_to=("python",)):
+    rec = card(rule_id, "errors", triggers)
+    rec["applies_to"] = list(applies_to)
+    return rec
+
+
+class LanguageDispatch(unittest.TestCase):
+    def setUp(self):
+        self.py = fake_file("src/app/cache.py", 2, "print(value)", language="python")
+        self.ts = fake_file("src/web/api.ts", 2, "print(value)", language="typescript")
+        self.pyproject = fake_file("pyproject.toml", 1, "print = 'value'", kind="build", language="toml")
+        sc.assign_groups([self.py, self.ts, self.pyproject], [])
+
+    def job_paths(self, rec, files):
+        jobs = sc.build_jobs([rec], files, [], 400, 96, sc.Log())
+        return [sf["path"] for j in jobs for sf in j["slice"]["files"]]
+
+    def test_a_python_card_runs_on_python_files_only(self):
+        self.assertEqual(self.job_paths(python_card("PY-01", [r"print\("]), [self.py, self.ts, self.pyproject]),
+                         ["src/app/cache.py"])
+
+    def test_a_python_build_config_card_also_runs_on_build_files(self):
+        rec = python_card("PY-02", [r"print"], applies_to=("python", "build-config"))
+        self.assertEqual(self.job_paths(rec, [self.py, self.ts, self.pyproject]), ["src/app/cache.py", "pyproject.toml"])
+
+    def test_a_universal_card_runs_on_every_language(self):
+        self.assertEqual(self.job_paths(card("ERR-01", "errors", [r"print\("]), [self.py, self.ts]),
+                         ["src/app/cache.py", "src/web/api.ts"])
+
+
 class SlicesAndCap(unittest.TestCase):
     def test_split_when_over_line_budget(self):
         files = [fake_file(f"src/{d}/f{i}.py", 150, "foo();") for i, d in enumerate(["a", "b", "c"])]
@@ -560,6 +590,34 @@ class EndToEnd(unittest.TestCase):
         status = subprocess.run(["git", "-C", repo, "status", "--porcelain"], capture_output=True, text=True).stdout
         self.assertIn("?? src/app/new_module.go", status)
         self.assertNotIn("A  src/app/new_module.go", status)
+
+    def write_python_cards(self, rule_id="PY-01"):
+        python_dir = os.path.join(self.tmp, "cards-python")
+        os.makedirs(python_dir, exist_ok=True)
+        with open(os.path.join(python_dir, f"{rule_id.lower()}--x.md"), "w") as h:
+            h.write(f"---\ntitle: P\nrule_id: {rule_id}\ndomain: errors\nstep: [implement]\napplies_to: [python]\n"
+                    "triggers: ['render|load']\nscope: hunk\ncheck_kind: semantic\nseverity_default: minor\n---\n# P\n")
+        return python_dir
+
+    def test_two_cards_dirs_load_both(self):
+        repo = os.path.join(self.tmp, "repo4")
+        make_repo(repo)
+        python_dir = self.write_python_cards()
+        rc, plan, log = self.plan_of(repo, "--cards-dir", python_dir, "--diff-ref", "HEAD~1..HEAD")
+        self.assertEqual(rc, 0)
+        self.assertEqual(sorted(j["id"] for j in plan["jobs"]), ["CODE-07:all", "DSN-01:all", "PY-01:all"])
+        self.assertEqual(sorted(c["rule_id"] for c in plan["cards"]), ["CODE-07", "DSN-01", "PY-01"])
+        python_job = next(j for j in plan["jobs"] if j["rule_id"] == "PY-01")
+        self.assertEqual([f["path"] for f in python_job["slice"]["files"]], ["src/app/cache.py"])
+
+    def test_a_rule_id_in_two_cards_dirs_stops_the_run(self):
+        repo = os.path.join(self.tmp, "repo5")
+        make_repo(repo)
+        python_dir = self.write_python_cards()
+        shutil.copy(os.path.join(self.cards, "dsn-01--x.md"), os.path.join(python_dir, "dsn-01--x.md"))
+        with self.assertRaises(SystemExit) as raised:
+            sc.main(["--cards-dir", self.cards, "--cards-dir", python_dir, "--repo", repo, "--diff-ref", "HEAD~1..HEAD"])
+        self.assertIn("duplicate rule_id DSN-01", str(raised.exception.code))
 
     def test_empty_diff(self):
         repo = os.path.join(self.tmp, "repo3")

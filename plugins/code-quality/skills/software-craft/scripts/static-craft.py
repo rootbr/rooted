@@ -10,6 +10,11 @@ per hunk, matches every card's triggers (regular expressions against added lines
 `signal:<name>`) and writes `craft/plan.json` plus `craft/plan.log` in the repository
 under review. Nothing else is written; no network is opened.
 
+Every --cards-dir loads its cards into one pool; a rule_id found twice in the pool
+stops the run. A universal card dispatches on files of every language. A card whose
+applies_to carries a language corpus value (python) dispatches only on files of that
+language, and, when its applies_to also carries build-config, on build and config files.
+
 plan.json carries:
   inventory     mode (committed | worktree), base_sha, head_sha or "worktree", changed
                 files with language, kind and hunks (added lines with line numbers and
@@ -24,7 +29,7 @@ plan.json carries:
   project_cards PROJ-N cards parsed from config.md, plus project card files
 
 Usage:
-  python3 static-craft.py --cards-dir <dir> [--diff-ref <base...head | a..b | commit>]
+  python3 static-craft.py --cards-dir <dir> [--cards-dir <dir> ...] [--diff-ref <base...head | a..b | commit>]
          [--path-filter <subtree>] [--repo <root>] [--out-dir craft]
          [--max-job-lines 400] [--max-jobs 96] [--config .claude/software-craft/config.md]
 Exit status: 0 with a plan; 2 when the diff holds no reviewable change (an empty plan
@@ -37,7 +42,7 @@ import subprocess
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from cardlib import read_card, is_signal, signal_name, SIGNALS  # noqa: E402
+from cardlib import read_card, is_signal, signal_name, language_of_card, SIGNALS  # noqa: E402
 
 DEFAULT_CONFIG = os.path.join(".claude", "software-craft", "config.md")
 PROJECT_CARDS_DIR = os.path.join(".claude", "software-craft", "cards")
@@ -624,6 +629,16 @@ def parse_invariants(body):
 
 
 FILE_SIGNALS = ("test_file", "added_file", "duplicate_block")
+BUILD_CONFIG_KINDS = ("build", "config")
+
+
+def dispatches_on(card, f):
+    """Whether the card may run on this file at all: a language card runs on files of its
+    language, plus build and config files when it also applies to build-config."""
+    language = language_of_card(card)
+    if language is None or f["language"] == language:
+        return True
+    return "build-config" in card["applies_to"] and f["kind"] in BUILD_CONFIG_KINDS
 
 
 def hunk_matches(card, f, h):
@@ -655,6 +670,8 @@ def build_jobs(cards, files, modules, max_job_lines, max_jobs, log):
         card["_compiled"] = {t: re.compile(t) for t in card["triggers"] if not is_signal(t)}
         slice_files = []
         for f in files:
+            if not dispatches_on(card, f):
+                continue
             idx, pats, sigs = [], set(), set()
             for i, h in enumerate(f["hunks"]):
                 p, s = hunk_matches(card, f, h)
@@ -833,17 +850,25 @@ def cand(cid, f, ln):
             "text": ln["text"].strip(), "status": "needs_verification"}
 
 
-def load_cards(cards_dir, log):
-    cards = []
-    for name in sorted(os.listdir(cards_dir)):
-        if not name.endswith(".md"):
-            continue
-        rec, err = read_card(os.path.join(cards_dir, name))
-        if err:
-            log(f"card {name} skipped: {err}")
-            continue
-        rec["path"] = os.path.abspath(rec["path"])
-        cards.append(rec)
+def load_cards(cards_dirs, log):
+    """The cards of every directory in one pool; a rule_id held by two cards stops the run,
+    since jobs, findings and ownership are keyed by rule_id."""
+    cards, seen = [], {}
+    for cards_dir in cards_dirs:
+        if not os.path.isdir(cards_dir):
+            die(f"--cards-dir {cards_dir} is not a directory")
+        for name in sorted(os.listdir(cards_dir)):
+            if not name.endswith(".md"):
+                continue
+            rec, err = read_card(os.path.join(cards_dir, name))
+            if err:
+                log(f"card {name} skipped: {err}")
+                continue
+            rec["path"] = os.path.abspath(rec["path"])
+            if rec["rule_id"] in seen:
+                die(f"duplicate rule_id {rec['rule_id']} in {seen[rec['rule_id']]} and {rec['path']}")
+            seen[rec["rule_id"]] = rec["path"]
+            cards.append(rec)
     return cards
 
 
@@ -858,7 +883,7 @@ def size_class(n):
 
 
 def parse_args(argv):
-    opts = {"diff_ref": None, "cards_dir": None, "path_filter": "", "repo": ".", "out_dir": "craft",
+    opts = {"diff_ref": None, "cards_dir": [], "path_filter": "", "repo": ".", "out_dir": "craft",
             "max_job_lines": 400, "max_jobs": 96, "config": DEFAULT_CONFIG}
     i = 0
     while i < len(argv):
@@ -868,7 +893,10 @@ def parse_args(argv):
             if key not in opts:
                 die(f"unknown option {a}")
             val = argv[i + 1]
-            opts[key] = int(val) if key in ("max_job_lines", "max_jobs") else val
+            if key == "cards_dir":
+                opts[key].append(val)
+            else:
+                opts[key] = int(val) if key in ("max_job_lines", "max_jobs") else val
             i += 2
             continue
         die(f"unexpected argument {a!r}")

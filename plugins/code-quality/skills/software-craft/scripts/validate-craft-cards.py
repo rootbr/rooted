@@ -11,11 +11,17 @@ of the five example languages within its line budget, the single bold validator
 question, the Finding-output block naming the card's own rule_id, the Source block,
 and self-containment (no sibling rule id, no deixis, no practitioner attribution,
 no language named in the Thesis). Corpus-level: unique ids and titles, contiguous
-numbering per domain (a gap is a warning), the example-language distribution, and —
+numbering per id prefix (a gap is a warning), the example-language distribution, and —
 with --provenance and --pending — one provenance line per card and no shipped id
 among the pending entries.
 
-Usage:  python3 validate-craft-cards.py [--provenance <map.md>] [--pending <pending.md>] <cards-dir> [<card.md> ...]
+With --language <lang> the cards are a language corpus: ids take that language's prefix
+(PY for python) with any craft domain, applies_to begins with the language, the Example
+is fenced in the language, the Thesis may name it, and the example-language
+distribution is not reported. Without it a language-corpus card is an error.
+
+Usage:  python3 validate-craft-cards.py [--language <lang>] [--provenance <map.md>] [--pending <pending.md>]
+                                        <cards-dir> [<card.md> ...]
 Reads only the files named; writes nothing; no network; stdlib only.
 Exit status 0 when no error was found (warnings do not fail the run).
 """
@@ -24,14 +30,15 @@ import re
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from cardlib import (KEYS, PREFIX_DOMAIN, STEPS, APPLIES_TO, SCOPES, CHECK_KINDS, SEVERITIES,  # noqa: E402
-                     EXAMPLE_LANGS, parse_inline_list, parse_frontmatter, strip_quotes, check_triggers)
+from cardlib import (KEYS, PREFIX_DOMAIN, LANGUAGE_PREFIXES, STEPS, APPLIES_TO, SCOPES, CHECK_KINDS,  # noqa: E402
+                     SEVERITIES, EXAMPLE_LANGS, parse_inline_list, parse_frontmatter, strip_quotes, check_triggers)
 
 BLOCKS = ["Thesis", "Rationale", "Example", "Limits", "Validator", "Finding output", "Source"]
-PREFIXES = "|".join(PREFIX_DOMAIN)
-FILENAME = re.compile(rf"^({PREFIXES.lower()})-(\d{{2}})--([a-z0-9]+(?:-[a-z0-9]+)*)\.md$")
-RULE_ID = re.compile(rf"^({PREFIXES})-(\d{{2}})$")
-ANY_RULE_ID = re.compile(rf"\b(?:{PREFIXES})-\d{{2}}\b")
+PREFIXES = "|".join([*PREFIX_DOMAIN, *LANGUAGE_PREFIXES])
+CORPUS_LANGUAGES = set(LANGUAGE_PREFIXES.values())
+FILENAME = re.compile(rf"^({PREFIXES.lower()})-(\d{{2,3}})--([a-z0-9]+(?:-[a-z0-9]+)*)\.md$")
+RULE_ID = re.compile(rf"^({PREFIXES})-(\d{{2,3}})$")
+ANY_RULE_ID = re.compile(rf"\b(?:{PREFIXES})-\d{{2,3}}\b")
 BOLD_QUESTION = re.compile(r"\*\*[^*\n]+\?\*\*")
 DEIXIS = re.compile(r"\b(?:the skill|this skill|see above|see below|the checklist|this checklist|as noted|as mentioned|"
                     r"sibling card|another card|the other card|earlier in this|the previous card|the next card)\b", re.I)
@@ -44,7 +51,8 @@ ATTRIBUTION = re.compile(r"\b(?:McConnell|Code Complete|Pragmatic Programmer|Cle
                          r"Refactoring: Improving|Seemann|Code That Fits|97 Things|Effective Java|Bloch|"
                          r"Domain-Driven Design|Eric Evans|Vernon|Nygard|Release It|Kleppmann|Baeldung|"
                          r"Medium\.com|StackOverflow|Stack Overflow|Hacker News|Lobsters|InfoQ|DZone)\b")
-# A language named in the Thesis: the rule would then hold in one language, which the corpus does not card.
+# A language named in the Thesis: the rule would then hold in one language, which the universal corpus does
+# not card; a language corpus admits its own language's name and no other.
 LANGUAGE_IN_THESIS = re.compile(r"\b(?:Java|Python|TypeScript|JavaScript|Golang|Rust|Kotlin|C#|C\+\+|Ruby|Swift)\b")
 MAX_EXAMPLE_LINES = 10
 
@@ -90,12 +98,13 @@ def fenced(text):
     return out
 
 
-def check_card(path, rep):
-    """Validate one card; return (rule_id, domain, title, example_language) or None."""
+def check_card(path, rep, language=None):
+    """Validate one card of the universal corpus, or of the corpus of `language` when one is
+    given; return (rule_id, domain, title, example_language) or None."""
     name = os.path.basename(path)
     fm = FILENAME.match(name)
     if not fm:
-        rep.error(path, "filename is not <prefix>-NN--<slug>.md")
+        rep.error(path, "filename is not <prefix>-NN--<slug>.md (two or three digits)")
     text = open(path, encoding="utf-8").read()
     keys, data, err = parse_frontmatter(text)
     if err:
@@ -116,10 +125,20 @@ def check_card(path, rep):
         rep.error(path, "title carries a colon")
     rm = RULE_ID.match(rule_id)
     if not rm:
-        rep.error(path, f"rule_id {rule_id!r} is not <PREFIX>-NN")
+        rep.error(path, f"rule_id {rule_id!r} is not <PREFIX>-NN (two or three digits)")
     else:
-        if PREFIX_DOMAIN[rm.group(1)] != domain:
-            rep.error(path, f"rule_id prefix {rm.group(1)} does not match domain {domain!r}")
+        prefix = rm.group(1)
+        if prefix in LANGUAGE_PREFIXES:
+            if language is None:
+                rep.error(path, f"rule_id prefix {prefix} belongs to the {LANGUAGE_PREFIXES[prefix]} corpus; the universal "
+                                f"corpus takes no language card (validate its directory with --language {LANGUAGE_PREFIXES[prefix]})")
+            elif LANGUAGE_PREFIXES[prefix] != language:
+                rep.error(path, f"rule_id prefix {prefix} belongs to the {LANGUAGE_PREFIXES[prefix]} corpus, not the {language} corpus")
+        elif language is not None:
+            rep.error(path, f"rule_id prefix {prefix} is a universal prefix; a {language} card takes "
+                            f"{', '.join(p for p, l in LANGUAGE_PREFIXES.items() if l == language)}")
+        elif PREFIX_DOMAIN[prefix] != domain:
+            rep.error(path, f"rule_id prefix {prefix} does not match domain {domain!r}")
         if fm and (fm.group(1).upper() != rm.group(1) or fm.group(2) != rm.group(2)):
             rep.error(path, f"filename {name} does not match rule_id {rule_id}")
     if domain not in PREFIX_DOMAIN.values():
@@ -136,6 +155,10 @@ def check_card(path, rep):
                 rep.error(path, f"{field} {bad} not in {vocab}")
             if field == "applies_to" and "universal" in items and len(items) > 1:
                 rep.error(path, "applies_to: universal stands alone")
+            if field == "applies_to" and language is not None and items[0] != language:
+                rep.error(path, f"applies_to {items} must begin with {language!r} in the {language} corpus")
+            if field == "applies_to" and language is None and CORPUS_LANGUAGES & set(items):
+                rep.error(path, f"applies_to {items} names a language corpus value; the universal corpus takes no language card")
     triggers, terr = parse_inline_list(data.get("triggers", ""))
     if terr:
         rep.error(path, f"triggers: {terr}")
@@ -182,7 +205,9 @@ def check_card(path, rep):
     else:
         info, lines = fences[0]
         lang = info
-        if info not in EXAMPLE_LANGS:
+        if language is not None and info != language:
+            rep.error(path, f"Example fence must be tagged {language} in the {language} corpus, found ```{info}")
+        elif info not in EXAMPLE_LANGS:
             rep.error(path, f"Example fence must be tagged one of {EXAMPLE_LANGS}, found ```{info}")
         joined = "\n".join(lines)
         if not re.search(r"^\s*bad:", joined, re.M) or not re.search(r"^\s*good:", joined, re.M):
@@ -195,9 +220,10 @@ def check_card(path, rep):
         rep.warn(path, "Example carries prose outside the fence")
 
     thesis = bt.get("Thesis", "")
-    lm = LANGUAGE_IN_THESIS.search(thesis)
+    lm = next((m for m in LANGUAGE_IN_THESIS.finditer(thesis) if m.group(0).lower() != language), None)
     if lm:
-        rep.error(path, f"Thesis names a language ({lm.group(0)!r}); a rule that holds in one language belongs to a language-specific corpus")
+        where = f"the {language} corpus names no other language" if language else "a rule that holds in one language belongs to a language-specific corpus"
+        rep.error(path, f"Thesis names a language ({lm.group(0)!r}); {where}")
 
     val = bt.get("Validator", "")
     qs = BOLD_QUESTION.findall(val)
@@ -232,7 +258,7 @@ def check_card(path, rep):
     return rule_id, domain, title, lang
 
 
-def check_corpus(cards, rep, provenance=None, pending=None):
+def check_corpus(cards, rep, provenance=None, pending=None, language=None):
     seen_ids, seen_titles, per_domain, langs = {}, {}, {}, {}
     for path, (rid, domain, title, lang) in cards.items():
         if rid in seen_ids:
@@ -249,9 +275,9 @@ def check_corpus(cards, rep, provenance=None, pending=None):
         nums = sorted(nums)
         missing = sorted(set(range(1, nums[-1] + 1)) - set(nums))
         if missing:
-            rep.warn(f"{prefix}", f"numbering gap(s) {missing} — ids count shipped cards only, contiguous per domain")
+            rep.warn(f"{prefix}", f"numbering gap(s) {missing} — ids count shipped cards only, contiguous per prefix")
     total = sum(langs.values())
-    if total >= 10:
+    if total >= 10 and language is None:
         for lang in EXAMPLE_LANGS:
             share = langs.get(lang, 0) / total
             if share > 1 / 3:
@@ -272,11 +298,18 @@ def check_corpus(cards, rep, provenance=None, pending=None):
 
 
 def main(argv):
-    provenance = pending = None
+    provenance = pending = language = None
     paths = []
     i = 0
     while i < len(argv):
         a = argv[i]
+        if a == "--language":
+            language = argv[i + 1] if i + 1 < len(argv) else ""
+            if language not in CORPUS_LANGUAGES:
+                sys.exit(f"validate-craft-cards: --language {language!r} names no language corpus "
+                         f"(known: {', '.join(sorted(CORPUS_LANGUAGES))})")
+            i += 2
+            continue
         if a == "--provenance":
             provenance = argv[i + 1]
             i += 2
@@ -298,10 +331,10 @@ def main(argv):
     rep = Report()
     cards = {}
     for f in files:
-        r = check_card(f, rep)
+        r = check_card(f, rep, language)
         if r:
             cards[f] = r
-    langs = check_corpus(cards, rep, provenance, pending)
+    langs = check_corpus(cards, rep, provenance, pending, language)
     for w in rep.warnings:
         print(w)
     for e in rep.errors:

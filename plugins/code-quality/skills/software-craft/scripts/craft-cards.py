@@ -2,10 +2,11 @@
 """The developer agent's card index: list craft cards by facet as `rule_id · title · path`.
 
 Usage:  python3 craft-cards.py [--step <step>] [--domain <domain>] [--applies-to <scope>]
-                              [--cards-dir <dir>] [--format lines|json]
-Filters combine with AND; a card matches --step when its step list holds the value,
---applies-to when its list holds the value or `universal`. With no filter every card is
-listed. The developer scans the titles and opens the cards whose titles apply.
+                              [--cards-dir <dir> ...] [--format lines|json]
+Each --cards-dir adds a directory to the listing, so one call lists the universal and a
+language corpus together; without one the universal corpus is listed. Filters combine with
+AND; a card matches --step when its step list holds the value, --applies-to when its list
+holds the value or `universal`. With no filter every card is listed. The developer scans the titles and opens the cards whose titles apply.
 Reads only the cards; writes nothing; no network; stdlib only.
 """
 import json
@@ -20,7 +21,7 @@ DEFAULT_CARDS = os.path.normpath(os.path.join(HERE, "..", "references", "craft-c
 
 
 def main(argv):
-    opts = {"step": None, "domain": None, "applies_to": None, "cards_dir": DEFAULT_CARDS, "format": "lines"}
+    opts = {"step": None, "domain": None, "applies_to": None, "cards_dir": [], "format": "lines"}
     i = 0
     while i < len(argv):
         a = argv[i]
@@ -31,21 +32,26 @@ def main(argv):
         key = a[2:].replace("-", "_")
         if key not in opts:
             sys.exit(f"craft-cards: unknown option {a}")
-        opts[key] = argv[i + 1]
+        if key == "cards_dir":
+            opts[key].append(argv[i + 1])
+        else:
+            opts[key] = argv[i + 1]
         i += 2
+    cards_dirs = opts["cards_dir"] or [DEFAULT_CARDS]
     if opts["step"] and opts["step"] not in STEPS:
         sys.exit(f"craft-cards: --step must be one of {', '.join(STEPS)}")
     if opts["applies_to"] and opts["applies_to"] not in APPLIES_TO:
         sys.exit(f"craft-cards: --applies-to must be one of {', '.join(APPLIES_TO)}")
     if opts["domain"] and opts["domain"] not in PREFIX_DOMAIN.values():
         sys.exit(f"craft-cards: --domain must be one of {', '.join(sorted(PREFIX_DOMAIN.values()))}")
-    if not os.path.isdir(opts["cards_dir"]):
-        sys.exit(f"craft-cards: no cards directory at {opts['cards_dir']}")
+    missing = [d for d in cards_dirs if not os.path.isdir(d)]
+    if missing:
+        sys.exit(f"craft-cards: no cards directory at {', '.join(missing)}")
+    names = [os.path.join(d, n) for d in cards_dirs for n in sorted(os.listdir(d)) if n.endswith(".md")]
     rows, skipped = [], []
-    for name in sorted(os.listdir(opts["cards_dir"])):
-        if not name.endswith(".md"):
-            continue
-        rec, err = read_card(os.path.join(opts["cards_dir"], name))
+    for card_path in names:
+        name = os.path.basename(card_path)
+        rec, err = read_card(card_path)
         if err:
             skipped.append(f"{name}: {err}")
             continue

@@ -16,8 +16,9 @@ continuation bundles scripts/research-continue.py wrote): their cards, outcomes,
 pending entries and held rules merge by rule key, a key that shipped as a card in any
 run drops from the pending entries, the sources and the spine come from the first run
 that carries them, and the cost line sums every run's agents and tokens.
-Ids are renumbered contiguously per domain from the cards already in the cards
-directory, so a rule that went to pending leaves no gap; every occurrence of a card's
+Ids are renumbered contiguously per id prefix from the cards already in the cards
+directory (a language corpus numbers its prefix across every domain), so a rule that went
+to pending leaves no gap; every occurrence of a card's
 provisional id in its markdown, its filename and its provenance line is replaced.
 Writes exactly the note, the cards and the two appended maps; stdlib only.
 """
@@ -86,16 +87,21 @@ def existing_max(cards_dir, prefix):
     mx = 0
     if os.path.isdir(cards_dir):
         for name in os.listdir(cards_dir):
-            m = re.match(rf"^{prefix.lower()}-(\d{{2}})--", name)
+            m = re.match(rf"^{prefix.lower()}-(\d{{2,3}})--", name)
             if m:
                 mx = max(mx, int(m.group(1)))
     return mx
 
 
 def renumber(card, old_id, new_id):
-    """Replace the provisional id everywhere in the card, its filename and its provenance line."""
+    """Replace the provisional id everywhere in the card, its filename and its provenance line.
+
+    The id the markdown carries wins over the outcome's id: a closing edit may have renumbered the card."""
+    carried = re.search(r"^rule_id:\s*([A-Z]+-\d+)", card["markdown"], re.M)
+    if carried and carried.group(1) != old_id:
+        old_id = carried.group(1)
     md = card["markdown"].replace(old_id, new_id)
-    fn = re.sub(rf"^{old_id.split('-')[0].lower()}-\d{{2}}--", f"{new_id.split('-')[0].lower()}-{new_id.split('-')[1]}--", card["filename"])
+    fn = re.sub(rf"^{old_id.split('-')[0].lower()}-\d{{2,3}}--", f"{new_id.split('-')[0].lower()}-{new_id.split('-')[1]}--", card["filename"])
     return md, fn
 
 
@@ -131,7 +137,8 @@ def note_markdown(result, status, cost, written, pendings):
     if written:
         out += ["| Rule id | Title | Card | Verification |", "|--|--|--|--|"]
         for w in written:
-            out.append(f"| {w['rule_id']} | {esc(w['title'])} | `references/craft-cards/{w['filename']}` | {esc(w['verification'])} |")
+            card_path = os.path.relpath(w["path"], SKILL).replace(os.sep, "/")
+            out.append(f"| {w['rule_id']} | {esc(w['title'])} | `{card_path}` | {esc(w['verification'])} |")
     else:
         out.append("No card shipped from this topic.")
     out += ["", "## Rules held back", ""]
@@ -270,7 +277,8 @@ def main(argv):
         else:
             verification = ("accepted on the first verdict" if not rounds
                             else f"accepted after {rounds} fix round{'s' if rounds != 1 else ''} ({o.get('verdict1', '')[:160]})")
-        written.append({"rule_id": new_id, "title": card["title"], "filename": fn, "verification": verification})
+        written.append({"rule_id": new_id, "title": card["title"], "filename": fn, "path": os.path.abspath(path),
+                        "verification": verification})
         prov_lines.append(prov_line)
         next_id += 1
     pendings = result.get("pending_entries", [])

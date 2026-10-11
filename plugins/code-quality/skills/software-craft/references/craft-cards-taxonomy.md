@@ -12,7 +12,7 @@ This corpus is a specialization of `plugins/evidence-based-authoring/skills/audi
 | `tags` (grep index) | dropped | the developer scans titles by facet, and the pre-pass matches `triggers` against the diff; no agent greps the pool |
 | Facets (retrieval filter) | kept for the developer as `step` and `applies_to`; added for the finder as the dispatch facet `triggers` and the reading-budget facet `scope` | two consumers, two facet sets on one card |
 | `confidence` facet | dropped from the card; recorded in the provenance map | neither consumer weighs evidence strength at runtime |
-| Inline citation | a compact locator stays in the card (`## Source`); the full citation, its fetch status, the formulation source and the reception go to the provenance map | the human reading a finding and the verifier calibrating it benefit from the locator; the prose stays attribution-free, so C-E2's core concern holds. A documented deviation from C-A5 (provenance-out-of-card), the same one the audit and review corpora document |
+| Inline citation | a compact locator stays in the card (`## Source`); the full citation, its fetch status, the formulation source and the reception go to the provenance map | the human reading a finding and the verifier calibrating it benefit from the locator; the prose stays attribution-free, so C-E2's core concern holds: a tool, a PEP, a library or a style guide is named in Thesis, Rationale, Limits or Validator only as the subject of a fact the card depends on — a configuration key the Validator reads (a disabled Ruff or Pylint rule, a `target-version`), a version floor, the documented behaviour of the library the card governs — and never as the holder of a position ("Ruff says", "PEP 8 recommends", "this card follows"); a split between sources is stated as positions without their holders, and the Source block carries the holders. A documented deviation from C-A5 (provenance-out-of-card), the same one the audit and review corpora document |
 | `## Example` form (C-F3) | a fenced `bad:` / `good:` pair in one of five languages, defined under Body block schema | a three-line everyday-domain pair cannot carry a programming defect; the reader is a programmer and the defect is the card's own. A documented deviation from C-F3 |
 | Numbers in claims | kept in the card | C-E3: the number is the load-bearing part |
 | Self-containedness (group C) | strict: no sibling-rule ids, no "the skill", no "see above", no author, book or blog | each reader sees only its card plus the hunks and the inventory, or the card plus its task |
@@ -25,8 +25,8 @@ Exactly these keys, all required, in this order; the validator rejects any other
 | Field | Meaning |
 |--|--|
 | `title` | the rule as one complete, checkable declarative claim (C-A1); identical to the H1 |
-| `rule_id` | stable id `<PREFIX>-NN`; the finder stamps it on every finding and the workflow dedups and applies ownership by it. A finding is `<rule_id>.<ordinal>` |
-| `domain` | the owning topic group; decides conflict priority. The prefix and the domain agree by the table under Allowed values |
+| `rule_id` | stable id `<PREFIX>-NN`, two digits, or three once a prefix passes 99 cards; the finder stamps it on every finding and the workflow dedups and applies ownership by it. A finding is `<rule_id>.<ordinal>` |
+| `domain` | the owning topic group; decides conflict priority. In the universal corpus the prefix and the domain agree by the table under Allowed values; a language corpus card takes any of those domains (Language corpora) |
 | `step` | inline list of the moments in the developer's work at which it loads the card — `design` on its design dispatch, the rest on its build; the developer's retrieval facet |
 | `applies_to` | inline list: `[universal]`, or the named scopes where the rule holds; a self-restriction (C-C3) |
 | `triggers` | inline list of Python `re` patterns, each matched with `re.search` against one added line of the diff at a time in any language, or `signal:<name>` naming a structural signal the pre-pass computes; a card runs on a file when any pattern matches any added line or any hunk carries the named signal. `[]` means every diff and is reserved for a handful of always-on cards |
@@ -64,6 +64,7 @@ Lists are YAML inline lists of quoted strings, `['a', 'b']`; `step` and `applies
 | | `public-api`, `service-boundary`, `library` | a boundary kind: an interface other code depends on, a process or network boundary, code shipped for others to call |
 | | `exceptions`, `result-types`, `garbage-collected`, `manual-memory`, `static-types`, `dynamic-types` | a language trait: how failures propagate, how memory is reclaimed, when types are checked |
 | | `tests`, `build-config`, `prose` | a file kind: a test file, a build or configuration file, a document |
+| | `python` | a language corpus value: the rule holds because of that language's semantics, standard library or ecosystem; first in the list, followed by any other scope |
 | `scope` | `hunk` | the added lines and their hunk context |
 | | `file` | plus the whole file at HEAD or in the working tree |
 | | `base-compare` | plus the base version via `git show <base_sha>:<path>` |
@@ -76,7 +77,7 @@ Lists are YAML inline lists of quoted strings, `['a', 'b']`; `step` and `applies
 | `confidence` (provenance map only) | `high`, `moderate`, `low` | evidence strength recorded on the provenance line |
 | fetch status (provenance map only) | `fetched`, `relayed`, `unfetched` | how the citation was verified from the authoring environment; a card's evidence is fetched or relayed |
 
-`critical` is not a craft severity: a data-loss or security defect is another corpus's finding. Rule ids carry two zero-padded digits and are contiguous per domain in shipping order.
+`critical` is not a craft severity: a data-loss or security defect is another corpus's finding. Rule ids carry two zero-padded digits and are contiguous per prefix in shipping order; in the universal corpus a prefix is one domain, in a language corpus it spans every domain.
 
 ## Trigger discipline
 
@@ -100,7 +101,17 @@ In this order: `## Thesis` → `## Rationale` → `## Example` → `## Limits` �
 
 ## Filename
 
-`<prefix lower-case>-NN--<slug>.md`, the slug a lower-case ASCII kebab-case of the title's central claim, at most about sixty characters, in the shape `code-03--a-variable-is-named-with-a-word-not-a-single-letter.md`. Renaming a slug means renaming its provenance line; nothing else references it.
+`<prefix lower-case>-NN--<slug>.md`, NN the digits of the rule id, the slug a lower-case ASCII kebab-case of the title's central claim, at most about sixty characters, in the shape `code-03--a-variable-is-named-with-a-word-not-a-single-letter.md`. Renaming a slug means renaming its provenance line; nothing else references it.
+
+## Language corpora
+
+A language corpus holds the rules that hold because of one language. The Python corpus lives in `references/craft-cards-python/`; its ids take the prefix `PY` with any craft domain of the Allowed values table, in the filename shape `py-NN--<slug>.md`. A Python card follows every rule of this schema except three:
+
+- the `## Example` is one fenced block tagged `python`;
+- the Thesis may name Python, and no other language;
+- `applies_to` begins with `python`, followed by any other scope.
+
+The pre-pass dispatches a language card only on files of that language, and additionally on build and configuration files (`pyproject.toml`, `setup.cfg` and the like) when its `applies_to` also lists `build-config`. The validator checks the corpus with `--language python`; the corpus has its own two maps, `craft-cards-python-provenance.md` and `pending-evidence-python.md`, of the shape Provenance defines. `LANGUAGE_PREFIXES` in `scripts/cardlib.py` registers each language corpus by its prefix.
 
 ## Provenance
 

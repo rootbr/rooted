@@ -135,7 +135,7 @@ const LANGS = ['java', 'python', 'typescript', 'go', 'rust']
 const STEPS = ['design', 'implement', 'handle-errors', 'test', 'refactor', 'document', 'review']
 const APPLIES_TO = ['universal', 'object-oriented', 'functional', 'public-api', 'service-boundary', 'library',
   'exceptions', 'result-types', 'garbage-collected', 'manual-memory', 'static-types', 'dynamic-types',
-  'tests', 'build-config', 'prose']
+  'tests', 'build-config', 'prose', 'python']
 const SIGNALS = ['long_routine', 'deep_nesting', 'many_parameters', 'boolean_argument', 'empty_handler',
   'magic_number', 'commented_out_code', 'todo_marker', 'duplicate_block', 'test_file', 'added_file']
 const SKILL = `${ROOT}/plugins/code-quality/skills/software-craft`
