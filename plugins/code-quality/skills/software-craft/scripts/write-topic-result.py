@@ -28,11 +28,12 @@ import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 SKILL = os.path.normpath(os.path.join(HERE, ".."))
-DOMAIN_ORDER = ["code", "design", "interface", "errors", "tests", "change", "performance", "tooling", "docs", "input"]
+DOMAIN_ORDER = ["code", "design", "interface", "errors", "tests", "change", "performance", "tooling", "docs", "input", "architecture"]
 DOMAIN_TITLES = {"code": "CODE — code inside a function", "design": "DSN — module design", "interface": "API — interfaces",
                  "errors": "ERR — errors and resilience", "tests": "TST — tests", "change": "CHG — changing code",
                  "performance": "PRF — diagnostics and performance", "tooling": "TOOL — tools and hygiene",
-                 "docs": "DOC — reading and documenting", "input": "INP — input and security hygiene"}
+                 "docs": "DOC — reading and documenting", "input": "INP — input and security hygiene",
+                 "architecture": "ARCH — architecture"}
 PROVENANCE_HEADER = """# Craft-cards provenance map
 
 Out-of-runtime maintainer record. Neither consumer receives this file: a card carries the rule, its numbers and a compact `## Source` locator; this map carries the full citation with its fetch status, the topic and research note the card came from, the formulation source where a practitioner text supplied the wording, the reception, and the maintenance notes. Round-trip rule: a card plus its line here plus its topic's research note reconstruct everything known about the rule.

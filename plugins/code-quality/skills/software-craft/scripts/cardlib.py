@@ -8,7 +8,8 @@ import re
 
 KEYS = ["title", "rule_id", "domain", "step", "applies_to", "triggers", "scope", "check_kind", "severity_default"]
 PREFIX_DOMAIN = {"CODE": "code", "DSN": "design", "API": "interface", "ERR": "errors", "TST": "tests",
-                 "CHG": "change", "PRF": "performance", "TOOL": "tooling", "DOC": "docs", "INP": "input"}
+                 "CHG": "change", "PRF": "performance", "TOOL": "tooling", "DOC": "docs", "INP": "input",
+                 "ARCH": "architecture"}
 STEPS = ("design", "implement", "handle-errors", "test", "refactor", "document", "review")
 APPLIES_TO = ("universal", "object-oriented", "functional", "public-api", "service-boundary", "library",
               "exceptions", "result-types", "garbage-collected", "manual-memory", "static-types", "dynamic-types",

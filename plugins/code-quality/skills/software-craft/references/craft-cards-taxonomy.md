@@ -50,6 +50,7 @@ Lists are YAML inline lists of quoted strings, `['a', 'b']`; `step` and `applies
 | | `TOOL-`, `tooling` | tools and hygiene: build, warnings, static analysis, CI, dependencies, runtime configuration, internationalization and encoding |
 | | `DOC-`, `docs` | reading and documenting: reading code, code review as author and reviewer, documentation beyond comments |
 | | `INP-`, `input` | input and security hygiene: parsing and grammar-based input, security hygiene in ordinary code |
+| | `ARCH-`, `architecture` | architecture: component cohesion and change coupling, stable dependencies between components, boundary enforcement and package structure, boundaries and adapters, composition root and wiring, services as components, architecture decisions and their record |
 | | `PROJ-`, `project` | a project card synthesized from a project's `config.md`; never shipped with the plugin |
 | `step` | `design` | shaping a module, its interface, its data and its dependencies before code is written |
 | | `implement` | writing the body of a routine, a type or a data structure |

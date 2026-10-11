@@ -425,6 +425,14 @@ Return the ruling object via the structured-output tool.`
 // overlapping after the series; an entry names concepts one card states in the vocabulary
 // of another domain.
 const DEFER_TO = {
+  'DSN-10': 'ARCH-08', // an added import leaves the module graph acyclic: an import that closes a cycle between components (build modules, separately released packages) is ARCH-08's finding (reviewer, architecture)
+  'DSN-11': ['ARCH-16', 'ARCH-17'], // an added import follows the declared dependency direction: an import from a declared domain layer into an infrastructure framework is ARCH-16's, one a declared import rule forbids is ARCH-17's (reviewer, architecture)
+  'DSN-13': 'ARCH-03', // code is not split into modules clients must import together: a split into a separately versioned component is ARCH-03's finding (reviewer, architecture)
+  'DSN-08': ['ARCH-04', 'ARCH-35'], // a requirement change stays in its owning module: code that changes together spread over release components is ARCH-04's, over separately deployed services ARCH-35's (reviewer, architecture)
+  'DSN-30': 'ARCH-11', // a declaration gets the narrowest visibility: a package or target added outside the toolchain's hidden area is ARCH-11's finding (reviewer, architecture)
+  'DSN-63': 'ARCH-29', // shared mutable state lives in an instance: a dependency-injection container held in a static or module-level variable is ARCH-29's finding (reviewer, architecture)
+  'API-33': 'ARCH-22', // a breaking change raises the major number: an exposed dependency moved to an incompatible version is ARCH-22's finding (reviewer, architecture)
+  'ARCH-31': 'TOOL-23', // settings arrive as values or typed options: a flag or environment variable read outside the entry point or the configuration module is TOOL-23's finding (reviewer, tooling)
   'DSN-44': ['API-10', 'DSN-51'], // a unit or identifier as a distinct type: on a public operation's parameters API-10 owns the swap; a duration or instant held as a bare number is DSN-51's (reviewer, design)
   'DSN-47': 'API-10', // a fixed set of values as an enumeration: on a public parameter API-10 owns the closed set
   'DSN-66': ['API-01', 'DSN-69'], // a private collection returned as a copy or view: where the type keeps an invariant API-01 owns the leaking accessor; an accessor of a type presented as immutable that returns its stored mutable collection is DSN-69's (reviewer, design)
@@ -557,8 +565,8 @@ const DEFER_TO = {
 }
 const ownersOf = ruleId => [DEFER_TO[ruleId] || []].flat()
 const SEV_RANK = { major: 0, minor: 1, suggestion: 2 }
-// conflict priority: input > errors = interface = project = logic > design = tests = change > performance > code = docs = tooling
-const DOMAIN_PRIORITY = { input: 0, errors: 1, interface: 1, project: 1, logic: 1, design: 2, tests: 2, change: 2, performance: 3, code: 4, docs: 4, tooling: 4 }
+// conflict priority: input > errors = interface = project = logic > design = architecture = tests = change > performance > code = docs = tooling
+const DOMAIN_PRIORITY = { input: 0, errors: 1, interface: 1, project: 1, logic: 1, design: 2, architecture: 2, tests: 2, change: 2, performance: 3, code: 4, docs: 4, tooling: 4 }
 function domainOf(ruleId) {
   if (ruleId === 'LOGIC') return 'logic'
   if (ruleId.startsWith('PROJ-')) return 'project'

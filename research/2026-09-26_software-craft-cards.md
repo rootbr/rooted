@@ -87,7 +87,7 @@ The orchestrator assigns ids per domain in shipping order — the order in which
 
 ## Topic taxonomy
 
-Ten topic groups, each one domain and one id prefix. The topics inside a group are the lower bound of coverage; the locators name where the canon formulates the topic (CC — *Code Complete*, 2nd ed., by chapter; SW — SWEBOK Guide V4.0 chapter 4, by section, chapter 3 where noted; SEG — *Software Engineering at Google*, by chapter; PP — *The Pragmatic Programmer*, 20th anniversary edition, by topic; PoP — *The Practice of Programming*, by chapter; APOSD — *A Philosophy of Software Design*; WELC — *Working Effectively with Legacy Code*; TF — *Tidy First?*). The canon names formulations only; evidence is a separate layer (§Source policy). A topic marked contested is one on which the authors of *Clean Code* and of *A Philosophy of Software Design* disagree in public (their discussion is the README of `johnousterhout/aposd-vs-clean-code` on GitHub); §Contested rules says what its cards do.
+Eleven topic groups, each one domain and one id prefix. The topics inside a group are the lower bound of coverage; the locators name where the canon formulates the topic (CC — *Code Complete*, 2nd ed., by chapter; SW — SWEBOK Guide V4.0 chapter 4, by section, chapter 3 where noted; SEG — *Software Engineering at Google*, by chapter; PP — *The Pragmatic Programmer*, 20th anniversary edition, by topic; PoP — *The Practice of Programming*, by chapter; APOSD — *A Philosophy of Software Design*; WELC — *Working Effectively with Legacy Code*; TF — *Tidy First?*). The canon names formulations only; evidence is a separate layer (§Source policy). A topic marked contested is one on which the authors of *Clean Code* and of *A Philosophy of Software Design* disagree in public (their discussion is the README of `johnousterhout/aposd-vs-clean-code` on GitHub); §Contested rules says what its cards do.
 
 | Group, domain, prefix | Topic slug (`research/software-craft/<slug>.md`) | Formulation locators |
 |--|--|--|
@@ -139,8 +139,15 @@ Ten topic groups, each one domain and one id prefix. The topics inside a group a
 | | `documentation-beyond-comments` | SEG10 |
 | J, `input`, `INP` | `parsing-and-grammar-based-input` | SW4.9, PoP9 |
 | | `security-hygiene-in-ordinary-code` | PP "Stay Safe Out There", SWEBOK ch. 3 §3.7 |
+| K, `architecture`, `ARCH` | `component-cohesion-and-change-coupling` | Clean Architecture ch. 13, PP "Orthogonality", SW ch. 2 and 3 |
+| | `stable-dependencies-and-abstractness` (contested) | Clean Architecture ch. 14 |
+| | `boundary-enforcement-and-package-structure` (contested) | Clean Architecture ch. 21, ch. 34, SEG18 |
+| | `boundaries-adapters-and-framework-isolation` (contested) | Clean Architecture ch. 17–23, ch. 30–32, PP "Decoupling", SW ch. 2 |
+| | `composition-root-and-dependency-wiring` (contested) | Clean Architecture ch. 26, SW ch. 3 |
+| | `services-as-components-and-shared-schema-coupling` (contested) | Clean Architecture ch. 27, SW ch. 2 |
+| | `architecture-decisions-and-their-record` | SW ch. 2, ISO/IEC/IEEE 42010, SEG10 |
 
-Forty-eight topics. §Deviations records every topic the research adds beyond this table, with its source.
+Fifty-five topics: the forty-eight of groups A–J and the seven of group K, whose rules hold between components — units of release, build or deployment — where the design domain's rules hold between modules inside one. §Deviations records every topic the research adds beyond this table, with its source.
 
 Concept ownership between neighbouring topics, decided at carding time so that one concept has one card:
 
@@ -154,6 +161,9 @@ Concept ownership between neighbouring topics, decided at carding time so that o
 | A test that mocks what it should not | `test-doubles` | `unit-testing-and-test-quality` keeps assertion and structure |
 | The size and shape of one change | `small-steps-and-minimal-diffs` | `code-review-as-author-and-reviewer` keeps the description and the reviewer's reading |
 | A magic number or a global variable | `variables-scope-and-numerics` | `mutable-state-and-immutability` keeps shared mutable state between components |
+| A cycle, a dependency direction or a split between components — units of release, build or deployment | the group K topics (`stable-dependencies-and-abstractness`, `boundaries-adapters-and-framework-isolation`, `component-cohesion-and-change-coupling`) | `coupling-and-dependency-direction` and `complexity-and-deep-modules` keep the import, the module and the class inside one component; the review workflow's `DEFER_TO` carries the card pairs |
+| A dependency-injection container held globally or built twice | `composition-root-and-dependency-wiring` | `mutable-state-and-immutability` keeps other shared mutable state; `runtime-configuration` keeps where a flag or environment variable is read |
+| A decision record's rationale and its amendment | `documentation-beyond-comments` | `architecture-decisions-and-their-record` keeps the change that owes a record, the superseding record, the record's scope, number and negative consequences |
 
 Reserved specialties are outside the corpus and outside the developer agent's mandate: low-latency and high-frequency-trading tuning, concurrency correctness, security-critical design, machine-learning or algorithm research. The agent names the specialty in its report and stops. Distributed systems, middleware, cross-platform construction, process and team management, estimation, and product or UX decisions are outside the corpus too.
 
@@ -339,6 +349,7 @@ The tree is the state: each topic's research note carries `status`, each card ex
 | 4 Dry run: fixture for the pilot cards in three languages, both pre-pass modes, workflow, grading, smoke task | every seed found, every control silent; the smoke task builds, its tests pass, its review report is written | done: 72/72 in committed mode, the worktree pre-pass plans the same 90 jobs, the smoke task's 20 tests pass and its review reports two minor findings; `evals/evals.json` holds the figures |
 | 5 Series: every remaining topic in batches, one reviewer per domain, corpus audit, fixture to three seeds per domain | validator, audit and grading clean, `pending-evidence.md` complete, every note `done`, provenance round-trip holds | done except the extended fixture's grading run, open for the operator, and the docs and input seeds the fixture still lacks: every topic in §Topic taxonomy and the gap runs of every domain are written, each topic through two fix rounds (the series topics' second round as a pass over the cards in the tree), ten domain reviewers applied, the closing card audit run over a sample of two cards per topic (49 cards) and over the ten cards split or added at the close, the validator and the note-to-tree cross-check clean; the fixture carries three seeds and three controls for the other domains |
 | 6 Close: SKILL.md, READMEs, maintenance, gotchas, report format, `overview.sh`, versions, final audit | final audit clean | done: the skill, the three agents, this note and the references audited at the close |
+| 7 Group K, architecture: seven topics through two rounds and a closing edit, the domain registered in the scripts and the taxonomy, ownership pairs in `DEFER_TO` | validator clean, a card audit over two cards per topic, `pending-evidence.md` carrying the rules without a separating condition | done for the corpus: 48 cards, 18 pending entries, 57 held rules; open — fixture seeds for the architecture domain and the review grading over them, like the docs and input seeds of step 5 |
 
 ## Cost
 
@@ -358,6 +369,8 @@ Per topic, the research workflow runs 3 source agents, 1 spine agent and, per ca
 Yield: every one of the 36 drafts drew a `revise` on its first verdict; 1 of 36 was accepted after the first fix round and 5 of 35 after the second, each remaining verdict carrying exact edits (a dropped precondition, a number recast, a correlation stated as a cause), none a rejection for missing evidence. The one-round pipeline (draft, verdict, fix, verdict, closing edit) costs about 9.5–10 M tokens and 55 agents per topic, the two-round pipeline of the table above 13–14 M; at 12 rules a topic, the 45 series topics project to 430–450 M sub-agent tokens on one round. A skeptic verdict is 210–240 k tokens at `max` effort and is the largest line; running the second verdict at `xhigh` is the one cut the design admits; I have not measured its effect on the verdict's findings, so I cannot say it leaves what ships unchanged.
 
 Measured over the series, from the cost lines of the research notes (56 notes: the 48 topics and the gap runs of eight domains, the tree pass over the series cards included): 2,945 agents and about 345 M sub-agent tokens, a median of 5.6 M per topic, with the card prompts' working-method block bounding a skeptic's reads. The ten domain reviewers cost about 6 M, the closing card audit over 59 cards, the 49-card sample and the ten cards split or added at the close, about 84 M (about 220 single-rule agents per run of ten cards, on haiku for mechanical checks and sonnet for semantic ones), and the tree pass's skeptic on the Fable model at `high` about 0.1 M per card, against the 0.3–0.4 M an opus skeptic at `max` costs.
+
+Group K, measured from the cost lines of its seven research notes: 348 agents and about 41.7 M sub-agent tokens over two rounds with a closing edit, 2.3–8.0 M per topic, the session's search cap of 200 calls shared by all seven topics running at once; 48 cards from 105 spine rules, 18 pending entries and 57 held rules.
 
 ## Deviations from the brief
 

@@ -7,14 +7,14 @@
   "plugins": [
     {
       "name": "code-quality",
-      "description": "Java code review and language-agnostic software-craft build-and-review from corpora of sourced rule cards — a deterministic pre-pass, a finder per triggered card, a skeptic per finding, a developer agent that builds by the cards — plus proactive code cleanup",
-      "version": "5.1.0",
+      "description": "Java code review and language-agnostic software-craft build-and-review from corpora of sourced rule cards — a deterministic pre-pass, a finder per triggered card, a skeptic per finding, a developer agent that builds by the cards",
+      "version": "6.1.0",
       "source": "./plugins/code-quality"
     },
     {
       "name": "evidence-based-authoring",
       "description": "Evidence-based authoring: web research with source verification and AI context files grounded in traceable sources",
-      "version": "4.9.1",
+      "version": "4.9.2",
       "source": "./plugins/evidence-based-authoring"
     }
   ]
