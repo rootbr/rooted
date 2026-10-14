@@ -4,7 +4,7 @@ rule_id: CODE-49
 domain: code
 step: [design, implement]
 applies_to: [static-types, dynamic-types]
-triggers: ['[(,]\s*(@\w+\s+|final\s+)*(List|ArrayList|LinkedList|Collection|Iterable|Set|HashSet|SortedSet|Map|HashMap|SortedMap|Queue|Deque)<\s*[A-Z][\w\s,]*>\s+\w+', '^\s*(@\w+\s+|final\s+)*(List|ArrayList|LinkedList|Collection|Iterable|Set|HashSet|SortedSet|Map|HashMap|SortedMap|Queue|Deque)<\s*[A-Z][\w\s,]*>\s+\w+\s*[,)]', '\b\w+\s*:\s*(Optional\[)?(list|List|dict|Dict|set|Set|MutableSequence|MutableMapping|MutableSet)\[']
+triggers: ['(^|[(,])\s*(@\w+\s+|final\s+)*(List|ArrayList|LinkedList|Collection|Iterable|Set|HashSet|SortedSet|Map|HashMap|SortedMap|Queue|Deque)<\s*[A-Z][\w\s,]*>\s+\w+', '\b\w+\s*:\s*(Optional\[)?(list|List|dict|Dict|set|Set|MutableSequence|MutableMapping|MutableSet)\[']
 scope: file
 check_kind: semantic
 severity_default: minor

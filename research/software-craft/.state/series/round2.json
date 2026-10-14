@@ -228,8 +228,43 @@
      "task": "wdp4rmk82",
      "wf": "wf_a4c3b598-1c0",
      "launched": "2026-10-14T23:10 UTC",
-     "status": "running",
+     "status": "done 2026-10-14T23:40 UTC: 13 agents, 1,155,221 sub-agent tokens, 21 minutes; 7 accepted, 3 closing-edited (CODE-41, CODE-46, CODE-49), 0 not accepted; applied",
      "bundle": "r2tree/generics-and-parameterization--r2tree.js (10 cards CODE-40 to CODE-49, 420 KB)"
+    }
+   ],
+   "result": {
+    "applied": "2026-10-14T23:29 UTC",
+    "accepted": [
+     "CODE-40",
+     "CODE-42",
+     "CODE-43",
+     "CODE-44",
+     "CODE-45",
+     "CODE-47",
+     "CODE-48"
+    ],
+    "closing_edited": [
+     "CODE-41",
+     "CODE-46",
+     "CODE-49"
+    ],
+    "renamed": [],
+    "not_accepted": [],
+    "agents": 13,
+    "tokens": 1155221,
+    "wall_s": 1276
+   },
+   "recheck": "CODE-41: wording, the Thesis and Validator now count a self-referential bound as an occurrence; CODE-46: entailment, the comment condition on a written unchecked type is aligned between Thesis, Validator question and Finding output; CODE-49: the second trigger could not match the bad Example and is merged into the first as (^|[(,]); the code-domain reviewer's facet values on CODE-41 (step, scope), CODE-46 (step, check_kind) and CODE-49 (applies_to) are untouched, so no revert"
+  },
+  "api-design-and-use": {
+   "runs": [
+    {
+     "part": "r2tree",
+     "task": "wd4zdlb68",
+     "wf": "wf_dc26418e-b13",
+     "launched": "2026-10-14T23:42 UTC",
+     "status": "running",
+     "bundle": "r2tree/api-design-and-use--r2tree.js (12 cards API-08 to API-19, 479 KB, under the 512 KiB limit)"
     }
    ]
   }
