@@ -152,6 +152,18 @@
     "wall_s": 616
    },
    "recheck": "CODE-30: the applies_to note in the provenance line brought to the card's universal value, as the verdict required; CODE-25: the entailment finding is right, the Rust std-dev-guide must_use bullet did not entail the fail-fast carve-out the interface-domain reviewer's API-08/CODE-25 resolution added (reviews/interface.json), so the verdict's deletion of that bullet stands; the carve-out itself is restored, resting on the Error Prone CheckReturnValue bullet copied from API-08 ('assign the result to a variable that starts with unused', example comment 'fail fast if the format is bad or null'), which states the claim, and the Validator's skip list names the same case; without it CODE-25's fix would leave API-08's bad shape"
+  },
+  "control-flow": {
+   "runs": [
+    {
+     "part": "r2tree",
+     "task": "wy5so1ogh",
+     "wf": "wf_e97539ef-324",
+     "launched": "2026-10-14T22:32 UTC",
+     "status": "running",
+     "bundle": "r2tree/control-flow--r2tree.js (10 cards CODE-73 to CODE-82, 429 KB; the folded keys branches-do-not-repeat-code and no-mutation-of-iterated-collection have no tree card and are left out)"
+    }
+   ]
   }
  }
 }
