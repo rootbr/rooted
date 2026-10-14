@@ -211,5 +211,12 @@
    ],
    "status": "done 2026-10-14T19:50 UTC: DOC-01 to DOC-04 written from both rounds, spot-read (DOC-04 -> API-20, DOC-03 -> CHG-31, API-17 carve-out for a documented property the in-repository body contradicts)"
   }
+ },
+ "reviewers": {
+  "interface": {
+   "launched": "2026-10-14T19:55 UTC",
+   "kind": "one read-only opus/max agent per HANDOVER 5.8, the change-domain prompt adapted; report to be saved as reviews/interface.json and applied per the change/code pattern",
+   "status": "running"
+  }
  }
 }
