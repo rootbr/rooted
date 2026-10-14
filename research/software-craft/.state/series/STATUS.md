@@ -1,6 +1,6 @@
 # Series status
 
-Snapshot taken 2026-10-14T23:11 UTC by `series/series-status.py --snapshot`. Journals under `journals/`, finished runs' outputs under `outputs/`.
+Snapshot taken 2026-10-14T23:18 UTC by `series/series-status.py --snapshot`. Journals under `journals/`, finished runs' outputs under `outputs/`.
 
 `done` counts the agents whose results the journal holds (cached for a continuation); `failed` the agents a usage-limit stop or an error ended, which a continuation re-runs. `cards` is the count in the run's own output; a run whose agents failed shipped none, and its cards come from the continuation. A continuation run (batch 3 and later) is one bundle of a topic, named by its part; a topic is finished when every part's run is complete.
 
@@ -23,7 +23,7 @@ Snapshot taken 2026-10-14T23:11 UTC by `series/series-status.py --snapshot`. Jou
 | 5 | `runtime-configuration` r2-rest | ? | fix2 1, verify3 1 | - | - | running or stopped |
 | 5 | `internationalization-and-text-encoding` r1 | 14 | sources 3, spine 1, draft 12, verify 12, fix 12, verify2 12, close1 11 | - | 12 | run complete |
 | 5 | `internationalization-and-text-encoding` r2-1of2 | 12 | fix2 6 | verify3 6 | 0 | run ended, agents failed |
-| 5 | `internationalization-and-text-encoding` r2-2of2 | ? | fix2 5, verify3 2 | - | - | running or stopped |
+| 5 | `internationalization-and-text-encoding` r2-2of2 | ? | fix2 5, verify3 4, close2 1 | - | - | running or stopped |
 | 5 | `internationalization-and-text-encoding` r2-finish-1of2 | 12 | verify3 3, close3 2 | - | 3 | run complete |
 | 5 | `internationalization-and-text-encoding` r2-finish-2of2 | 12 | verify3 3, close3 2 | - | 3 | run complete |
 | 5 | `code-review-as-author-and-reviewer` r1 | 6 | sources 3, spine 1, draft 6, verify 6, fix 6, verify2 6, close1 4 | - | 6 | run complete |
@@ -34,7 +34,7 @@ Snapshot taken 2026-10-14T23:11 UTC by `series/series-status.py --snapshot`. Jou
 | 5 | `reading-and-understanding-code` r1 | 4 | sources 3, spine 1, draft 4, verify 4, fix 4, verify2 4, close1 4 | - | 4 | run complete |
 | 5 | `reading-and-understanding-code` r2 | 4 | fix2 4, verify3 4, close2 2 | - | 4 | run complete |
 | 6 | `gaps-performance` r1 | 5 | sources 3, spine 1, draft 5, verify 2 | verify 3, fix 2 | 0 | run ended, agents failed |
-| 6 | `gaps-performance` r1-finish | ? | verify 3, fix 5, verify2 4, close1 3 | - | - | running or stopped |
+| 6 | `gaps-performance` r1-finish | 5 | verify 3, fix 5, verify2 5, close1 4 | - | 5 | run complete |
 | 6 | `gaps-errors` r1 | ? | - | - | - | running or stopped |
 | r2 | `comments-and-self-documenting-code` r2tree | 12 | verify3 12, close3 3 | - | 12 | run complete |
 | r2 | `layout-and-coding-style` r2tree | 11 | verify3 11, close3 2 | - | 11 | run complete |
@@ -43,4 +43,4 @@ Snapshot taken 2026-10-14T23:11 UTC by `series/series-status.py --snapshot`. Jou
 | r2 | `variables-scope-and-numerics` r2tree-rest | 14 | verify3 4, close3 2 | - | 4 | run complete |
 | r2 | `control-flow` r2tree | 18 | verify3 10, close3 1 | - | 10 | run complete |
 | r2 | `table-driven-and-state-machines` r2tree | 8 | verify3 8, close3 3 | - | 8 | run complete |
-| r2 | `generics-and-parameterization` r2tree | ? | verify3 1 | - | - | running or stopped |
+| r2 | `generics-and-parameterization` r2tree | ? | verify3 6 | - | - | running or stopped |

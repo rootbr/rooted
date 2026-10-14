@@ -18,8 +18,16 @@
      "task": "wgqp7lhrk",
      "wf": "wf_2f4f1fa9-96b",
      "launched": "2026-10-14T22:20 UTC",
-     "status": "running",
+     "status": "done 2026-10-14T23:15 UTC: 17 agents, 2,013,395 sub-agent tokens, 64 minutes, 5 cards in its output; output outputs/gaps-performance--r1-finish.output.json.gz",
      "bundle": "cont/gaps-performance/continue-gaps-performance-1of1.js (--round 1 --journal r1: drafts and the two verdicts carried)"
+    },
+    {
+     "part": "r2",
+     "task": "w2b3y7qr1",
+     "wf": "wf_16af0040-444",
+     "launched": "2026-10-14T23:19 UTC",
+     "status": "running",
+     "bundle": "cont/gaps-performance/r2/continue-gaps-performance-round2-1of1.js (research-continue.py --round 2 --journal r1 --journal r1-finish --from-bundle gaps/gaps-performance.js --split 1: one card accepted at the second verdict (hash-key dispersion), four sent back with revise)"
     }
    ]
   },
