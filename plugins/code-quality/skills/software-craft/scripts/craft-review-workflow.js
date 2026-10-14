@@ -450,6 +450,8 @@ const DEFER_TO = {
   'PRF-02': 'ERR-02', // a bug fix corrects the fault, not the failure: an error swallowed where it is raised is ERR-02's finding
   'PRF-03': 'DSN-20', // a bug fix corrects the same mistake where it repeats: a verbatim copy of the fixed block is DSN-20's duplicated-code finding
   'DSN-20': 'DOC-12', // a change to one copy of duplicated code reaches every copy: a passage copied from one repository document into another is DOC-12's finding (spot-read, documentation)
+  'TOOL-43': 'DSN-51', // a recorded moment is held as an aware instant: a moment held as a bare number rather than a time type is DSN-51's finding; TOOL-43 keeps the naive local date-time (spot-read, internationalization)
+  'DSN-22': 'TOOL-39', // a repeated string literal is declared once as a constant: a user-visible literal that the project's message catalog should hold is TOOL-39's finding, a catalog key not a constant (spot-read, internationalization)
   'CODE-71': 'CHG-35', // a code change updates its comments: a pre-existing debt marker whose work the change does is CHG-35's finding (reviewer, change)
   'CHG-18': 'DSN-63', // changed code receives replaced dependencies explicitly: a module-level object with interior mutability is DSN-63's finding (reviewer, change)
   'CHG-30': 'CHG-31', // an old migration path is deleted once unused: the implementation a retired flag selected is CHG-31's finding (reviewer, change)

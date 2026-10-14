@@ -169,7 +169,7 @@
      "task": "w3qbtxftm",
      "wf": "wf_ddea349d-368",
      "launched": "2026-10-14T22:57 UTC",
-     "status": "running",
+     "status": "done 2026-10-14T23:25 UTC: 12 agents, 1,296,575 sub-agent tokens, 38 minutes, 5 cards in its output; output outputs/internationalization-and-text-encoding--r2-2of2.output.json.gz",
      "bundle": "cont/internationalization-and-text-encoding/r2/continue-internationalization-and-text-encoding-round2-2of2.js"
     },
     {
@@ -188,7 +188,8 @@
      "status": "done 2026-10-14T23:12 UTC: 5 agents, 660,400 sub-agent tokens, 28 minutes; output outputs/internationalization-and-text-encoding--r2-finish-2of2.output.json.gz",
      "bundle": "cont/internationalization-and-text-encoding/r2fin/continue-internationalization-and-text-encoding-round2-finish-2of2.js"
     }
-   ]
+   ],
+   "status": "done 2026-10-14T23:35 UTC: TOOL-33 to TOOL-44 written from round 1, the cut round 2 part 1 (no card), its two finish parts (3 + 3 cards) and round 2 part 2 (5 cards); 97 agents, 10.9M sub-agent tokens over the five runs; spot-read against the corpus: no duplicate; TOOL-43 -> DSN-51 (a moment held as a bare number) and DSN-22 -> TOOL-39 (a user-visible literal belongs in the catalog), each with a Limits sentence"
   },
   "code-review-as-author-and-reviewer": {
    "runs": [
