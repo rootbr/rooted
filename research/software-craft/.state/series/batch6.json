@@ -1,0 +1,19 @@
+{
+ "batch": 6,
+ "kind": "gap research runs (HANDOVER 5.12): one bundle per domain from series/gap-runs.json via make-gap-bundles.py, each run as a topic with its two rounds, then finish-topic.sh gaps-<domain>, spot-read, commit; gap-runs.json statuses set to the card id or the pending entry each concept ended as",
+ "concurrency": "4 active tasks (operator, 2026-10-14T17:15 UTC)",
+ "topics": {
+  "gaps-performance": {
+   "runs": [
+    {
+     "part": "r1",
+     "task": "wab0jem2a",
+     "wf": "wf_1e26aa6b-25b",
+     "launched": "2026-10-14T21:10 UTC",
+     "status": "running",
+     "bundle": "gaps/gaps-performance.js (5 concepts, built 2026-10-14T21:08 UTC from gap-runs.json: change 2, code 4, design 1, performance 5, errors 4, interface 3, tests 4 queued)"
+    }
+   ]
+  }
+ }
+}
