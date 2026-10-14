@@ -166,10 +166,10 @@
     },
     {
      "part": "r2-2of2",
-     "task": null,
-     "wf": null,
-     "launched": null,
-     "status": "built, waiting for a free slot under the cap of four (five rules)",
+     "task": "w3qbtxftm",
+     "wf": "wf_ddea349d-368",
+     "launched": "2026-10-14T22:57 UTC",
+     "status": "running",
      "bundle": "cont/internationalization-and-text-encoding/r2/continue-internationalization-and-text-encoding-round2-2of2.js"
     },
     {
@@ -177,7 +177,7 @@
      "task": "wmv62mglh",
      "wf": "wf_f8247b9b-9f0",
      "launched": "2026-10-14T22:20 UTC",
-     "status": "running",
+     "status": "done 2026-10-14T22:55 UTC: 5 agents, 671,046 sub-agent tokens, 32 minutes; output outputs/internationalization-and-text-encoding--r2-finish-1of2.output.json.gz",
      "bundle": "cont/internationalization-and-text-encoding/r2fin/continue-internationalization-and-text-encoding-round2-finish-1of2.js (--round 2 --journal r1 --journal r2-1of2 --resume-cut-short --split 2: three rules)"
     },
     {
@@ -234,10 +234,11 @@
      "task": "w1v4n1jz2",
      "wf": "wf_23c6c731-82d",
      "launched": "2026-10-14T22:20 UTC",
-     "status": "running",
+     "status": "done 2026-10-14T22:45 UTC: 12 agents, 1,223,682 sub-agent tokens, 29 minutes, 9 cards in its output; output outputs/documentation-beyond-comments--r2-finish.output.json.gz",
      "bundle": "cont/documentation-beyond-comments/r2fin/continue-documentation-beyond-comments-round2-finish-1of1.js (--round 2 --journal r1 --journal r2 --resume-cut-short --skip-carded carded.json: nine rules, their fix2 drafts carried)"
     }
-   ]
+   ],
+   "status": "done 2026-10-14T22:55 UTC: DOC-11 to DOC-22 written from round 1, the cut round 2 (one card) and r2-finish (nine cards; 99 agents, 10.0M sub-agent tokens over the three runs), spot-read against the corpus: no duplicate; DSN-20 -> DOC-12 (a passage copied between repository documents is DOC-12's finding); DOC-20 keeps documents while CODE-71 keeps comments and CHG-03 run-time-resolved uses"
   },
   "reading-and-understanding-code": {
    "runs": [

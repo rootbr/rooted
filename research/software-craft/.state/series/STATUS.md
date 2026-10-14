@@ -1,6 +1,6 @@
 # Series status
 
-Snapshot taken 2026-10-14T22:43 UTC by `series/series-status.py --snapshot`. Journals under `journals/`, finished runs' outputs under `outputs/`.
+Snapshot taken 2026-10-14T22:47 UTC by `series/series-status.py --snapshot`. Journals under `journals/`, finished runs' outputs under `outputs/`.
 
 `done` counts the agents whose results the journal holds (cached for a continuation); `failed` the agents a usage-limit stop or an error ended, which a continuation re-runs. `cards` is the count in the run's own output; a run whose agents failed shipped none, and its cards come from the continuation. A continuation run (batch 3 and later) is one bundle of a topic, named by its part; a topic is finished when every part's run is complete.
 
@@ -23,7 +23,8 @@ Snapshot taken 2026-10-14T22:43 UTC by `series/series-status.py --snapshot`. Jou
 | 5 | `runtime-configuration` r2-rest | ? | fix2 1, verify3 1 | - | - | running or stopped |
 | 5 | `internationalization-and-text-encoding` r1 | 14 | sources 3, spine 1, draft 12, verify 12, fix 12, verify2 12, close1 11 | - | 12 | run complete |
 | 5 | `internationalization-and-text-encoding` r2-1of2 | 12 | fix2 6 | verify3 6 | 0 | run ended, agents failed |
-| 5 | `internationalization-and-text-encoding` r2-finish-1of2 | ? | verify3 2, close3 1 | - | - | running or stopped |
+| 5 | `internationalization-and-text-encoding` r2-finish-1of2 | 12 | verify3 3, close3 2 | - | 3 | run complete |
+| 5 | `internationalization-and-text-encoding` r2-finish-2of2 | ? | - | - | - | running or stopped |
 | 5 | `code-review-as-author-and-reviewer` r1 | 6 | sources 3, spine 1, draft 6, verify 6, fix 6, verify2 6, close1 4 | - | 6 | run complete |
 | 5 | `code-review-as-author-and-reviewer` r2 | 6 | fix2 4, verify3 4, close2 3 | - | 4 | run complete |
 | 5 | `documentation-beyond-comments` r1 | 13 | sources 3, spine 1, draft 12, verify 12, fix 12, verify2 12, close1 10 | - | 12 | run complete |
@@ -38,4 +39,4 @@ Snapshot taken 2026-10-14T22:43 UTC by `series/series-status.py --snapshot`. Jou
 | r2 | `routine-size-and-parameters` r2tree | 9 | verify3 7, close3 3 | - | 7 | run complete |
 | r2 | `variables-scope-and-numerics` r2tree | 14 | verify3 9 | verify3 3, close3 1 | 8 | run ended, agents failed |
 | r2 | `variables-scope-and-numerics` r2tree-rest | 14 | verify3 4, close3 2 | - | 4 | run complete |
-| r2 | `control-flow` r2tree | ? | verify3 6 | - | - | running or stopped |
+| r2 | `control-flow` r2tree | ? | verify3 8 | - | - | running or stopped |

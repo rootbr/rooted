@@ -449,6 +449,7 @@ const DEFER_TO = {
   'ERR-48': ['PRF-05', 'ERR-02'], // operational messages go through the logging facility: a print added while hunting a failure is PRF-05's remnant finding, a handler whose only action is a printed stack trace ERR-02's (reviewer, errors)
   'PRF-02': 'ERR-02', // a bug fix corrects the fault, not the failure: an error swallowed where it is raised is ERR-02's finding
   'PRF-03': 'DSN-20', // a bug fix corrects the same mistake where it repeats: a verbatim copy of the fixed block is DSN-20's duplicated-code finding
+  'DSN-20': 'DOC-12', // a change to one copy of duplicated code reaches every copy: a passage copied from one repository document into another is DOC-12's finding (spot-read, documentation)
   'CODE-71': 'CHG-35', // a code change updates its comments: a pre-existing debt marker whose work the change does is CHG-35's finding (reviewer, change)
   'CHG-18': 'DSN-63', // changed code receives replaced dependencies explicitly: a module-level object with interior mutability is DSN-63's finding (reviewer, change)
   'CHG-30': 'CHG-31', // an old migration path is deleted once unused: the implementation a retired flag selected is CHG-31's finding (reviewer, change)
