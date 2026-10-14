@@ -1,6 +1,19 @@
 {
  "purpose": "the second-round passes over the series cards in the tree (HANDOVER §5.11): one run per topic, part r2tree, built by series/round2-from-tree.py; `result` is written by its apply step",
  "batch": "r2",
- "concurrency": "2 active tasks (operator, 2026-10-09T16:40 UTC; 1 from 06:10 UTC that day): workflows and reviewer agents counted alike; launch the next when fewer than two run",
- "topics": {}
+ "concurrency": "4 active tasks (operator, 2026-10-14T17:15 UTC): workflows and reviewer agents counted alike",
+ "topics": {
+  "comments-and-self-documenting-code": {
+   "runs": [
+    {
+     "part": "r2tree",
+     "task": "wypips07x",
+     "wf": "wf_dcba3ccc-bf0",
+     "launched": "2026-10-14T20:50 UTC",
+     "status": "running",
+     "bundle": "r2tree/comments-and-self-documenting-code--r2tree.js (12 cards CODE-61 to CODE-72, skeptic claude-fable-5-1 at high, closing edit at high: the operator's experiment on the first topic of the pass; every closing-edited card is re-checked against its verdict before the effort for the rest is decided)"
+    }
+   ]
+  }
+ }
 }
