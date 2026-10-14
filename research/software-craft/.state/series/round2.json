@@ -160,8 +160,43 @@
      "task": "wy5so1ogh",
      "wf": "wf_e97539ef-324",
      "launched": "2026-10-14T22:32 UTC",
-     "status": "running",
+     "status": "done 2026-10-14T23:05 UTC: 11 agents, 944,941 sub-agent tokens, 18 minutes; 9 accepted, 1 closing-edited (CODE-80), 0 not accepted; applied",
      "bundle": "r2tree/control-flow--r2tree.js (10 cards CODE-73 to CODE-82, 429 KB; the folded keys branches-do-not-repeat-code and no-mutation-of-iterated-collection have no tree card and are left out)"
+    }
+   ],
+   "result": {
+    "applied": "2026-10-14T22:49 UTC",
+    "accepted": [
+     "CODE-73",
+     "CODE-74",
+     "CODE-75",
+     "CODE-76",
+     "CODE-77",
+     "CODE-78",
+     "CODE-79",
+     "CODE-81",
+     "CODE-82"
+    ],
+    "closing_edited": [
+     "CODE-80"
+    ],
+    "renamed": [],
+    "not_accepted": [],
+    "agents": 11,
+    "tokens": 944941,
+    "wall_s": 1069
+   },
+   "recheck": "CODE-80: the closing edit adds the Go tour's named-results condition (a bare return of named results passes in a routine of a handful of lines, is flagged beside a value-listing return once the routine is longer) to Limits, Validator and Caveat with the fetched source bullet; the code-domain reviewer had no finding on CODE-80, so no facet revert"
+  },
+  "table-driven-and-state-machines": {
+   "runs": [
+    {
+     "part": "r2tree",
+     "task": "w3geexi8y",
+     "wf": "wf_72374836-ca2",
+     "launched": "2026-10-14T23:04 UTC",
+     "status": "running",
+     "bundle": "r2tree/table-driven-and-state-machines--r2tree.js (8 cards CODE-13 to CODE-20, 360 KB)"
     }
    ]
   }
