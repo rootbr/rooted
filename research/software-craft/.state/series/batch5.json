@@ -186,8 +186,16 @@
      "task": "w0gw5uv4h",
      "wf": "wf_1a889b8e-140",
      "launched": "2026-10-14T17:20 UTC",
-     "status": "running",
+     "status": "done 2026-10-14T21:40 UTC: 62 agents, 7,131,882 sub-agent tokens, 12 cards in its output, 5 pending, 15 held; output outputs/documentation-beyond-comments--r1.output.json.gz",
      "note": "round 1 from the bundle regenerated 2026-10-14T17:16 UTC; all four remaining topics launched together under the cap of four"
+    },
+    {
+     "part": "r2",
+     "task": "wx78yunxu",
+     "wf": "wf_209c32cd-4db",
+     "launched": "2026-10-14T21:43 UTC",
+     "status": "running",
+     "bundle": "cont/documentation-beyond-comments/r2/continue-documentation-beyond-comments-round2-1of1.js (research-continue.py --round 2 --journal <r1 journal> --from-bundle bundles/documentation-beyond-comments.js --split 1: two cards accepted at the second verdict, ten sent back with revise)"
     }
    ]
   },
