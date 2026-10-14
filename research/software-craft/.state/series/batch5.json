@@ -153,8 +153,24 @@
      "task": "wz07mm3ix",
      "wf": "wf_5899ded0-e91",
      "launched": "2026-10-14T17:20 UTC",
-     "status": "running",
+     "status": "done 2026-10-14T22:30 UTC: 63 agents, 7,520,238 sub-agent tokens, 12 cards in its output, 2 pending, 8 held; output outputs/internationalization-and-text-encoding--r1.output.json.gz",
      "note": "round 1 from the bundle regenerated 2026-10-14T17:16 UTC; all four remaining topics launched together under the cap of four"
+    },
+    {
+     "part": "r2-1of2",
+     "task": "wdubeb2l9",
+     "wf": "wf_6df481d7-4b2",
+     "launched": "2026-10-14T22:33 UTC",
+     "status": "running",
+     "bundle": "cont/internationalization-and-text-encoding/r2/continue-internationalization-and-text-encoding-round2-1of2.js (research-continue.py --round 2 --journal <r1 journal> --from-bundle bundles/internationalization-and-text-encoding.js --split 2, the one-part bundle being 551 KB: one card accepted at the second verdict, eleven sent back with revise; part 1 holds six rules)"
+    },
+    {
+     "part": "r2-2of2",
+     "task": null,
+     "wf": null,
+     "launched": null,
+     "status": "built, waiting for a free slot under the cap of four (five rules)",
+     "bundle": "cont/internationalization-and-text-encoding/r2/continue-internationalization-and-text-encoding-round2-2of2.js"
     }
    ]
   },
