@@ -39,6 +39,18 @@
     "wall_s": 1416
    },
    "recheck": "the operator's experiment (HANDOVER 7.7): each closing edit re-checked against its verdict's required edits: CODE-64 the two Limits paragraphs deleted as required (the optional replacement caveat not wanted), CODE-67 the two wording edits applied verbatim, CODE-72 the paragraph replaced as required and the blank lines fixed; closing effort high holds for the rest of the pass"
+  },
+  "layout-and-coding-style": {
+   "runs": [
+    {
+     "part": "r2tree",
+     "task": "wdea7ju0t",
+     "wf": "wf_08b10496-a8c",
+     "launched": "2026-10-14T21:30 UTC",
+     "status": "running",
+     "bundle": "r2tree/layout-and-coding-style--r2tree.js (11 cards CODE-50 to CODE-60, skeptic Fable at high, closing edit at high)"
+    }
+   ]
   }
  }
 }
