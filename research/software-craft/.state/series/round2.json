@@ -107,6 +107,18 @@
     "wall_s": 829
    },
    "recheck": "CODE-35: the Example extended and the Limits wording replaced as the verdict required; CODE-34 and CODE-36: the verdicts only restored step review from the spine's declared facets, which the code-domain reviewer had removed (reviews/code.json: review is the change-shape step, not a property of code), so the reviewer's values stand and those two closing edits are reverted"
+  },
+  "variables-scope-and-numerics": {
+   "runs": [
+    {
+     "part": "r2tree",
+     "task": "wn7qf5118",
+     "wf": "wf_a9e0daf6-37c",
+     "launched": "2026-10-14T22:20 UTC",
+     "status": "running",
+     "bundle": "r2tree/variables-scope-and-numerics--r2tree.js (12 cards CODE-21 to CODE-32, 513 KB, under the 512 KiB limit)"
+    }
+   ]
   }
  }
 }
