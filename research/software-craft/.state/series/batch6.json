@@ -10,8 +10,16 @@
      "task": "wab0jem2a",
      "wf": "wf_1e26aa6b-25b",
      "launched": "2026-10-14T21:10 UTC",
-     "status": "running",
+     "status": "cut by the session limit at about 21:50 UTC (reset 22:10 UTC): sources, spine and 5 drafts done, 2 first verdicts done, 3 verdicts and 2 fixes failed; cut-short output cont/gaps-performance/cutshort.json",
      "bundle": "gaps/gaps-performance.js (5 concepts, built 2026-10-14T21:08 UTC from gap-runs.json: change 2, code 4, design 1, performance 5, errors 4, interface 3, tests 4 queued)"
+    },
+    {
+     "part": "r1-finish",
+     "task": "wgqp7lhrk",
+     "wf": "wf_2f4f1fa9-96b",
+     "launched": "2026-10-14T22:20 UTC",
+     "status": "running",
+     "bundle": "cont/gaps-performance/continue-gaps-performance-1of1.js (--round 1 --journal r1: drafts and the two verdicts carried)"
     }
    ]
   }

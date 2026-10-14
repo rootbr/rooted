@@ -161,7 +161,7 @@
      "task": "wdubeb2l9",
      "wf": "wf_6df481d7-4b2",
      "launched": "2026-10-14T22:33 UTC",
-     "status": "running",
+     "status": "cut by the session limit at about 21:50 UTC (reset 22:10 UTC): 6 fix2 done, 6 verify3 failed; no card finished",
      "bundle": "cont/internationalization-and-text-encoding/r2/continue-internationalization-and-text-encoding-round2-1of2.js (research-continue.py --round 2 --journal <r1 journal> --from-bundle bundles/internationalization-and-text-encoding.js --split 2, the one-part bundle being 551 KB: one card accepted at the second verdict, eleven sent back with revise; part 1 holds six rules)"
     },
     {
@@ -171,6 +171,22 @@
      "launched": null,
      "status": "built, waiting for a free slot under the cap of four (five rules)",
      "bundle": "cont/internationalization-and-text-encoding/r2/continue-internationalization-and-text-encoding-round2-2of2.js"
+    },
+    {
+     "part": "r2-finish-1of2",
+     "task": "wmv62mglh",
+     "wf": "wf_f8247b9b-9f0",
+     "launched": "2026-10-14T22:20 UTC",
+     "status": "running",
+     "bundle": "cont/internationalization-and-text-encoding/r2fin/continue-internationalization-and-text-encoding-round2-finish-1of2.js (--round 2 --journal r1 --journal r2-1of2 --resume-cut-short --split 2: three rules)"
+    },
+    {
+     "part": "r2-finish-2of2",
+     "task": null,
+     "wf": null,
+     "launched": null,
+     "status": "built, waiting for a free slot (three rules)",
+     "bundle": "cont/internationalization-and-text-encoding/r2fin/continue-internationalization-and-text-encoding-round2-finish-2of2.js"
     }
    ]
   },
@@ -210,8 +226,16 @@
      "task": "wx78yunxu",
      "wf": "wf_209c32cd-4db",
      "launched": "2026-10-14T21:43 UTC",
-     "status": "running",
+     "status": "cut by the session limit at about 21:50 UTC (reset 22:10 UTC): 10 fix2 and 6 verify3 done, 3 verify3 and 5 close2 failed; one card finished (decision-record-states-rationale), written to cont/documentation-beyond-comments/r2fin/carded.json with --write-carded",
      "bundle": "cont/documentation-beyond-comments/r2/continue-documentation-beyond-comments-round2-1of1.js (research-continue.py --round 2 --journal <r1 journal> --from-bundle bundles/documentation-beyond-comments.js --split 1: two cards accepted at the second verdict, ten sent back with revise)"
+    },
+    {
+     "part": "r2-finish",
+     "task": "w1v4n1jz2",
+     "wf": "wf_23c6c731-82d",
+     "launched": "2026-10-14T22:20 UTC",
+     "status": "running",
+     "bundle": "cont/documentation-beyond-comments/r2fin/continue-documentation-beyond-comments-round2-finish-1of1.js (--round 2 --journal r1 --journal r2 --resume-cut-short --skip-carded carded.json: nine rules, their fix2 drafts carried)"
     }
    ]
   },
