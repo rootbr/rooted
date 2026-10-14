@@ -1,0 +1,821 @@
+{
+ "domain": "tests",
+ "cards_read": [
+  "TST-01",
+  "TST-02",
+  "TST-03",
+  "TST-04",
+  "TST-05",
+  "TST-06",
+  "TST-07",
+  "TST-08",
+  "TST-09",
+  "TST-10",
+  "TST-11",
+  "TST-12",
+  "TST-13",
+  "TST-14",
+  "TST-15",
+  "TST-16",
+  "TST-17",
+  "TST-18",
+  "TST-19",
+  "TST-20",
+  "TST-21",
+  "TST-22",
+  "TST-23",
+  "TST-24",
+  "TST-25",
+  "TST-26",
+  "TST-27",
+  "TST-28",
+  "TST-29",
+  "TST-30",
+  "TST-31",
+  "TST-32",
+  "TST-33",
+  "TST-34",
+  "TST-35",
+  "TST-36",
+  "TST-37",
+  "TST-38",
+  "TST-39",
+  "TST-40",
+  "TST-41",
+  "TST-42",
+  "TST-43",
+  "TST-44",
+  "TST-45",
+  "TST-46",
+  "TST-47",
+  "TST-48",
+  "TST-49",
+  "TST-50",
+  "TST-51"
+ ],
+ "overlaps": [
+  {
+   "deferring": "TST-01",
+   "owner": "TST-04",
+   "line_kind": "the added line that creates a mock, stub or spy of a value object, data class or standard collection, e.g. 'Money price = mock(Money.class);' or 'List<Item> items = mock(List.class);'",
+   "validator_a": "TST-01: Does the test replace with a double a collaborator that runs in process, is deterministic and fast, reaches no network, database, file, clock or other operating-system resource, and can be built in the test with ordinary setup?",
+   "validator_b": "TST-04: does the test create a double of a value object, a pure data class or a standard-library data holder that it could construct for real?",
+   "taxonomy_owner": "Ownership row 'A test that mocks what it should not | test-doubles | unit-testing-and-test-quality keeps assertion and structure' puts both in test-doubles; within that topic TST-04 is the card for doubled values and TST-01 the general in-process rule, so TST-04 owns the span."
+  },
+  {
+   "deferring": "TST-01",
+   "owner": "TST-06",
+   "line_kind": "the added line that mocks or patches a type or module of an in-process, deterministic third-party library (a parser, serializer or renderer), e.g. jest.mock('pdf-engine')",
+   "validator_a": "TST-01: Does the test replace with a double a collaborator that runs in process, is deterministic and fast, reaches no network, database, file, clock or other operating-system resource, and can be built in the test with ordinary setup?",
+   "validator_b": "TST-06: Does the added test create a mock, stub, spy or patch of a type, function or module imported from a third-party package, other than a double that package's authors ship, a double of a type they document as designed for doubling in tests, or the server end that a real client reaches over a real transport?",
+   "taxonomy_owner": "Same test-doubles row; TST-06 is that topic's card for third-party types, TST-01's own Limits single out 'A third-party library that runs in process, such as a parser or a serializer', and TST-06's fix (real library, author-shipped double or owned wrapper) contains TST-01's."
+  },
+  {
+   "deferring": "TST-06",
+   "owner": "TST-02",
+   "line_kind": "a mock or stub of a third-party HTTP or RPC client, or of an interface whose methods take and return that client's requests and responses, e.g. client := NewMockDoer(ctrl) with client.EXPECT().Do(...)",
+   "validator_a": "TST-06: Does the added test create a mock, stub, spy or patch of a type, function or module imported from a third-party package, other than a double that package's authors ship, a double of a type they document as designed for doubling in tests, or the server end that a real client reaches over a real transport?",
+   "validator_b": "TST-02: Does the test mock a type marked not to be mocked, stub the client of a component reached over a transport instead of pointing the real client at a test server, or stub, on one instance, every non-private method of a type that has more than one?",
+   "taxonomy_owner": "Test-doubles row; TST-02 is the card for transport clients, and TST-06's Validator already hands it the fix ('Where the doubled name is an HTTP or RPC client, the fix is the production client against a test server rather than a wrapper'); both exempt an owner-documented mocking seam."
+  },
+  {
+   "deferring": "TST-12",
+   "owner": "TST-04",
+   "line_kind": "a stub that makes a double return another double standing for a value object or data holder, e.g. mockAcct.EXPECT().Owner().Return(mockOwner) where the returned type is a data holder",
+   "validator_a": "TST-12: Does an added line stub or verify a method of the unit under test through a spy or a partial double, or stub a double to return a further double that the test stubs in turn to reach a value or that stands for a value object or a data holder, outside legacy code and, for a spy or partial double, outside an unchangeable third-party interface and an interim step while refactoring legacy code?",
+   "validator_b": "TST-04: does the test create a double of a value object, a pure data class or a standard-library data holder that it could construct for real?",
+   "taxonomy_owner": "Test-doubles row; a doubled value is TST-04's concept (its finding quotes 'the line that creates the double and any line that stubs it'), while TST-12 keeps partial doubles of the unit and chains that navigate through objects."
+  },
+  {
+   "deferring": "TST-22",
+   "owner": "TST-24",
+   "line_kind": "an assertion on the behaviour's result that stops at its subject or compares the result with itself, e.g. 'expect(total > 0);' or 'expect(total).toEqual(total);'",
+   "validator_a": "TST-22: Does a test whose input fixes the behaviour's result check that result only through a property a wrong result also satisfies, or does an effect of the behaviour visible in the hunk go unchecked by every test of that behaviour in the file?",
+   "validator_b": "TST-24: Does a test in the hunk lack any assertion, verification and expected-failure declaration, or hold an assertion that stops at its subject or compares two sides that cannot differ?",
+   "taxonomy_owner": "Row unit-testing-and-test-quality (CC22, SEG12) yields both ('keeps assertion and structure'); TST-24 is the card for an assertion that cannot fail, the split the map already makes for TST-13 -> TST-24; TST-22 keeps complete assertions that check only a property."
+  },
+  {
+   "deferring": "TST-31",
+   "owner": "TST-21",
+   "line_kind": "a test's write to a file at a fixed path in a shared directory that no cleanup removes",
+   "validator_a": "TST-31: Does a test leave a change that another test reads or that stays in the store for a later run, with no managed cleanup, rollback or before-each reset covering that change, or with only an after-test hook in a runner whose run can be refreshed in the middle of a test?",
+   "validator_b": "TST-21: Does a unit test in the file depend on another test having run first, or change shared state — a mutable static or module-level variable, a file at a fixed path, the working directory or an environment variable — without working on a per-test copy of it, and either without clearing it after itself or while other tests can run in parallel with it?",
+   "taxonomy_owner": "No ownership row decides it; row unit-testing-and-test-quality (CC22, SEG12) holds test independence and TST-21's Thesis names 'files at fixed paths', while TST-31 (larger-tests-integration-and-end-to-end, SEG14) keeps databases, servers, brokers and buckets. See also the TST-21/TST-31 contradiction."
+  },
+  {
+   "deferring": "TST-40",
+   "owner": "TST-43",
+   "line_kind": "a property for a result-promising unit whose only check is that the call completes, e.g. proptest! { #[test] fn never_panics(s in ...) { decode(&s); } }",
+   "validator_a": "TST-40: Does the unit's contract give a caller a guarantee about its results that none of the properties written for the unit asserts?",
+   "validator_b": "TST-43: Does the hunk hold a property that checks only that a call to a result-promising unit completes without an error, while no property in that test file or another test file of the repository checks that unit's result?",
+   "taxonomy_owner": "Row property-based-testing (PP 'Property-Based Testing') yields both; TST-43 is the specific case of a property set that checks no result at all, TST-40 keeps sets that assert some guarantees and miss others."
+  },
+  {
+   "deferring": "TST-19",
+   "owner": "DSN-21",
+   "line_kind": "the declarations of three or more sibling tests of four or more counted lines that repeat one body and differ only in literal input and expected values",
+   "validator_a": "TST-19: Do three or more tests in the file run the same statements and differ only in fewer than four hard-coded input or expected values, with no case that would need its own setup, action or assertion?",
+   "validator_b": "DSN-21: Does the change add a block of four or more counted lines that repeats another block, identical or differing only in values, names or types, or a routine whose body of two or more lines is identical to another routine's, where the copies are meant to do the same thing so that a change to one would be needed in the other?",
+   "taxonomy_owner": "Ownership row 'Duplicated code blocks | duplication-and-single-source-of-truth | code-smells-and-antipatterns keeps the smells with no owner of their own'; DSN-21's Limits already carry TST-19's exception ('Between test cases, duplication is accepted where folding the cases into one table would make the row values dictate conditional behaviour'). The two rate this span major (DSN-21) and suggestion (TST-19); TST-19 keeps test bodies below DSN-21's four-line floor."
+  },
+  {
+   "deferring": "API-14",
+   "owner": "TST-39",
+   "line_kind": "an equality assertion whose arguments are variables named for the framework's parameter labels but passed in swapped positions, e.g. assertEquals(actual, expected)",
+   "validator_a": "API-14: Does an added call pass named arguments in an order that a reordering would pair more closely with the callee's parameter names, without a comment at each moved argument naming the parameter it fills, or carry a parameter-name comment that names a parameter other than the one at its position?",
+   "validator_b": "TST-39: Does an assertion in the hunk place the hard-coded expected value in the position its framework labels actual or the produced value in the position it labels expected, or, under neutral labels, put the two in the order opposite to the file's other assertions?",
+   "taxonomy_owner": "Ownership row 'A test that mocks what it should not | test-doubles | unit-testing-and-test-quality keeps assertion and structure': the form of an assertion is unit-testing-and-test-quality's (TST-39), not api-design-and-use's; without the entry DOMAIN_PRIORITY (interface 1 over tests 2) keeps API-14's finding."
+  },
+  {
+   "deferring": "DSN-64",
+   "owner": "TST-48",
+   "line_kind": "an in-place change of a generated argument inside a property predicate, e.g. xs.sort() or xs.append(0) in a Python or TypeScript property body",
+   "validator_a": "DSN-64: Does the routine change the contents of an object passed in as an argument, directly or through a view or shallow copy that shares the argument's storage, while neither the parameter's type, the routine's name, its documented contract nor a convention in the project context declares the change?",
+   "validator_b": "TST-48: Does the property predicate change in place a generated input it received, or data reachable through it, instead of a copy it made first?",
+   "taxonomy_owner": "No ownership row; row property-based-testing (PP 'Property-Based Testing') owns the predicate's contract with the framework that keeps the input for shrinking and the failure report, and DSN-64 keeps ordinary routines (in Rust a &mut parameter declares the change, so only TST-48 flags its own Example)."
+  },
+  {
+   "deferring": "DSN-21",
+   "owner": "TST-42",
+   "line_kind": "a test's reference model or oracle whose body repeats the unit's body",
+   "validator_a": "DSN-21: Does the change add a block of four or more counted lines that repeats another block, identical or differing only in values, names or types, or a routine whose body of two or more lines is identical to another routine's, where the copies are meant to do the same thing so that a change to one would be needed in the other?",
+   "validator_b": "TST-42: Does the counterpart that the property treats as the trusted reference or model call the unit, call a function of the code under test that the unit's definition also calls, or copy the unit's logic?",
+   "taxonomy_owner": "The duplicated-code row would hand the span to DSN-21, but an oracle copied from the unit is the property-based-testing row's concept, and DSN-21's fix ('one routine calls the other, or both call one shared routine') is the counterpart TST-42 flags as calling the unit; see the DSN-21/TST-42 contradiction."
+  }
+ ],
+ "near_misses": [
+  {
+   "a": "TST-09",
+   "b": "TST-10",
+   "why_not": "On 'verify(repo).find(id)' beside 'when(repo.find(id)).thenReturn(order)', TST-09 asks whether the verified call is also stubbed with matching at least as narrow; TST-10 asks whether a pinned call is one 'the behaviour under test does not require', and a stubbed query whose value the behaviour uses is required; TST-10's Limits also leave 'whether a test should check interactions at all rather than returned values or resulting state' outside."
+  },
+  {
+   "a": "TST-07",
+   "b": "TST-17",
+   "why_not": "A branch inside a stub's answer function (TST-07's 'if strings.HasPrefix(sku, ...) { return 80 }') chooses the double's return value; TST-17 asks whether a conditional 'decide[s] which setup, action or assertion statements run for a case', TST-07 whether the double 'compute[s] its answer from its arguments'."
+  },
+  {
+   "a": "TST-03",
+   "b": "TST-07",
+   "why_not": "Both read stubbing lines, but TST-03 asks whether the stubbed value or error is one 'the real method's signature or documented contract excludes', TST-07 whether the answer is computed from the arguments."
+  },
+  {
+   "a": "TST-08",
+   "b": "TST-09",
+   "why_not": "TST-08 quotes the stub that is never realized or the double that never reaches the code; TST-09 quotes the verify line of a stubbed call; different lines and questions."
+  },
+  {
+   "a": "TST-13",
+   "b": "TST-14",
+   "why_not": "TST-13 quotes the added test's assertion line and asks whether it passes on the base; TST-14 quotes the production line and asks whether any added test exercises it."
+  },
+  {
+   "a": "TST-14",
+   "b": "TST-41",
+   "why_not": "Both can quote an added encode or parse signature, but TST-14 asks whether any test in the change exercises it and TST-41 whether a round-trip property over generated values exists."
+  },
+  {
+   "a": "TST-23",
+   "b": "TST-25",
+   "why_not": "On a try/catch expected-failure idiom TST-23 asks whether the check encloses more than the one call or accepts a broad kind; TST-25 asks whether an assertion can be skipped or its failure caught."
+  },
+  {
+   "a": "TST-30",
+   "b": "TST-31",
+   "why_not": "TST-30 quotes the query, lookup or count that reaches a record the test did not create; TST-31 quotes the write the test leaves behind; different lines."
+  },
+  {
+   "a": "TST-21",
+   "b": "DSN-63",
+   "why_not": "Both read module-level mutable state that tests share, but DSN-63's code is 'the declaration of the module-level object' and TST-21's 'the line that writes or reads the shared state', so the spans differ and aggregation keeps both."
+  },
+  {
+   "a": "TST-18",
+   "b": "TST-39",
+   "why_not": "TST-39's Limits leave 'a hand-written failure message, whose diff direction is the report's own statement' outside, and TST-18 never judges which argument sits in which position."
+  },
+  {
+   "a": "TST-04",
+   "b": "TST-11",
+   "why_not": "On a double of a value, TST-11 asks whether the double is built from the real type, TST-04 whether it should be a double at all."
+  },
+  {
+   "a": "TST-45",
+   "b": "TST-47",
+   "why_not": "Both read one discard line, but TST-45 asks whether the predicate rejects a large share that construction could avoid and TST-47 whether the accepted cases are classified; their Examples conflict (see contradictions)."
+  },
+  {
+   "a": "TST-24",
+   "b": "TST-43",
+   "why_not": "Rejected as a contradiction: TST-24's Limits put a no-crash property 'outside the rule' rather than calling it good, and TST-43 flags it only when no property checks the result."
+  },
+  {
+   "a": "TST-45",
+   "b": "TST-46",
+   "why_not": "Rejected as a contradiction: TST-46's good half 'fc.pre(lo <= hi)' rejects about half the draws, which TST-45 calls neither 'a large share' nor a condition 'random draws rarely violate', and TST-46's Rationale already ranks 'a generator option that yields only valid values' first."
+  },
+  {
+   "a": "TST-38",
+   "b": "CHG-05",
+   "why_not": "Rejected as a contradiction: CHG-05 forbids disabling a kept test in a refactoring at all, while TST-38 judges only whether the mark states a reason ('An unconditional skip that names why the test is off ... also satisfies it')."
+  },
+  {
+   "a": "TST-14",
+   "b": "CHG-04",
+   "why_not": "Their Limits split the cases: TST-14 'A pure refactoring, one not intended to change behaviour, lies outside this rule's question', CHG-04 'A change that adds or changes logic is outside the rule'."
+  },
+  {
+   "a": "TST-50",
+   "b": "PRF-01",
+   "why_not": "TST-50 asks in what form a property-found failure is kept, PRF-01 whether a captured input was reduced; PRF-01's Limits accept 'A failing input that a fuzzing engine has minimized and written to its seed corpus'."
+  }
+ ],
+ "contradictions": [
+  {
+   "a": "TST-01",
+   "b": "TST-02",
+   "sentence_a": "TST-01 Limits: 'The kind of dependency separates the cases: in process, deterministic and fast stays real; network, database, clock, another external resource or a slow computation may be doubled.'",
+   "sentence_b": "TST-02 Thesis: 'When a test exercises code that reaches another component through a client over a transport such as HTTP or RPC, it keeps the real client and points it at a test server, built with the testing library the component's owner provides where one exists, rather than stubbing the client.'",
+   "resolving_limits_sentence": "Which form the double of an external dependency takes lies outside this rule: a client that reaches another component over HTTP or RPC stays real and talks to a test server, and a type from a third-party package is replaced through a double its authors ship or a wrapper the project owns rather than doubled directly.",
+   "carried_by": "TST-01"
+  },
+  {
+   "a": "TST-01",
+   "b": "TST-06",
+   "sentence_a": "TST-01 Limits: 'The kind of dependency separates the cases: in process, deterministic and fast stays real; network, database, clock, another external resource or a slow computation may be doubled.' (a mock of a third-party database driver or SDK client with no documented mocking seam is permitted)",
+   "sentence_b": "TST-06 Thesis: 'Across the cases, whatever the code under test calls directly is real library code, a double the library's authors ship, or a type the project owns.'",
+   "resolving_limits_sentence": "Which form the double of an external dependency takes lies outside this rule: a client that reaches another component over HTTP or RPC stays real and talks to a test server, and a type from a third-party package is replaced through a double its authors ship or a wrapper the project owns rather than doubled directly.",
+   "carried_by": "TST-01"
+  },
+  {
+   "a": "TST-17",
+   "b": "TST-46",
+   "sentence_a": "TST-17 Thesis: 'All the setup, action and assertion logic of a test body runs on every execution: no conditional statement or conditional expression in the body chooses which of them run, whether its condition is a field of the current table row, a result of the code under test or a property of the environment.'",
+   "sentence_b": "TST-46 Limits: 'A fuzz engine whose budget is a duration or a number of executions of the fuzz target, and which by default runs forever if no failure occurs, documents returning early and calling its skip as alternatives for an input the target cannot check; the rule does not reach such a fuzz target.' (the existing TST-17 -> TST-46 defer never fires there, because TST-46 does not flag)",
+   "resolving_limits_sentence": "In a fuzz target whose engine is budgeted by duration or by executions and documents an early return as an alternative to its skip call, a guard on the fuzzed input whose only body returns early skips that input as the skip call would and is not branching.",
+   "carried_by": "TST-17"
+  },
+  {
+   "a": "TST-25",
+   "b": "TST-46",
+   "sentence_a": "TST-25 Thesis: 'Every assertion a test writes executes on every run in which the test passes, and a failure it raises fails the test.'",
+   "sentence_b": "TST-46 Limits: 'A fuzz engine whose budget is a duration or a number of executions of the fuzz target ... documents returning early and calling its skip as alternatives for an input the target cannot check; the rule does not reach such a fuzz target.' (the existing TST-25 -> TST-46 defer never fires there)",
+   "resolving_limits_sentence": "In a fuzz target whose engine is budgeted by duration or by executions and documents an early return as an alternative to its skip call, a guard whose only body returns early on an input the target cannot check skips that input, and the assertions after it are not skipped assertions in this rule's sense.",
+   "carried_by": "TST-25"
+  },
+  {
+   "a": "TST-17",
+   "b": "TST-32",
+   "sentence_a": "TST-17 Thesis: 'no conditional statement or conditional expression in the body chooses which of them run, whether its condition is a field of the current table row, a result of the code under test or a property of the environment.'",
+   "sentence_b": "TST-32 Example, good half: 'store.onSave(id -> { if (id.equals(order.id())) saved.countDown(); });' under its Limits 'Awaiting a completion signal, such as a latch or another synchronization mechanism, and polling under a timeout both satisfy the rule'.",
+   "resolving_limits_sentence": "A condition inside a callback the test hands to the code under test, whose only body signals the awaited event, such as counting down a latch when the matching message arrives, is the wait's completion signal and not a branch among the test's setup, action and assertion statements.",
+   "carried_by": "TST-17"
+  },
+  {
+   "a": "TST-21",
+   "b": "TST-31",
+   "sentence_a": "TST-21 Thesis: 'A test that must change such state works on a per-test resource such as a file of its own, or initializes the state before and clears it after each test and runs one at a time, not in parallel with other tests.' Its good Example writes temp_dir().join(format!(\"saves_report-{}.txt\", process::id())) and never removes it.",
+   "sentence_b": "TST-31 Limits: 'Whether a test needs its own cleanup at all turns on two conditions, either of which requires it: the operations it runs affect another test downstream, or the change stays in the store after the run, test data that a fixture should not leave behind.'",
+   "resolving_limits_sentence": "A per-test file written to a directory that outlives the run, such as the system's temporary directory, is still removed when the test ends by a cleanup the framework manages, unless it sits in a per-test temporary directory the framework removes.",
+   "carried_by": "TST-21 (with its Example's good half)"
+  },
+  {
+   "a": "TST-34",
+   "b": "TST-35",
+   "sentence_a": "TST-34 Thesis: 'Code whose correctness depends on how a real dependency behaves, such as a database query or its schema mapping, a message or wire format exchanged with another component, or a client for a store or a queue, is run by at least one test against that dependency or against a throwaway instance of the same product.'",
+   "sentence_b": "TST-35 Thesis: 'An automated test sends its requests only to systems the team controls.' (its Limits exempt only 'a check against the real service that runs on its own schedule')",
+   "resolving_limits_sentence": "Where the real dependency is a third-party server or site the team does not control, the test against it runs as a check on its own schedule, apart from the tests run on every change, which replace that server at its boundary.",
+   "carried_by": "TST-34"
+  },
+  {
+   "a": "TST-45",
+   "b": "TST-47",
+   "sentence_a": "TST-45 Thesis: 'A property's generator produces only inputs that meet the property's precondition, through the generator's own bounds, a mapping of a freely drawn value into the valid domain, or a composition of valid parts, whenever the precondition is sparse under free generation, so that a filter or a discard rejects a large share of draws'; its Validator: 'a sortedness, structural-invariant or narrow-range predicate over a wide free generator rejects most draws'.",
+   "sentence_b": "TST-47 Thesis: 'A property that discards generated cases through a precondition records a classification of the cases it accepts'; its good Example keeps 'if !slices.IsSorted(xs) { r.Skip() }' over rapid.SliceOf(rapid.Int()) and only adds counters.",
+   "resolving_limits_sentence": "Where the precondition is sparse under free generation, as sortedness of a freely drawn list is, a generator that yields valid cases by construction replaces the discard, and the classification this rule asks for is owed only by a discard that remains.",
+   "carried_by": "TST-47 (with its Example's good half)"
+  },
+  {
+   "a": "TST-46",
+   "b": "TST-47",
+   "sentence_a": "TST-46 Thesis: 'a property body that meets a generated input it cannot check rejects that input through the framework's discard call'; its good Example 'fc.pre(lo <= hi);' classifies nothing.",
+   "sentence_b": "TST-47 Validator question: 'Does the property discard generated cases through a precondition while neither the property nor its test classifies the cases it accepts, by labels, events, statistics, a coverage requirement or per-class counters that the run reports?'",
+   "resolving_limits_sentence": "Whether the property also reports a classification of the cases it accepts is outside this rule, which judges only how an unwanted input is skipped.",
+   "carried_by": "TST-46"
+  },
+  {
+   "a": "TST-38",
+   "b": "TOOL-17",
+   "sentence_a": "TST-38 Thesis: 'A tracking reference serves as that reason.' Limits: 'An unconditional skip that names why the test is off, for example an infrastructure issue that makes it fail for now, also satisfies it.' (its good Example names no issue number or link: 'tracked as export-sandbox')",
+   "sentence_b": "TOOL-17 Thesis: 'A failing or flaky test or check that a change does not fix stays in the suite under the test framework's skip, ignore or expected-failure mark, and that mark carries the reason and the issue that tracks the failure'. The existing TOOL-17 -> TST-38 defer fires only when the mark has no reason at all.",
+   "resolving_limits_sentence": "A test switched off because it fails or flakes and the change leaves that unfixed owes in its mark both the reason and the issue that tracks the failure; that further obligation lies outside this rule, which asks only that the mark say why the test is off.",
+   "carried_by": "TST-38"
+  },
+  {
+   "a": "TST-29",
+   "b": "TOOL-17",
+   "sentence_a": "TST-29 Limits: 'A retry set so that a test passing on retry still fails the build identifies flaky tests instead of letting them pass, and meets the rule without a separate record'.",
+   "sentence_b": "TOOL-17 Thesis: 'An automatic rerun, or a non-strict expected-failure mark, lets a flaky check fail without breaking the build; it mitigates the flakiness without fixing it, so a change that adds one carries the tracking issue as well.'",
+   "resolving_limits_sentence": "A rerun set so that a test that passes only on retry still fails the build lets no flaky check pass and needs no tracking issue beside it.",
+   "carried_by": "TOOL-17"
+  },
+  {
+   "a": "TST-42",
+   "b": "DSN-21",
+   "sentence_a": "TST-42 Thesis: 'the counterpart is a simplified representation of the same functionality, such as a slower but clearly correct implementation, a built-in routine or an abstract model, rather than the unit's own code or a carbon copy of it.'",
+   "sentence_b": "DSN-21 Thesis: 'An added routine whose body of two or more lines is identical to another routine's body is the same defect at routine level: one routine calls the other, or both call one shared routine.'",
+   "resolving_limits_sentence": "A reference implementation or model that a test compares the unit with is meant to reach the same result by a simpler route, so it is not a copy to merge into the unit; an oracle that repeats the unit's code is the test's defect, and a call to the unit in its place would compare the code with itself.",
+   "carried_by": "DSN-21"
+  },
+  {
+   "a": "TST-08",
+   "b": "CHG-18",
+   "sentence_a": "TST-08 Thesis: '... or a patch installs it at the name the code under test looks up, which is not necessarily the name where the replaced object is defined.' Its fix: 'the patch moved to the name the code under test looks up'.",
+   "sentence_b": "CHG-18 Thesis: 'Rebinding a name at run time (patching a module attribute or an imported name, mocking a module through the test runner, mocking a static method or a constructor, calling a static setter, reassigning a mutable global) is kept for code the change does not edit'. CHG-18's Limits name the looked-up-name patch only for unedited code.",
+   "resolving_limits_sentence": "Whether code the change adds or rewrites should receive the replaced dependency as a parameter rather than through a patched name is outside this rule; the patch-target fix applies where a patch stays.",
+   "carried_by": "TST-08"
+  }
+ ],
+ "gaps": [
+  {
+   "concept": "An assertion compares a result's semantic content (fields, parsed content, kind) rather than a string rendering, formatted output or serialized bytes produced by code the test does not own",
+   "taxonomy_row_text": "| E, `tests`, `TST` | `unit-testing-and-test-quality` | CC22, SEG12 |",
+   "source_path": "google/styleguide go/decisions.md, 'Compare stable results' (also TestSmells/TestSmells.github.io pages/testsmells.html, 'Sensitive Equality')",
+   "claim": "'Avoid comparing results that may depend on output stability of a package that you do not own ... For functionality that returns a formatted string or serialized bytes, it is generally not safe to assume that the output is stable.' The research note's spine rule 22 is held-cap ('beyond max_rules 12'); TST-22 carries it only as a Limits exemption and TST-23 only for returned errors."
+  },
+  {
+   "concept": "A test verifies the resulting state or return value rather than the calls the code under test made on its doubles (state over interaction testing)",
+   "taxonomy_row_text": "| | `test-doubles` | SEG13 |",
+   "source_path": "testdouble/testdouble.js docs/6-verifying-invocations.md (opposing side: DOI 10.1145/3715741, authors' copy valerio-terragni/valerio-terragni.github.io assets/pdf/zhu-fse-2025.pdf)",
+   "claim": "'only verify an invocation when there's no other way to assert that your subject is doing what you want it to do'. The unit-testing note yields SEG12 'Test State, Not Interactions' to test-doubles, whose note calls the residual preference contested and records it only in the note; TST-09 and TST-10 carry only stubbed and over-pinned calls, and pending-evidence.md has no 'no separating condition' entry for it."
+  },
+  {
+   "concept": "A failing test is written before the production code that makes it pass (test-first order); held-not-checkable in the research note, TST-13 and TST-14 take no side on order, and pending-evidence.md holds only the 'just enough code' third law",
+   "taxonomy_row_text": "| | `test-first-and-test-driven-development` (contested) | SW4.16, PP 'Test to Code' |",
+   "source_path": null,
+   "claim": null
+  },
+  {
+   "concept": "Suite proportions: many more narrow-scoped tests than integration tests and many more integration than end-to-end tests; held-not-checkable and contested with no sourced separating condition, recorded only in the research note",
+   "taxonomy_row_text": "| | `larger-tests-integration-and-end-to-end` | SEG14 |",
+   "source_path": null,
+   "claim": null
+  },
+  {
+   "concept": "A larger test seeds its data through the system's own write path rather than writing directly to a datastore whose triggers and checks it would bypass; the research note says it is folded into TST-36's Limits, but those read 'a seeding routine may also send a request to a back-end endpoint or write to the database with direct queries', so no card carries the caution",
+   "taxonomy_row_text": "| | `larger-tests-integration-and-end-to-end` | SEG14 |",
+   "source_path": null,
+   "claim": null
+  },
+  {
+   "concept": "A property in the per-commit suite has a bounded case count and run time, and an open-ended or high-count search for new failures runs as a separate job",
+   "taxonomy_row_text": "| | `property-based-testing` | PP 'Property-Based Testing' |",
+   "source_path": "golang/website _content/doc/security/fuzz/index.md ('Running fuzz tests', -fuzztime); HypothesisWorks/hypothesis hypothesis/src/hypothesis/_settings.py (max_examples); proptest-rs/proptest proptest/src/test_runner/config.rs (cases)",
+   "claim": "Plain go test runs only the stored seed corpus while go test -fuzz generates until a failure, an interrupt or the -fuzztime limit, and the default case counts (100, 256) are set for a regularly run suite. Spine rule 19 is held-cap, yet pending-evidence.md's per-commit-run-deterministic entry says 'The bounded case budget, which both sides share, is carded as per-commit-run-bounded', and no TST card states it."
+  },
+  {
+   "concept": "A known single-value edge case keeps an explicit example beside the property unless the generator in use is documented to favour that value",
+   "taxonomy_row_text": "| | `property-based-testing` | PP 'Property-Based Testing' |",
+   "source_path": "proptest-rs/proptest book/src/proptest/limitations.md (the exception: HypothesisWorks/hypothesis hypothesis/docs/explanation/domain.rst)",
+   "claim": "Random sampling is overwhelmingly unlikely to pick one specific value out of 2^64, so an i64 abs property virtually always passes though it fails at i64::MIN; spine rule 20 is held-cap, and TST-50 covers only an input a property already found."
+  },
+  {
+   "concept": "A test is validated by seeding the faults it targets (mutation testing, error seeding) and watching it fail with a helpful report; held-not-checkable because the mutations run outside the diff",
+   "taxonomy_row_text": "| E, `tests`, `TST` | `unit-testing-and-test-quality` | CC22, SEG12 |",
+   "source_path": null,
+   "claim": null
+  },
+  {
+   "concept": "Test inputs chosen by equivalence partitioning, classes of good and bad data, error guessing and data-flow testing (CC22 bag of testing tricks beyond boundary analysis); 'a test-design technique that cannot be checked on a diff' per the research note",
+   "taxonomy_row_text": "| E, `tests`, `TST` | `unit-testing-and-test-quality` | CC22, SEG12 |",
+   "source_path": null,
+   "claim": null
+  },
+  {
+   "concept": "Unit tests serve as low-level documentation of how the code is used; contested between two formulation sources with no evidence on either side and no 'no separating condition' entry",
+   "taxonomy_row_text": "| E, `tests`, `TST` | `unit-testing-and-test-quality` | CC22, SEG12 |",
+   "source_path": null,
+   "claim": null
+  },
+  {
+   "concept": "A fake is written and maintained by the team that owns the real implementation, at the root API that cannot be used in tests",
+   "taxonomy_row_text": "| | `test-doubles` | SEG13 |",
+   "source_path": null,
+   "claim": null
+  },
+  {
+   "concept": "Every larger test has a documented owner who reviews changes to it and answers its failures",
+   "taxonomy_row_text": "| | `larger-tests-integration-and-end-to-end` | SEG14 |",
+   "source_path": null,
+   "claim": null
+  },
+  {
+   "concept": "Code fiddled into place by trial and error is kept free of logic, and exploratory spike code is redone with tests before it is merged",
+   "taxonomy_row_text": "| | `test-first-and-test-driven-development` (contested) | SW4.16, PP 'Test to Code' |",
+   "source_path": null,
+   "claim": null
+  }
+ ],
+ "facet_errors": [
+  {
+   "rule_id": "TST-01",
+   "facet": "step",
+   "current": "[design, test]",
+   "proposed": "[test]",
+   "evidence": "Thesis: 'A unit test builds the real implementation of every collaborator that runs in process ... It reserves a test double ... for a dependency that makes testing difficult' bears only on the test; the seam for the clock appears only in the Rationale ('unless the clock sits behind a seam the test controls')."
+  },
+  {
+   "rule_id": "TST-12",
+   "facet": "step",
+   "current": "[test, design]",
+   "proposed": "[test]",
+   "evidence": "Thesis: 'In code the team can change, a test runs the unit under test as a real object. It does not turn the unit into a partial double'; moving the stubbed work into a collaborator appears only in the Rationale and the fix."
+  },
+  {
+   "rule_id": "TST-27",
+   "facet": "step",
+   "current": "[design, test, review]",
+   "proposed": "[test]",
+   "evidence": "Thesis: 'A behaviour that lives in one component, or in the interaction of a few, is verified by a test that runs those components in one process or against local dependencies' chooses a test level, neither a module shape nor the shape, size or description of the change (the taxonomy's review: 'the self-review before the report: the shape, size and description of the change')."
+  },
+  {
+   "rule_id": "TST-34",
+   "facet": "step",
+   "current": "[design, test, review]",
+   "proposed": "[test]",
+   "evidence": "Thesis: '... is run by at least one test against that dependency or against a throwaway instance of the same product. That test comes in addition to the tests of the code on its own' states test coverage only."
+  },
+  {
+   "rule_id": "TST-40",
+   "facet": "step",
+   "current": "[design, test, review]",
+   "proposed": "[test]",
+   "evidence": "Thesis: 'For each unit tested with properties, the properties written for it together assert every invariant a caller can expect from it' concerns property tests only."
+  },
+  {
+   "rule_id": "TST-41",
+   "facet": "step",
+   "current": "[design, test, review]",
+   "proposed": "[test]",
+   "evidence": "Thesis: 'A pair of functions that are inverses of one another ... is covered by a round-trip property'; nothing shapes a module or the change."
+  },
+  {
+   "rule_id": "TST-42",
+   "facet": "step",
+   "current": "[design, test, review]",
+   "proposed": "[test]",
+   "evidence": "Thesis: 'When a property checks a unit against an oracle, a reference implementation or a model on generated inputs, the counterpart is a simplified representation' concerns test code only."
+  },
+  {
+   "rule_id": "TST-43",
+   "facet": "step",
+   "current": "[design, test, review]",
+   "proposed": "[test]",
+   "evidence": "Thesis: 'A unit whose contract promises a result has, among its property-based tests, at least one property that checks the returned result' concerns test code only."
+  },
+  {
+   "rule_id": "TST-32",
+   "facet": "step",
+   "current": "[implement, test, review]",
+   "proposed": "[test]",
+   "evidence": "Thesis: 'A test that waits for asynchronous work ... waits on the result itself'; Limits: 'The rule reaches test code only ... a sleep in the code under test is outside it.'"
+  },
+  {
+   "rule_id": "TST-44",
+   "facet": "step",
+   "current": "[implement, test, review]",
+   "proposed": "[test]",
+   "evidence": "Thesis: 'A property's generator is the most general one for which the property should pass' concerns a test's generator, not production code or the change's shape."
+  },
+  {
+   "rule_id": "TST-45",
+   "facet": "step",
+   "current": "[implement, test, review]",
+   "proposed": "[test]",
+   "evidence": "Thesis: 'A property's generator produces only inputs that meet the property's precondition' concerns test code only."
+  },
+  {
+   "rule_id": "TST-46",
+   "facet": "step",
+   "current": "[implement, test, review]",
+   "proposed": "[test]",
+   "evidence": "Thesis: 'a property body that meets a generated input it cannot check rejects that input through the framework's discard call' concerns test code only."
+  },
+  {
+   "rule_id": "TST-48",
+   "facet": "step",
+   "current": "[implement, test]",
+   "proposed": "[test]",
+   "evidence": "Thesis: 'A property predicate leaves unchanged every generated input the framework passed it' concerns test code only."
+  },
+  {
+   "rule_id": "TST-49",
+   "facet": "step",
+   "current": "[implement, test]",
+   "proposed": "[test]",
+   "evidence": "Thesis: 'Where the framework asks the test author for a shrinker for a custom generator' places the shrinker in test code."
+  },
+  {
+   "rule_id": "TST-51",
+   "facet": "step",
+   "current": "[implement, test, review]",
+   "proposed": "[test]",
+   "evidence": "Thesis: 'A property or fuzz target is deterministic' concerns test code only."
+  },
+  {
+   "rule_id": "TST-15",
+   "facet": "step",
+   "current": "[test, review]",
+   "proposed": "[test]",
+   "evidence": "Thesis: 'its tests include a case whose input is the boundary value itself' is about test content, not the shape, size or description of the change."
+  },
+  {
+   "rule_id": "TST-16",
+   "facet": "step",
+   "current": "[test, review]",
+   "proposed": "[test]",
+   "evidence": "Thesis: 'A test sets up the data or state it needs, runs one action on the code under test and asserts that the action's results are what it expects' is test structure."
+  },
+  {
+   "rule_id": "TST-17",
+   "facet": "step",
+   "current": "[test, refactor, review]",
+   "proposed": "[test, refactor]",
+   "evidence": "Thesis: 'All the setup, action and assertion logic of a test body runs on every execution' is test structure."
+  },
+  {
+   "rule_id": "TST-18",
+   "facet": "step",
+   "current": "[test, review]",
+   "proposed": "[test]",
+   "evidence": "Thesis: 'Every test and subtest carries a non-empty name ... A failing assertion reports the value the code produced and the expected value' is test diagnostics."
+  },
+  {
+   "rule_id": "TST-19",
+   "facet": "step",
+   "current": "[test, refactor, review]",
+   "proposed": "[test, refactor]",
+   "evidence": "Thesis: 'they are written as one table-driven or parameterized test whose rows hold those values' is test structure."
+  },
+  {
+   "rule_id": "TST-20",
+   "facet": "step",
+   "current": "[test, refactor, review]",
+   "proposed": "[test, refactor]",
+   "evidence": "Thesis: setup hooks 'build only the objects and resources that every test in their scope uses' is test structure."
+  },
+  {
+   "rule_id": "TST-21",
+   "facet": "step",
+   "current": "[test, review]",
+   "proposed": "[test]",
+   "evidence": "Thesis: 'A unit test is self-contained, so it gives the same result run alone, in any order or in parallel' is test isolation."
+  },
+  {
+   "rule_id": "TST-22",
+   "facet": "step",
+   "current": "[test, review]",
+   "proposed": "[test]",
+   "evidence": "Thesis: 'the test compares that result with the exact expected value' is assertion content."
+  },
+  {
+   "rule_id": "TST-23",
+   "facet": "step",
+   "current": "[test, review]",
+   "proposed": "[test]",
+   "evidence": "Thesis: 'its expected-failure check encloses only the one call that should fail' is assertion form."
+  },
+  {
+   "rule_id": "TST-24",
+   "facet": "step",
+   "current": "[test, review]",
+   "proposed": "[test]",
+   "evidence": "Thesis: 'Every test contains ... at least one assertion, verification or declaration of the failure it expects' is assertion content."
+  },
+  {
+   "rule_id": "TST-25",
+   "facet": "step",
+   "current": "[test, review]",
+   "proposed": "[test]",
+   "evidence": "Thesis: 'Every assertion a test writes executes on every run in which the test passes' is assertion placement."
+  },
+  {
+   "rule_id": "TST-26",
+   "facet": "step",
+   "current": "[test, review]",
+   "proposed": "[test]",
+   "evidence": "Thesis: 'A function or method written as a test carries what its runner needs to collect and run it' is test declaration."
+  },
+  {
+   "rule_id": "TST-28",
+   "facet": "step",
+   "current": "[test, review]",
+   "proposed": "[test]",
+   "evidence": "Thesis: 'A time-consuming test ... carries the selection mechanism the project's test runner filters on' is test marking."
+  },
+  {
+   "rule_id": "TST-30",
+   "facet": "step",
+   "current": "[test, review]",
+   "proposed": "[test]",
+   "evidence": "Thesis: 'A test that reads or writes a database or other store outside its process inserts the records it will change, select or count' is test data."
+  },
+  {
+   "rule_id": "TST-31",
+   "facet": "step",
+   "current": "[test, review]",
+   "proposed": "[test]",
+   "evidence": "Thesis: a test that changes an outliving store 'removes or resets that change' is test cleanup."
+  },
+  {
+   "rule_id": "TST-33",
+   "facet": "step",
+   "current": "[test, review]",
+   "proposed": "[test]",
+   "evidence": "Thesis: 'A test that isolates database state inside a transaction rolled back at its end flushes the ORM's in-memory unit of work' is test mechanics."
+  },
+  {
+   "rule_id": "TST-35",
+   "facet": "step",
+   "current": "[test, review]",
+   "proposed": "[test]",
+   "evidence": "Thesis: 'An automated test sends its requests only to systems the team controls' is test isolation."
+  },
+  {
+   "rule_id": "TST-36",
+   "facet": "step",
+   "current": "[test, review]",
+   "proposed": "[test]",
+   "evidence": "Thesis: a browser test 'performs every repeated action and preparation ... through the system's API or a programmatic seeding routine' is test setup."
+  },
+  {
+   "rule_id": "TST-37",
+   "facet": "step",
+   "current": "[test, review]",
+   "proposed": "[test]",
+   "evidence": "Thesis: 'A suite of tests that drive a user interface is configured to keep a screenshot, a video or a trace for each failing test' is test configuration."
+  },
+  {
+   "rule_id": "TST-38",
+   "facet": "step",
+   "current": "[test, review]",
+   "proposed": "[test]",
+   "evidence": "Thesis: 'A skip, disable, ignore, quarantine or non-strict expected-failure mark on a test states why the test is off in the mark itself' is a test mark."
+  },
+  {
+   "rule_id": "TST-39",
+   "facet": "step",
+   "current": "[test, review]",
+   "proposed": "[test]",
+   "evidence": "Thesis: an equality assertion 'passes the hard-coded expected value in the position its framework labels expected' is assertion form."
+  },
+  {
+   "rule_id": "TST-47",
+   "facet": "step",
+   "current": "[test, review]",
+   "proposed": "[test]",
+   "evidence": "Thesis: 'A property that discards generated cases through a precondition records a classification of the cases it accepts' is test code."
+  },
+  {
+   "rule_id": "TST-12",
+   "facet": "applies_to",
+   "current": "[tests, object-oriented]",
+   "proposed": "[tests]",
+   "evidence": "Thesis: 'A double returns real values and real objects: the test does not stub a double to return a second double'; the card's own Example is a Go gomock chain (store.EXPECT().Account(...).Return(mockAcct)) and the Limits restrict no paradigm."
+  },
+  {
+   "rule_id": "TST-15",
+   "facet": "applies_to",
+   "current": "[tests]",
+   "proposed": "[universal]",
+   "evidence": "Finding output: 'code = the comparison line when the hunk holds the routine'; Validator: 'When the hunk is the routine, open the tests that call it'; the finding sits on production code, as TST-14's [universal] finding does."
+  },
+  {
+   "rule_id": "TST-41",
+   "facet": "applies_to",
+   "current": "[tests]",
+   "proposed": "[universal]",
+   "evidence": "Finding output: 'code = the added or changed signature of the encoding, decoding, serializing or parsing function'; Validator question: 'Does the change add or modify one function of an inverse pair whose tests contain no property ...?'"
+  },
+  {
+   "rule_id": "TST-06",
+   "facet": "scope",
+   "current": "file",
+   "proposed": "callers",
+   "evidence": "Validator: 'for a patch target string, resolve the object the path names, which may be a third-party name reached through a project module' and 'Skip ... a double of a type or interface that the package's authors document as designed for doubling in tests' open files beyond the test file."
+  },
+  {
+   "rule_id": "TST-09",
+   "facet": "scope",
+   "current": "file",
+   "proposed": "callers",
+   "evidence": "Validator: 'find the test that holds each hit and the setup it runs, such as a before-each routine, a fixture or a helper that builds the double'; a shared fixture or helper module lies outside the file."
+  },
+  {
+   "rule_id": "TST-20",
+   "facet": "scope",
+   "current": "file",
+   "proposed": "callers",
+   "evidence": "Validator: 'trace which tests in the hook's scope use it, directly, through a helper they call or through the code under test they run'; the Thesis's 'package-level initialisation' scopes tests across files."
+  },
+  {
+   "rule_id": "TST-24",
+   "facet": "scope",
+   "current": "file",
+   "proposed": "callers",
+   "evidence": "Validator: 'trace its body and every helper it calls for an assertion ... count a project helper that asserts as an assertion'; a project assertion helper usually lives in another module, and missing it yields a false 'no assertion'."
+  },
+  {
+   "rule_id": "TST-26",
+   "facet": "scope",
+   "current": "file",
+   "proposed": "callers",
+   "evidence": "Validator question: 'Does a function written as a test, called by no other code, ...'; Validator: identify the runner from 'the test configuration' and check names 'against the runner's discovery patterns, as the project configures them'."
+  },
+  {
+   "rule_id": "TST-28",
+   "facet": "scope",
+   "current": "file",
+   "proposed": "callers",
+   "evidence": "Validator: 'Open the file and the project's test configuration (registered markers or tags, size attributes, short-mode skips, ignore attributes, separate suite directories or targets)'."
+  },
+  {
+   "rule_id": "TST-30",
+   "facet": "scope",
+   "current": "file",
+   "proposed": "callers",
+   "evidence": "Validator question: '... or assert a total over a table that other tests also write?' and 'Skip reads of reference rows that no test changes' both need the repository's other tests, as TST-31 (scope callers) searches them."
+  },
+  {
+   "rule_id": "TST-33",
+   "facet": "scope",
+   "current": "file",
+   "proposed": "callers",
+   "evidence": "Validator: 'For each test in the hunk, trace the code under test. When it writes through an ORM unit of work, look for a flush'; the code under test and a rollback fixture live in other files."
+  },
+  {
+   "rule_id": "TST-37",
+   "facet": "scope",
+   "current": "file",
+   "proposed": "callers",
+   "evidence": "Validator: 'Open the file and the shared setup it names (a base class, a registered extension or hook, the runner's configuration file)'."
+  },
+  {
+   "rule_id": "TST-43",
+   "facet": "scope",
+   "current": "hunk",
+   "proposed": "callers",
+   "evidence": "Validator: 'Open the unit's signature and documentation' and 'Search the same test file, then the repository's other test files that call the same unit, for another property'."
+  },
+  {
+   "rule_id": "TST-44",
+   "facet": "scope",
+   "current": "file",
+   "proposed": "callers",
+   "evidence": "Validator: 'for each bound, open the unit under test and read the precondition it documents or the guard it applies to that input'."
+  },
+  {
+   "rule_id": "TST-04",
+   "facet": "check_kind",
+   "current": "mechanical",
+   "proposed": "semantic",
+   "evidence": "Validator: 'otherwise search the repository for the type's declaration and read it ... Skip a domain class that carries complex business logic' — a repository trace and a judgement, under scope callers."
+  },
+  {
+   "rule_id": "TST-06",
+   "facet": "check_kind",
+   "current": "mechanical",
+   "proposed": "semantic",
+   "evidence": "Validator: resolve a patch path 'which may be a third-party name reached through a project module' and decide whether 'the package's authors document [the type] as designed for doubling in tests'."
+  },
+  {
+   "rule_id": "TST-12",
+   "facet": "check_kind",
+   "current": "mechanical",
+   "proposed": "semantic",
+   "evidence": "Validator: 'For a double returned from a stub, follow it' and 'Skip ... a returned double the unit obtains by design from a factory, a pool or a connection and then uses directly' — a trace plus a design judgement."
+  },
+  {
+   "rule_id": "TST-26",
+   "facet": "check_kind",
+   "current": "mechanical",
+   "proposed": "semantic",
+   "evidence": "Validator: 'Trace each candidate that misses one of these: a function called from other tests or fixtures is a helper and is not a finding', after identifying the runner from imports and configuration."
+  },
+  {
+   "rule_id": "TST-34",
+   "facet": "severity_default",
+   "current": "major",
+   "proposed": "minor",
+   "evidence": "Rationale ties the defect to no failure or cost: 'Units of code that work correctly on their own could have problems when integrated'; Source caveat: 'none of these sources measures how often double-only tests miss integration defects'."
+  }
+ ],
+ "trigger_errors": [
+  {
+   "rule_id": "TST-46",
+   "pattern": "\\breturn(?:\\s+(?:true|True|None|Ok\\(\\(\\)\\)))?\\s*;?\\s*\\}?\\s*$",
+   "problem": "nested in TST-14: every line it matches contains the word 'return', which TST-14's '\\b(if|elif|else|switch|match|case|when|for|foreach|while|loop|return|throw|raise)\\b' also matches (checked with python3 re on 'return', 'return;', 'return true', 'return None', 'return Ok(())', 'if (x) return;'), so every TST-46 dispatch is a TST-14 dispatch; the shared second pattern of CHG-15 and DOC-06 to DOC-09 nests it too"
+  }
+ ],
+ "summary": "All 51 TST trigger lists compile and match the bad half of their own Example, the only nested set is TST-46 inside TST-14, and the six TST rows already in DEFER_TO are sound, though two map entries outside this domain ('DOC-04' and 'DOC-09') sit inside a // comment on lines 522-523 of craft-review-workflow.js and are not encoded although maintenance.md tables them. Eleven overlaps need a DEFER_TO entry and thirteen contradictions need a Limits sentence, four of them where one card's good Example is another card's bad shape (TST-21/TST-31, TST-32/TST-17, TST-46/TST-47, TST-47/TST-45). The largest facet defect is systemic: 33 cards carry step review although their Thesis never bears on the change's shape, size or description (only TST-14, TST-29 and TST-50 do), and eleven Validators read beyond their declared scope."
+}
