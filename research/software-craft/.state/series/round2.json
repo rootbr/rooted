@@ -263,8 +263,45 @@
      "task": "wd4zdlb68",
      "wf": "wf_dc26418e-b13",
      "launched": "2026-10-14T23:42 UTC",
-     "status": "running",
+     "status": "done 2026-10-14T23:58 UTC: 15 agents, 1,302,861 sub-agent tokens, 26 minutes; 9 accepted, 3 closing-edited (API-08, API-15, API-17), 0 not accepted; applied",
      "bundle": "r2tree/api-design-and-use--r2tree.js (12 cards API-08 to API-19, 479 KB, under the 512 KiB limit)"
+    }
+   ],
+   "result": {
+    "applied": "2026-10-14T23:55 UTC",
+    "accepted": [
+     "API-09",
+     "API-10",
+     "API-11",
+     "API-12",
+     "API-13",
+     "API-14",
+     "API-16",
+     "API-18",
+     "API-19"
+    ],
+    "closing_edited": [
+     "API-08",
+     "API-15",
+     "API-17"
+    ],
+    "renamed": [],
+    "not_accepted": [],
+    "agents": 15,
+    "tokens": 1302861,
+    "wall_s": 1539
+   },
+   "recheck": "API-08: trigger, four of six patterns matched no line of the bad Example, the patterns are widened and the Example gains the lines they match; the interface reviewer's API-08/CODE-25 Limits sentence (a value discarded into a variable named as unused) is untouched; API-15: the Go module-compatibility bullet is cut to the sentence that backs the card's Limits clause, the clauses the card does not carry dropped from Source and provenance; API-17: the ICPC 2019 abstract is marked unfetched with its real provenance; the reviewer's scope value (callers) stands; no facet touched, no revert"
+  },
+  "contracts-assertions-and-invariants": {
+   "runs": [
+    {
+     "part": "r2tree",
+     "task": "wk3227ia8",
+     "wf": "wf_b342df1d-515",
+     "launched": "2026-10-15T00:00 UTC",
+     "status": "running",
+     "bundle": "r2tree/contracts-assertions-and-invariants--r2tree.js (7 cards API-01 to API-07, 370 KB)"
     }
    ]
   }

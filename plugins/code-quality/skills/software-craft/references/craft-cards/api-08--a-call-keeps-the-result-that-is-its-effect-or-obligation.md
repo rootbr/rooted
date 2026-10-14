@@ -4,7 +4,7 @@ rule_id: API-08
 domain: interface
 step: [implement, refactor]
 applies_to: [universal]
-triggers: ['^\s*[\w.\[\]()]+[.](trim\w*|strip|lstrip|rstrip|to(Locale)?(Upper|Lower)Case|to_(ascii_)?(upper|lower)case|upper|lower|casefold|replace(All)?|concat|substring|slice|pad(Start|End)|repeat|normalize|split|plus\w*|minus\w*|subtract|multiply|divide|negate|abs|pow|setScale|with[A-Z]\w*|sorted|to(Sorted|Reversed|Spliced)|saturating_\w+|checked_\w+|wrapping_\w+)\s*\([^;]*\)\s*;?\s*$', '^\s*([\w.\[\]()]+[.](iter|iter_mut|into_iter|chars|bytes|lines|stream|parallelStream)\(\)[.](map|filter|zip|enumerate|skip|take|inspect|chain|flat_map|flatMap|peek|sorted|distinct|limit)\(.*;|(map|filter|zip|reversed|sorted)\s*\([^{]*\))\s*$', '^\s*(fmt[.](Errorf|Sprint\w*|Append\w*)|errors[.](New|Join)|strings[.](Trim\w*|To\w+|Replace\w*|Repeat|Join|Split\w*|Fields)|String[.](format|join|valueOf)|new\s+\w*(Error|Exception))\s*\(', '\bcontext[.]With(Cancel|Timeout|Deadline|Value)\w*\s*\(', '^\s*(asyncio[.](create_task|ensure_future)|[\w.\[\]()]+[.](create_task|subscribe|watch|onSnapshot))\s*\(', '^\s*(new\s+\w*(Stream|Reader|Writer|Socket|Channel)|open|[\w.]+[.](open|lines|list|walk|new\w*(Stream|Reader|Writer|Channel)))\s*\(']
+triggers: ['^\s*[\w.\[\]()]+[.](trim\w*|strip|lstrip|rstrip|to(Locale)?(Upper|Lower)Case|to_(ascii_)?(upper|lower)case|upper|lower|casefold|replace(All)?|concat|substring|slice|pad(Start|End)|repeat|normalize|split|plus\w*|minus\w*|subtract|multiply|divide|negate|abs|pow|setScale|with[A-Z]\w*|sorted|to(Sorted|Reversed|Spliced)|saturating_\w+|checked_\w+|wrapping_\w+)\s*\([^;]*\)\s*;?\s*$', '^\s*([\w.\[\]()]+([.](iter|iter_mut|into_iter|chars|bytes|lines|stream|parallelStream)\(\))?[.](map|filter|zip|enumerate|skip|take|inspect|chain|flat_map|flatMap|peek|sorted|distinct|limit)\(.*;|(map|filter|zip|reversed|sorted)\s*\([^{]*\))\s*$', '^\s*(fmt[.](Errorf|Sprint\w*|Append\w*)|errors[.](New|Join)|strings[.](Trim\w*|To\w+|Replace\w*|Repeat|Join|Split\w*|Fields)|String[.](format|join|valueOf)|new\s+\w*(Error|Exception))\s*\(', '\b(asyncio[.](create_task|ensure_future)|context[.]With(Cancel|Timeout|Deadline|Value)\w*|[\w.\[\]()]+[.](create_task|subscribe|watch|onSnapshot))\s*\(', '^\s*(new\s+\w*(Stream|Reader|Writer|Socket|Channel)|open|[\w.]+[.](open|lines|list|walk|new\w*(Stream|Reader|Writer|Channel)))\s*\(']
 scope: hunk
 check_kind: semantic
 severity_default: major
@@ -21,7 +21,10 @@ A call to an operation that changes nothing is a no-op once its result is ignore
 ## Example
 ```typescript
 bad:  label.trim();
+      items.map(render);
+      new Error("stale");
       feed.subscribe(render);
+      new WriteStream(path);
 good: label = label.trim();
       const unsubscribe = feed.subscribe(render); // documented: must be called, or the listener is never released
       ...
