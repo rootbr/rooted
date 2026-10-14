@@ -47,10 +47,34 @@
      "task": "wdea7ju0t",
      "wf": "wf_08b10496-a8c",
      "launched": "2026-10-14T21:30 UTC",
-     "status": "running",
+     "status": "done 2026-10-14T21:55 UTC: 13 agents, 1,152,683 sub-agent tokens, 22 minutes; 9 accepted, 2 closing-edited (CODE-50, CODE-54), 0 not accepted; applied",
      "bundle": "r2tree/layout-and-coding-style--r2tree.js (11 cards CODE-50 to CODE-60, skeptic Fable at high, closing edit at high)"
     }
-   ]
+   ],
+   "result": {
+    "applied": "2026-10-14T20:59 UTC",
+    "accepted": [
+     "CODE-51",
+     "CODE-52",
+     "CODE-53",
+     "CODE-55",
+     "CODE-56",
+     "CODE-57",
+     "CODE-58",
+     "CODE-59",
+     "CODE-60"
+    ],
+    "closing_edited": [
+     "CODE-50",
+     "CODE-54"
+    ],
+    "renamed": [],
+    "not_accepted": [],
+    "agents": 13,
+    "tokens": 1152683,
+    "wall_s": 1316
+   },
+   "recheck": "CODE-54: the wrapped-header trigger removed, Limits counts four rules, Rationale wording, Validator adjusted, as the verdict required; CODE-50: the operand-spacing wording replaced as required, the Example kept in its language under the verdict's either-or (the wording half applied)"
   }
  }
 }
