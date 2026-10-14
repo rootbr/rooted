@@ -2,7 +2,7 @@
 title: A deprecated element whose behaviour a call of its replacement reproduces is implemented by calling the replacement rather than by keeping a separate copy of the logic
 rule_id: API-31
 domain: interface
-step: [implement, refactor, review]
+step: [implement, refactor]
 applies_to: [public-api, library]
 triggers: ['#\[deprecated\b', '@[Dd]eprecated\b', '^\s*//\s*Deprecated:', 'DeprecationWarning\b|warnings[.]warn\(.*Deprecat|@warnings[.]deprecated\(', 'signal:duplicate_block']
 scope: file

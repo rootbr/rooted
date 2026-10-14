@@ -2,7 +2,7 @@
 title: An overriding or implementing method requires no more of its callers and guarantees no less than the method it replaces
 rule_id: API-02
 domain: interface
-step: [design, implement, refactor, review]
+step: [design, implement, refactor]
 applies_to: [universal]
 triggers: ['@([\w.]+[.])?[Oo]verride\b|^\s*(public\s+|protected\s+)?override\s+\w', '\bimpl\b(<.*>)?\s+[\w:<>, ]+\s+for\s+\w', '\bsuper(\(\))?[.]\w+\s*\(', '^\s*((public|protected|private|static|abstract|final|sealed|export|default)\s+)*class\s+\w+(<.*>)?\s*(\(\s*([\w.]+[.])?[A-Z]|\bextends\b|\bimplements\b)', '^\s*var\s+_\s+[\w.]+\s*=', '\b(throw|raise)\b|\b(panic|unimplemented|todo)!?\(|\b(debug_)?assert(_eq|_ne)?!\(|^\s*assert\b|\breturn\s+(.*,\s*)?(null|None|nil|undefined|Err\(|errors[.]New\(|fmt[.]Errorf\()', '@(Nullable|CheckForNull|NotNull|NonNull|Nonnull|NotBlank|NotEmpty|Size|Min|Max|Pattern|Positive|Valid)\b|\b(requireNonNull\w*|check(Argument|State|NotNull|ElementIndex|PositionIndex|Index|FromToIndex|FromIndexSize))\s*\(|\b(Validate|Assert)[.](notNull|notEmpty|notBlank|isTrue|state|hasText|validState|inclusiveBetween)\(', '^\s*(async\s+)?def\s+\w+\s*\(\s*self\b']
 scope: callers

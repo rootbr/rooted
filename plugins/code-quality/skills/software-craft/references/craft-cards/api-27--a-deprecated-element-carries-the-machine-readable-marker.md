@@ -2,7 +2,7 @@
 title: A deprecated element carries the language's machine-readable deprecation marker rather than only a comment, so that compilers, type checkers and linters can warn at each use
 rule_id: API-27
 domain: interface
-step: [implement, document, review]
+step: [implement, document]
 applies_to: [public-api, library]
 triggers: ['(?i)\bdeprecat', 'DeprecationWarning|FutureWarning|\bdeprecate\(|warnings[.]deprecated\b']
 scope: hunk

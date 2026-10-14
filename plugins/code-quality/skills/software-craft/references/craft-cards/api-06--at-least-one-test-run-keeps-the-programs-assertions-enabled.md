@@ -3,7 +3,7 @@ title: At least one test or other dynamic-analysis run keeps the program's asser
 rule_id: API-06
 domain: interface
 step: [test]
-applies_to: [build-config, tests]
+applies_to: [universal]
 triggers: ['\bPYTHONOPTIMIZE\b|\b(python[0-9.]*|executable)\b.*[\s\x22\x27,]-[A-Za-z]*O[A-Za-z]*([\s\x22\x27,]|$)', '(?<![\w-])-(da|disableassertions)(?![\w-])', '(?i)enable_?assertions\b[\x22\x27]?\s*(>|=|:|\(|\s)\s*[\x22\x27]?false\b', '(?i)debug[-_]assertions\s*[=:]\s*[\x22\x27]?(false|off|no|n)\b', '\bcargo\b[\s\x22\x27,]+(\+[\w.-]+[\s\x22\x27,]+)?(test|nextest[\s\x22\x27,]+run)\b.*[\s\x22\x27,](-r|--release|--profile[\s=\x22\x27,]+(release|bench))(?![\w-])', '\bjava\b.*\b(junit|testng|ConsoleLauncher)']
 scope: file
 check_kind: mechanical

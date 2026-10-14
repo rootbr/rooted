@@ -2,7 +2,7 @@
 title: An assertion's condition is never a literal that always passes or always fails, and a path that must never run is marked by an explicit stop, not by an always-false assertion
 rule_id: API-07
 domain: interface
-step: [implement, review]
+step: [implement]
 applies_to: [universal]
 triggers: ['^\s*assert\s*\(.+,.+\)\s*(#.*)?$', '(^|[:;{]|\belse)\s*assert\s*\(?\s*(True|False|true|false|None|null|0|1)\s*\)?\s*(,|:|;|#|//|$)', '^\s*assert\s*\(?\s*[fbruFBRU]{0,2}[\x22\x27]', '\b(debug_)?assert!\s*\(\s*(true|false)\s*[,)]', '\bassert\s*\(\s*((true|false|True|False|null|undefined|None|0|1)\s*[,)]|[\x22\x27\x60])', '^\s*assert\s*\((\s*|.*,\s*)\)?\s*(#.*)?$']
 scope: hunk

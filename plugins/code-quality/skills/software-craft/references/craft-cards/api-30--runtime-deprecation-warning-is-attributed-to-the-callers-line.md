@@ -2,11 +2,11 @@
 title: A deprecation warning emitted at run time is attributed to the caller's line rather than to the line inside the deprecated element
 rule_id: API-30
 domain: interface
-step: [implement, review]
+step: [implement]
 applies_to: [public-api, library]
 triggers: ['warnings[.]warn\(', '\b(Pending)?DeprecationWarning\b|\bFutureWarning\b', '\bemitWarning\(', '(?i:\b(warn\w*|[ef]?print\w*|log\w*)!?\(.*deprecat)', '@(warnings[.])?deprecated\(', '\bstacklevel\b|Location::caller\(\)']
-scope: hunk
-check_kind: mechanical
+scope: file
+check_kind: semantic
 severity_default: minor
 ---
 

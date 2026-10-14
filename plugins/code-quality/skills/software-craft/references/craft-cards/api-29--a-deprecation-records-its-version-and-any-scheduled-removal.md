@@ -2,7 +2,7 @@
 title: A deprecation records the version in which the element was deprecated and any removal it schedules
 rule_id: API-29
 domain: interface
-step: [document, review]
+step: [document]
 applies_to: [public-api, library]
 triggers: ['//\s*Deprecated:|@[Dd]eprecated\b|#\[deprecated\b|DeprecationWarning|FutureWarning|warnings[.]deprecated\(|\bdeprecate\(']
 scope: hunk

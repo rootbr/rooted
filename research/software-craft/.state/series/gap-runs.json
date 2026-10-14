@@ -128,6 +128,30 @@
    "claim": "If a request still fails after a significant number of retries, it's better for the application to prevent further requests going to the same resource and report a failure immediately. When the period expires, the application can tentatively allow one or more requests through to see whether they're successful.",
    "taxonomy_row": "| | `fault-tolerance-retries-timeouts-fallbacks` | SW4.5 |",
    "status": "queued"
+  },
+  {
+   "domain": "interface",
+   "concept": "A change adds no new use of an element already marked deprecated (call, reference, import, subclass or override) in non-deprecated code. This is spine rule 17 of research/software-craft/api-evolution-and-deprecation.md, recorded as 'held-cap: beyond max_rules 12'. API-27's Limits defer to it ('new uses of an element already marked deprecated are judged by their own rules'), but no such rule exists. CHG-32 reaches the case only during a migration that has an analyzer entry, and TOOL-13 only when a configured check reports deprecations.",
+   "source_path": "typescript-eslint/typescript-eslint packages/eslint-plugin/docs/rules/no-deprecated.mdx; dominikh/go-tools staticcheck/sa1019/sa1019.go; SonarSource/sonar-java sonar-java-plugin/src/main/resources/org/sonar/l10n/java/rules/java/S1874.html",
+   "claim": "typescript-eslint no-deprecated: 'This rule reports on any references to code marked as `@deprecated`.' staticcheck SA1019: 'Using a deprecated function, variable, constant or field'. Both are quoted, as fetched, in the Source of API-27 and API-30.",
+   "taxonomy_row": "| | `api-evolution-and-deprecation` | SEG15, SEG21 |",
+   "status": "queued"
+  },
+  {
+   "domain": "interface",
+   "concept": "A release that makes a breaking change to a published interface raises the major version (in Go, the module path). This is spine rule 19 of the same note, also held-cap. API-20 and API-22 to API-26 use a major bump only as their exemption, and no card flags the manifest version line of a breaking diff.",
+   "source_path": "semver/semver semver.md, item 8",
+   "claim": "'Major version X (X.y.z | X > 0) MUST be incremented if any backward incompatible changes are introduced to the public API.' This is quoted, as fetched, in API-25's Source.",
+   "taxonomy_row": "| | `api-evolution-and-deprecation` | SEG15, SEG21 |",
+   "status": "queued"
+  },
+  {
+   "domain": "interface",
+   "concept": "An operation clearly associated with one type that the codebase defines is a method of that type, not a free function or a static helper elsewhere. This is spine rule 31 of research/software-craft/api-design-and-use.md, held-cap. DSN-29 covers only outside code that reads a type's fields, decides and writes back on a type with an invariant.",
+   "source_path": "rust-lang/api-guidelines src/predictability.md, C-METHOD",
+   "claim": "C-METHOD, 'Functions with a clear receiver are methods': prefer the method form 'for any operation that is clearly associated with a particular type'. The research note records this quote as fetched.",
+   "taxonomy_row": "| C, `interface`, `API` | `api-design-and-use` | SW4.1 |",
+   "status": "queued"
   }
  ]
 }

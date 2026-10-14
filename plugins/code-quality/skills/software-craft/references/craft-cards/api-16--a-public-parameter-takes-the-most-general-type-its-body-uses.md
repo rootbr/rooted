@@ -6,7 +6,7 @@ step: [design, implement, refactor]
 applies_to: [public-api]
 triggers: ['\b(ArrayList|LinkedList|ArrayDeque|PriorityQueue|Vector|Stack|HashMap|LinkedHashMap|TreeMap|ConcurrentHashMap|EnumMap|HashSet|LinkedHashSet|TreeSet|EnumSet)<.*>\s+\w+\s*[,)]', ':\s*&(''\w+\s+)?(mut\s+)?(Vec<|String\b|PathBuf\b)', '\bdef\s+\w+\s*\(.*:\s*(list|dict|set|List|Dict|Set)\b', '^\s*\w+\s*:\s*(list|dict|set|List|Dict|Set)\b[^=]*,\s*$', '\bfunc\b.*\(.*\b\w+\s+\*(os[.]File|bytes[.]Buffer|strings[.]Builder|bufio[.](Reader|Writer))\b']
 scope: hunk
-check_kind: mechanical
+check_kind: semantic
 severity_default: minor
 ---
 

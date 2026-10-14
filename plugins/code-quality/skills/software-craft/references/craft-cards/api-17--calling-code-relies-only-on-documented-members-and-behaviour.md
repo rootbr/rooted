@@ -5,7 +5,7 @@ domain: interface
 step: [implement, test]
 applies_to: [universal]
 triggers: ['(?<!\bself)(?<!\bcls)(?<!\bthis)[.]_[a-zA-Z]\w*|\bimport\s+(\w+\s*,\s*)*_[a-zA-Z]|\bgetattr\(\s*[^,]+,\s*[''"]_[a-zA-Z]|\b(set|trySet)Accessible\s*\(\s*true\s*\)|\bgetDeclared(Field|Method|Constructor)s?\s*\(|\bFieldByName\s*\(|\bas\s+any\s*\)\s*[.\[]|//go:linkname\b|[./]_?internal\b', '\bnext\(\s*iter\(|[.](keySet|values|entrySet|keys)\(\)[.](iterator\(\)[.]next|stream\(\)[.]findFirst|next)\(|\blist\(\s*[\w.]+(\(\))?\s*\)\s*\[\s*0\s*\]|(==|!=)=?\s*[\w.]*\bempty\(\)|\bempty\(\)\s*(==|!=)|\bis\s+(not\s+)?([''"]|-?\d|[\w.]+\()']
-scope: file
+scope: callers
 check_kind: semantic
 severity_default: major
 ---

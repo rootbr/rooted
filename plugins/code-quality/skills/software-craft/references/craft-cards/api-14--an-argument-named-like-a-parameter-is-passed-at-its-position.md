@@ -6,7 +6,7 @@ step: [implement]
 applies_to: [universal]
 triggers: ['\b(?:(height|y|to|dst|dest|target|end|max|lon|lng|longitude|col|column|right|bottom|after|value|newValue|new_value)\s*,\s*(width|x|from|src|source|start|min|lat|latitude|row|left|top|before|key|oldValue|old_value)|(src|source)\s*,\s*(dst|dest|destination|target))\s*[,)]', '(?:\b|(?<=_)|(?<=[a-z0-9])(?=[A-Z]))(?:(?i:height|dsts?|dest|target|end|max|right|bottom|last|cols|columns|after|new|y|value)s?(?:(?=[A-Z_0-9.])[\w.]*)?\s*,\s*[\w.]*?(?:\b|(?<=_)|(?<=[a-z0-9])(?=[A-Z]))(?i:width|srcs?|source|start|min|left|top|first|rows|before|old|x|key)|(?i:srcs?|sources?)(?:(?=[A-Z_0-9.])[\w.]*)?\s*,\s*[\w.]*?(?:\b|(?<=_)|(?<=[a-z0-9])(?=[A-Z]))(?i:dsts?|dest|destination|target))s?(?:(?=[A-Z_0-9.])[\w.]*)?\s*[,)]', '/\*\s*\w+\s*=\s*\*/']
 scope: callers
-check_kind: mechanical
+check_kind: semantic
 severity_default: major
 ---
 

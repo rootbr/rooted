@@ -138,3 +138,16 @@ A finding of the deferring rule drops when any owner listed for it flagged the s
 | CHG-15 (a change holds one logical change) | DOC-05 (a change adds no file unrelated to what it achieves): an added build output, editor file or scratch copy is DOC-05's finding; CHG-29 as before (spot-read) |
 | DOC-09 (a change's description says how it was verified) | PRF-11 (a change made for speed states its measured result and benchmark): on a performance change the measurement is PRF-11's finding; DOC-09 keeps every other behaviour change (spot-read) |
 | DOC-07 (a change description states the problem and the reason) | DOC-03 (a removed guard shows its recorded reason no longer applies): where the change removes a guard with a recorded reason, DOC-03 owns the missing statement (spot-read) |
+| API-22 | API-23, API-26: a published element changed in place: a new required parameter is API-23's, a removal or rename with no deprecated release API-26's (reviewer, interface) |
+| API-20 | API-21, API-23: a new failure on accepted input is API-21's, a new parameter whose default changes existing calls API-23's (reviewer, interface) |
+| API-27 | API-28: a deprecation marker with no text is API-28's finding (reviewer, interface) |
+| API-25 | API-24: a required property added to an exported object type that outside code builds by shape is API-24's (reviewer, interface) |
+| API-01 | API-11: a set-up method's field that another operation dereferences unchecked is API-11's call-order finding (reviewer, interface) |
+| DSN-33 | API-17: a read, call or import of another module's non-public member is API-17's (reviewer, interface) |
+| API-12 | DSN-35: an export whose only outside callers are tests, or an exported test double, is DSN-35's (reviewer, interface) |
+| API-10 | DSN-51: two bare numeric parameters in different units are DSN-51's (reviewer, interface) |
+| API-02 | DSN-43: an override that only throws, panics or does nothing is DSN-43's refused-bequest finding (reviewer, interface) |
+| API-08 | DSN-59: a map call whose result is dropped is DSN-59's (reviewer, interface) |
+| API-14 | TST-39: expected and actual passed in the reverse of the framework's positions is TST-39's (reviewer, interface) |
+| DOC-04 | API-20, API-21: a published routine's changed return or raise is API-20's, a new failure on accepted input API-21's (reviewer, interface) |
+| CHG-01 | API-21: an added argument check inside a refactoring of a published operation is API-21's (reviewer, interface) |

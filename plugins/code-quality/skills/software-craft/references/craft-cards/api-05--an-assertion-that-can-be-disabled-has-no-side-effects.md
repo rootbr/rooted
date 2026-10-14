@@ -2,7 +2,7 @@
 title: An assertion that the build or runtime can disable evaluates its condition without side effects, so the program behaves the same with assertions on and off
 rule_id: API-05
 domain: interface
-step: [implement, review]
+step: [implement]
 applies_to: [universal]
 triggers: ['(\bassert\b(?![!.])|\bdebug_assert\w*!|\bDCHECK\w*\s*\().*(&\s*mut\b|:=|\+\+|--|\bnext\s*\(|[.](?i:pop|shift|unshift|splice|remove|add|append|extend|put|insert|delete|clear|poll|next|send|write|read|update|push|offer|take|discard|set|fill|sort|reverse|enqueue|dequeue|acquire|release|emit|store|swap|drain|retain|truncate|replace|get_mut|fetch_|getAnd|incrementAnd|decrementAnd|compareAnd)\w*\s*\()', '\b(DEBUG|debug|__DEV__|__debug__|NODE_ENV|debug_assertions)\b.*[.](?i:pop|shift|unshift|splice|remove|add|append|extend|put|insert|delete|clear|poll|next|send|write|update|push|offer|take|discard|enqueue|dequeue|store|swap|getAnd|incrementAnd|decrementAnd|compareAnd)\w*\s*\(']
 scope: file

@@ -431,7 +431,7 @@ const DEFER_TO = {
   'CODE-73': 'CODE-19', // a multiway branch handles an unmatched value: over an enumerated type CODE-19 owns the missing member
   'CODE-74': 'CODE-13', // an if chain on one value is preferably a switch: a value-returning chain is CODE-13's lookup table
   'CODE-64': ['CODE-75', 'TOOL-15'], // an ambiguous construct carries an intended-marker: an unmarked switch fall-through is CODE-75's finding; a suppression with no stated reason is TOOL-15's finding (spot-read, build-warnings)
-  'CHG-01': ['API-20', 'CHG-02', 'CHG-03'], // a refactoring alters no observable behaviour: a published element is API-20's, an unbound subtype CHG-02's, a stale run-time use CHG-03's (reviewer, change)
+  'CHG-01': ['API-20', 'CHG-02', 'CHG-03', 'API-21'], // a refactoring alters no observable behaviour: a published element is API-20's, an unbound subtype CHG-02's, a stale run-time use CHG-03's (reviewer, change); an added argument check inside a refactoring of a published operation is API-21's (reviewer, interface)
   'TST-17': ['TST-25', 'TST-46'], // a test body runs the same statements every execution: a branch that encloses an assertion the test can skip is TST-25's finding; an early return in a property body is TST-46's
   'TST-25': 'TST-46', // no assertion sits where the test can skip it: an early return that skips a property's assertions is TST-46's discard finding
   'CHG-12': ['CHG-14', 'CHG-01', 'CHG-29'], // a behaviour change restructures no code: a move edited in place is CHG-14's, a refactoring that alters behaviour CHG-01's, a hand edit inside a tool-generated change CHG-29's (reviewer, change)
@@ -495,7 +495,7 @@ const DEFER_TO = {
   'DSN-52': 'DSN-53', // a pipeline expression stays flat: an inline callback past ten lines is DSN-53's finding (reviewer, design)
   'DSN-54': ['DSN-59', 'DSN-60'], // a step function has no outside effect: a map whose result is unused is DSN-59's finding, a step that edits the traversed collection DSN-60's (reviewer, design)
   'DSN-59': 'DSN-55', // a map is used for its value: a lazy pipeline that nothing consumes is DSN-55's finding (reviewer, design)
-  'API-08': ['DSN-55', 'ERR-19'], // a call keeps the result that is its effect: a discarded lazy pipeline is DSN-55's finding, a discarded resource handle or cancellation function ERR-19's (reviewer, design; reviewer, errors)
+  'API-08': ['DSN-55', 'ERR-19', 'DSN-59'], // a call keeps the result that is its effect: a discarded lazy pipeline is DSN-55's finding, a discarded resource handle or cancellation function ERR-19's (reviewer, design; reviewer, errors); a map call whose result is dropped is DSN-59's (reviewer, interface)
   'DSN-63': 'DSN-68', // shared mutable state lives in an instance: a constant-named field holding a mutable collection is DSN-68's finding (reviewer, design)
   'DSN-34': 'API-16', // a visible declaration names its abstraction: a public parameter typed with a concrete implementation type is API-16's finding (reviewer, design)
   'DSN-24': 'CHG-27', // a schema is declared once: a hand edit of marked generated output inside a migration is CHG-27's finding (reviewer, design)
@@ -520,10 +520,20 @@ const DEFER_TO = {
   'TOOL-22': 'TOOL-12', // an environment-specific address, URL or path is read from configuration: a host-specific absolute path or system binary in a build or check script is TOOL-12's finding; TOOL-22 keeps program code (spot-read, runtime-configuration)
   'TOOL-29': 'ERR-12', // an invalid setting stops initialization with a pinpointing message at the entry point: a panic, exit or abort on an invalid setting in library code below the entry point is ERR-12's finding; TOOL-29 keeps the message that names no setting and the check that continues (spot-read, runtime-configuration)
   'API-03': 'ERR-06', // a commented assumption is also asserted: a default branch that returns a substitute under a comment calling the case unreachable is ERR-06's finding (reviewer, errors)
-  'DOC-04': 'API-20', // a behaviour change leaves no caller on the old behaviour: on a published element the in-place change is API-20's breaking change (spot-read)
+  'DOC-04': ['API-20', 'API-21'], // a behaviour change leaves no caller on the old behaviour: on a published element the in-place change is API-20's breaking change (spot-read); a published routine's changed return or raise is API-20's, a new failure on accepted input API-21's (reviewer, interface)
   'DOC-03': 'CHG-31', // a removed guard shows its recorded reason no longer applies: a retired flag's guard is CHG-31's finding (spot-read)
   'DOC-09': 'PRF-11', // a description says how the change was verified: a change made for speed owes its measured result to PRF-11 (spot-read)
   'DOC-07': 'DOC-03', // a description states the problem and the reason: for a removed guard with a recorded reason DOC-03 owns the finding (spot-read)
+  'API-22': ['API-23', 'API-26'], // a published element changed in place: a new required parameter is API-23's, a removal or rename with no deprecated release API-26's (reviewer, interface)
+  'API-20': ['API-21', 'API-23'], // a new failure on accepted input is API-21's, a new parameter whose default changes existing calls API-23's (reviewer, interface)
+  'API-27': 'API-28', // a deprecation marker with no text is API-28's finding (reviewer, interface)
+  'API-25': 'API-24', // a required property added to an exported object type that outside code builds by shape is API-24's (reviewer, interface)
+  'API-01': 'API-11', // a set-up method's field that another operation dereferences unchecked is API-11's call-order finding (reviewer, interface)
+  'DSN-33': 'API-17', // a read, call or import of another module's non-public member is API-17's (reviewer, interface)
+  'API-12': 'DSN-35', // an export whose only outside callers are tests, or an exported test double, is DSN-35's (reviewer, interface)
+  'API-10': 'DSN-51', // two bare numeric parameters in different units are DSN-51's (reviewer, interface)
+  'API-02': 'DSN-43', // an override that only throws, panics or does nothing is DSN-43's refused-bequest finding (reviewer, interface)
+  'API-14': 'TST-39', // expected and actual passed in the reverse of the framework's positions is TST-39's (reviewer, interface)
 }
 const ownersOf = ruleId => [DEFER_TO[ruleId] || []].flat()
 const SEV_RANK = { major: 0, minor: 1, suggestion: 2 }

@@ -2,7 +2,7 @@
 title: An assertion checks only a condition whose failure means a bug in the program, never a failure expected in normal operation such as invalid user input, a missing file or a refused request
 rule_id: API-04
 domain: interface
-step: [implement, handle-errors, review]
+step: [implement, handle-errors]
 applies_to: [universal]
 triggers: ['^\s*assert\b(?![!._])|\b(debug_)?assert(_eq|_ne)?!\s*\(|(?<![\w.])(console[.]assert|assert[.](ok|equal|strictEqual|notEqual|notStrictEqual|deepStrictEqual|match)|invariant)\s*\(']
 scope: file

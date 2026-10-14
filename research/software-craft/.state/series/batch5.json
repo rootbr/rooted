@@ -217,7 +217,7 @@
   "interface": {
    "launched": "2026-10-14T19:55 UTC",
    "kind": "one read-only opus/max agent per HANDOVER 5.8, the change-domain prompt adapted; report to be saved as reviews/interface.json and applied per the change/code pattern",
-   "status": "running"
+   "status": "done 2026-10-14T20:40 UTC: 0.61M tokens, 35 minutes; report reviews/interface.json applied in the commit that follows it (13 defer entries, 10 Limits resolutions, 17 facets, 3 gap runs queued)"
   },
   "tests": {
    "launched": "2026-10-14T20:20 UTC",
