@@ -28,8 +28,7 @@ bad:  #[test] fn saves_report() {
 good: #[test] fn saves_report() {
           let path = temp_dir().join(format!("saves_report-{}.txt", process::id()));
           save_report(&path, "a");
-          assert_eq!(read_to_string(&path).unwrap(), "a");
-          std::fs::remove_file(&path).unwrap();
+          assert_eq!(read_to_string(&path).unwrap(), "a"); std::fs::remove_file(&path).unwrap();
       }
 ```
 
