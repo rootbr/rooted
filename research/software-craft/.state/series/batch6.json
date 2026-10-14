@@ -22,6 +22,18 @@
      "bundle": "cont/gaps-performance/continue-gaps-performance-1of1.js (--round 1 --journal r1: drafts and the two verdicts carried)"
     }
    ]
+  },
+  "gaps-errors": {
+   "runs": [
+    {
+     "part": "r1",
+     "task": "w8nu1r71a",
+     "wf": "wf_a5590add-3de",
+     "launched": "2026-10-14T23:13 UTC",
+     "status": "running",
+     "bundle": "gaps/gaps-errors.js (4 queued concepts of the errors domain)"
+    }
+   ]
   }
  }
 }

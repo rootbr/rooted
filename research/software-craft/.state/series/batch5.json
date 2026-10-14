@@ -185,7 +185,7 @@
      "task": "wtwumbapp",
      "wf": "wf_167ce553-6ab",
      "launched": "2026-10-14T22:45 UTC",
-     "status": "running",
+     "status": "done 2026-10-14T23:12 UTC: 5 agents, 660,400 sub-agent tokens, 28 minutes; output outputs/internationalization-and-text-encoding--r2-finish-2of2.output.json.gz",
      "bundle": "cont/internationalization-and-text-encoding/r2fin/continue-internationalization-and-text-encoding-round2-finish-2of2.js"
     }
    ]
