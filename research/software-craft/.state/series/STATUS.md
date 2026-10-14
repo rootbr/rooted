@@ -1,6 +1,6 @@
 # Series status
 
-Snapshot taken 2026-10-14T18:15 UTC by `series/series-status.py --snapshot`. Journals under `journals/`, finished runs' outputs under `outputs/`.
+Snapshot taken 2026-10-14T18:58 UTC by `series/series-status.py --snapshot`. Journals under `journals/`, finished runs' outputs under `outputs/`.
 
 `done` counts the agents whose results the journal holds (cached for a continuation); `failed` the agents a usage-limit stop or an error ended, which a continuation re-runs. `cards` is the count in the run's own output; a run whose agents failed shipped none, and its cards come from the continuation. A continuation run (batch 3 and later) is one bundle of a topic, named by its part; a topic is finished when every part's run is complete.
 
@@ -174,7 +174,7 @@ Snapshot taken 2026-10-14T18:15 UTC by `series/series-status.py --snapshot`. Jou
 | 5 | `runtime-configuration` r2-2of2 | ? | fix2 4 | fix2 1, verify3 4 | - | running or stopped |
 | 5 | `runtime-configuration` r2-finish | ? | verify3 6, close3 6 | - | - | running or stopped |
 | 5 | `runtime-configuration` r2-rest | ? | fix2 1, verify3 1 | - | - | running or stopped |
-| 5 | `internationalization-and-text-encoding` r1 | 14 | sources 3, spine 1, draft 5 | - | - | running or stopped |
-| 5 | `code-review-as-author-and-reviewer` r1 | 6 | sources 3, spine 1, draft 6 | - | - | running or stopped |
-| 5 | `documentation-beyond-comments` r1 | 13 | sources 3, spine 1, draft 8 | - | - | running or stopped |
-| 5 | `reading-and-understanding-code` r1 | 4 | sources 3, spine 1, draft 4, verify 1 | - | - | running or stopped |
+| 5 | `internationalization-and-text-encoding` r1 | 14 | sources 3, spine 1, draft 12, verify 4 | - | - | running or stopped |
+| 5 | `code-review-as-author-and-reviewer` r1 | 6 | sources 3, spine 1, draft 6, verify 6, fix 6, verify2 3 | - | - | running or stopped |
+| 5 | `documentation-beyond-comments` r1 | 13 | sources 3, spine 1, draft 12, verify 5 | - | - | running or stopped |
+| 5 | `reading-and-understanding-code` r1 | 4 | sources 3, spine 1, draft 4, verify 4, fix 4, verify2 4, close1 4 | - | 4 | run complete |

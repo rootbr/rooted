@@ -189,8 +189,16 @@
      "task": "w8yjknf5u",
      "wf": "wf_d153063a-116",
      "launched": "2026-10-14T17:20 UTC",
-     "status": "running",
+     "status": "done 2026-10-14T19:00 UTC: 24 agents, 3,058,902 sub-agent tokens, 4 cards in its output, 0 pending, 9 held; output outputs/reading-and-understanding-code--r1.output.json.gz",
      "note": "round 1 from the bundle regenerated 2026-10-14T17:16 UTC; all four remaining topics launched together under the cap of four"
+    },
+    {
+     "part": "r2",
+     "task": "wrsikyfsz",
+     "wf": "wf_ab830a56-a06",
+     "launched": "2026-10-14T19:02 UTC",
+     "status": "running",
+     "bundle": "cont/reading-and-understanding-code/r2/continue-reading-and-understanding-code-round2-1of1.js (research-continue.py --round 2 --journal <r1 journal> --from-bundle bundles/reading-and-understanding-code.js --split 1: the four carded rules sent back with revise)"
     }
    ]
   }
