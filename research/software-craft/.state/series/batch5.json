@@ -173,10 +173,11 @@
      "task": "wpfhmvavq",
      "wf": "wf_2586c91e-f1a",
      "launched": "2026-10-14T19:27 UTC",
-     "status": "running",
+     "status": "done 2026-10-14T20:05 UTC: 11 agents, 975,805 sub-agent tokens, 4 cards in its output (3 on a closing edit); output outputs/code-review-as-author-and-reviewer--r2.output.json.gz",
      "bundle": "cont/code-review-as-author-and-reviewer/r2/continue-code-review-as-author-and-reviewer-round2-1of1.js (research-continue.py --round 2 --journal <r1 journal> --from-bundle bundles/code-review-as-author-and-reviewer.js --split 1: two cards accepted at the second verdict, four sent back with revise)"
     }
-   ]
+   ],
+   "status": "done 2026-10-14T20:15 UTC: DOC-05 to DOC-10 written from both rounds, spot-read (CHG-15 -> DOC-05, DOC-09 -> PRF-11, DOC-07 -> DOC-03)"
   },
   "documentation-beyond-comments": {
    "runs": [

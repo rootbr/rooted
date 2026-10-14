@@ -442,7 +442,7 @@ const DEFER_TO = {
   'CHG-17': ['CHG-25', 'CHG-03'], // each change builds and passes on its own: a rename with uses left is CHG-25's, a stale run-time use CHG-03's (reviewer, change)
   'API-31': 'CHG-26', // a deprecated element calls its replacement: an old type name kept as a copy, wrapper or subclass during a migration is CHG-26's alias finding
   'DSN-15': ['CHG-26', 'DSN-19'], // a forwarding wrapper is added only with a purpose: a wrapper that stands in for a migrated type's old name is CHG-26's finding; a hand-written interface that mirrors an existing interface or generated client only for abstraction or testing is DSN-19's (reviewer, design)
-  'CHG-15': 'CHG-29', // one logical change per change: hand edits, dependency updates or reformatting inside a tool-generated change are CHG-29's finding
+  'CHG-15': ['CHG-29', 'DOC-05'], // one logical change per change: hand edits, dependency updates or reformatting inside a tool-generated change are CHG-29's finding; an added file unrelated to the change's purpose is DOC-05's (spot-read)
   'CHG-08': ['CHG-30', 'CHG-31', 'CHG-35'], // an unreferenced private declaration is removed: a migration leftover is CHG-30's, code only a retired flag's branch reached CHG-31's, temporary code under a paid marker CHG-35's (reviewer, change)
   'CHG-33': ['CODE-59', 'DSN-21', 'DSN-26', 'CODE-03', 'CODE-11', 'CODE-26', 'CODE-36'], // added code beside debt meets the clean-code bar: style forms, repeated bodies, re-implemented jobs, names, magic numbers and long routines belong to their own cards (reviewer, change)
   'CHG-34': ['CODE-62', 'TOOL-15'], // a shortcut ships with a tracked debt marker: a marker that lacks its context pointer is CODE-62's finding; a temporary suppression without its follow-up task is TOOL-15's (spot-read, build-warnings)
@@ -520,7 +520,8 @@ const DEFER_TO = {
   'TOOL-22': 'TOOL-12', // an environment-specific address, URL or path is read from configuration: a host-specific absolute path or system binary in a build or check script is TOOL-12's finding; TOOL-22 keeps program code (spot-read, runtime-configuration)
   'TOOL-29': 'ERR-12', // an invalid setting stops initialization with a pinpointing message at the entry point: a panic, exit or abort on an invalid setting in library code below the entry point is ERR-12's finding; TOOL-29 keeps the message that names no setting and the check that continues (spot-read, runtime-configuration)
   'API-03': 'ERR-06', // a commented assumption is also asserted: a default branch that returns a substitute under a comment calling the case unreachable is ERR-06's finding (reviewer, errors)  'DOC-04': 'API-20', // a behaviour change leaves no caller on the old behaviour: on a published element the in-place change is API-20's breaking change (spot-read)
-  'DOC-03': 'CHG-31', // a removed guard shows its recorded reason no longer applies: a retired flag's guard is CHG-31's finding (spot-read)
+  'DOC-03': 'CHG-31', // a removed guard shows its recorded reason no longer applies: a retired flag's guard is CHG-31's finding (spot-read)  'DOC-09': 'PRF-11', // a description says how the change was verified: a change made for speed owes its measured result to PRF-11 (spot-read)
+  'DOC-07': 'DOC-03', // a description states the problem and the reason: for a removed guard with a recorded reason DOC-03 owns the finding (spot-read)
 }
 const ownersOf = ruleId => [DEFER_TO[ruleId] || []].flat()
 const SEV_RANK = { major: 0, minor: 1, suggestion: 2 }
