@@ -165,8 +165,16 @@
      "task": "w2lzcgh5y",
      "wf": "wf_579c444b-d1d",
      "launched": "2026-10-14T17:20 UTC",
-     "status": "running",
+     "status": "done 2026-10-14T19:25 UTC: 32 agents, 3,728,498 sub-agent tokens, 6 cards in its output, 2 pending, 19 held; output outputs/code-review-as-author-and-reviewer--r1.output.json.gz",
      "note": "round 1 from the bundle regenerated 2026-10-14T17:16 UTC; all four remaining topics launched together under the cap of four"
+    },
+    {
+     "part": "r2",
+     "task": "wpfhmvavq",
+     "wf": "wf_2586c91e-f1a",
+     "launched": "2026-10-14T19:27 UTC",
+     "status": "running",
+     "bundle": "cont/code-review-as-author-and-reviewer/r2/continue-code-review-as-author-and-reviewer-round2-1of1.js (research-continue.py --round 2 --journal <r1 journal> --from-bundle bundles/code-review-as-author-and-reviewer.js --split 1: two cards accepted at the second verdict, four sent back with revise)"
     }
    ]
   },
