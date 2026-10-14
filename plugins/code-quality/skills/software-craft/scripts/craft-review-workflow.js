@@ -519,8 +519,10 @@ const DEFER_TO = {
   'INP-21': 'TOOL-30', // input that fails to parse is rejected as a whole: a present configuration value that fails to parse and is replaced by the default meant for an absent setting is TOOL-30's finding; INP-21 keeps every other input (spot-read, runtime-configuration)
   'TOOL-22': 'TOOL-12', // an environment-specific address, URL or path is read from configuration: a host-specific absolute path or system binary in a build or check script is TOOL-12's finding; TOOL-22 keeps program code (spot-read, runtime-configuration)
   'TOOL-29': 'ERR-12', // an invalid setting stops initialization with a pinpointing message at the entry point: a panic, exit or abort on an invalid setting in library code below the entry point is ERR-12's finding; TOOL-29 keeps the message that names no setting and the check that continues (spot-read, runtime-configuration)
-  'API-03': 'ERR-06', // a commented assumption is also asserted: a default branch that returns a substitute under a comment calling the case unreachable is ERR-06's finding (reviewer, errors)  'DOC-04': 'API-20', // a behaviour change leaves no caller on the old behaviour: on a published element the in-place change is API-20's breaking change (spot-read)
-  'DOC-03': 'CHG-31', // a removed guard shows its recorded reason no longer applies: a retired flag's guard is CHG-31's finding (spot-read)  'DOC-09': 'PRF-11', // a description says how the change was verified: a change made for speed owes its measured result to PRF-11 (spot-read)
+  'API-03': 'ERR-06', // a commented assumption is also asserted: a default branch that returns a substitute under a comment calling the case unreachable is ERR-06's finding (reviewer, errors)
+  'DOC-04': 'API-20', // a behaviour change leaves no caller on the old behaviour: on a published element the in-place change is API-20's breaking change (spot-read)
+  'DOC-03': 'CHG-31', // a removed guard shows its recorded reason no longer applies: a retired flag's guard is CHG-31's finding (spot-read)
+  'DOC-09': 'PRF-11', // a description says how the change was verified: a change made for speed owes its measured result to PRF-11 (spot-read)
   'DOC-07': 'DOC-03', // a description states the problem and the reason: for a removed guard with a recorded reason DOC-03 owns the finding (spot-read)
 }
 const ownersOf = ruleId => [DEFER_TO[ruleId] || []].flat()
