@@ -83,10 +83,30 @@
      "task": "wgd1n4o0o",
      "wf": "wf_40a9e779-3c9",
      "launched": "2026-10-14T22:00 UTC",
-     "status": "running",
+     "status": "done 2026-10-14T22:15 UTC: 10 agents, 850,101 sub-agent tokens, 14 minutes; 4 accepted, 3 closing-edited (CODE-34, CODE-35, CODE-36), 0 not accepted; applied with two facet reverts",
      "bundle": "r2tree/routine-size-and-parameters--r2tree.js (7 cards CODE-33 to CODE-39; the folded key results-returned-not-written-to-parameters has no tree card and is left out)"
     }
-   ]
+   ],
+   "result": {
+    "applied": "2026-10-14T21:14 UTC",
+    "accepted": [
+     "CODE-33",
+     "CODE-37",
+     "CODE-38",
+     "CODE-39"
+    ],
+    "closing_edited": [
+     "CODE-34",
+     "CODE-35",
+     "CODE-36"
+    ],
+    "renamed": [],
+    "not_accepted": [],
+    "agents": 10,
+    "tokens": 850101,
+    "wall_s": 829
+   },
+   "recheck": "CODE-35: the Example extended and the Limits wording replaced as the verdict required; CODE-34 and CODE-36: the verdicts only restored step review from the spine's declared facets, which the code-domain reviewer had removed (reviews/code.json: review is the change-shape step, not a property of code), so the reviewer's values stand and those two closing edits are reverted"
   }
  }
 }
