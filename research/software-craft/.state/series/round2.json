@@ -195,8 +195,41 @@
      "task": "w3geexi8y",
      "wf": "wf_72374836-ca2",
      "launched": "2026-10-14T23:04 UTC",
-     "status": "running",
+     "status": "done 2026-10-14T23:05 UTC: 11 agents, 941,261 sub-agent tokens, 17 minutes; 5 accepted, 3 closing-edited (CODE-16, CODE-19, CODE-20), 0 not accepted; applied",
      "bundle": "r2tree/table-driven-and-state-machines--r2tree.js (8 cards CODE-13 to CODE-20, 360 KB)"
+    }
+   ],
+   "result": {
+    "applied": "2026-10-14T23:07 UTC",
+    "accepted": [
+     "CODE-13",
+     "CODE-14",
+     "CODE-15",
+     "CODE-17",
+     "CODE-18"
+    ],
+    "closing_edited": [
+     "CODE-16",
+     "CODE-19",
+     "CODE-20"
+    ],
+    "renamed": [],
+    "not_accepted": [],
+    "agents": 11,
+    "tokens": 941261,
+    "wall_s": 1028
+   },
+   "recheck": "CODE-16, CODE-19, CODE-20: all three verdicts found the nishanths/exhaustive doc.go quotations not verbatim on master and the closing edits replace them with the file's current sentences (the claims they carry are unchanged: map-literal exhaustiveness behind the -check flag, a default case does not make a switch exhaustive); CODE-16 also tightens two sentences, CODE-19 one, CODE-20 merges its triggers; no facet touched, so no revert against the code-domain reviewer"
+  },
+  "generics-and-parameterization": {
+   "runs": [
+    {
+     "part": "r2tree",
+     "task": "wdp4rmk82",
+     "wf": "wf_a4c3b598-1c0",
+     "launched": "2026-10-14T23:10 UTC",
+     "status": "running",
+     "bundle": "r2tree/generics-and-parameterization--r2tree.js (10 cards CODE-40 to CODE-49, 420 KB)"
     }
    ]
   }
