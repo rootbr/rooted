@@ -145,6 +145,54 @@
      "bundle": "cont/runtime-configuration/r2c/continue-runtime-configuration-round2-1of1.js (research-continue.py --round 2 --skip-fixed --skip-carded): the one rule whose fix2 failed, configuration-change-tested-with-code"
     }
    ]
+  },
+  "internationalization-and-text-encoding": {
+   "runs": [
+    {
+     "part": "r1",
+     "task": "wz07mm3ix",
+     "wf": "wf_5899ded0-e91",
+     "launched": "2026-10-14T17:20 UTC",
+     "status": "running",
+     "note": "round 1 from the bundle regenerated 2026-10-14T17:16 UTC; all four remaining topics launched together under the cap of four"
+    }
+   ]
+  },
+  "code-review-as-author-and-reviewer": {
+   "runs": [
+    {
+     "part": "r1",
+     "task": "w2lzcgh5y",
+     "wf": "wf_579c444b-d1d",
+     "launched": "2026-10-14T17:20 UTC",
+     "status": "running",
+     "note": "round 1 from the bundle regenerated 2026-10-14T17:16 UTC; all four remaining topics launched together under the cap of four"
+    }
+   ]
+  },
+  "documentation-beyond-comments": {
+   "runs": [
+    {
+     "part": "r1",
+     "task": "w0gw5uv4h",
+     "wf": "wf_1a889b8e-140",
+     "launched": "2026-10-14T17:20 UTC",
+     "status": "running",
+     "note": "round 1 from the bundle regenerated 2026-10-14T17:16 UTC; all four remaining topics launched together under the cap of four"
+    }
+   ]
+  },
+  "reading-and-understanding-code": {
+   "runs": [
+    {
+     "part": "r1",
+     "task": "w8yjknf5u",
+     "wf": "wf_d153063a-116",
+     "launched": "2026-10-14T17:20 UTC",
+     "status": "running",
+     "note": "round 1 from the bundle regenerated 2026-10-14T17:16 UTC; all four remaining topics launched together under the cap of four"
+    }
+   ]
   }
  }
 }
