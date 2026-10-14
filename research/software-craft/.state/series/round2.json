@@ -10,10 +10,35 @@
      "task": "wypips07x",
      "wf": "wf_dcba3ccc-bf0",
      "launched": "2026-10-14T20:50 UTC",
-     "status": "running",
+     "status": "done 2026-10-14T21:25 UTC: 15 agents, 1,315,660 sub-agent tokens, 24 minutes; 9 accepted, 3 closing-edited (CODE-64, CODE-67, CODE-72), 0 not accepted; applied",
      "bundle": "r2tree/comments-and-self-documenting-code--r2tree.js (12 cards CODE-61 to CODE-72, skeptic claude-fable-5-1 at high, closing edit at high: the operator's experiment on the first topic of the pass; every closing-edited card is re-checked against its verdict before the effort for the rest is decided)"
     }
-   ]
+   ],
+   "result": {
+    "applied": "2026-10-14T20:36 UTC",
+    "accepted": [
+     "CODE-61",
+     "CODE-62",
+     "CODE-63",
+     "CODE-65",
+     "CODE-66",
+     "CODE-68",
+     "CODE-69",
+     "CODE-70",
+     "CODE-71"
+    ],
+    "closing_edited": [
+     "CODE-64",
+     "CODE-67",
+     "CODE-72"
+    ],
+    "renamed": [],
+    "not_accepted": [],
+    "agents": 15,
+    "tokens": 1315660,
+    "wall_s": 1416
+   },
+   "recheck": "the operator's experiment (HANDOVER 7.7): each closing edit re-checked against its verdict's required edits: CODE-64 the two Limits paragraphs deleted as required (the optional replacement caveat not wanted), CODE-67 the two wording edits applied verbatim, CODE-72 the paragraph replaced as required and the blank lines fixed; closing effort high holds for the rest of the pass"
   }
  }
 }
