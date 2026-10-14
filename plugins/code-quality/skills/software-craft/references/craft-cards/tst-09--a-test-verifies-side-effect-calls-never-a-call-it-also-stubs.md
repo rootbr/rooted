@@ -5,7 +5,7 @@ domain: tests
 step: [test]
 applies_to: [tests]
 triggers: ['\b(co)?([Vv]erify)\s*[({]|[.](should)[(]', '[.]assert_(called|any_call|has_calls|not_called|awaited|any_await|has_awaits|not_awaited)\w*[(]|[.](called|(call|await)_(count|args(_list)?)|mock_calls)\b', '[.]toHaveBeen(Last|Nth)?(Called)\w*[(]|[.]to(BeCalled)\w*[(]|\bassert[.](called)\w*[(]|[.]been[.](called)\w*|[.]called(Once|Twice|Thrice|With)\w*|[.](callCount)\b|[.]mock[.](calls)\b', '[.]Assert(Called|NumberOfCalls)[(]|[.][Tt]imes[(]|[.]Once[(][)]|[.]Received[(]']
-scope: file
+scope: callers
 check_kind: mechanical
 severity_default: minor
 ---

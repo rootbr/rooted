@@ -2,7 +2,7 @@
 title: A test checks one behaviour, making as many assertions as that behaviour's outcome needs, and an independent second behaviour with assertions on its own outcome is a separate test
 rule_id: TST-16
 domain: tests
-step: [test, review]
+step: [test]
 applies_to: [tests]
 triggers: ['(?i)^\s*(async\s+)?(def|fn)\s+\w*_and_\w*\s*\(', '^\s*(public\s+|protected\s+|private\s+)?(void|fun|func|fn)\s+\w*[a-z0-9]And[A-Z]\w*\s*\(', '\b(it|test)\s*\(\s*[\x22\x27\x60][^\x22\x27\x60]*\band\b[^\x22\x27\x60]*[\x22\x27\x60]', '\bt[.]Run\(\s*[\x22\x60][^\x22\x60]*(_and_|\band\b)[^\x22\x60]*[\x22\x60]', 'signal:long_routine']
 scope: file

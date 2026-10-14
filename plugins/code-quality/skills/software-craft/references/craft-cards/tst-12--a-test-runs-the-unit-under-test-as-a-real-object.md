@@ -2,11 +2,11 @@
 title: A test runs the unit under test as a real object and never stubs the unit's own methods or chains a double that returns a double
 rule_id: TST-12
 domain: tests
-step: [test, design]
-applies_to: [tests, object-oriented]
+step: [test]
+applies_to: [tests]
 triggers: ['RETURNS_DEEP_STUBS|RETURNS_MOCKS|CALLS_REAL_METHODS|(then|do)CallRealMethod\(', '\bspy\(|@Spy\b|\b(jest|vi)[.]spyOn\(|\bsinon[.](spy|stub)\(|\bpatch[.]object\(|\bpatch\(\s*f?["'']|\bmonkeypatch[.]setattr\(|[.]\w+\s*=\s*(Magic|Async|NonCallable)?Mock\(|[.]\w+\s*=\s*(jest|vi)[.]fn\(', '[.]return_value[.]\w+|[.]return_value\s*=\s*\w*[Mm]ock', '[.](thenReturn|willReturn|andReturn|Return|Returns|returns|returning|return_once|return_const|mockReturnValue|mockReturnValueOnce|mockResolvedValue|resolves)\(\s*(move\s*)?(\|[^|]*\|\s*)?(&|new\s+)?\w*[Mm]ock', '\bnew\s+[A-Z][\w.<>]*\(.*\)\s*\{\s*$|\bclass\s+\w+\s+extends\s+(?!\w*Test(Case)?\b)[A-Z]\w*|^\s*class\s+\w+\(\s*(?![\w.]*TestCase\b|object\b)[\w.]+\s*\)\s*:|\bobject\s*:\s*[A-Z]\w*\(']
 scope: file
-check_kind: mechanical
+check_kind: semantic
 severity_default: minor
 ---
 

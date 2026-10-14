@@ -2,10 +2,10 @@
 title: Every test asserts, verifies or declares the failure it expects, and each of its assertions is complete and has two sides that can differ
 rule_id: TST-24
 domain: tests
-step: [test, review]
+step: [test]
 applies_to: [tests]
 triggers: ['@(Test|ParameterizedTest|RepeatedTest)\b|#\[(\w+::)*test\]|^\s*(async\s+)?def\s+test\w*\s*\(|^\s*func\s+Test\w*\s*\(\s*\w+\s+\*testing[.]T\s*\)|\b(it|test)([.](only|concurrent|each\(.*?\)))?\s*\(\s*[\x22\x27\x60]', '\b(assert\w*|require|expect|check\w*)([.]\w+)?\s*!?\(\s*(?:t\s*,\s*)?([A-Za-z_][\w.]*(?:\(\))?)\s*,\s*\3\s*[,)]|\b(assertThat|expect)\(\s*([A-Za-z_][\w.]*)\s*\)[.](\w+[.])*(isEqualTo|isSameAs|toBe|toEqual|toStrictEqual)\(\s*\5\s*\)|^\s*assert\s+([A-Za-z_][\w.\[\]]*)\s*(==|is)\s*\8\s*(,|#|$)', '^\s*(assertThat|assertWithMessage|expect)\((?:[^()]|\([^()]*\))*\)\s*;?\s*$|^\s*verify\(\s*\w+\s*\)\s*;\s*$|[.](to[A-Z]\w*|resolves|rejects)\s*;?\s*$']
-scope: file
+scope: callers
 check_kind: semantic
 severity_default: major
 ---

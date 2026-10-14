@@ -2,7 +2,7 @@
 title: An equality assertion puts the expected and the actual value in the positions its framework labels, or in the one order the rest of the file uses where the framework labels them neutrally
 rule_id: TST-39
 domain: tests
-step: [test, review]
+step: [test]
 applies_to: [tests]
 triggers: ['\bassert(Equals|NotEquals|Same|NotSame|ArrayEquals|IterableEquals|LinesMatch)\(\s*[a-z_]\w*([.]\w+)*(\([^()]*\))?\s*,\s*([\x22\x27]|-?\d|true\b|false\b|null\b|[A-Z][A-Z0-9_]+\b)|\b(assert|require)[.](Equal|EqualValues|Exactly|NotEqual)\(\s*t\s*,\s*[a-z_]\w*([.]\w+)*(\([^()]*\))?\s*,\s*([\x22\x60]|-?\d|true\b|false\b|nil\b)|\b(assertThat|expect)\(\s*([\x22\x27\x60]|-?\d+\b|true\b|false\b|null\b)', '\bassert_(eq|ne)!\s*\(|\bassert(Equal|NotEqual|Is|IsNot)\s*\(', 'signal:test_file']
 scope: file

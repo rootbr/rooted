@@ -2,7 +2,7 @@
 title: A hand-written shrinker proposes only smaller values that still satisfy every invariant the generator guarantees
 rule_id: TST-49
 domain: tests
-step: [implement, test]
+step: [test]
 applies_to: [tests]
 triggers: ['(?i)shrink\w*\s*\(', '\bdoShrink\b|\bShrinker\b|\bfn\s+(?:shrink|simplify|complicate)\b|\bimpl\b.*\b(?:Arbitrary|ValueTree)\b|\binstance\s+Arbitrary\b']
 scope: file

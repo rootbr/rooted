@@ -2,7 +2,7 @@
 title: A property leaves the generated inputs it receives unchanged and clones any input it needs to change
 rule_id: TST-48
 domain: tests
-step: [implement, test]
+step: [test]
 applies_to: [tests]
 triggers: ['[.](?:sort|reverse|splice|push|pop|shift|unshift|fill|copyWithin)\(|[.](?:append|extend|insert|remove|clear|setdefault)\(|\b(?:sort[.](?:Ints|Strings|Slice|Sort)|slices[.](?:Sort|Reverse))\(|\bCollections[.](?:sort|reverse|shuffle)\(|\bArrays[.]sort\(|[.](?:sort_(?:by|by_key|unstable)\w*|dedup\w*|truncate|retain|drain|swap|rotate_left|rotate_right)\(']
 scope: hunk

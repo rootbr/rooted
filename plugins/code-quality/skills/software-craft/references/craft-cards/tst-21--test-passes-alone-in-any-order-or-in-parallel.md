@@ -2,7 +2,7 @@
 title: A test passes or fails the same whether it runs alone, in any order or in parallel with the other tests, because it relies on no state that another test sets or leaves in shared variables, files, the working directory or environment variables
 rule_id: TST-21
 domain: tests
-step: [test, review]
+step: [test]
 applies_to: [tests]
 triggers: ['@(TestMethodOrder|Order|FixMethodOrder|TestClassOrder)\b|\bMethodOrderer\b|pytest[.]mark[.](order|dependency)\b|\b(os[.](environ\[|putenv|chdir|Setenv|Chdir|Unsetenv)|process[.](env[.]\w+\s*=|chdir\()|(std::)?env::(set_var|remove_var|set_current_dir)|System[.]setProperty\()|^\s*(private\s+|protected\s+|public\s+)?static\s+(?!final\b)[\w<>\[\],? ]+\s+\w+\s*(=|;)|^\s*(pub(\([\w:]+\))?\s+)?static\s+(mut\b|\w+\s*:\s*(Atomic\w+|Mutex|RwLock|LazyLock|OnceLock|Lazy)\b)|^var\s+\w+|^(export\s+)?let\s+\w+|^[a-z_]\w*\s*(:\s*[\w\[\], ]+)?\s*=\s*(\[\]|\{\}|dict\(|list\(|set\(|defaultdict\()|\b(setUpClass|setUpModule|beforeAll)\b|@(BeforeAll|BeforeClass)\b|scope\s*=\s*[\x22\x27](module|session|class|package)[\x22\x27]', '(?i)[\x22\x27\x60]([^\x22\x27\x60]*(/tmp/|tmp_|test[-_]?out(put)?)[^\x22\x27\x60]*|[^\x22\x27\x60]*[.](txt|json|db|sqlite|csv|log))[\x22\x27\x60]']
 scope: file
@@ -29,11 +29,14 @@ good: #[test] fn saves_report() {
           let path = temp_dir().join(format!("saves_report-{}.txt", process::id()));
           save_report(&path, "a");
           assert_eq!(read_to_string(&path).unwrap(), "a");
+          std::fs::remove_file(&path).unwrap();
       }
 ```
 
 ## Limits
 Unit tests typically should not rely on the order in which they run; there are times when enforcing an execution order is necessary, for example in integration or functional tests where the sequence of the tests is important. The documented alternative to a file of each test's own is to run the tests one at a time. Fixtures shared at class or module level are to be used with care, since they do not play well with test parallelization and they break test isolation. The rule's scope is the state a unit test touches; tests against a real shared dependency such as a database, and tests of thread interleavings, fall outside it.
+
+A per-test file written to a directory that outlives the run, such as the system's temporary directory, is still removed when the test ends by a cleanup the framework manages, unless it sits in a per-test temporary directory the framework removes.
 
 ## Validator
 Grep the hunk for an execution-order annotation or marker, writes to environment variables or process-wide properties, changes of the working directory, mutable static or module-level variables, class-, module- or session-scoped fixtures, and string literals naming a fixed file path. Open the test file and, for each hit, trace which tests write the state and which tests read it: whether a test modifies it without a per-test copy and either without initializing and clearing it around each test or while other tests run in parallel with it, whether a test reads a value that only another test sets, whether two tests use the same fixed path, and whether the file enforces an order between unit tests. Validator question: **Does a unit test in the file depend on another test having run first, or change shared state — a mutable static or module-level variable, a file at a fixed path, the working directory or an environment variable — without working on a per-test copy of it, and either without clearing it after itself or while other tests can run in parallel with it?** Yes → flag.
@@ -52,4 +55,5 @@ When the validator answers yes, the finder emits one finding (`rule_id: TST-21`,
 - 'The Smell of Fear: On the Relation between Test Smells and Flaky Tests', Empirical Software Engineering 2019, raw.githubusercontent.com/fpalomba/fpalomba.github.io/master/pdf/Journals/J18.pdf, 'Test Run War': "The allocation of resources to multiple tests might cause possible resource interferences making the outcome of a test non-deterministic"; "a strong relationship (Kendall’s τ = 0.62) between the Test Run War smell and flaky tests caused by Concurrency issues"; "assigning to them unique identifiers: in this way, each test worked on independent resources" (fetched)
 - 'Pizza versus Pinsa: On the Perception and Measurability of Unit Test Code Quality', ICSME 2020, raw.githubusercontent.com/fpalomba/fpalomba.github.io/master/pdf/Conferencs/C56.pdf: "The independence of unit tests was also named by three experts ... this reduces the risk of interference of some unit tests toward others, which can normally cause forms of test flakiness" (fetched)
 - 'Empirically revisiting the test independence assumption', ISSTA 2014, DOI 10.1145/2610384.2610404, quoted in pypi.org/pypi/pytest-randomly/json: "dependent tests do exist in practice" and "a random order of test executions can effectively detect such dependencies" (relayed)
+- pytest docs, How to use fixtures, §Teardown/Cleanup (pytest-dev/pytest, doc/en/how-to/fixtures.rst) (fetched): "we'll want to make sure they clean up after themselves so they don't mess with any other tests (and also so that we don't leave behind a mountain of test data to bloat the system)"; "Fixtures in pytest offer a very useful teardown system, which allows us to define the specific steps necessary for each fixture to clean up after itself."
 - Caveat: the flaky-test correlation is measured on JVM test methods and the expert statement comes from an interview study; the documentation sources each state the rule, or a runner option that checks it, for their own test framework.

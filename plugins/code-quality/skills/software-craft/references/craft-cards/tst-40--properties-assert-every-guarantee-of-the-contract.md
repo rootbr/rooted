@@ -2,7 +2,7 @@
 title: The properties written for a unit together assert every guarantee its contract gives a caller, so a sort's properties check that the result is sorted and is a permutation of the input
 rule_id: TST-40
 domain: tests
-step: [design, test, review]
+step: [test]
 applies_to: [tests]
 triggers: ['(?i)\b(?:is_?sorted|sorted|ordered|permutation)\b', '(?i)\b(?:len|length|size|count)\b.*==', '@given\(|\bfc[.](?:assert|property)\(|\bproptest!|\bf[.]Fuzz\(|\bquick[.]Check(?:Equal)?\(|@Property\b']
 scope: file

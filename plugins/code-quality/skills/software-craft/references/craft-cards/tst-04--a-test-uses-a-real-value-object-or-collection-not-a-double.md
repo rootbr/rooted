@@ -6,7 +6,7 @@ step: [test]
 applies_to: [tests]
 triggers: ['(?i)(mock|spy|stub)\w*\s*[(<]|@(?:relaxed)?(?:mock|spy)\w*|(jest|vi)[.]fn\(|create_autospec\(|mock\w+::(?:new|default)\(|(?<![\w.])patch(?:[.]object)?\(|mock(?:er)?[.]patch\b|\b(?:instance_|class_|object_)?double\(|\bsubstitute[.]for<|\ba[.]fake<', '(?i)(mock|spy)\w*\(\s*(List|Map|Set|String|Integer|Long|Date|LocalDate|Instant|Optional|Duration|BigDecimal|UUID|dict|list|str)\b']
 scope: callers
-check_kind: mechanical
+check_kind: semantic
 severity_default: minor
 ---
 

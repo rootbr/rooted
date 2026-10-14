@@ -2,7 +2,7 @@
 title: A failing test's report names the test and its case and shows the actual and the expected value, through the assertion's own output or through a message where that output shows only true or false
 rule_id: TST-18
 domain: tests
-step: [test, review]
+step: [test]
 applies_to: [tests]
 triggers: ['\bassert(True|False|That)\(\s*[^,()]*(==|!=|[.]equals\(|<=?|>=?|\bin\b|\bis\b)|\bexpect\([^)]*(===|!==|==|!=|<=?|>=?)[^)]*\)[.](not[.])?(toBe|toEqual|toStrictEqual)\(\s*(true|false)\s*\)|^\s*assert\s+.+\s(and|or)\s.+|\bassert!\s*\(\s*[^,;]*(==|!=|<|>)[^,;]*\)\s*;', '\b(it|test|describe)([.]each\(.*?\))?\s*\(\s*([\x22\x27\x60])\s*\3|\bt[.]Run\(\s*(fmt[.]Sprint\w*\(\s*[\x22\x60][^\x22\x60]*%d[\x22\x60]\s*,\s*\w+\s*\)|strconv[.]Itoa\(\s*\w+\s*\)|[\x22\x60]{2})|\bt[.](Error|Fatal)f?\(\s*[\x22\x60][^\x22\x60%]*[\x22\x60]\s*\)|\b(Errorf|Fatalf|fail|assert\w*|expect)\(.*(?i:case|test|row|index)\s*#?\s*(%d|\$?\{(i|j|k|n|idx|index)\})']
 scope: file

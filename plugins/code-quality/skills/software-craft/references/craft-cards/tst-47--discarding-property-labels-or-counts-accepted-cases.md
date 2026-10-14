@@ -2,7 +2,7 @@
 title: A property that discards generated cases through a precondition labels or counts the cases it accepts, so that a run testing mostly trivial inputs is visible
 rule_id: TST-47
 domain: tests
-step: [test, review]
+step: [test]
 applies_to: [tests]
 triggers: ['\bassume\w*\(|\bAssume[.]that\(|\bfc[.]pre\(|\bprop_assume!|\s==>\s|[.]Skip(?:Now|f)?\(']
 scope: hunk
@@ -22,18 +22,20 @@ A precondition discards every generated case for which it is false, and used car
 ```go
 bad:  rapid.Check(t, func(r *rapid.T) {
           xs := rapid.SliceOf(rapid.Int()).Draw(r, "xs")
-          if !slices.IsSorted(xs) { r.Skip() }
+          if slices.Contains(xs, 0) { r.Skip() }
           checkSort(r, xs) })
 good: seen := map[bool]int{}
       rapid.Check(t, func(r *rapid.T) {
           xs := rapid.SliceOf(rapid.Int()).Draw(r, "xs")
-          if !slices.IsSorted(xs) { r.Skip() }
+          if slices.Contains(xs, 0) { r.Skip() }
           seen[len(xs) > 1]++; checkSort(r, xs) })
       t.Logf("accepted: %d non-trivial, %d trivial", seen[true], seen[false])
 ```
 
 ## Limits
 The documentation phrases this as advice, to consider a coverage requirement to make sure the test data is still of good quality, so a finding is a suggestion. A proportion missed on one run may be bad luck, since coverage varies randomly, and a plain requirement only warns because it is not tested in a statistically sound way; a statistically checked requirement accounts for luck before it fails the property. A property whose generator always produces valid cases discards nothing, and such a generator is preferred to a filter, which is in turn preferred to skipping the case.
+
+Where the precondition is sparse under free generation, as sortedness of a freely drawn list is, a generator that yields valid cases by construction replaces the discard, and the classification this rule asks for is owed only by a discard that remains.
 
 ## Validator
 Grep the hunk for a precondition that discards the current generated case inside a property body: an assume-style call, a precondition call, an implication operator, or a skip of the current case. Open the property at hunk scope and look for a classification of its accepted cases: label, classify, collect or tabulate calls, events, statistics, a coverage requirement, or per-class counters that the test reports after the run. A skip of the whole test outside a property body is not a discarded case. Validator question: **Does the property discard generated cases through a precondition while neither the property nor its test classifies the cases it accepts, by labels, events, statistics, a coverage requirement or per-class counters that the run reports?** Yes → flag.
@@ -47,4 +49,5 @@ When the validator answers yes, the finder emits one finding (`rule_id: TST-47`,
 - `flyingmutant/rapid` master, `engine.go`, doc comment of `SkipNow` (fetched): "SkipNow marks the current test case as invalid" · "Prefer *Generator.Filter to SkipNow, and prefer generators that always produce valid test cases to Filter."
 - DOI 10.1145/3597503.3639581, "Property-Based Testing in Practice", ICSE 2024, abstract, §3.1, §4.6, §5.2 RO6 (fetched): "in-depth interviews with experienced users of PBT" · "We recruited 31 participants and carried out 30 interviews" · "11 of them—more than a third—said they did not think as hard as they should about testing effectiveness, or whether they had adequately tested their software with their generators." · "tools should always announce counts of discarded test cases (i.e., ones that failed the property’s precondition) so the developer can catch problems early."
 - DOI 10.1145/3654777.3676407, "Tyche: Making Sense of Property-Based Testing Effectiveness", UIST 2024, abstract, Figure 1, §5.2.2, §7.1 (fetched): "A self-guided online usability study" · "a novel ensemble of visualizations" · "leaving 40 valid responses" · "three sets of sampled inputs for testing that property, drawn from three different distributions" · "rank the distributions, in order of their bug-finding power" · "the control interface consisted of … “statistics” output and a list of pretty-printed test input examples" · "the developer can visualize features of the distribution by plotting numerical or categorical data extracted from their test inputs" · "For three of the four tasks (all but Python Interpreter), participants made significantly fewer incorrect comparisons when using Tyche"
+- Etna: An Evaluation Platform for Property-Based Testing, PACMPL 7 (ICFP), Art. 218, 2023, DOI 10.1145/3607860 (fetched): §2 "this approach works well in some circumstances ... this generate-and-filter approach breaks down with “sparser” preconditions; for instance, valid red-black trees are harder to generate at random"; §4.1 "we manually write a QuickCheck generator that always produces test inputs that satisfy the property's precondition ... The QuickCheck strategy uses the generic-random library to derive its generator automatically ... four workloads: BST, RBT, STLC, and F<: ... the bespoke strategy solved all tasks, while the naive strategy failed to solve 43 tasks ... significantly lower in 83 out of 124 tasks ... lower for 89 out of 124 tasks"; §5.1 RBT workload "type-driven methods are able to solve within a 60 second timeout. The type-based generator fails to solve 23 tasks ... The bespoke generator solves all tasks in under ten seconds".
 - Caveat: the interviews come from one company, "a financial technology firm that uses PBT extensively"; in the online study "The majority of participants (24) described themselves as students" and "Half reported being beginners at PBT", and it compares visualisations with a statistics output, not a visible distribution with none.

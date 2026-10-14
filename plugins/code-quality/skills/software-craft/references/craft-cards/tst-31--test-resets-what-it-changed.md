@@ -2,7 +2,7 @@
 title: A test that changes a store outliving it removes or resets that change, by managed cleanup, rollback or a reset before each test, whenever another test or a later run can observe it
 rule_id: TST-31
 domain: tests
-step: [test, review]
+step: [test]
 applies_to: [tests]
 triggers: ['(?i:\binsert\s+into\b|\b(?:create|drop)\s+(?:table|schema|database|index)\b|\btruncate\s+\w|\bdelete\s+from\b|[.](?:create_?(?:queue|topic|bucket|stream|table)|put_?object|send_?message|publish)\()|[.](?:save|saveAll|persist|insert|insertOne|insertMany|insert_one|insert_many|bulk_create|create_all|Create)\(']
 scope: callers

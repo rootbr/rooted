@@ -2,8 +2,8 @@
 title: When the code under test compares an input with a boundary value, a test passes exactly that boundary value, not only values clearly on either side of it
 rule_id: TST-15
 domain: tests
-step: [test, review]
-applies_to: [tests]
+step: [test]
+applies_to: [universal]
 triggers: ['signal:test_file', '\b(if|elif|while|when|return|assert\w*|require)\b[^;{]*[\w)\]]\s*(<=|>=|<|>)\s*-?(\d[\d_.]*|[A-Z][A-Z0-9_]+|[A-Za-z][a-z0-9]*[A-Z]\w*)\b']
 scope: callers
 check_kind: semantic

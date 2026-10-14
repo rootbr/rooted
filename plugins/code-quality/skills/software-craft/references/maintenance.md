@@ -151,3 +151,12 @@ A finding of the deferring rule drops when any owner listed for it flagged the s
 | API-14 | TST-39: expected and actual passed in the reverse of the framework's positions is TST-39's (reviewer, interface) |
 | DOC-04 | API-20, API-21: a published routine's changed return or raise is API-20's, a new failure on accepted input API-21's (reviewer, interface) |
 | CHG-01 | API-21: an added argument check inside a refactoring of a published operation is API-21's (reviewer, interface) |
+| TST-01 | TST-04, TST-06: a real in-process collaborator: a doubled value object is TST-04's, a doubled third-party library type TST-06's (reviewer, tests) |
+| TST-06 | TST-02: a doubled third-party HTTP or RPC client is TST-02's (reviewer, tests) |
+| TST-12 | TST-04: a stub returning a double of a value object is TST-04's (reviewer, tests) |
+| TST-22 | TST-24: an assertion that stops at its subject or compares the result with itself is TST-24's (reviewer, tests) |
+| TST-31 | TST-21: a write to a fixed path in a shared directory with no cleanup is TST-21's (reviewer, tests) |
+| TST-40 | TST-43: a result-promising unit whose only property is no-crash is TST-43's (reviewer, tests) |
+| TST-19 | DSN-21: three sibling tests that repeat one body of four or more lines are DSN-21's (reviewer, tests) |
+| DSN-64 | TST-48: an in-place change of a generated argument inside a property predicate is TST-48's (reviewer, tests) |
+| DSN-21 | TST-42: a test oracle that repeats the unit's body is TST-42's (reviewer, tests) |

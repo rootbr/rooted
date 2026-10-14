@@ -2,10 +2,10 @@
 title: Setup that runs for every test of a file, class or suite builds only what all of those tests use, and setup that only some tests need is called from those tests
 rule_id: TST-20
 domain: tests
-step: [test, refactor, review]
+step: [test, refactor]
 applies_to: [tests]
 triggers: ['@(BeforeEach|Before|BeforeAll|BeforeClass|BeforeMethod)\b', '^\s*def\s+(setUp|setUpClass|setUpModule|setup_method|setup_class|setup_module|setup_function)\s*\(', '\b(beforeEach|beforeAll)\s*\(', '^\s*func\s+(init\s*\(\s*\)|TestMain\s*\(\s*\w+\s+\*testing[.]M\s*\))', '@pytest[.]fixture\(.*\bautouse\s*=\s*True']
-scope: file
+scope: callers
 check_kind: semantic
 severity_default: minor
 ---

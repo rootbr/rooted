@@ -2,7 +2,7 @@
 title: A generator yields inputs that meet the property's precondition by construction, through its own bounds, a mapping or a composition, whenever a filter or discard would reject a large share of draws, and keeps a filter for a condition that random draws rarely violate
 rule_id: TST-45
 domain: tests
-step: [implement, test, review]
+step: [test]
 applies_to: [tests]
 triggers: ['[.](?:[Ff]ilter|SuchThat)\(', '\bassume\w*\(|\bAssume[.]that\(', '\bprop_(?:assume|filter|filter_map)\b', '\bfc[.]pre\(', '\s==>\s', '\bsuppress_health_check\b|\bmax_(?:global|local)_rejects\b|\b(?:maxDiscardRatio|discardRatio|maxSkipsPerRun)\b', '\bTestResult::discard\(']
 scope: hunk

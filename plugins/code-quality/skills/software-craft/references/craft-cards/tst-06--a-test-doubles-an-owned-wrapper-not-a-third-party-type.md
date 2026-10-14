@@ -5,8 +5,8 @@ domain: tests
 step: [design, test]
 applies_to: [tests]
 triggers: ['(?i)(mock|stub|spy)\w*\s*[(<]|@(Mock|Spy)\b|\b(patch|mocker[.]patch)\(\s*[''"]\w+[.]|\bpatch[.]object\(|Mock[A-Za-z]\w*::new\(|\bmock!\s*\{', '(jest|vi)[.]mock\(\s*[''"][^./''"]']
-scope: file
-check_kind: mechanical
+scope: callers
+check_kind: semantic
 severity_default: minor
 ---
 

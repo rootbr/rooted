@@ -2,7 +2,7 @@
 title: A property's pass or fail outcome depends only on the values the framework generates, with any randomness that reaches it drawn from the framework or from a source seeded for each generated case, and with shared, file or database state reset for each case
 rule_id: TST-51
 domain: tests
-step: [implement, test, review]
+step: [test]
 applies_to: [tests]
 triggers: ['\b(?:Math[.]random|random[.](?:random|randint|choice|shuffle|uniform)|thread_rng|rand::random)\b|\brand[.](?:Intn|Int|Float64|Seed|NewSource)\(|\bnew\s+Random\(\s*\)|\b(?:time[.]Now|Date[.]now|System[.]currentTimeMillis|Instant[.]now|datetime[.]now)\(|^\s*global\s+\w+|\bstatic\s+mut\b']
 scope: file

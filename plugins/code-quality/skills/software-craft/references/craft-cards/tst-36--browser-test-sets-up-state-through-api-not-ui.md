@@ -2,7 +2,7 @@
 title: A browser-driven test reaches its starting state through the system's API or seeded data and drives the UI only for the behaviour it verifies
 rule_id: TST-36
 domain: tests
-step: [test, review]
+step: [test]
 applies_to: [tests]
 triggers: ['(?i)[.](fill|type|sendKeys|send_keys|SendKeys|setValue)\(.*\b(user(name)?|email|password|login)\b', '(?i)[.](goto|visit|navigate\w*|get)\(.*\b(login|signin|sign-in|sign_in|register|signup)\b', '(?i)\b(log_?in|sign_?in)\w*\(\s*&?\s*(mut\s+)?(page|driver|browser|cy|wd|ctx)\b']
 scope: file

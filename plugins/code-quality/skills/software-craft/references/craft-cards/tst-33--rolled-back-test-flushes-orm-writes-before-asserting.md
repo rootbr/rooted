@@ -2,10 +2,10 @@
 title: A test isolated by a rolled-back transaction flushes pending ORM writes before asserting and checks commit-time behaviour in a test that commits or emulates the commit
 rule_id: TST-33
 domain: tests
-step: [test, review]
+step: [test]
 applies_to: [tests]
 triggers: ['@(Transactional|DataJpaTest|DataJdbcTest|Rollback)\b|(?i:\b(on_?commit|captureOnCommitCallbacks|after_?commit|TransactionSynchronization|TransactionalEventListener|(select_|with_)?for_update|pessimistic_write)\b)|\bFOR UPDATE\b|\b(entityManager|em|session|sessionFactory|getCurrentSession\(\)|\w*[Rr]epo(sitory)?)[.](persist|merge|save|saveAll|saveOrUpdate|add|add_all|delete|remove)\(|(?i:[.](begin_nested|(begin_)?test_transaction|rollback|savepoint)\()|\bTransactionTestCase\b|\bdjango[.]test\b']
-scope: file
+scope: callers
 check_kind: semantic
 severity_default: major
 ---

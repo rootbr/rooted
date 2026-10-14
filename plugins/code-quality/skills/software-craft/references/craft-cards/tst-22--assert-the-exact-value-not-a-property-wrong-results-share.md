@@ -2,7 +2,7 @@
 title: Tests check the exact value and each effect the behaviour must produce for a fixed input, not only a property such as presence, non-emptiness, a length or a sign that a wrong result also satisfies
 rule_id: TST-22
 domain: tests
-step: [test, review]
+step: [test]
 applies_to: [tests]
 triggers: ['\b(assertNotNull|assertNotNone|assertIsNotNone|assertTrue|assertFalse|assertIsInstance)\(\s*[\w.]+(\(\))?\s*\)', '[.](isNotNull|isNotEmpty|isPresent|isTrue|isFalse|isPositive|isNotZero|hasSizeGreaterThan|isInstanceOf)\(', '[.](toBeDefined|toBeTruthy|toBeFalsy|toBeInstanceOf|toBeGreaterThan(OrEqual)?|toBeLessThan(OrEqual)?|toHaveLength)\(', '^\s*assert\s+(not\s+)?[\w.]+(\(\))?\s*(is\s+not\s+None)?\s*(,|#|$)|^\s*assert\s+(len\(|isinstance\()', '\b(assert|require)[.](NotNil|NotEmpty|True|False|Greater\w*|Less\w*|Len|IsType|Positive)\(|\bif\s+\w+\s*==\s*nil\s*\{', '\bassert!\(\s*!?[\w.]+[.](is_some|is_none|is_ok|is_err|is_empty)\(\)', '\bassert(True|That|_true)?!?\s*\(?\s*[\w.]+(\(\))?\s*(>=?|<=?|!=)\s*(0|null|None|nil)\b']
 scope: file

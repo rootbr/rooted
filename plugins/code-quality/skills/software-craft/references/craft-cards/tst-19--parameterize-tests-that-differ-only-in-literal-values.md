@@ -2,7 +2,7 @@
 title: Three or more tests that differ only in a few literal input and expected values are one table-driven or parameterized test, unless merging them would make the test branch on its cases
 rule_id: TST-19
 domain: tests
-step: [test, refactor, review]
+step: [test, refactor]
 applies_to: [tests]
 triggers: ['signal:duplicate_block', '^\s*(async\s+)?(def\s+test\w*?|(public\s+)?void\s+\w*?|func\s+Test\w*?|fn\s+\w*?)_?\d+\s*\(|\b(it|test)\s*\(\s*[\x22\x27\x60][^\x22\x27\x60]*\d[\x22\x27\x60]']
 scope: file

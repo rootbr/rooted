@@ -2,8 +2,8 @@
 title: A pair of functions that invert each other, such as encode and decode, serialize and deserialize, or format and parse, is covered by a property that the round trip over generated values returns the original value
 rule_id: TST-41
 domain: tests
-step: [design, test, review]
-applies_to: [tests]
+step: [test]
+applies_to: [universal]
 triggers: ['(?i)\b(?:(?:en|de)code|(?:de)?seriali[sz]e|(?:un)?marshal|parse|format|dumps|loads|to_?json|from_?json|from_?str|compress|decompress|encrypt|decrypt|escape|unescape)\w*\s*\(']
 scope: callers
 check_kind: semantic

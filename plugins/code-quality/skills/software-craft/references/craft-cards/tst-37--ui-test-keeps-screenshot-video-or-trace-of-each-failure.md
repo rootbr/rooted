@@ -2,10 +2,10 @@
 title: A UI-driven test suite keeps a screenshot, video or trace of each failing test so the test's user interface can be inspected after the run
 rule_id: TST-37
 domain: tests
-step: [test, review]
+step: [test]
 applies_to: [tests, build-config]
 triggers: ['(?i)\b(new\s+\w*Driver|webdriver([.]\w+|::new)|launch_?browser|(chromium|firefox|webkit|puppeteer)(\(\))?[.]launch)\(|\b(playwright|cypress|wdio|nightwatch)[.]config\b|\bdefineConfig\(|\b(screenshotOnRunFailure|takeScreenshot|save_screenshot|get_screenshot_as_\w+|getScreenshotAs)\b|\b(screenshot|video|trace)\w*\s*[:=]\s*[\x22\x27]?(off|false|none|never)\b']
-scope: file
+scope: callers
 check_kind: semantic
 severity_default: minor
 ---

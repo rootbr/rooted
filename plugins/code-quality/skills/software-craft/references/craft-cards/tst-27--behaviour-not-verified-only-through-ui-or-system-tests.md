@@ -2,7 +2,7 @@
 title: A behaviour that a test of its own components can detect in one process or against local dependencies is not verified only through a UI-driven or whole-system test
 rule_id: TST-27
 domain: tests
-step: [design, test, review]
+step: [test]
 applies_to: [tests]
 triggers: ['[.]([Gg]oto|[Vv]isit|[Nn]avigate\w*)\(\s*[\x22\x27\x60]', '\b(find_element|findElement|FindElement|querySelector|query_selector|getByRole|getByText|getByTestId|GetByRole|GetByText|GetByTestId|get_by_role|get_by_text|get_by_test_id)\(', '[.]([Cc]lick|[Dd]blclick|[Ff]ill|sendKeys|send_keys|SendKeys)\(', '(?i)\b(e2e|end[_-]?to[_-]?end|system[_-]?tests?|acceptance[_-]?tests?)\b', 'signal:added_file']
 scope: callers

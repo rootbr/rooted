@@ -2,7 +2,7 @@
 title: An automated test replaces any third-party server or external site the team does not control at its boundary
 rule_id: TST-35
 domain: tests
-step: [test, review]
+step: [test]
 applies_to: [tests, service-boundary]
 triggers: ['https?://(?!localhost\b|127[.]0[.]0[.]1\b|0[.]0[.]0[.]0\b|\[::1\]|(www[.])?example[.](com|org|net)\b)[\w-]+([.][\w-]+)+', '\b(requests[.](get|post|put|patch|delete)|http[.](Get|Post|Head)|axios[.]\w+|urlopen|reqwest::get|fetch)\(', '(?i)\b(api[_-]?key|secret[_-]?key|access[_-]?token|client[_-]?secret)\b\s*[:=]', '(?i)\b(sandbox|staging|prod|production)[.-][\w-]+([.][\w-]+)*[.](com|io|net|org|dev)\b']
 scope: hunk

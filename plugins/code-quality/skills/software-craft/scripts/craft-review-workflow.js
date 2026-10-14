@@ -485,7 +485,7 @@ const DEFER_TO = {
   'DSN-18': ['DSN-30', 'API-12'], // public only when used outside: a declaration wider than its uses need is DSN-30's finding, an unused export on the module surface API-12's (reviewer, design)
   'DSN-30': ['API-12', 'DSN-35'], // the narrowest visibility: an unused export is API-12's finding, a widening whose only outside callers are tests DSN-35's (reviewer, design)
   'DSN-08': ['DSN-21', 'DSN-28'], // one requirement in one module: a repeated block across modules is DSN-21's finding, a data decision encoded in two modules DSN-28's (reviewer, design)
-  'DSN-21': ['DSN-27', 'API-31'], // a repeated block is written once: two identical branch bodies are DSN-27's finding, a deprecated element copying its replacement API-31's (reviewer, design)
+  'DSN-21': ['DSN-27', 'API-31', 'TST-42'], // a repeated block is written once: two identical branch bodies are DSN-27's finding, a deprecated element copying its replacement API-31's (reviewer, design); a test oracle that repeats the unit's body is TST-42's (reviewer, tests)
   'DSN-29': 'DSN-31', // an operation on a type's state lives in the type: outside code that reads a validated field and writes the result back is DSN-31's finding (reviewer, design)
   'DSN-31': 'API-01', // a validated field changes only through the type's operations: a path that leaves the invariant broken is API-01's finding (reviewer, design)
   'DSN-45': ['API-01', 'DSN-70'], // a constrained primitive becomes a checked type: a creation path that skips the check is API-01's finding, a stored mutable component without a copy DSN-70's (reviewer, design)
@@ -534,6 +534,14 @@ const DEFER_TO = {
   'API-10': 'DSN-51', // two bare numeric parameters in different units are DSN-51's (reviewer, interface)
   'API-02': 'DSN-43', // an override that only throws, panics or does nothing is DSN-43's refused-bequest finding (reviewer, interface)
   'API-14': 'TST-39', // expected and actual passed in the reverse of the framework's positions is TST-39's (reviewer, interface)
+  'TST-01': ['TST-04', 'TST-06'], // a real in-process collaborator: a doubled value object is TST-04's, a doubled third-party library type TST-06's (reviewer, tests)
+  'TST-06': 'TST-02', // a doubled third-party HTTP or RPC client is TST-02's (reviewer, tests)
+  'TST-12': 'TST-04', // a stub returning a double of a value object is TST-04's (reviewer, tests)
+  'TST-22': 'TST-24', // an assertion that stops at its subject or compares the result with itself is TST-24's (reviewer, tests)
+  'TST-31': 'TST-21', // a write to a fixed path in a shared directory with no cleanup is TST-21's (reviewer, tests)
+  'TST-40': 'TST-43', // a result-promising unit whose only property is no-crash is TST-43's (reviewer, tests)
+  'TST-19': 'DSN-21', // three sibling tests that repeat one body of four or more lines are DSN-21's (reviewer, tests)
+  'DSN-64': 'TST-48', // an in-place change of a generated argument inside a property predicate is TST-48's (reviewer, tests)
 }
 const ownersOf = ruleId => [DEFER_TO[ruleId] || []].flat()
 const SEV_RANK = { major: 0, minor: 1, suggestion: 2 }

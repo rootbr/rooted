@@ -152,6 +152,38 @@
    "claim": "C-METHOD, 'Functions with a clear receiver are methods': prefer the method form 'for any operation that is clearly associated with a particular type'. The research note records this quote as fetched.",
    "taxonomy_row": "| C, `interface`, `API` | `api-design-and-use` | SW4.1 |",
    "status": "queued"
+  },
+  {
+   "domain": "tests",
+   "concept": "An assertion compares a result's semantic content (fields, parsed content, kind) rather than a string rendering, formatted output or serialized bytes produced by code the test does not own",
+   "source_path": "google/styleguide go/decisions.md, 'Compare stable results' (also TestSmells/TestSmells.github.io pages/testsmells.html, 'Sensitive Equality')",
+   "claim": "'Avoid comparing results that may depend on output stability of a package that you do not own ... For functionality that returns a formatted string or serialized bytes, it is generally not safe to assume that the output is stable.' The research note's spine rule 22 is held-cap ('beyond max_rules 12'); TST-22 carries it only as a Limits exemption and TST-23 only for returned errors.",
+   "taxonomy_row": "| E, `tests`, `TST` | `unit-testing-and-test-quality` | CC22, SEG12 |",
+   "status": "queued"
+  },
+  {
+   "domain": "tests",
+   "concept": "A test verifies the resulting state or return value rather than the calls the code under test made on its doubles (state over interaction testing)",
+   "source_path": "testdouble/testdouble.js docs/6-verifying-invocations.md (opposing side: DOI 10.1145/3715741, authors' copy valerio-terragni/valerio-terragni.github.io assets/pdf/zhu-fse-2025.pdf)",
+   "claim": "'only verify an invocation when there's no other way to assert that your subject is doing what you want it to do'. The unit-testing note yields SEG12 'Test State, Not Interactions' to test-doubles, whose note calls the residual preference contested and records it only in the note; TST-09 and TST-10 carry only stubbed and over-pinned calls, and pending-evidence.md has no 'no separating condition' entry for it.",
+   "taxonomy_row": "| | `test-doubles` | SEG13 |",
+   "status": "queued"
+  },
+  {
+   "domain": "tests",
+   "concept": "A property in the per-commit suite has a bounded case count and run time, and an open-ended or high-count search for new failures runs as a separate job",
+   "source_path": "golang/website _content/doc/security/fuzz/index.md ('Running fuzz tests', -fuzztime); HypothesisWorks/hypothesis hypothesis/src/hypothesis/_settings.py (max_examples); proptest-rs/proptest proptest/src/test_runner/config.rs (cases)",
+   "claim": "Plain go test runs only the stored seed corpus while go test -fuzz generates until a failure, an interrupt or the -fuzztime limit, and the default case counts (100, 256) are set for a regularly run suite. Spine rule 19 is held-cap, yet pending-evidence.md's per-commit-run-deterministic entry says 'The bounded case budget, which both sides share, is carded as per-commit-run-bounded', and no TST card states it.",
+   "taxonomy_row": "| | `property-based-testing` | PP 'Property-Based Testing' |",
+   "status": "queued"
+  },
+  {
+   "domain": "tests",
+   "concept": "A known single-value edge case keeps an explicit example beside the property unless the generator in use is documented to favour that value",
+   "source_path": "proptest-rs/proptest book/src/proptest/limitations.md (the exception: HypothesisWorks/hypothesis hypothesis/docs/explanation/domain.rst)",
+   "claim": "Random sampling is overwhelmingly unlikely to pick one specific value out of 2^64, so an i64 abs property virtually always passes though it fails at i64::MIN; spine rule 20 is held-cap, and TST-50 covers only an input a property already found.",
+   "taxonomy_row": "| | `property-based-testing` | PP 'Property-Based Testing' |",
+   "status": "queued"
   }
  ]
 }

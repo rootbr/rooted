@@ -2,11 +2,11 @@
 title: Every test is declared the way its runner discovers tests, with the runner's test marker, name pattern and signature, so that the runner collects and runs it
 rule_id: TST-26
 domain: tests
-step: [test, review]
+step: [test]
 applies_to: [tests]
 triggers: ['^\s*public\s+void\s+test\w*\s*\(\s*\)', '^\s*func\s+(Test[a-z]\w*\s*\(|Test\w*\s*\((?!\s*\w+\s+\*testing[.][TM]\s*\)))', '^\s*(async\s+)?def\s+(?!test)\w*test\w*\s*\(\s*self\b', '^\s*(pub\s+)?fn\s+(test_\w+|\w+_test|it_\w+|should_\w+)\s*\(\s*\)', 'signal:added_file', 'signal:test_file']
-scope: file
-check_kind: mechanical
+scope: callers
+check_kind: semantic
 severity_default: major
 ---
 

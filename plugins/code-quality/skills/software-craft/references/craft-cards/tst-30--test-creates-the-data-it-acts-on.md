@@ -2,10 +2,10 @@
 title: A test that uses a database or other out-of-process store creates the records it changes, selects or counts and never relies on records another test or an earlier run left there
 rule_id: TST-30
 domain: tests
-step: [test, review]
+step: [test]
 applies_to: [tests]
 triggers: ['(?i)\blimit\s+1\b|\bfetchone\(\)|[.](findFirst|first|find_first|First)\(\s*\)', '(?i)\b(assert\w*|expect|assert_eq!|require[.]\w+)\W.*\bcount\w*\(', '(?i)[.](find(_?by_?id)?|get(_?by_?id)?|findById|FindByID|load)\(\s*\d+\s*[,)]', '(?i)\b(seed|seeds|fixtures?|testdata)\b[\w/.-]*[.](sql|json|ya?ml|csv)\b', '(?i)\bselect\b.+\bfrom\b(?!.*\bwhere\b)']
-scope: file
+scope: callers
 check_kind: semantic
 severity_default: major
 ---

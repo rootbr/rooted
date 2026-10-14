@@ -2,10 +2,10 @@
 title: A property's generator spans every input for which the property should hold and narrows size or variety only after a substantial slowdown is seen, with run time controlled through the case budget instead
 rule_id: TST-44
 domain: tests
-step: [implement, test, review]
+step: [test]
 applies_to: [tests]
 triggers: ['(?i)\b(?:min|max)(?:_?(?:size|value|length|leaves|depth|keys|codepoint))?\s*[=:]', '\b(?:\w*Range|size_range|StringLength|\w*OfN|StringN|of(?:Max|Min)?(?:Length|Size)|between)\(|@Size\(|[(,]\s*(?:\w+\s+in\s+)?-?\d+\w*\s*[.][.]', '(?i)\balphabet\s*[=:]|\b(?:alpha|numeric)(?:chars|numeric)?\b|char(?:acter)?s?range|[(,]\s*(?:\w+\s+in\s+)?["/]\^?\[']
-scope: file
+scope: callers
 check_kind: semantic
 severity_default: minor
 ---

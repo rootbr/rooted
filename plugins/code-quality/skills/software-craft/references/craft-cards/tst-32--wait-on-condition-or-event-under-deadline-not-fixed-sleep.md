@@ -2,7 +2,7 @@
 title: A test waits for asynchronous work by polling the awaited condition or awaiting its completion event under a bounded deadline and never by sleeping for a fixed time
 rule_id: TST-32
 domain: tests
-step: [implement, test, review]
+step: [test]
 applies_to: [tests]
 triggers: ['\b(Thread[.]sleep|TimeUnit[.]\w+[.]sleep|SystemClock[.]sleep)\(', '(?<![\w.])(time[.]|asyncio[.]|anyio[.]|trio[.])?sleep\(\s*[\d.]', '\btime[.]Sleep\(', '\b(std::)?thread::sleep\(|\btokio::time::sleep\(|\bsleep\(\s*(std::time::)?Duration::', '[.](waitForTimeout|wait_for_timeout)\(|\bcy[.]wait\(\s*\d|[.]pause\(\s*\d', '=>\s*setTimeout\(|\bsetTimeout\(\s*\w+\s*,\s*\d+|\bawait\s+setTimeout\(\s*\d']
 scope: hunk

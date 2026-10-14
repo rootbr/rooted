@@ -2,7 +2,7 @@
 title: An expected-failure check holds only the call expected to fail and names the failure by a specific kind, or by its message or a predicate when the kind is broad, whenever the failure is raised rather than returned
 rule_id: TST-23
 domain: tests
-step: [test, review]
+step: [test]
 applies_to: [tests, exceptions, result-types]
 triggers: ['\bpytest[.]raises\(\s*(\w+[.])?(Exception|BaseException|ValueError|OSError|IOError|EnvironmentError|RuntimeError|TypeError|KeyError|AssertionError)\s*\)|#\[should_panic\]|[.]toThrow(Error)?\(\s*\)|\bassertThatThrownBy\(|\b(assertThrows|assertRaises|expectThrows)\(\s*(\w+[.])?(Exception|RuntimeException|Throwable|Error|BaseException)\b|\bexpected\s*=\s*(Exception|RuntimeException|Throwable)[.]class', '^\s*(with\s+(pytest[.]raises|self[.]assertRaises\w*)\(.*\)(\s+as\s+\w+)?\s*:|.*\b(assertThrows|expectThrows)\(.*->\s*\{)\s*$|\bfail\(|\brecover\(\)|\b(err\w*|unwrap_err\(\))[.](Error|to_string)\(\)']
 scope: hunk

@@ -2,7 +2,7 @@
 title: An equivalence or model-based property compares the unit with a simpler reference or model rather than a copy of the unit's own logic
 rule_id: TST-42
 domain: tests
-step: [design, test, review]
+step: [test]
 applies_to: [tests]
 triggers: ['(?i)\b(?:oracle|reference|naive|slow|model)_?\w*\s*\(', '\bquick[.]CheckEqual\(', '(?i)\b(?:class|struct|type|interface)\s+\w*Model\b', '(?i)\bassert\w*\W+\w+\(.*\)\s*(?:==|,)\s*\w+\(']
 scope: file

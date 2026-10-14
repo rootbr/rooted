@@ -2,10 +2,10 @@
 title: A unit whose contract states a result has a property that checks that result and not only properties that check the call raises no error
 rule_id: TST-43
 domain: tests
-step: [design, test, review]
+step: [test]
 applies_to: [tests]
 triggers: ['@given\(', '\bfc[.](?:assert|property|asyncProperty)\(', '\bproptest!|#\[proptest\]', '\bf[.]Fuzz\(', '@(?:Property|ForAll)\b', '\bquick[.]Check\(']
-scope: hunk
+scope: callers
 check_kind: semantic
 severity_default: minor
 ---

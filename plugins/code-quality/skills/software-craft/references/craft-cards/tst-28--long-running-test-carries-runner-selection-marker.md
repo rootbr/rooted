@@ -2,10 +2,10 @@
 title: A long-running test carries the selection marker the project's runner filters on, so the routine run can exclude it and a deliberate run includes it
 rule_id: TST-28
 domain: tests
-step: [test, review]
+step: [test]
 applies_to: [tests, build-config]
 triggers: ['(?i)[\x22\x27\x60][\w./-]*(postgres|mysql|mariadb|mongo|redis|kafka|rabbitmq|localstack|elasticsearch|selenium)[\w./-]*:[\w.-]+[\x22\x27\x60]', 'signal:test_file']
-scope: file
+scope: callers
 check_kind: semantic
 severity_default: minor
 ---

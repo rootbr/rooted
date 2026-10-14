@@ -2,7 +2,7 @@
 title: A skipped, disabled or quarantined test states its reason or tracking reference in the skip itself, and no test is skipped unconditionally without one
 rule_id: TST-38
 domain: tests
-step: [test, review]
+step: [test]
 applies_to: [tests]
 triggers: ['^\s*@(Ignore|Disabled)\s*(\(\s*\))?\s*(//.*)?$', '^\s*@(unittest[.]skip|pytest[.]mark[.](skip|xfail))\s*(\(\s*\))?\s*(#.*)?$', '\b(it|test|describe)[.](skip|fixme)\(|\b(xit|xdescribe|xtest)\(', '\bt[.](Skip|SkipNow)\(\s*\)', '^\s*#\[ignore\]\s*(//.*)?$', '\bassume(True\(\s*false|False\(\s*true)\b']
 scope: hunk
@@ -33,6 +33,8 @@ good: @pytest.mark.skip(reason="export sandbox is down; tracked as export-sandbo
 ## Limits
 A skip that applies only under a stated condition, such as a browser or environment setup, and names its reason satisfies the rule. An unconditional skip that names why the test is off, for example an infrastructure issue that makes it fail for now, also satisfies it. The rule reaches the mark in the diff; whether the tracked item is later closed and the test reactivated is the team's process and lies outside the diff.
 
+A test switched off because it fails or flakes and the change leaves that unfixed owes in its mark both the reason and the issue that tracks the failure; that further obligation lies outside this rule, which asks only that the mark say why the test is off.
+
 ## Validator
 Grep the hunk for added skip, disable, ignore, fixme, non-strict expected-failure and quarantine marks on tests, and for assumptions that are always false. For each mark, read the reason argument where the mechanism takes one, and the comment on the mark's line or the line above it only where the mechanism takes none; a test's title is not a reason. Where a condition guards the skip, check that the skip still names its reason. An always-false assumption is flagged whatever message it carries. Validator question: **Does the hunk add an always-false assumption to a test, or a skip, disable, ignore, fixme, non-strict expected-failure or quarantine mark on a test that states no reason in its reason argument where the mechanism takes one, or in a comment on it where the mechanism takes none?** Yes → flag.
 
@@ -46,3 +48,4 @@ When the validator answers yes, the finder emits one finding (`rule_id: TST-38`,
 - eslint-plugin-playwright no-skipped-test, Options › allowConditional (fetched): "allow conditional tests based on browser/environment setup"; "still catching an unconditional skip that someone left behind". Caveat: the rule flags every unconditional skip, with or without a reason, and by default a conditional one too; accepting an unconditional skip that names its reason rests on the compliant `@Ignore("See Ticket #1234")` of java:S1607.
 - pytest documentation, Flaky tests › Xfail strict (fetched): "can be used to mark a test so that its failure does not cause the whole build to break. This could be considered like a manual quarantine, and is rather dangerous to use permanently."
 - pytest documentation, How to use skip and xfail › XFail › `condition` and `reason` parameters (fetched): "If a test is only expected to fail under a certain condition, you can pass that condition as the first parameter"; "Note that you have to pass a reason as well"; "You can specify the motive of an expected failure with the reason parameter".
+- 'Test flakiness across programming languages', IEEE TSE, DOI 10.1109/TSE.2022.3208864, abstract via the neverworkintheory review (fetched) — "for any given programming language that we studied (C, Go, Java, JS, and Python), most issues could be explained by a small fraction of root causes (5/13 root causes cover 78.07% of the issues) and could be fixed by a relatively small fraction of fix strategies (10/23 fix strategies cover 85.20% of the issues)"; caveat: reported flaky-test issues in those five languages.
