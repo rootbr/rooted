@@ -218,6 +218,11 @@
    "launched": "2026-10-14T19:55 UTC",
    "kind": "one read-only opus/max agent per HANDOVER 5.8, the change-domain prompt adapted; report to be saved as reviews/interface.json and applied per the change/code pattern",
    "status": "running"
+  },
+  "tests": {
+   "launched": "2026-10-14T20:20 UTC",
+   "kind": "one read-only opus/max agent per HANDOVER 5.8, the change-domain prompt adapted; report to be saved as reviews/tests.json and applied per the change/code pattern",
+   "status": "running"
   }
  }
 }
