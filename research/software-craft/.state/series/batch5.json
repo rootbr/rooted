@@ -205,10 +205,11 @@
      "task": "wrsikyfsz",
      "wf": "wf_ab830a56-a06",
      "launched": "2026-10-14T19:02 UTC",
-     "status": "running",
+     "status": "done 2026-10-14T19:45 UTC: 10 agents, 1,064,680 sub-agent tokens, 4 cards in its output (2 on a closing edit); output outputs/reading-and-understanding-code--r2.output.json.gz",
      "bundle": "cont/reading-and-understanding-code/r2/continue-reading-and-understanding-code-round2-1of1.js (research-continue.py --round 2 --journal <r1 journal> --from-bundle bundles/reading-and-understanding-code.js --split 1: the four carded rules sent back with revise)"
     }
-   ]
+   ],
+   "status": "done 2026-10-14T19:50 UTC: DOC-01 to DOC-04 written from both rounds, spot-read (DOC-04 -> API-20, DOC-03 -> CHG-31, API-17 carve-out for a documented property the in-repository body contradicts)"
   }
  }
 }
