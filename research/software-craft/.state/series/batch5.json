@@ -273,6 +273,10 @@
    "launched": "2026-10-14T20:20 UTC",
    "kind": "one read-only opus/max agent per HANDOVER 5.8, the change-domain prompt adapted; report to be saved as reviews/tests.json and applied per the change/code pattern",
    "status": "done 2026-10-14T21:05 UTC: 0.63M tokens, 40 minutes; report reviews/tests.json applied in the commit that follows it (9 defer entries, 13 Limits resolutions, 56 facets, 4 gap runs queued)"
+  },
+  "docs": {
+   "launched": "2026-10-14T23:37 UTC",
+   "status": "running (opus, max, read-only; reading-and-understanding-code, code-review-as-author-and-reviewer, documentation-beyond-comments; report to reviews/docs.json)"
   }
  }
 }
