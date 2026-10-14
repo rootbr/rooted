@@ -11,7 +11,7 @@
   "documentation-beyond-comments",
   "reading-and-understanding-code"
  ],
- "concurrency": "2 active tasks (operator, 2026-10-09T16:40 UTC; 1 from 06:10 UTC that day): workflows and reviewer agents counted alike; launch the next when fewer than two run",
+ "concurrency": "4 active tasks (operator, 2026-10-14T17:15 UTC: 'raise the limit to 4 active tasks and continue'; 2 from 2026-10-09T16:40 UTC, 1 from 06:10 UTC that day): workflows and reviewer agents counted alike; launch the next when fewer than four run",
  "topics": {
   "security-hygiene-in-ordinary-code": {
    "runs": [
