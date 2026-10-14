@@ -63,7 +63,7 @@
    "source_path": "rails/rails main, guides/source/active_record_querying.md, §Eager Loading Associations > N + 1 Queries Problem (fetched)",
    "claim": "\"Retrieving a list of records N (where N is a number greater than 1) in a single query can sometimes trigger N extra queries; one for each record.\" / \"The above code executes 1 (to find 10 books) + 10 (one per each book to load the author) = **11** queries in total.\" / \"Active Record lets you specify in advance all the associations that are going to be loaded.\"",
    "taxonomy_row": "| | `profiling-and-code-tuning` | CC25–26, PoP7, SW4.14 |",
-   "status": "queued"
+   "status": "carded as PRF-28 (gaps-performance, 2026-10-14)"
   },
   {
    "domain": "performance",
@@ -71,7 +71,7 @@
    "source_path": "openjdk/jdk tag jdk-21-ga, src/java.base/share/classes/java/io/BufferedWriter.java, class documentation (fetched)",
    "claim": "\"Unless prompt output is required, it is advisable to wrap a BufferedWriter around any Writer whose write() operations may be costly, such as FileWriters and OutputStreamWriters.\" / \"Without buffering, each invocation of a print() method would cause characters to be converted into bytes that would then be written immediately to the file, which can be very inefficient.\"",
    "taxonomy_row": "| | `profiling-and-code-tuning` | CC25–26, PoP7, SW4.14 |",
-   "status": "queued"
+   "status": "carded as PRF-29 (gaps-performance, 2026-10-14)"
   },
   {
    "domain": "performance",
@@ -79,7 +79,7 @@
    "source_path": "python/cpython main, Objects/listobject.c, comment in py_list_resize (fetched)",
    "claim": "\"This over-allocates proportional to the list size, making room for additional growth.  The over-allocation is mild, but is enough to give linear-time amortized behavior over a long sequence of appends() in the presence of a poorly-performing system realloc().\"",
    "taxonomy_row": "| | `algorithm-and-data-structure-choice` | PoP2, PP \"Algorithm Speed\" |",
-   "status": "queued"
+   "status": "carded as PRF-25 (gaps-performance, 2026-10-14)"
   },
   {
    "domain": "performance",
@@ -87,7 +87,7 @@
    "source_path": "openjdk/jdk tag jdk-21-ga, src/java.base/share/classes/java/util/HashMap.java, class documentation (fetched)",
    "claim": "\"Note that using many keys with the same {@code hashCode()} is a sure way to slow down performance of any hash table.\"",
    "taxonomy_row": "| | `algorithm-and-data-structure-choice` | PoP2, PP \"Algorithm Speed\" |",
-   "status": "queued"
+   "status": "carded as PRF-26 (gaps-performance, 2026-10-14)"
   },
   {
    "domain": "performance",
@@ -95,7 +95,7 @@
    "source_path": "rust-lang/book main, src/ch01-03-hello-cargo.md, §Building for Release (fetched)",
    "claim": "\"If you're benchmarking your code's running time, be sure to run `cargo build --release` and benchmark with the executable in _target/release_.\"",
    "taxonomy_row": "| | `profiling-and-code-tuning` | CC25–26, PoP7, SW4.14 |",
-   "status": "queued"
+   "status": "carded as PRF-27 (gaps-performance, 2026-10-14)"
   },
   {
    "domain": "errors",

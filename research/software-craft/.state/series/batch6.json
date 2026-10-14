@@ -26,10 +26,11 @@
      "task": "w2b3y7qr1",
      "wf": "wf_16af0040-444",
      "launched": "2026-10-14T23:19 UTC",
-     "status": "running",
+     "status": "done 2026-10-14T23:50 UTC: 11 agents, 1,208,716 sub-agent tokens, 33 minutes, 4 cards in its output; output outputs/gaps-performance--r2.output.json.gz",
      "bundle": "cont/gaps-performance/r2/continue-gaps-performance-round2-1of1.js (research-continue.py --round 2 --journal r1 --journal r1-finish --from-bundle gaps/gaps-performance.js --split 1: one card accepted at the second verdict (hash-key dispersion), four sent back with revise)"
     }
-   ]
+   ],
+   "status": "done 2026-10-14T23:55 UTC: PRF-25 to PRF-29 written from the cut round 1, its finish run and round 2 (44 agents, 5.0M sub-agent tokens); spot-read against the corpus: no duplicate, no new deferring pair (PRF-25 names the PRF-17 copy as a separate defect, PRF-26 leaves mutation in a collection to DSN-73, PRF-29 leaves the flush error to ERR-28, and PRF-07 covers code tuning, not a change in how cost grows); gap-runs.json statuses set to the card ids"
   },
   "gaps-errors": {
    "runs": [
@@ -40,6 +41,18 @@
      "launched": "2026-10-14T23:13 UTC",
      "status": "running",
      "bundle": "gaps/gaps-errors.js (4 queued concepts of the errors domain)"
+    }
+   ]
+  },
+  "gaps-code": {
+   "runs": [
+    {
+     "part": "r1",
+     "task": "w5awjt8mh",
+     "wf": "wf_4279d7dc-4bb",
+     "launched": "2026-10-14T23:52 UTC",
+     "status": "running",
+     "bundle": "gaps/gaps-code.js (4 queued concepts of the code domain)"
     }
    ]
   }
