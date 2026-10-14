@@ -75,6 +75,18 @@
     "wall_s": 1316
    },
    "recheck": "CODE-54: the wrapped-header trigger removed, Limits counts four rules, Rationale wording, Validator adjusted, as the verdict required; CODE-50: the operand-spacing wording replaced as required, the Example kept in its language under the verdict's either-or (the wording half applied)"
+  },
+  "routine-size-and-parameters": {
+   "runs": [
+    {
+     "part": "r2tree",
+     "task": "wgd1n4o0o",
+     "wf": "wf_40a9e779-3c9",
+     "launched": "2026-10-14T22:00 UTC",
+     "status": "running",
+     "bundle": "r2tree/routine-size-and-parameters--r2tree.js (7 cards CODE-33 to CODE-39; the folded key results-returned-not-written-to-parameters has no tree card and is left out)"
+    }
+   ]
   }
  }
 }
