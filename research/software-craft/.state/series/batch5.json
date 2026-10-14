@@ -182,10 +182,10 @@
     },
     {
      "part": "r2-finish-2of2",
-     "task": null,
-     "wf": null,
-     "launched": null,
-     "status": "built, waiting for a free slot (three rules)",
+     "task": "wtwumbapp",
+     "wf": "wf_167ce553-6ab",
+     "launched": "2026-10-14T22:45 UTC",
+     "status": "running",
      "bundle": "cont/internationalization-and-text-encoding/r2fin/continue-internationalization-and-text-encoding-round2-finish-2of2.js"
     }
    ]
