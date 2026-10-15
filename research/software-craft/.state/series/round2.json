@@ -1,7 +1,7 @@
 {
  "purpose": "the second-round passes over the series cards in the tree (HANDOVER §5.11): one run per topic, part r2tree, built by series/round2-from-tree.py; `result` is written by its apply step",
  "batch": "r2",
- "concurrency": "4 active tasks (operator, 2026-10-14T17:15 UTC): workflows and reviewer agents counted alike; from 2026-10-15T05:20 UTC the tree pass takes two of the four slots (operator), the gap runs and reviewers share the other two; from 2026-10-15T06:10 UTC the cap is THREE active tasks (operator): no replacement is launched while three run; the tree pass keeps two slots and the gap runs and reviewers share the third; PAUSE (operator, 2026-10-15T06:15 UTC, session limit near): nothing new is launched, the running tasks finish and are applied or written, then the series pauses; THREE active tasks again (operator, 2026-10-15T09:09 UTC: 'давай активных до 3 одновременно'): the tree pass fills the three slots one topic each, from the queue in order, the next bundle built ahead; PAUSE (operator, 2026-10-15T10:52 UTC: commit and push what is done, the work continues in another session): nothing running; Fable answered 429 (out of usage credits) at 09:36 and again at 10:49, after the operator switched the session to Opus and asked to retry; RESUMED (operator, 2026-10-15T10:55 UTC, new session, cap three active tasks): bundles regenerated, Fable answered a probe at 10:54, so the skeptic stays on claude-fable-5-1 at high; the queue is large-scale rest (CHG-31, CHG-32) and technical-debt as part r2tree-rest, then debugging, profiling-and-code-tuning and algorithm-and-data-structure-choice as part r2tree, then the tooling and input reviewers, the closing audit and the close",
+ "concurrency": "4 active tasks (operator, 2026-10-14T17:15 UTC): workflows and reviewer agents counted alike; from 2026-10-15T05:20 UTC the tree pass takes two of the four slots (operator), the gap runs and reviewers share the other two; from 2026-10-15T06:10 UTC the cap is THREE active tasks (operator): no replacement is launched while three run; the tree pass keeps two slots and the gap runs and reviewers share the third; PAUSE (operator, 2026-10-15T06:15 UTC, session limit near): nothing new is launched, the running tasks finish and are applied or written, then the series pauses; THREE active tasks again (operator, 2026-10-15T09:09 UTC: 'давай активных до 3 одновременно'): the tree pass fills the three slots one topic each, from the queue in order, the next bundle built ahead; PAUSE (operator, 2026-10-15T10:52 UTC: commit and push what is done, the work continues in another session): nothing running; Fable answered 429 (out of usage credits) at 09:36 and again at 10:49, after the operator switched the session to Opus and asked to retry; RESUMED (operator, 2026-10-15T10:55 UTC, new session, cap three active tasks): bundles regenerated, Fable answered a probe at 10:54, so the skeptic stays on claude-fable-5-1 at high; the queue is large-scale rest (CHG-31, CHG-32) and technical-debt as part r2tree-rest, then debugging, profiling-and-code-tuning and algorithm-and-data-structure-choice as part r2tree, then the tooling and input reviewers, the closing audit and the close; the tree pass is complete at 11:20 UTC (36 of 36 topics applied); the tooling (11:03) and input (11:14) reviewers run in two slots",
  "topics": {
   "comments-and-self-documenting-code": {
    "runs": [
@@ -1052,8 +1052,8 @@
      "part": "r2tree-rest",
      "task": "w91dfeorm",
      "wf": "wf_d1b3eafc-749",
-     "launched": "2026-10-15T10:55 UTC",
-     "status": "done 2026-10-15T11:00 UTC: 3 agents, 238,377 sub-agent tokens, 5 minutes; 1 accepted (CHG-32), 1 closing-edited (CHG-31: the secondary citation DOI 10.1145/3377813.3381366 re-marked unfetched, since no openable copy exists on the admitted hosts; the Piranha anchor stays fetched); applied 11:05 UTC",
+     "launched": "2026-10-15T10:53 UTC",
+     "status": "done 2026-10-15T10:58 UTC: 3 agents, 238,377 sub-agent tokens, 5 minutes; 1 accepted (CHG-32), 1 closing-edited (CHG-31: the secondary citation DOI 10.1145/3377813.3381366 re-marked unfetched, since no openable copy exists on the admitted hosts; the Piranha anchor stays fetched); applied 10:58 UTC",
      "bundle": "r2tree/large-scale-changes-and-migrations--r2tree-rest.js (2 cards CHG-31 and CHG-32, 189 KB, built with --only CHG-31,CHG-32; skeptic claude-fable-5-1 at high)"
     }
    ],
@@ -1125,8 +1125,8 @@
      "part": "r2tree-rest",
      "task": "w1y7b59zk",
      "wf": "wf_1a07144b-d28",
-     "launched": "2026-10-15T10:55 UTC",
-     "status": "done 2026-10-15T11:12 UTC: 5 agents, 404,305 sub-agent tokens, 7 minutes; 5 accepted, 0 closing-edited, 0 not accepted; applied 11:14 UTC",
+     "launched": "2026-10-15T10:53 UTC",
+     "status": "done 2026-10-15T11:01 UTC: 5 agents, 404,305 sub-agent tokens, 7 minutes; 5 accepted, 0 closing-edited, 0 not accepted; applied 11:03 UTC",
      "bundle": "r2tree/technical-debt--r2tree-rest.js (5 cards CHG-33 to CHG-37, 209 KB; skeptic claude-fable-5-1 at high)"
     }
    ],
@@ -1154,8 +1154,8 @@
      "part": "r2tree",
      "task": "wqgve6otw",
      "wf": "wf_cc7c3e01-b2f",
-     "launched": "2026-10-15T10:56 UTC",
-     "status": "done 2026-10-15T11:09 UTC: 6 agents, 446,274 sub-agent tokens, 7 minutes; 6 accepted, 0 closing-edited, 0 not accepted; applied 11:13 UTC",
+     "launched": "2026-10-15T10:53 UTC",
+     "status": "done 2026-10-15T11:00 UTC: 6 agents, 446,274 sub-agent tokens, 7 minutes; 6 accepted, 0 closing-edited, 0 not accepted; applied 11:02 UTC",
      "bundle": "r2tree/debugging--r2tree.js (6 cards PRF-01 to PRF-06, 225 KB; skeptic claude-fable-5-1 at high)"
     }
    ],
@@ -1184,8 +1184,8 @@
      "part": "r2tree",
      "task": "wlulyjebo",
      "wf": "wf_efb858e1-40b",
-     "launched": "2026-10-15T11:02 UTC",
-     "status": "done 2026-10-15T11:31 UTC: 10 agents, 827,757 sub-agent tokens, 14 minutes; 6 accepted, 2 closing-edited (PRF-08, PRF-13), 0 not accepted; applied 11:34 UTC",
+     "launched": "2026-10-15T10:58 UTC",
+     "status": "done 2026-10-15T11:13 UTC: 10 agents, 827,757 sub-agent tokens, 14 minutes; 6 accepted, 2 closing-edited (PRF-08, PRF-13), 0 not accepted; applied 11:16 UTC",
      "bundle": "r2tree/profiling-and-code-tuning--r2tree.js (8 cards PRF-07 to PRF-14, 342 KB; skeptic claude-fable-5-1 at high)"
     }
    ],
@@ -1217,17 +1217,45 @@
      "part": "r2tree",
      "task": "wj000gggz",
      "wf": "wf_ea19d008-0d7",
-     "launched": "2026-10-15T11:12 UTC",
-     "status": "running",
+     "launched": "2026-10-15T11:00 UTC",
+     "status": "done 2026-10-15T11:18 UTC: 15 agents, 1,177,567 sub-agent tokens, 17 minutes; 5 accepted, 5 closing-edited (PRF-15, PRF-17, PRF-18, PRF-19, PRF-22), 0 not accepted; applied 11:20 UTC",
      "bundle": "r2tree/algorithm-and-data-structure-choice--r2tree.js (10 cards PRF-15 to PRF-24, 343 KB; skeptic claude-fable-5-1 at high)"
     }
-   ]
+   ],
+   "result": {
+    "applied": "2026-10-15T11:18 UTC",
+    "accepted": [
+     "PRF-16",
+     "PRF-20",
+     "PRF-21",
+     "PRF-23",
+     "PRF-24"
+    ],
+    "closing_edited": [
+     "PRF-15",
+     "PRF-17",
+     "PRF-18",
+     "PRF-19",
+     "PRF-22"
+    ],
+    "renamed": [],
+    "not_accepted": [],
+    "agents": 15,
+    "tokens": 1177567,
+    "wall_s": 1029
+   },
+   "recheck": "Every closing edit matched its verdict's required edits exactly; the facet edits the verdicts drew from the spine's declared facets are reverted where the performance-domain reviewer (reviews/performance.json) had set the value, which stands (HANDOVER 5.11): step review put back on PRF-15, PRF-17, PRF-18 and PRF-19 is removed again (the reviewer dropped review from the ten algorithm cards), and severity major on PRF-18 and PRF-19 is lowered again to minor (the reviewer's documented cost classes with no measured cost), frontmatter and Finding output alike. What stands: PRF-15 gains containsValue in its first trigger and its LDoctor citation is marked unfetched (the LaTeX source stays fetched); PRF-17 replaces 'instead of' with 'rather than' in its Rationale; PRF-18 merges its four trigger patterns into one (the union is unchanged, so every former dispatch still fires) and gets its blank line before Validator; PRF-22 merges its six patterns into two and drops the bare .filter/.reduce branch the verdict showed firing on any JavaScript call. PRF-19's verdict required only the two facet restorations, so after the revert the tree card is unchanged and the card counts as accepted; the result list keeps the pass's own classification, as the routine-size precedent does."
   }
  },
  "reviewers": {
   "tooling": {
-   "launched": "2026-10-15T11:15 UTC",
+   "launched": "2026-10-15T11:03 UTC",
    "kind": "one read-only opus/max agent per HANDOVER 5.8 (series/REVIEWER.md filled for tooling: TOOL-01 to TOOL-44, four topics); report to be saved as reviews/tooling.json and applied per the change/code pattern",
+   "status": "running"
+  },
+  "input": {
+   "launched": "2026-10-15T11:14 UTC",
+   "kind": "one read-only opus/max agent per HANDOVER 5.8 (series/REVIEWER.md filled for input: INP-01 to INP-24, two topics); report to be saved as reviews/input.json and applied per the change/code pattern",
    "status": "running"
   }
  }

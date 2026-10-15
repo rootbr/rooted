@@ -4,7 +4,7 @@ rule_id: PRF-18
 domain: performance
 step: [implement]
 applies_to: [universal]
-triggers: ['[.]sort\(|\bsorted\(|[.]sort_\w+\(|\b(Arrays|Collections)[.]sort\(|[.]toSorted\(', '\bsort[.](Slice|SliceStable|Sort|Stable|Strings|Ints|Float64s)\(|\bslices[.]Sort\w*\(', '\binsort\w*\(|\bbisect\w*\(|\bbinarySearch\(|[.]binary_search\w*\(|[.]partition_point\(|\bslices[.]BinarySearch\w*\(|\bsort[.]Search\w*\(|[.]splice\(.*,\s*0\s*,', '\b(min|max)\(|[.](min|max)\(|\bslices[.](Min|Max)\w*\(']
+triggers: ['[.]sort\(|\bsorted\(|[.]sort_\w+\(|\b(Arrays|Collections)[.]sort\(|[.]toSorted\(|\bsort[.](Slice|SliceStable|Sort|Stable|Strings|Ints|Float64s)\(|\bslices[.]Sort\w*\(|\binsort\w*\(|\bbisect\w*\(|\bbinarySearch\(|[.]binary_search\w*\(|[.]partition_point\(|\bslices[.]BinarySearch\w*\(|\bsort[.]Search\w*\(|[.]splice\(.*,\s*0\s*,|\b(min|max)\(|[.](min|max)\(|\bslices[.](Min|Max)\w*\(']
 scope: file
 check_kind: semantic
 severity_default: minor
@@ -33,8 +33,8 @@ good: for _, x := range xs {
 ## Limits
 A sort placed after the loop, for an order read only at the end, is the form the rule asks for and is not a finding. A collection the domain bounds to a handful of elements is outside the rule: its per-pass cost does not grow with the input, and the documented gain of sorted insertion over frequent re-sorting is stated for long lists of items with expensive comparison operations. Sorted insertion that finds its position by binary search can be an improvement over frequent re-sorting, yet each insertion still costs O(n) because of the linear insertion step, so it stays a finding when the collection grows with the input. A heap gives only its smallest or largest element cheaply; a loop that needs key order or a range of entries on each iteration takes the ordered tree.
 
-
 Where the code after the loop reads only the smallest or largest element, or the first or last few, of what the loop collected, one scan or a bounded heap replaces the sort after the loop.
+
 ## Validator
 Grep the hunk for a sort call, a sorted-insertion or binary-search call, and a minimum or maximum call. For each hit, open the file and find the innermost enclosing loop; check whether the same loop adds elements to the collection that the call sorts, inserts into or scans. Trace where the added elements come from: a loop over an input, a request stream or a growing work list makes the collection grow with the input, while a literal, a fixed set of cases or a constant bound keeps it to a handful. A sort placed after the loop is the cheap form and is not a hit. Validator question: **Does a loop whose collection grows with the input add elements to it one at a time and, on every iteration, re-sort it, insert into it as a sorted array, or scan it for its minimum or maximum?** Yes → flag.
 

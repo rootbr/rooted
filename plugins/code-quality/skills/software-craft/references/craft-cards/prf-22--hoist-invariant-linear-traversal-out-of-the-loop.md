@@ -4,7 +4,7 @@ rule_id: PRF-22
 domain: performance
 step: [implement, refactor]
 applies_to: [universal]
-triggers: ['\bfor\s*\([^;]*;[^;]*\w\([^;]*;', '\bfor\s+[^;{(]*;[^;{]*\w\([^;{]*;', '\bObject[.](keys|values|entries)\([^)]*\)[.]length\b', '\b(sum|max|min|sorted|len\(\s*set)\(\s*\w+\s*\)|[.]stream\(\).*[.](count|max|min|sum)\(|[.]iter\(\).*[.](count|max|min|sum)\(', '\bwhile\b[^;{]*\w\(|\bfor\s+[^;{(=]*[<>][^;{]*\w\(', '[.](filter|reduce)\(|\bMath[.](max|min)\([.]{3}']
+triggers: ['\b(for|while)\s*\(?[^;{]*;[^;{]*\w\([^;{]*;|\bwhile\b[^;{]*\w\(', '\bObject[.](keys|values|entries)\([^)]*\)[.]length\b|\b(sum|max|min|sorted|len\(\s*set)\(\s*\w+\s*\)|[.]stream\(\).*[.](count|max|min|sum)\(|[.]iter\(\).*[.](count|max|min|sum)\(|\bMath[.](max|min)\([.]{3}']
 scope: file
 check_kind: semantic
 severity_default: major
