@@ -925,6 +925,18 @@
     "wall_s": 462
    },
    "recheck": "no edits; nothing to re-check"
+  },
+  "code-smells-and-antipatterns": {
+   "runs": [
+    {
+     "part": "r2tree",
+     "task": "wxk8fdz0h",
+     "wf": "wf_1b4b75ae-e02",
+     "launched": "2026-10-15T09:18 UTC",
+     "status": "running",
+     "bundle": "r2tree/code-smells-and-antipatterns--r2tree.js (6 cards CHG-06 to CHG-11, 288 KB)"
+    }
+   ]
   }
  }
 }
