@@ -749,29 +749,28 @@
      "task": "wyehnqw51",
      "wf": "wf_34352a36-5d3",
      "launched": "2026-10-15T05:57 UTC",
-     "status": "running",
+     "status": "done 2026-10-15T06:20 UTC: 7 agents, 632,823 sub-agent tokens, 12 minutes; 5 accepted (ERR-25, ERR-26, ERR-27, ERR-29, ERR-30), 1 closing-edited (ERR-28), 0 not accepted; applied with one facet revert (ERR-28 counts as accepted)",
      "bundle": "r2tree/resource-management-and-ownership--r2tree-2of2.js (--only ERR-25 to ERR-30, 374 KB)"
     }
    ],
    "result": {
-    "applied": "2026-10-15T05:36 UTC",
+    "applied": "2026-10-15T05:44 UTC",
     "accepted": [
-     "ERR-19",
-     "ERR-21",
-     "ERR-22",
-     "ERR-24"
+     "ERR-25",
+     "ERR-26",
+     "ERR-27",
+     "ERR-28",
+     "ERR-29",
+     "ERR-30"
     ],
-    "closing_edited": [
-     "ERR-20",
-     "ERR-23"
-    ],
+    "closing_edited": [],
     "renamed": [],
     "not_accepted": [],
-    "agents": 9,
-    "tokens": 785500,
-    "wall_s": 801
+    "agents": 7,
+    "tokens": 632823,
+    "wall_s": 737
    },
-   "recheck": "part 1: ERR-21: the verdict's only edit dropped applies_to manual-memory, which the errors-domain reviewer had added (reviews/errors.json); the reviewer's value stands and the provenance line records it; ERR-20: wording, the SEI CERT FIO04-J entry gains its openable locator; ERR-23: the provenance line's check_kind note brought to the reviewer's semantic value (the card unchanged)"
+   "recheck": "part 1: ERR-21: the verdict's only edit dropped applies_to manual-memory, which the errors-domain reviewer had added (reviews/errors.json); the reviewer's value stands and the provenance line records it; ERR-20: wording, the SEI CERT FIO04-J entry gains its openable locator; ERR-23: the provenance line's check_kind note brought to the reviewer's semantic value (the card unchanged); part 2: ERR-28: the verdict's only edit restored step review, which the errors-domain reviewer had removed; reverted with a provenance note, so the whole topic stands as accepted apart from ERR-20's locator and ERR-23's note"
   },
   "logging-and-diagnostic-output": {
    "runs": [
