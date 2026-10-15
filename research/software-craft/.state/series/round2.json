@@ -983,10 +983,29 @@
      "task": "wxk8fdz0h",
      "wf": "wf_1b4b75ae-e02",
      "launched": "2026-10-15T09:18 UTC",
-     "status": "running",
+     "status": "done 2026-10-15T09:28 UTC: 7 agents, 589,726 sub-agent tokens, 10 minutes; 5 accepted, 1 closing-edited (CHG-11), 0 not accepted; applied",
      "bundle": "r2tree/code-smells-and-antipatterns--r2tree.js (6 cards CHG-06 to CHG-11, 288 KB)"
     }
-   ]
+   ],
+   "result": {
+    "applied": "2026-10-15T09:29 UTC",
+    "accepted": [
+     "CHG-06",
+     "CHG-07",
+     "CHG-08",
+     "CHG-09",
+     "CHG-10"
+    ],
+    "closing_edited": [
+     "CHG-11"
+    ],
+    "renamed": [],
+    "not_accepted": [],
+    "agents": 7,
+    "tokens": 589726,
+    "wall_s": 596
+   },
+   "recheck": "CHG-11: the Pylint _check_unreachable comment quoted verbatim in the Source bullet and the provenance line; no facet touched"
   },
   "seams-and-characterization-tests": {
    "runs": [
