@@ -1,7 +1,7 @@
 {
  "purpose": "the second-round passes over the series cards in the tree (HANDOVER §5.11): one run per topic, part r2tree, built by series/round2-from-tree.py; `result` is written by its apply step",
  "batch": "r2",
- "concurrency": "4 active tasks (operator, 2026-10-14T17:15 UTC): workflows and reviewer agents counted alike; from 2026-10-15T05:20 UTC the tree pass takes two of the four slots (operator), the gap runs and reviewers share the other two; from 2026-10-15T06:10 UTC the cap is THREE active tasks (operator): no replacement is launched while three run; the tree pass keeps two slots and the gap runs and reviewers share the third; PAUSE (operator, 2026-10-15T06:15 UTC, session limit near): nothing new is launched, the running tasks finish and are applied or written, then the series pauses; THREE active tasks again (operator, 2026-10-15T09:09 UTC: 'давай активных до 3 одновременно'): the tree pass fills the three slots one topic each, from the queue in order, the next bundle built ahead; PAUSE (operator, 2026-10-15T10:52 UTC: commit and push what is done, the work continues in another session): nothing running; Fable answered 429 (out of usage credits) at 09:36 and again at 10:49, after the operator switched the session to Opus and asked to retry",
+ "concurrency": "4 active tasks (operator, 2026-10-14T17:15 UTC): workflows and reviewer agents counted alike; from 2026-10-15T05:20 UTC the tree pass takes two of the four slots (operator), the gap runs and reviewers share the other two; from 2026-10-15T06:10 UTC the cap is THREE active tasks (operator): no replacement is launched while three run; the tree pass keeps two slots and the gap runs and reviewers share the third; PAUSE (operator, 2026-10-15T06:15 UTC, session limit near): nothing new is launched, the running tasks finish and are applied or written, then the series pauses; THREE active tasks again (operator, 2026-10-15T09:09 UTC: 'давай активных до 3 одновременно'): the tree pass fills the three slots one topic each, from the queue in order, the next bundle built ahead; PAUSE (operator, 2026-10-15T10:52 UTC: commit and push what is done, the work continues in another session): nothing running; Fable answered 429 (out of usage credits) at 09:36 and again at 10:49, after the operator switched the session to Opus and asked to retry; RESUMED (operator, 2026-10-15T10:55 UTC, new session, cap three active tasks): bundles regenerated, Fable answered a probe at 10:54, so the skeptic stays on claude-fable-5-1 at high; the queue is large-scale rest (CHG-31, CHG-32) and technical-debt as part r2tree-rest, then debugging, profiling-and-code-tuning and algorithm-and-data-structure-choice as part r2tree, then the tooling and input reviewers, the closing audit and the close",
  "topics": {
   "comments-and-self-documenting-code": {
    "runs": [
@@ -1047,6 +1047,14 @@
      "launched": "2026-10-15T09:27 UTC",
      "status": "cut 2026-10-15T09:38 UTC by the session's usage limit (Fable out of usage credits): 9 agents, 712,710 sub-agent tokens, 11 minutes; verify3 failed for CHG-31 and CHG-32; 5 accepted, 1 closing-edited (CHG-29); applied 10:50 UTC, CHG-31 and CHG-32 left unchanged for the rest run",
      "bundle": "r2tree/large-scale-changes-and-migrations--r2tree.js (8 cards CHG-25 to CHG-32, 290 KB; the tree key migration-flag-records-owner-and-expiry has no corpus card and is left out)"
+    },
+    {
+     "part": "r2tree-rest",
+     "task": "w91dfeorm",
+     "wf": "wf_d1b3eafc-749",
+     "launched": "2026-10-15T10:55 UTC",
+     "status": "running",
+     "bundle": "r2tree/large-scale-changes-and-migrations--r2tree-rest.js (2 cards CHG-31 and CHG-32, 189 KB, built with --only CHG-31,CHG-32; skeptic claude-fable-5-1 at high)"
     }
    ],
    "result": {
@@ -1122,6 +1130,26 @@
      "launched": "2026-10-15T09:35 UTC",
      "status": "cut 2026-10-15T09:38 UTC by the session's usage limit (Fable out of usage credits): 5 agents, 160,946 sub-agent tokens, 3 minutes; verify3 failed for all five cards, no verdict; not applied (nothing to apply); output snapshotted for cost",
      "bundle": "r2tree/technical-debt--r2tree.js (5 cards CHG-33 to CHG-37, 209 KB; the tree key retired-flag-leaves-no-dead-branch has no corpus card and is left out)"
+    },
+    {
+     "part": "r2tree-rest",
+     "task": "w1y7b59zk",
+     "wf": "wf_1a07144b-d28",
+     "launched": "2026-10-15T10:55 UTC",
+     "status": "running",
+     "bundle": "r2tree/technical-debt--r2tree-rest.js (5 cards CHG-33 to CHG-37, 209 KB; skeptic claude-fable-5-1 at high)"
+    }
+   ]
+  },
+  "debugging": {
+   "runs": [
+    {
+     "part": "r2tree",
+     "task": "wqgve6otw",
+     "wf": "wf_cc7c3e01-b2f",
+     "launched": "2026-10-15T10:56 UTC",
+     "status": "running",
+     "bundle": "r2tree/debugging--r2tree.js (6 cards PRF-01 to PRF-06, 225 KB; skeptic claude-fable-5-1 at high)"
     }
    ]
   }
