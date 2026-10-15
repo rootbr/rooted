@@ -5,7 +5,7 @@ cdir,out,new,warn=sys.argv[1:5]
 rows=[]
 for f in sorted(glob.glob(os.path.join(cdir,"*.md"))):
     t=open(f,encoding="utf-8").read()
-    fm=t.split("---")[1]
+    fm=t.split("\n---\n")[0].split("---\n",1)[1] if t.startswith("---\n") else t.split("---")[1]
     g=lambda k: re.search(rf"^{k}:\s*(.+)$",fm,re.M).group(1).strip()
     rows.append(f"| {g('rule_id')} | {g('domain')} | {g('check_kind')} | {g('severity_default')} | `{os.path.basename(f)}` | {t.count(chr(10))+1} |")
 hdr=f"""# Discovery inventory — {cdir} (the corpus directory)

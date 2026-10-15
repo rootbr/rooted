@@ -242,6 +242,26 @@
    "dismissed": [
     "C-F3 x7"
    ]
+  },
+  {
+   "run": 6,
+   "cards": [
+    "PRF-30",
+    "PRF-31",
+    "TOOL-45",
+    "TOOL-46",
+    "TOOL-47",
+    "TOOL-48",
+    "INP-25",
+    "INP-26",
+    "INP-27",
+    "INP-28"
+   ],
+   "task": "wpuun217y",
+   "wf": "wf_55608a26-d15",
+   "launched": "2026-10-15T15:15 UTC",
+   "status": "running",
+   "note": "the three cards split at runs 4 and 5 and the seven cards of the tooling and input gap runs"
   }
  ],
  "follow_up": "PRF-30, PRF-31 and TOOL-45 (split at runs 4 and 5) and the cards the tooling and input gap runs land get one more kb-card run, together with the kb-corpus run, after the gap topics are written",
@@ -306,5 +326,12 @@
    "R-61 the taxonomy's strict cell": "the enumerated exclusions the validator checks",
    "S-25 the 96-job cap sentence": "the sentence names static-craft.py as the subject two clauses earlier"
   }
+ },
+ "corpus_audit": {
+  "task": "w2zsfkouq",
+  "wf": "wf_f0430f3e-596",
+  "launched": "2026-10-15T15:15 UTC",
+  "status": "running",
+  "target": "references/craft-cards as kb-corpus (C-A2, C-A3), 471 cards, inventory tmp/audit/corpus-inventory.md"
  }
 }
