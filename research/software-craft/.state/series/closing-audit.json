@@ -331,7 +331,7 @@
   "task": "w2zsfkouq",
   "wf": "wf_f0430f3e-596",
   "launched": "2026-10-15T15:15 UTC",
-  "status": "running",
+  "status": "done 2026-10-15T15:17 UTC: 2 agents (C-A2, C-A3), 263,473 sub-agent tokens, 1 minute; 0 patches; the cards directory unchanged during the run",
   "target": "references/craft-cards as kb-corpus (C-A2, C-A3), 471 cards, inventory tmp/audit/corpus-inventory.md"
  }
 }
