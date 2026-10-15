@@ -1,0 +1,127 @@
+{
+ "purpose": "the closing-stage card audit (HANDOVER 5.7, 5.10 item 3): two cards from every topic series/audit-samples.json does not list, in runs of about ten, with the audit workflow on haiku (mechanical) and sonnet (semantic); the three pilot topics are left out because the pilot's 36 cards had their full card audit at step 2",
+ "sample": {
+  "algorithm-and-data-structure-choice": [
+   "PRF-15",
+   "PRF-17"
+  ],
+  "build-warnings-static-analysis-ci": [
+   "TOOL-12",
+   "TOOL-13"
+  ],
+  "code-review-as-author-and-reviewer": [
+   "DOC-05",
+   "DOC-06"
+  ],
+  "code-smells-and-antipatterns": [
+   "CHG-11",
+   "CHG-06"
+  ],
+  "debugging": [
+   "PRF-01",
+   "PRF-02"
+  ],
+  "defensive-programming": [
+   "ERR-13",
+   "ERR-17"
+  ],
+  "dependency-management": [
+   "TOOL-01",
+   "TOOL-02"
+  ],
+  "documentation-beyond-comments": [
+   "DOC-11",
+   "DOC-12"
+  ],
+  "gaps-change": [
+   "CHG-38"
+  ],
+  "gaps-code": [
+   "CODE-83",
+   "CODE-84"
+  ],
+  "gaps-design": [
+   "DSN-74"
+  ],
+  "gaps-docs": [
+   "DOC-23"
+  ],
+  "gaps-errors": [
+   "ERR-52",
+   "ERR-53"
+  ],
+  "gaps-interface": [
+   "API-32",
+   "API-33"
+  ],
+  "gaps-performance": [
+   "PRF-25",
+   "PRF-26"
+  ],
+  "gaps-tests": [
+   "TST-52",
+   "TST-53"
+  ],
+  "internationalization-and-text-encoding": [
+   "TOOL-33",
+   "TOOL-34"
+  ],
+  "large-scale-changes-and-migrations": [
+   "CHG-29",
+   "CHG-31"
+  ],
+  "parsing-and-grammar-based-input": [
+   "INP-13",
+   "INP-14"
+  ],
+  "profiling-and-code-tuning": [
+   "PRF-08",
+   "PRF-13"
+  ],
+  "reading-and-understanding-code": [
+   "DOC-01",
+   "DOC-02"
+  ],
+  "runtime-configuration": [
+   "TOOL-22",
+   "TOOL-23"
+  ],
+  "seams-and-characterization-tests": [
+   "CHG-18",
+   "CHG-19"
+  ],
+  "security-hygiene-in-ordinary-code": [
+   "INP-01",
+   "INP-02"
+  ],
+  "small-steps-and-minimal-diffs": [
+   "CHG-14",
+   "CHG-16"
+  ],
+  "technical-debt": [
+   "CHG-33",
+   "CHG-34"
+  ]
+ },
+ "runs": [
+  {
+   "run": 1,
+   "cards": [
+    "PRF-15",
+    "PRF-17",
+    "TOOL-12",
+    "TOOL-13",
+    "DOC-05",
+    "DOC-06",
+    "CHG-11",
+    "CHG-06",
+    "PRF-01",
+    "PRF-02"
+   ],
+   "task": "wmtz9ft2i",
+   "wf": "wf_95329231-43a",
+   "launched": "2026-10-15T11:59 UTC",
+   "status": "running"
+  }
+ ]
+}
