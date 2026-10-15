@@ -260,8 +260,20 @@
    "task": "wpuun217y",
    "wf": "wf_55608a26-d15",
    "launched": "2026-10-15T15:15 UTC",
-   "status": "running",
-   "note": "the three cards split at runs 4 and 5 and the seven cards of the tooling and input gap runs"
+   "status": "done 2026-10-15T15:33 UTC: 221 agents, 14,470,858 sub-agent tokens, 18 minutes; 23 patches: C-E2 on INP-25 applied eleven times (every attribution to a query, a standard, a cheat sheet or a platform's documentation replaced by the claim); C-B1 on INP-26 applied by a split on the TST-39 precedent: INP-26 keeps the secrets-in-clear-text clause, INP-29 takes the log-injection and malformed-security-event clauses, each from the sources the gaps-input run fetched, with new fenced examples, provenance lines and note rows; C-B1 on TOOL-45 applied by narrowing: the pre-parse flag read rests on one language's style guide, so it moved to pending-evidence.md and the card keeps the load-time clause; C-E1 on INP-28 applied (severity suggestion, the Limits name the sources' recommendation); C-C1 on TOOL-48 applied as a bracket gloss inside the quotation; C-F3 on INP-26, INP-27, INP-28, PRF-30, TOOL-45, TOOL-46 and TOOL-48 dismissed under the taxonomy's Example-form deviation; C-D2 on TOOL-48 dismissed, the block schema's Finding output is the consumer block; targets unmutated",
+   "note": "the three cards split at runs 4 and 5 and the seven cards of the tooling and input gap runs",
+   "patches": 23,
+   "applied": [
+    "INP-25 C-E2 x11",
+    "INP-26 C-B1 (split into INP-26, INP-29)",
+    "TOOL-45 C-B1 (narrowed, pending entry)",
+    "INP-28 C-E1",
+    "TOOL-48 C-C1"
+   ],
+   "dismissed": [
+    "C-F3 x7",
+    "TOOL-48 C-D2"
+   ]
   }
  ],
  "follow_up": "PRF-30, PRF-31 and TOOL-45 (split at runs 4 and 5) and the cards the tooling and input gap runs land get one more kb-card run, together with the kb-corpus run, after the gap topics are written",
@@ -333,5 +345,14 @@
   "launched": "2026-10-15T15:15 UTC",
   "status": "done 2026-10-15T15:17 UTC: 2 agents (C-A2, C-A3), 263,473 sub-agent tokens, 1 minute; 0 patches; the cards directory unchanged during the run",
   "target": "references/craft-cards as kb-corpus (C-A2, C-A3), 471 cards, inventory tmp/audit/corpus-inventory.md"
+ },
+ "totals": {
+  "runs": 6,
+  "cards_sampled": 59,
+  "agents": 1303,
+  "tokens": 84437579,
+  "patches": 81,
+  "corpus_run": "0 patches",
+  "note": "the 49-card sample plus the ten cards split or added at the close; the three cards split at run 6 (INP-26 narrowed, INP-29, TOOL-45 narrowed) have no audit run of their own, as TST-39 had none"
  }
 }
