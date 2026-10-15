@@ -121,6 +121,36 @@
    "task": "wmtz9ft2i",
    "wf": "wf_95329231-43a",
    "launched": "2026-10-15T11:59 UTC",
+   "status": "done 2026-10-15T12:19 UTC: 220 agents, 13,976,591 sub-agent tokens, 20 minutes; 6 patches: C-E2 on PRF-17 applied (the style-guide attribution in Limits replaced by the claim); C-D1 on CHG-06 applied (Limits now leads with the passive-carrier decision, the source split follows); C-F3 on PRF-02, PRF-15 and TOOL-13 dismissed under the taxonomy's Example-form deviation (fenced pairs of 7 to 8 lines in one of the five languages); C-F2 on PRF-17 dismissed, the taxonomy's block schema names Finding output as the consumer block; targets unmutated (git status clean on the cards during the run)",
+   "patches": 6,
+   "applied": [
+    "PRF-17 C-E2",
+    "CHG-06 C-D1"
+   ],
+   "dismissed": [
+    "PRF-02 C-F3",
+    "PRF-15 C-F3",
+    "TOOL-13 C-F3",
+    "PRF-17 C-F2"
+   ]
+  },
+  {
+   "run": 2,
+   "cards": [
+    "ERR-13",
+    "ERR-17",
+    "TOOL-01",
+    "TOOL-02",
+    "DOC-11",
+    "DOC-12",
+    "CHG-38",
+    "CODE-83",
+    "CODE-84",
+    "DSN-74"
+   ],
+   "task": "wwp0dukhc",
+   "wf": "wf_e69e9a8a-638",
+   "launched": "2026-10-15T12:20 UTC",
    "status": "running"
   }
  ]
