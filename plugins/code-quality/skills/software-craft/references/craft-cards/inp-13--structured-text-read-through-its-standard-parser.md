@@ -2,7 +2,7 @@
 title: Text in a structured format such as JSON, CSV, XML, HTML, a URL or a date is read, and its parts are checked, through the language's standard or established parser for that format, never by splitting, substring tests or a regular expression over the raw text
 rule_id: INP-13
 domain: input
-step: [implement, review]
+step: [implement]
 applies_to: [universal]
 triggers: ['([.](split|split_once)\(\s*|strings[.](Split|SplitN|Cut)\(\s*\w+\s*,\s*)["\x27]([,;|&=@?]|\\t)["\x27]|(\bre[.]\w+|RegExp|Pattern[.]compile|\bregexp[.]\w+|Regex::new|replaceAll|matches)\(.*(</?(\w+|!--)|<\[\^>\]|<[.][*+]|https\?:|\\d\{4\})|(^|[=(,:!&|?;]\s*)/\^?(https\?:|\\d\{4\}|<\[\^>\]|<[.][*+]|</?\w|<!--)', '(startswith|startsWith|endswith|endsWith|HasPrefix|HasSuffix|starts_with|ends_with|includes|contains|Contains|indexOf)\(\s*(\w+\s*,\s*)?["\x27](https?:|//|[.]\w|[\w-]+([.][\w-]+)*[.][a-z]{2,}["\x27])|["\x27](https?://[^"\x27]*|[\w-]+([.][\w-]+)*[.][a-z]{2,}(/[^"\x27]*)?)["\x27]\s+(not\s+)?in\s+\w']
 scope: file

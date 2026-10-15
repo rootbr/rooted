@@ -2,7 +2,7 @@
 title: A regular expression that checks a whole value matches the entire value, through a full-match call or anchors at both ends that admit no trailing newline, with alternatives grouped inside the anchors
 rule_id: INP-17
 domain: input
-step: [implement, review]
+step: [implement]
 applies_to: [universal]
 triggers: ['[\w/)\]][.](test|match|search)\(|\bre[.]compile\(|\b(MatchString|is_match)\(|[.]matcher\(.*\)[.]find\(\)', '["''/`]\^[^"''/`|()]*\|[^"''/`]*\$["''/`]']
 scope: hunk

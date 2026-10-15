@@ -2,11 +2,11 @@
 title: An untrusted value written into HTML, script, style, a URL or a header goes through the template engine's contextual escaping or an encoder for that context at the point of output, never through a raw-markup escape hatch without an HTML sanitizer
 rule_id: INP-03
 domain: input
-step: [implement, review]
+step: [implement]
 applies_to: [service-boundary]
 triggers: ['[.](inner|outer)HTML\s*\+?=|["'']innerHTML["'']|\b(set_inner_html|setInnerHTML|insertAdjacentHTML|bypassSecurityTrust\w*|unsafeHTML|PreEscaped|mark_safe|Markup|htmlLiteral)\(|\bdangerouslySetInnerHTML\b|\bdocument[.]write(ln)?\(|\btemplate[.](HTML|HTMLAttr|JS|JSStr|URL|CSS|Srcset)\(|\bv-html\b|\bth:utext\b|\{\{\{|\|\s*safe\b|\?no_esc\b', '(?i)\b(auto_?escape|escape_?xml|escape)["'']?\s*[:=]\s*["'']?(false|off|none)\b|\bnoEscape\s*[:=]\s*true\b|\{%-?\s*autoescape\s+(false|off)\b|<#noautoesc\b|\bautoescape_on\(\s*vec!\[\s*\]\s*\)|\btext/template\b', '["''`]\s*<[a-zA-Z][^"''`]*["''`]\s*\+\s*\w|<[a-zA-Z][^<>]*\s[a-zA-Z-]+=\\?["''][^"''<>]*(\$\{|\{\w|\{\}|%[sdv]|\\?["'']\s*\+)|["''`][^"''`]*<[a-zA-Z][^"''`]*(%[sdv]|\{\}|\$\{|\{\w)|[.]append\(\s*["''`]\s*<[a-zA-Z]|\bon[a-z]{3,}\s*=\s*("[^"]*|''[^'']*)(\{\{|\$\{|<%=|#\{)']
 scope: hunk
-check_kind: mechanical
+check_kind: semantic
 severity_default: major
 ---
 

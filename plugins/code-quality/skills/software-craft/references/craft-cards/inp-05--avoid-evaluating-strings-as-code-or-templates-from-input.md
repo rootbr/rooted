@@ -2,7 +2,7 @@
 title: Code avoids evaluating a string as code or building a template from untrusted input, and where there is no alternative the untrusted input it includes is sanitized, or for a template strictly validated, before use
 rule_id: INP-05
 domain: input
-step: [implement, review]
+step: [implement]
 applies_to: [universal]
 triggers: ['(?<![.\w])eval(?:[?][.])?\(|[.]eval\(\s*[^)\s]|\(\s*0\s*,\s*eval\s*\)\s*\(', '(?<![.\w])exec\(', '\bnew\s+Function\(|(?<![.\w])Function\(\s*[\"''`a-zA-Z]|\bset(Timeout|Interval|Immediate)\(\s*[\"''`]', '\bSpelExpressionParser\b|[.]parseExpression\(|\bScriptEngineManager\b|\bGroovyShell\b|\bvm[.]runIn\w*Context\(', '\brender_template_string\(|[.]from_string\(|\btemplate[.]New\([^)]*\)[.]Parse\(|\bHandlebars[.]compile\(|\b_[.]template\(|\bVelocity[.]evaluate\(|\bnew\s+Template\(|[.]render_str\(']
 scope: callers

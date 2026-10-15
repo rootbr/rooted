@@ -220,6 +220,51 @@
    "taxonomy_row": "| H, `tooling`, `TOOL` | `build-warnings-static-analysis-ci` | SEG18, SEG20, SEG23, PP \"Pragmatic Starter Kit\" |; domain: 'tools and hygiene: build, warnings, static analysis, CI, dependencies, runtime configuration, internationalization and encoding'",
    "status": "queued",
    "found_by": "reviewer, tooling (reviews/tooling.json)"
+  },
+  {
+   "domain": "input",
+   "concept": "Hardening an XML parser for untrusted input (DTDs or external entities disabled, entity expansion limited). Each topic assigned it to the other: the security-hygiene note says 'BSRS ch. 12 XXE row and ASVS 1.5.1 (XML parsers with external entities disabled): parser configuration is yielded to parsing-and-grammar-based-input', the parsing note says 'XML parser hardening belongs to security-hygiene-in-ordinary-code', and INP-13's Limits list 'configuring the parser for untrusted input (external entities, ...)' among controls it does not reach.",
+   "source_path": "OWASP/CheatSheetSeries cheatsheets/XML_External_Entity_Prevention_Cheat_Sheet.md §General Guidance (recorded as fetched in research/software-craft/parsing-and-grammar-based-input.md, line 200)",
+   "claim": "Disable document type definitions (DTDs) whenever possible. Reject DOCTYPE declarations if the parser supports it. If your application needs DTDs, disable external entity resolution and external DTD loading, and limit entity expansion. ... Treat an unsupported security setting as a configuration failure. Do not continue processing untrusted XML with partial hardening.",
+   "taxonomy_row": "| J, `input`, `INP` | `parsing-and-grammar-based-input` | SW4.9, PoP9 | / | | `security-hygiene-in-ordinary-code` | PP \"Stay Safe Out There\", SWEBOK ch. 3 §3.7 |",
+   "status": "queued",
+   "found_by": "reviewer, input (reviews/input.json)"
+  },
+  {
+   "domain": "input",
+   "concept": "Secrets and personal data kept out of log records, and untrusted data encoded before it is logged (log injection) — PP 'Stay Safe Out There', minimize attack surface, output data. Each topic assigned it to the other: the security-hygiene note says 'Log content sits with logging-and-diagnostic-output', the logging note says 'secrets, personal data and log injection belong to security-hygiene-in-ordinary-code', and ERR-43's Validator sets aside 'a value left out because it is a secret or a personal datum'.",
+   "source_path": "OWASP/CheatSheetSeries cheatsheets/Logging_Cheat_Sheet.md §'Data to exclude'; OWASP/ASVS 5.0/en/0x25-V16-Security-Logging-and-Error-Handling.md requirement 16.4.1 (both recorded as fetched in research/software-craft/logging-and-diagnostic-output.md, lines 157 and 187; neither line quotes the text verbatim)",
+   "claim": "As recorded: the cheat sheet's 'Data to exclude' list names tokens, passwords and personal data (PII), and ASVS 16.4.1 'adds encoding against log injection'.",
+   "taxonomy_row": "| | `security-hygiene-in-ordinary-code` | PP \"Stay Safe Out There\", SWEBOK ch. 3 §3.7 |",
+   "status": "queued",
+   "found_by": "reviewer, input (reviews/input.json)"
+  },
+  {
+   "domain": "input",
+   "concept": "An unexpected error at a trust boundary returns a generic message to the consumer, with stack traces, queries, keys and tokens kept for the server log — PP 'Stay Safe Out There', output data and debugging info. The security-hygiene note says 'Generic error responses without stack traces sit with error-and-exception-handling', the error note says 'this ERR topic owns only the message-context rule', and ERR-01's Limits put 'the translation of an internal error into the message an external consumer sees at a trust boundary' outside it.",
+   "source_path": "OWASP/ASVS 5.0/en/0x25-V16-Security-Logging-and-Error-Handling.md requirement 16.5.1 (quoted as fetched in research/software-craft/error-and-exception-handling.md, line 254); OWASP/CheatSheetSeries cheatsheets/Error_Handling_Cheat_Sheet.md §Objective",
+   "claim": "Verify that a generic message is returned to the consumer when an unexpected or security-sensitive error occurs, ensuring no exposure of sensitive internal system data such as stack traces, queries, secret keys, and tokens.",
+   "taxonomy_row": "| | `security-hygiene-in-ordinary-code` | PP \"Stay Safe Out There\", SWEBOK ch. 3 §3.7 |",
+   "status": "queued",
+   "found_by": "reviewer, input (reviews/input.json)"
+  },
+  {
+   "domain": "input",
+   "concept": "Where a secret kept out of code is supplied at run time (a secrets store or credential file versus an environment variable or configuration file); contested, so it belongs under 'no separating condition'. The security-hygiene note says 'How configuration and secrets are supplied is yielded to runtime-configuration', the runtime-configuration note says 'Secrets belong to security-hygiene-in-ordinary-code', INP-10's Limits put 'Where the live value comes from at run time' outside it, and TOOL-25's Limits put 'whether the environment is an acceptable channel for a secret' outside it.",
+   "source_path": "OWASP/www-project-proactive-controls docs/the-top-10/c2-crypto.md, Special Case: Application Secrets management (quoted as fetched in INP-10's Source); opposing: SonarSource/sonar-python S2068 (quoted as fetched in INP-10's Source)",
+   "claim": "Don't store secrets in code, config files or pass them through environment variables. ... Keep keys and your other application-level secrets in a secrets vault (C2); against: Credentials should be stored in a configuration file that is not committed to the code repository, in a database, or managed by your cloud provider's secrets management service (S2068).",
+   "taxonomy_row": "| | `security-hygiene-in-ordinary-code` | PP \"Stay Safe Out There\", SWEBOK ch. 3 §3.7 |",
+   "status": "queued",
+   "found_by": "reviewer, input (reviews/input.json)"
+  },
+  {
+   "domain": "input",
+   "concept": "A hand-written parser for input from outside the program has a fuzz test that fails on a crash, panic or hang; researched as parsing spine item 22 and held only by the topic's rule cap ('held-cap: beyond max_rules 12; re-run the topic with a higher cap'), with no pending entry.",
+   "source_path": "google/fuzzing docs/why-fuzz.md, 'Potential Fuzzing Targets' (recorded as fetched in research/software-craft/parsing-and-grammar-based-input.md, lines 123 and 192); golang/website _content/doc/security/fuzz/index.md (same note, line 193)",
+   "claim": "Types of projects where fuzzing has been useful: Anything that consumes untrusted or complicated inputs: Parsers of any kind (xml, pdf, truetype, ...); and Go: 'Since it can reach edge cases which humans often miss, fuzz testing can be particularly valuable for finding security exploits and vulnerabilities'.",
+   "taxonomy_row": "| J, `input`, `INP` | `parsing-and-grammar-based-input` | SW4.9, PoP9 |",
+   "status": "queued",
+   "found_by": "reviewer, input (reviews/input.json)"
   }
  ]
 }

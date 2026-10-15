@@ -2,7 +2,7 @@
 title: A security primitive such as encryption, password hashing, signing, token generation or HTML sanitization comes from a vetted, maintained library, a cryptographic one through its highest-level API, never from code written in the change
 rule_id: INP-11
 domain: input
-step: [design, implement, review]
+step: [design, implement]
 applies_to: [universal]
 triggers: ['(?i)\b(def|function|func|fn|static|public|private|void|String|byte\[\])\s+\w*(encrypt|decrypt|cipher|hash_?password|password_?hash|sanitize_?html|strip_?tags)\w*\s*\(', '(?i)\^\s*(key|k|secret)\s*\[|\^=\s*(key|k|secret)\s*\[', '(?i)\b(md5|sha1|sha256|sha512)\b.*\b(password|passwd|pwd)\b|\b(password|passwd|pwd)\b.*\b(md5|sha1|sha256|sha512)\b', '(?i)(re[.](sub|compile)|replace(All)?)\(\s*[r/]?[\"''/]?\s*<\s*/?\s*(script|iframe)', '(?i)(?<![a-z])ecb(?![a-z])|\bNewECB|\bCipher[.]getInstance\(\s*[\"''](AES|DES|DESede|Blowfish)[\"'']\s*\)']
 scope: hunk

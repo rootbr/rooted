@@ -1256,7 +1256,7 @@
   "input": {
    "launched": "2026-10-15T11:14 UTC",
    "kind": "one read-only opus/max agent per HANDOVER 5.8 (series/REVIEWER.md filled for input: INP-01 to INP-24, two topics); report to be saved as reviews/input.json and applied per the change/code pattern",
-   "status": "running"
+   "status": "done 2026-10-15T11:50 UTC: 0.54M tokens, 39 minutes; report reviews/input.json applied in the commit that follows it: 5 defer entries (INP-09 -> INP-03, INP-11 -> INP-03 and INP-12, INP-01 -> INP-21 and INP-04); 4 Limits resolutions with the counterpart bullets copied (INP-15 yields a literal check on a parsed format to INP-13, a sanitizing replacement to INP-11 and a whole-value check to INP-17; INP-12 yields an IV the library can draw itself to INP-11); 22 facets (the step review dropped from 18 cards, handle-errors added on INP-01, INP-09 and INP-19; INP-03 and INP-06 semantic; INP-06 scope callers, INP-18 scope file); triggers: INP-15's set nested in INP-19's costs dispatches, not correctness, no edit; 5 gap runs queued (XML parser hardening, secrets and personal data out of logs, a generic error message at a trust boundary, where a secret lives at run time, a fuzz test for a hand-written parser), the three gaps with no source need no entry"
   }
  }
 }

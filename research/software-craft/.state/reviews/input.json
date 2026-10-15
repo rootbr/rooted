@@ -1,0 +1,446 @@
+{
+ "domain": "input",
+ "cards_read": [
+  "INP-01",
+  "INP-02",
+  "INP-03",
+  "INP-04",
+  "INP-05",
+  "INP-06",
+  "INP-07",
+  "INP-08",
+  "INP-09",
+  "INP-10",
+  "INP-11",
+  "INP-12",
+  "INP-13",
+  "INP-14",
+  "INP-15",
+  "INP-16",
+  "INP-17",
+  "INP-18",
+  "INP-19",
+  "INP-20",
+  "INP-21",
+  "INP-22",
+  "INP-23",
+  "INP-24"
+ ],
+ "overlaps": [
+  {
+   "deferring": "INP-09",
+   "owner": "INP-03",
+   "line_kind": "An added template-engine setting that switches HTML autoescaping off — `env = Environment(loader=loader, autoescape=False)` (INP-03's own bad line; INP-09's Validator greps the same `autoescape=False`), `noEscape: true` — in a hunk where an untrusted value is rendered through that engine. Both trigger sets fire on the line (INP-03 trigger 2, INP-09 trigger 1), and the fixes coincide (autoescaping on).",
+   "validator_a": "INP-09: Does the hunk give a security-relevant setting it adds together with its behaviour an insecure default, weaken an existing secure default or switch off a library's secure default for what that protection guards, leave off a protection the library ships off in a configuration it creates for what that protection guards, or allow access on a check's error path?",
+   "validator_b": "INP-03: Does an untrusted value reach HTML, script, style, URL or header output in this hunk through an unsanitized escape hatch, an engine whose escaping is off or does not cover the value's position, or string-built output with no encoder, an encoder for a different context, or a position no encoder protects?",
+   "taxonomy_owner": "Both cards belong to `security-hygiene-in-ordinary-code`; that topic's research note lists 'autoescape off' among the escape hatches that 'bypass the engine's escaping' (spine item 7) and records it as 'Folded into contextual-output-encoding', i.e. INP-03. INP-09 keeps an autoescape switch where no untrusted value reaches the output, which INP-03 does not flag."
+  },
+  {
+   "deferring": "INP-11",
+   "owner": "INP-03",
+   "line_kind": "An added line that hands untrusted markup cleaned by hand-written code straight to a raw-markup sink — `el.innerHTML = comment.replace(/<script>/gi, \"\")`, `return Markup(re.sub(r\"<script.*?>\", \"\", body))`; both trigger sets fire on it (INP-03 trigger 1, INP-11 trigger 4), both cards rest on ASVS 1.3.1, and INP-03's fix list includes the HTML sanitizer INP-11 asks for.",
+   "validator_a": "INP-11: Does the hunk compute an encryption, password hash, signature, non-guessable token or HTML sanitization in its own code, or assemble a cryptographic one from a library's low-level parts with parameters it picks itself?",
+   "validator_b": "INP-03: Does an untrusted value reach HTML, script, style, URL or header output in this hunk through an unsanitized escape hatch, an engine whose escaping is off or does not cover the value's position, or string-built output with no encoder, an encoder for a different context, or a position no encoder protects?",
+   "taxonomy_owner": "`security-hygiene-in-ordinary-code`; its research note's spine item 7, 'A raw-markup escape hatch receives only markup from a completely trusted source or from a maintained HTML sanitization library', is 'Folded into contextual-output-encoding' (INP-03). INP-11 keeps a hand-written sanitizer whose result does not reach a raw-markup sink on the same line."
+  },
+  {
+   "deferring": "INP-11",
+   "owner": "INP-12",
+   "line_kind": "An added line that builds a session id, reset token or other non-guessable token in the change's own code from a general-purpose generator or a clock (`reset_token = \"\".join(random.choice(ALPHABET) for _ in range(32))`, `token = hashlib.sha256(str(time.time()).encode()).hexdigest()`) inside a hunk that also dispatches INP-11 (INP-11's triggers do not fire on such a line by themselves). INP-11's Thesis lists 'generation of a non-guessable token' and both cards cite ASVS 11.5.1.",
+   "validator_a": "INP-11: Does the hunk compute an encryption, password hash, signature, non-guessable token or HTML sanitization in its own code, or assemble a cryptographic one from a library's low-level parts with parameters it picks itself?",
+   "validator_b": "INP-12: Does a random number or string intended to be non-guessable come from anything other than the platform's cryptographically secure generator, or, unless it is an IV or nonce used with an encryption key, a lookup secret or an out-of-band authentication code, carry fewer than 128 bits of entropy from it?",
+   "taxonomy_owner": "`security-hygiene-in-ordinary-code`; its spine item 19, 'A value that must be unguessable, such as a key, token, session id, password, salt, nonce or IV, is generated with the platform's cryptographically secure random source', is the dedicated card INP-12, while item 18 (INP-11) names token generation only among the primitives."
+  },
+  {
+   "deferring": "INP-01",
+   "owner": "INP-21",
+   "line_kind": "A handler that skips or defaults past a failed parse or type conversion of a value read across a trust boundary and lets processing go on — `except ValueError: continue` before the kept records are saved (INP-21's own bad half), `except ValueError: qty = 1`. INP-01's Validator tells the finder to 'confirm that a failure returns an error rather than continuing, substituting a default or stripping characters'; both cards cite the OWASP sentence 'Reject invalid requests with a clear error; do not continue with partially validated data.'",
+   "validator_a": "INP-01: Does a value read across a trust boundary reach a business decision, storage write, loop count or downstream call without a server-side check of every part of its field's rule — type, format, length and range as the field requires — that rejects it on failure?",
+   "validator_b": "INP-21: After input fails to parse, does the code act on, store or forward anything parsed from that unit, accept the unit by skipping, defaulting or guessing past the failure where the format defines no such handling, or drop the unit without an error?",
+   "taxonomy_owner": "`parsing-and-grammar-based-input`: the security-hygiene note yields 'the form of validation, the parser and its limits' to it, the parsing note records 'No part of an input is acted on before the whole input is parsed' as 'Folded into reject-malformed-input-whole' (INP-21), and INP-01's own Limits put 'the grammar of structured input' outside INP-01. DEFER_TO already routes ERR-02 and ERR-04 to INP-21 for the same handler; INP-01 keeps the field rules of values that parsed."
+  },
+  {
+   "deferring": "INP-01",
+   "owner": "INP-04",
+   "line_kind": "A process-start call whose argument vector carries a request value with no allow-list check before the call — `execFile(\"convert\", [req.query.file, \"out.png\"], done)`; both trigger sets fire on it (INP-01 trigger 2, INP-04 trigger 4), and wherever a process is still started INP-04's fix names 'an allow-list check on each untrusted argument'.",
+   "validator_a": "INP-01: Does a value read across a trust boundary reach a business decision, storage write, loop count or downstream call without a server-side check of every part of its field's rule — type, format, length and range as the field requires — that rejects it on failure?",
+   "validator_b": "INP-04: Does a value from outside the code reach a started process through a shell or command interpreter other than the `cmd.exe` that runs a `.bat` or `.cmd` file, reach such a file without an allow-list check that admits no shell metacharacter and no whitespace, reach a process as an argument with no allow-list check before the call or one that can still be read as an option, reach a target other than a `.bat` or `.cmd` file inside one command string that the code builds and the runtime or the target splits into arguments, rather than as its own argument-vector element, or reach a process started for a job a library call already does?",
+   "taxonomy_owner": "`security-hygiene-in-ordinary-code`; its spine item 9, 'An untrusted value passed as a program argument is validated against an allow-list and placed after '--' so that it cannot be read as an option', is 'Folded into os-command-argument-vector' (INP-04)."
+  }
+ ],
+ "near_misses": [
+  {
+   "a": "INP-14",
+   "b": "INP-23",
+   "why_not": "A real overlap (raw input parsed again downstream of the boundary check), but already encoded as `'INP-14': ['DSN-45', 'INP-23']` in scripts/craft-review-workflow.js and in maintenance.md, so no new entry."
+  },
+  {
+   "a": "INP-04",
+   "b": "INP-05",
+   "why_not": "Both fire on a bare `exec(` (INP-04 `(?<![.\\w$])exec(Sync)?\\(`, INP-05 `(?<![.\\w])exec\\(`), but INP-04 asks whether an outside value reaches a started process through a shell, a split command string or without an allow-list, and INP-05 whether a string is evaluated as code: JavaScript exec(cmd) is the first defect, Python exec(src) the second."
+  },
+  {
+   "a": "INP-07",
+   "b": "INP-09",
+   "why_not": "INP-07's Limits claim the listen address's default ('the rule reaches the default value the code supplies, which a secure default makes the specific interface'); INP-09's Validator greps only 'a verification, hostname, CSRF or autoescaping switch', options 'named insecure, unsafe, skip-verify, no-verify or disable-ssl' and options whose name 'carries verify, secure, validate, escape, ssl or tls', so a bind-address default never reaches INP-09's question."
+  },
+  {
+   "a": "INP-01",
+   "b": "INP-02",
+   "why_not": "For a table, column or sort identifier from a request both ask for the same allow-list, but for a value INP-02 asks whether it is bound rather than spliced while INP-01 asks whether its field rule is checked, and INP-01's Limits keep both ('a value bound for an SQL query still goes through parameterized queries'); a rule-level DEFER_TO would drop INP-01's validation finding on every spliced value."
+  },
+  {
+   "a": "INP-01",
+   "b": "INP-22",
+   "why_not": "INP-22 asks whether a form a lenient parser admits but the stated format excludes is acted on unchecked; INP-01 asks whether the field's allow-list rule is checked. Each Limits hands the other its part: INP-01 'the choice of parser, the grammar of structured input ... are outside it', INP-22 'the full range of acceptable values and conformance to business rules, lie outside it'."
+  },
+  {
+   "a": "INP-01",
+   "b": "INP-13",
+   "why_not": "INP-01 asks whether any rejecting server-side check exists; INP-13 whether a structured value's parts are read and checked through its parser instead of the raw text, which INP-01's Limits put outside ('the choice of parser')."
+  },
+  {
+   "a": "INP-01",
+   "b": "INP-14",
+   "why_not": "Absence versus repetition: INP-01 flags a value that reaches use with no rejecting check, INP-14 processing code that repeats a parse or check the boundary already made."
+  },
+  {
+   "a": "INP-01",
+   "b": "INP-24",
+   "why_not": "INP-01 checks a parsed field's length or item count before business processing; INP-24 bounds the raw input's size before it is buffered or parsed — different moments, different checks."
+  },
+  {
+   "a": "INP-01",
+   "b": "INP-17",
+   "why_not": "INP-01 asks whether a check of the field's rule exists; INP-17 whether a regular-expression check that exists leaves part of the value unmatched."
+  },
+  {
+   "a": "INP-03",
+   "b": "INP-05",
+   "why_not": "Both fire on `Handlebars.compile(src, { noEscape: true })`, but INP-05 asks whether a template is built from untrusted input and its Limits put 'the escaping of output for its context' outside it, which is INP-03's question."
+  },
+  {
+   "a": "INP-11",
+   "b": "INP-13",
+   "why_not": "A regex that strips script tags fires both (INP-11 trigger 4, INP-13 trigger 1), but INP-13's Limits list 'sanitizing user-authored HTML' among 'separate controls the rule does not reach'."
+  },
+  {
+   "a": "INP-13",
+   "b": "INP-17",
+   "why_not": "INP-17 asks only whether a whole-value regex is anchored; INP-13 asks whether the format has a parser that should read it, and its Limits confine the whole-value regex to 'a simple, structured field that has no standard or established parser of its own, unlike a date or a URL'; INP-13's parser fix satisfies INP-17."
+  },
+  {
+   "a": "INP-13",
+   "b": "INP-15",
+   "why_not": "Different questions on one line (raw text instead of the format's parser, versus a regex that uses no regex feature); reported under contradictions because INP-15's fix is INP-13's bad shape."
+  },
+  {
+   "a": "INP-15",
+   "b": "INP-17",
+   "why_not": "Different questions on one line (a regex that uses no regex feature, versus a whole-value check that leaves part of the value unmatched); reported under contradictions because their fixes conflict."
+  },
+  {
+   "a": "INP-13",
+   "b": "INP-22",
+   "why_not": "INP-13 asks whether raw text is handled instead of a parser; INP-22 whether a parser that is used admits forms the stated format excludes."
+  },
+  {
+   "a": "INP-21",
+   "b": "INP-22",
+   "why_not": "INP-21 judges the path after a parse fails; INP-22 a parse that succeeds on a form the format excludes."
+  },
+  {
+   "a": "INP-22",
+   "b": "INP-23",
+   "why_not": "Both cite JSON's duplicate-name ambiguity, but INP-22 asks about a lenient parser's result used unchecked and INP-23 about a decode after the check or raw input handed to a second parser."
+  },
+  {
+   "a": "INP-16",
+   "b": "INP-19",
+   "why_not": "INP-16's Limits: 'matching the entire value and avoiding excessive backtracking are separate requirements on a pattern, and the score measures neither'."
+  },
+  {
+   "a": "INP-18",
+   "b": "INP-19",
+   "why_not": "INP-18's Limits: 'how its matching time grows with the input ... are separate questions; the rule covers whether each construct exists in the running engine with the intended meaning'."
+  },
+  {
+   "a": "INP-19",
+   "b": "INP-24",
+   "why_not": "INP-19's length check guards a match on a backtracking engine; INP-24's Validator greps whole-stream reads and parser calls, not regular-expression matches."
+  },
+  {
+   "a": "INP-17",
+   "b": "INP-20",
+   "why_not": "INP-17 judges the pattern's anchoring, INP-20 the tests that exercise the pattern."
+  }
+ ],
+ "contradictions": [
+  {
+   "a": "INP-13",
+   "b": "INP-15",
+   "sentence_a": "That parse takes the place of splitting the raw text on a delimiter, testing it for a substring, including a prefix or suffix, or matching it with a regular expression, whether to read the format or to check one of its parts. (INP-13 Thesis; its bad half is `if strings.HasSuffix(base, \"example.com\") {`)",
+   "sentence_b": "A regular expression whose pattern is only literal text, anchored at the start of the input, at its end, at both or at neither, with no flag, and that tests equality, a prefix, a suffix or containment, or, unanchored, replaces every occurrence of one fixed string with another, is written with the string type's own operation for that job, taking as its arguments the literal text the pattern matches and, for a replacement, the literal text it inserts, with anchors and escapes removed. (INP-15 Thesis) Applied to a literal check on a URL such as `re.match(r\"https://example\\.com/\", url)`, its fix is `url.startswith(\"https://example.com/\")`, the prefix test on raw URL text INP-13 calls bad.",
+   "resolving_limits_sentence": "A literal pattern that reads or checks a part of text in a format with a standard or established parser, such as a URL's scheme or host or a date's fields, is outside the rule: its fix is that parser and a check on the parsed component, not a string operation over the raw text.",
+   "carried_by": "INP-15"
+  },
+  {
+   "a": "INP-11",
+   "b": "INP-15",
+   "sentence_a": "When a change performs a cryptographic operation (encryption, password hashing, signing, generation of a non-guessable token) or sanitizes untrusted HTML, an established, maintained library or framework feature performs it (... for the HTML sanitization a well-known and secure sanitizer), and the change's own code supplies the inputs and consumes the result. (INP-11 Thesis; its bad half has `let clean = comment.replace(\"<script>\", \"\");`)",
+   "sentence_b": "A regular expression whose pattern is only literal text, anchored at the start of the input, at its end, at both or at neither, with no flag, and that tests equality, a prefix, a suffix or containment, or, unanchored, replaces every occurrence of one fixed string with another, is written with the string type's own operation for that job, taking as its arguments the literal text the pattern matches and, for a replacement, the literal text it inserts, with anchors and escapes removed. (INP-15 Thesis) Its good half is `String flat = text.replace(\"--\", \"-\");`, so its fix for `comment.replaceAll(\"<script>\", \"\")` is `comment.replace(\"<script>\", \"\")`, INP-11's bad line.",
+   "resolving_limits_sentence": "A replacement that removes markup or other dangerous text from untrusted input to sanitize it is outside the rule: its fix is a maintained sanitizer, not the string type's replacement.",
+   "carried_by": "INP-15"
+  },
+  {
+   "a": "INP-15",
+   "b": "INP-17",
+   "sentence_a": "A regular expression whose pattern is only literal text, anchored at the start of the input, at its end, at both or at neither, with no flag, and that tests equality, a prefix, a suffix or containment, or, unanchored, replaces every occurrence of one fixed string with another, is written with the string type's own operation for that job, taking as its arguments the literal text the pattern matches and, for a replacement, the literal text it inserts, with anchors and escapes removed. (INP-15 Thesis) INP-17's good line `/^www\\.example\\.com$/.test(s)` is such a pattern anchored at both ends (JavaScript `$` without a flag matches only at the end of input), and INP-15's fix for INP-17's bad line `/www\\.example\\.com/.test(s)` is the containment `s.includes(\"www.example.com\")`.",
+   "sentence_b": "A regular expression that decides whether a whole value has a format matches the entire value. It runs through the engine's full-match call where one exists, or it carries a start anchor and an end anchor with every alternative between them (INP-17 Thesis); A pattern without anchors accepts substrings that match it, which produces a partial comparison with the target, and untrusted input can bypass such a check by embedding one of the allowed patterns in an unexpected location. (INP-17 Rationale)",
+   "resolving_limits_sentence": "A literal pattern that decides whether a whole value has a format, rather than finding text inside a larger text, becomes the string type's equality on the whole value, never a containment, prefix or suffix test, which would keep the partial match that lets a value embedding the literal pass.",
+   "carried_by": "INP-15"
+  },
+  {
+   "a": "INP-11",
+   "b": "INP-12",
+   "sentence_a": "... for the cryptographic operation an industry-validated implementation, called through the highest-level API it offers for the task, the one that handles IVs and similar parameters itself ... (INP-11 Thesis); Where a library is called, check whether the change picks IVs, nonces, salts, padding or the mode itself while the library offers a higher-level call that picks them. (INP-11 Validator)",
+   "sentence_b": "A random number or string that is intended to be non-guessable, such as an encryption key, an IV, a session id, a CSRF token or a password reset token, is generated by the platform's cryptographically secure pseudo-random number generator ... (INP-12 Thesis), with the fix 'for an IV or nonce used with an encryption key ... the length its algorithm or requirement sets' (INP-12 Finding output): an IV the change draws from the secure generator and hands to a low-level cipher call is INP-12's good shape and INP-11's bad one wherever the library offers a call that draws the IV itself. INP-12's Limits ('choosing that method is cryptographic design, which this rule does not reach') name the cryptographic-design specialty, not this case, and a DEFER_TO cannot settle it because the INP-11 → INP-12 entry proposed above runs the other way.",
+   "resolving_limits_sentence": "Where the cryptographic library offers a call that draws the IV or nonce itself, the fix for an IV or nonce from a predictable source is that call, not a draw from the secure generator in the code.",
+   "carried_by": "INP-12"
+  }
+ ],
+ "gaps": [
+  {
+   "concept": "Hardening an XML parser for untrusted input (DTDs or external entities disabled, entity expansion limited). Each topic assigned it to the other: the security-hygiene note says 'BSRS ch. 12 XXE row and ASVS 1.5.1 (XML parsers with external entities disabled): parser configuration is yielded to parsing-and-grammar-based-input', the parsing note says 'XML parser hardening belongs to security-hygiene-in-ordinary-code', and INP-13's Limits list 'configuring the parser for untrusted input (external entities, ...)' among controls it does not reach.",
+   "taxonomy_row_text": "| J, `input`, `INP` | `parsing-and-grammar-based-input` | SW4.9, PoP9 | / | | `security-hygiene-in-ordinary-code` | PP \"Stay Safe Out There\", SWEBOK ch. 3 §3.7 |",
+   "source_path": "OWASP/CheatSheetSeries cheatsheets/XML_External_Entity_Prevention_Cheat_Sheet.md §General Guidance (recorded as fetched in research/software-craft/parsing-and-grammar-based-input.md, line 200)",
+   "claim": "Disable document type definitions (DTDs) whenever possible. Reject DOCTYPE declarations if the parser supports it. If your application needs DTDs, disable external entity resolution and external DTD loading, and limit entity expansion. ... Treat an unsupported security setting as a configuration failure. Do not continue processing untrusted XML with partial hardening."
+  },
+  {
+   "concept": "Secrets and personal data kept out of log records, and untrusted data encoded before it is logged (log injection) — PP 'Stay Safe Out There', minimize attack surface, output data. Each topic assigned it to the other: the security-hygiene note says 'Log content sits with logging-and-diagnostic-output', the logging note says 'secrets, personal data and log injection belong to security-hygiene-in-ordinary-code', and ERR-43's Validator sets aside 'a value left out because it is a secret or a personal datum'.",
+   "taxonomy_row_text": "| | `security-hygiene-in-ordinary-code` | PP \"Stay Safe Out There\", SWEBOK ch. 3 §3.7 |",
+   "source_path": "OWASP/CheatSheetSeries cheatsheets/Logging_Cheat_Sheet.md §'Data to exclude'; OWASP/ASVS 5.0/en/0x25-V16-Security-Logging-and-Error-Handling.md requirement 16.4.1 (both recorded as fetched in research/software-craft/logging-and-diagnostic-output.md, lines 157 and 187; neither line quotes the text verbatim)",
+   "claim": "As recorded: the cheat sheet's 'Data to exclude' list names tokens, passwords and personal data (PII), and ASVS 16.4.1 'adds encoding against log injection'."
+  },
+  {
+   "concept": "An unexpected error at a trust boundary returns a generic message to the consumer, with stack traces, queries, keys and tokens kept for the server log — PP 'Stay Safe Out There', output data and debugging info. The security-hygiene note says 'Generic error responses without stack traces sit with error-and-exception-handling', the error note says 'this ERR topic owns only the message-context rule', and ERR-01's Limits put 'the translation of an internal error into the message an external consumer sees at a trust boundary' outside it.",
+   "taxonomy_row_text": "| | `security-hygiene-in-ordinary-code` | PP \"Stay Safe Out There\", SWEBOK ch. 3 §3.7 |",
+   "source_path": "OWASP/ASVS 5.0/en/0x25-V16-Security-Logging-and-Error-Handling.md requirement 16.5.1 (quoted as fetched in research/software-craft/error-and-exception-handling.md, line 254); OWASP/CheatSheetSeries cheatsheets/Error_Handling_Cheat_Sheet.md §Objective",
+   "claim": "Verify that a generic message is returned to the consumer when an unexpected or security-sensitive error occurs, ensuring no exposure of sensitive internal system data such as stack traces, queries, secret keys, and tokens."
+  },
+  {
+   "concept": "Where a secret kept out of code is supplied at run time (a secrets store or credential file versus an environment variable or configuration file); contested, so it belongs under 'no separating condition'. The security-hygiene note says 'How configuration and secrets are supplied is yielded to runtime-configuration', the runtime-configuration note says 'Secrets belong to security-hygiene-in-ordinary-code', INP-10's Limits put 'Where the live value comes from at run time' outside it, and TOOL-25's Limits put 'whether the environment is an acceptable channel for a secret' outside it.",
+   "taxonomy_row_text": "| | `security-hygiene-in-ordinary-code` | PP \"Stay Safe Out There\", SWEBOK ch. 3 §3.7 |",
+   "source_path": "OWASP/www-project-proactive-controls docs/the-top-10/c2-crypto.md, Special Case: Application Secrets management (quoted as fetched in INP-10's Source); opposing: SonarSource/sonar-python S2068 (quoted as fetched in INP-10's Source)",
+   "claim": "Don't store secrets in code, config files or pass them through environment variables. ... Keep keys and your other application-level secrets in a secrets vault (C2); against: Credentials should be stored in a configuration file that is not committed to the code repository, in a database, or managed by your cloud provider's secrets management service (S2068)."
+  },
+  {
+   "concept": "A hand-written parser for input from outside the program has a fuzz test that fails on a crash, panic or hang; researched as parsing spine item 22 and held only by the topic's rule cap ('held-cap: beyond max_rules 12; re-run the topic with a higher cap'), with no pending entry.",
+   "taxonomy_row_text": "| J, `input`, `INP` | `parsing-and-grammar-based-input` | SW4.9, PoP9 |",
+   "source_path": "google/fuzzing docs/why-fuzz.md, 'Potential Fuzzing Targets' (recorded as fetched in research/software-craft/parsing-and-grammar-based-input.md, lines 123 and 192); golang/website _content/doc/security/fuzz/index.md (same note, line 193)",
+   "claim": "Types of projects where fuzzing has been useful: Anything that consumes untrusted or complicated inputs: Parsers of any kind (xml, pdf, truetype, ...); and Go: 'Since it can reach edge cases which humans often miss, fuzz testing can be particularly valuable for finding security exploits and vulnerabilities'."
+  },
+  {
+   "concept": "An untrusted value placed inside a regular-expression pattern is escaped as a literal (re.escape, Pattern.quote, regexp.QuoteMeta, regex::escape). INP-19 reaches a pattern built from input only for backtracking and size; the parsing note records that 'Escaping input as a literal ... is not stated by a fetched source', and no pending entry exists.",
+   "taxonomy_row_text": "| J, `input`, `INP` | `parsing-and-grammar-based-input` | SW4.9, PoP9 |",
+   "source_path": null,
+   "claim": null
+  },
+  {
+   "concept": "Personal or financial data is not left in plain text in a store or file (PP 'Encrypt Sensitive Data' beyond the secrets INP-10 and the stored passwords INP-11 carry). The security-hygiene note's header lists 'encrypt sensitive data' among the locator's parts, but its formulation row maps the section only to 'Keep no credential or secret in plain text and none in the source repository', and no evidence row or disposition covers the rest; it may fall under the reserved cryptographic-design specialty, which the note does not say.",
+   "taxonomy_row_text": "| | `security-hygiene-in-ordinary-code` | PP \"Stay Safe Out There\", SWEBOK ch. 3 §3.7 |",
+   "source_path": null,
+   "claim": null
+  },
+  {
+   "concept": "PoP9 'Notation': a recurring narrow task (a message layout, a text pattern) expressed in a small notation that a routine interprets. Parsing spine item 3, held-not-checkable because 'only a trade book states it (unfetched)'; recorded in the research note only.",
+   "taxonomy_row_text": "| J, `input`, `INP` | `parsing-and-grammar-based-input` | SW4.9, PoP9 |",
+   "source_path": null,
+   "claim": null
+  }
+ ],
+ "facet_errors": [
+  {
+   "rule_id": "INP-01",
+   "facet": "step",
+   "current": "[implement, review]",
+   "proposed": "[implement, handle-errors]",
+   "evidence": "Thesis: 'Every value that crosses into a component from outside its trust boundary ... is checked on the server by the receiving component ... A value that fails is rejected with a clear error, and processing continues only with fully validated data.' — no clause bears on the shape, size or description of the change; the taxonomy defines `review` as 'the self-review before the report: the shape, size and description of the change', and the design note says it 'is reserved for rules about the shape and description of the change itself'. Its failure clause is the taxonomy's `handle-errors` ('deciding what code does on failure: exceptions or results, validation, ...')."
+  },
+  {
+   "rule_id": "INP-02",
+   "facet": "step",
+   "current": "[implement, review]",
+   "proposed": "[implement]",
+   "evidence": "Thesis: 'Every value in a database query (SQL, HQL, NoSQL or Cypher) enters through the driver's or ORM's parameter binding ...' — no clause bears on the shape, size or description of the change; the taxonomy defines `review` as 'the self-review before the report: the shape, size and description of the change', and the design note says it 'is reserved for rules about the shape and description of the change itself'."
+  },
+  {
+   "rule_id": "INP-03",
+   "facet": "step",
+   "current": "[implement, review]",
+   "proposed": "[implement]",
+   "evidence": "Thesis: 'An untrusted value ... that the code writes into an HTML element, an HTML attribute, a script, a style sheet, a URL or an HTTP header passes through the template engine's automatic, context-aware escaping ...' — no clause bears on the shape, size or description of the change; the taxonomy defines `review` as 'the self-review before the report: the shape, size and description of the change', and the design note says it 'is reserved for rules about the shape and description of the change itself'."
+  },
+  {
+   "rule_id": "INP-04",
+   "facet": "step",
+   "current": "[implement, review]",
+   "proposed": "[implement]",
+   "evidence": "Thesis: 'A change that needs work done on an untrusted value outside its own process uses a library call when one does that work; otherwise it starts the program with the program and each argument as separate argument-vector elements ...' — no clause bears on the shape, size or description of the change; the taxonomy defines `review` as 'the self-review before the report: the shape, size and description of the change', and the design note says it 'is reserved for rules about the shape and description of the change itself'."
+  },
+  {
+   "rule_id": "INP-05",
+   "facet": "step",
+   "current": "[implement, review]",
+   "proposed": "[implement]",
+   "evidence": "Thesis: 'Code avoids the general evaluator and the other dynamic code execution features ...' — no clause bears on the shape, size or description of the change; the taxonomy defines `review` as 'the self-review before the report: the shape, size and description of the change', and the design note says it 'is reserved for rules about the shape and description of the change itself'."
+  },
+  {
+   "rule_id": "INP-06",
+   "facet": "step",
+   "current": "[implement, review]",
+   "proposed": "[implement]",
+   "evidence": "Thesis: 'Data that could have come from an untrusted source or been tampered with is read through a data-only format such as JSON ...' — no clause bears on the shape, size or description of the change; the taxonomy defines `review` as 'the self-review before the report: the shape, size and description of the change', and the design note says it 'is reserved for rules about the shape and description of the change itself'."
+  },
+  {
+   "rule_id": "INP-07",
+   "facet": "step",
+   "current": "[implement, review]",
+   "proposed": "[implement]",
+   "evidence": "Thesis: 'A network listener that a change adds ... binds to the specific interface the service is meant to answer on ...' — no clause bears on the shape, size or description of the change; the taxonomy defines `review` as 'the self-review before the report: the shape, size and description of the change', and the design note says it 'is reserved for rules about the shape and description of the change itself'."
+  },
+  {
+   "rule_id": "INP-08",
+   "facet": "step",
+   "current": "[design, implement, review]",
+   "proposed": "[design, implement]",
+   "evidence": "Thesis: 'Every access right that code requests or sets ... is the minimum the code's function needs.' — no clause bears on the shape, size or description of the change; the taxonomy defines `review` as 'the self-review before the report: the shape, size and description of the change', and the design note says it 'is reserved for rules about the shape and description of the change itself'."
+  },
+  {
+   "rule_id": "INP-09",
+   "facet": "step",
+   "current": "[design, implement, review]",
+   "proposed": "[design, implement, handle-errors]",
+   "evidence": "Thesis: 'A security-relevant setting that the change introduces together with the behaviour it governs ... starts in its most secure state ... When an error condition is detected in a check, the check falls back to the secure state, so an entity without explicit access to an object is denied access to it.' — no clause bears on the shape, size or description of the change; the taxonomy defines `review` as 'the self-review before the report: the shape, size and description of the change', and the design note says it 'is reserved for rules about the shape and description of the change itself'. The fail-safe clause is the taxonomy's `handle-errors` ('deciding what code does on failure')."
+  },
+  {
+   "rule_id": "INP-10",
+   "facet": "step",
+   "current": "[implement, test, review]",
+   "proposed": "[implement, test]",
+   "evidence": "Thesis: 'Every live secret a change handles ... stays out of source code, test code, build artifacts and every file committed to version control; a test that needs a secret uses a fake value ...' — no clause bears on the shape, size or description of the change; the taxonomy defines `review` as 'the self-review before the report: the shape, size and description of the change', and the design note says it 'is reserved for rules about the shape and description of the change itself'."
+  },
+  {
+   "rule_id": "INP-11",
+   "facet": "step",
+   "current": "[design, implement, review]",
+   "proposed": "[design, implement]",
+   "evidence": "Thesis: 'When a change performs a cryptographic operation ... or sanitizes untrusted HTML, an established, maintained library or framework feature performs it ...' — no clause bears on the shape, size or description of the change; the taxonomy defines `review` as 'the self-review before the report: the shape, size and description of the change', and the design note says it 'is reserved for rules about the shape and description of the change itself'."
+  },
+  {
+   "rule_id": "INP-12",
+   "facet": "step",
+   "current": "[implement, review]",
+   "proposed": "[implement]",
+   "evidence": "Thesis: 'A random number or string that is intended to be non-guessable ... is generated by the platform's cryptographically secure pseudo-random number generator ...' — no clause bears on the shape, size or description of the change; the taxonomy defines `review` as 'the self-review before the report: the shape, size and description of the change', and the design note says it 'is reserved for rules about the shape and description of the change itself'."
+  },
+  {
+   "rule_id": "INP-13",
+   "facet": "step",
+   "current": "[implement, review]",
+   "proposed": "[implement]",
+   "evidence": "Thesis: 'A value in a defined format — JSON, CSV, XML or HTML, a URL, a date, a query or configuration language — is read with a maintained parser for that format ...' — no clause bears on the shape, size or description of the change; the taxonomy defines `review` as 'the self-review before the report: the shape, size and description of the change', and the design note says it 'is reserved for rules about the shape and description of the change itself'."
+  },
+  {
+   "rule_id": "INP-17",
+   "facet": "step",
+   "current": "[implement, review]",
+   "proposed": "[implement]",
+   "evidence": "Thesis: 'A regular expression that decides whether a whole value has a format matches the entire value.' — no clause bears on the shape, size or description of the change; the taxonomy defines `review` as 'the self-review before the report: the shape, size and description of the change', and the design note says it 'is reserved for rules about the shape and description of the change itself'."
+  },
+  {
+   "rule_id": "INP-18",
+   "facet": "step",
+   "current": "[implement, review]",
+   "proposed": "[implement]",
+   "evidence": "Thesis: 'A regular expression is written in the syntax of the engine that compiles and runs it.' — no clause bears on the shape, size or description of the change; the taxonomy defines `review` as 'the self-review before the report: the shape, size and description of the change', and the design note says it 'is reserved for rules about the shape and description of the change itself'."
+  },
+  {
+   "rule_id": "INP-19",
+   "facet": "step",
+   "current": "[implement, review]",
+   "proposed": "[implement, handle-errors]",
+   "evidence": "Thesis: 'Where a regular expression engine backtracks and the matched text can come from outside the trust boundary, the expression has no repetition whose repeated part can match the same string in more than one way ... treats a timeout as a failed validation.' — no clause bears on the shape, size or description of the change; the taxonomy defines `review` as 'the self-review before the report: the shape, size and description of the change', and the design note says it 'is reserved for rules about the shape and description of the change itself'. Treating a timeout as a failed validation is the taxonomy's `handle-errors`."
+  },
+  {
+   "rule_id": "INP-23",
+   "facet": "step",
+   "current": "[implement, review]",
+   "proposed": "[implement]",
+   "evidence": "Thesis: 'Input is decoded according to its protocol before its field rules are checked, the checks run on the representation the code will actually use ...' — no clause bears on the shape, size or description of the change; the taxonomy defines `review` as 'the self-review before the report: the shape, size and description of the change', and the design note says it 'is reserved for rules about the shape and description of the change itself'."
+  },
+  {
+   "rule_id": "INP-24",
+   "facet": "step",
+   "current": "[implement, review]",
+   "proposed": "[implement]",
+   "evidence": "Thesis: 'Input that arrives from outside the trust boundary has its size limited before it is buffered or parsed ...' — no clause bears on the shape, size or description of the change; the taxonomy defines `review` as 'the self-review before the report: the shape, size and description of the change', and the design note says it 'is reserved for rules about the shape and description of the change itself'."
+  },
+  {
+   "rule_id": "INP-03",
+   "facet": "check_kind",
+   "current": "mechanical",
+   "proposed": "semantic",
+   "evidence": "Validator: 'For each hit, open the hunk and trace the value that reaches the output back to its origin ... Check what stands between an untrusted value and the output: ... an encoder whose context matches the position (element text, attribute, quoted script string, style value, URL component, header) ...' — an origin trace plus a judgement of which context each encoder covers, which the taxonomy routes to `semantic` ('the finder traces something ... before it can decide'), not 'one light context question'."
+  },
+  {
+   "rule_id": "INP-06",
+   "facet": "check_kind",
+   "current": "mechanical",
+   "proposed": "semantic",
+   "evidence": "Validator: 'Open the enclosing routine and trace the argument back to where its bytes enter: a request body, a message, an upload, a cookie, a header, a socket, or a file or store another party can write. Look for a signature verified with a secret key on those bytes before the call.' — a trace across the routine, the taxonomy's definition of `semantic`."
+  },
+  {
+   "rule_id": "INP-06",
+   "facet": "scope",
+   "current": "hunk",
+   "proposed": "callers",
+   "evidence": "Validator: 'Open the enclosing routine and trace the argument back to where its bytes enter' — beyond the added lines; in the card's own Example the bytes arrive as a parameter (`fn quantity(untrusted: &[u8])`), so where they enter lies in the callers."
+  },
+  {
+   "rule_id": "INP-18",
+   "facet": "scope",
+   "current": "hunk",
+   "proposed": "file",
+   "evidence": "Validator: 'Identify the engine from the call or import that compiles the pattern, and its version from the build file when the construct is version-dependent.' — the import sits outside a hunk the pre-pass cuts with `git diff -U0`."
+  }
+ ],
+ "trigger_errors": [
+  {
+   "rule_id": "INP-15",
+   "pattern": "\\bre[.](search|match|fullmatch|sub|compile)\\(\\s*r?[\"'][\\w ,:/@=^$-]*[\"']",
+   "problem": "nested in INP-19 — every added line this pattern matches also matches INP-19's set (INP-19 `(RegExp|re[.]compile|...)\\(` covers re.compile(, and `[.](...|match|fullmatch|search|sub|...)\\(` covers the other four), so every INP-15 dispatch is an INP-19 dispatch (a 1,500-line sample of INP-15 matches found none outside INP-19)"
+  },
+  {
+   "rule_id": "INP-15",
+   "pattern": "\\bRegex::new\\(\\s*r?#*\"[\\w ,:/@=^$-]*\"",
+   "problem": "nested in INP-19 — every added line this pattern matches also matches INP-19's set (covered by INP-19 `(...|Regex::new|...)\\(`), so every INP-15 dispatch is an INP-19 dispatch (a 1,500-line sample of INP-15 matches found none outside INP-19)"
+  },
+  {
+   "rule_id": "INP-15",
+   "pattern": "\\bregexp[.](MustCompile|Compile|MatchString)\\(\\s*[`\"][\\w ,:/@=^$-]*[`\"]",
+   "problem": "nested in INP-19 — every added line this pattern matches also matches INP-19's set (covered by INP-19 `(...|regexp[.]Compile|regexp[.]MustCompile|...)\\(` and `[.](...|MatchString|...)\\(`), so every INP-15 dispatch is an INP-19 dispatch (a 1,500-line sample of INP-15 matches found none outside INP-19)"
+  },
+  {
+   "rule_id": "INP-15",
+   "pattern": "(Pattern[.](compile|matches)|[.](replaceAll|matches))\\(\\s*\"[\\w ,:/@=^$-]*\"",
+   "problem": "nested in INP-19 — every added line this pattern matches also matches INP-19's set (covered by INP-19 `(...|Pattern[.]compile|...)\\(` and `[.](...|matches|...|replaceAll|...)\\(`), so every INP-15 dispatch is an INP-19 dispatch (a 1,500-line sample of INP-15 matches found none outside INP-19)"
+  },
+  {
+   "rule_id": "INP-15",
+   "pattern": "new RegExp\\(\\s*[\"'][\\w ,:/@=^$-]*[\"']|/[\\w ,:^$-]+/[gimsuy]*[.]test\\(",
+   "problem": "nested in INP-19 — every added line this pattern matches also matches INP-19's set (covered by INP-19 `(RegExp|...)\\(` and `[.](...|test|...)\\(`), so every INP-15 dispatch is an INP-19 dispatch (a 1,500-line sample of INP-15 matches found none outside INP-19)"
+  }
+ ],
+ "summary": "Five same-line overlaps need DEFER_TO entries (INP-09→INP-03, INP-11→INP-03, INP-11→INP-12, INP-01→INP-21, INP-01→INP-04), and INP-15's string-operation fix lands on shapes INP-13, INP-11 and INP-17 call bad, as INP-12's secure-generator IV lands on INP-11's low-level assembly; each wants a Limits sentence. Eight row concepts have neither card nor pending entry, four of them (XXE hardening, secrets and PII in logs, generic error messages, where a secret lives at run time) dropped between topics that each left them to another. Every card's trigger set matches its own bad Example but INP-15's set is nested in INP-19's, and the facets misplace `review` on 18 cards whose Theses never touch the change's shape, size or description, mark INP-03 and INP-06 mechanical though their Validators trace origins, and give INP-06 and INP-18 a hunk scope their Validators exceed."
+}

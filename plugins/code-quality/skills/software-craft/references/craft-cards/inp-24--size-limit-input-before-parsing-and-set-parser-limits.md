@@ -2,7 +2,7 @@
 title: Input from outside the trust boundary is size-limited before it is buffered or parsed, and a parser that offers a nesting-depth or size limit has that limit set
 rule_id: INP-24
 domain: input
-step: [implement, review]
+step: [implement]
 applies_to: [service-boundary]
 triggers: ['\b(io|ioutil)[.]ReadAll\(|\brequest[.](get_data|get_json|data|body)\b|\breq[.]body\b|[.]readAllBytes\(\)|IOUtils[.]toByteArray\(|[.]read_to_end\(|[.]read_to_string\(|\b(json[.]loads?|yaml[.]safe_load|JSON[.]parse|serde_json::from_(slice|reader|str)|json[.]NewDecoder)\(|await\s+\w+[.](json|text|arrayBuffer)\(\)']
 scope: callers

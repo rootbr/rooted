@@ -2,7 +2,7 @@
 title: A value that enters across a trust boundary is checked on the server where it enters against allow-list rules for its type, format, length and range, and is rejected when it does not match
 rule_id: INP-01
 domain: input
-step: [implement, review]
+step: [implement, handle-errors]
 applies_to: [service-boundary]
 triggers: ['\brequest[.](args|form|values|json|get_json|GET|POST|query_params|data|files|cookies|headers)\b', '\breq[.](body|query|params|headers|cookies)\b', '@(RequestParam|PathVariable|RequestBody|RequestHeader|QueryParam|PathParam|FormParam)\b', '[.](FormValue|PostFormValue|URL[.]Query\(\)|Header[.]Get)\(?', '\b(web|extract)::(Query|Json|Path|Form)\s*<|\b(Query|Json|Path|Form)\(\w+\)\s*:\s*(Query|Json|Path|Form)<']
 scope: file

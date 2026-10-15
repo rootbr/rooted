@@ -2,7 +2,7 @@
 title: Input is decoded and parsed once into the representation the code uses, its checks run on that representation, and the same input is neither decoded again downstream nor handed raw to another parser after the check
 rule_id: INP-23
 domain: input
-step: [implement, review]
+step: [implement]
 applies_to: [service-boundary]
 triggers: ['\b(unquote(_plus)?|decodeURI(Component)?|URLDecoder[.]decode|QueryUnescape|PathUnescape|percent_decode(_str)?|html[.]unescape|UnescapeString|unescapeHtml\w*|he[.]decode|b64decode|urlsafe_b64decode|atob|DecodeString|json[.]loads?|json[.]NewDecoder|JSON[.]parse|Unmarshal|readValue|fromJson|serde_json::from_\w+)\(|getDecoder\(\)[.]decode\(']
 scope: callers

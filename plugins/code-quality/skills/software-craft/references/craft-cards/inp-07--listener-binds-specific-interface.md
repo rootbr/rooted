@@ -2,7 +2,7 @@
 title: A network listener the change adds binds to the specific interface it must serve, not to all interfaces
 rule_id: INP-07
 domain: input
-step: [implement, review]
+step: [implement]
 applies_to: [service-boundary]
 triggers: ['\b0[.]0[.]0[.]0\b|[\x22\x27](::|\[::\])(:\d+)?[\x22\x27]|\b(INADDR_ANY|IN6ADDR_ANY|in6addr_any|Ipv[46]Addr::UNSPECIFIED|IPv4zero|IPv6unspecified)\b|\(\s*\[\s*0\s*(,\s*0\s*){3}\]\s*,', '\b(Listen\w*|listen)\(\s*(\x22(tcp|udp)[46]?\x22\s*,\s*)?[\x22\x27]:\d+|\bnew\s+(InetSocketAddress|ServerSocket)\(\s*\w+\s*\)|[.]listen\(\s*\w+\s*[,)]|\(\s*(\x22\x22|\x27\x27)\s*,\s*\w+\s*\)|[\x22\x27]:\d{1,5}[\x22\x27]|[.]listen\(\s*\{(?![^}]*\bhost\b)|\b(TCP|UDP)Addr\{(?![^}]*\bIP\b)']
 scope: hunk

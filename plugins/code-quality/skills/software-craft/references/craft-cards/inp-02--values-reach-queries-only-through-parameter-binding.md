@@ -2,7 +2,7 @@
 title: A value reaches a database query only through the driver's parameter binding, never by concatenating, formatting or interpolating it into the query text
 rule_id: INP-02
 domain: input
-step: [implement, review]
+step: [implement]
 applies_to: [universal]
 triggers: ['(?i)["''`]\s*(SELECT|INSERT|UPDATE|DELETE|MERGE|WITH|MATCH)\b[^"''`]*\b(FROM|INTO|SET|WHERE|VALUES|ORDER\s+BY)\b[^"''`]*["''`]\s*(\+|%\s*[(\w])|"\s*(SELECT|INSERT|UPDATE|DELETE|MERGE|WITH|MATCH)\b[^"]*\b(FROM|INTO|SET|WHERE|VALUES)\b[^"]*"\s*\+|\bf(?P<fq>["''])\s*(SELECT|INSERT|UPDATE|DELETE|MERGE|WITH|MATCH)\b(?:(?!(?P=fq)).)*\{|`\s*(SELECT|INSERT|UPDATE|DELETE|MERGE|WITH|MATCH)\b[^`]*\$\{', '(?i)(Sprintf|format!?)\(\s*["''`](SELECT|INSERT|UPDATE|DELETE|MERGE|WITH|MATCH)\b|(?P<dq>["''])\s*(SELECT|INSERT|UPDATE|DELETE|MERGE|WITH|MATCH)\b(?:(?!(?P=dq)).)*(?P=dq)\s*[.]format(ted)?\(|\b(execute|executemany|executescript|executeQuery|executeUpdate|addBatch|exec|query|queryRow|raw|rawQuery|createQuery|createNativeQuery|prepareStatement|prepare)\(\s*["''`][^"''`]*["''`]\s*\+|\b(ORDER|GROUP)\s+BY\s*["''`]?\s*(\+|\$\{|\{|%s)']
 scope: hunk

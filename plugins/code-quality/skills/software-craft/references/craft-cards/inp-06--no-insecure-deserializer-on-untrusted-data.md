@@ -2,11 +2,11 @@
 title: Data that may come from an untrusted source is not deserialized with a mechanism its documentation defines as insecure, such as native object serialization that can construct arbitrary objects or run code
 rule_id: INP-06
 domain: input
-step: [implement, review]
+step: [implement]
 applies_to: [universal]
 triggers: ['\b(c?[Pp]ickle|dill|cloudpickle|joblib)[.]loads?\(|\bshelve[.]open\(|\bjsonpickle[.]decode\(|\bmarshal[.]loads?\(', '\byaml[.](unsafe_)?load(_all)?\(|\bLoader\s*=\s*yaml[.](Unsafe|Full)?Loader\b', '\bObjectInputStream\b|[.]readObject\(\)|\bXMLDecoder\b|\benableDefaultTyping\(|\bactivateDefaultTyping\(', '\bBinaryFormatter\b|\bnode-serialize\b|\bunserialize\(', '\b(access|from_bytes)_unchecked(_mut)?\b|\barchived_(root|value)(_mut)?\b']
-scope: hunk
-check_kind: mechanical
+scope: callers
+check_kind: semantic
 severity_default: major
 ---
 

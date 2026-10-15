@@ -2,7 +2,7 @@
 title: A process the change starts receives untrusted values only as separate argument-vector elements with no shell, each validated so that it cannot be read as an option, and no process is started for them where a library call does the job
 rule_id: INP-04
 domain: input
-step: [implement, review]
+step: [implement]
 applies_to: [universal]
 triggers: ['(?i)\bshell\s*[:=]\s*(true\b|[\x22\x27])', '\bos[.](system|popen)\(|\bRuntime[.]getRuntime\(\)[.]exec\(|\bchild_process[.]exec(Sync)?\(|\bexecSync\(', '(?i)[\x22\x27](/bin/)?(sh|bash|zsh|cmd([.]exe)?|powershell|pwsh)[\x22\x27]\s*[,)]\s*\[?\s*([.]arg\(\s*)?[\x22\x27](-c|/c|-Command)[\x22\x27]', '\bexec[.]Command(Context)?\(|\bCommand::new\(|\bnew\s+ProcessBuilder\(|\bsubprocess[.](run|call|Popen|check_output|check_call)\(|\b(spawn|execFile)(Sync)?\(', '(?<![.\w$])exec(Sync)?\(|\bexec(Sync)?\(\s*(`[^`]*\$\{|[\x22\x27][^\x22\x27]*[\x22\x27]\s*\+)']
 scope: hunk

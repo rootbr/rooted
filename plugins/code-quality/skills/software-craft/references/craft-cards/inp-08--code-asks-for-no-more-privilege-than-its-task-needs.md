@@ -2,7 +2,7 @@
 title: Code asks for no more privilege than its task needs in file modes, token and permission scopes, database rights and process identity, and holds elevated rights only for the step that needs them
 rule_id: INP-08
 domain: input
-step: [design, implement, review]
+step: [design, implement]
 applies_to: [universal]
 triggers: ['\b(chmod|Chmod|chmodSync|fchmod|fchmodSync|lchmodSync|set_permissions|setPosixFilePermissions)\b|\b(WriteFile|OpenFile|Mkdir|MkdirAll|mkdir|makedirs|open|openSync|from_mode|mode)\b.*\b0o?[0-7]?[0-7][0-7][1-7]\b|\b[Uu]mask\s*\(\s*(0o?)?[0-7]*[0145]\s*\)|\bPosixFilePermissions[.]fromString\(\s*"[rwx-]{6}(?!---)[rwx-]{3}"|\bset(Readable|Writable|Executable)\(\s*true\s*,\s*false\s*\)', '(?i)\bpermissions\s*:\s*write-all\b|\bGRANT\s+ALL\b|\bWITH\s+GRANT\s+OPTION\b|\bSUPERUSER\b', '(?i)\b(setuid|seteuid|setgid)\(\s*0\s*\)|\brunAsUser\s*:\s*0\b|\bprivileged\s*:\s*true\b|\ballowPrivilegeEscalation\s*:\s*true\b|^\s*USER\s+root\b', '(?i)\bscopes?\b\s*[:=(].*[\"''](\*|admin\w*|\w*:admin|\w*[._:]write[._:]all|full_access|repo)[\"'']']
 scope: hunk

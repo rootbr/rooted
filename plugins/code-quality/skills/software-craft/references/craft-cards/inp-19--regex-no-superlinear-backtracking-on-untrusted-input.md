@@ -2,7 +2,7 @@
 title: A regular expression that a backtracking engine runs on untrusted text has no ambiguous repetition and a bounded text length, and an untrusted pattern runs size-limited on a non-backtracking engine
 rule_id: INP-19
 domain: input
-step: [implement, review]
+step: [implement, handle-errors]
 applies_to: [universal]
 triggers: ['(RegExp|re[.]compile|Pattern[.]compile|regexp[.]Compile|regexp[.]MustCompile|Regex::new|RegexBuilder::new)\(', '[.](is_match|test|exec|match|matcher|matches|fullmatch|search|sub|subn|findall|finditer|replaceAll|replaceFirst|matchAll|find_iter|captures|captures_iter|replace_all|MatchString|FindString\w*|FindAllString\w*|ReplaceAllString\w*)\(|re[.]split\(|[.](replace|split)\(\s*/']
 scope: file

@@ -2,7 +2,7 @@
 title: Secrets stay out of source code, tests, build artifacts and version control, and tests use designated fake secrets
 rule_id: INP-10
 domain: input
-step: [implement, test, review]
+step: [implement, test]
 applies_to: [universal]
 triggers: ['(?i)\b\w*(pass(word|wd|phrase)?|pwd|secret|token|api[_-]?key|access[_-]?key|private[_-]?key|(encryption|signing|hmac|jwt|aes)[_-]?key|client[_-]?secret|credential)\w*["'']?\s*(:\s*&?(''static\s+)?[\w.]+\s*)?(:=|=|:)\s*(\[\]byte\(|b)?["''][^"''\s]{8,}["'']', '-----BEGIN ([A-Z]+ )?PRIVATE KEY-----', '\b(AKIA[0-9A-Z]{16}|gh[pousr]_[A-Za-z0-9]{36}|xox[baprs]-[A-Za-z0-9-]{10,}|sk_live_[0-9a-zA-Z]{24,}|AIza[0-9A-Za-z_-]{35})\b', '(?i)\b[a-z][a-z0-9+.-]*://[^/\s:@"'']+:[^/\s@"''$<{]+@[\w.-]+', '(?i)\b[\w.-]*(pass(word|wd|phrase)?|pwd|secret|token|api[_-]?key|access[_-]?key|private[_-]?key|credential)[\w.-]*\s*[=:]\s*[^;"''\s$<{}(),]{3,}(;|\s*$)']
 scope: hunk

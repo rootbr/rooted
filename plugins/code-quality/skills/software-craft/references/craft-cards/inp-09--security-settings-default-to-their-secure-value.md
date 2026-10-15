@@ -2,7 +2,7 @@
 title: A security-relevant setting stays secure by default, so an option the change adds for new behaviour defaults to its secure value and the change does not switch off an existing secure default
 rule_id: INP-09
 domain: input
-step: [design, implement, review]
+step: [design, implement, handle-errors]
 applies_to: [universal]
 triggers: ['(?i)\bverify\s*=\s*False\b|\bInsecureSkipVerify\s*:\s*true\b|\brejectUnauthorized\s*:\s*false\b|\bdanger_accept_invalid_(certs|hostnames)\(\s*true\s*\)|\bNODE_TLS_REJECT_UNAUTHORIZED\b|\bNoopHostnameVerifier\b|\bALLOW_ALL_HOSTNAME_VERIFIER\b|\bTrustAll\w*\b|\bsetHostnameVerifier\(|\bCERT_NONE\b|\bcheck_hostname\s*=\s*False\b|\bcsrf\(\)[.]disable\(\)|@csrf_exempt\b|\b(WTF_)?CSRF_ENABLED\s*=\s*False\b|\bautoescape\s*[=:]\s*false\b|\bnoEscape\s*:\s*true\b|\b\w*(insecure|unsafe|skip_?verif\w*|no_?verify|disable_?(ssl|tls|auth|csrf|verif\w*))\w*\s*[:=]\s*(true|True|1)\b', '(?i)\b(catch|except)\b[^{\n]*?[{:]\s*return\s+true\b|\bErr\(\w*\)\s*=>\s*true\b', '(?i)\b(def|fn|func|function)\b.*\b(verify|secure|validate|escape|check_\w+|ssl|tls)\w*\s*(:\s*\w+\s*)?=\s*(False|false)\b']
 scope: hunk

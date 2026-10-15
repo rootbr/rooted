@@ -2,10 +2,10 @@
 title: A regular expression is written in the dialect of the engine that runs it, so it compiles there and its anchors, escapes, groups and classes mean there what the author intends
 rule_id: INP-18
 domain: input
-step: [implement, review]
+step: [implement]
 applies_to: [universal]
 triggers: ['\(\?<?[=!]', '(Regex::new|RegexBuilder::new|RegexSet::new|regexp[.]MustCompile|regexp[.]Compile|regexp[.]Match(String|Reader)?|Pattern[.]compile|\bre[.](compile|match|fullmatch|search|sub|subn|split|findall|finditer)|new RegExp)\(']
-scope: hunk
+scope: file
 check_kind: semantic
 severity_default: major
 ---
