@@ -300,8 +300,48 @@
      "task": "wk3227ia8",
      "wf": "wf_b342df1d-515",
      "launched": "2026-10-15T00:00 UTC",
-     "status": "running",
+     "status": "done 2026-10-15T00:10 UTC: 9 agents, 818,072 sub-agent tokens, 18 minutes; 5 accepted, 2 closing-edited (API-01, API-07), 0 not accepted; applied",
      "bundle": "r2tree/contracts-assertions-and-invariants--r2tree.js (7 cards API-01 to API-07, 370 KB)"
+    }
+   ],
+   "result": {
+    "applied": "2026-10-15T00:14 UTC",
+    "accepted": [
+     "API-02",
+     "API-03",
+     "API-04",
+     "API-05",
+     "API-06"
+    ],
+    "closing_edited": [
+     "API-01",
+     "API-07"
+    ],
+    "renamed": [],
+    "not_accepted": [],
+    "agents": 9,
+    "tokens": 818072,
+    "wall_s": 1096
+   },
+   "recheck": "API-01: evidence status, the ECOOP 2017 'Contracts in the Wild' entry now carries its author preprint provenance and the article's own DOI (…2017.26, not …2017.9) in Source and provenance line; API-07: trigger, five of six patterns matched no line of the bad Example, merged into two that do; no facet touched, the interface reviewer's step values stand"
+  },
+  "api-evolution-and-deprecation": {
+   "runs": [
+    {
+     "part": "r2tree-1of2",
+     "task": "wllejv1zh",
+     "wf": "wf_9d7ead35-f53",
+     "launched": "2026-10-15T00:14 UTC",
+     "status": "running",
+     "bundle": "r2tree/api-evolution-and-deprecation--r2tree-1of2.js (--only API-20 to API-25, 389 KB; the one-part bundle was 531 KB, above the 512 KiB limit)"
+    },
+    {
+     "part": "r2tree-2of2",
+     "task": null,
+     "wf": null,
+     "launched": null,
+     "status": "built, waiting for a free slot",
+     "bundle": "r2tree/api-evolution-and-deprecation--r2tree-2of2.js (--only API-26 to API-31, 335 KB)"
     }
    ]
   }
