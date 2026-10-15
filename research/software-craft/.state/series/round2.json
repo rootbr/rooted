@@ -435,10 +435,51 @@
      "task": "w6j72eloe",
      "wf": "wf_23080864-834",
      "launched": "2026-10-15T01:33 UTC",
-     "status": "running",
+     "status": "cut by the session limit at about 01:45 UTC (reset 03:10 UTC): 4 verdicts done (3 accept: DSN-09, DSN-10, DSN-11; DSN-08 revise with its closing edit failed), 2 verdicts failed (DSN-12, DSN-13); 7 agents, 502,358 sub-agent tokens; the three accepted cards applied 03:12 UTC",
      "bundle": "r2tree/coupling-and-dependency-direction--r2tree.js (6 cards DSN-08 to DSN-13, 303 KB)"
+    },
+    {
+     "part": "r2tree-rest",
+     "task": "wg63ixnph",
+     "wf": "wf_053f4f03-951",
+     "launched": "2026-10-15T03:13 UTC",
+     "status": "running",
+     "bundle": "r2tree/coupling-and-dependency-direction--r2tree-rest.js (rebuilt with --only DSN-08,DSN-12,DSN-13, 219 KB)"
     }
-   ]
+   ],
+   "result": {
+    "applied": "2026-10-15T03:12 UTC",
+    "accepted": [
+     "DSN-09",
+     "DSN-10",
+     "DSN-11"
+    ],
+    "closing_edited": [],
+    "renamed": [],
+    "not_accepted": [
+     {
+      "key": "one-requirement-one-module",
+      "rule_id": "DSN-08",
+      "reason": "the closing edit returned nothing after revise: [wording] Check 9 (present design): the Thesis contains an \"instead of\" contrast: \"the modules that need it call the owner instead of each depending on that knowledge directly\". It is a design contrast rather than a before/after one, and the rule itself is unaffected, but the check names the phrase explicitly and the sentence reads the same without it.",
+      "entry": "- design · coupling-and-dependency-direction · \"When a diff implements one requirement, such as a new case of a business rule or a changed record format, its edits concentrate in the module that owns that requirement. Small matching edits in several modules that serve unrelated concerns show that knowledge of the requirement has spread into modules that should not depend on it. That knowledge belongs in one owner the others call, or in a third module for the shared concern. ISO/IEC 25010 defines modularity as the degree to which a change to one component has minimal impact on other components. Groups of files that change together without a structural dependency (modularity violations) were more error-prone and change-prone across 19 large projects. In two industrial projects, logical (co-change) dependencies explained most of the variance in fault proneness. The evidence is associational, so the footprint is a reason to look. A deliberate cross-cutting change, such as a rename, a mechanical migration or a dependency upgrade, is not this defect.\" · formulation: PP20 ch. 2 Topic 10 'Orthogonality', Tip 17 'Eliminate Effects Between Unrelated Things' and the 'Design' test (how many modules a dramatic change of one requirement affects; the answer should be one); APOSD ch. 2 §2.2 'change amplification'; Refactoring 2nd ed. ch. 3 'Shotgun Surgery', 'Divergent Change', 'Insider Trading'; Tidy First? ch. 29-30 'Coupling', 'Constantine's Equivalence' (coupling is relative to a particular change) · searched: ISO/IEC 25010:2011 (revised 2023), Systems and software Quality Requirements and Evaluation (SQuaRE), product quality model, Maintainability > Modularity; relayed through the iSAQB glossary (isaqb-org/glossary, term 'Modularity Quality Attribute'); Ran Mo, Yuanfang Cai, Rick Kazman, Lu Xiao, Qiong Feng, 'Architecture Anti-Patterns: Automatically Detectable Violations of Design Principles', IEEE TSE 47(5):1008-1028, 2021, doi:10.1109/TSE.2019.2910856; abstract and anti-pattern list as reproduced in the It Will Never Work in Theory review of 2022-03-14; Marcelo Cataldo, Audris Mockus, Jeffrey A. Roberts, James D. Herbsleb, 'Software Dependencies, Work Dependencies, and Their Impact on Failures', IEEE TSE 35(6):864-878, 2009, doi:10.1109/TSE.2009.42; abstract quoted in a third-party research note on GitHub; Fabio Palomba, Gabriele Bavota, Massimiliano Di Penta, Rocco Oliveto, Denys Poshyvanyk, Andrea De Lucia, 'Mining Version Histories for Detecting Code Smells', IEEE TSE 41(5):462-489, 2015, doi:10.1109/TSE.2014.2372760 (author's PDF); David L. Parnas, 'On the Criteria To Be Used in Decomposing Systems into Modules', Communications of the ACM 15(12):1053-1058, 1972, doi:10.1145/361598.361623; quoted in a third-party research note on GitHub · held: the closing edit returned nothing after revise: [wording] Check 9 (present design): the Thesis contains an \"instead of\" contrast: \"the modules that need it call the owner instead of each depending on that knowledge directly\". It is a design contrast rather than a before/after one, and the rule itself is unaffected, but the check names the phrase explicitly and the sentence reads the same without it."
+     },
+     {
+      "key": "consumer-declares-interface",
+      "rule_id": "DSN-12",
+      "reason": "the skeptic returned no verdict",
+      "entry": "- design · coupling-and-dependency-direction · \"When a module needs a capability that another module implements and should not depend on that implementation, the consuming module declares the interface (or trait, or protocol) with the methods it calls. The implementing module provides concrete types that satisfy it, so the source dependency points from the implementation to the consumer. An interface exported by the implementing module beside its only implementation keeps the consumer pointing at the implementer, and its methods follow the implementation rather than the consumer's needs. The exception is an interface that is the product: a common protocol with several implementations and many consumers (a writer, a hash), which the producer exports and its constructors may return. The interface is added when a real use exists, not ahead of one and not on the implementer's side for mocking. Go and TypeScript satisfy a consumer-declared interface structurally, and Python does so through typing.Protocol, so the implementer imports nothing. In Java and Rust the implementer names the consumer's interface or trait, and that import is the inverted dependency.\" · formulation: Agile PPP in C# ch. 11 'The Dependency-Inversion Principle' (clients own the abstract interfaces and servers derive from them); Clean Architecture ch. 14 'Breaking the Cycle' and ch. 22 'Crossing Boundaries' (the interface sits on the inner side); Martin, 'A Little Architecture' (2016): 'Senders own the interfaces that the receivers must implement'; Seemann, 'Interfaces are not abstractions' (2010): role interfaces over 1:1 header interfaces · searched: Go Wiki, 'Go Code Review Comments', section 'Interfaces' (golang/wiki, CodeReviewComments.md); Google, Go Style Guide, Style Decisions, section 'Interfaces' (google/styleguide, go/decisions.md); Google, Go Style Guide, Best Practices, 'Interfaces' > 'Interface ownership and visibility' (google/styleguide, go/best-practices.md); Effective Go, 'Interfaces and other types' > 'Generality' (golang/website, _content/doc/effective_go.html); PEP 544 - Protocols: Structural subtyping (static duck typing) (python/peps, peps/pep-0544.rst) · held: the skeptic returned no verdict"
+     },
+     {
+      "key": "split-only-separable-modules",
+      "rule_id": "DSN-13",
+      "reason": "the skeptic returned no verdict",
+      "entry": "- design · coupling-and-dependency-direction · \"Splitting code into modules pays off only when the parts can be used and understood apart. Types whose implementations are tightly coupled can share details inside one module without publishing them in its public interface. Split apart, either the coupling leaks into exported members or every client has to import both. The test, from Google's Go guide, is a hypothetical user of two packages on closely related topics: if that user must import both packages to use either in any meaningful way, combining them is usually right. The limit runs the other way too. A whole project in one package grows too large, and something conceptually distinct can have its own small package.\" · formulation: APOSD ch. 9 'Better Together Or Better Apart?' (separate only truly independent components; pick the structure with the fewest dependencies); Tidy First? ch. 32 'Coupled elements should be subelements of the same containing element'; Refactoring 2nd ed. ch. 3 'Insider Trading' · searched: Google, Go Style Guide, Best Practices, section 'Package size' (google/styleguide, go/best-practices.md) · held: the skeptic returned no verdict"
+     }
+    ],
+    "agents": 7,
+    "tokens": 502358,
+    "wall_s": 522
+   }
   }
  }
 }

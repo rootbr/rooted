@@ -60,8 +60,16 @@
      "task": "w5awjt8mh",
      "wf": "wf_4279d7dc-4bb",
      "launched": "2026-10-14T23:52 UTC",
-     "status": "running",
+     "status": "cut by the session limit at about 01:45 UTC (reset 03:10 UTC): sources, spine, 4 drafts, 4 first verdicts, 3 fixes and 1 second verdict done; 1 fix, 2 second verdicts and 1 closing edit failed; 20 agents, 2,643,390 sub-agent tokens; no card finished",
      "bundle": "gaps/gaps-code.js (4 queued concepts of the code domain)"
+    },
+    {
+     "part": "r1-finish",
+     "task": "wlqqgu2zf",
+     "wf": "wf_ecc55339-18f",
+     "launched": "2026-10-15T03:14 UTC",
+     "status": "running",
+     "bundle": "cont/gaps-code/continue-gaps-code-1of1.js (research-continue.py --round 1 --journal r1 --from-bundle gaps/gaps-code.js: 4 drafts and their first verdicts carried)"
     }
    ]
   },
@@ -72,8 +80,16 @@
      "task": "wzf8hn9x4",
      "wf": "wf_9e7a4dfc-d96",
      "launched": "2026-10-15T00:06 UTC",
-     "status": "running",
+     "status": "cut by the session limit at about 01:45 UTC (reset 03:10 UTC): sources, spine, 4 drafts, 4 first verdicts and 4 fixes done; the 4 second verdicts failed; 20 agents, 2,566,752 sub-agent tokens; no card finished",
      "bundle": "gaps/gaps-tests.js (4 queued concepts of the tests domain)"
+    },
+    {
+     "part": "r1-finish",
+     "task": "w9k7qoupx",
+     "wf": "wf_ff1ebd63-f33",
+     "launched": "2026-10-15T03:15 UTC",
+     "status": "running",
+     "bundle": "cont/gaps-tests/continue-gaps-tests-1of1.js (research-continue.py --round 1 --journal r1 --from-bundle gaps/gaps-tests.js: 4 drafts and their first verdicts carried)"
     }
    ]
   },
@@ -84,8 +100,16 @@
      "task": "wge5sdblv",
      "wf": "wf_cbbf494f-f7c",
      "launched": "2026-10-15T01:22 UTC",
-     "status": "running",
+     "status": "failed at the session limit at about 01:45 UTC (reset 03:10 UTC): all three source agents failed, nothing to continue from; 423,020 sub-agent tokens",
      "bundle": "gaps/gaps-interface.js (3 queued concepts of the interface domain)"
+    },
+    {
+     "part": "r1-retry",
+     "task": "w67rlse7i",
+     "wf": "wf_96860bfc-a6f",
+     "launched": "2026-10-15T03:15 UTC",
+     "status": "running",
+     "bundle": "gaps/gaps-interface.js relaunched as is"
     }
    ]
   }
