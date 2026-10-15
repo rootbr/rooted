@@ -273,8 +273,8 @@ Source items that yielded no rule:
 
 | Rule id | Title | Card | Verification |
 |--|--|--|--|
-| TST-13 | A test that a change adds for new or changed behaviour, including the regression test of a bug fix, fails on an assertion about that behaviour against the code without the change and passes with it | `references/craft-cards/tst-13--new-test-fails-without-the-change.md` | shipped on a closing edit after 1 fix round: the last verdict's required edits applied verbatim, no further verdict (revise: [entailment] The card counts a failure on the base only when an assertion fails, and excuses a crash only when a bug fix removes it. The sources set a broader threshold: any failure counts. ru) |
-| TST-14 | A change that adds or changes production behaviour, a bug fix included, carries the new or updated tests for that behaviour in the same change unless it handles an emergency | `references/craft-cards/tst-14--tests-arrive-in-the-same-change-as-the-behaviour.md` | accepted after 1 fix round (revise: [other] The Limits and the Validator's pass list disagree with the bold question on a pure refactoring of untested code. Limits: 'A pure refactoring, on) |
+| TST-13 | A test that a change adds for new or changed behaviour, including the regression test of a bug fix, fails against the code without the change on an assertion about that behaviour or on a crash the change removes, and passes with it | `references/craft-cards/tst-13--new-test-fails-without-the-change.md` | shipped on a closing edit after 1 fix round: the last verdict's required edits applied verbatim, no further verdict (revise: [entailment] The card counts a failure on the base only when an assertion fails, and excuses a crash only when a bug fix removes it. The sources set a broader threshold: any failure counts. ru); round 2 over the tree: accepted by a `max` verdict (accept: Checks recorded. (1) Entailment: all six fetched Source items were curled from raw.githubusercontent.com (HTTP 200) into /tmp/craft-research/test-first-) |
+| TST-14 | A change that adds or changes production behaviour, a bug fix included, carries the new or updated tests for that behaviour in the same change unless it handles an emergency | `references/craft-cards/tst-14--tests-arrive-in-the-same-change-as-the-behaviour.md` | accepted after 1 fix round (revise: [other] The Limits and the Validator's pass list disagree with the bold question on a pure refactoring of untested code. Limits: 'A pure refactoring, on); round 2 over the tree: accepted by a `max` verdict (accept: Checks run: (1) Entailment: every fetched citation opened by curl from this environment into /tmp/craft-research/test-first-and-test-driven-development/) |
 
 ## Rules held back
 
@@ -295,3 +295,4 @@ Held without a pending entry (no checkable form on a diff, or folded into a sibl
 ## Cost
 
 - agents run: 13; runs: 1; sub-agent tokens: 1,790,408; wall-clock: 4467 s
+- round 2 over the tree: agents run: 2; sub-agent tokens: 158,448; wall-clock: 145 s; 2 accepted, 0 closing-edited, 0 not accepted

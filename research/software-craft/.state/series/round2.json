@@ -854,10 +854,24 @@
      "task": "won8xbqry",
      "wf": "wf_183594ca-e85",
      "launched": "2026-10-15T09:05 UTC",
-     "status": "running",
+     "status": "done 2026-10-15T09:07 UTC: 2 agents, 158,448 sub-agent tokens, 2 minutes; 2 accepted, 0 closing-edited, 0 not accepted; applied",
      "bundle": "r2tree/test-first-and-test-driven-development--r2tree.js (2 cards TST-13, TST-14, 168 KB; the one active task of the one-task mode)"
     }
-   ]
+   ],
+   "result": {
+    "applied": "2026-10-15T09:07 UTC",
+    "accepted": [
+     "TST-13",
+     "TST-14"
+    ],
+    "closing_edited": [],
+    "renamed": [],
+    "not_accepted": [],
+    "agents": 2,
+    "tokens": 158448,
+    "wall_s": 145
+   },
+   "recheck": "no edits; nothing to re-check"
   }
  }
 }
