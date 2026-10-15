@@ -1014,10 +1014,29 @@
      "task": "w6jslj4nq",
      "wf": "wf_77e30c31-2db",
      "launched": "2026-10-15T09:24 UTC",
-     "status": "running",
+     "status": "done 2026-10-15T09:35 UTC: 7 agents, 587,791 sub-agent tokens, 11 minutes; 7 accepted, 0 closing-edited, 0 not accepted; applied",
      "bundle": "r2tree/seams-and-characterization-tests--r2tree.js (7 cards CHG-18 to CHG-24, 272 KB)"
     }
-   ]
+   ],
+   "result": {
+    "applied": "2026-10-15T09:35 UTC",
+    "accepted": [
+     "CHG-18",
+     "CHG-19",
+     "CHG-20",
+     "CHG-21",
+     "CHG-22",
+     "CHG-23",
+     "CHG-24"
+    ],
+    "closing_edited": [],
+    "renamed": [],
+    "not_accepted": [],
+    "agents": 7,
+    "tokens": 587791,
+    "wall_s": 667
+   },
+   "recheck": "no edits; nothing to re-check"
   },
   "large-scale-changes-and-migrations": {
    "runs": [
@@ -1040,6 +1059,18 @@
      "launched": "2026-10-15T09:30 UTC",
      "status": "running",
      "bundle": "r2tree/small-steps-and-minimal-diffs--r2tree.js (6 cards CHG-12 to CHG-17, 263 KB)"
+    }
+   ]
+  },
+  "technical-debt": {
+   "runs": [
+    {
+     "part": "r2tree",
+     "task": "wzblq7d7m",
+     "wf": "wf_5368f530-f1d",
+     "launched": "2026-10-15T09:35 UTC",
+     "status": "running",
+     "bundle": "r2tree/technical-debt--r2tree.js (5 cards CHG-33 to CHG-37, 209 KB; the tree key retired-flag-leaves-no-dead-branch has no corpus card and is left out)"
     }
    ]
   }
