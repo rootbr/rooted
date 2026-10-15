@@ -151,6 +151,32 @@
    "task": "wwp0dukhc",
    "wf": "wf_e69e9a8a-638",
    "launched": "2026-10-15T12:20 UTC",
+   "status": "done 2026-10-15T12:36 UTC: 221 agents, 14,425,621 sub-agent tokens, 16 minutes; 12 patches: C-E2 on DOC-11 applied three times (the inline source locators in Limits removed; the Source block already carries the four documents); C-F3 on CHG-38, CODE-83, CODE-84, DOC-11, DOC-12, DSN-74, ERR-13, ERR-17, TOOL-01 and TOOL-02 dismissed under the taxonomy's Example-form deviation (fenced pairs in one of the five languages, at most ten lines by the validator); targets unmutated",
+   "patches": 12,
+   "applied": [
+    "DOC-11 C-E2 x3"
+   ],
+   "dismissed": [
+    "C-F3 x9"
+   ]
+  },
+  {
+   "run": 3,
+   "cards": [
+    "DOC-23",
+    "ERR-52",
+    "ERR-53",
+    "API-32",
+    "API-33",
+    "PRF-25",
+    "PRF-26",
+    "TST-52",
+    "TST-53",
+    "TOOL-33"
+   ],
+   "task": "w3x86xjw8",
+   "wf": "wf_27892db3-48b",
+   "launched": "2026-10-15T12:37 UTC",
    "status": "running"
   }
  ]
