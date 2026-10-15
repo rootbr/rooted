@@ -340,29 +340,41 @@
      "task": "wolrontww",
      "wf": "wf_e7c08f22-939",
      "launched": "2026-10-15T00:33 UTC",
-     "status": "running",
+     "status": "done 2026-10-15T00:45 UTC: 8 agents, 680,511 sub-agent tokens, 11 minutes; 4 accepted (API-27, API-28, API-29, API-31), 2 closing-edited (API-26, API-30), 0 not accepted; applied",
      "bundle": "r2tree/api-evolution-and-deprecation--r2tree-2of2.js (--only API-26 to API-31, 335 KB)"
     }
    ],
    "result": {
-    "applied": "2026-10-15T00:31 UTC",
+    "applied": "2026-10-15T00:43 UTC",
     "accepted": [
-     "API-22",
-     "API-24"
+     "API-27",
+     "API-28",
+     "API-29",
+     "API-31"
     ],
     "closing_edited": [
-     "API-20",
-     "API-21",
-     "API-23",
-     "API-25"
+     "API-26",
+     "API-30"
     ],
     "renamed": [],
     "not_accepted": [],
-    "agents": 10,
-    "tokens": 897706,
-    "wall_s": 1043
+    "agents": 8,
+    "tokens": 680511,
+    "wall_s": 686
    },
-   "recheck": "part 1: API-20 wording, the Validator's public-element filter now admits a 0.y.z element where the project treats the leftmost non-zero component as the breaking-change indicator, as its Limits already did; API-21 entailment, the Thesis no longer states undocumented behaviour as protected outright but carries the division between compatibility policies that the Limits and the interface reviewer's resolution already drew, and the Validator sets such a failure aside unless the project's policy protects it; API-23 wording, the Rust-specific example in Limits generalised; API-25, the provenance Triggers note matches the pattern; no facet touched, the reviewer's scope value on API-23 (callers) stands"
+   "recheck": "part 1: API-20 wording, the Validator's public-element filter now admits a 0.y.z element where the project treats the leftmost non-zero component as the breaking-change indicator, as its Limits already did; API-21 entailment, the Thesis no longer states undocumented behaviour as protected outright but carries the division between compatibility policies that the Limits and the interface reviewer's resolution already drew, and the Validator sets such a failure aside unless the project's policy protects it; API-23 wording, the Rust-specific example in Limits generalised; API-25, the provenance Triggers note matches the pattern; no facet touched, the reviewer's scope value on API-23 (callers) stands; part 2: API-26 entailment, the verdict deletes the second Limits paragraph and the npm caret bullet that the interface reviewer's API-22/API-26 resolution had added (reviews/interface.json); the deletion stands on re-check: the sentence conflated the version-signal rule (API-22's) with the deprecation-release rule and contradicted API-26's own Validator, and the two cards judge different things for a 0.y.z library (the signal a breaking change carries, and the deprecated release before a removal), so no contradiction is left to resolve; the Finding output gains the added public declaration as a code anchor; API-30 wording only; the reviewer's facet values on API-30 (step, check_kind, scope) stand"
+  },
+  "complexity-and-deep-modules": {
+   "runs": [
+    {
+     "part": "r2tree",
+     "task": "wv22a55cv",
+     "wf": "wf_4c1f893e-3b7",
+     "launched": "2026-10-15T00:47 UTC",
+     "status": "running",
+     "bundle": "r2tree/complexity-and-deep-modules--r2tree.js (6 cards DSN-14 to DSN-19, 345 KB)"
+    }
+   ]
   }
  }
 }

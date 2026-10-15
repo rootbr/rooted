@@ -15,7 +15,7 @@
   "finished": false,
   "cards": null,
   "spine_card_rules": null,
-  "checked": "2026-10-15T00:31 UTC",
+  "checked": "2026-10-15T00:43 UTC",
   "snapshot_journal": "journals/security-hygiene-in-ordinary-code--r1.journal.jsonl.gz"
  },
  "security-hygiene-in-ordinary-code--r1-sources": {
@@ -37,7 +37,7 @@
   "finished": false,
   "cards": null,
   "spine_card_rules": 12,
-  "checked": "2026-10-15T00:31 UTC",
+  "checked": "2026-10-15T00:43 UTC",
   "snapshot_journal": "journals/security-hygiene-in-ordinary-code--r1-sources.journal.jsonl.gz"
  },
  "security-hygiene-in-ordinary-code--r2-1of2": {
@@ -55,7 +55,7 @@
   "finished": false,
   "cards": null,
   "spine_card_rules": null,
-  "checked": "2026-10-15T00:31 UTC",
+  "checked": "2026-10-15T00:43 UTC",
   "snapshot_journal": "journals/security-hygiene-in-ordinary-code--r2-1of2.journal.jsonl.gz"
  },
  "security-hygiene-in-ordinary-code--r2-2of2": {
@@ -73,7 +73,7 @@
   "finished": false,
   "cards": null,
   "spine_card_rules": null,
-  "checked": "2026-10-15T00:31 UTC",
+  "checked": "2026-10-15T00:43 UTC",
   "snapshot_journal": "journals/security-hygiene-in-ordinary-code--r2-2of2.journal.jsonl.gz"
  },
  "parsing-and-grammar-based-input--r1": {
@@ -96,7 +96,7 @@
   "finished": false,
   "cards": null,
   "spine_card_rules": 13,
-  "checked": "2026-10-15T00:31 UTC",
+  "checked": "2026-10-15T00:43 UTC",
   "snapshot_journal": "journals/parsing-and-grammar-based-input--r1.journal.jsonl.gz"
  },
  "parsing-and-grammar-based-input--r1-rest": {
@@ -114,7 +114,7 @@
   "finished": false,
   "cards": null,
   "spine_card_rules": null,
-  "checked": "2026-10-15T00:31 UTC",
+  "checked": "2026-10-15T00:43 UTC",
   "snapshot_journal": "journals/parsing-and-grammar-based-input--r1-rest.journal.jsonl.gz"
  },
  "parsing-and-grammar-based-input--r1-finish": {
@@ -131,7 +131,7 @@
   "finished": false,
   "cards": null,
   "spine_card_rules": null,
-  "checked": "2026-10-15T00:31 UTC",
+  "checked": "2026-10-15T00:43 UTC",
   "snapshot_journal": "journals/parsing-and-grammar-based-input--r1-finish.journal.jsonl.gz"
  },
  "parsing-and-grammar-based-input--r2-1of2": {
@@ -149,7 +149,7 @@
   "finished": false,
   "cards": null,
   "spine_card_rules": null,
-  "checked": "2026-10-15T00:31 UTC",
+  "checked": "2026-10-15T00:43 UTC",
   "snapshot_journal": "journals/parsing-and-grammar-based-input--r2-1of2.journal.jsonl.gz"
  },
  "parsing-and-grammar-based-input--r2-2of2": {
@@ -167,7 +167,7 @@
   "finished": false,
   "cards": null,
   "spine_card_rules": null,
-  "checked": "2026-10-15T00:31 UTC",
+  "checked": "2026-10-15T00:43 UTC",
   "snapshot_journal": "journals/parsing-and-grammar-based-input--r2-2of2.journal.jsonl.gz"
  },
  "runtime-configuration--r1": {
@@ -189,7 +189,7 @@
   "finished": false,
   "cards": null,
   "spine_card_rules": 11,
-  "checked": "2026-10-15T00:31 UTC",
+  "checked": "2026-10-15T00:43 UTC",
   "snapshot_journal": "journals/runtime-configuration--r1.journal.jsonl.gz"
  },
  "runtime-configuration--r1-rest": {
@@ -208,7 +208,7 @@
   "finished": false,
   "cards": null,
   "spine_card_rules": null,
-  "checked": "2026-10-15T00:31 UTC",
+  "checked": "2026-10-15T00:43 UTC",
   "snapshot_journal": "journals/runtime-configuration--r1-rest.journal.jsonl.gz"
  },
  "runtime-configuration--r2-1of2": {
@@ -228,7 +228,7 @@
   "finished": false,
   "cards": null,
   "spine_card_rules": null,
-  "checked": "2026-10-15T00:31 UTC",
+  "checked": "2026-10-15T00:43 UTC",
   "snapshot_journal": "journals/runtime-configuration--r2-1of2.journal.jsonl.gz"
  },
  "runtime-configuration--r2-2of2": {
@@ -247,7 +247,7 @@
   "finished": false,
   "cards": null,
   "spine_card_rules": null,
-  "checked": "2026-10-15T00:31 UTC",
+  "checked": "2026-10-15T00:43 UTC",
   "snapshot_journal": "journals/runtime-configuration--r2-2of2.journal.jsonl.gz"
  },
  "runtime-configuration--r2-finish": {
@@ -264,7 +264,7 @@
   "finished": false,
   "cards": null,
   "spine_card_rules": null,
-  "checked": "2026-10-15T00:31 UTC",
+  "checked": "2026-10-15T00:43 UTC",
   "snapshot_journal": "journals/runtime-configuration--r2-finish.journal.jsonl.gz"
  },
  "runtime-configuration--r2-rest": {
@@ -281,7 +281,7 @@
   "finished": false,
   "cards": null,
   "spine_card_rules": null,
-  "checked": "2026-10-15T00:31 UTC",
+  "checked": "2026-10-15T00:43 UTC",
   "snapshot_journal": "journals/runtime-configuration--r2-rest.journal.jsonl.gz"
  },
  "internationalization-and-text-encoding--r1": {
@@ -303,7 +303,7 @@
   "finished": true,
   "cards": 12,
   "spine_card_rules": 14,
-  "checked": "2026-10-15T00:31 UTC",
+  "checked": "2026-10-15T00:43 UTC",
   "snapshot_journal": "journals/internationalization-and-text-encoding--r1.journal.jsonl.gz",
   "snapshot_output": "outputs/internationalization-and-text-encoding--r1.output.json.gz"
  },
@@ -322,7 +322,7 @@
   "finished": true,
   "cards": 0,
   "spine_card_rules": 12,
-  "checked": "2026-10-15T00:31 UTC",
+  "checked": "2026-10-15T00:43 UTC",
   "snapshot_journal": "journals/internationalization-and-text-encoding--r2-1of2.journal.jsonl.gz",
   "snapshot_output": "outputs/internationalization-and-text-encoding--r2-1of2.output.json.gz"
  },
@@ -341,7 +341,7 @@
   "finished": true,
   "cards": 5,
   "spine_card_rules": 12,
-  "checked": "2026-10-15T00:31 UTC",
+  "checked": "2026-10-15T00:43 UTC",
   "snapshot_journal": "journals/internationalization-and-text-encoding--r2-2of2.journal.jsonl.gz",
   "snapshot_output": "outputs/internationalization-and-text-encoding--r2-2of2.output.json.gz"
  },
@@ -359,7 +359,7 @@
   "finished": true,
   "cards": 3,
   "spine_card_rules": 12,
-  "checked": "2026-10-15T00:31 UTC",
+  "checked": "2026-10-15T00:43 UTC",
   "snapshot_journal": "journals/internationalization-and-text-encoding--r2-finish-1of2.journal.jsonl.gz",
   "snapshot_output": "outputs/internationalization-and-text-encoding--r2-finish-1of2.output.json.gz"
  },
@@ -377,7 +377,7 @@
   "finished": true,
   "cards": 3,
   "spine_card_rules": 12,
-  "checked": "2026-10-15T00:31 UTC",
+  "checked": "2026-10-15T00:43 UTC",
   "snapshot_journal": "journals/internationalization-and-text-encoding--r2-finish-2of2.journal.jsonl.gz",
   "snapshot_output": "outputs/internationalization-and-text-encoding--r2-finish-2of2.output.json.gz"
  },
@@ -400,7 +400,7 @@
   "finished": true,
   "cards": 6,
   "spine_card_rules": 6,
-  "checked": "2026-10-15T00:31 UTC",
+  "checked": "2026-10-15T00:43 UTC",
   "snapshot_journal": "journals/code-review-as-author-and-reviewer--r1.journal.jsonl.gz",
   "snapshot_output": "outputs/code-review-as-author-and-reviewer--r1.output.json.gz"
  },
@@ -419,7 +419,7 @@
   "finished": true,
   "cards": 4,
   "spine_card_rules": 6,
-  "checked": "2026-10-15T00:31 UTC",
+  "checked": "2026-10-15T00:43 UTC",
   "snapshot_journal": "journals/code-review-as-author-and-reviewer--r2.journal.jsonl.gz",
   "snapshot_output": "outputs/code-review-as-author-and-reviewer--r2.output.json.gz"
  },
@@ -442,7 +442,7 @@
   "finished": true,
   "cards": 12,
   "spine_card_rules": 13,
-  "checked": "2026-10-15T00:31 UTC",
+  "checked": "2026-10-15T00:43 UTC",
   "snapshot_journal": "journals/documentation-beyond-comments--r1.journal.jsonl.gz",
   "snapshot_output": "outputs/documentation-beyond-comments--r1.output.json.gz"
  },
@@ -463,7 +463,7 @@
   "finished": true,
   "cards": 1,
   "spine_card_rules": 12,
-  "checked": "2026-10-15T00:31 UTC",
+  "checked": "2026-10-15T00:43 UTC",
   "snapshot_journal": "journals/documentation-beyond-comments--r2.journal.jsonl.gz",
   "snapshot_output": "outputs/documentation-beyond-comments--r2.output.json.gz"
  },
@@ -481,7 +481,7 @@
   "finished": true,
   "cards": 9,
   "spine_card_rules": 12,
-  "checked": "2026-10-15T00:31 UTC",
+  "checked": "2026-10-15T00:43 UTC",
   "snapshot_journal": "journals/documentation-beyond-comments--r2-finish.journal.jsonl.gz",
   "snapshot_output": "outputs/documentation-beyond-comments--r2-finish.output.json.gz"
  },
@@ -504,7 +504,7 @@
   "finished": true,
   "cards": 4,
   "spine_card_rules": 4,
-  "checked": "2026-10-15T00:31 UTC",
+  "checked": "2026-10-15T00:43 UTC",
   "snapshot_journal": "journals/reading-and-understanding-code--r1.journal.jsonl.gz",
   "snapshot_output": "outputs/reading-and-understanding-code--r1.output.json.gz"
  },
@@ -523,7 +523,7 @@
   "finished": true,
   "cards": 4,
   "spine_card_rules": 4,
-  "checked": "2026-10-15T00:31 UTC",
+  "checked": "2026-10-15T00:43 UTC",
   "snapshot_journal": "journals/reading-and-understanding-code--r2.journal.jsonl.gz",
   "snapshot_output": "outputs/reading-and-understanding-code--r2.output.json.gz"
  },
@@ -546,7 +546,7 @@
   "finished": true,
   "cards": 0,
   "spine_card_rules": 5,
-  "checked": "2026-10-15T00:31 UTC",
+  "checked": "2026-10-15T00:43 UTC",
   "snapshot_journal": "journals/gaps-performance--r1.journal.jsonl.gz",
   "snapshot_output": "outputs/gaps-performance--r1.output.json.gz"
  },
@@ -566,7 +566,7 @@
   "finished": true,
   "cards": 5,
   "spine_card_rules": 5,
-  "checked": "2026-10-15T00:31 UTC",
+  "checked": "2026-10-15T00:43 UTC",
   "snapshot_journal": "journals/gaps-performance--r1-finish.journal.jsonl.gz",
   "snapshot_output": "outputs/gaps-performance--r1-finish.output.json.gz"
  },
@@ -585,7 +585,7 @@
   "finished": true,
   "cards": 4,
   "spine_card_rules": 5,
-  "checked": "2026-10-15T00:31 UTC",
+  "checked": "2026-10-15T00:43 UTC",
   "snapshot_journal": "journals/gaps-performance--r2.journal.jsonl.gz",
   "snapshot_output": "outputs/gaps-performance--r2.output.json.gz"
  },
@@ -602,13 +602,13 @@
    "verify": 3,
    "fix": 3,
    "verify2": 2,
-   "close1": 1
+   "close1": 2
   },
   "failed": {},
   "finished": false,
   "cards": null,
   "spine_card_rules": 3,
-  "checked": "2026-10-15T00:31 UTC",
+  "checked": "2026-10-15T00:43 UTC",
   "snapshot_journal": "journals/gaps-errors--r1.journal.jsonl.gz"
  },
  "gaps-code--r1": {
@@ -618,13 +618,15 @@
   "task": "w5awjt8mh",
   "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_4279d7dc-4bb/journal.jsonl",
   "done": {
-   "sources": 3
+   "sources": 3,
+   "spine": 1,
+   "draft": 4
   },
   "failed": {},
   "finished": false,
   "cards": null,
-  "spine_card_rules": null,
-  "checked": "2026-10-15T00:31 UTC",
+  "spine_card_rules": 4,
+  "checked": "2026-10-15T00:43 UTC",
   "snapshot_journal": "journals/gaps-code--r1.journal.jsonl.gz"
  },
  "gaps-tests--r1": {
@@ -634,13 +636,13 @@
   "task": "wzf8hn9x4",
   "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_9e7a4dfc-d96/journal.jsonl",
   "done": {
-   "sources": 2
+   "sources": 3
   },
   "failed": {},
   "finished": false,
   "cards": null,
   "spine_card_rules": null,
-  "checked": "2026-10-15T00:31 UTC",
+  "checked": "2026-10-15T00:43 UTC",
   "snapshot_journal": "journals/gaps-tests--r1.journal.jsonl.gz"
  },
  "comments-and-self-documenting-code--r2tree": {
@@ -657,7 +659,7 @@
   "finished": true,
   "cards": 12,
   "spine_card_rules": 12,
-  "checked": "2026-10-15T00:31 UTC",
+  "checked": "2026-10-15T00:43 UTC",
   "snapshot_journal": "journals/comments-and-self-documenting-code--r2tree.journal.jsonl.gz",
   "snapshot_output": "outputs/comments-and-self-documenting-code--r2tree.output.json.gz"
  },
@@ -675,7 +677,7 @@
   "finished": true,
   "cards": 11,
   "spine_card_rules": 11,
-  "checked": "2026-10-15T00:31 UTC",
+  "checked": "2026-10-15T00:43 UTC",
   "snapshot_journal": "journals/layout-and-coding-style--r2tree.journal.jsonl.gz",
   "snapshot_output": "outputs/layout-and-coding-style--r2tree.output.json.gz"
  },
@@ -693,7 +695,7 @@
   "finished": true,
   "cards": 7,
   "spine_card_rules": 9,
-  "checked": "2026-10-15T00:31 UTC",
+  "checked": "2026-10-15T00:43 UTC",
   "snapshot_journal": "journals/routine-size-and-parameters--r2tree.journal.jsonl.gz",
   "snapshot_output": "outputs/routine-size-and-parameters--r2tree.output.json.gz"
  },
@@ -713,7 +715,7 @@
   "finished": true,
   "cards": 8,
   "spine_card_rules": 14,
-  "checked": "2026-10-15T00:31 UTC",
+  "checked": "2026-10-15T00:43 UTC",
   "snapshot_journal": "journals/variables-scope-and-numerics--r2tree.journal.jsonl.gz",
   "snapshot_output": "outputs/variables-scope-and-numerics--r2tree.output.json.gz"
  },
@@ -731,7 +733,7 @@
   "finished": true,
   "cards": 4,
   "spine_card_rules": 14,
-  "checked": "2026-10-15T00:31 UTC",
+  "checked": "2026-10-15T00:43 UTC",
   "snapshot_journal": "journals/variables-scope-and-numerics--r2tree-rest.journal.jsonl.gz",
   "snapshot_output": "outputs/variables-scope-and-numerics--r2tree-rest.output.json.gz"
  },
@@ -749,7 +751,7 @@
   "finished": true,
   "cards": 10,
   "spine_card_rules": 18,
-  "checked": "2026-10-15T00:31 UTC",
+  "checked": "2026-10-15T00:43 UTC",
   "snapshot_journal": "journals/control-flow--r2tree.journal.jsonl.gz",
   "snapshot_output": "outputs/control-flow--r2tree.output.json.gz"
  },
@@ -767,7 +769,7 @@
   "finished": true,
   "cards": 8,
   "spine_card_rules": 8,
-  "checked": "2026-10-15T00:31 UTC",
+  "checked": "2026-10-15T00:43 UTC",
   "snapshot_journal": "journals/table-driven-and-state-machines--r2tree.journal.jsonl.gz",
   "snapshot_output": "outputs/table-driven-and-state-machines--r2tree.output.json.gz"
  },
@@ -785,7 +787,7 @@
   "finished": true,
   "cards": 10,
   "spine_card_rules": 10,
-  "checked": "2026-10-15T00:31 UTC",
+  "checked": "2026-10-15T00:43 UTC",
   "snapshot_journal": "journals/generics-and-parameterization--r2tree.journal.jsonl.gz",
   "snapshot_output": "outputs/generics-and-parameterization--r2tree.output.json.gz"
  },
@@ -803,7 +805,7 @@
   "finished": true,
   "cards": 12,
   "spine_card_rules": 13,
-  "checked": "2026-10-15T00:31 UTC",
+  "checked": "2026-10-15T00:43 UTC",
   "snapshot_journal": "journals/api-design-and-use--r2tree.journal.jsonl.gz",
   "snapshot_output": "outputs/api-design-and-use--r2tree.output.json.gz"
  },
@@ -821,7 +823,7 @@
   "finished": true,
   "cards": 7,
   "spine_card_rules": 7,
-  "checked": "2026-10-15T00:31 UTC",
+  "checked": "2026-10-15T00:43 UTC",
   "snapshot_journal": "journals/contracts-assertions-and-invariants--r2tree.journal.jsonl.gz",
   "snapshot_output": "outputs/contracts-assertions-and-invariants--r2tree.output.json.gz"
  },
@@ -839,7 +841,7 @@
   "finished": true,
   "cards": 6,
   "spine_card_rules": 14,
-  "checked": "2026-10-15T00:31 UTC",
+  "checked": "2026-10-15T00:43 UTC",
   "snapshot_journal": "journals/api-evolution-and-deprecation--r2tree-1of2.journal.jsonl.gz",
   "snapshot_output": "outputs/api-evolution-and-deprecation--r2tree-1of2.output.json.gz"
  },
@@ -849,12 +851,16 @@
   "wf": "wf_e7c08f22-939",
   "task": "wolrontww",
   "journal": "/root/.claude/projects/-home-user-rooted/e90d4d4d-b4c5-58b7-8385-bbb5069933a1/subagents/workflows/wf_e7c08f22-939/journal.jsonl",
-  "done": {},
+  "done": {
+   "verify3": 6,
+   "close3": 2
+  },
   "failed": {},
-  "finished": false,
-  "cards": null,
-  "spine_card_rules": null,
-  "checked": "2026-10-15T00:31 UTC",
-  "snapshot_journal": "journals/api-evolution-and-deprecation--r2tree-2of2.journal.jsonl.gz"
+  "finished": true,
+  "cards": 6,
+  "spine_card_rules": 14,
+  "checked": "2026-10-15T00:43 UTC",
+  "snapshot_journal": "journals/api-evolution-and-deprecation--r2tree-2of2.journal.jsonl.gz",
+  "snapshot_output": "outputs/api-evolution-and-deprecation--r2tree-2of2.output.json.gz"
  }
 }
