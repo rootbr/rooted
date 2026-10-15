@@ -210,8 +210,16 @@
      "task": "w3d8eejse",
      "wf": "wf_165857a2-876",
      "launched": "2026-10-15T11:55 UTC",
-     "status": "running",
+     "status": "done 2026-10-15T13:52 UTC: 19 agents, 3,050,457 sub-agent tokens, 120 minutes, 3 cards in its output, all three sent back with revise by the second verdict; output outputs/gaps-tooling--r1.output.json.gz",
      "bundle": "gaps/gaps-tooling.js (3 queued concepts of the tooling domain from reviews/tooling.json: floating date and time values, bidirectional and invisible characters in source, pinned CI actions and images)"
+    },
+    {
+     "part": "r2",
+     "task": "w46jrst3t",
+     "wf": "wf_a30dfd2a-f05",
+     "launched": "2026-10-15T13:55 UTC",
+     "status": "running",
+     "bundle": "cont/gaps-tooling/r2/continue-gaps-tooling-round2-1of1.js (research-continue.py --round 2 --journal r1 --from-bundle gaps/gaps-tooling.js --split 1: the three carded rules sent back with revise)"
     }
    ],
    "status": "running"
