@@ -1,0 +1,442 @@
+{
+ "domain": "docs",
+ "cards_read": [
+  "DOC-01",
+  "DOC-02",
+  "DOC-03",
+  "DOC-04",
+  "DOC-05",
+  "DOC-06",
+  "DOC-07",
+  "DOC-08",
+  "DOC-09",
+  "DOC-10",
+  "DOC-11",
+  "DOC-12",
+  "DOC-13",
+  "DOC-14",
+  "DOC-15",
+  "DOC-16",
+  "DOC-17",
+  "DOC-18",
+  "DOC-19",
+  "DOC-20",
+  "DOC-21",
+  "DOC-22"
+ ],
+ "overlaps": [
+  {
+   "deferring": "DOC-08",
+   "owner": "DOC-07",
+   "line_kind": "A change description whose body leaves the change's content to a reference: a bug number, a link, a 'version N' note or an earlier thread (DOC-08's own bad Example: '(v2: see the earlier thread for details)'). DOC-07 anchors `code` on 'the first added line of the first matched hunk' and DOC-08 on 'the description sentence', so the entry acts only once both anchor on one span.",
+   "validator_a": "DOC-08: \"Does the description state a change the diff does not make, leave a significant behaviour of the diff unexplained, or rely on an earlier version, thread or URL for its content?\"",
+   "validator_b": "DOC-07: \"Does the description of a change that does more than correct a typo or similarly trivial text, once its summary line, bug numbers, links and trailers are set aside, lack a statement of the problem the change solves or lack a statement of why it solves it this way?\"",
+   "taxonomy_owner": "Both cards belong to code-review-as-author-and-reviewer ('`code-review-as-author-and-reviewer` keeps the description and the reviewer's reading'). pending-evidence.md (docs) gives the uncontested part, 'that a bug number or link alone does not state the problem and reason', to description-states-problem-and-reason (DOC-07), and holds the self-contained-description rule ('the description summarises the relevant points instead of giving only a URL or an id') as contested with no separating condition; DOC-08's 'rely on ... URL for its content' clause states that held rule. DOC-07 owns."
+  },
+  {
+   "deferring": "DOC-06",
+   "owner": "DOC-08",
+   "line_kind": "A description first line that names a change the diff does not make (DOC-08's bad Example: 'Description: Retry the fetch up to three times with backoff.' over a body that only calls fetch_once); DOC-06's Validator reads the first line for whether 'it names what this diff does'. DOC-06 quotes 'the description's first line and the line after it' and DOC-08 'the description sentence', so the spans agree only when DOC-06 quotes the first line alone.",
+   "validator_a": "DOC-06: \"Does the first line of the change description fail to summarise on its own what this diff does, or run on into the body without a blank line?\"",
+   "validator_b": "DOC-08: \"Does the description state a change the diff does not make, leave a significant behaviour of the diff unexplained, or rely on an earlier version, thread or URL for its content?\"",
+   "taxonomy_owner": "Both belong to code-review-as-author-and-reviewer ('keeps the description and the reviewer's reading'). Accuracy against the diff is DOC-08's Thesis ('accurately and fully explains the code change being made in that diff'); DOC-06 keeps first lines that name nothing ('Fix bug', 'Phase 1') and the missing blank line."
+  },
+  {
+   "deferring": "DOC-20",
+   "owner": "DOC-11",
+   "line_kind": "A command-line flag, option or configuration setting that the change removes or renames while a current repository document still names the old name (DOC-11's own Example: '--config' renamed to '--config-file' with README.md 'still documents --config').",
+   "validator_a": "DOC-20: \"Does a document in the repository that describes the current system still name, once this change is applied, a function, class, command, option or setting that this change removed from every source location?\"",
+   "validator_b": "DOC-11: \"Does the change alter a command, flag, environment variable, configuration key or build, install, test or release step while, after the change, a repository document still describes its old behaviour or lists its siblings without it, and the change description links no separate documentation change that the project's documented workflow accepts?\"",
+   "taxonomy_owner": "Both belong to documentation-beyond-comments ('`documentation-beyond-comments` keeps documents outside the source'). DOC-20's own Source caveat says 'commands, options and settings rest on the review guidance, not on those counts', and that guidance (google/eng-practices looking-for.md § Documentation) is DOC-11's first anchor, so DOC-11 owns commands, flags and settings; DOC-20 keeps functions, classes and other code elements."
+  },
+  {
+   "deferring": "DOC-04",
+   "owner": "CHG-01",
+   "line_kind": "The edited return, raise or mutation line of an existing routine, in a change presented as a refactoring, whose old behaviour an unedited caller still relies on. DOC-04 quotes 'the changed return, error or mutation line'; CHG-01 quotes 'the edited head line and the base line it replaces'.",
+   "validator_a": "DOC-04: \"Does a caller in the repository that the diff leaves unchanged still rely on behaviour the diff removed from the routine for an input that caller passes?\"",
+   "validator_b": "CHG-01: \"Does a change presented as a refactoring, or made up only of restructuring edits, give some caller it leaves unedited, or some public or exported routine it edits, a different returned value or raised error, ... than in the base version for some input, without the change declaring that behaviour change?\"",
+   "taxonomy_owner": "No ownership row names the pair; the refactoring topic (CHG) owns a behaviour difference the change presents as absent (CHG-01 Limits: 'this rule reaches only a difference the change presents as absent'), and DOC-04 (reading-and-understanding-code) keeps declared behaviour changes. The map's 'DOC-04': ['API-20', 'API-21'] lacks CHG-01."
+  },
+  {
+   "deferring": "CHG-25",
+   "owner": "DOC-20",
+   "line_kind": "A renamed or removed declaration whose old name a documentation example in a repository document (a README code block, a docs page) still calls; both cards anchor on the renamed or removed definition line.",
+   "validator_a": "CHG-25: \"Does the change delete or alter the old form of an element while a use that only the old form accepts remains in the codebase outside the change?\" (its Validator searches 'documentation examples')",
+   "validator_b": "DOC-20: \"Does a document in the repository that describes the current system still name, once this change is applied, a function, class, command, option or setting that this change removed from every source location?\" (its Validator searches 'README files, documentation trees, guides, how-tos, tutorials, examples')",
+   "taxonomy_owner": "'`documentation-beyond-comments` keeps documents outside the source' (the ownership row on comments and documents); large-scale-changes-and-migrations has no row over documents. DOC-20 owns uses in documents; CHG-25 keeps uses in code (other build configurations, macro bodies, generator templates)."
+  },
+  {
+   "deferring": "DSN-21",
+   "owner": "DOC-12",
+   "line_kind": "A block of four or more lines (install steps, commands, a fenced example) copied from one repository document into another; signal:duplicate_block dispatches both cards on any file kind, and DSN-21's applies_to is [universal].",
+   "validator_a": "DSN-21: \"Does the change add a block of four or more counted lines that repeats another block, identical or differing only in values, names or types, or a routine whose body of two or more lines is identical to another routine's, where the copies are meant to do the same thing so that a change to one would be needed in the other?\"",
+   "validator_b": "DOC-12: \"Does the change add to one document material that another document in the repository already holds, in place of a link or reference to that document?\"",
+   "taxonomy_owner": "'Duplicated code blocks | `duplication-and-single-source-of-truth`' owns code; '`documentation-beyond-comments` keeps documents outside the source' owns the document copy. The map already sends DSN-20 to DOC-12 for 'a passage copied from one repository document into another'; DSN-21 lacks the same entry."
+  },
+  {
+   "deferring": "TOOL-13",
+   "owner": "DOC-21",
+   "line_kind": "A relative link or cross-reference in a document that a checker the project configures (markdownlint MD051, remark-validate-links or Sphinx nitpicky, the three DOC-21's Source cites) reports as unresolved after the change; TOOL-13 is always on ([] triggers).",
+   "validator_a": "TOOL-13: \"Does the change introduce a diagnostic from the project's configured compiler, type checker or analyzer that it neither fixes nor marks in the source as a false positive?\"",
+   "validator_b": "DOC-21: \"Does a relative link that the change adds to a document, or a relative link or cross-reference that points to a file or heading the change moves, renames or deletes, name a path with no file in the changed tree, a fragment that matches no heading or anchor of its target, or a target that does not exist?\"",
+   "taxonomy_owner": "build-warnings-static-analysis-ci (TOOL) owns the generic no-new-diagnostics gate; '`documentation-beyond-comments` keeps documents outside the source' owns the unresolved document link, the way the map already sends TOOL-14's specific findings to CODE-25 and CHG-10."
+  }
+ ],
+ "near_misses": [
+  {
+   "a": "DOC-06",
+   "b": "DOC-07",
+   "why_not": "DOC-06 judges the first line ('Does the first line of the change description fail to summarise...'); DOC-07 sets it aside ('once its summary line, bug numbers, links and trailers are set aside') and judges the body. A bare 'Fix bug' draws both, on different parts of the description."
+  },
+  {
+   "a": "DOC-08",
+   "b": "DOC-10",
+   "why_not": "DOC-08's Validator reads shortcomings 'as context, not as a claim to match against hunks'; DOC-10 asks only whether a shortcoming mark the hunk adds goes unmentioned."
+  },
+  {
+   "a": "DOC-08",
+   "b": "DOC-09",
+   "why_not": "DOC-08 matches the description's statements to the hunks; DOC-09 asks whether it names any test or repeatable step. A description can pass either and fail the other."
+  },
+  {
+   "a": "DOC-03",
+   "b": "DOC-04",
+   "why_not": "Both can anchor on a deleted guard, but DOC-03 asks whether the recorded reason is answered in the description or a kept test, DOC-04 whether an unchanged caller still relies on the removed behaviour; the fixes (a description line, a rewritten caller) repair different defects."
+  },
+  {
+   "a": "DOC-20",
+   "b": "DOC-21",
+   "why_not": "A stale document line can both name a removed element and link to its deleted page, but DOC-20 asks about the name and DOC-21 about the link target, and each fix repairs a different part of the line."
+  },
+  {
+   "a": "DOC-05",
+   "b": "DOC-13",
+   "why_not": "Different questions (an unrelated file against an unreachable document). On an unlinked added document their verdicts conflict rather than duplicate; reported under contradictions."
+  },
+  {
+   "a": "DOC-05",
+   "b": "CHG-16",
+   "why_not": "Different anchors (DOC-05 quotes the added path, CHG-16 the declaration) and questions. DOC-05's Validator ('nothing in the change uses as an input') also reaches a new source module nothing imports yet, CHG-16's unused-API case, with the opposite fix (drop the file against add its use)."
+  },
+  {
+   "a": "DOC-11",
+   "b": "TOOL-27",
+   "why_not": "Both fire on a new flag or environment read, but TOOL-27 asks whether the option's own help text, configuration documentation, error message or name states range, unit, default and gating; DOC-11 asks whether repository documents still describe the old behaviour or list the option's siblings without it."
+  },
+  {
+   "a": "DOC-10",
+   "b": "CODE-62, CHG-34, CHG-37, TOOL-17",
+   "why_not": "Same marker or skip line, different question; DOC-10's Limits name the others' cases: 'whether a marker in the code names its tracking issue, and whether a placeholder may ship at all, are judged by the checks on those markers.'"
+  },
+  {
+   "a": "DOC-14",
+   "b": "CODE-69",
+   "why_not": "DOC-14's Limits put 'Text inside the source — comments, doc comments, the contract an API reference states' outside it, so it never reads a doc comment."
+  },
+  {
+   "a": "DOC-11, DOC-20",
+   "b": "CODE-71",
+   "why_not": "CODE-71's Limits put 'documents outside the source (a README, a design document, a generated reference site)' outside it, so it reads only comments on or inside the changed routine."
+  },
+  {
+   "a": "DOC-04",
+   "b": "CHG-25",
+   "why_not": "CHG-25 asks for 'a use that only the old form accepts' (a call the new form no longer accepts); DOC-04 for a caller that still compiles but relies on removed behaviour, such as a changed default."
+  },
+  {
+   "a": "DOC-20",
+   "b": "CHG-03",
+   "why_not": "CHG-03 searches code for run-time string lookups, serialization keys, templates and test-double paths; DOC-20 searches documents."
+  },
+  {
+   "a": "DOC-03",
+   "b": "CHG-35, CODE-63",
+   "why_not": "Opposite directions: CHG-35 flags temporary code kept after its work is done and CODE-63 an added workaround with no reason comment; DOC-03 judges a deletion or inversion and whether its recorded reason is answered."
+  },
+  {
+   "a": "DOC-01",
+   "b": "INP-15",
+   "why_not": "Disjoint: INP-15 flags a regular expression of only literal text (no metacharacter); DOC-01 flags a metacharacter meant literally, such as replaceAll(\".\", \"_\")."
+  },
+  {
+   "a": "DOC-02",
+   "b": "API-17",
+   "why_not": "Without a Limits clause they would judge one call oppositely (API-17 trusting the documented property, DOC-02 the body), but API-17's Limits already name DOC-02's case: 'A documented property that the callee's body, open in the repository, contradicts is a defect of the callee rather than a licence for the caller: a call that depends on the property as documented is judged by the body'."
+  },
+  {
+   "a": "DOC-22",
+   "b": "API-26, API-29",
+   "why_not": "API-26 asks whether a removal followed a deprecated release and API-29 whether an in-code deprecation records its version; DOC-22 asks whether the notes entry carries a breaking marker, and skips deprecation entries."
+  },
+  {
+   "a": "DOC-09",
+   "b": "TST-14",
+   "why_not": "TST-14 asks whether the change carries a test that exercises the behaviour; DOC-09 whether the description says how the change was verified."
+  },
+  {
+   "a": "DOC-08",
+   "b": "CHG-15",
+   "why_not": "An unrelated fix the description omits draws CHG-15 (split it out) and DOC-08 (describe it): different defects with incompatible fixes, which DOMAIN_PRIORITY settles for CHG-15."
+  }
+ ],
+ "contradictions": [
+  {
+   "a": "DOC-11",
+   "b": "DOC-20",
+   "sentence_a": "DOC-11 Validator: \"Does the change alter a command, flag, environment variable, configuration key or build, install, test or release step while, after the change, a repository document still describes its old behaviour or lists its siblings without it, ...?\" (no history exception in its Thesis, Limits or Validator)",
+   "sentence_b": "DOC-20 Limits: \"On the history side, an accepted proposal is a historical document rather than a living specification and is no longer substantially modified, ..., a decision record's status reads superseded with a pointer to the record that replaced it, and release notes summarise what changed in each published release; such a record keeps the old name.\"",
+   "resolving_limits_sentence": "A changelog or release-note entry, an accepted decision record or proposal, and a design document whose code is implemented record history and keep the old name; the rule reaches documents that describe the current behaviour.",
+   "carried_by": "DOC-11"
+  },
+  {
+   "a": "DOC-11",
+   "b": "DOC-16",
+   "sentence_a": "DOC-11 Thesis: \"... the same change updates the associated documents in the repository that describe that behaviour, READMEs, in-repository documentation pages and generated reference documentation included ...\" (its Finding output fix: 'the document's path with its stale line rewritten to the new behaviour')",
+   "sentence_b": "DOC-16 Thesis: \"Once a decision record or design proposal has been accepted, or the code its design document describes has been implemented, a later change leaves the recorded decision, with its context and consequences, substantially as accepted.\"",
+   "resolving_limits_sentence": "A changelog or release-note entry, an accepted decision record or proposal, and a design document whose code is implemented record history and keep the old name; the rule reaches documents that describe the current behaviour.",
+   "carried_by": "DOC-11"
+  },
+  {
+   "a": "DOC-20",
+   "b": "DOC-11",
+   "sentence_a": "DOC-20 Thesis: \"... each document in the repository that describes the current system and names the old name is updated in the same change, and such a document whose whole subject is gone is deleted.\"",
+   "sentence_b": "DOC-11 Limits: \"In both of these cases a separate documentation change merged before the release meets the rule.\" (Validator: 'an open linked change counts')",
+   "resolving_limits_sentence": "Where the project's documented workflow accepts documentation in a separate change and the change description links that change, the linked change meets the rule.",
+   "carried_by": "DOC-20"
+  },
+  {
+   "a": "DOC-20",
+   "b": "DOC-16",
+   "sentence_a": "DOC-20 Validator: \"Skip hits in changelogs, release notes, accepted decision records and accepted proposals.\" (its search covers 'documentation trees', and neither this list nor the Limits' history side names an implemented design document)",
+   "sentence_b": "DOC-16 Rationale: \"After the code is implemented, a design document serves as an archive of the decisions taken, not as a half-correct document; design documents are often misused that way.\"",
+   "resolving_limits_sentence": "A design document whose code has been implemented is an archive of the decisions it records and keeps the old name, as an accepted proposal does.",
+   "carried_by": "DOC-20"
+  },
+  {
+   "a": "DOC-05",
+   "b": "DOC-13",
+   "sentence_a": "DOC-05 Validator: \"Does the change add a file that nothing in the change uses as an input, that the change's description does not account for, and that is not output of the change's own edits that the project commits by convention?\" (a document counts as used only when 'a document links to it'; a worktree review has no description)",
+   "sentence_b": "DOC-13 Limits: \"A document placed in the project's standard documentation directory meets the rule without a link of its own, because placing documentation in a standard location helps users locate it.\"",
+   "resolving_limits_sentence": "A document that describes what the change adds or alters relates to the change, whether or not another file links to it or a description mentions it.",
+   "carried_by": "DOC-05"
+  },
+  {
+   "a": "DOC-01",
+   "b": "TOOL-42",
+   "sentence_a": "DOC-01 Limits: \"A call that wants the documented behaviour is correct: a set of characters meant as a set, a default sort over strings, half-even rounding chosen for its tie rule, a regular expression meant as one, a single replacement meant to happen once.\"",
+   "sentence_b": "TOOL-42 Thesis: \"... sorting for display follows that locale's collation rather than an ordinal comparison of character codes.\" (its bad Example: 'sort.Strings(cityNames)')",
+   "resolving_limits_sentence": "A default sort over strings is correct where code-unit order is the order wanted, as for keys and identifiers; a list of strings sorted for display to a user wants the user's locale collation.",
+   "carried_by": "DOC-01"
+  }
+ ],
+ "gaps": [
+  {
+   "concept": "Release-note entry per change: in a project that collects release notes per change (Go's doc/next, CPython's Misc/NEWS.d, a towncrier news directory, an Unreleased section), a change with a user-visible effect adds its entry in that change. research/software-craft/documentation-beyond-comments.md spine item 26 records it with disposition 'held-cap — beyond max_rules 12; re-run the topic with a higher cap or a later next_id', so it has neither a card nor a pending entry; DOC-14 and DOC-22 judge an entry's wording and marker only once one exists.",
+   "taxonomy_row_text": "| | `documentation-beyond-comments` | SEG10 | (ownership table: '`documentation-beyond-comments` keeps documents outside the source')",
+   "source_path": "https://raw.githubusercontent.com/golang/go/master/doc/README.md (§ For developers); https://raw.githubusercontent.com/python/devguide/main/getting-started/pull-request-lifecycle.rst (§ Changes that require NEWS entries); https://raw.githubusercontent.com/twisted/towncrier/trunk/docs/cli.rst (§ towncrier check)",
+   "claim": "Go: 'Release notes should be added to `next` by editing existing files or creating new files. Do not add RELNOTE=yes comments in CLs. Instead, add a file to the CL (or ask the author to do so).' CPython: 'Most changes made to the codebase deserve an entry in Misc/NEWS.d, except for the following: documentation changes, test changes, strictly internal changes with no user-visible effects, changes that already have a NEWS entry, reverts that have not yet been included in any formal release'. towncrier: 'To check if a feature branch adds at least one news fragment, run: $ towncrier check'. Checkable on a diff: a change with a user-visible effect in such a project adds a file under the release-note directory; the research note's separating condition (the project's declared release-note workflow) rests on the same sources."
+  },
+  {
+   "concept": "The reviewer's reading, the reviewer side of code review (how a reviewer reads, comments on and approves a change). No card covers it: the reviewer-side rules in research/software-craft/code-review-as-author-and-reviewer.md are 'held-not-checkable' ('This rule governs how the reviewer reads, which is the finder's own procedure, not a property of the diff') or folded into other domains' cards (the reviewer's request for missing tests into TST-14), and pending-evidence.md holds no entry. The openable guidance (google/eng-practices review/reviewer/navigate.md, looking-for.md 'look at every line of code that you have been assigned to review') states a reviewer procedure, not a property of a diff.",
+   "taxonomy_row_text": "| The size and shape of one change | `small-steps-and-minimal-diffs` | `code-review-as-author-and-reviewer` keeps the description and the reviewer's reading |",
+   "source_path": null,
+   "claim": null
+  }
+ ],
+ "facet_errors": [
+  {
+   "rule_id": "DOC-01",
+   "facet": "step",
+   "current": "[implement, review]",
+   "proposed": "[implement]",
+   "evidence": "Thesis: 'Where a standard-library routine's documented behaviour differs from what its name suggests ..., the call's arguments and surrounding code rely on the documented behaviour' — a property of a call, not of the change's shape or description, which `review` is reserved for."
+  },
+  {
+   "rule_id": "DOC-02",
+   "facet": "step",
+   "current": "[implement, review]",
+   "proposed": "[implement]",
+   "evidence": "Thesis: 'A call that a change adds relies on a property of an existing callee ... only where the callee's body does not contradict it' — the added call's correctness, not the change's shape or description."
+  },
+  {
+   "rule_id": "DOC-12",
+   "facet": "step",
+   "current": "[document, review]",
+   "proposed": "[document]",
+   "evidence": "Thesis: '... replaces that material with a link or reference to the holding document, so the repository keeps one copy' — the content of a document; the code analogue DSN-21 carries [implement, refactor] without review."
+  },
+  {
+   "rule_id": "DOC-13",
+   "facet": "step",
+   "current": "[document, review]",
+   "proposed": "[document]",
+   "evidence": "Thesis: 'A document that a change adds to a repository sits in the project's documentation directory, or the README or the documentation index links to it' — where a document sits, not the change's shape or description."
+  },
+  {
+   "rule_id": "DOC-14",
+   "facet": "step",
+   "current": "[document, review]",
+   "proposed": "[document]",
+   "evidence": "Thesis: 'Text added to a document whose readers are the code's users ... states what users do and see ... in the names those users meet' — document wording."
+  },
+  {
+   "rule_id": "DOC-15",
+   "facet": "step",
+   "current": "[design, document, review]",
+   "proposed": "[design, document]",
+   "evidence": "Thesis: 'A design document or decision record added in a change gives, for each nontrivial decision it records, an explanation of its rationale' — record content."
+  },
+  {
+   "rule_id": "DOC-17",
+   "facet": "step",
+   "current": "[document, review]",
+   "proposed": "[document]",
+   "evidence": "Thesis: 'An installation or getting-started section that a change adds or edits states, ahead of its first step ..., what must already be in place for its steps to work' — section content."
+  },
+  {
+   "rule_id": "DOC-18",
+   "facet": "step",
+   "current": "[document, test, review]",
+   "proposed": "[document, test]",
+   "evidence": "Thesis: 'A code example that a change adds to a document ... is compiled or executed by the project's build or tests' — documentation and test wiring, not the change's shape or description."
+  },
+  {
+   "rule_id": "DOC-22",
+   "facet": "step",
+   "current": "[document, review]",
+   "proposed": "[document]",
+   "evidence": "Thesis: 'A changelog or release-note entry that records a breaking change ... clearly identifies that change as breaking, with a heading, a label or the project's own marker' — notes content; API-27, API-28 and API-29, the in-code deprecation-notice cards, carry no review."
+  },
+  {
+   "rule_id": "DOC-08",
+   "facet": "step",
+   "current": "[review]",
+   "proposed": "[document, review]",
+   "evidence": "Thesis: 'its description — each commit message ..., and the pull or change request title and body ... — accurately and fully explains the code change'; the taxonomy defines `document` as 'writing comments, doc-comments, READMEs and change descriptions', and the sibling description cards DOC-06, DOC-07, DOC-09 and DOC-10 carry it. The step list is narrower than the Thesis."
+  },
+  {
+   "rule_id": "DOC-09",
+   "facet": "step",
+   "current": "[test, document, review]",
+   "proposed": "[document, review]",
+   "evidence": "Thesis: 'A change that alters behaviour reaches review with a description of the testing done to verify it' — it governs the description, and `test` is 'writing or changing tests', which the Thesis never asks for."
+  },
+  {
+   "rule_id": "DOC-12",
+   "facet": "applies_to",
+   "current": "[prose]",
+   "proposed": "[universal]",
+   "evidence": "Validator: 'For each document the change adds or extends (a README, guide, design or decision record, runbook, change log, package documentation)', and the bad Example is a Go package doc comment ('// Install: go get example.com/store, set STORE_DSN,' above 'package store'), a source file. Keeping [prose] instead needs the Validator and Example confined to documents outside the source."
+  },
+  {
+   "rule_id": "DOC-13",
+   "facet": "applies_to",
+   "current": "[prose]",
+   "proposed": "[universal]",
+   "evidence": "Validator: 'Grep the hunk for links that the change adds to code, configuration or prose and that point to the project's own documentation on a wiki'; the bad Example is a Rust source comment above 'const MAX_RETRIES'."
+  },
+  {
+   "rule_id": "DOC-17",
+   "facet": "applies_to",
+   "current": "[prose]",
+   "proposed": "[universal]",
+   "evidence": "Both triggers take an optional '(//[/!]?\\s*)?' doc-comment prefix, and the bad Example's section is a Go package doc comment ('// # Installation' above 'package tool'); nothing in the Limits restricts the rule to documents."
+  },
+  {
+   "rule_id": "DOC-21",
+   "facet": "applies_to",
+   "current": "[prose]",
+   "proposed": "[universal]",
+   "evidence": "Thesis: 'every relative link or cross-reference in the repository's documents or source comments whose target file or heading the change moves, renames or deletes'; the Example is TypeScript doc comments ('/** Options are listed in [setup](../docs/setup.md#options). */')."
+  },
+  {
+   "rule_id": "DOC-05",
+   "facet": "scope",
+   "current": "file",
+   "proposed": "callers",
+   "evidence": "Validator: 'Open the project's ignore files ... Trace whether the file is an input that the change uses (the project's build compiles it as a source, the project's test runner collects it as a test, code or a script in the change imports or runs it, ... or a document links to it)' — other files and their uses, beyond the whole-file read the workflow gives `file`."
+  },
+  {
+   "rule_id": "DOC-06",
+   "facet": "scope",
+   "current": "hunk",
+   "proposed": "base-compare",
+   "evidence": "Validator: 'Open the change description that accompanies the diff (the commit message, or the pull- or merge-request title and description)'. craft-review-workflow.js renders `hunk` as 'read the added lines and their hunk context only; the finding is decided there', so the finder is told to decide from the added lines alone and the card's 'when the review carries no description, answer no' is what it falls back on; DOC-08 reads the same text 'at scope base-compare'."
+  },
+  {
+   "rule_id": "DOC-07",
+   "facet": "scope",
+   "current": "hunk",
+   "proposed": "base-compare",
+   "evidence": "Validator: 'Read the change description verbatim: the messages of the commits under review (read-only `git log --format=%B <base>..<head>`)' — a base..head read that `hunk` ('the added lines and their hunk context only') excludes."
+  },
+  {
+   "rule_id": "DOC-09",
+   "facet": "scope",
+   "current": "hunk",
+   "proposed": "base-compare",
+   "evidence": "Validator: 'Where the description the change was sent for review with is in view (the pull-request body, the review tool's test-plan field, or the commit message ...), read it with the commit messages and their tags' and checks the project's contribution guide — both beyond `hunk`."
+  },
+  {
+   "rule_id": "DOC-10",
+   "facet": "scope",
+   "current": "hunk",
+   "proposed": "base-compare",
+   "evidence": "Validator: 'Open the change description (the commit message or the pull-request body) and look for a sentence that names the case' — beyond `hunk`, which the workflow renders as 'read the added lines and their hunk context only'."
+  },
+  {
+   "rule_id": "DOC-14",
+   "facet": "scope",
+   "current": "hunk",
+   "proposed": "callers",
+   "evidence": "Validator: 'Open each file in the hunk whose readers are the code's users ... For each hit, trace the name to the code: a public type, function, command or setting that users call or see is their term' — opening the file and resolving names across the repository."
+  },
+  {
+   "rule_id": "DOC-19",
+   "facet": "scope",
+   "current": "file",
+   "proposed": "callers",
+   "evidence": "Validator: 'On a hunk that marks the whole package or repository deprecated ... through a deprecation notice, a package-metadata status or an archive note, trace whether the same change carries a hunk that states the new status in that package's README or in the package's page that the README links' — a file other than the matched one."
+  },
+  {
+   "rule_id": "DOC-13",
+   "facet": "check_kind",
+   "current": "mechanical",
+   "proposed": "semantic",
+   "evidence": "Limits: 'A link to a page the project does not maintain, such as a dependency's reference documentation, a specification or an encyclopedia article, is a citation rather than project documentation kept elsewhere' — whether a linked page is 'the project's own documentation' is a judgement, and the Validator then traces the README, the package README, 'a site navigation or sidebar configuration' and the docs-directory files."
+  }
+ ],
+ "trigger_errors": [
+  {
+   "rule_id": "DOC-03",
+   "pattern": "^\\s*([}]\\s*)?(if|elif|else\\s+if|unless|guard|when|case|match|switch)\\b | (?i)\\b(workaround|work-around|hack|special[- ]?case|quirk|legacy|compat(ibility)?)\\b | (?i)\\b(no longer (needed|required|necessary)|not needed|unnecessary|obsolete|redundant)\\b",
+   "problem": "does not match the bad Example: the only bad lines the patterns match are the guard 'if (body === \"\") return emptyItem; // workaround for the linked parser issue', which the change deletes, and the annotation naming 'unnecessary', which stands for the commit message; the change adds no line, or only 'function read(body: string): Item { return parse(body); }', which none of the three matches (python3 re), and static-craft.py's parse_diff keeps added lines only and drops a hunk that has none."
+  },
+  {
+   "rule_id": "DOC-05",
+   "pattern": "signal:added_file",
+   "problem": "does not match the bad Example for two of its three extra files: build_plan skips 'orders/__pycache__/export.cpython-312.pyc' as binary and 'orders/export_old.py.bak' as unknown-language before signals are computed (likewise .class, .o, .DS_Store, .swp, ~, .orig, .log and the vendored build/, dist/, target/ trees the Validator lists), so only '.vscode/settings.json' and the related added files dispatch the card, and a change whose only added file is such an output or backup never does."
+  },
+  {
+   "rule_id": "DOC-07",
+   "pattern": "\\b(def|fn|func|function|class|struct|interface|trait|enum|impl)\\s+\\w+ | \\b(if|elif|else|switch|match|case|for|while|return|throw|raise)\\b | signal:added_file",
+   "problem": "identical to DOC-06"
+  },
+  {
+   "rule_id": "DOC-08",
+   "pattern": "\\b(def|fn|func|function|class|struct|interface|trait|enum|impl)\\s+\\w+ | \\b(if|elif|else|switch|match|case|for|while|return|throw|raise)\\b | signal:added_file",
+   "problem": "identical to DOC-06 (and to DOC-07)"
+  },
+  {
+   "rule_id": "DOC-05",
+   "pattern": "signal:added_file",
+   "problem": "nested in DOC-06 (and in DOC-07, DOC-08, DOC-12, DOC-13, DOC-15 and DOC-19, each of which carries signal:added_file; across domains in CHG-01, CHG-04, CHG-12, CHG-14, CHG-15, CHG-16, CHG-17, CHG-25, DSN-01, DSN-13, PRF-01, TST-14, TST-26 and TST-27)"
+  },
+  {
+   "rule_id": "DOC-06",
+   "pattern": "\\b(def|fn|func|function|class|struct|interface|trait|enum|impl)\\s+\\w+ | \\b(if|elif|else|switch|match|case|for|while|return|throw|raise)\\b | signal:added_file",
+   "problem": "nested in CHG-15, whose triggers are the same three plus '(?i)\\b(fix(es|ed)?|bug|workaround|hack|perf|optimi[sz]\\w*|unrelated|drive[- ]by|clean[- ]?up)\\b'; DOC-07 and DOC-08 likewise. The shared keyword pattern also matches English prose ('This guide is for new contributors.' matches 'for'), so these cards run on almost every diff."
+  }
+ ],
+ "summary": "DEFER_TO lacks seven docs pairs, two inside the description cards (DOC-08→DOC-07, DOC-06→DOC-08), DOC-20→DOC-11 on renamed flags, and four across domains (DOC-04→CHG-01, CHG-25→DOC-20, DSN-21→DOC-12, TOOL-13→DOC-21); several take effect only once the Finding outputs anchor `code` on one span, and six contradictions need a Limits sentence, chiefly DOC-11 against DOC-20 and DOC-16 on history records and linked separate documentation changes, DOC-05 against DOC-13 on an unlinked new document in docs/, and DOC-01's 'a default sort over strings' against TOOL-42. Most facet errors are systematic: `review` on nine cards whose Thesis concerns code or document content, `applies_to: [prose]` on four cards whose own Thesis, Validator or Example reaches source comments, and `scope: hunk` on DOC-06, DOC-07, DOC-09 and DOC-10, whose Validators read commit messages that the workflow's hunk scope ('the added lines and their hunk context only') excludes, so the workflow tells their finders not to read the description they judge. DOC-03's triggers cannot fire on its own Example (the guard it shows is a deleted line and the pre-pass matches added lines only), DOC-06, DOC-07 and DOC-08 share one trigger set that is nested in CHG-15's and contains DOC-05's lone signal:added_file, and the one sourced gap is the release-note-entry-per-change rule that documentation-beyond-comments held back only for its 12-rule cap (sources were fetched and this JSON assembled in the session scratchpad; nothing in the repository was written)."
+}

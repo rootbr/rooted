@@ -276,7 +276,7 @@
   },
   "docs": {
    "launched": "2026-10-14T23:37 UTC",
-   "status": "running (opus, max, read-only; reading-and-understanding-code, code-review-as-author-and-reviewer, documentation-beyond-comments; report to reviews/docs.json)"
+   "status": "done 2026-10-15T00:05 UTC: 0.52M tokens, 34 minutes; report reviews/docs.json applied in the commit that follows it"
   }
  }
 }
