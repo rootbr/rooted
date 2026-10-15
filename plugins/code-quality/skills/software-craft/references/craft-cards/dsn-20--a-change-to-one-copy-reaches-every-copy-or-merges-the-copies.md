@@ -20,14 +20,16 @@ When duplicated blocks are supposed to do the same thing, a future change needs 
 
 ## Example
 ```go
-bad:  func create(u User) error { if u.Name == "" || len(u.Name) > maxLen { return errName }; ... }
-      func rename(u User) error { if u.Name == "" { return errName }; ... } // not updated
-good: func checkName(name string) error {
-          if name == "" || len(name) > maxLen { return errName }
-          return nil
-      }
-      func create(u User) error { if err := checkName(u.Name); err != nil { return err }; ... }
-      func rename(u User) error { if err := checkName(u.Name); err != nil { return err }; ... }
+bad:  func create(u User) error { if u.Name == "" || len(u.Name) > maxLen { return errName }
+          if u.Age < 0 { return errAge }
+          if u.Email == "" { return errEmail }
+          return save(u) }
+      func rename(u User) error { if u.Name == "" { return errName } // not updated
+          if u.Age < 0 { return errAge }
+          if u.Email == "" { return errEmail }
+          return save(u) }
+good: func validate(u User) error { if u.Name == "" || len(u.Name) > maxLen { return errName }; if u.Age < 0 { return errAge }; if u.Email == "" { return errEmail }; return nil }
+      func create(u User) error { if err := validate(u); err != nil { return err }; return save(u) } // rename likewise
 ```
 
 ## Limits

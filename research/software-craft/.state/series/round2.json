@@ -473,8 +473,41 @@
      "task": "waui78qrk",
      "wf": "wf_0e8028d4-bdf",
      "launched": "2026-10-15T03:21 UTC",
-     "status": "running",
+     "status": "done 2026-10-15T03:40 UTC: 12 agents, 1,038,438 sub-agent tokens, 19 minutes; 4 accepted (DSN-22, DSN-23, DSN-25, DSN-27), 4 closing-edited (DSN-20, DSN-21, DSN-24, DSN-26), 0 not accepted; applied with one facet revert (DSN-21 counts as accepted)",
      "bundle": "r2tree/duplication-and-single-source-of-truth--r2tree.js (8 cards DSN-20 to DSN-27, 358 KB)"
+    }
+   ],
+   "result": {
+    "applied": "2026-10-15T03:37 UTC",
+    "accepted": [
+     "DSN-21",
+     "DSN-22",
+     "DSN-23",
+     "DSN-25",
+     "DSN-27"
+    ],
+    "closing_edited": [
+     "DSN-20",
+     "DSN-24",
+     "DSN-26"
+    ],
+    "renamed": [],
+    "not_accepted": [],
+    "agents": 12,
+    "tokens": 1038438,
+    "wall_s": 1119
+   },
+   "recheck": "DSN-21: the verdict's only required edit restored step review from the spine, which the design-domain reviewer had removed (reviews/design.json); the reviewer's value stands, the edit is reverted and the provenance line records it; DSN-20: the bad Example now duplicates a block of four lines as the Thesis requires; DSN-24: wording, the 'instead of' contrast removed; DSN-26: wording, the 'module it may come to depend on' bounded to the codebase and libraries it already uses, and the trivial-package paragraph restated as outside the rule on the registry figures; no other facet touched"
+  },
+  "inheritance-versus-composition": {
+   "runs": [
+    {
+     "part": "r2tree",
+     "task": "wcz35vkl2",
+     "wf": "wf_926f87f6-01b",
+     "launched": "2026-10-15T03:42 UTC",
+     "status": "running",
+     "bundle": "r2tree/inheritance-versus-composition--r2tree.js (8 cards DSN-36 to DSN-43, 415 KB)"
     }
    ]
   }
