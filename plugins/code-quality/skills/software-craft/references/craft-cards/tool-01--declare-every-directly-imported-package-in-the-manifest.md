@@ -2,7 +2,7 @@
 title: Every package the code imports directly is declared in the ecosystem's manifest rather than reached through a transitive dependency
 rule_id: TOOL-01
 domain: tooling
-step: [implement, review]
+step: [implement]
 applies_to: [universal]
 triggers: ['^\s*import\b', '^\s*from\s+[A-Za-z_][\w.]*\s+import\b', '\brequire\s*\(\s*["''][^./"'']', '\bimport\s*\(\s*["''][^./"'']', '^\s*(pub\s+)?use\s+[A-Za-z_]\w*::|^\s*extern\s+crate\b', '^\s*(import\s+)?(\w+\s+)?"[\w.-]+[.][a-z]{2,}/[\w./-]+"\s*$']
 scope: callers

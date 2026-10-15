@@ -2,11 +2,11 @@
 title: A library published for others to depend on declares compatible version ranges, with no exact pin and no upper cap below a version known to be incompatible
 rule_id: TOOL-04
 domain: tooling
-step: [implement, review]
+step: [implement]
 applies_to: [library, build-config]
 triggers: ['(?:^\s*["'']?|["''])[A-Za-z][\w.\[\],-]*\s*==\s*\d', '=\s*["'']=\s*\d', '^\s*"[@\w./-]+"\s*:\s*"\d+[.]\d+[.]\d+"', '["'']~\s*\d|~=\s*\d+(?:[.]\d+){2}', ',\s*<\s*\d|["'']\s*>=?\s*\d[\w.-]*\s+<=?\s*\d', '\[\d+(?:[.][\w-]+)+\]|\d[.][*+xX]["'']', '["'':>][\[(][\w.-]*,\s*\d[\w.-]*[)\]]']
 scope: file
-check_kind: mechanical
+check_kind: semantic
 severity_default: major
 ---
 

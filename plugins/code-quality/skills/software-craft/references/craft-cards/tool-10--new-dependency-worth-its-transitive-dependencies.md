@@ -2,7 +2,7 @@
 title: A new dependency is added only when the functionality it supplies is worth the transitive dependencies it brings in
 rule_id: TOOL-10
 domain: tooling
-step: [design, implement, review]
+step: [design, implement]
 applies_to: [build-config]
 triggers: ['^\s*"[@\w./-]+"\s*:\s*"(\^|~|>=?|<=?|=)?\s*v?\d', '^\s*[\w-]+\s*=\s*("[\^~=<>]?\s*\d+[.]\d+|\{[^}]*\bversion\s*=)', '^\s*["'']?[A-Za-z][\w.-]*(\[[\w,.-]+\])?\s*(==|>=|~=|<=|!=|<|>)\s*\d', '^\s*(require\s+)?[\w.-]+[.][a-z]{2,}/[\w./-]+\s+v\d+[.]\d+', '<artifactId>[^<]+</artifactId>', '\b(implementation|api|compileOnly|runtimeOnly|testImplementation)\s*\(?\s*["''][\w.-]+:[\w.-]+']
 scope: callers

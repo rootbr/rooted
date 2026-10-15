@@ -2,7 +2,7 @@
 title: A dependency a change adds names the intended package as published in its registry, not a misspelling of a popular name or a name that does not exist
 rule_id: TOOL-11
 domain: tooling
-step: [implement, document, review]
+step: [implement, document]
 applies_to: [build-config, prose]
 triggers: ['^\s*"[@\w./-]+"\s*:\s*"(\^|~|>=?|<=?|=)?\s*v?\d', '^\s*[\w-]+\s*=\s*("[\^~=<>]?\s*\d+([.]\d+|")|\{[^}]*\bversion\s*=)', '^\s*["'']?[A-Za-z][\w.-]*(\[[\w,.-]+\])?\s*(==|>=|~=|<=|!=|<|>)\s*\d', '<artifactId>[^<]+</artifactId>|^\s*(require\s+)?[\w.-]+[.][a-z]{2,}/[\w./-]+\s+v\d+[.]\d+', '\b(npm|pnpm|yarn|bun)\s+(install|i|add)\s+(-\S+\s+)*[@\w]', '\b(pip3?\s+install|uv\s+(add|pip\s+install)|poetry\s+add|cargo\s+add|go\s+get)\s+[\w@.-]', '^\s*[A-Za-z][\w-]*\s*[(=]?\s*["''][\w.-]+:[\w.-]+:']
 scope: callers

@@ -6,7 +6,7 @@ step: [design, implement]
 applies_to: [universal]
 triggers: ['(?i)\b(encoding|charset)\s*[=:]\s*\\?[''"]?(latin-?1|iso-?8859[-_]?\d*|cp\d{3,4}|windows-\d+|shift_jis|euc-\w+|gb2312|utf-?16\w*|ucs-?2|mbcs|locale|(us-)?ascii)\b', '(?i)[''"](windows-\d+|cp\d{3,4}|iso-?8859-\d+|latin-?1|binary|shift_jis|euc-(jp|kr)|gb2312|utf-?16(be|le)?|ucs-?2|us-ascii)\\?[''"]']
 scope: hunk
-check_kind: mechanical
+check_kind: semantic
 severity_default: minor
 ---
 

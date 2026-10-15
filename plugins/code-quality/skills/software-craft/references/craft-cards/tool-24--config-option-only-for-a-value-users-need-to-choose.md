@@ -2,7 +2,7 @@
 title: A change adds a configuration option only for a value the people deploying or running the program need to choose, leaving implementation details and values the program can obtain itself to the code
 rule_id: TOOL-24
 domain: tooling
-step: [design, review]
+step: [design]
 applies_to: [universal]
 triggers: ['\bflag[.]\w+\s*\(\s*["'']', '\badd_argument\s*\(\s*["'']-', '[.]option\s*\(\s*["'']-', '#\[(?:arg|clap)\(', '@Value\s*\(\s*["'']\$\{|@ConfigurationProperties\b', '\b(?:os[.](?:Getenv|LookupEnv|getenv)|os[.]environ[.]get|System[.](?:getenv|getProperty)|env::var)\s*\(\s*["'']', '\bprocess[.]env\b|\bos[.]environ\[']
 scope: callers

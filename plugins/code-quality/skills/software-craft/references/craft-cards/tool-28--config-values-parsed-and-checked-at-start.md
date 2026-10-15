@@ -2,7 +2,7 @@
 title: Each configuration value is parsed and checked when the program starts, including one first used by error handling or fail-over code
 rule_id: TOOL-28
 domain: tooling
-step: [implement, handle-errors, review]
+step: [implement, handle-errors]
 applies_to: [universal]
 triggers: ['\b(?:os[.](?:Getenv|LookupEnv|getenv)\s*\(|os[.]environ\b|System[.](?:getenv|getProperty)\s*\(|process[.]env[.]|env::var(?:_os)?\s*\()|[.]get(?:int|float|boolean|Int|Integer|Long|Boolean|Bool|String|Duration|Property)\s*\(\s*["\x27]|(?i:\b(?:config|conf|cfg|settings|props|properties)\s*(?:[.]get\w*\s*\(|\[\s*["\x27]))']
 scope: callers

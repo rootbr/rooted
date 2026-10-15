@@ -6,7 +6,7 @@ step: [implement]
 applies_to: [universal]
 triggers: ['\b(_|gettext|tr|t|i18n[.]t|intl[.]formatMessage|getString|NSLocalizedString)\([^()]*\)\s*(\+|[.][.]|<<)', '(\+|<<)\s*(_|gettext|tr|t|i18n[.]t|getString|NSLocalizedString)\(', '==\s*1[\s)?{]*[''"]{2}[\s}:]*(else[\s{]*)?[''"]s[''"]|!==?\s*1[\s)?{]*[''"]s[''"]|[''"]s[''"]\s+if\s+\w+\s*!=\s*1|if\s+\w+\s*==\s*1\s+else\s+[''"]s[''"]|\w\([sS]\)[^''"()]*[''"]']
 scope: hunk
-check_kind: mechanical
+check_kind: semantic
 severity_default: minor
 ---
 

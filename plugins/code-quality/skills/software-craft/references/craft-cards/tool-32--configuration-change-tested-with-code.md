@@ -20,7 +20,8 @@ Configuration changes are prevalent causes of production failures: at one large 
 
 ## Example
 ```go
-bad:  func TestRun(t *testing.T) {
+bad:  batch_size = 64
+      func TestRun(t *testing.T) {
           cfg := mustLoad(t, "deploy/app.conf")
           cfg.BatchSize = 64
           if err := run(cfg, sampleInput()); err != nil { t.Fatal(err) }

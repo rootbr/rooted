@@ -193,6 +193,33 @@
    "taxonomy_row": "| | `documentation-beyond-comments` | SEG10 |",
    "status": "carded as DOC-23 (gaps-docs, 2026-10-15)",
    "found_by": "reviewer, docs (reviews/docs.json)"
+  },
+  {
+   "domain": "tooling",
+   "concept": "A calendar date or wall-clock time that names no moment (a birth date, a holiday, opening hours) is held in a local date or time type, never converted to an instant at midnight in UTC or the host's zone. The i18n note holds it 'held-cap — beyond max_rules 12'; TOOL-43's Limits only describe it ('A date or time that names no moment, such as a birth date, a holiday or an anniversary, is a floating value held in a plain date or date-time type with no offset or zone') and no card checks it.",
+   "source_path": "w3c/timezone gh-pages index.html §'Floating Time Values' (https://raw.githubusercontent.com/w3c/timezone/gh-pages/index.html), fetched by the research run and quoted in TOOL-43's Source; also dotnet/docs docs/core/extensions/globalization.md §'Serialization and time zone awareness' (fetched, per the i18n note)",
+   "claim": "\"use the appropriate floating time type, such as LocalDateTime (for values with both date and time), LocalDate (for date values), or LocalTime (for time-only values) for values that are not tied to a specific offset or time zone rules\" · \"such as a list of holidays or a user's birth date\"; checkable as a birth date, holiday or anniversary typed, stored or serialized as an instant or timestamp.",
+   "taxonomy_row": "| | `internationalization-and-text-encoding` | SW4.8 |",
+   "status": "queued",
+   "found_by": "reviewer, tooling (reviews/tooling.json)"
+  },
+  {
+   "domain": "tooling",
+   "concept": "Source text a change adds holds no raw bidirectional control or invisible format or control character other than tab and line breaks; a literal or comment that needs one writes it as an escape. Held-cap in the i18n note; pending-evidence.md's printable-non-ASCII entry says 'The non-printable case is carded in no-invisible-characters-in-source', but no such card exists.",
+   "source_path": "rust-lang/rust compiler/rustc_lint_defs/src/builtin.rs, TEXT_DIRECTION_CODEPOINT_IN_COMMENT and TEXT_DIRECTION_CODEPOINT_IN_LITERAL, level Deny (https://raw.githubusercontent.com/rust-lang/rust/master/compiler/rustc_lint_defs/src/builtin.rs, fetched by the research run); the paper as a GitHub-hosted copy: nickboucher/trojan-source website/public/trojan-source.pdf §7.6; rust-lang/rust-clippy clippy_lints/src/unicode.rs INVISIBLE_CHARACTERS",
+   "claim": "\"a specially crafted comment can make code that will be compiled appear to be part of a comment, depending on the software used to read the code. To avoid potential problems or confusion, such as in CVE-2021-42574, by default we deny their use.\" (rustc); \"Checks for invisible Unicode characters in the code.\" (clippy); checkable by code point on added lines.",
+   "taxonomy_row": "| | `internationalization-and-text-encoding` | SW4.8 |",
+   "status": "queued",
+   "found_by": "reviewer, tooling (reviews/tooling.json)"
+  },
+  {
+   "domain": "tooling",
+   "concept": "A CI workflow, container build or build script references the third-party actions, base images and fetched scripts it runs by an immutable commit or digest rather than a mutable tag. The dependency-management note set it aside ('Pinning CI actions by hash is supply-chain and CI hygiene that belongs to other topics'); the build-warnings-static-analysis-ci note, the domain's CI topic, never names it, and no pending entry holds it.",
+   "source_path": "ossf/scorecard main docs/checks.md §Pinned-Dependencies (https://raw.githubusercontent.com/ossf/scorecard/main/docs/checks.md), re-fetched by the orchestrator at the queueing",
+   "claim": "\"A \\\"pinned dependency\\\" is a dependency that is explicitly set to a specific hash instead of allowing a mutable version or range of versions.\"; \"The check works by looking for unpinned dependencies in Dockerfiles, shell scripts, and GitHub workflows which are used during the build and release process of a project.\"; \"They can help mitigate compromised dependencies from undermining the security of the project\"; checkable as a `uses:` action reference, a `FROM` image or a fetched script URL added with a mutable tag or no digest.",
+   "taxonomy_row": "| H, `tooling`, `TOOL` | `build-warnings-static-analysis-ci` | SEG18, SEG20, SEG23, PP \"Pragmatic Starter Kit\" |; domain: 'tools and hygiene: build, warnings, static analysis, CI, dependencies, runtime configuration, internationalization and encoding'",
+   "status": "queued",
+   "found_by": "reviewer, tooling (reviews/tooling.json)"
   }
  ]
 }

@@ -2,7 +2,7 @@
 title: Text read back by a program, such as identifiers, keys, tags, file names and stored numbers and dates, is case-mapped, compared, formatted and parsed with a locale-independent operation, never one that follows the user's or the host's locale
 rule_id: TOOL-41
 domain: tooling
-step: [implement, review]
+step: [implement]
 applies_to: [universal]
 triggers: ['[.](toLowerCase|toUpperCase)\(\s*\)|[.]toLocale(LowerCase|UpperCase)\(|[.]localeCompare\(|\bCollator[.]getInstance\(\s*\)|\blocale[.](strcoll|strxfrm)\(|\bStringComparison[.]CurrentCulture', '[.]toLocale(String|DateString|TimeString)\(|\bString[.]format\(\s*"|[.]formatted\(|\bNumberFormat[.]getInstance\(\s*\)|\bDecimalFormat\(|\blocale[.](format_string|atof|atoi|currency|str)\(|\bstrftime\(\s*[''"][^''"]*%[cxXaAbBp]|\bLocale[.]getDefault\(|\bCultureInfo[.]CurrentCulture\b|\bIntl[.](NumberFormat|DateTimeFormat|Collator)\(\s*(\)|undefined\b)']
 scope: hunk

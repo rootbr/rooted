@@ -2,10 +2,10 @@
 title: A declared dependency states the lowest version the code works with and never accepts every version through a wildcard
 rule_id: TOOL-03
 domain: tooling
-step: [implement, review]
+step: [implement]
 applies_to: [build-config]
 triggers: ['[\w-]+\s*=\s*["\x27]\*["\x27]', '"[@\w./-]+"\s*:\s*"(\*|latest|x|X|)"', 'latest[.](release|integration)|["\x27][\w.-]+:[\w.-]+:\+["\x27]', '>=\s*0([.]0)*\s*(["\x27,;]|$)', '^\s*["\x27][A-Za-z0-9][\w.-]*(\[[\w,.-]+\])?["\x27]\s*,?\s*$|dependencies\s*=\s*\[(.*,)?\s*["\x27][A-Za-z0-9][\w.-]*(\[[\w,.-]+\])?["\x27]\s*[,\]]']
-scope: hunk
+scope: callers
 check_kind: mechanical
 severity_default: major
 ---

@@ -5,7 +5,7 @@ domain: tooling
 step: [implement]
 applies_to: [universal]
 triggers: ['(?i)\b(set_?text|set_?title|set_?label|set_?message|set_?tool_?tip(_?text)?|show_?message_?dialog)\((?:[^()\x27"`]*,\s*)?[\x27"`][A-Za-z]', '>\s*[A-Z][a-z]+(\s+[A-Za-z]+)+[.!?]?\s*</', '\b(alert|confirm|toast|flash|notify|showError|showMessage)\(\s*[\x27"`][A-Z]', '(?i)\b(title|label|placeholder|aria-label|tooltip|caption|button_?text)\s*[:=]\s*[\x27"][A-Z][^\x27"]*\s[^\x27"]*[\x27"]']
-scope: hunk
+scope: callers
 check_kind: semantic
 severity_default: minor
 ---

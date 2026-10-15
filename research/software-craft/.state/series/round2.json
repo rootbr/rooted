@@ -1251,7 +1251,7 @@
   "tooling": {
    "launched": "2026-10-15T11:03 UTC",
    "kind": "one read-only opus/max agent per HANDOVER 5.8 (series/REVIEWER.md filled for tooling: TOOL-01 to TOOL-44, four topics); report to be saved as reviews/tooling.json and applied per the change/code pattern",
-   "status": "running"
+   "status": "done 2026-10-15T11:49 UTC: 0.64M tokens, 46 minutes; report reviews/tooling.json applied in the commit that follows it: 10 defer entries, all TOOL-13 -> a specific tooling card whose configured analyzer rule reports the same line (TOOL-01, -15, -18, -20, -21, -22, -23, -26, -39, -43); 12 Limits resolutions with the counterpart bullets copied (TOOL-13/14, TOOL-15/21 both ways, TOOL-22/23, TOOL-26/23, TOOL-26/30, TOOL-30/29, TOOL-33/34, TOOL-25/33, TOOL-05/33, TOOL-29/40, TOOL-27/39), the good halves of TOOL-05 and TOOL-25 also naming the encoding; 53 facets (the step review dropped from 29 cards; 9 scope callers; 8 semantic; TOOL-02 and TOOL-08 applies_to universal, TOOL-17 tests and build-config; TOOL-08, TOOL-31 and TOOL-44 raised to major, TOOL-27 to minor, Finding outputs included); triggers: TOOL-17 gains a pattern for a commented-out test declaration with a Limits sentence, TOOL-32's bad Example now carries the changed configuration line its trigger matches, the nestings (TOOL-08 in TOOL-01, TOOL-10 in TOOL-06 and TOOL-09, TOOL-15 and TOOL-21 in TOOL-14 and TOOL-20) cost dispatches, not correctness, and need no edit; 3 gap runs queued (floating date and time values, bidirectional and invisible characters in source, pinned CI actions and images), the 11 held-not-checkable gaps need no entry"
   },
   "input": {
    "launched": "2026-10-15T11:14 UTC",

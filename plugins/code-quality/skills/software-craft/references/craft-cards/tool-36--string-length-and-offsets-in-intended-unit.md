@@ -2,7 +2,7 @@
 title: Code that measures, indexes, slices or truncates a string counts in the unit the operation means, the unit a storage or protocol limit is declared in and grapheme clusters for user-perceived characters, and never takes one unit's count or offset for another's
 rule_id: TOOL-36
 domain: tooling
-step: [implement, review]
+step: [implement]
 applies_to: [universal]
 triggers: ['(\blen\([^)]*\)|[.]len\(\)|[.]length\b(\(\))?|[.]Length\b)\s*([<>]=?|[!=]==?)\s*\w', '[.](substring|substr|slice|charAt|charCodeAt|codePointAt|subSequence)\(|\w\[\s*-?\w*\s*:\s*-?\w*\s*\]|\w\[\s*\w*\s*[.][.]=?\s*\w*\s*\]', '[.]split\(\s*(""|\x27\x27)\s*\)|\bnew\s+RegExp\(|/[^/\s]*\[[^\]]*[^\x00-\x7f][^\]]*\][^/\s]*/|([Cc]ompile|Regex::new|re[.]\w+)\(.*\[[^\]]*[^\x00-\x7f][^\]]*\]', '(?i)\b(truncate|abbreviate|ellipsi[sz]e|max_?len(gth)?)\w*']
 scope: hunk

@@ -2,7 +2,7 @@
 title: A suppression sits on the narrowest construct where it takes effect, a line or a declaration, never on an enclosing class, module or file for a finding at one site
 rule_id: TOOL-19
 domain: tooling
-step: [implement, review]
+step: [implement]
 applies_to: [universal]
 triggers: ['@ts-nocheck|#\s*(?:mypy:\s*ignore-errors|ruff:\s*(?:noqa|file-ignore|disable)|pyright:\s*basic)|//\s*lint:file-ignore', '/\*\s*eslint-disable(?!-(?:next-)?line)', '#!\[allow\(', '#\s*pylint:\s*disable=', '@SuppressWarnings\(', 'warnings[.](?:simplefilter|filterwarnings)\(\s*["'']ignore']
 scope: file

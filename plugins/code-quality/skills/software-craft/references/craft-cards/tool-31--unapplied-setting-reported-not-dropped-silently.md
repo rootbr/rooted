@@ -2,12 +2,12 @@
 title: A setting the program accepts but does not apply, an unrecognised key or option or one that has no effect while another option disables it, is reported with a warning or an error naming it or its place in the file, never dropped silently
 rule_id: TOOL-31
 domain: tooling
-step: [implement, handle-errors, review]
+step: [implement, handle-errors]
 applies_to: [universal]
 triggers: ['(?i)\bstrict\s*:\s*false\b|\bparse_known_args\s*\(|\b(?:ignore|allow|disallow|deny|fail_?on)_?unknown\w*|\bunknown_?(?:fields|keys|properties|args|options)\b|\bextra(?:\s*=\s*["'']?|[.])(?:ignore|allow)\b']
 scope: file
 check_kind: semantic
-severity_default: minor
+severity_default: major
 ---
 
 # A setting the program accepts but does not apply, an unrecognised key or option or one that has no effect while another option disables it, is reported with a warning or an error naming it or its place in the file, never dropped silently
@@ -35,7 +35,7 @@ A parse that handles only part of the arguments and leaves the unrecognised ones
 Grep the hunk for a parse that tolerates unknown input: a strict switch turned off, a known-arguments parse, an ignore-unknown or allow-extra option on a configuration decoder, or a decoder that drops unknown fields by default. Open the file at the configuration loader and list the settings it reads; trace where the leftover keys or arguments go, to an error, a warning, a hand-off to another program or nowhere. Trace each setting that is read only under a condition on another setting, and check whether setting it while that condition disables it produces a warning naming it. Validator question: **Does the file accept a configuration key, option or setting that it neither applies, nor reports in a warning or an error that names it or gives its place in the file, nor hands on to another program, other than a key under a prefix the format reserves for extensions or an unknown key while a lenient mode the user turned on is in force?** Yes → flag.
 
 ## Finding output
-When the validator answers yes, the finder emits one finding (`rule_id: TOOL-31`, severity minor, `file`, `symbol`, `code` = the lenient parse call or the conditional read of the dependent setting, quoted verbatim from the diff, `fix` = the strict parse, or the warning that names the setting left without effect and the setting that disables it, in the file's language, `rationale` = names the setting that is accepted and dropped silently and the path by which it is dropped).
+When the validator answers yes, the finder emits one finding (`rule_id: TOOL-31`, severity major, `file`, `symbol`, `code` = the lenient parse call or the conditional read of the dependent setting, quoted verbatim from the diff, `fix` = the strict parse, or the warning that names the setting left without effect and the setting that disables it, in the file's language, `rationale` = names the setting that is accepted and dropped silently and the path by which it is dropped).
 
 ## Source
 - DOI 10.1145/2517349.2522727 (SOSP 2013, 'Do Not Blame Users for Misconfigurations'), Table 3 and the paragraph introducing it, §4 and §4.1 (fetched): "one commercial system and six open-source systems"; "the system should pinpoint either the misconfigured parameter's name/value or its location information"; "Silent violation — The system changes input configurations to different values without notifying users"; "Silent ignorance — The system ignores input configurations (mainly for control-dependency violation)"; "Early termination — The system exits without pinpointing the injected configuration error"; "silent violation and ignorance are more prevalent compared with terminations and failures"; Figure 5(e): "commit_siblings silently takes no effect".

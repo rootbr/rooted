@@ -2,11 +2,11 @@
 title: A package that shipped code imports is declared as a runtime dependency, not only as a development or test dependency
 rule_id: TOOL-02
 domain: tooling
-step: [implement, review]
-applies_to: [build-config]
+step: [implement]
+applies_to: [universal]
 triggers: ['^\s*import\b|^\s*from\s+[A-Za-z_][\w.]*\s+import\b|\brequire\s*\(\s*["''][^./"'']', '"(devDependencies|dependencies|peerDependencies|optionalDependencies)"\s*:|"(@[\w.-]+/)?[\w.-]+"\s*:\s*"[~^<>=]*\s*\d|^\s*\[(dev-dependencies|dependencies|project[.]optional-dependencies|dependency-groups|tool[.](poetry|pdm)[.](group[.][\w-]+[.])?(dev-)?dependencies)\]|^\s*"[A-Za-z0-9][\w.-]*(\[[\w,\s-]*\])?\s*(==|>=|<=|~=|!=|>|<)|^\s*[A-Za-z0-9][\w-]*\s*=\s*("[~^<>=]*\s*\d|\{\s*version\s*=)|<scope>\s*(test|provided|compile|runtime)\s*</scope>|\b(testImplementation|compileOnly|runtimeOnly)\b']
 scope: callers
-check_kind: mechanical
+check_kind: semantic
 severity_default: major
 ---
 

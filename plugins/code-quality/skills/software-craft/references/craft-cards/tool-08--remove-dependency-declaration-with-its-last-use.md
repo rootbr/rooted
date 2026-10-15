@@ -3,11 +3,11 @@ title: A change that removes the last use of a dependency also removes its decla
 rule_id: TOOL-08
 domain: tooling
 step: [refactor, implement, review]
-applies_to: [build-config]
+applies_to: [universal]
 triggers: ['^\s*import\b', '^\s*from\s+[A-Za-z_][\w.]*\s+import\b', '\brequire\s*\(\s*["''][^./"'']', '\bimport\s*\(\s*["''][^./"'']', '^\s*(pub\s+)?use\s+[A-Za-z_]\w*::|^\s*extern\s+crate\b', '^\s*(import\s+)?(\w+\s+)?"[\w.-]+[.][a-z]{2,}/[\w./-]+"\s*$']
 scope: callers
 check_kind: semantic
-severity_default: minor
+severity_default: major
 ---
 
 # A change that removes the last use of a dependency also removes its declaration from the manifest
@@ -35,7 +35,7 @@ Usage detectors report false positives, so a package reported as unused is a can
 Grep the hunk's deleted lines for an import, use or require line, or a path-qualified reference, that names an external package rather than a relative path, and its added lines for the import of a replacement. For each package whose import or reference the change deletes, search the whole project for a remaining use: sources, tests, tools, build scripts, configuration and platform-specific files. Open the ecosystem's manifest and check whether the change deletes that package's direct declaration, or keeps it only as an indirect requirement or version constraint when another dependency still requires the package; leave out development dependencies whose use lies in tests or tooling. Validator question: **Does the change delete the last use of a package while the ecosystem's manifest still declares it as a direct dependency?** Yes → flag.
 
 ## Finding output
-When the validator answers yes, the finder emits one finding (`rule_id: TOOL-08`, severity minor, `file`, `symbol`, `code` = the deleted import line of the package, quoted verbatim from the diff, `fix` = the manifest with that package's direct declaration deleted, or kept only as an indirect requirement or version constraint when another dependency still requires the package, and the lock file regenerated, in the manifest's own syntax, `rationale` = the package, the last use the change removed, and the search that found no remaining source, test, tool, build-script, configuration or platform-specific use).
+When the validator answers yes, the finder emits one finding (`rule_id: TOOL-08`, severity major, `file`, `symbol`, `code` = the deleted import line of the package, quoted verbatim from the diff, `fix` = the manifest with that package's direct declaration deleted, or kept only as an indirect requirement or version constraint when another dependency still requires the package, and the lock file regenerated, in the manifest's own syntax, `rationale` = the package, the last use the change removed, and the search that found no remaining source, test, tool, build-script, configuration or platform-specific use).
 
 ## Source
 - DOI 10.1145/3468264.3468589, abstract (fetched): "We analyze the history of 435 Java projects"; "Bloated dependencies steadily increase over time, and 89.2 % of the direct dependencies that are bloated remain bloated in all subsequent versions of the studied projects. This empirical evidence suggests that developers can safely remove a bloated dependency"; "the unnecessary maintenance efforts induced by bloat"; "22 % of dependency updates performed by developers are made on bloated dependencies, and that Dependabot suggests a similar ratio".

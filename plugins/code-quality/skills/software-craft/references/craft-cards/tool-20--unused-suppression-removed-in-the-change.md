@@ -5,7 +5,7 @@ domain: tooling
 step: [implement, refactor, review]
 applies_to: [universal]
 triggers: ['#\s*(?:(?:ruff|flake8):\s*)?noqa|#\s*(?:type|pyright):\s*ignore|#\s*pylint:\s*disable', 'eslint-disable|@ts-(?:expect-error|ignore|nocheck)\b', '@Suppress(?:Warnings|FBWarnings)\(|//\s*NOPMD\b', '#!?\[(?:allow|expect)\(|#!?\[cfg_attr\(.*\b(?:allow|expect)\(', '//\s*(?:nolint|lint:(?:file-)?ignore)\b']
-scope: base-compare
+scope: callers
 check_kind: semantic
 severity_default: minor
 ---

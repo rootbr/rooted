@@ -2,7 +2,7 @@
 title: A suppression names the specific diagnostics it silences and never silences every diagnostic on its line, block or file
 rule_id: TOOL-18
 domain: tooling
-step: [implement, review]
+step: [implement]
 applies_to: [universal]
 triggers: ['(?i)#\s*(?:(?:ruff|flake8):\s*)?noqa\b(?!\s*:)', '#\s*type:\s*ignore(?!\s*\[)', '(?m)eslint-disable(?:-next-line|-line)?[ \t]*(?:\*/|-->|--|$)', '//\s*nolint(?::(?:[\w-]+,\s*)*all\b|(?![:\w]))', '@SuppressWarnings\(\s*(?:value\s*=\s*)?"all"', '#!?\[allow\(\s*(?:warnings|clippy::all)\b', '@SuppressFBWarnings\b(?![^\n]*\bEXACT\b)']
 scope: hunk

@@ -2,10 +2,10 @@
 title: Flags and environment variables are read only at the entry point or in one configuration module, and general-purpose code receives the values as explicit arguments
 rule_id: TOOL-23
 domain: tooling
-step: [design, implement, refactor, review]
+step: [design, implement, refactor]
 applies_to: [universal]
 triggers: ['\bprocess[.]env\b', '\bos[.](?:Getenv|LookupEnv|getenv|environ)\b', '\bSystem[.](?:getenv|getProperty)\s*\(', '\b(?:std::)?env::(?:vars?(?:_os)?\s*\(|args(?:_os)?\b)', '\bflag[.](?:String|Int|Int64|Uint|Bool|Duration|Float64|Var|Func)\w*\s*\(', '\bfunc\s+init\s*\(\s*\)|^\s*static\s*\{', '\b(?:os[.]Args|sys[.]argv|process[.]argv)\b']
-scope: file
+scope: callers
 check_kind: semantic
 severity_default: minor
 ---

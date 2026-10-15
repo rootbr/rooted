@@ -2,11 +2,11 @@
 title: CI and build scripts install dependencies from the committed lock file in a mode that fails on a mismatch instead of re-resolving
 rule_id: TOOL-07
 domain: tooling
-step: [implement, review]
+step: [implement]
 applies_to: [build-config]
 triggers: ['\bnpm\s+(install|i)\b', '\bpnpm\s+(install|i)\b(?!.*--frozen-lockfile)', '\byarn(\s+install)?\s*$|\byarn\s+install\b(?!.*(--frozen-lockfile|--immutable))', '\b(cargo\s+(build|test|run|check)|uv\s+(sync|run))\b(?!.*--(locked|frozen))', '--no-frozen-lockfile|-mod=mod\b', '\bgo\s+(get|mod\s+tidy(?!\s+-diff))\b', '"go",\s*"(get|mod",\s*"tidy)"(?!,\s*"-diff")', '\b(p?npm|yarn)\s+(update|upgrade|up)\b|\bcargo\s+update\b']
-scope: file
-check_kind: mechanical
+scope: callers
+check_kind: semantic
 severity_default: major
 ---
 

@@ -2,10 +2,10 @@
 title: A change to a build or check script reaches no tool or input through a host-specific absolute path or system binary, derives no output from timestamps or build ids, and does not write into the source tree
 rule_id: TOOL-12
 domain: tooling
-step: [implement, review]
+step: [implement]
 applies_to: [build-config]
 triggers: ['(?:/home/|/Users/)[\w.-]+/', '[A-Za-z]:[\\/]+(?:Users|Program Files)', '/usr/(?:local/)?bin/(?!env\b)', '\$\{?(?:HOME|USER|USERNAME|USERPROFILE)\b', '\$\(date\b|\bdate\s+\+%']
-scope: hunk
+scope: callers
 check_kind: mechanical
 severity_default: minor
 ---

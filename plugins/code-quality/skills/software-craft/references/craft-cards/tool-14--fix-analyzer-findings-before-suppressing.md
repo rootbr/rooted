@@ -2,7 +2,7 @@
 title: A finding on code the change adds or modifies is fixed in the code, with the tool's own fix where one exists, and is suppressed only when it is a false positive or cannot be avoided
 rule_id: TOOL-14
 domain: tooling
-step: [implement, refactor, review]
+step: [implement, refactor]
 applies_to: [universal]
 triggers: ['#\s*(?:noqa|type:\s*ignore|pyright:\s*ignore|pylint:\s*disable|ruff:\s*(?:noqa|ignore|file-ignore|disable))', 'eslint-disable|@ts-(?:ignore|expect-error|nocheck)', '@Suppress(?:Warnings|FBWarnings)\(', '#!?\[(?:allow|expect)\(', '//\s*(?:nolint|lint:(?:file-)?ignore)\b', '(?m)(?:^[+ \t]*|\b(?:var|let)[ \t]+)_[ \t]*=[ \t]*[A-Za-z_][\w.]*[ \t]*;?[ \t]*(?://|#|$)']
 scope: file
