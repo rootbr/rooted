@@ -892,10 +892,35 @@
      "task": "wbe4wu690",
      "wf": "wf_b165c5dd-a82",
      "launched": "2026-10-15T09:09 UTC",
-     "status": "running",
+     "status": "done 2026-10-15T09:23 UTC: 13 agents, 1,004,225 sub-agent tokens, 14 minutes; 11 accepted, 1 closing-edited (TST-47), 0 not accepted; applied",
      "bundle": "r2tree/property-based-testing--r2tree.js (12 cards TST-40 to TST-51, 339 KB)"
     }
-   ]
+   ],
+   "result": {
+    "applied": "2026-10-15T09:24 UTC",
+    "accepted": [
+     "TST-40",
+     "TST-41",
+     "TST-42",
+     "TST-43",
+     "TST-44",
+     "TST-45",
+     "TST-46",
+     "TST-48",
+     "TST-49",
+     "TST-50",
+     "TST-51"
+    ],
+    "closing_edited": [
+     "TST-47"
+    ],
+    "renamed": [],
+    "not_accepted": [],
+    "agents": 13,
+    "tokens": 1004225,
+    "wall_s": 858
+   },
+   "recheck": "TST-47: the Etna Source bullet and the provenance line gain the paper's authors and an openable author copy (hgoldstein95.github.io icfp23-etna.pdf); no facet touched"
   },
   "refactoring": {
    "runs": [
@@ -935,6 +960,18 @@
      "launched": "2026-10-15T09:18 UTC",
      "status": "running",
      "bundle": "r2tree/code-smells-and-antipatterns--r2tree.js (6 cards CHG-06 to CHG-11, 288 KB)"
+    }
+   ]
+  },
+  "seams-and-characterization-tests": {
+   "runs": [
+    {
+     "part": "r2tree",
+     "task": "w6jslj4nq",
+     "wf": "wf_77e30c31-2db",
+     "launched": "2026-10-15T09:24 UTC",
+     "status": "running",
+     "bundle": "r2tree/seams-and-characterization-tests--r2tree.js (7 cards CHG-18 to CHG-24, 272 KB)"
     }
    ]
   }

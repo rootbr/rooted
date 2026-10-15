@@ -1,6 +1,6 @@
 # Series status
 
-Snapshot taken 2026-10-15T09:17 UTC by `series/series-status.py --snapshot`. Journals under `journals/`, finished runs' outputs under `outputs/`.
+Snapshot taken 2026-10-15T09:23 UTC by `series/series-status.py --snapshot`. Journals under `journals/`, finished runs' outputs under `outputs/`.
 
 `done` counts the agents whose results the journal holds (cached for a continuation); `failed` the agents a usage-limit stop or an error ended, which a continuation re-runs. `cards` is the count in the run's own output; a run whose agents failed shipped none, and its cards come from the continuation. A continuation run (batch 3 and later) is one bundle of a topic, named by its part; a topic is finished when every part's run is complete.
 
@@ -82,6 +82,7 @@ Snapshot taken 2026-10-15T09:17 UTC by `series/series-status.py --snapshot`. Jou
 | r2 | `logging-and-diagnostic-output` r2tree | 12 | verify3 12, close3 1 | - | 12 | run complete |
 | r2 | `unit-testing-and-test-quality` r2tree | 14 | verify3 13, close3 8 | - | 13 | run complete |
 | r2 | `test-first-and-test-driven-development` r2tree | 2 | verify3 2 | - | 2 | run complete |
-| r2 | `larger-tests-integration-and-end-to-end` r2tree | ? | verify3 5 | - | - | running or stopped |
-| r2 | `property-based-testing` r2tree | ? | verify3 6 | - | - | running or stopped |
+| r2 | `larger-tests-integration-and-end-to-end` r2tree | ? | verify3 11, close3 1 | - | - | running or stopped |
+| r2 | `property-based-testing` r2tree | 14 | verify3 12, close3 1 | - | 12 | run complete |
 | r2 | `refactoring` r2tree | 5 | verify3 5 | - | 5 | run complete |
+| r2 | `code-smells-and-antipatterns` r2tree | ? | verify3 4 | - | - | running or stopped |
