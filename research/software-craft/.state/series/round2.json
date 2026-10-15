@@ -846,6 +846,18 @@
     "wall_s": 1645
    },
    "recheck": "TST-19 and TST-23: the verdicts only restored the review step the tests-domain reviewer dropped; reverted with the provenance note, counted as accepted. TST-24: the verdict restored scope file, which the reviewer changed to callers (a project assertion helper lives in another module); reverted with its Validator phrase and the provenance note, counted as accepted. TST-17: the verdict's deletion of the reviewer's Limits sentence (a condition inside a callback handed to the code under test, resolving the contradiction with TST-32's good Example) was reverted as a scope statement that needs no source; its Source dedup (one JUnit bullet with the junit5 r5.10.0 locator) and the provenance extension stand. TST-21: the verdict's wording 'by a cleanup the framework manages or by the test itself' accepted on its merits, since the reviewer's own good Example removes the file by hand and the Rust harness manages no cleanup; the cleanup's reliability stays TST-31's. TST-18: provenance line only. TST-20: Validator sentence for package-level hooks, consistent with the reviewer's scope callers. TST-39: the two regex triggers merged so that the one pattern matches the Example's bad half, and the Rationale's 'got before want' sentence, outside the rule by its Limits, dropped."
+  },
+  "test-first-and-test-driven-development": {
+   "runs": [
+    {
+     "part": "r2tree",
+     "task": "won8xbqry",
+     "wf": "wf_183594ca-e85",
+     "launched": "2026-10-15T09:08 UTC",
+     "status": "running",
+     "bundle": "r2tree/test-first-and-test-driven-development--r2tree.js (2 cards TST-13, TST-14, 168 KB; the one active task of the one-task mode)"
+    }
+   ]
   }
  }
 }
