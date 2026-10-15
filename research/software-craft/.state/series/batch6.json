@@ -39,8 +39,16 @@
      "task": "w8nu1r71a",
      "wf": "wf_a5590add-3de",
      "launched": "2026-10-14T23:13 UTC",
-     "status": "running",
+     "status": "done 2026-10-15T00:50 UTC: 19 agents, 2,613,153 sub-agent tokens, 97 minutes, 3 cards in its output (the circuit-breaker concept held: no source states a form checkable at the call site); output outputs/gaps-errors--r1.output.json.gz",
      "bundle": "gaps/gaps-errors.js (4 queued concepts of the errors domain)"
+    },
+    {
+     "part": "r2",
+     "task": "wzw6pl3pu",
+     "wf": "wf_4e7dc2ed-4ad",
+     "launched": "2026-10-15T00:52 UTC",
+     "status": "running",
+     "bundle": "cont/gaps-errors/r2/continue-gaps-errors-round2-1of1.js (research-continue.py --round 2 --journal r1 --from-bundle gaps/gaps-errors.js --split 1: three rules sent back with revise)"
     }
    ]
   },
