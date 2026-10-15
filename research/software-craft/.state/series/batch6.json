@@ -181,6 +181,18 @@
     }
    ],
    "status": "done 2026-10-15T06:30 UTC: DSN-74 written from the two rounds (12 agents, 1.9M sub-agent tokens); spot-read against the corpus: no duplicate, no deferring pair (DSN-74 reaches only a concept the codebase does not yet name, CODE-06 the word already in use; CODE-08 is the variable role); the review step dropped as the design-domain reviewer's rule has it; gap-runs.json status set"
+  },
+  "gaps-docs": {
+   "runs": [
+    {
+     "part": "r1",
+     "task": "wa65ae0sl",
+     "wf": "wf_0d8711d6-a75",
+     "launched": "2026-10-15T07:17 UTC",
+     "status": "running",
+     "bundle": "gaps/gaps-docs.js (1 queued concept of the docs domain: a release-note entry per change)"
+    }
+   ]
   }
  }
 }
