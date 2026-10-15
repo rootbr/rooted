@@ -239,11 +239,12 @@
      "task": "w1re0paid",
      "wf": "wf_ba8b02de-141",
      "launched": "2026-10-15T14:14 UTC",
-     "status": "running",
+     "status": "done 2026-10-15T15:05 UTC: 12 agents, 1,487,480 sub-agent tokens, 51 minutes, 4 cards in its output (all four on a closing edit); output outputs/gaps-input--r2.output.json.gz",
      "bundle": "cont/gaps-input/r2/continue-gaps-input-round2-1of1.js (research-continue.py --round 2 --journal r1 --from-bundle gaps/gaps-input.js --split 1: the four carded rules sent back with revise)"
     }
    ],
-   "status": "running"
+   "status": "done 2026-10-15T15:12 UTC: INP-25 to INP-28 written from the two rounds (36 agents, 5.1M sub-agent tokens), the runtime secret channel a pending entry with no separating condition; spot-read against the corpus: no duplicate, no contradiction (INP-13's Limits leave parser configuration to INP-25, ERR-43's Validator sets secrets aside for INP-26, ERR-01's Limits leave the trust-boundary message to INP-27, INP-28 adds to the parser's unit tests); TOOL-13 -> INP-25 added on the tooling reviewer's pattern; the steps carry handle-errors on INP-26 and INP-27 as the input reviewer's rule has it; gap-runs.json statuses set"
   }
- }
+ },
+ "status": "done 2026-10-15T15:12 UTC: every gap run of every reviewed domain written"
 }

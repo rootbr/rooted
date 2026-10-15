@@ -227,7 +227,7 @@
    "source_path": "OWASP/CheatSheetSeries cheatsheets/XML_External_Entity_Prevention_Cheat_Sheet.md §General Guidance (recorded as fetched in research/software-craft/parsing-and-grammar-based-input.md, line 200)",
    "claim": "Disable document type definitions (DTDs) whenever possible. Reject DOCTYPE declarations if the parser supports it. If your application needs DTDs, disable external entity resolution and external DTD loading, and limit entity expansion. ... Treat an unsupported security setting as a configuration failure. Do not continue processing untrusted XML with partial hardening.",
    "taxonomy_row": "| J, `input`, `INP` | `parsing-and-grammar-based-input` | SW4.9, PoP9 | / | | `security-hygiene-in-ordinary-code` | PP \"Stay Safe Out There\", SWEBOK ch. 3 §3.7 |",
-   "status": "queued",
+   "status": "carded as INP-25 (gaps-input, 2026-10-15)",
    "found_by": "reviewer, input (reviews/input.json)"
   },
   {
@@ -236,7 +236,7 @@
    "source_path": "OWASP/CheatSheetSeries cheatsheets/Logging_Cheat_Sheet.md §'Data to exclude'; OWASP/ASVS 5.0/en/0x25-V16-Security-Logging-and-Error-Handling.md requirement 16.4.1 (both recorded as fetched in research/software-craft/logging-and-diagnostic-output.md, lines 157 and 187; neither line quotes the text verbatim)",
    "claim": "As recorded: the cheat sheet's 'Data to exclude' list names tokens, passwords and personal data (PII), and ASVS 16.4.1 'adds encoding against log injection'.",
    "taxonomy_row": "| | `security-hygiene-in-ordinary-code` | PP \"Stay Safe Out There\", SWEBOK ch. 3 §3.7 |",
-   "status": "queued",
+   "status": "carded as INP-26 (gaps-input, 2026-10-15)",
    "found_by": "reviewer, input (reviews/input.json)"
   },
   {
@@ -245,7 +245,7 @@
    "source_path": "OWASP/ASVS 5.0/en/0x25-V16-Security-Logging-and-Error-Handling.md requirement 16.5.1 (quoted as fetched in research/software-craft/error-and-exception-handling.md, line 254); OWASP/CheatSheetSeries cheatsheets/Error_Handling_Cheat_Sheet.md §Objective",
    "claim": "Verify that a generic message is returned to the consumer when an unexpected or security-sensitive error occurs, ensuring no exposure of sensitive internal system data such as stack traces, queries, secret keys, and tokens.",
    "taxonomy_row": "| | `security-hygiene-in-ordinary-code` | PP \"Stay Safe Out There\", SWEBOK ch. 3 §3.7 |",
-   "status": "queued",
+   "status": "carded as INP-27 (gaps-input, 2026-10-15)",
    "found_by": "reviewer, input (reviews/input.json)"
   },
   {
@@ -254,7 +254,7 @@
    "source_path": "OWASP/www-project-proactive-controls docs/the-top-10/c2-crypto.md, Special Case: Application Secrets management (quoted as fetched in INP-10's Source); opposing: SonarSource/sonar-python S2068 (quoted as fetched in INP-10's Source)",
    "claim": "Don't store secrets in code, config files or pass them through environment variables. ... Keep keys and your other application-level secrets in a secrets vault (C2); against: Credentials should be stored in a configuration file that is not committed to the code repository, in a database, or managed by your cloud provider's secrets management service (S2068).",
    "taxonomy_row": "| | `security-hygiene-in-ordinary-code` | PP \"Stay Safe Out There\", SWEBOK ch. 3 §3.7 |",
-   "status": "queued",
+   "status": "pending entry (gaps-input, 2026-10-15): the sources oppose each other and no openable source states a separating condition",
    "found_by": "reviewer, input (reviews/input.json)"
   },
   {
@@ -263,7 +263,7 @@
    "source_path": "google/fuzzing docs/why-fuzz.md, 'Potential Fuzzing Targets' (recorded as fetched in research/software-craft/parsing-and-grammar-based-input.md, lines 123 and 192); golang/website _content/doc/security/fuzz/index.md (same note, line 193)",
    "claim": "Types of projects where fuzzing has been useful: Anything that consumes untrusted or complicated inputs: Parsers of any kind (xml, pdf, truetype, ...); and Go: 'Since it can reach edge cases which humans often miss, fuzz testing can be particularly valuable for finding security exploits and vulnerabilities'.",
    "taxonomy_row": "| J, `input`, `INP` | `parsing-and-grammar-based-input` | SW4.9, PoP9 |",
-   "status": "queued",
+   "status": "carded as INP-28 (gaps-input, 2026-10-15)",
    "found_by": "reviewer, input (reviews/input.json)"
   }
  ]
