@@ -1,6 +1,6 @@
 ---
 name: craft-verifier
-description: Read-only skeptic for the software-craft skill, used when the craft review workflow, or its Agent-tool fallback, dispatches one finding to refute against the code, the git history and the project context, calibrate its severity, and return a schema-validated verdict; the same definition serves the second skeptic and the arbiter on a rejected Major. It adds no findings and edits nothing. NOT for finding defects, for a Java-specific review, or for applying fixes.
+description: Read-only skeptic for the software-craft skill, used when the craft review workflow, or its Agent-tool fallback, dispatches one finding to refute against the code, the git history and the project context, calibrate its severity, and return a schema-validated verdict; the same definition serves the second skeptic and the arbiter on a rejected Major. It adds no findings and edits nothing in the repository; the one thing it may write is a snippet of its own in a temporary directory outside the repository, compiled to check a suggested fix. NOT for finding defects, for a Java-specific review, or for applying fixes.
 tools: Read, Grep, Glob, Bash
 ---
 

@@ -253,5 +253,36 @@
   "patches": 58,
   "applied": "PRF-17 C-E2; CHG-06 C-D1; DOC-11 C-E2 x3; TST-52 C-E2 x5; PRF-26 C-E2 x2; CHG-29 C-D1; CHG-31 C-D1; PRF-08 C-B1 split; INP-02 C-E2 x6 and C-D1; TOOL-23 C-B1 split",
   "dismissed": "C-F3 x37 under the taxonomy's Example-form deviation; C-F2 x2 (the block schema's Finding output is the consumer block)"
+ },
+ "skill_and_agents_audit": {
+  "task": "wghd6826y",
+  "wf": "wf_6d8d7626-028",
+  "launched": "2026-10-15T13:22 UTC",
+  "status": "done 2026-10-15T13:40 UTC: 237 agents, 14,244,180 sub-agent tokens, 18 minutes; 47 patches (29 medium, 17 low, 1 info)",
+  "applied": [
+   "craft-finder R-43 (the confirmed-not-searched sentence now points at the Quick rules)",
+   "craft-finder R-61 (the diff's-own-defects rule stated positively)",
+   "craft-verifier R-06/R-77 (the description names the one temporary-directory write the body allows)",
+   "software-developer R-43 x2 (the description drops the pre-pass write target stated in step 6; the fix-round sentence points at step 6)",
+   "SKILL.md R-43 x2 (Phase 4 points at the Script declarations for the dependency rule; Phase 7 Persist points at Phase 5 Parts)",
+   "SKILL.md R-61 x2 (the one-confirmation rule and the no-confirmation sentence stated positively)",
+   "SKILL.md R-25 (the Gotchas section opens with the instruction)",
+   "SKILL.md R-50 (the one fix round points at the design note's Fix round)",
+   "SKILL.md R-21 (the parts procedure as an ordered list)"
+  ],
+  "dismissed": {
+   "R-83 Bash on the read-only finder and skeptic (agents and the SKILL.md fallback)": "Bash is the read-only git channel the design note's review contracts give the agents (git show, diff, log, grep); the prompt's prohibition is the operative barrier, as the enforcement caveat states, and the integrity check is mandatory",
+   "R-01 skill and agent names": "design note deviations 3 and 6: the brief names them and the layout, the developer's skills field and the marketplace address them so",
+   "R-40 real-looking identifiers in the finder and developer examples": "generic domains (orders, invoices) used as illustrations, no production name; the inventory's real_name_candidates is empty",
+   "R-50 unsourced prescriptions in the agent prompts and SKILL.md": "the skill's own design decisions, stated in the design note's Review workflow contracts, Fix round and the taxonomy (the audit's precedent for thresholds the taxonomy states)",
+   "S-01 target_excerpt wrapper on the skeptic's reasoning": "the injection-defence pattern the audit skill's own sub-agent template prescribes",
+   "R-75/R-10 token budget (254 lines, about 6,900 tokens)": "within the 500-line cap; the §Aggregation section is the canonical definition the workflow script points to, so it stays; the estimate counts code blocks and paths",
+   "R-14 position of the enforcement caveat": "the read-only constraint and the mandatory integrity check sit in the Quick rules at the top; line 176 is the runtime detail",
+   "R-56 claude-code#63762 unfetched by the auditor": "an openable GitHub issue, the same the audit skill cites",
+   "R-45 the script list": "the per-script read/write declarations R-82 requires",
+   "R-06 the authoring workflow not in the description": "authoring-time tooling, outside the skill's user-facing behaviour the description routes on; the body marks it authoring-only",
+   "R-43 integrity check in Phase 3 and Phase 7": "two checkpoints at two moments, after the build and after the review",
+   "R-28 no bad/good pairs, R-21 the developer summary sentence, R-25 'Quick rules:' label, R-03 routing vocabulary, R-66 trigger examples, R-43 report field": "house conventions shared with the reviewing-java agents, or additions that would lengthen a warm file the same audit calls over budget"
+  }
  }
 }
