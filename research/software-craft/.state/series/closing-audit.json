@@ -205,7 +205,35 @@
    "task": "w1fygxnk9",
    "wf": "wf_9ae8e018-ad0",
    "launched": "2026-10-15T12:54 UTC",
+   "status": "done 2026-10-15T13:10 UTC: 221 agents, 14,401,056 sub-agent tokens, 17 minutes; 11 patches: C-D1 on CHG-29 applied (the Rationale's syntax-tree sentences reframed for the reviewer: a reformatted untouched line or dropped comment in a tool hunk is a hand edit or a tool defect); C-D1 on CHG-31 applied (the deployment statistics now follow the point they support, that a retirement spans more than the file with the check); C-B1 on PRF-08 applied by a split on the TST-39 precedent: PRF-08 keeps the result and constant-input clauses, PRF-30 takes setup and cleanup outside the timed region, PRF-31 takes repetition left to the harness, each from the sources the PRF-08 run fetched, with new fenced examples (Java, Go, Rust), provenance lines and note rows; C-F3 on CHG-29, CHG-31, DOC-02, INP-14, PRF-08, PRF-13, TOOL-22 and TOOL-34 dismissed under the taxonomy's Example-form deviation; targets unmutated",
+   "patches": 11,
+   "applied": [
+    "CHG-29 C-D1",
+    "CHG-31 C-D1",
+    "PRF-08 C-B1 (split into PRF-08, PRF-30, PRF-31)"
+   ],
+   "dismissed": [
+    "C-F3 x8"
+   ]
+  },
+  {
+   "run": 5,
+   "cards": [
+    "TOOL-23",
+    "CHG-18",
+    "CHG-19",
+    "INP-01",
+    "INP-02",
+    "CHG-14",
+    "CHG-16",
+    "CHG-33",
+    "CHG-34"
+   ],
+   "task": "wp4t1dscc",
+   "wf": "wf_bc74d4ba-37d",
+   "launched": "2026-10-15T13:12 UTC",
    "status": "running"
   }
- ]
+ ],
+ "follow_up": "PRF-30 and PRF-31 (split at run 4) and the cards the tooling and input gap runs land get one more kb-card run, together with the kb-corpus run, after the gap topics are written"
 }
