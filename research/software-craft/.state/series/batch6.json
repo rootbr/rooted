@@ -131,10 +131,10 @@
     },
     {
      "part": "r2",
-     "task": null,
-     "wf": null,
-     "launched": null,
-     "status": "built, waiting for a gap slot (the tree pass holds two slots from 05:20 UTC)",
+     "task": "wlf4vh6b8",
+     "wf": "wf_5d94234a-040",
+     "launched": "2026-10-15T05:42 UTC",
+     "status": "running",
      "bundle": "cont/gaps-interface/r2/continue-gaps-interface-round2-1of1.js (research-continue.py --round 2 --journal r1-retry --from-bundle gaps/gaps-interface.js --split 1)"
     }
    ]
@@ -158,8 +158,16 @@
      "task": "weltgrnlh",
      "wf": "wf_2bbe08c1-48a",
      "launched": "2026-10-15T04:35 UTC",
-     "status": "running",
+     "status": "done 2026-10-15T05:40 UTC: 9 agents, 1,532,703 sub-agent tokens, 66 minutes; output outputs/gaps-design--r1.output.json.gz",
      "bundle": "gaps/gaps-design.js (1 queued concept of the design domain: domain language)"
+    },
+    {
+     "part": "r2",
+     "task": null,
+     "wf": null,
+     "launched": null,
+     "status": "built, waiting for a gap slot",
+     "bundle": "cont/gaps-design/r2/continue-gaps-design-round2-1of1.js (research-continue.py --round 2 --journal r1 --from-bundle gaps/gaps-design.js --split 1)"
     }
    ]
   }
