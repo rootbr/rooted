@@ -231,8 +231,16 @@
      "task": "wvcabcgxz",
      "wf": "wf_55a383d0-4ce",
      "launched": "2026-10-15T11:55 UTC",
-     "status": "running",
+     "status": "done 2026-10-15T14:11 UTC: 24 agents, 3,651,186 sub-agent tokens, 139 minutes, 4 cards in its output, all four sent back with revise by the second verdict; the fifth concept (where a secret is supplied at run time) held as a pending entry, no separating condition sourced; output outputs/gaps-input--r1.output.json.gz",
      "bundle": "gaps/gaps-input.js (5 queued concepts of the input domain from reviews/input.json: XML parser hardening, secrets and personal data out of logs, a generic error message at a trust boundary, where a secret lives at run time, a fuzz test for a hand-written parser)"
+    },
+    {
+     "part": "r2",
+     "task": "w1re0paid",
+     "wf": "wf_ba8b02de-141",
+     "launched": "2026-10-15T14:14 UTC",
+     "status": "running",
+     "bundle": "cont/gaps-input/r2/continue-gaps-input-round2-1of1.js (research-continue.py --round 2 --journal r1 --from-bundle gaps/gaps-input.js --split 1: the four carded rules sent back with revise)"
     }
    ],
    "status": "running"
