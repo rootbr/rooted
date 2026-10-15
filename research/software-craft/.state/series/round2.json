@@ -676,10 +676,29 @@
      "task": "w2qgpgi87",
      "wf": "wf_0612c3b7-5a2",
      "launched": "2026-10-15T05:12 UTC",
-     "status": "running",
+     "status": "done 2026-10-15T05:30 UTC: 11 agents, 987,020 sub-agent tokens, 16 minutes; 1 accepted (ERR-15), 5 closing-edited (ERR-13, ERR-14, ERR-16, ERR-17, ERR-18), 0 not accepted; applied with three facet reverts (ERR-14 and ERR-16 count as accepted)",
      "bundle": "r2tree/defensive-programming--r2tree.js (6 cards ERR-13 to ERR-18, 342 KB)"
     }
-   ]
+   ],
+   "result": {
+    "applied": "2026-10-15T05:22 UTC",
+    "accepted": [
+     "ERR-14",
+     "ERR-15",
+     "ERR-16"
+    ],
+    "closing_edited": [
+     "ERR-13",
+     "ERR-17",
+     "ERR-18"
+    ],
+    "renamed": [],
+    "not_accepted": [],
+    "agents": 11,
+    "tokens": 987020,
+    "wall_s": 988
+   },
+   "recheck": "ERR-14, ERR-16, ERR-17: the verdicts restored step review from the spine; the errors-domain reviewer had removed it from ERR-16 and ERR-17 and its domain rule covers ERR-14 (a rule about code), so the three facet edits are reverted with provenance notes; ERR-14 and ERR-16 had no other edit and count as accepted; ERR-17 keeps the Validator-question fix (an unwrap or expect on outside data no longer set aside and flagged at once); ERR-13: evidence status, the Sonar S2638 entry names the tagged file that still carries it (the reviewer's applies_to public-api stands); ERR-18: the Example's Rust placeholder body replaced by compiling code, 'instead of' wording removed"
   },
   "fault-tolerance-retries-timeouts-fallbacks": {
    "runs": [
@@ -690,6 +709,26 @@
      "launched": "2026-10-15T05:22 UTC",
      "status": "running",
      "bundle": "r2tree/fault-tolerance-retries-timeouts-fallbacks--r2tree.js (9 cards ERR-31 to ERR-39, 400 KB)"
+    }
+   ]
+  },
+  "resource-management-and-ownership": {
+   "runs": [
+    {
+     "part": "r2tree-1of2",
+     "task": "w72whvst0",
+     "wf": "wf_0e13261b-89f",
+     "launched": "2026-10-15T05:33 UTC",
+     "status": "running",
+     "bundle": "r2tree/resource-management-and-ownership--r2tree-1of2.js (--only ERR-19 to ERR-24, 359 KB; the one-part bundle was 538 KB)"
+    },
+    {
+     "part": "r2tree-2of2",
+     "task": null,
+     "wf": null,
+     "launched": null,
+     "status": "built, waiting for a tree slot",
+     "bundle": "r2tree/resource-management-and-ownership--r2tree-2of2.js (--only ERR-25 to ERR-30, 374 KB)"
     }
    ]
   }

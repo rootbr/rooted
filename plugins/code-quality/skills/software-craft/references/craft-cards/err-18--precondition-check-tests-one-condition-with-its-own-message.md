@@ -13,7 +13,7 @@ severity_default: suggestion
 # Each precondition check tests one condition with its own message, so a failure names the precondition that was violated
 
 ## Thesis
-A precondition check at a routine's entry, on the routine's arguments or on the object's state — the language's assertion, a library precondition call, or a conditional that fails the call when its condition holds — tests one precondition, stands on its own line and carries a helpful message of its own. Independent preconditions get one check each instead of sharing one failure, whether a logical and would join them in a condition that must hold or a logical or would join them in a condition that fails the call, so that the failure can show which precondition the caller violated.
+A precondition check at a routine's entry, on the routine's arguments or on the object's state — the language's assertion, a library precondition call, or a conditional that fails the call when its condition holds — tests one precondition, stands on its own line and carries a helpful message of its own. Independent preconditions get one check each and never share one failure, whether a logical and would join them in a condition that must hold or a logical or would join them in a condition that fails the call, so that the failure can show which precondition the caller violated.
 
 ## Rationale
 A precondition check lets a routine tell its caller that the caller has made a mistake. An assertion that combines several independent conditions is harder to debug upon failure, since its failure message does not indicate which condition failed. Splitting the preconditions onto distinct lines can help find which one failed while debugging, and a helpful message is easier to write when each check is on its own line. Without a good custom message it is hard to understand what went wrong when an assertion fails, and some library checks of an argument, a state or a non-null value, called with no message argument, throw their exception without one. A conditional that fails the call tests the opposite of what a check call asserts, as when a test that a value is negative is replaced by a check that it is at least zero; a negated or is an and of the negated parts, so preconditions joined by or in a failing conditional are the same composite as preconditions joined by and in an assertion.
@@ -22,12 +22,12 @@ A precondition check lets a routine tell its caller that the caller has made a m
 ```rust
 bad:  pub fn new(name: &str, size: usize) -> Self {
           assert!(!name.is_empty() && size.is_power_of_two(), "invalid arguments");
-          Self { ... }
+          Self { name: name.to_string(), size }
       }
 good: pub fn new(name: &str, size: usize) -> Self {
           assert!(!name.is_empty(), "name must not be empty");
           assert!(size.is_power_of_two(), "size must be a power of two, got {size}");
-          Self { ... }
+          Self { name: name.to_string(), size }
       }
 ```
 
