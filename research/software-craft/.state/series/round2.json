@@ -402,8 +402,41 @@
      "task": "wf7wsfeh3",
      "wf": "wf_7fecb136-a54",
      "launched": "2026-10-15T01:10 UTC",
-     "status": "running",
+     "status": "done 2026-10-15T01:30 UTC: 11 agents, 1,001,350 sub-agent tokens, 20 minutes; 5 accepted (DSN-29, DSN-30, DSN-31, DSN-33, DSN-34), 3 closing-edited (DSN-28, DSN-32, DSN-35), 0 not accepted; applied with one facet revert (DSN-28)",
      "bundle": "r2tree/information-hiding-and-encapsulation--r2tree.js (8 cards DSN-28 to DSN-35, 405 KB)"
+    }
+   ],
+   "result": {
+    "applied": "2026-10-15T01:19 UTC",
+    "accepted": [
+     "DSN-29",
+     "DSN-30",
+     "DSN-31",
+     "DSN-33",
+     "DSN-34"
+    ],
+    "closing_edited": [
+     "DSN-28",
+     "DSN-32",
+     "DSN-35"
+    ],
+    "renamed": [],
+    "not_accepted": [],
+    "agents": 11,
+    "tokens": 1001350,
+    "wall_s": 1184
+   },
+   "recheck": "DSN-28: the verdict restored step review from the spine; the card had shipped without it and the design-domain reviewer's rule for the domain (reviews/design.json, 45 cards) reserves review for rules about the change, so the facet edit is reverted and the provenance line records why, the 'rather than' wording kept; DSN-32: wording, Limits and Validator agree on the accessor pair existing code calls (the reviewer's step and scope values stand); DSN-35: wording, 'crate-level' replaced by the language-neutral 'module-level' (the reviewer's step value stands)"
+  },
+  "coupling-and-dependency-direction": {
+   "runs": [
+    {
+     "part": "r2tree",
+     "task": "w6j72eloe",
+     "wf": "wf_23080864-834",
+     "launched": "2026-10-15T01:33 UTC",
+     "status": "running",
+     "bundle": "r2tree/coupling-and-dependency-direction--r2tree.js (6 cards DSN-08 to DSN-13, 303 KB)"
     }
    ]
   }
