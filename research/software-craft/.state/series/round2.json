@@ -607,8 +607,44 @@
      "task": "wmm6rlww3",
      "wf": "wf_873e4bf5-972",
      "launched": "2026-10-15T04:43 UTC",
-     "status": "running",
+     "status": "done 2026-10-15T05:05 UTC: 13 agents, 1,125,554 sub-agent tokens, 20 minutes; 9 accepted, 2 closing-edited (DSN-53, DSN-54), 0 not accepted; applied",
      "bundle": "r2tree/functional-style-and-pipelines--r2tree.js (11 cards DSN-52 to DSN-62, 431 KB)"
+    }
+   ],
+   "result": {
+    "applied": "2026-10-15T04:51 UTC",
+    "accepted": [
+     "DSN-52",
+     "DSN-55",
+     "DSN-56",
+     "DSN-57",
+     "DSN-58",
+     "DSN-59",
+     "DSN-60",
+     "DSN-61",
+     "DSN-62"
+    ],
+    "closing_edited": [
+     "DSN-53",
+     "DSN-54"
+    ],
+    "renamed": [],
+    "not_accepted": [],
+    "agents": 13,
+    "tokens": 1125554,
+    "wall_s": 1208
+   },
+   "recheck": "DSN-53: the verdict deleted the design reviewer's DSN-52/DSN-53 resolution sentence ('past its bound, whether or not the project's style guide says so') and its Google Python bullet because the guide only says a longer lambda 'might be better' as a nested function; the entailment finding stands, and the contradiction is re-resolved with a scope sentence that leaves a multi-line single-expression callback to DSN-52 instead of asserting a bound; DSN-54: entailment, the comprehension clause's basis stated in the Caveat; the design reviewer's step values on both cards stand, no facet touched"
+  },
+  "domain-modeling-and-domain-language": {
+   "runs": [
+    {
+     "part": "r2tree",
+     "task": "wcu2pekmo",
+     "wf": "wf_1538fd56-e78",
+     "launched": "2026-10-15T05:07 UTC",
+     "status": "running",
+     "bundle": "r2tree/domain-modeling-and-domain-language--r2tree.js (8 cards DSN-44 to DSN-51, 321 KB; the folded keys exhaustive-case-analysis-without-catch-all and correlated-flags-become-one-state have no tree card)"
     }
    ]
   }
