@@ -1053,42 +1053,32 @@
      "task": "w91dfeorm",
      "wf": "wf_d1b3eafc-749",
      "launched": "2026-10-15T10:55 UTC",
-     "status": "running",
+     "status": "done 2026-10-15T11:00 UTC: 3 agents, 238,377 sub-agent tokens, 5 minutes; 1 accepted (CHG-32), 1 closing-edited (CHG-31: the secondary citation DOI 10.1145/3377813.3381366 re-marked unfetched, since no openable copy exists on the admitted hosts; the Piranha anchor stays fetched); applied 11:05 UTC",
      "bundle": "r2tree/large-scale-changes-and-migrations--r2tree-rest.js (2 cards CHG-31 and CHG-32, 189 KB, built with --only CHG-31,CHG-32; skeptic claude-fable-5-1 at high)"
     }
    ],
    "result": {
-    "applied": "2026-10-15T10:49 UTC",
+    "applied": "2026-10-15T10:58 UTC",
     "accepted": [
      "CHG-25",
      "CHG-26",
      "CHG-27",
      "CHG-28",
-     "CHG-30"
+     "CHG-30",
+     "CHG-32"
     ],
     "closing_edited": [
-     "CHG-29"
+     "CHG-29",
+     "CHG-31"
     ],
     "renamed": [],
-    "not_accepted": [
-     {
-      "key": "retired-flag-removes-its-dead-branch-and-tests",
-      "rule_id": "CHG-31",
-      "reason": "the skeptic returned no verdict",
-      "entry": "- change · large-scale-changes-and-migrations · \"When a flag that selected between an old and a new path is retired because its purpose is resolved, the change makes the settled branch run unconditionally and deletes the branch no longer taken. It also deletes the code that only that branch reached and the tests that exercised only the flag or the deleted branch. Fixing the flag's value in configuration or in a constant while its checks and old branch stay in the code does not retire it.\" · formulation: Paul Hammant, 'Branch by Abstraction', trunkbaseddevelopment.com, §'Ideal steps' 3–5; Paul Hammant, 'Feature flags', trunkbaseddevelopment.com, §'Tech Debt - pitfall'; Pete Hodgson, 'Feature Toggles (aka Feature Flags)', martinfowler.com, 2017, §'Managing the carrying cost of Feature Toggles' (unfetched) · searched: M. K. Ramanathan, L. Clapp, R. Barik, M. Sridharan, 'Piranha: Reducing Feature Flag Debt at Uber', ICSE-SEIP 2020, DOI 10.1145/3377813.3381350 (author copy report.pdf in uber/piranha); Ramanathan, Clapp, Barik, Sridharan, 'Piranha: Reducing Feature Flag Debt at Uber', ICSE-SEIP 2020, DOI 10.1145/3377813.3381350; Ramanathan, Clapp, Barik, Sridharan, 'Piranha: Reducing Feature Flag Debt at Uber', ICSE-SEIP 2020, DOI 10.1145/3377813.3381350 · held: the skeptic returned no verdict"
-     },
-     {
-      "key": "new-uses-of-old-path-rejected",
-      "rule_id": "CHG-32",
-      "reason": "the skeptic returned no verdict",
-      "entry": "- change · large-scale-changes-and-migrations · \"While an old module, type or function stays reachable during a migration away from it, because uses remain or because it is outside code the project cannot delete, the project's analyzer configuration rejects new uses of it with a message that names the replacement. The existing uses are recorded as a baseline or as suppressions that are worked down as callers move.\" · formulation: Software Engineering at Google, ch. 22, §'The LSC Process' → 'Cleanup'; Software Engineering at Google, ch. 22, §'The LSC Process' → 'Change Creation' (users backslide into old uses); Software Engineering at Google, ch. 15 'Deprecation', §'Deprecation Warnings' and §'Preventing backsliding' · searched: No research measures backsliding or the effect of ban lists. Searched the abstracts in NWIT tex/nwit.bib and tex/todo.bib for migrat, deprecat, feature toggle, banned and backslid. The rule rests on tool documentation, with SEG ch. 22 and ch. 15 as formulation. · held: the skeptic returned no verdict"
-     }
-    ],
-    "agents": 9,
-    "tokens": 712710,
-    "wall_s": 659
+    "not_accepted": [],
+    "agents": 12,
+    "tokens": 951087,
+    "wall_s": 943,
+    "note": "merged from the r2tree run (CHG-25 to CHG-30, cut before CHG-31 and CHG-32 got a verdict) and the r2tree-rest run (CHG-31 and CHG-32); the not_accepted entries of the cut run are cleared, since both cards got their verdict in the rest run"
    },
-   "recheck": "CHG-29: the verdict removed the manifest edition/toolchain trigger added at the change-domain reviewer's apply (00f6046); re-resolved on its merits, the deletion stands: the pattern matched no bad line of the Example and did not answer the reviewer's finding (the Example is reached only through its comment), and the Limits now name the undispatched edition-only case; the caveat names the build condition as the card's own join"
+   "recheck": "CHG-29: the verdict removed the manifest edition/toolchain trigger added at the change-domain reviewer's apply (00f6046); re-resolved on its merits, the deletion stands: the pattern matched no bad line of the Example and did not answer the reviewer's finding (the Example is reached only through its comment), and the Limits now name the undispatched edition-only case; the caveat names the build condition as the card's own join; rest run: CHG-31's one closing edit matches its verdict's required edit exactly (the fetch-status marker of the secondary citation), card and provenance line alike; nothing else changed"
   },
   "small-steps-and-minimal-diffs": {
    "runs": [
@@ -1150,6 +1140,18 @@
      "launched": "2026-10-15T10:56 UTC",
      "status": "running",
      "bundle": "r2tree/debugging--r2tree.js (6 cards PRF-01 to PRF-06, 225 KB; skeptic claude-fable-5-1 at high)"
+    }
+   ]
+  },
+  "profiling-and-code-tuning": {
+   "runs": [
+    {
+     "part": "r2tree",
+     "task": "wlulyjebo",
+     "wf": "wf_efb858e1-40b",
+     "launched": "2026-10-15T11:02 UTC",
+     "status": "running",
+     "bundle": "r2tree/profiling-and-code-tuning--r2tree.js (8 cards PRF-07 to PRF-14, 342 KB; skeptic claude-fable-5-1 at high)"
     }
    ]
   }
