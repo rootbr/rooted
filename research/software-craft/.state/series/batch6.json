@@ -68,8 +68,16 @@
      "task": "wlqqgu2zf",
      "wf": "wf_ecc55339-18f",
      "launched": "2026-10-15T03:14 UTC",
-     "status": "running",
+     "status": "done 2026-10-15T03:55 UTC: 12 agents, 1,382,391 sub-agent tokens, 35 minutes, 4 cards in its output; output outputs/gaps-code--r1-finish.output.json.gz",
      "bundle": "cont/gaps-code/continue-gaps-code-1of1.js (research-continue.py --round 1 --journal r1 --from-bundle gaps/gaps-code.js: 4 drafts and their first verdicts carried)"
+    },
+    {
+     "part": "r2",
+     "task": "wdaun9xqx",
+     "wf": "wf_b6b198d9-ec9",
+     "launched": "2026-10-15T03:57 UTC",
+     "status": "running",
+     "bundle": "cont/gaps-code/r2/continue-gaps-code-round2-1of1.js (research-continue.py --round 2 --journal r1 --journal r1-finish --from-bundle gaps/gaps-code.js --split 1: four rules sent back with revise)"
     }
    ]
   },
