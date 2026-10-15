@@ -284,5 +284,27 @@
    "R-43 integrity check in Phase 3 and Phase 7": "two checkpoints at two moments, after the build and after the review",
    "R-28 no bad/good pairs, R-21 the developer summary sentence, R-25 'Quick rules:' label, R-03 routing vocabulary, R-66 trigger examples, R-43 report field": "house conventions shared with the reviewing-java agents, or additions that would lengthen a warm file the same audit calls over budget"
   }
+ },
+ "docs_audit": {
+  "task": "wpaucs3bk",
+  "wf": "wf_c7f2c6d1-83d",
+  "launched": "2026-10-15T13:45 UTC",
+  "status": "done 2026-10-15T14:00 UTC: 141 agents, 9,881,312 sub-agent tokens, 14 minutes; 53 patches (1 high, 17 medium, 35 low)",
+  "applied": [
+   "maintenance R-70 (the two CHG-33 rows agree: naming is CODE-03's and CODE-11's)",
+   "taxonomy R-43 x3, R-73 (the real code-03 filename), R-61 x4, R-25 (the intro keeps the validator fact)",
+   "gotchas R-43 (G-19 points at G-18), S-25 x2 (the actor named)",
+   "design note R-43 x3, S-12 (step 5's reach inside the done claim), R-70 (one-round and two-round pipeline costs told apart), S-07 (first person), D-02 (the working-method block as a present fact), S-06 (deviation 7 points at the Cost yield), D-06 (deviation 9 without the foil), S-25 x2 (the actor named), R-25 (the table-of-contents sentence dropped)"
+  ],
+  "dismissed": {
+   "maintenance R-43 x2 and S-05 x5, S-20": "the DEFER_TO table is a lookup keyed by the deferring rule in the order the entries were added (the js map is the canonical order); each row stays self-sufficient in the one fixed shape 'X is Y's finding'",
+   "report-format R-43, R-25, S-05 x2": "the intro summarises the template and names the generator, a fact the reader needs; the sections are canonical",
+   "R-21 lists (taxonomy x2, design note x2, gotchas x2, maintenance x2)": "cold-tier references; the audit's own Limits call the itemisation a reading judgement and the bullets carry one argument each",
+   "S-05 sentence shape (design note x2)": "low; the parentheticals are the locators the sentence is about",
+   "S-20 the Progress table": "the plan's gate record, its State cells the committed artefacts",
+   "R-25 gotchas and maintenance intros": "house convention shared with the reviewing-java references",
+   "R-61 the taxonomy's strict cell": "the enumerated exclusions the validator checks",
+   "S-25 the 96-job cap sentence": "the sentence names static-craft.py as the subject two clauses earlier"
+  }
  }
 }
