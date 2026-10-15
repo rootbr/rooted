@@ -571,8 +571,44 @@
      "task": "wci19qc93",
      "wf": "wf_3da5069e-04e",
      "launched": "2026-10-15T04:17 UTC",
-     "status": "running",
+     "status": "done 2026-10-15T04:40 UTC: 14 agents, 1,222,598 sub-agent tokens, 23 minutes; 8 accepted, 3 closing-edited (DSN-66, DSN-70, DSN-71), 0 not accepted; applied with one facet revert (DSN-71)",
      "bundle": "r2tree/mutable-state-and-immutability--r2tree.js (11 cards DSN-63 to DSN-73, 434 KB)"
+    }
+   ],
+   "result": {
+    "applied": "2026-10-15T04:31 UTC",
+    "accepted": [
+     "DSN-63",
+     "DSN-64",
+     "DSN-65",
+     "DSN-67",
+     "DSN-68",
+     "DSN-69",
+     "DSN-72",
+     "DSN-73"
+    ],
+    "closing_edited": [
+     "DSN-66",
+     "DSN-70",
+     "DSN-71"
+    ],
+    "renamed": [],
+    "not_accepted": [],
+    "agents": 14,
+    "tokens": 1222598,
+    "wall_s": 1388
+   },
+   "recheck": "DSN-71: the verdict restored step review from the spine, which the design-domain reviewer had removed; the reviewer's value stands, the edit is reverted with a provenance note, the trigger merge kept; DSN-66: the bad Example's getter now states the invariant the mutable reference breaks, and an elided quotation is marked; DSN-70: the provenance line drops the unopenable formulation an openable source carries (CLAUDE.md source policy), no card change; the reviewer's step value on DSN-70 stands"
+  },
+  "functional-style-and-pipelines": {
+   "runs": [
+    {
+     "part": "r2tree",
+     "task": "wmm6rlww3",
+     "wf": "wf_873e4bf5-972",
+     "launched": "2026-10-15T04:43 UTC",
+     "status": "running",
+     "bundle": "r2tree/functional-style-and-pipelines--r2tree.js (11 cards DSN-52 to DSN-62, 431 KB)"
     }
    ]
   }

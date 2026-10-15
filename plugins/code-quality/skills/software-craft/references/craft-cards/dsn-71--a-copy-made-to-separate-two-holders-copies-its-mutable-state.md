@@ -4,7 +4,7 @@ rule_id: DSN-71
 domain: design
 step: [implement]
 applies_to: [universal]
-triggers: ['\bcopy[.]copy\s*\(|\bObject[.]assign\s*\(|\{\s*([.]{3}|\*\*)\w+|\[\s*([.]{3}|\*)\w+|^\s*[.]{3}[\w.]+\s*(,|$)|[.](slice|concat)\s*\(\s*(0\s*)?\)|\bArray[.]from\s*\(|\[\s*:\s*\]|:?=\s*\*\w+\s*$', '[.](clone|copy)\s*\(\s*\)|\bsuper[.]clone\s*\(', '\b(Arrays[.]copyOf|System[.]arraycopy|List[.]copyOf|Map[.]copyOf|Set[.]copyOf)\s*\(|\bnew\s+(ArrayList|HashMap|HashSet|LinkedList)<[^>]*>\s*\(\s*\w+|\b(slices|maps)[.]Clone\s*\(|\bcopy\s*\(\s*\w+(\[[^\]]*\])?\s*,|(?<![.\w])(list|dict|set)\s*\(\s*[\w.]+\s*\)', '^\s*func\s+\(\w+\s+\*?\w+(\[[^\]]*\])?\)\s+(Clone|Copy)\w*\s*\(|^\s*def\s+(copy|clone|__copy__|__deepcopy__)\b|\b(clone|copy|deep_?[Cc]opy|deep_?[Cc]lone)\s*\(\s*\)\s*[:{]|\b(?P<cls>[A-Z]\w*)\s*\(\s*(final\s+)?(?P=cls)\s+\w+\s*\)\s*\{|#\[derive\([^)]*\bClone\b|\bimpl\s+Clone\s+for\b']
+triggers: ['[.](clone|copy)\s*\(\s*\)|\bsuper[.]clone\s*\(|\bcopy[.]copy\s*\(|\bObject[.]assign\s*\(|\{\s*([.]{3}|\*\*)\w+|\[\s*([.]{3}|\*)\w+|^\s*[.]{3}[\w.]+\s*(,|$)|[.](slice|concat)\s*\(\s*(0\s*)?\)|\bArray[.]from\s*\(|\[\s*:\s*\]|:?=\s*\*\w+\s*$', '^\s*func\s+\(\w+\s+\*?\w+(\[[^\]]*\])?\)\s+(Clone|Copy)\w*\s*\(|^\s*def\s+(copy|clone|__copy__|__deepcopy__)\b|\b(clone|copy|deep_?[Cc]opy|deep_?[Cc]lone)\s*\(\s*\)\s*[:{]|\b(?P<cls>[A-Z]\w*)\s*\(\s*(final\s+)?(?P=cls)\s+\w+\s*\)\s*\{|#\[derive\([^)]*\bClone\b|\bimpl\s+Clone\s+for\b|\b(Arrays[.]copyOf|System[.]arraycopy|List[.]copyOf|Map[.]copyOf|Set[.]copyOf)\s*\(|\bnew\s+(ArrayList|HashMap|HashSet|LinkedList)<[^>]*>\s*\(\s*\w+|\b(slices|maps)[.]Clone\s*\(|\bcopy\s*\(\s*\w+(\[[^\]]*\])?\s*,|(?<![.\w])(list|dict|set)\s*\(\s*[\w.]+\s*\)']
 scope: file
 check_kind: semantic
 severity_default: major
