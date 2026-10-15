@@ -104,10 +104,11 @@
      "task": "wrjwtqkhe",
      "wf": "wf_ee7d0a88-d9e",
      "launched": "2026-10-15T03:52 UTC",
-     "status": "running",
+     "status": "done 2026-10-15T04:25 UTC: 9 agents, 1,018,834 sub-agent tokens, 31 minutes, 3 cards in its output; output outputs/gaps-tests--r2.output.json.gz",
      "bundle": "cont/gaps-tests/r2/continue-gaps-tests-round2-1of1.js (research-continue.py --round 2 --journal r1 --journal r1-finish --from-bundle gaps/gaps-tests.js --split 1: one card accepted at the second verdict (per-commit-run-bounded), three sent back with revise)"
     }
-   ]
+   ],
+   "status": "done 2026-10-15T04:30 UTC: TST-52 to TST-55 written from the cut round 1, its finish run and round 2 (40 agents, 4.8M sub-agent tokens); spot-read against the corpus: no duplicate, no new deferring pair (TST-53 passes a verified call the test also stubs, TST-09's case; TST-22 already compares a foreign rendering on its semantic content, TST-52's rule; TST-55 leaves inputs a property found to TST-50; the snapshot cards CHG-20 to CHG-24 judge owned output TST-52 accepts); the review step dropped from the four cards as the tests-domain reviewer's facet rule (33 cards) has it; gap-runs.json statuses set"
   },
   "gaps-interface": {
    "runs": [
@@ -126,6 +127,18 @@
      "launched": "2026-10-15T03:15 UTC",
      "status": "running",
      "bundle": "gaps/gaps-interface.js relaunched as is"
+    }
+   ]
+  },
+  "gaps-change": {
+   "runs": [
+    {
+     "part": "r1",
+     "task": "w7huzg2vj",
+     "wf": "wf_176cc078-8e0",
+     "launched": "2026-10-15T04:27 UTC",
+     "status": "running",
+     "bundle": "gaps/gaps-change.js (2 queued concepts of the change domain)"
     }
    ]
   }
