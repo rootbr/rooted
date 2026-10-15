@@ -103,7 +103,7 @@
    "source_path": "astral-sh/ruff crates/ruff_linter/src/rules/tryceratops/rules/useless_try_except.rs (TRY203, §Why is this bad?)",
    "claim": "Capturing an exception, only to immediately reraise it, has no effect. Instead, remove the error-handling code and let the exception propagate upwards without the unnecessary `try`-`except` block.",
    "taxonomy_row": "| D, `errors`, `ERR` | `error-and-exception-handling` | SW4.5, CC8, PP \"Dead Programs Tell No Lies\" |",
-   "status": "queued"
+   "status": "carded as ERR-52 (gaps-errors, 2026-10-15)"
   },
   {
    "domain": "errors",
@@ -111,7 +111,7 @@
    "source_path": "eslint/eslint docs/src/rules/no-unsafe-finally.md (rule description and its first two examples)",
    "claim": "when `return`, `throw`, `break`, or `continue` is used in `finally`, control flow statements inside `try` and `catch` are overwritten, which is considered as unexpected behavior (its example returns 3 from `finally` in place of the error thrown in `try`)",
    "taxonomy_row": "| D, `errors`, `ERR` | `error-and-exception-handling` | SW4.5, CC8, PP \"Dead Programs Tell No Lies\" |",
-   "status": "queued"
+   "status": "carded as ERR-53 (gaps-errors, 2026-10-15)"
   },
   {
    "domain": "errors",
@@ -119,7 +119,7 @@
    "source_path": "google/styleguide go/best-practices.md §Error structure",
    "claim": "If callers need to interrogate the error (e.g., distinguish different error conditions), give the error value structure so that this can be done programmatically rather than having the caller perform string matching. ... Do not attempt to distinguish errors based on their string form.",
    "taxonomy_row": "| D, `errors`, `ERR` | `error-and-exception-handling` | SW4.5, CC8, PP \"Dead Programs Tell No Lies\" |",
-   "status": "queued"
+   "status": "carded as ERR-54 (gaps-errors, 2026-10-15)"
   },
   {
    "domain": "errors",
@@ -127,7 +127,7 @@
    "source_path": "MicrosoftDocs/architecture-center docs/patterns/retry-content.md (Retry pattern, the paragraph that links the Circuit Breaker pattern)",
    "claim": "If a request still fails after a significant number of retries, it's better for the application to prevent further requests going to the same resource and report a failure immediately. When the period expires, the application can tentatively allow one or more requests through to see whether they're successful.",
    "taxonomy_row": "| | `fault-tolerance-retries-timeouts-fallbacks` | SW4.5 |",
-   "status": "queued"
+   "status": "held, not checkable (gaps-errors, 2026-10-15): no source states a form checkable at the call site, the breaker is configured per client or in the mesh, and the fault-tolerance note had held circuit-breaker architecture outside the corpus"
   },
   {
    "domain": "interface",

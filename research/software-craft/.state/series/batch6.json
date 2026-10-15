@@ -47,10 +47,11 @@
      "task": "wzw6pl3pu",
      "wf": "wf_4e7dc2ed-4ad",
      "launched": "2026-10-15T00:52 UTC",
-     "status": "running",
+     "status": "done 2026-10-15T01:20 UTC: 7 agents, 816,929 sub-agent tokens, 28 minutes, 3 cards in its output; output outputs/gaps-errors--r2.output.json.gz",
      "bundle": "cont/gaps-errors/r2/continue-gaps-errors-round2-1of1.js (research-continue.py --round 2 --journal r1 --from-bundle gaps/gaps-errors.js --split 1: three rules sent back with revise)"
     }
-   ]
+   ],
+   "status": "done 2026-10-15T01:25 UTC: ERR-52 to ERR-54 written from the two rounds (26 agents, 3.4M sub-agent tokens), circuit breaking held as not checkable; spot-read against the corpus: no duplicate, no new deferring pair (ERR-08 accepts a re-raising catch-all without judging a useless one, ERR-27 keeps the release itself, API-15 the producer side of sentinels); the review step dropped from the three cards as the errors-domain reviewer's facet rule applied to the domain; gap-runs.json statuses set"
   },
   "gaps-code": {
    "runs": [
@@ -73,6 +74,18 @@
      "launched": "2026-10-15T00:06 UTC",
      "status": "running",
      "bundle": "gaps/gaps-tests.js (4 queued concepts of the tests domain)"
+    }
+   ]
+  },
+  "gaps-interface": {
+   "runs": [
+    {
+     "part": "r1",
+     "task": "wge5sdblv",
+     "wf": "wf_cbbf494f-f7c",
+     "launched": "2026-10-15T01:22 UTC",
+     "status": "running",
+     "bundle": "gaps/gaps-interface.js (3 queued concepts of the interface domain)"
     }
    ]
   }
