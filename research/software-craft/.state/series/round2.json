@@ -707,10 +707,32 @@
      "task": "wum4hibvw",
      "wf": "wf_355e1396-1e7",
      "launched": "2026-10-15T05:22 UTC",
-     "status": "running",
+     "status": "done 2026-10-15T05:55 UTC: 10 agents, 908,741 sub-agent tokens, 17 minutes; 8 accepted, 1 closing-edited (ERR-37), 0 not accepted; applied",
      "bundle": "r2tree/fault-tolerance-retries-timeouts-fallbacks--r2tree.js (9 cards ERR-31 to ERR-39, 400 KB)"
     }
-   ]
+   ],
+   "result": {
+    "applied": "2026-10-15T05:32 UTC",
+    "accepted": [
+     "ERR-31",
+     "ERR-32",
+     "ERR-33",
+     "ERR-34",
+     "ERR-35",
+     "ERR-36",
+     "ERR-38",
+     "ERR-39"
+    ],
+    "closing_edited": [
+     "ERR-37"
+    ],
+    "renamed": [],
+    "not_accepted": [],
+    "agents": 10,
+    "tokens": 908741,
+    "wall_s": 997
+   },
+   "recheck": "ERR-37: wording, the title and H1 lose an 'instead of' contrast; the errors reviewer's step and scope values stand; no facet touched"
   },
   "resource-management-and-ownership": {
    "runs": [
@@ -724,10 +746,10 @@
     },
     {
      "part": "r2tree-2of2",
-     "task": null,
-     "wf": null,
-     "launched": null,
-     "status": "built, waiting for a tree slot",
+     "task": "wyehnqw51",
+     "wf": "wf_34352a36-5d3",
+     "launched": "2026-10-15T05:57 UTC",
+     "status": "running",
      "bundle": "r2tree/resource-management-and-ownership--r2tree-2of2.js (--only ERR-25 to ERR-30, 374 KB)"
     }
    ]

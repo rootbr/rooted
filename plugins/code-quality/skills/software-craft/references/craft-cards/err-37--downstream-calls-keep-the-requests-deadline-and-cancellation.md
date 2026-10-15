@@ -1,5 +1,5 @@
 ---
-title: A call made while serving a request passes that request's deadline and cancellation on to the downstream call, shortening it at most, instead of starting a fresh or longer one
+title: A call made while serving a request passes that request's deadline and cancellation on to the downstream call, shortening it at most and never starting a fresh or longer one
 rule_id: ERR-37
 domain: errors
 step: [design, implement]
@@ -10,7 +10,7 @@ check_kind: semantic
 severity_default: major
 ---
 
-# A call made while serving a request passes that request's deadline and cancellation on to the downstream call, shortening it at most, instead of starting a fresh or longer one
+# A call made while serving a request passes that request's deadline and cancellation on to the downstream call, shortening it at most and never starting a fresh or longer one
 
 ## Thesis
 Code that serves a request carrying a deadline or a cancellation signal makes each remote call on that request's behalf under the request's own signal or under one derived from it, so that the call is cancelled when the request is and its deadline is never later than the request's. A derived signal may bring the deadline earlier or add a cancellation of its own, and it keeps the request's deadline wherever that one is earlier; where the downstream client takes only a timeout, the timeout passed is the request's remaining time or less. Three forms break the chain: a fresh root context or signal created between the incoming request and the outgoing call, a new cancellation signal not linked to the request's, and a fixed timeout that can exceed the time the request has left. A function on the call path takes the signal from its caller; creating a base signal of its own there is rare and fits only where the caller's signal is the wrong one for the work. The signal takes whatever form the language and framework give it — an explicit context argument, a deadline a framework propagates automatically, a cancellation scope, an abort signal or a cancellation token — and each form can be passed on or derived.
