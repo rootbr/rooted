@@ -202,6 +202,32 @@
     }
    ],
    "status": "done 2026-10-15T08:32 UTC: DOC-23 written from the two rounds (11 agents, 1.6M sub-agent tokens); spot-read against the corpus: no duplicate and no deferring pair (DOC-11 reaches documents that describe the current behaviour and its Limits already excludes a release-note entry; DOC-22 judges an entry's marker once it exists; API-26 and API-33 judge the removal's timing and the version number, not the entry); the review step kept, as on DOC-11, because the docs-domain reviewer reserves review for rules about the change's shape or description and DOC-23, like DOC-11, judges what the change carries; gap-runs.json status set"
+  },
+  "gaps-tooling": {
+   "runs": [
+    {
+     "part": "r1",
+     "task": "w3d8eejse",
+     "wf": "wf_165857a2-876",
+     "launched": "2026-10-15T11:55 UTC",
+     "status": "running",
+     "bundle": "gaps/gaps-tooling.js (3 queued concepts of the tooling domain from reviews/tooling.json: floating date and time values, bidirectional and invisible characters in source, pinned CI actions and images)"
+    }
+   ],
+   "status": "running"
+  },
+  "gaps-input": {
+   "runs": [
+    {
+     "part": "r1",
+     "task": "wvcabcgxz",
+     "wf": "wf_55a383d0-4ce",
+     "launched": "2026-10-15T11:55 UTC",
+     "status": "running",
+     "bundle": "gaps/gaps-input.js (5 queued concepts of the input domain from reviews/input.json: XML parser hardening, secrets and personal data out of logs, a generic error message at a trust boundary, where a secret lives at run time, a fuzz test for a hand-written parser)"
+    }
+   ],
+   "status": "running"
   }
  }
 }
