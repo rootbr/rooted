@@ -126,8 +126,16 @@
      "task": "w67rlse7i",
      "wf": "wf_96860bfc-a6f",
      "launched": "2026-10-15T03:15 UTC",
-     "status": "running",
+     "status": "done 2026-10-15T05:20 UTC: 19 agents, 3,012,296 sub-agent tokens, 122 minutes, cards in its output per the snapshot; output outputs/gaps-interface--r1-retry.output.json.gz",
      "bundle": "gaps/gaps-interface.js relaunched as is"
+    },
+    {
+     "part": "r2",
+     "task": null,
+     "wf": null,
+     "launched": null,
+     "status": "built, waiting for a gap slot (the tree pass holds two slots from 05:20 UTC)",
+     "bundle": "cont/gaps-interface/r2/continue-gaps-interface-round2-1of1.js (research-continue.py --round 2 --journal r1-retry --from-bundle gaps/gaps-interface.js --split 1)"
     }
    ]
   },
