@@ -11,7 +11,7 @@
   "documentation-beyond-comments",
   "reading-and-understanding-code"
  ],
- "concurrency": "4 active tasks (operator, 2026-10-14T17:15 UTC: 'raise the limit to 4 active tasks and continue'; 2 from 2026-10-09T16:40 UTC, 1 from 06:10 UTC that day): workflows and reviewer agents counted alike; launch the next when fewer than four run",
+ "concurrency": "4 active tasks (operator, 2026-10-14T17:15 UTC: 'raise the limit to 4 active tasks and continue'; 2 from 2026-10-09T16:40 UTC, 1 from 06:10 UTC that day): workflows and reviewer agents counted alike; launch the next when fewer than four run; from 2026-10-15T06:10 UTC the cap is THREE active tasks (operator): no replacement is launched while three run; the tree pass keeps two slots and the gap runs and reviewers share the third",
  "topics": {
   "security-hygiene-in-ordinary-code": {
    "runs": [

@@ -1,7 +1,7 @@
 {
  "batch": 6,
  "kind": "gap research runs (HANDOVER 5.12): one bundle per domain from series/gap-runs.json via make-gap-bundles.py, each run as a topic with its two rounds, then finish-topic.sh gaps-<domain>, spot-read, commit; gap-runs.json statuses set to the card id or the pending entry each concept ended as",
- "concurrency": "4 active tasks (operator, 2026-10-14T17:15 UTC)",
+ "concurrency": "4 active tasks (operator, 2026-10-14T17:15 UTC); from 2026-10-15T06:10 UTC the cap is THREE active tasks (operator): no replacement is launched while three run; the tree pass keeps two slots and the gap runs and reviewers share the third",
  "topics": {
   "gaps-performance": {
    "runs": [
