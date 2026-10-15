@@ -506,8 +506,41 @@
      "task": "wcz35vkl2",
      "wf": "wf_926f87f6-01b",
      "launched": "2026-10-15T03:42 UTC",
-     "status": "running",
+     "status": "done 2026-10-15T04:00 UTC: 9 agents, 825,178 sub-agent tokens, 16 minutes; 7 accepted, 1 closing-edited (DSN-38), 0 not accepted; applied",
      "bundle": "r2tree/inheritance-versus-composition--r2tree.js (8 cards DSN-36 to DSN-43, 415 KB)"
+    }
+   ],
+   "result": {
+    "applied": "2026-10-15T03:52 UTC",
+    "accepted": [
+     "DSN-36",
+     "DSN-37",
+     "DSN-39",
+     "DSN-40",
+     "DSN-41",
+     "DSN-42",
+     "DSN-43"
+    ],
+    "closing_edited": [
+     "DSN-38"
+    ],
+    "renamed": [],
+    "not_accepted": [],
+    "agents": 9,
+    "tokens": 825178,
+    "wall_s": 934
+   },
+   "recheck": "DSN-38: wording, the Checkstyle default-configuration example quoted as the file prints it (violation comment on the line above); the design reviewer's check_kind value (semantic) stands; no facet touched"
+  },
+  "design-patterns-in-construction": {
+   "runs": [
+    {
+     "part": "r2tree",
+     "task": "wigll77tt",
+     "wf": "wf_97c7bb11-cdd",
+     "launched": "2026-10-15T04:02 UTC",
+     "status": "running",
+     "bundle": "r2tree/design-patterns-in-construction--r2tree.js (7 cards DSN-01 to DSN-07, 335 KB)"
     }
    ]
   }
