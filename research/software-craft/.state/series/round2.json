@@ -1045,10 +1045,42 @@
      "task": "w3jsjjdmy",
      "wf": "wf_b663ef9d-612",
      "launched": "2026-10-15T09:27 UTC",
-     "status": "running",
+     "status": "cut 2026-10-15T09:38 UTC by the session's usage limit (Fable out of usage credits): 9 agents, 712,710 sub-agent tokens, 11 minutes; verify3 failed for CHG-31 and CHG-32; 5 accepted, 1 closing-edited (CHG-29); applied 10:50 UTC, CHG-31 and CHG-32 left unchanged for the rest run",
      "bundle": "r2tree/large-scale-changes-and-migrations--r2tree.js (8 cards CHG-25 to CHG-32, 290 KB; the tree key migration-flag-records-owner-and-expiry has no corpus card and is left out)"
     }
-   ]
+   ],
+   "result": {
+    "applied": "2026-10-15T10:49 UTC",
+    "accepted": [
+     "CHG-25",
+     "CHG-26",
+     "CHG-27",
+     "CHG-28",
+     "CHG-30"
+    ],
+    "closing_edited": [
+     "CHG-29"
+    ],
+    "renamed": [],
+    "not_accepted": [
+     {
+      "key": "retired-flag-removes-its-dead-branch-and-tests",
+      "rule_id": "CHG-31",
+      "reason": "the skeptic returned no verdict",
+      "entry": "- change · large-scale-changes-and-migrations · \"When a flag that selected between an old and a new path is retired because its purpose is resolved, the change makes the settled branch run unconditionally and deletes the branch no longer taken. It also deletes the code that only that branch reached and the tests that exercised only the flag or the deleted branch. Fixing the flag's value in configuration or in a constant while its checks and old branch stay in the code does not retire it.\" · formulation: Paul Hammant, 'Branch by Abstraction', trunkbaseddevelopment.com, §'Ideal steps' 3–5; Paul Hammant, 'Feature flags', trunkbaseddevelopment.com, §'Tech Debt - pitfall'; Pete Hodgson, 'Feature Toggles (aka Feature Flags)', martinfowler.com, 2017, §'Managing the carrying cost of Feature Toggles' (unfetched) · searched: M. K. Ramanathan, L. Clapp, R. Barik, M. Sridharan, 'Piranha: Reducing Feature Flag Debt at Uber', ICSE-SEIP 2020, DOI 10.1145/3377813.3381350 (author copy report.pdf in uber/piranha); Ramanathan, Clapp, Barik, Sridharan, 'Piranha: Reducing Feature Flag Debt at Uber', ICSE-SEIP 2020, DOI 10.1145/3377813.3381350; Ramanathan, Clapp, Barik, Sridharan, 'Piranha: Reducing Feature Flag Debt at Uber', ICSE-SEIP 2020, DOI 10.1145/3377813.3381350 · held: the skeptic returned no verdict"
+     },
+     {
+      "key": "new-uses-of-old-path-rejected",
+      "rule_id": "CHG-32",
+      "reason": "the skeptic returned no verdict",
+      "entry": "- change · large-scale-changes-and-migrations · \"While an old module, type or function stays reachable during a migration away from it, because uses remain or because it is outside code the project cannot delete, the project's analyzer configuration rejects new uses of it with a message that names the replacement. The existing uses are recorded as a baseline or as suppressions that are worked down as callers move.\" · formulation: Software Engineering at Google, ch. 22, §'The LSC Process' → 'Cleanup'; Software Engineering at Google, ch. 22, §'The LSC Process' → 'Change Creation' (users backslide into old uses); Software Engineering at Google, ch. 15 'Deprecation', §'Deprecation Warnings' and §'Preventing backsliding' · searched: No research measures backsliding or the effect of ban lists. Searched the abstracts in NWIT tex/nwit.bib and tex/todo.bib for migrat, deprecat, feature toggle, banned and backslid. The rule rests on tool documentation, with SEG ch. 22 and ch. 15 as formulation. · held: the skeptic returned no verdict"
+     }
+    ],
+    "agents": 9,
+    "tokens": 712710,
+    "wall_s": 659
+   },
+   "recheck": "CHG-29: the verdict removed the manifest edition/toolchain trigger added at the change-domain reviewer's apply (00f6046); re-resolved on its merits, the deletion stands: the pattern matched no bad line of the Example and did not answer the reviewer's finding (the Example is reached only through its comment), and the Limits now name the undispatched edition-only case; the caveat names the build condition as the card's own join"
   },
   "small-steps-and-minimal-diffs": {
    "runs": [
@@ -1057,10 +1089,29 @@
      "task": "wx2eyj8me",
      "wf": "wf_efb2139f-061",
      "launched": "2026-10-15T09:30 UTC",
-     "status": "running",
+     "status": "done 2026-10-15T09:39 UTC: 8 agents, 626,677 sub-agent tokens, 9 minutes; 4 accepted, 2 closing-edited (CHG-14, CHG-16), 0 not accepted; applied 10:50 UTC",
      "bundle": "r2tree/small-steps-and-minimal-diffs--r2tree.js (6 cards CHG-12 to CHG-17, 263 KB)"
     }
-   ]
+   ],
+   "result": {
+    "applied": "2026-10-15T10:49 UTC",
+    "accepted": [
+     "CHG-12",
+     "CHG-13",
+     "CHG-15",
+     "CHG-17"
+    ],
+    "closing_edited": [
+     "CHG-14",
+     "CHG-16"
+    ],
+    "renamed": [],
+    "not_accepted": [],
+    "agents": 8,
+    "tokens": 626677,
+    "wall_s": 521
+   },
+   "recheck": "CHG-14: the LLVM bullet annotated as the source of the formatter carve-out the change-domain reviewer added (CODE-60 contradiction), caveat 'all three sources'; no facet touched. CHG-16: the Limits sentence that flagged a lower-layer stub sent for review before its user was replaced, on its merits, by an exemption for a stub whose description names the planned dependent change (eng-practices 'Splitting Horizontally', LLVM DeveloperPolicy 'planned series'), and the Validator reads the description for it; the card's own source endorsed the case it flagged"
   },
   "technical-debt": {
    "runs": [
