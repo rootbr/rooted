@@ -44,6 +44,10 @@ A finding of the deferring rule drops when any owner listed for it flagged the s
 | DSN-20 (a change to one copy of duplicated code reaches every copy) | DOC-12 (a change links to the repository document that already holds the material rather than copying it): a passage copied from one repository document into another is DOC-12's finding; DSN-20 keeps copies of code |
 | TOOL-43 (a recorded moment is held as a time-zone-aware instant) | DSN-51 (a duration or an instant is held in a time type, not a bare number): a moment held as a bare number is DSN-51's finding; TOOL-43 keeps a moment held as a naive local date-time |
 | DSN-22 (a repeated string literal is declared once as a constant) | TOOL-39 (user-visible text is looked up from the message catalog): a user-visible literal that the catalog should hold is TOOL-39's finding, and its fix is a catalog key, not a constant |
+| DOC-08 (a description explains the change as merged) | DOC-07 (a description states the problem and the reason): a description that leaves its content to a bug number, a link or an earlier thread is DOC-07's finding; DOC-08 keeps a description that states a change the diff does not make or omits one it does |
+| DOC-06 (the first line of a description summarises the change) | DOC-08 (a description explains the change as merged): a first line that names a change the diff does not make is DOC-08's finding; DOC-06 keeps first lines that name nothing and the missing blank line |
+| DOC-20 (deleted code leaves no document naming it) | DOC-11 (documents change with the behaviour they describe): a removed or renamed command, flag, option or setting still named in a repository document is DOC-11's finding; DOC-20 keeps functions, classes and other code elements |
+| TOOL-13 (no new diagnostics from configured checks) | DOC-21 (a relative document link resolves): a document link the project's link checker reports as unresolved is DOC-21's finding |
 | CHG-07 (a field assigned before every read becomes a local variable) | CODE-22 (a variable is declared in the narrowest scope): its private-field clause, from the same PMD rule, owns the declaration; CODE-22 carries CHG-07's exemptions in its Limits (reviewer, change) |
 | CHG-01 (a refactoring alters no observable behaviour) | CHG-02 (a hierarchy refactoring keeps every subtype binding): the unbound override is CHG-02's; CHG-03 (a rename updates run-time-resolved uses): the stale run-time use is CHG-03's; API-20 as before (reviewer) |
 | CHG-12 (a behaviour change restructures no code beyond small cleanups) | CHG-01: a change presented as a refactoring that alters behaviour is CHG-01's; CHG-29: a hand edit inside a tool-generated change is CHG-29's; CHG-14 as before (reviewer) |
@@ -158,6 +162,9 @@ A finding of the deferring rule drops when any owner listed for it flagged the s
 | TST-06 | TST-02: a doubled third-party HTTP or RPC client is TST-02's (reviewer, tests) |
 | TST-12 | TST-04: a stub returning a double of a value object is TST-04's (reviewer, tests) |
 | TST-22 | TST-24: an assertion that stops at its subject or compares the result with itself is TST-24's (reviewer, tests) |
+| DOC-04 | CHG-01: the edited line of a routine that a refactoring presents as behaviour-preserving while an unedited caller relies on the old behaviour is CHG-01's (reviewer, docs) |
+| CHG-25 | DOC-20: a documentation example that still calls the old name of a renamed or removed declaration is DOC-20's (reviewer, docs) |
+| DSN-21 | DOC-12: a block copied from one repository document into another is DOC-12's (reviewer, docs) |
 | TST-31 | TST-21: a write to a fixed path in a shared directory with no cleanup is TST-21's (reviewer, tests) |
 | TST-40 | TST-43: a result-promising unit whose only property is no-crash is TST-43's (reviewer, tests) |
 | TST-19 | DSN-21: three sibling tests that repeat one body of four or more lines are DSN-21's (reviewer, tests) |

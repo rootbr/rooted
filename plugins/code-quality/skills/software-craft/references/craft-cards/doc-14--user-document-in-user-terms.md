@@ -2,10 +2,10 @@
 title: Text added to a user-facing document states what users do and see in their terms and leaves implementation detail meant for maintainers to a separate document
 rule_id: DOC-14
 domain: docs
-step: [document, review]
+step: [document]
 applies_to: [prose]
 triggers: ['(?i)\b(refactor(ed|ing|s)?|internal(ly)?|under the hood|implementation detail)\b', '\b[A-Z][a-z]\w*?(Impl|Manager|Helper|Utils?|Factory|Internal)\b']
-scope: hunk
+scope: callers
 check_kind: semantic
 severity_default: suggestion
 ---

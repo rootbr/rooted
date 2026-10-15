@@ -184,6 +184,15 @@
    "claim": "Random sampling is overwhelmingly unlikely to pick one specific value out of 2^64, so an i64 abs property virtually always passes though it fails at i64::MIN; spine rule 20 is held-cap, and TST-50 covers only an input a property already found.",
    "taxonomy_row": "| | `property-based-testing` | PP 'Property-Based Testing' |",
    "status": "queued"
+  },
+  {
+   "domain": "docs",
+   "concept": "Release-note entry per change: in a project that collects release notes per change (Go's doc/next, CPython's Misc/NEWS.d, a towncrier news directory, an Unreleased section), a change with a user-visible effect adds its entry in that change. documentation-beyond-comments spine item 26 held it as held-cap (beyond max_rules 12); DOC-14 and DOC-22 judge an entry only once it exists.",
+   "source_path": "golang/go master doc/README.md § For developers (https://raw.githubusercontent.com/golang/go/master/doc/README.md); python/devguide main getting-started/pull-request-lifecycle.rst § Changes that require NEWS entries; twisted/towncrier trunk docs/cli.rst § towncrier check",
+   "claim": "Go: \"Release notes should be added to `next` by editing existing files or creating new files. Do not add RELNOTE=yes comments in CLs. Instead, add a file to the CL (or ask the author to do so).\" CPython: \"Most changes made to the codebase deserve an entry in Misc/NEWS.d, except for the following: documentation changes, test changes, strictly internal changes with no user-visible effects, changes that already have a NEWS entry, reverts that have not yet been included in any formal release\". towncrier: \"To check if a feature branch adds at least one news fragment, run: $ towncrier check\".",
+   "taxonomy_row": "| | `documentation-beyond-comments` | SEG10 |",
+   "status": "queued",
+   "found_by": "reviewer, docs (reviews/docs.json)"
   }
  ]
 }

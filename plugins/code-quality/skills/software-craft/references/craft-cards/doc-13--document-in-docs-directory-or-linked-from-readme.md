@@ -2,11 +2,11 @@
 title: A document added to a repository sits in the project's documentation directory or is linked from the README or documentation index
 rule_id: DOC-13
 domain: docs
-step: [document, review]
-applies_to: [prose]
+step: [document]
+applies_to: [universal]
 triggers: ['signal:added_file', '(?i)\b(wiki|confluence|notion[.]so|docs[.]google[.]com|sites[.]google[.]com)\b']
 scope: callers
-check_kind: mechanical
+check_kind: semantic
 severity_default: minor
 ---
 

@@ -2,7 +2,7 @@
 title: A design document or decision record added in a change explains the rationale for each nontrivial decision it records
 rule_id: DOC-15
 domain: docs
-step: [design, document, review]
+step: [design, document]
 applies_to: [prose]
 triggers: ['signal:added_file', '(?i)^\s*#{2,3}\s+(status|context|decision|consequences|considered options|decision outcome|decision drivers|alternatives( considered)?|rationale)\s*$', '(?i)^\s*#\s+(ADR|RFC|design( doc(ument)?)?)\b']
 scope: file

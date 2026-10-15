@@ -438,7 +438,7 @@ const DEFER_TO = {
   'TST-24': 'CHG-20', // every test makes an assertion that can fail: a golden file the gating run writes and then compares is CHG-20's finding
   'CHG-21': ['CHG-05', 'CHG-22'], // a change rewrites only the stored entries its intent explains: a refactoring's re-recording is CHG-05's, an entry that only varies between runs CHG-22's (reviewer, change)
   'TST-18': 'CHG-24', // a failing test's report names its case: an external snapshot named by a number is CHG-24's finding
-  'CHG-25': ['API-22', 'CHG-03', 'CHG-02'], // the old form stays working until no use remains: a published element is API-22's, a stale run-time use CHG-03's, an unbound override CHG-02's (reviewer, change)
+  'CHG-25': ['API-22', 'CHG-03', 'CHG-02', 'DOC-20'], // the old form stays working until no use remains: a published element is API-22's, a stale run-time use CHG-03's, an unbound override CHG-02's (reviewer, change)
   'CHG-17': ['CHG-25', 'CHG-03'], // each change builds and passes on its own: a rename with uses left is CHG-25's, a stale run-time use CHG-03's (reviewer, change)
   'API-31': 'CHG-26', // a deprecated element calls its replacement: an old type name kept as a copy, wrapper or subclass during a migration is CHG-26's alias finding
   'DSN-15': ['CHG-26', 'DSN-19'], // a forwarding wrapper is added only with a purpose: a wrapper that stands in for a migrated type's old name is CHG-26's finding; a hand-written interface that mirrors an existing interface or generated client only for abstraction or testing is DSN-19's (reviewer, design)
@@ -452,6 +452,10 @@ const DEFER_TO = {
   'DSN-20': 'DOC-12', // a change to one copy of duplicated code reaches every copy: a passage copied from one repository document into another is DOC-12's finding (spot-read, documentation)
   'TOOL-43': 'DSN-51', // a recorded moment is held as an aware instant: a moment held as a bare number rather than a time type is DSN-51's finding; TOOL-43 keeps the naive local date-time (spot-read, internationalization)
   'DSN-22': 'TOOL-39', // a repeated string literal is declared once as a constant: a user-visible literal that the project's message catalog should hold is TOOL-39's finding, a catalog key not a constant (spot-read, internationalization)
+  'DOC-08': 'DOC-07', // a description explains the change as merged: a description that leaves its content to a bug number, a link or an earlier thread is DOC-07's finding (reviewer, docs)
+  'DOC-06': 'DOC-08', // the first line of a description summarises the change: a first line that names a change the diff does not make is DOC-08's finding (reviewer, docs)
+  'DOC-20': 'DOC-11', // deleted code leaves no document naming it: a removed or renamed command, flag, option or setting still in a repository document is DOC-11's finding; DOC-20 keeps functions, classes and other code elements (reviewer, docs)
+  'TOOL-13': 'DOC-21', // no new diagnostics from configured checks: a relative document link the project's link checker reports as unresolved is DOC-21's finding (reviewer, docs)
   'CODE-71': 'CHG-35', // a code change updates its comments: a pre-existing debt marker whose work the change does is CHG-35's finding (reviewer, change)
   'CHG-18': 'DSN-63', // changed code receives replaced dependencies explicitly: a module-level object with interior mutability is DSN-63's finding (reviewer, change)
   'CHG-30': 'CHG-31', // an old migration path is deleted once unused: the implementation a retired flag selected is CHG-31's finding (reviewer, change)
@@ -488,7 +492,7 @@ const DEFER_TO = {
   'DSN-18': ['DSN-30', 'API-12'], // public only when used outside: a declaration wider than its uses need is DSN-30's finding, an unused export on the module surface API-12's (reviewer, design)
   'DSN-30': ['API-12', 'DSN-35'], // the narrowest visibility: an unused export is API-12's finding, a widening whose only outside callers are tests DSN-35's (reviewer, design)
   'DSN-08': ['DSN-21', 'DSN-28'], // one requirement in one module: a repeated block across modules is DSN-21's finding, a data decision encoded in two modules DSN-28's (reviewer, design)
-  'DSN-21': ['DSN-27', 'API-31', 'TST-42'], // a repeated block is written once: two identical branch bodies are DSN-27's finding, a deprecated element copying its replacement API-31's (reviewer, design); a test oracle that repeats the unit's body is TST-42's (reviewer, tests)
+  'DSN-21': ['DSN-27', 'API-31', 'TST-42', 'DOC-12'], // a repeated block is written once: two identical branch bodies are DSN-27's finding, a deprecated element copying its replacement API-31's (reviewer, design); a test oracle that repeats the unit's body is TST-42's (reviewer, tests)
   'DSN-29': 'DSN-31', // an operation on a type's state lives in the type: outside code that reads a validated field and writes the result back is DSN-31's finding (reviewer, design)
   'DSN-31': 'API-01', // a validated field changes only through the type's operations: a path that leaves the invariant broken is API-01's finding (reviewer, design)
   'DSN-45': ['API-01', 'DSN-70'], // a constrained primitive becomes a checked type: a creation path that skips the check is API-01's finding, a stored mutable component without a copy DSN-70's (reviewer, design)
@@ -523,7 +527,7 @@ const DEFER_TO = {
   'TOOL-22': 'TOOL-12', // an environment-specific address, URL or path is read from configuration: a host-specific absolute path or system binary in a build or check script is TOOL-12's finding; TOOL-22 keeps program code (spot-read, runtime-configuration)
   'TOOL-29': 'ERR-12', // an invalid setting stops initialization with a pinpointing message at the entry point: a panic, exit or abort on an invalid setting in library code below the entry point is ERR-12's finding; TOOL-29 keeps the message that names no setting and the check that continues (spot-read, runtime-configuration)
   'API-03': 'ERR-06', // a commented assumption is also asserted: a default branch that returns a substitute under a comment calling the case unreachable is ERR-06's finding (reviewer, errors)
-  'DOC-04': ['API-20', 'API-21'], // a behaviour change leaves no caller on the old behaviour: on a published element the in-place change is API-20's breaking change (spot-read); a published routine's changed return or raise is API-20's, a new failure on accepted input API-21's (reviewer, interface)
+  'DOC-04': ['API-20', 'API-21', 'CHG-01'], // a behaviour change leaves no caller on the old behaviour: on a published element the in-place change is API-20's breaking change (spot-read); a published routine's changed return or raise is API-20's, a new failure on accepted input API-21's (reviewer, interface)
   'DOC-03': 'CHG-31', // a removed guard shows its recorded reason no longer applies: a retired flag's guard is CHG-31's finding (spot-read)
   'DOC-09': 'PRF-11', // a description says how the change was verified: a change made for speed owes its measured result to PRF-11 (spot-read)
   'DOC-07': 'DOC-03', // a description states the problem and the reason: for a removed guard with a recorded reason DOC-03 owns the finding (spot-read)

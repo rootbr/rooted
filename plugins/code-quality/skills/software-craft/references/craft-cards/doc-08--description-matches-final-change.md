@@ -2,7 +2,7 @@
 title: A change description describes the change as it is merged, stating nothing its diff does not do and omitting no significant part of what the diff does, after any revision review brought
 rule_id: DOC-08
 domain: docs
-step: [review]
+step: [document, review]
 applies_to: [universal]
 triggers: ['\b(def|fn|func|function|class|struct|interface|trait|enum|impl)\s+\w+', '\b(if|elif|else|switch|match|case|for|while|return|throw|raise)\b', 'signal:added_file']
 scope: base-compare

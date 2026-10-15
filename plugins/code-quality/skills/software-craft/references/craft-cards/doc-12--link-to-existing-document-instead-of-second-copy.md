@@ -2,8 +2,8 @@
 title: A change links to the repository document that already holds the material rather than copying it into a second document
 rule_id: DOC-12
 domain: docs
-step: [document, review]
-applies_to: [prose]
+step: [document]
+applies_to: [universal]
 triggers: ['signal:duplicate_block', 'signal:added_file', '(?i)^\W*(install(ation)?|set ?up|getting started|configuration|usage|requirements)\b', '(?i)\b(install(ation)?|set ?up|getting started|configuration)\s*:']
 scope: callers
 check_kind: semantic

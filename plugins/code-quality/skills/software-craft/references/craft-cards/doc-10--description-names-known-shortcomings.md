@@ -5,7 +5,7 @@ domain: docs
 step: [review, document]
 applies_to: [universal]
 triggers: ['signal:todo_marker', '(?i)\b(not (yet )?(supported|implemented)|unsupported|unimplemented|known (issue|limitation)s?|limitation)\b', '@(Disabled|Ignore)\b|\bpytest[.]mark[.](skip|xfail)\b|@unittest[.](skip|expectedFailure)|#\[ignore\b|\bt[.]Skip(Now|f)?\(|\b(it|test|describe)[.](skip|todo)\(', '\b(todo|unimplemented)!\(|\bNotImplemented(Error)?\b|UnsupportedOperationException']
-scope: hunk
+scope: base-compare
 check_kind: semantic
 severity_default: suggestion
 ---

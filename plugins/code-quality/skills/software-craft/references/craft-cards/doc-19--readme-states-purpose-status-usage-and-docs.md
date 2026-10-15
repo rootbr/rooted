@@ -5,7 +5,7 @@ domain: docs
 step: [document, review]
 applies_to: [prose]
 triggers: ['signal:added_file', '(?i)^\s*#{2,3}\s+(usage|installation|install|status|about|overview|getting started|documentation)\s*$', '(?i)\b(deprecated|unmaintained|no longer maintained|experimental|archived|retired|development status :: 7 - inactive|not for (general|production) (release|use))\b']
-scope: file
+scope: callers
 check_kind: semantic
 severity_default: suggestion
 ---

@@ -2,7 +2,7 @@
 title: A call that a change adds depends on no property of the callee that its name or comment suggests but its body contradicts
 rule_id: DOC-02
 domain: docs
-step: [implement, review]
+step: [implement]
 applies_to: [universal]
 triggers: ['\b(?:(?:is|has|can|should|check|validate|get|find|to|as)(?:[A-Z]|_)|(?:Is|Has|Can|Should|Check|Validate|Get|Find)[A-Z])\w*\s*\(']
 scope: callers

@@ -2,7 +2,7 @@
 title: A runnable code example added to a document is compiled or executed by the project's build or tests
 rule_id: DOC-18
 domain: docs
-step: [document, test, review]
+step: [document, test]
 applies_to: [prose]
 triggers: ['^\s*(```|~~~)\s*((python|py|pycon|go|golang|rust|rs|java|ts|typescript|js|javascript|sh|bash|console|shell)\b.*)?$', '^\s*//\s*Output:']
 scope: callers

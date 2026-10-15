@@ -276,7 +276,7 @@
   },
   "docs": {
    "launched": "2026-10-14T23:37 UTC",
-   "status": "done 2026-10-15T00:05 UTC: 0.52M tokens, 34 minutes; report reviews/docs.json applied in the commit that follows it"
+   "status": "done 2026-10-15T00:05 UTC: 0.52M tokens, 34 minutes; report reviews/docs.json applied in the commit that follows it (7 defer entries: DOC-08->DOC-07, DOC-06->DOC-08, DOC-20->DOC-11, DOC-04+CHG-01, CHG-25+DOC-20, DSN-21+DOC-12, TOOL-13->DOC-21; 6 Limits resolutions with the counterpart bullets copied; 23 facets; 1 gap run queued (release-note entry per change, docs); the reviewer-reading gap has no source and no run; trigger findings: DOC-03 needs a signal over removed lines and DOC-05 an added_file signal for binary and unknown-language files, both runtime items recorded in HANDOVER for the close, DOC-06/07/08 keep their shared description-card trigger set by design)"
   }
  }
 }

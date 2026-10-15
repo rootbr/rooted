@@ -2,10 +2,10 @@
 title: The description of a change sent for review says how the change was verified, such as the tests added or run and any manual steps, in enough detail for a reviewer to repeat the check
 rule_id: DOC-09
 domain: docs
-step: [test, document, review]
+step: [document, review]
 applies_to: [universal]
 triggers: ['\b(def|fn|func|function|class|struct|interface|trait|enum|impl)\s+\w+', '\b(if|elif|else|switch|match|case|for|while|return|throw|raise)\b', 'signal:test_file']
-scope: hunk
+scope: base-compare
 check_kind: semantic
 severity_default: suggestion
 ---

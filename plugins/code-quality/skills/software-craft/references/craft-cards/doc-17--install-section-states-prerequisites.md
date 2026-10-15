@@ -2,8 +2,8 @@
 title: An installation or getting-started section added or changed in a change states the prerequisites a user needs before its first step
 rule_id: DOC-17
 domain: docs
-step: [document, review]
-applies_to: [prose]
+step: [document]
+applies_to: [universal]
 triggers: ['(?i)^\s*(//[/!]?\s*)?#{1,4}\s+(install(ation|ing)?|getting started|quick ?start|set ?up|setup|prerequisites|requirements)\b', '^\s*(//[/!]?\s*)?(\$\s+)?(sudo\s+)?(python3?\s+-m\s+pip|pip3?|pipx|poetry|uv(\s+pip)?|npm|npx|yarn|pnpm|cargo|go|brew|apt(-get)?|dnf|mvn|gradle|[.]/gradlew)\s+(install|i|add|get|build|sync)\b']
 scope: file
 check_kind: semantic

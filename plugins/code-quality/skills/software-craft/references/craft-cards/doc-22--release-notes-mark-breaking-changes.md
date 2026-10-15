@@ -2,7 +2,7 @@
 title: A changelog or release-note entry for a change that removes or incompatibly alters existing behaviour marks it as breaking
 rule_id: DOC-22
 domain: docs
-step: [document, review]
+step: [document]
 applies_to: [public-api, library]
 triggers: ['(?i)^\s*#{2,3}\s*\[?v?\d+[.]\d+([.]\d+)?', '(?i)^\s*#{2,4}\s*(removed|changed|deprecated|breaking( changes)?)\s*$', '(?i)^\s*[-*]\s*(remove[sd]?|rename[sd]?|move[sd]?|drop(ped|s)?|no longer)\b']
 scope: file

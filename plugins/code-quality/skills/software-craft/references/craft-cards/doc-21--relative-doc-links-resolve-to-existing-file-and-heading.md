@@ -3,7 +3,7 @@ title: A relative link that a change adds to a document, or whose target the cha
 rule_id: DOC-21
 domain: docs
 step: [document, refactor, review]
-applies_to: [prose]
+applies_to: [universal]
 triggers: ['\]\((?!https?:|mailto:)[^)\s]+(\s+"[^"]*")?\)', '(?i)\b(href|src)\s*=\s*["''](?!https?:|mailto:|#|data:)[^"'']+["'']']
 scope: callers
 check_kind: mechanical
