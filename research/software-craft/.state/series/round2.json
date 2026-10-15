@@ -1,7 +1,7 @@
 {
  "purpose": "the second-round passes over the series cards in the tree (HANDOVER §5.11): one run per topic, part r2tree, built by series/round2-from-tree.py; `result` is written by its apply step",
  "batch": "r2",
- "concurrency": "4 active tasks (operator, 2026-10-14T17:15 UTC): workflows and reviewer agents counted alike; from 2026-10-15T05:20 UTC the tree pass takes two of the four slots (operator), the gap runs and reviewers share the other two; from 2026-10-15T06:10 UTC the cap is THREE active tasks (operator): no replacement is launched while three run; the tree pass keeps two slots and the gap runs and reviewers share the third; PAUSE (operator, 2026-10-15T06:15 UTC, session limit near): nothing new is launched, the running tasks finish and are applied or written, then the series pauses",
+ "concurrency": "4 active tasks (operator, 2026-10-14T17:15 UTC): workflows and reviewer agents counted alike; from 2026-10-15T05:20 UTC the tree pass takes two of the four slots (operator), the gap runs and reviewers share the other two; from 2026-10-15T06:10 UTC the cap is THREE active tasks (operator): no replacement is launched while three run; the tree pass keeps two slots and the gap runs and reviewers share the third; PAUSE (operator, 2026-10-15T06:15 UTC, session limit near): nothing new is launched, the running tasks finish and are applied or written, then the series pauses; THREE active tasks again (operator, 2026-10-15T09:09 UTC: 'давай активных до 3 одновременно'): the tree pass fills the three slots one topic each, from the queue in order, the next bundle built ahead",
  "topics": {
   "comments-and-self-documenting-code": {
    "runs": [
@@ -882,6 +882,30 @@
      "launched": "2026-10-15T09:08 UTC",
      "status": "running",
      "bundle": "r2tree/larger-tests-integration-and-end-to-end--r2tree.js (12 cards TST-27 to TST-38, 339 KB; the one active task of the one-task mode)"
+    }
+   ]
+  },
+  "property-based-testing": {
+   "runs": [
+    {
+     "part": "r2tree",
+     "task": "wbe4wu690",
+     "wf": "wf_b165c5dd-a82",
+     "launched": "2026-10-15T09:09 UTC",
+     "status": "running",
+     "bundle": "r2tree/property-based-testing--r2tree.js (12 cards TST-40 to TST-51, 339 KB)"
+    }
+   ]
+  },
+  "refactoring": {
+   "runs": [
+    {
+     "part": "r2tree",
+     "task": "wqjcttw8w",
+     "wf": "wf_27b4cfdc-15e",
+     "launched": "2026-10-15T09:09 UTC",
+     "status": "running",
+     "bundle": "r2tree/refactoring--r2tree.js (5 cards CHG-01 to CHG-05, 245 KB)"
     }
    ]
   }
