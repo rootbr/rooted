@@ -1,7 +1,7 @@
 {
  "batch": 6,
  "kind": "gap research runs (HANDOVER 5.12): one bundle per domain from series/gap-runs.json via make-gap-bundles.py, each run as a topic with its two rounds, then finish-topic.sh gaps-<domain>, spot-read, commit; gap-runs.json statuses set to the card id or the pending entry each concept ended as",
- "concurrency": "4 active tasks (operator, 2026-10-14T17:15 UTC); from 2026-10-15T06:10 UTC the cap is THREE active tasks (operator): no replacement is launched while three run; the tree pass keeps two slots and the gap runs and reviewers share the third; PAUSE (operator, 2026-10-15T06:15 UTC, session limit near): nothing new is launched, the running tasks finish and are applied or written, then the series pauses",
+ "concurrency": "4 active tasks (operator, 2026-10-14T17:15 UTC); from 2026-10-15T06:10 UTC the cap is THREE active tasks (operator): no replacement is launched while three run; the tree pass keeps two slots and the gap runs and reviewers share the third; PAUSE (operator, 2026-10-15T06:15 UTC, session limit near): nothing new is launched, the running tasks finish and are applied or written, then the series pauses; RESUMED at one small task at a time (operator, 2026-10-15T06:55 UTC): small runs only, one active, until the session limit",
  "topics": {
   "gaps-performance": {
    "runs": [
@@ -152,10 +152,10 @@
     },
     {
      "part": "r2",
-     "task": null,
-     "wf": null,
-     "launched": null,
-     "status": "built, waiting for a gap slot",
+     "task": "wa6v6dmuu",
+     "wf": "wf_9f0e5dfb-df5",
+     "launched": "2026-10-15T06:55 UTC",
+     "status": "running",
      "bundle": "cont/gaps-change/r2/continue-gaps-change-round2-1of1.js (research-continue.py --round 2 --journal r1 --from-bundle gaps/gaps-change.js --split 1)"
     }
    ]
