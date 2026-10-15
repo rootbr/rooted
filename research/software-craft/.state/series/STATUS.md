@@ -1,6 +1,6 @@
 # Series status
 
-Snapshot taken 2026-10-14T23:55 UTC by `series/series-status.py --snapshot`. Journals under `journals/`, finished runs' outputs under `outputs/`.
+Snapshot taken 2026-10-15T00:06 UTC by `series/series-status.py --snapshot`. Journals under `journals/`, finished runs' outputs under `outputs/`.
 
 `done` counts the agents whose results the journal holds (cached for a continuation); `failed` the agents a usage-limit stop or an error ended, which a continuation re-runs. `cards` is the count in the run's own output; a run whose agents failed shipped none, and its cards come from the continuation. A continuation run (batch 3 and later) is one bundle of a topic, named by its part; a topic is finished when every part's run is complete.
 
@@ -36,8 +36,9 @@ Snapshot taken 2026-10-14T23:55 UTC by `series/series-status.py --snapshot`. Jou
 | 6 | `gaps-performance` r1 | 5 | sources 3, spine 1, draft 5, verify 2 | verify 3, fix 2 | 0 | run ended, agents failed |
 | 6 | `gaps-performance` r1-finish | 5 | verify 3, fix 5, verify2 5, close1 4 | - | 5 | run complete |
 | 6 | `gaps-performance` r2 | 5 | fix2 4, verify3 4, close2 3 | - | 4 | run complete |
-| 6 | `gaps-errors` r1 | 3 | sources 3, spine 1, draft 2 | - | - | running or stopped |
-| 6 | `gaps-code` r1 | ? | - | - | - | running or stopped |
+| 6 | `gaps-errors` r1 | 3 | sources 3, spine 1, draft 3, verify 1 | - | - | running or stopped |
+| 6 | `gaps-code` r1 | ? | sources 1 | - | - | running or stopped |
+| 6 | `gaps-tests` r1 | ? | - | - | - | running or stopped |
 | r2 | `comments-and-self-documenting-code` r2tree | 12 | verify3 12, close3 3 | - | 12 | run complete |
 | r2 | `layout-and-coding-style` r2tree | 11 | verify3 11, close3 2 | - | 11 | run complete |
 | r2 | `routine-size-and-parameters` r2tree | 9 | verify3 7, close3 3 | - | 7 | run complete |
@@ -47,3 +48,4 @@ Snapshot taken 2026-10-14T23:55 UTC by `series/series-status.py --snapshot`. Jou
 | r2 | `table-driven-and-state-machines` r2tree | 8 | verify3 8, close3 3 | - | 8 | run complete |
 | r2 | `generics-and-parameterization` r2tree | 10 | verify3 10, close3 3 | - | 10 | run complete |
 | r2 | `api-design-and-use` r2tree | 13 | verify3 12, close3 3 | - | 12 | run complete |
+| r2 | `contracts-assertions-and-invariants` r2tree | ? | verify3 4 | - | - | running or stopped |
