@@ -7,7 +7,7 @@
    "source_path": "kubernetes/community contributors/guide/pull-requests.md, Squashing",
    "claim": "squash fix-up and reviewer-feedback commits so only the end state remains; keep layered commits; checkable on the commit list base..head",
    "taxonomy_row": null,
-   "status": "queued"
+   "status": "carded as CHG-38 (gaps-change, 2026-10-15)"
   },
   {
    "domain": "change",
@@ -15,7 +15,7 @@
    "source_path": "google/eng-practices review/emergencies.md",
    "claim": "most deadlines are soft; code health is not sacrificed for them; checkable only against a change description that invokes urgency",
    "taxonomy_row": null,
-   "status": "queued"
+   "status": "pending entry (gaps-change, 2026-10-15): no separating condition between a hard deadline as a ground of its own and an emergency as the only ground; the same contest is already pending under the refactoring and code-review entries"
   },
   {
    "domain": "code",

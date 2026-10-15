@@ -155,10 +155,11 @@
      "task": "wa6v6dmuu",
      "wf": "wf_9f0e5dfb-df5",
      "launched": "2026-10-15T06:55 UTC",
-     "status": "running",
+     "status": "done 2026-10-15T07:10 UTC: 3 agents, 312,564 sub-agent tokens, 14 minutes, 1 card in its output; output outputs/gaps-change--r2.output.json.gz",
      "bundle": "cont/gaps-change/r2/continue-gaps-change-round2-1of1.js (research-continue.py --round 2 --journal r1 --from-bundle gaps/gaps-change.js --split 1)"
     }
-   ]
+   ],
+   "status": "done 2026-10-15T07:15 UTC: CHG-38 written from the two rounds (12 agents, 1.8M sub-agent tokens), the deliberate-debt concept a pending entry; spot-read against the corpus: no duplicate, no deferring pair (CHG-15 keeps one logical change per change, CHG-17 the commit that builds on its own); the review step stays, as the change-domain reviewer kept it on CHG-15 and CHG-17 (a rule about the series itself); gap-runs.json statuses set"
   },
   "gaps-design": {
    "runs": [
