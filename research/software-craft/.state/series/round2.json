@@ -1185,10 +1185,31 @@
      "task": "wlulyjebo",
      "wf": "wf_efb858e1-40b",
      "launched": "2026-10-15T11:02 UTC",
-     "status": "running",
+     "status": "done 2026-10-15T11:31 UTC: 10 agents, 827,757 sub-agent tokens, 14 minutes; 6 accepted, 2 closing-edited (PRF-08, PRF-13), 0 not accepted; applied 11:34 UTC",
      "bundle": "r2tree/profiling-and-code-tuning--r2tree.js (8 cards PRF-07 to PRF-14, 342 KB; skeptic claude-fable-5-1 at high)"
     }
-   ]
+   ],
+   "result": {
+    "applied": "2026-10-15T11:13 UTC",
+    "accepted": [
+     "PRF-07",
+     "PRF-09",
+     "PRF-10",
+     "PRF-11",
+     "PRF-12",
+     "PRF-14"
+    ],
+    "closing_edited": [
+     "PRF-08",
+     "PRF-13"
+    ],
+    "renamed": [],
+    "not_accepted": [],
+    "agents": 10,
+    "tokens": 827757,
+    "wall_s": 858
+   },
+   "recheck": "PRF-08: the verdict's two edits were applied exactly: the Source caveat now carries the bytecode check inline (self-containment), and `scope: file` was changed to `hunk`; the scope edit is reverted, since the performance-domain reviewer set `scope: file` on PRF-08 (the Validator opens the file to confirm the benchmark's shape) and the reviewer's value stands (HANDOVER 5.11). PRF-13: the good half of the Example now hands each result to a sink and takes a distinct input per iteration, as the card's Limits and its SafeLooping source require, the Limits paragraph the performance reviewer added keeps its substance with the harness clause reworded ('where the measurement runs under a harness'), and the blank line before Validator is restored; both match the verdict's required edits."
   },
   "algorithm-and-data-structure-choice": {
    "runs": [
