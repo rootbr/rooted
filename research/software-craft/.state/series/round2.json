@@ -332,18 +332,37 @@
      "task": "wllejv1zh",
      "wf": "wf_9d7ead35-f53",
      "launched": "2026-10-15T00:14 UTC",
-     "status": "running",
+     "status": "done 2026-10-15T00:32 UTC: 10 agents, 897,706 sub-agent tokens, 17 minutes; 2 accepted (API-22, API-24), 4 closing-edited (API-20, API-21, API-23, API-25), 0 not accepted; applied",
      "bundle": "r2tree/api-evolution-and-deprecation--r2tree-1of2.js (--only API-20 to API-25, 389 KB; the one-part bundle was 531 KB, above the 512 KiB limit)"
     },
     {
      "part": "r2tree-2of2",
-     "task": null,
-     "wf": null,
-     "launched": null,
-     "status": "built, waiting for a free slot",
+     "task": "wolrontww",
+     "wf": "wf_e7c08f22-939",
+     "launched": "2026-10-15T00:33 UTC",
+     "status": "running",
      "bundle": "r2tree/api-evolution-and-deprecation--r2tree-2of2.js (--only API-26 to API-31, 335 KB)"
     }
-   ]
+   ],
+   "result": {
+    "applied": "2026-10-15T00:31 UTC",
+    "accepted": [
+     "API-22",
+     "API-24"
+    ],
+    "closing_edited": [
+     "API-20",
+     "API-21",
+     "API-23",
+     "API-25"
+    ],
+    "renamed": [],
+    "not_accepted": [],
+    "agents": 10,
+    "tokens": 897706,
+    "wall_s": 1043
+   },
+   "recheck": "part 1: API-20 wording, the Validator's public-element filter now admits a 0.y.z element where the project treats the leftmost non-zero component as the breaking-change indicator, as its Limits already did; API-21 entailment, the Thesis no longer states undocumented behaviour as protected outright but carries the division between compatibility policies that the Limits and the interface reviewer's resolution already drew, and the Validator sets such a failure aside unless the project's policy protects it; API-23 wording, the Rust-specific example in Limits generalised; API-25, the provenance Triggers note matches the pattern; no facet touched, the reviewer's scope value on API-23 (callers) stands"
   }
  }
 }
