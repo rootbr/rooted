@@ -1018,6 +1018,30 @@
      "bundle": "r2tree/seams-and-characterization-tests--r2tree.js (7 cards CHG-18 to CHG-24, 272 KB)"
     }
    ]
+  },
+  "large-scale-changes-and-migrations": {
+   "runs": [
+    {
+     "part": "r2tree",
+     "task": "w3jsjjdmy",
+     "wf": "wf_b663ef9d-612",
+     "launched": "2026-10-15T09:27 UTC",
+     "status": "running",
+     "bundle": "r2tree/large-scale-changes-and-migrations--r2tree.js (8 cards CHG-25 to CHG-32, 290 KB; the tree key migration-flag-records-owner-and-expiry has no corpus card and is left out)"
+    }
+   ]
+  },
+  "small-steps-and-minimal-diffs": {
+   "runs": [
+    {
+     "part": "r2tree",
+     "task": "wx2eyj8me",
+     "wf": "wf_efb2139f-061",
+     "launched": "2026-10-15T09:30 UTC",
+     "status": "running",
+     "bundle": "r2tree/small-steps-and-minimal-diffs--r2tree.js (6 cards CHG-12 to CHG-17, 263 KB)"
+    }
+   ]
   }
  }
 }
