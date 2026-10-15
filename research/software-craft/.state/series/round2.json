@@ -872,6 +872,18 @@
     "wall_s": 145
    },
    "recheck": "no edits; nothing to re-check"
+  },
+  "larger-tests-integration-and-end-to-end": {
+   "runs": [
+    {
+     "part": "r2tree",
+     "task": "w23291p0y",
+     "wf": "wf_86370658-109",
+     "launched": "2026-10-15T09:08 UTC",
+     "status": "running",
+     "bundle": "r2tree/larger-tests-integration-and-end-to-end--r2tree.js (12 cards TST-27 to TST-38, 339 KB; the one active task of the one-task mode)"
+    }
+   ]
   }
  }
 }
