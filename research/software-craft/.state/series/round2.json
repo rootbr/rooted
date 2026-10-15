@@ -539,8 +539,40 @@
      "task": "wigll77tt",
      "wf": "wf_97c7bb11-cdd",
      "launched": "2026-10-15T04:02 UTC",
-     "status": "running",
+     "status": "done 2026-10-15T04:15 UTC: 10 agents, 865,591 sub-agent tokens, 15 minutes; 4 accepted (DSN-01, DSN-02, DSN-06, DSN-07), 3 closing-edited (DSN-03, DSN-04, DSN-05), 0 not accepted; applied with one facet revert (DSN-03)",
      "bundle": "r2tree/design-patterns-in-construction--r2tree.js (7 cards DSN-01 to DSN-07, 335 KB)"
+    }
+   ],
+   "result": {
+    "applied": "2026-10-15T04:08 UTC",
+    "accepted": [
+     "DSN-01",
+     "DSN-02",
+     "DSN-06",
+     "DSN-07"
+    ],
+    "closing_edited": [
+     "DSN-03",
+     "DSN-04",
+     "DSN-05"
+    ],
+    "renamed": [],
+    "not_accepted": [],
+    "agents": 10,
+    "tokens": 865591,
+    "wall_s": 906
+   },
+   "recheck": "DSN-03: the verdict restored step review from the spine; the card shipped without it and the design-domain reviewer's rule for the domain reserves review for rules about the change, so the facet edit is reverted with a provenance note, the trigger merge (the once-only constructs folded into the second pattern) and the Currency quotation kept; DSN-04: the verdict replaced the design reviewer's DSN-04/DSN-63 Limits sentence, which conditioned this rule's acceptance on the state being unshared and so contradicted the card's own Thesis, with a sentence that leaves the question of mutable global state to DSN-63 outright, which resolves the same contradiction without the inner one, so the replacement stands and the Google Python bullet is cut to the sentence it still backs; DSN-05: entailment, the Java private-constructor sentence names the top-level enclosing type; the reviewer's step and check_kind values on DSN-04, DSN-05 and DSN-03 stand"
+  },
+  "mutable-state-and-immutability": {
+   "runs": [
+    {
+     "part": "r2tree",
+     "task": "wci19qc93",
+     "wf": "wf_3da5069e-04e",
+     "launched": "2026-10-15T04:17 UTC",
+     "status": "running",
+     "bundle": "r2tree/mutable-state-and-immutability--r2tree.js (11 cards DSN-63 to DSN-73, 434 KB)"
     }
    ]
   }

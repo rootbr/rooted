@@ -1,6 +1,6 @@
 # Series status
 
-Snapshot taken 2026-10-15T04:06 UTC by `series/series-status.py --snapshot`. Journals under `journals/`, finished runs' outputs under `outputs/`.
+Snapshot taken 2026-10-15T04:07 UTC by `series/series-status.py --snapshot`. Journals under `journals/`, finished runs' outputs under `outputs/`.
 
 `done` counts the agents whose results the journal holds (cached for a continuation); `failed` the agents a usage-limit stop or an error ended, which a continuation re-runs. `cards` is the count in the run's own output; a run whose agents failed shipped none, and its cards come from the continuation. A continuation run (batch 3 and later) is one bundle of a topic, named by its part; a topic is finished when every part's run is complete.
 
@@ -43,9 +43,9 @@ Snapshot taken 2026-10-15T04:06 UTC by `series/series-status.py --snapshot`. Jou
 | 6 | `gaps-code` r2 | ? | fix2 4, verify3 2 | - | - | running or stopped |
 | 6 | `gaps-tests` r1 | 4 | sources 3, spine 1, draft 4, verify 4, fix 4 | verify2 4 | 0 | run ended, agents failed |
 | 6 | `gaps-tests` r1-finish | 4 | fix 4, verify2 4, close1 3 | - | 4 | run complete |
-| 6 | `gaps-tests` r2 | ? | fix2 3, verify3 2, close2 1 | - | - | running or stopped |
+| 6 | `gaps-tests` r2 | ? | fix2 3, verify3 2, close2 2 | - | - | running or stopped |
 | 6 | `gaps-interface` r1 | ? | - | sources 3 | - | running or stopped |
-| 6 | `gaps-interface` r1-retry | ? | sources 3 | - | - | running or stopped |
+| 6 | `gaps-interface` r1-retry | 3 | sources 3, spine 1 | - | - | running or stopped |
 | r2 | `comments-and-self-documenting-code` r2tree | 12 | verify3 12, close3 3 | - | 12 | run complete |
 | r2 | `layout-and-coding-style` r2tree | 11 | verify3 11, close3 2 | - | 11 | run complete |
 | r2 | `routine-size-and-parameters` r2tree | 9 | verify3 7, close3 3 | - | 7 | run complete |
@@ -64,4 +64,4 @@ Snapshot taken 2026-10-15T04:06 UTC by `series/series-status.py --snapshot`. Jou
 | r2 | `coupling-and-dependency-direction` r2tree-rest | 6 | verify3 3 | - | 3 | run complete |
 | r2 | `duplication-and-single-source-of-truth` r2tree | 8 | verify3 8, close3 4 | - | 8 | run complete |
 | r2 | `inheritance-versus-composition` r2tree | 8 | verify3 8, close3 1 | - | 8 | run complete |
-| r2 | `design-patterns-in-construction` r2tree | ? | verify3 7 | - | - | running or stopped |
+| r2 | `design-patterns-in-construction` r2tree | 7 | verify3 7, close3 3 | - | 7 | run complete |
