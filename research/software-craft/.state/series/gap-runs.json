@@ -135,7 +135,7 @@
    "source_path": "typescript-eslint/typescript-eslint packages/eslint-plugin/docs/rules/no-deprecated.mdx; dominikh/go-tools staticcheck/sa1019/sa1019.go; SonarSource/sonar-java sonar-java-plugin/src/main/resources/org/sonar/l10n/java/rules/java/S1874.html",
    "claim": "typescript-eslint no-deprecated: 'This rule reports on any references to code marked as `@deprecated`.' staticcheck SA1019: 'Using a deprecated function, variable, constant or field'. Both are quoted, as fetched, in the Source of API-27 and API-30.",
    "taxonomy_row": "| | `api-evolution-and-deprecation` | SEG15, SEG21 |",
-   "status": "queued"
+   "status": "carded as API-32 (gaps-interface, 2026-10-15)"
   },
   {
    "domain": "interface",
@@ -143,7 +143,7 @@
    "source_path": "semver/semver semver.md, item 8",
    "claim": "'Major version X (X.y.z | X > 0) MUST be incremented if any backward incompatible changes are introduced to the public API.' This is quoted, as fetched, in API-25's Source.",
    "taxonomy_row": "| | `api-evolution-and-deprecation` | SEG15, SEG21 |",
-   "status": "queued"
+   "status": "carded as API-33 (gaps-interface, 2026-10-15)"
   },
   {
    "domain": "interface",
@@ -151,7 +151,7 @@
    "source_path": "rust-lang/api-guidelines src/predictability.md, C-METHOD",
    "claim": "C-METHOD, 'Functions with a clear receiver are methods': prefer the method form 'for any operation that is clearly associated with a particular type'. The research note records this quote as fetched.",
    "taxonomy_row": "| C, `interface`, `API` | `api-design-and-use` | SW4.1 |",
-   "status": "queued"
+   "status": "carded as API-34 (gaps-interface, 2026-10-15)"
   },
   {
    "domain": "tests",
