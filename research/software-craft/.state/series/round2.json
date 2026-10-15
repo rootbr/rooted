@@ -371,8 +371,39 @@
      "task": "wv22a55cv",
      "wf": "wf_4c1f893e-3b7",
      "launched": "2026-10-15T00:47 UTC",
-     "status": "running",
+     "status": "done 2026-10-15T01:08 UTC: 10 agents, 900,247 sub-agent tokens, 16 minutes; 2 accepted (DSN-16, DSN-18), 4 closing-edited (DSN-14, DSN-15, DSN-17, DSN-19), 0 not accepted; applied with one facet revert (DSN-19 counts as accepted)",
      "bundle": "r2tree/complexity-and-deep-modules--r2tree.js (6 cards DSN-14 to DSN-19, 345 KB)"
+    }
+   ],
+   "result": {
+    "applied": "2026-10-15T00:59 UTC",
+    "accepted": [
+     "DSN-16",
+     "DSN-18",
+     "DSN-19"
+    ],
+    "closing_edited": [
+     "DSN-14",
+     "DSN-15",
+     "DSN-17"
+    ],
+    "renamed": [],
+    "not_accepted": [],
+    "agents": 10,
+    "tokens": 900247,
+    "wall_s": 965
+   },
+   "recheck": "DSN-19: the verdict's only required edit restored severity_default minor from the spine, which the design-domain reviewer had raised to major (reviews/design.json, the Rationale's release study); the reviewer's value stands, the edit is reverted in the card and its Finding output, and the provenance line now records the facet's source so the next pass sees it; DSN-14: wording, the orphan Limits paragraph joined to the block and the third trigger narrowed to a return line; DSN-15: entailment, the reviewer's HTTP-client sentence folded into the wrapper sentence on the Go guide's 'Use real transports' section, quoted; DSN-17: wording ('should differ', a prescription not a fact), the interface reviewer's published-interface sentence kept, the Go bullet cut to the quoted sentences; no other facet touched"
+  },
+  "information-hiding-and-encapsulation": {
+   "runs": [
+    {
+     "part": "r2tree",
+     "task": "wf7wsfeh3",
+     "wf": "wf_7fecb136-a54",
+     "launched": "2026-10-15T01:10 UTC",
+     "status": "running",
+     "bundle": "r2tree/information-hiding-and-encapsulation--r2tree.js (8 cards DSN-28 to DSN-35, 405 KB)"
     }
    ]
   }

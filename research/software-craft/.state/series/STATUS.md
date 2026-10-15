@@ -1,6 +1,6 @@
 # Series status
 
-Snapshot taken 2026-10-15T00:57 UTC by `series/series-status.py --snapshot`. Journals under `journals/`, finished runs' outputs under `outputs/`.
+Snapshot taken 2026-10-15T00:59 UTC by `series/series-status.py --snapshot`. Journals under `journals/`, finished runs' outputs under `outputs/`.
 
 `done` counts the agents whose results the journal holds (cached for a continuation); `failed` the agents a usage-limit stop or an error ended, which a continuation re-runs. `cards` is the count in the run's own output; a run whose agents failed shipped none, and its cards come from the continuation. A continuation run (batch 3 and later) is one bundle of a topic, named by its part; a topic is finished when every part's run is complete.
 
@@ -52,4 +52,4 @@ Snapshot taken 2026-10-15T00:57 UTC by `series/series-status.py --snapshot`. Jou
 | r2 | `contracts-assertions-and-invariants` r2tree | 7 | verify3 7, close3 2 | - | 7 | run complete |
 | r2 | `api-evolution-and-deprecation` r2tree-1of2 | 14 | verify3 6, close3 4 | - | 6 | run complete |
 | r2 | `api-evolution-and-deprecation` r2tree-2of2 | 14 | verify3 6, close3 2 | - | 6 | run complete |
-| r2 | `complexity-and-deep-modules` r2tree | ? | verify3 6, close3 1 | - | - | running or stopped |
+| r2 | `complexity-and-deep-modules` r2tree | 6 | verify3 6, close3 4 | - | 6 | run complete |
