@@ -779,10 +779,35 @@
      "task": "wf0ows7t3",
      "wf": "wf_4d0f1b54-358",
      "launched": "2026-10-15T06:07 UTC",
-     "status": "running",
+     "status": "done 2026-10-15T06:35 UTC: 13 agents, 1,095,096 sub-agent tokens, 18 minutes; 11 accepted, 1 closing-edited (ERR-43), 0 not accepted; applied",
      "bundle": "r2tree/logging-and-diagnostic-output--r2tree.js (12 cards ERR-40 to ERR-51, 438 KB)"
     }
-   ]
+   ],
+   "result": {
+    "applied": "2026-10-15T05:54 UTC",
+    "accepted": [
+     "ERR-40",
+     "ERR-41",
+     "ERR-42",
+     "ERR-44",
+     "ERR-45",
+     "ERR-46",
+     "ERR-47",
+     "ERR-48",
+     "ERR-49",
+     "ERR-50",
+     "ERR-51"
+    ],
+    "closing_edited": [
+     "ERR-43"
+    ],
+    "renamed": [],
+    "not_accepted": [],
+    "agents": 13,
+    "tokens": 1095096,
+    "wall_s": 1104
+   },
+   "recheck": "ERR-43: wording, the Thesis loses an 'instead of' contrast; no facet touched"
   }
  }
 }
