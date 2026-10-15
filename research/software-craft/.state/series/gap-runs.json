@@ -191,7 +191,7 @@
    "source_path": "golang/go master doc/README.md § For developers (https://raw.githubusercontent.com/golang/go/master/doc/README.md); python/devguide main getting-started/pull-request-lifecycle.rst § Changes that require NEWS entries; twisted/towncrier trunk docs/cli.rst § towncrier check",
    "claim": "Go: \"Release notes should be added to `next` by editing existing files or creating new files. Do not add RELNOTE=yes comments in CLs. Instead, add a file to the CL (or ask the author to do so).\" CPython: \"Most changes made to the codebase deserve an entry in Misc/NEWS.d, except for the following: documentation changes, test changes, strictly internal changes with no user-visible effects, changes that already have a NEWS entry, reverts that have not yet been included in any formal release\". towncrier: \"To check if a feature branch adds at least one news fragment, run: $ towncrier check\".",
    "taxonomy_row": "| | `documentation-beyond-comments` | SEG10 |",
-   "status": "queued",
+   "status": "carded as DOC-23 (gaps-docs, 2026-10-15)",
    "found_by": "reviewer, docs (reviews/docs.json)"
   }
  ]
