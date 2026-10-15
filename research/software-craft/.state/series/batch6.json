@@ -138,7 +138,7 @@
      "bundle": "cont/gaps-interface/r2/continue-gaps-interface-round2-1of1.js (research-continue.py --round 2 --journal r1-retry --from-bundle gaps/gaps-interface.js --split 1)"
     }
    ],
-   "status": "done 2026-10-15T06:45 UTC: API-32 to API-34 written from the retried round 1 and round 2 (27 agents, 4.0M sub-agent tokens); spot-read against the corpus: no duplicate; TOOL-13 also defers to API-32 (a configured deprecation check's report) and DSN-05 to API-34 (a static helper with one obvious owned receiver) with a Limits sentence; CHG-06 keeps envious methods, API-20 to API-26 keep the major bump as their exemption; the review step dropped from API-32 and API-33 (API-33 takes API-26's step list) as the interface-domain reviewer's rule has it; gap-runs.json statuses set"
+   "status": "done 2026-10-15T06:45 UTC: API-32 to API-34 written from the retried round 1 and round 2 (27 agents, 4.0M sub-agent tokens); spot-read against the corpus: no duplicate; TOOL-13 also defers to API-32 (a configured deprecation check's report) and DSN-05 to API-34 (a static helper with one obvious owned receiver) with a Limits sentence; CHG-06 keeps envious methods, API-20 to API-26 keep the major bump as their exemption; the review step dropped from API-32; API-33 takes API-26's step list [refactor, review], which the interface reviewer left on that card as the interface-domain reviewer's rule has it; gap-runs.json statuses set"
   },
   "gaps-change": {
    "runs": [
