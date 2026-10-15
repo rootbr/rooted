@@ -174,10 +174,11 @@
      "task": "w5ftaemnd",
      "wf": "wf_2d606bd6-782",
      "launched": "2026-10-15T05:52 UTC",
-     "status": "running",
+     "status": "done 2026-10-15T06:25 UTC: 3 agents, 327,453 sub-agent tokens, 15 minutes, 1 card in its output; output outputs/gaps-design--r2.output.json.gz",
      "bundle": "cont/gaps-design/r2/continue-gaps-design-round2-1of1.js (research-continue.py --round 2 --journal r1 --from-bundle gaps/gaps-design.js --split 1)"
     }
-   ]
+   ],
+   "status": "done 2026-10-15T06:30 UTC: DSN-74 written from the two rounds (12 agents, 1.9M sub-agent tokens); spot-read against the corpus: no duplicate, no deferring pair (DSN-74 reaches only a concept the codebase does not yet name, CODE-06 the word already in use; CODE-08 is the variable role); the review step dropped as the design-domain reviewer's rule has it; gap-runs.json status set"
   }
  }
 }
