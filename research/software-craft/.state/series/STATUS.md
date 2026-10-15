@@ -1,6 +1,6 @@
 # Series status
 
-Snapshot taken 2026-10-15T10:58 UTC by `series/series-status.py --snapshot`. Journals under `journals/`, finished runs' outputs under `outputs/`.
+Snapshot taken 2026-10-15T11:01 UTC by `series/series-status.py --snapshot`. Journals under `journals/`, finished runs' outputs under `outputs/`.
 
 `done` counts the agents whose results the journal holds (cached for a continuation); `failed` the agents a usage-limit stop or an error ended, which a continuation re-runs. `cards` is the count in the run's own output; a run whose agents failed shipped none, and its cards come from the continuation. A continuation run (batch 3 and later) is one bundle of a topic, named by its part; a topic is finished when every part's run is complete.
 
@@ -244,6 +244,7 @@ Snapshot taken 2026-10-15T10:58 UTC by `series/series-status.py --snapshot`. Jou
 | r2 | `large-scale-changes-and-migrations` r2tree-rest | 9 | verify3 2, close3 1 | - | 2 | run complete |
 | r2 | `small-steps-and-minimal-diffs` r2tree | ? | verify3 6, close3 2 | - | - | running or stopped |
 | r2 | `technical-debt` r2tree | ? | - | verify3 5 | - | running or stopped |
-| r2 | `technical-debt` r2tree-rest | ? | verify3 2 | - | - | running or stopped |
-| r2 | `debugging` r2tree | ? | verify3 3 | - | - | running or stopped |
-| r2 | `profiling-and-code-tuning` r2tree | ? | - | - | - | running or stopped |
+| r2 | `technical-debt` r2tree-rest | 6 | verify3 5 | - | 5 | run complete |
+| r2 | `debugging` r2tree | 6 | verify3 6 | - | 6 | run complete |
+| r2 | `profiling-and-code-tuning` r2tree | ? | verify3 1 | - | - | running or stopped |
+| r2 | `algorithm-and-data-structure-choice` r2tree | ? | - | - | - | running or stopped |

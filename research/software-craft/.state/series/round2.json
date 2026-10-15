@@ -1126,10 +1126,27 @@
      "task": "w1y7b59zk",
      "wf": "wf_1a07144b-d28",
      "launched": "2026-10-15T10:55 UTC",
-     "status": "running",
+     "status": "done 2026-10-15T11:12 UTC: 5 agents, 404,305 sub-agent tokens, 7 minutes; 5 accepted, 0 closing-edited, 0 not accepted; applied 11:14 UTC",
      "bundle": "r2tree/technical-debt--r2tree-rest.js (5 cards CHG-33 to CHG-37, 209 KB; skeptic claude-fable-5-1 at high)"
     }
-   ]
+   ],
+   "result": {
+    "applied": "2026-10-15T11:01 UTC",
+    "accepted": [
+     "CHG-33",
+     "CHG-34",
+     "CHG-35",
+     "CHG-36",
+     "CHG-37"
+    ],
+    "closing_edited": [],
+    "renamed": [],
+    "not_accepted": [],
+    "agents": 5,
+    "tokens": 404305,
+    "wall_s": 429
+   },
+   "recheck": "no edits; nothing to re-check"
   },
   "debugging": {
    "runs": [
@@ -1138,10 +1155,28 @@
      "task": "wqgve6otw",
      "wf": "wf_cc7c3e01-b2f",
      "launched": "2026-10-15T10:56 UTC",
-     "status": "running",
+     "status": "done 2026-10-15T11:09 UTC: 6 agents, 446,274 sub-agent tokens, 7 minutes; 6 accepted, 0 closing-edited, 0 not accepted; applied 11:13 UTC",
      "bundle": "r2tree/debugging--r2tree.js (6 cards PRF-01 to PRF-06, 225 KB; skeptic claude-fable-5-1 at high)"
     }
-   ]
+   ],
+   "result": {
+    "applied": "2026-10-15T11:01 UTC",
+    "accepted": [
+     "PRF-01",
+     "PRF-02",
+     "PRF-03",
+     "PRF-04",
+     "PRF-05",
+     "PRF-06"
+    ],
+    "closing_edited": [],
+    "renamed": [],
+    "not_accepted": [],
+    "agents": 6,
+    "tokens": 446274,
+    "wall_s": 414
+   },
+   "recheck": "no edits; nothing to re-check"
   },
   "profiling-and-code-tuning": {
    "runs": [
@@ -1154,6 +1189,25 @@
      "bundle": "r2tree/profiling-and-code-tuning--r2tree.js (8 cards PRF-07 to PRF-14, 342 KB; skeptic claude-fable-5-1 at high)"
     }
    ]
+  },
+  "algorithm-and-data-structure-choice": {
+   "runs": [
+    {
+     "part": "r2tree",
+     "task": "wj000gggz",
+     "wf": "wf_ea19d008-0d7",
+     "launched": "2026-10-15T11:12 UTC",
+     "status": "running",
+     "bundle": "r2tree/algorithm-and-data-structure-choice--r2tree.js (10 cards PRF-15 to PRF-24, 343 KB; skeptic claude-fable-5-1 at high)"
+    }
+   ]
+  }
+ },
+ "reviewers": {
+  "tooling": {
+   "launched": "2026-10-15T11:15 UTC",
+   "kind": "one read-only opus/max agent per HANDOVER 5.8 (series/REVIEWER.md filled for tooling: TOOL-01 to TOOL-44, four topics); report to be saved as reviews/tooling.json and applied per the change/code pattern",
+   "status": "running"
   }
  }
 }
