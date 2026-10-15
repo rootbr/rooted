@@ -232,8 +232,26 @@
    "task": "wp4t1dscc",
    "wf": "wf_bc74d4ba-37d",
    "launched": "2026-10-15T13:12 UTC",
-   "status": "running"
+   "status": "done 2026-10-15T13:27 UTC: 199 agents, 12,653,692 sub-agent tokens, 15 minutes; 15 patches: C-E2 on INP-02 applied six times and its C-D1 applied (the contested paragraph of Limits now leads with the separating condition and names the ideas rather than the standards and documents); C-B1 on TOOL-23 applied by a split on the TST-39 precedent: TOOL-23 keeps the entry-point clauses, TOOL-45 takes load-time code and the pre-parse flag read, from the sources the TOOL-23 run fetched, with a new fenced Go example, a provenance line and a note row; C-F3 on CHG-14, CHG-18, CHG-19, CHG-33, INP-01, INP-02 and TOOL-23 dismissed under the taxonomy's Example-form deviation; targets unmutated",
+   "patches": 15,
+   "applied": [
+    "INP-02 C-E2 x6",
+    "INP-02 C-D1",
+    "TOOL-23 C-B1 (split into TOOL-23, TOOL-45)"
+   ],
+   "dismissed": [
+    "C-F3 x7"
+   ]
   }
  ],
- "follow_up": "PRF-30 and PRF-31 (split at run 4) and the cards the tooling and input gap runs land get one more kb-card run, together with the kb-corpus run, after the gap topics are written"
+ "follow_up": "PRF-30, PRF-31 and TOOL-45 (split at runs 4 and 5) and the cards the tooling and input gap runs land get one more kb-card run, together with the kb-corpus run, after the gap topics are written",
+ "totals_so_far": {
+  "runs": 5,
+  "cards": 49,
+  "agents": 1082,
+  "tokens": 69966721,
+  "patches": 58,
+  "applied": "PRF-17 C-E2; CHG-06 C-D1; DOC-11 C-E2 x3; TST-52 C-E2 x5; PRF-26 C-E2 x2; CHG-29 C-D1; CHG-31 C-D1; PRF-08 C-B1 split; INP-02 C-E2 x6 and C-D1; TOOL-23 C-B1 split",
+  "dismissed": "C-F3 x37 under the taxonomy's Example-form deviation; C-F2 x2 (the block schema's Finding output is the consumer block)"
+ }
 }
