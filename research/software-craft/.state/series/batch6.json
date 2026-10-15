@@ -218,11 +218,11 @@
      "task": "w46jrst3t",
      "wf": "wf_a30dfd2a-f05",
      "launched": "2026-10-15T13:55 UTC",
-     "status": "running",
+     "status": "done 2026-10-15T14:32 UTC: 8 agents, 1,084,432 sub-agent tokens, 38 minutes, 3 cards in its output (2 on a closing edit); output outputs/gaps-tooling--r2.output.json.gz",
      "bundle": "cont/gaps-tooling/r2/continue-gaps-tooling-round2-1of1.js (research-continue.py --round 2 --journal r1 --from-bundle gaps/gaps-tooling.js --split 1: the three carded rules sent back with revise)"
     }
    ],
-   "status": "running"
+   "status": "done 2026-10-15T14:40 UTC: TOOL-46 to TOOL-48 written from the two rounds (27 agents, 4.1M sub-agent tokens); spot-read against the corpus: no duplicate (TOOL-46 is the third side of the date split beside TOOL-43 and TOOL-44, TOOL-48 pins CI inputs where TOOL-05 and TOOL-07 pin package dependencies); TOOL-13 -> TOOL-47 and TOOL-13 -> TOOL-48 added on the tooling reviewer's pattern; the review step dropped from TOOL-47 as the tooling reviewer's rule has it; the printable-non-ASCII pending entry now names TOOL-47; gap-runs.json statuses set"
   },
   "gaps-input": {
    "runs": [

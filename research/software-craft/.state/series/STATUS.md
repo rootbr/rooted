@@ -1,6 +1,6 @@
 # Series status
 
-Snapshot taken 2026-10-15T14:13 UTC by `series/series-status.py --snapshot`. Journals under `journals/`, finished runs' outputs under `outputs/`.
+Snapshot taken 2026-10-15T14:32 UTC by `series/series-status.py --snapshot`. Journals under `journals/`, finished runs' outputs under `outputs/`.
 
 `done` counts the agents whose results the journal holds (cached for a continuation); `failed` the agents a usage-limit stop or an error ended, which a continuation re-runs. `cards` is the count in the run's own output; a run whose agents failed shipped none, and its cards come from the continuation. A continuation run (batch 3 and later) is one bundle of a topic, named by its part; a topic is finished when every part's run is complete.
 
@@ -207,8 +207,9 @@ Snapshot taken 2026-10-15T14:13 UTC by `series/series-status.py --snapshot`. Jou
 | 6 | `gaps-docs` r1 | 1 | sources 3, spine 1, draft 1, verify 1, fix 1, verify2 1, close1 1 | - | - | running or stopped |
 | 6 | `gaps-docs` r2 | ? | fix2 1, verify3 1 | - | - | running or stopped |
 | 6 | `gaps-tooling` r1 | 3 | sources 3, spine 1, draft 3, verify 3, fix 3, verify2 3, close1 3 | - | 3 | run complete |
-| 6 | `gaps-tooling` r2 | ? | fix2 3, verify3 1 | - | - | running or stopped |
+| 6 | `gaps-tooling` r2 | 3 | fix2 3, verify3 3, close2 2 | - | 3 | run complete |
 | 6 | `gaps-input` r1 | 4 | sources 3, spine 1, draft 4, verify 4, fix 4, verify2 4, close1 4 | - | 4 | run complete |
+| 6 | `gaps-input` r2 | ? | fix2 4, verify3 1 | - | - | running or stopped |
 | r2 | `comments-and-self-documenting-code` r2tree | ? | verify3 12, close3 3 | - | - | running or stopped |
 | r2 | `layout-and-coding-style` r2tree | ? | verify3 11, close3 2 | - | - | running or stopped |
 | r2 | `routine-size-and-parameters` r2tree | ? | verify3 7, close3 3 | - | - | running or stopped |

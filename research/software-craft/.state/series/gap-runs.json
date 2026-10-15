@@ -200,7 +200,7 @@
    "source_path": "w3c/timezone gh-pages index.html §'Floating Time Values' (https://raw.githubusercontent.com/w3c/timezone/gh-pages/index.html), fetched by the research run and quoted in TOOL-43's Source; also dotnet/docs docs/core/extensions/globalization.md §'Serialization and time zone awareness' (fetched, per the i18n note)",
    "claim": "\"use the appropriate floating time type, such as LocalDateTime (for values with both date and time), LocalDate (for date values), or LocalTime (for time-only values) for values that are not tied to a specific offset or time zone rules\" · \"such as a list of holidays or a user's birth date\"; checkable as a birth date, holiday or anniversary typed, stored or serialized as an instant or timestamp.",
    "taxonomy_row": "| | `internationalization-and-text-encoding` | SW4.8 |",
-   "status": "queued",
+   "status": "carded as TOOL-46 (gaps-tooling, 2026-10-15)",
    "found_by": "reviewer, tooling (reviews/tooling.json)"
   },
   {
@@ -209,7 +209,7 @@
    "source_path": "rust-lang/rust compiler/rustc_lint_defs/src/builtin.rs, TEXT_DIRECTION_CODEPOINT_IN_COMMENT and TEXT_DIRECTION_CODEPOINT_IN_LITERAL, level Deny (https://raw.githubusercontent.com/rust-lang/rust/master/compiler/rustc_lint_defs/src/builtin.rs, fetched by the research run); the paper as a GitHub-hosted copy: nickboucher/trojan-source website/public/trojan-source.pdf §7.6; rust-lang/rust-clippy clippy_lints/src/unicode.rs INVISIBLE_CHARACTERS",
    "claim": "\"a specially crafted comment can make code that will be compiled appear to be part of a comment, depending on the software used to read the code. To avoid potential problems or confusion, such as in CVE-2021-42574, by default we deny their use.\" (rustc); \"Checks for invisible Unicode characters in the code.\" (clippy); checkable by code point on added lines.",
    "taxonomy_row": "| | `internationalization-and-text-encoding` | SW4.8 |",
-   "status": "queued",
+   "status": "carded as TOOL-47 (gaps-tooling, 2026-10-15)",
    "found_by": "reviewer, tooling (reviews/tooling.json)"
   },
   {
@@ -218,7 +218,7 @@
    "source_path": "ossf/scorecard main docs/checks.md §Pinned-Dependencies (https://raw.githubusercontent.com/ossf/scorecard/main/docs/checks.md), re-fetched by the orchestrator at the queueing",
    "claim": "\"A \\\"pinned dependency\\\" is a dependency that is explicitly set to a specific hash instead of allowing a mutable version or range of versions.\"; \"The check works by looking for unpinned dependencies in Dockerfiles, shell scripts, and GitHub workflows which are used during the build and release process of a project.\"; \"They can help mitigate compromised dependencies from undermining the security of the project\"; checkable as a `uses:` action reference, a `FROM` image or a fetched script URL added with a mutable tag or no digest.",
    "taxonomy_row": "| H, `tooling`, `TOOL` | `build-warnings-static-analysis-ci` | SEG18, SEG20, SEG23, PP \"Pragmatic Starter Kit\" |; domain: 'tools and hygiene: build, warnings, static analysis, CI, dependencies, runtime configuration, internationalization and encoding'",
-   "status": "queued",
+   "status": "carded as TOOL-48 (gaps-tooling, 2026-10-15)",
    "found_by": "reviewer, tooling (reviews/tooling.json)"
   },
   {
