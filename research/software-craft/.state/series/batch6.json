@@ -201,7 +201,7 @@
      "bundle": "cont/gaps-docs/r2/continue-gaps-docs-round2-1of1.js (research-continue.py --round 2 --journal r1 --from-bundle gaps/gaps-docs.js --split 1: one rule sent back with revise; built 07:41, launched after the session limit's reset)"
     }
    ],
-   "status": "done 2026-10-15T08:45 UTC: DOC-23 written from the two rounds (11 agents, 1.6M sub-agent tokens); spot-read against the corpus: no duplicate and no deferring pair (DOC-11 reaches documents that describe the current behaviour and its Limits already excludes a release-note entry; DOC-22 judges an entry's marker once it exists; API-26 and API-33 judge the removal's timing and the version number, not the entry); the review step kept, as on DOC-11, because the docs-domain reviewer reserves review for rules about the change's shape or description and DOC-23, like DOC-11, judges what the change carries; gap-runs.json status set"
+   "status": "done 2026-10-15T08:32 UTC: DOC-23 written from the two rounds (11 agents, 1.6M sub-agent tokens); spot-read against the corpus: no duplicate and no deferring pair (DOC-11 reaches documents that describe the current behaviour and its Limits already excludes a release-note entry; DOC-22 judges an entry's marker once it exists; API-26 and API-33 judge the removal's timing and the version number, not the entry); the review step kept, as on DOC-11, because the docs-domain reviewer reserves review for rules about the change's shape or description and DOC-23, like DOC-11, judges what the change carries; gap-runs.json status set"
   }
  }
 }
