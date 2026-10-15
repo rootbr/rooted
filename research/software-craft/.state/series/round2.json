@@ -741,7 +741,7 @@
      "task": "w72whvst0",
      "wf": "wf_0e13261b-89f",
      "launched": "2026-10-15T05:33 UTC",
-     "status": "running",
+     "status": "done 2026-10-15T06:05 UTC: 9 agents, 785,500 sub-agent tokens, 13 minutes; 3 accepted (ERR-19, ERR-22, ERR-24), 3 closing-edited (ERR-20, ERR-21, ERR-23), 0 not accepted; applied with one facet revert (ERR-21 counts as accepted)",
      "bundle": "r2tree/resource-management-and-ownership--r2tree-1of2.js (--only ERR-19 to ERR-24, 359 KB; the one-part bundle was 538 KB)"
     },
     {
@@ -751,6 +751,37 @@
      "launched": "2026-10-15T05:57 UTC",
      "status": "running",
      "bundle": "r2tree/resource-management-and-ownership--r2tree-2of2.js (--only ERR-25 to ERR-30, 374 KB)"
+    }
+   ],
+   "result": {
+    "applied": "2026-10-15T05:36 UTC",
+    "accepted": [
+     "ERR-19",
+     "ERR-21",
+     "ERR-22",
+     "ERR-24"
+    ],
+    "closing_edited": [
+     "ERR-20",
+     "ERR-23"
+    ],
+    "renamed": [],
+    "not_accepted": [],
+    "agents": 9,
+    "tokens": 785500,
+    "wall_s": 801
+   },
+   "recheck": "part 1: ERR-21: the verdict's only edit dropped applies_to manual-memory, which the errors-domain reviewer had added (reviews/errors.json); the reviewer's value stands and the provenance line records it; ERR-20: wording, the SEI CERT FIO04-J entry gains its openable locator; ERR-23: the provenance line's check_kind note brought to the reviewer's semantic value (the card unchanged)"
+  },
+  "logging-and-diagnostic-output": {
+   "runs": [
+    {
+     "part": "r2tree",
+     "task": "wf0ows7t3",
+     "wf": "wf_4d0f1b54-358",
+     "launched": "2026-10-15T06:07 UTC",
+     "status": "running",
+     "bundle": "r2tree/logging-and-diagnostic-output--r2tree.js (12 cards ERR-40 to ERR-51, 438 KB)"
     }
    ]
   }
