@@ -904,10 +904,27 @@
      "task": "wqjcttw8w",
      "wf": "wf_27b4cfdc-15e",
      "launched": "2026-10-15T09:09 UTC",
-     "status": "running",
+     "status": "done 2026-10-15T09:17 UTC: 5 agents, 411,508 sub-agent tokens, 8 minutes; 5 accepted, 0 closing-edited, 0 not accepted; applied",
      "bundle": "r2tree/refactoring--r2tree.js (5 cards CHG-01 to CHG-05, 245 KB)"
     }
-   ]
+   ],
+   "result": {
+    "applied": "2026-10-15T09:17 UTC",
+    "accepted": [
+     "CHG-01",
+     "CHG-02",
+     "CHG-03",
+     "CHG-04",
+     "CHG-05"
+    ],
+    "closing_edited": [],
+    "renamed": [],
+    "not_accepted": [],
+    "agents": 5,
+    "tokens": 411508,
+    "wall_s": 462
+   },
+   "recheck": "no edits; nothing to re-check"
   }
  }
 }
