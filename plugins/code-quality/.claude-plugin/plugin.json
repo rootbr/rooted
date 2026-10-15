@@ -1,7 +1,7 @@
 {
   "name": "code-quality",
-  "version": "5.0.0",
-  "description": "Java code review from a corpus of sourced rule cards — a deterministic pre-pass, a finder per triggered card, a skeptic per finding — plus proactive code cleanup",
+  "version": "5.1.0",
+  "description": "Java code review and language-agnostic software-craft build-and-review from corpora of sourced rule cards — a deterministic pre-pass, a finder per triggered card, a skeptic per finding, a developer agent that builds by the cards — plus proactive code cleanup",
   "author": {
     "name": "Aleksei Sheifler",
     "email": "aleksei.sheifler@gmail.com"
@@ -10,6 +10,7 @@
   "license": "Apache-2.0",
   "keywords": [
     "java",
+    "software-craft",
     "code-review",
     "clean-code",
     "refactoring"
