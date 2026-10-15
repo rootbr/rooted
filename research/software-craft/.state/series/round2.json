@@ -1,7 +1,7 @@
 {
  "purpose": "the second-round passes over the series cards in the tree (HANDOVER §5.11): one run per topic, part r2tree, built by series/round2-from-tree.py; `result` is written by its apply step",
  "batch": "r2",
- "concurrency": "4 active tasks (operator, 2026-10-14T17:15 UTC): workflows and reviewer agents counted alike; from 2026-10-15T05:20 UTC the tree pass takes two of the four slots (operator), the gap runs and reviewers share the other two; from 2026-10-15T06:10 UTC the cap is THREE active tasks (operator): no replacement is launched while three run; the tree pass keeps two slots and the gap runs and reviewers share the third",
+ "concurrency": "4 active tasks (operator, 2026-10-14T17:15 UTC): workflows and reviewer agents counted alike; from 2026-10-15T05:20 UTC the tree pass takes two of the four slots (operator), the gap runs and reviewers share the other two; from 2026-10-15T06:10 UTC the cap is THREE active tasks (operator): no replacement is launched while three run; the tree pass keeps two slots and the gap runs and reviewers share the third; PAUSE (operator, 2026-10-15T06:15 UTC, session limit near): nothing new is launched, the running tasks finish and are applied or written, then the series pauses",
  "topics": {
   "comments-and-self-documenting-code": {
    "runs": [
