@@ -456,6 +456,7 @@ const DEFER_TO = {
   'DOC-06': 'DOC-08', // the first line of a description summarises the change: a first line that names a change the diff does not make is DOC-08's finding (reviewer, docs)
   'DOC-20': 'DOC-11', // deleted code leaves no document naming it: a removed or renamed command, flag, option or setting still in a repository document is DOC-11's finding; DOC-20 keeps functions, classes and other code elements (reviewer, docs)
   'TOOL-13': 'DOC-21', // no new diagnostics from configured checks: a relative document link the project's link checker reports as unresolved is DOC-21's finding (reviewer, docs)
+  'CODE-83': 'ERR-13', // a zero divisor is tested before the division: a divisor that is an argument of a routine callable from outside its module, with no check at entry, is ERR-13's missing-precondition finding (spot-read, gaps-code)
   'CODE-71': 'CHG-35', // a code change updates its comments: a pre-existing debt marker whose work the change does is CHG-35's finding (reviewer, change)
   'CHG-18': 'DSN-63', // changed code receives replaced dependencies explicitly: a module-level object with interior mutability is DSN-63's finding (reviewer, change)
   'CHG-30': 'CHG-31', // an old migration path is deleted once unused: the implementation a retired flag selected is CHG-31's finding (reviewer, change)

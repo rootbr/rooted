@@ -23,7 +23,7 @@
    "source_path": "eslint/eslint docs/src/rules/max-depth.md (rule description; option `max`)",
    "claim": "\"Many developers consider code difficult to read if blocks are nested beyond a certain depth.\"; \"This rule enforces a maximum depth that blocks can be nested to reduce code complexity.\"; `\"max\"` (default `4`)",
    "taxonomy_row": "| | `control-flow` | CC14–17, CC19 |",
-   "status": "queued"
+   "status": "carded as CODE-86 (gaps-code, 2026-10-15)"
   },
   {
    "domain": "code",
@@ -31,7 +31,7 @@
    "source_path": "checkstyle/checkstyle src/site/xdoc/checks/metrics/booleanexpressioncomplexity.xml (Description)",
    "claim": "\"Restricts the number of boolean operators (&&, ||, &, | and ^) in an expression.\"; \"Rationale: Too many conditions leads to code that is difficult to read\"",
    "taxonomy_row": "| | `control-flow` | CC14–17, CC19 |",
-   "status": "queued"
+   "status": "carded as CODE-85 (gaps-code, 2026-10-15)"
   },
   {
    "domain": "code",
@@ -39,7 +39,7 @@
    "source_path": "golang/go doc/go_spec.html §Integer operators",
    "claim": "\"If the divisor is zero at run time, a run-time panic occurs.\" (a curl of SonarSource/sonar-java sonar-java-plugin/src/main/resources/org/sonar/l10n/java/rules/java/S3518.html returned no such text, so that rule is not cited)",
    "taxonomy_row": "| | `variables-scope-and-numerics` | CC10–13 |",
-   "status": "queued"
+   "status": "carded as CODE-83 (gaps-code, 2026-10-15)"
   },
   {
    "domain": "code",
@@ -47,7 +47,7 @@
    "source_path": "python/cpython Doc/library/decimal.rst (opening list of the decimal module's advantages)",
    "claim": "\"The exactness carries over into arithmetic. In decimal floating point, ``0.1 + 0.1 + 0.1 - 0.3`` is exactly equal to zero.\"; \"decimal is preferred in accounting applications which have strict ...\" (equality invariants)",
    "taxonomy_row": "| | `variables-scope-and-numerics` | CC10–13 |",
-   "status": "queued"
+   "status": "carded as CODE-84 (gaps-code, 2026-10-15)"
   },
   {
    "domain": "design",

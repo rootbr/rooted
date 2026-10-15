@@ -76,10 +76,11 @@
      "task": "wdaun9xqx",
      "wf": "wf_b6b198d9-ec9",
      "launched": "2026-10-15T03:57 UTC",
-     "status": "running",
+     "status": "done 2026-10-15T04:33 UTC: 10 agents, 1,094,003 sub-agent tokens, 33 minutes, 4 cards in its output; output outputs/gaps-code--r2.output.json.gz",
      "bundle": "cont/gaps-code/r2/continue-gaps-code-round2-1of1.js (research-continue.py --round 2 --journal r1 --journal r1-finish --from-bundle gaps/gaps-code.js --split 1: four rules sent back with revise)"
     }
-   ]
+   ],
+   "status": "done 2026-10-15T04:40 UTC: CODE-83 to CODE-86 written from the cut round 1, its finish run and round 2 (42 agents, 5.1M sub-agent tokens); spot-read against the corpus: no duplicate; CODE-83 -> ERR-13 (a public routine's argument divisor with no entry check is the missing-precondition finding) with a Limits sentence; CODE-86 is the first card on signal:deep_nesting; CODE-84 takes the money case CODE-31 and CODE-27 leave out; no review step on the four cards; gap-runs.json statuses set"
   },
   "gaps-tests": {
    "runs": [
@@ -139,6 +140,18 @@
      "launched": "2026-10-15T04:27 UTC",
      "status": "running",
      "bundle": "gaps/gaps-change.js (2 queued concepts of the change domain)"
+    }
+   ]
+  },
+  "gaps-design": {
+   "runs": [
+    {
+     "part": "r1",
+     "task": "weltgrnlh",
+     "wf": "wf_2bbe08c1-48a",
+     "launched": "2026-10-15T04:35 UTC",
+     "status": "running",
+     "bundle": "gaps/gaps-design.js (1 queued concept of the design domain: domain language)"
     }
    ]
   }
