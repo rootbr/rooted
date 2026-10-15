@@ -808,6 +808,18 @@
     "wall_s": 1104
    },
    "recheck": "ERR-43: wording, the Thesis loses an 'instead of' contrast; no facet touched"
+  },
+  "unit-testing-and-test-quality": {
+   "runs": [
+    {
+     "part": "r2tree",
+     "task": "w1ay3r3sg",
+     "wf": "wf_15e19284-1c7",
+     "launched": "2026-10-15T08:50 UTC",
+     "status": "running",
+     "bundle": "r2tree/unit-testing-and-test-quality--r2tree.js (13 cards TST-15 to TST-26 and TST-39, 425 KB; rebuilt 08:33 from the current corpus; the one active task of the one-task mode)"
+    }
+   ]
   }
  }
 }
