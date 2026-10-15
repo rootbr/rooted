@@ -146,8 +146,16 @@
      "task": "w7huzg2vj",
      "wf": "wf_176cc078-8e0",
      "launched": "2026-10-15T04:27 UTC",
-     "status": "running",
+     "status": "done 2026-10-15T05:50 UTC: 9 agents, 1,484,403 sub-agent tokens, 73 minutes; output outputs/gaps-change--r1.output.json.gz",
      "bundle": "gaps/gaps-change.js (2 queued concepts of the change domain)"
+    },
+    {
+     "part": "r2",
+     "task": null,
+     "wf": null,
+     "launched": null,
+     "status": "built, waiting for a gap slot",
+     "bundle": "cont/gaps-change/r2/continue-gaps-change-round2-1of1.js (research-continue.py --round 2 --journal r1 --from-bundle gaps/gaps-change.js --split 1)"
     }
    ]
   },
@@ -163,10 +171,10 @@
     },
     {
      "part": "r2",
-     "task": null,
-     "wf": null,
-     "launched": null,
-     "status": "built, waiting for a gap slot",
+     "task": "w5ftaemnd",
+     "wf": "wf_2d606bd6-782",
+     "launched": "2026-10-15T05:52 UTC",
+     "status": "running",
      "bundle": "cont/gaps-design/r2/continue-gaps-design-round2-1of1.js (research-continue.py --round 2 --journal r1 --from-bundle gaps/gaps-design.js --split 1)"
     }
    ]
