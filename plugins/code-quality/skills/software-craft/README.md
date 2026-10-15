@@ -23,7 +23,7 @@ Every card serves two readers. The developer retrieves cards before a step of it
 
 ## The card corpus
 
-`references/craft-cards/` holds one file per rule — `<prefix>-NN--<slug>.md` — across ten domains:
+`references/craft-cards/` holds one file per rule — `<prefix>-NN--<slug>.md` — 472 cards across ten domains, with 155 further rules waiting in `references/pending-evidence.md` for an openable source:
 
 | Prefix | Domain | Topics |
 |--|--|--|
