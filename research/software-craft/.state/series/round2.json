@@ -880,10 +880,35 @@
      "task": "w23291p0y",
      "wf": "wf_86370658-109",
      "launched": "2026-10-15T09:08 UTC",
-     "status": "running",
+     "status": "done 2026-10-15T09:27 UTC: 17 agents, 1,320,765 sub-agent tokens, 19 minutes; 8 accepted after the re-check, 4 closing-edited (TST-29, TST-31, TST-34, TST-38), 0 not accepted; applied",
      "bundle": "r2tree/larger-tests-integration-and-end-to-end--r2tree.js (12 cards TST-27 to TST-38, 339 KB; the one active task of the one-task mode)"
     }
-   ]
+   ],
+   "result": {
+    "applied": "2026-10-15T09:27 UTC",
+    "accepted": [
+     "TST-27",
+     "TST-28",
+     "TST-30",
+     "TST-32",
+     "TST-33",
+     "TST-35",
+     "TST-36",
+     "TST-37"
+    ],
+    "closing_edited": [
+     "TST-29",
+     "TST-31",
+     "TST-34",
+     "TST-38"
+    ],
+    "renamed": [],
+    "not_accepted": [],
+    "agents": 17,
+    "tokens": 1320765,
+    "wall_s": 1166
+   },
+   "recheck": "TST-30: the verdict only restored scope file, which the reviewer changed to callers; reverted with the provenance note, counted as accepted. TST-31: the restored review step reverted (reviewer's facet finding); the Rationale wording ('a repeated execution is an observer too', matching the IDoFT definition) kept. TST-34: the restored step [design, test, review] and severity major reverted to the reviewer's [test] and minor (Finding output too), with the provenance note corrected; the verdict's replacement of the reviewer's TST-35 contradiction sentence accepted on its merits (the 'check on its own schedule' clause had no source; the replacement keeps the resolution: no test against a third-party server is required, the boundary is replaced), and the Playwright source bullet it adds kept. TST-29: 'instead of' contrast dropped, wording only. TST-38: a Source bullet that stated nothing about skip marks removed."
   },
   "property-based-testing": {
    "runs": [
