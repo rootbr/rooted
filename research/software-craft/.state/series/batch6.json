@@ -189,8 +189,16 @@
      "task": "wa65ae0sl",
      "wf": "wf_0d8711d6-a75",
      "launched": "2026-10-15T07:17 UTC",
-     "status": "running",
+     "status": "done 2026-10-15T07:40 UTC: 9 agents, 1,341,652 sub-agent tokens, 68 minutes, 1 card in its output; output outputs/gaps-docs--r1.output.json.gz",
      "bundle": "gaps/gaps-docs.js (1 queued concept of the docs domain: a release-note entry per change)"
+    },
+    {
+     "part": "r2",
+     "task": "wu320ysnd",
+     "wf": "wf_50ad5d5f-217",
+     "launched": "2026-10-15T08:13 UTC",
+     "status": "running",
+     "bundle": "cont/gaps-docs/r2/continue-gaps-docs-round2-1of1.js (research-continue.py --round 2 --journal r1 --from-bundle gaps/gaps-docs.js --split 1: one rule sent back with revise; built 07:41, launched after the session limit's reset)"
     }
    ]
   }
