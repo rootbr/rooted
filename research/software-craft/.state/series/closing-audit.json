@@ -177,6 +177,34 @@
    "task": "w3x86xjw8",
    "wf": "wf_27892db3-48b",
    "launched": "2026-10-15T12:37 UTC",
+   "status": "done 2026-10-15T12:53 UTC: 221 agents, 14,509,761 sub-agent tokens, 16 minutes; 14 patches: C-E2 applied on TST-52 (the two patches plus the three recurrences of the same attribution the patch's note lists, in Rationale and Limits) and on PRF-26 (two sentences in Limits); C-F3 on API-33, DOC-23, ERR-52, ERR-53, PRF-25, PRF-26, TOOL-33, TST-52 and TST-53 dismissed under the taxonomy's Example-form deviation; C-F2 on ERR-52 dismissed, the taxonomy's block schema names Finding output as the consumer block; targets unmutated",
+   "patches": 14,
+   "applied": [
+    "TST-52 C-E2 x5",
+    "PRF-26 C-E2 x2"
+   ],
+   "dismissed": [
+    "C-F3 x9",
+    "ERR-52 C-F2"
+   ]
+  },
+  {
+   "run": 4,
+   "cards": [
+    "TOOL-34",
+    "CHG-29",
+    "CHG-31",
+    "INP-13",
+    "INP-14",
+    "PRF-08",
+    "PRF-13",
+    "DOC-01",
+    "DOC-02",
+    "TOOL-22"
+   ],
+   "task": "w1fygxnk9",
+   "wf": "wf_9ae8e018-ad0",
+   "launched": "2026-10-15T12:54 UTC",
    "status": "running"
   }
  ]
