@@ -643,8 +643,41 @@
      "task": "wcu2pekmo",
      "wf": "wf_1538fd56-e78",
      "launched": "2026-10-15T05:07 UTC",
-     "status": "running",
+     "status": "done 2026-10-15T05:10 UTC: 10 agents, 822,905 sub-agent tokens, 14 minutes; 6 accepted, 2 closing-edited (DSN-44, DSN-46), 0 not accepted; applied",
      "bundle": "r2tree/domain-modeling-and-domain-language--r2tree.js (8 cards DSN-44 to DSN-51, 321 KB; the folded keys exhaustive-case-analysis-without-catch-all and correlated-flags-become-one-state have no tree card)"
+    }
+   ],
+   "result": {
+    "applied": "2026-10-15T05:05 UTC",
+    "accepted": [
+     "DSN-45",
+     "DSN-47",
+     "DSN-48",
+     "DSN-49",
+     "DSN-50",
+     "DSN-51"
+    ],
+    "closing_edited": [
+     "DSN-44",
+     "DSN-46"
+    ],
+    "renamed": [],
+    "not_accepted": [],
+    "agents": 10,
+    "tokens": 822905,
+    "wall_s": 811
+   },
+   "recheck": "DSN-44: wording, the design reviewer's DSN-44/DSN-51 Limits sentence (a time value an interface cannot carry as a time type) joined to the Limits paragraph, kept verbatim; DSN-46: trigger, the third pattern matched no line of the bad Example and is dropped, a 'now' removed from the Finding output; no facet touched"
+  },
+  "defensive-programming": {
+   "runs": [
+    {
+     "part": "r2tree",
+     "task": "w2qgpgi87",
+     "wf": "wf_0612c3b7-5a2",
+     "launched": "2026-10-15T05:12 UTC",
+     "status": "running",
+     "bundle": "r2tree/defensive-programming--r2tree.js (6 cards ERR-13 to ERR-18, 342 KB)"
     }
    ]
   }
