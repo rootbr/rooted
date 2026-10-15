@@ -4,7 +4,7 @@ rule_id: TST-39
 domain: tests
 step: [test]
 applies_to: [tests]
-triggers: ['\bassert(Equals|NotEquals|Same|NotSame|ArrayEquals|IterableEquals|LinesMatch)\(\s*[a-z_]\w*([.]\w+)*(\([^()]*\))?\s*,\s*([\x22\x27]|-?\d|true\b|false\b|null\b|[A-Z][A-Z0-9_]+\b)|\b(assert|require)[.](Equal|EqualValues|Exactly|NotEqual)\(\s*t\s*,\s*[a-z_]\w*([.]\w+)*(\([^()]*\))?\s*,\s*([\x22\x60]|-?\d|true\b|false\b|nil\b)|\b(assertThat|expect)\(\s*([\x22\x27\x60]|-?\d+\b|true\b|false\b|null\b)', '\bassert_(eq|ne)!\s*\(|\bassert(Equal|NotEqual|Is|IsNot)\s*\(', 'signal:test_file']
+triggers: ['\bassert(Equals|NotEquals|Same|NotSame|ArrayEquals|IterableEquals|LinesMatch)\(\s*[a-z_]\w*([.]\w+)*(\([^()]*\))?\s*,\s*([\x22\x27]|-?\d|true\b|false\b|null\b|[A-Z][A-Z0-9_]+\b)|\b(assert|require)[.](Equal|EqualValues|Exactly|NotEqual)\(\s*t\s*,\s*[a-z_]\w*([.]\w+)*(\([^()]*\))?\s*,\s*([\x22\x60]|-?\d|true\b|false\b|nil\b)|\b(assertThat|expect)\(\s*([\x22\x27\x60]|-?\d+\b|true\b|false\b|null\b)|\bassert_(eq|ne)!\s*\(|\bassert(Equal|NotEqual|Is|IsNot)\s*\(', 'signal:test_file']
 scope: file
 check_kind: semantic
 severity_default: minor
@@ -16,7 +16,7 @@ severity_default: minor
 An equality or comparison assertion that takes an expected and an actual argument passes the hard-coded expected value in the position its framework labels expected and the value derived from the code under test in the position it labels actual. Where the framework labels its two positions neutrally, as left and right, every assertion in a file keeps one order, the one the file's other assertions already use.
 
 ## Rationale
-Expected and actual passed in the wrong order do not alter the outcome of the test, which still succeeds or fails when it should, but the error message then contains misleading information: the value reported as expected is the one the code produced, and the hard-coded value is reported as what the code returned. Where the framework prints both arguments under neutral labels, the order in which the expected value and the produced value are given does not matter to the report, and a file that mixes both orders makes readers re-interpret each assertion and makes its failure messages harder to scan. A test output that prints the actual value before the expected one follows a standard format, and whichever diff order a failure message uses is indicated explicitly.
+Expected and actual passed in the wrong order do not alter the outcome of the test, which still succeeds or fails when it should, but the error message then contains misleading information: the value reported as expected is the one the code produced, and the hard-coded value is reported as what the code returned. Where the framework prints both arguments under neutral labels, the order in which the expected value and the produced value are given does not matter to the report, and a file that mixes both orders makes readers re-interpret each assertion and makes its failure messages harder to scan.
 
 ## Example
 ```java

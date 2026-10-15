@@ -816,10 +816,36 @@
      "task": "w1ay3r3sg",
      "wf": "wf_15e19284-1c7",
      "launched": "2026-10-15T08:33 UTC",
-     "status": "running",
+     "status": "done 2026-10-15T09:00 UTC: 21 agents, 1,739,245 sub-agent tokens, 27 minutes; 8 accepted after the re-check, 5 closing-edited (TST-17, TST-18, TST-20, TST-21, TST-39), 0 not accepted; applied",
      "bundle": "r2tree/unit-testing-and-test-quality--r2tree.js (13 cards TST-15 to TST-26 and TST-39, 425 KB; rebuilt 08:33 from the current corpus; the one active task of the one-task mode)"
     }
-   ]
+   ],
+   "result": {
+    "applied": "2026-10-15T09:01 UTC",
+    "accepted": [
+     "TST-15",
+     "TST-16",
+     "TST-19",
+     "TST-22",
+     "TST-23",
+     "TST-24",
+     "TST-25",
+     "TST-26"
+    ],
+    "closing_edited": [
+     "TST-17",
+     "TST-18",
+     "TST-20",
+     "TST-21",
+     "TST-39"
+    ],
+    "renamed": [],
+    "not_accepted": [],
+    "agents": 21,
+    "tokens": 1739245,
+    "wall_s": 1645
+   },
+   "recheck": "TST-19 and TST-23: the verdicts only restored the review step the tests-domain reviewer dropped; reverted with the provenance note, counted as accepted. TST-24: the verdict restored scope file, which the reviewer changed to callers (a project assertion helper lives in another module); reverted with its Validator phrase and the provenance note, counted as accepted. TST-17: the verdict's deletion of the reviewer's Limits sentence (a condition inside a callback handed to the code under test, resolving the contradiction with TST-32's good Example) was reverted as a scope statement that needs no source; its Source dedup (one JUnit bullet with the junit5 r5.10.0 locator) and the provenance extension stand. TST-21: the verdict's wording 'by a cleanup the framework manages or by the test itself' accepted on its merits, since the reviewer's own good Example removes the file by hand and the Rust harness manages no cleanup; the cleanup's reliability stays TST-31's. TST-18: provenance line only. TST-20: Validator sentence for package-level hooks, consistent with the reviewer's scope callers. TST-39: the two regex triggers merged so that the one pattern matches the Example's bad half, and the Rationale's 'got before want' sentence, outside the rule by its Limits, dropped."
   }
  }
 }
