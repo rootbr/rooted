@@ -1,0 +1,383 @@
+{
+  "metadata": {
+    "skill_name": "handing-over-to-readers",
+    "skill_path": "<path/to/skill>",
+    "executor_model": "<model-name>",
+    "analyzer_model": "<model-name>",
+    "timestamp": "2026-10-21T16:50:41Z",
+    "evals_run": [
+      1,
+      2,
+      3
+    ],
+    "runs_per_configuration": 3
+  },
+  "runs": [
+    {
+      "eval_id": 1,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 8,
+        "failed": 0,
+        "total": 8,
+        "time_seconds": 332.2,
+        "tokens": 118537,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "check_report.py --profile client reports 0 errors on questions.md",
+          "passed": true,
+          "evidence": "exit 0: 0 error(s), 0 warning(s)"
+        },
+        {
+          "text": "every list item of questions.md ends with exactly one question mark",
+          "passed": true,
+          "evidence": "3 items; all end with one '?': True"
+        },
+        {
+          "text": "the time-zone question is absent from questions.md (the sample file answers it)",
+          "passed": true,
+          "evidence": "no time-zone question"
+        },
+        {
+          "text": "the terminal-version question is absent from questions.md (the letter answers it)",
+          "passed": true,
+          "evidence": "no version question"
+        },
+        {
+          "text": "the CI question and the client's approval-process question are absent from questions.md",
+          "passed": true,
+          "evidence": "CI/approval questions absent"
+        },
+        {
+          "text": "the second channel appears in exactly one item of questions.md",
+          "passed": true,
+          "evidence": "1 item(s) mention the channel"
+        },
+        {
+          "text": "the field-name choice (ts) is not asked as a question (told as a fact is fine) and is recorded in internal.md",
+          "passed": true,
+          "evidence": "ts asked as a question: False; ts in internal: True"
+        },
+        {
+          "text": "internal.md records closures or default decisions with a basis",
+          "passed": true,
+          "evidence": "internal.md has closure/default/basis wording"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 7,
+        "failed": 0,
+        "total": 7,
+        "time_seconds": 265.2,
+        "tokens": 111586,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "check_report.py --profile operator --root fixtures/repo reports 0 errors on report.md",
+          "passed": true,
+          "evidence": "exit 0: 0 error(s), 0 warning(s)"
+        },
+        {
+          "text": "the first page carries the five labelled lines: \u0420\u0438\u0441\u043a, \u041e\u0442 \u0447\u0438\u0442\u0430\u0442\u0435\u043b\u044f, \u041d\u0435 \u0441\u0434\u0435\u043b\u0430\u043d\u043e, \u041d\u0435\u0432\u0435\u0440\u043d\u043e \u0435\u0441\u043b\u0438, \u0421\u0442\u0430\u0442\u0443\u0441",
+          "passed": true,
+          "evidence": "first-page labels present: True"
+        },
+        {
+          "text": "the status line value is failed or findings and names the failure count from build.log",
+          "passed": true,
+          "evidence": "status line: 'failed; \u043f\u0440\u043e\u0432\u0435\u0440\u0435\u043d\u043e 5 \u0442\u0435\u0441\u0442\u043e\u0432 \u0432 \u0434\u0432\u0443\u0445 \u043a\u043b\u0430\u0441\u0441\u0430\u0445 \u0438 \u043b\u0438\u043d\u0442\u0435\u0440; \u0443\u043f\u0430\u0432\u0448\u0438\u0439 \u0448\u0430\u0433: `mvn -q test` \u0441 `exit code: 1` \u043d\u0430 `RouterTest#ackTimeoutIsFourHundredMillis`; `./lint.sh` \u0441 `exit code: 0`.'"
+        },
+        {
+          "text": "at least two path:line anchors resolve under fixtures/repo with their fragment on the line",
+          "passed": true,
+          "evidence": "22 anchors, 0 errors, 0 fragment warnings"
+        },
+        {
+          "text": "the report does not claim that the tests pass",
+          "passed": true,
+          "evidence": "no self-report phrase"
+        },
+        {
+          "text": "the 250 vs 400 ms timeout conflict reaches the operator as one item with its single question mark at the end",
+          "passed": true,
+          "evidence": "1 question item(s) about 250/400 ending with one '?'"
+        },
+        {
+          "text": "the report names what is not done: JMH and the routing documentation",
+          "passed": true,
+          "evidence": "JMH and docs named as not done: True"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 3,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 6,
+        "failed": 0,
+        "total": 6,
+        "time_seconds": 153.7,
+        "tokens": 98645,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "check_question.py on question.json reports no problem",
+          "passed": true,
+          "evidence": "no problem"
+        },
+        {
+          "text": "question.json holds exactly one question",
+          "passed": true,
+          "evidence": "1 question(s)"
+        },
+        {
+          "text": "the one question is about the legacy table, not about the config file path",
+          "passed": true,
+          "evidence": "question text: '\u0422\u0430\u0431\u043b\u0438\u0446\u0430 legacy_limits \u043f\u043e\u0441\u043b\u0435 \u043f\u0435\u0440\u0435\u043d\u043e\u0441\u0430 \u043a\u043e\u0434\u043e\u043c \u043d\u0435 \u0447\u0438\u0442\u0430\u0435\u0442\u0441\u044f, \u043d\u043e \u0432 \u043d\u0435\u0439 14 000 \u0441\u0442\u0440\u043e\u043a \u0438\u0441\u0442\u043e\u0440\u0438\u0438 \u043b\u0438\u043c\u0438\u0442\u043e\u0432. \u0411\u044d\u043a\u0430\u043f\u0430 \u0431\u0430\u0437\u044b \u043d\u0430 \u0441\u0442\u0435\u043d\u0434\u0435 \u043d\u0435\u0442'"
+        },
+        {
+          "text": "the card says why it is asked: the decision is irreversible",
+          "passed": true,
+          "evidence": "irreversibility named: True"
+        },
+        {
+          "text": "questions.md records the config path as a default decision with its basis",
+          "passed": true,
+          "evidence": "default with config/limits.yaml in questions.md: True"
+        },
+        {
+          "text": "questions.md contains exactly one question mark",
+          "passed": true,
+          "evidence": "1 question mark(s) in questions.md"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 1,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.75,
+        "passed": 6,
+        "failed": 2,
+        "total": 8,
+        "time_seconds": 125.1,
+        "tokens": 68521,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "check_report.py --profile client reports 0 errors on questions.md",
+          "passed": false,
+          "evidence": "exit 1: 10 error(s), 1 warning(s)"
+        },
+        {
+          "text": "every list item of questions.md ends with exactly one question mark",
+          "passed": false,
+          "evidence": "7 items; all end with one '?': False"
+        },
+        {
+          "text": "the time-zone question is absent from questions.md (the sample file answers it)",
+          "passed": true,
+          "evidence": "no time-zone question"
+        },
+        {
+          "text": "the terminal-version question is absent from questions.md (the letter answers it)",
+          "passed": true,
+          "evidence": "no version question"
+        },
+        {
+          "text": "the CI question and the client's approval-process question are absent from questions.md",
+          "passed": true,
+          "evidence": "CI/approval questions absent"
+        },
+        {
+          "text": "the second channel appears in exactly one item of questions.md",
+          "passed": true,
+          "evidence": "1 item(s) mention the channel"
+        },
+        {
+          "text": "the field-name choice (ts) is not asked as a question (told as a fact is fine) and is recorded in internal.md",
+          "passed": true,
+          "evidence": "ts asked as a question: False; ts in internal: True"
+        },
+        {
+          "text": "internal.md records closures or default decisions with a basis",
+          "passed": true,
+          "evidence": "internal.md has closure/default/basis wording"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.29,
+        "passed": 2,
+        "failed": 5,
+        "total": 7,
+        "time_seconds": 114.0,
+        "tokens": 69201,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "check_report.py --profile operator --root fixtures/repo reports 0 errors on report.md",
+          "passed": false,
+          "evidence": "exit 1: 12 error(s), 1 warning(s)"
+        },
+        {
+          "text": "the first page carries the five labelled lines: \u0420\u0438\u0441\u043a, \u041e\u0442 \u0447\u0438\u0442\u0430\u0442\u0435\u043b\u044f, \u041d\u0435 \u0441\u0434\u0435\u043b\u0430\u043d\u043e, \u041d\u0435\u0432\u0435\u0440\u043d\u043e \u0435\u0441\u043b\u0438, \u0421\u0442\u0430\u0442\u0443\u0441",
+          "passed": false,
+          "evidence": "first-page labels present: False"
+        },
+        {
+          "text": "the status line value is failed or findings and names the failure count from build.log",
+          "passed": false,
+          "evidence": "status line: ''"
+        },
+        {
+          "text": "at least two path:line anchors resolve under fixtures/repo with their fragment on the line",
+          "passed": false,
+          "evidence": "8 anchors, 7 errors, 2 fragment warnings"
+        },
+        {
+          "text": "the report does not claim that the tests pass",
+          "passed": true,
+          "evidence": "no self-report phrase"
+        },
+        {
+          "text": "the 250 vs 400 ms timeout conflict reaches the operator as one item with its single question mark at the end",
+          "passed": false,
+          "evidence": "0 question item(s) about 250/400 ending with one '?'"
+        },
+        {
+          "text": "the report names what is not done: JMH and the routing documentation",
+          "passed": true,
+          "evidence": "JMH and docs named as not done: True"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 3,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.33,
+        "passed": 2,
+        "failed": 4,
+        "total": 6,
+        "time_seconds": 52.5,
+        "tokens": 59646,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "check_question.py on question.json reports no problem",
+          "passed": false,
+          "evidence": "question 1 ONE: the question is not the last sentence (rule 19); question 1 WHY-ASKED: say why this is not decided by default: irreversible, costly, or known only to the addressee (rule 6)"
+        },
+        {
+          "text": "question.json holds exactly one question",
+          "passed": true,
+          "evidence": "1 question(s)"
+        },
+        {
+          "text": "the one question is about the legacy table, not about the config file path",
+          "passed": true,
+          "evidence": "question text: '\u0423\u0434\u0430\u043b\u0438\u0442\u044c \u0441\u0442\u0430\u0440\u0443\u044e \u0442\u0430\u0431\u043b\u0438\u0446\u0443 legacy_limits \u043c\u0438\u0433\u0440\u0430\u0446\u0438\u0435\u0439 \u0438\u043b\u0438 \u043e\u0441\u0442\u0430\u0432\u0438\u0442\u044c? \u041f\u043e\u0441\u043b\u0435 \u043f\u0435\u0440\u0435\u043d\u043e\u0441\u0430 \u043a\u043e\u0434 \u0435\u0451 \u043d\u0435 \u0447\u0438\u0442\u0430\u0435\u0442, \u043d\u043e \u0432 \u043d\u0435\u0439 14 000 \u0441\u0442\u0440\u043e\u043a \u0438\u0441\u0442\u043e'"
+        },
+        {
+          "text": "the card says why it is asked: the decision is irreversible",
+          "passed": false,
+          "evidence": "irreversibility named: False"
+        },
+        {
+          "text": "questions.md records the config path as a default decision with its basis",
+          "passed": false,
+          "evidence": "default with config/limits.yaml in questions.md: False"
+        },
+        {
+          "text": "questions.md contains exactly one question mark",
+          "passed": false,
+          "evidence": "0 question mark(s) in questions.md"
+        }
+      ],
+      "notes": []
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 1.0,
+        "stddev": 0.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": 250.3667,
+        "stddev": 90.1697,
+        "min": 153.7,
+        "max": 332.2
+      },
+      "tokens": {
+        "mean": 109589.3333,
+        "stddev": 10095.1931,
+        "min": 98645,
+        "max": 118537
+      }
+    },
+    "without_skill": {
+      "pass_rate": {
+        "mean": 0.4567,
+        "stddev": 0.2548,
+        "min": 0.29,
+        "max": 0.75
+      },
+      "time_seconds": {
+        "mean": 97.2,
+        "stddev": 39.1072,
+        "min": 52.5,
+        "max": 125.1
+      },
+      "tokens": {
+        "mean": 65789.3333,
+        "stddev": 5331.1357,
+        "min": 59646,
+        "max": 69201
+      }
+    },
+    "delta": {
+      "pass_rate": "+0.54",
+      "time_seconds": "+153.2",
+      "tokens": "+43800"
+    }
+  },
+  "notes": []
+}

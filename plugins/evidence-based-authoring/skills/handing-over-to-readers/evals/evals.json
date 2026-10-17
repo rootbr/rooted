@@ -1,0 +1,65 @@
+{
+  "skill_name": "handing-over-to-readers",
+  "fixtures_language": "en",
+  "note": "The recorded run runs/iteration-1 was made on the Russian originals of these prompts and fixtures; its benchmark.md states the translation.",
+  "evals": [
+    {
+      "id": 1,
+      "name": "client-question-list",
+      "prompt": "Draw up a list of questions for the client from my raw notes in fixtures/client/notes.md. The client is a trading desk; they do not open our files or reports. Write the list to outputs/questions.md and what does not go to the client to outputs/internal.md.",
+      "expected_output": "The list keeps only the items that pass the filters: the time zone question is closed from the sample file, the terminal version is closed from the letter, the licence and the field name go to the internal block or the default registry, the CI question and the approval-process question are dropped, the two second-channel items merge into one. Each delivered item opens with the fact, ends with its single question, carries no dates, section references, file paths, run identifiers or effort estimates; internal.md holds the closures and the default decision with basis. check_report.py --profile client reports no error.",
+      "files": [
+        "fixtures/client/notes.md"
+      ],
+      "expectations": [
+        "check_report.py --profile client reports 0 errors on questions.md",
+        "every list item of questions.md ends with exactly one question mark",
+        "the time-zone question is absent from questions.md (the sample file answers it)",
+        "the terminal-version question is absent from questions.md (the letter answers it)",
+        "the CI question and the client's approval-process question are absent from questions.md",
+        "the second channel appears in exactly one item of questions.md",
+        "the field-name choice (ts) is not asked as a question (told as a fact is fine) and is recorded in internal.md",
+        "internal.md records closures or default decisions with a basis"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "operator-report-with-failing-build",
+      "prompt": "Write me a report on the state of the change in fixtures/repo (the task is in task.md, the check output in build.log): what is done, what is verified, what I have to decide. Write it to outputs/report.md.",
+      "expected_output": "The report opens with the five first-page lines: risk names the order path and the untested latency, the reader's action, not done (docs, JMH), wrong if, and a status line with value failed or findings and the counts taken from build.log (1 failure in 3 RouterTest tests, lint 0 problems). Claims carry path:line anchors with fragments that resolve in fixtures/repo (retryOnTimeout = false, config.limit(instrument)), the failing test is reported as a claim with its exit code rather than as 'tests pass'. The timeout 250 vs 400 conflict reaches the operator as one card-form question (fact with the numbers, what the answer changes, irreversible after rollout, one question last). check_report.py --profile operator --root fixtures/repo reports no error.",
+      "files": [
+        "fixtures/repo/task.md",
+        "fixtures/repo/build.log",
+        "fixtures/repo/src/main/java/order/Router.java",
+        "fixtures/repo/src/main/java/order/Limits.java",
+        "fixtures/repo/src/test/java/order/RouterTest.java"
+      ],
+      "expectations": [
+        "check_report.py --profile operator --root fixtures/repo reports 0 errors on report.md",
+        "the first page carries the five labelled lines: Risk, From the reader, Not done, Wrong if, Status",
+        "the status line value is failed or findings and names the failure count from build.log",
+        "at least two path:line anchors resolve under fixtures/repo with their fragment on the line",
+        "the report does not claim that the tests pass",
+        "the 250 vs 400 ms timeout conflict reaches the operator as one item with its single question mark at the end",
+        "the report names what is not done: JMH and the routing documentation"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "question-to-operator-with-default",
+      "prompt": "Before continuing you have two open points, described in fixtures/question/context.md. You cannot ask me right now, so write to outputs/questions.md what you would tell me and ask me, and to outputs/question.json the questions array you would pass to the AskUserQuestion tool.",
+      "expected_output": "The config-file location is decided by default (config/limits.yaml, basis: the other configs live there, overturned by a later move) and recorded as a registry line, not asked. Only the legacy table reaches the operator, as one card: the fact (14 000 rows, no backup), what the answer changes (the migration), why it is asked (irreversible), one question at the end; both options carry their consequence and the cost of error. check_question.py on question.json reports no problem; questions.md has exactly one question item.",
+      "files": [
+        "fixtures/question/context.md"
+      ],
+      "expectations": [
+        "check_question.py on question.json reports no problem",
+        "question.json holds exactly one question",
+        "the one question is about the legacy table, not about the config file path",
+        "the card says why it is asked: the decision is irreversible",
+        "questions.md records the config path as a default decision with its basis",
+        "questions.md contains exactly one question mark"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "expectations": [
+    {
+      "text": "check_question.py on question.json reports no problem",
+      "passed": false,
+      "evidence": "question 1 ONE: the question is not the last sentence (rule 19); question 1 WHY-ASKED: say why this is not decided by default: irreversible, costly, or known only to the addressee (rule 6)"
+    },
+    {
+      "text": "question.json holds exactly one question",
+      "passed": true,
+      "evidence": "1 question(s)"
+    },
+    {
+      "text": "the one question is about the legacy table, not about the config file path",
+      "passed": true,
+      "evidence": "question text: 'Delete the legacy table legacy_limits with a migration or keep it? After the move the code does not read it, but it hold'"
+    },
+    {
+      "text": "the card says why it is asked: the decision is irreversible",
+      "passed": false,
+      "evidence": "irreversibility named: False"
+    },
+    {
+      "text": "questions.md records the config path as a default decision with its basis",
+      "passed": false,
+      "evidence": "default with config/limits.yaml in questions.md: False"
+    },
+    {
+      "text": "questions.md contains exactly one question mark",
+      "passed": false,
+      "evidence": "0 question mark(s) in questions.md"
+    }
+  ],
+  "summary": {
+    "passed": 2,
+    "failed": 4,
+    "total": 6,
+    "pass_rate": 0.33
+  }
+}

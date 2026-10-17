@@ -8,13 +8,13 @@
     {
       "name": "code-quality",
       "description": "Software-craft build-and-review from corpora of sourced rule cards — universal, Python and Java — a deterministic pre-pass, a finder per triggered card, a skeptic per finding, a developer agent that designs and builds by the cards",
-      "version": "8.0.1",
+      "version": "8.0.2",
       "source": "./plugins/code-quality"
     },
     {
       "name": "evidence-based-authoring",
-      "description": "Evidence-based authoring: web research with source verification and AI context files grounded in traceable sources",
-      "version": "4.11.1",
+      "description": "Evidence-based authoring: web research with source verification, AI context files grounded in traceable sources, and reports, questions and question lists written as handovers with evidence and decision cards",
+      "version": "4.12.0",
       "source": "./plugins/evidence-based-authoring"
     }
   ]

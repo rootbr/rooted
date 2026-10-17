@@ -1,0 +1,40 @@
+{
+  "expectations": [
+    {
+      "text": "check_question.py on question.json reports no problem",
+      "passed": true,
+      "evidence": "no problem"
+    },
+    {
+      "text": "question.json holds exactly one question",
+      "passed": true,
+      "evidence": "1 question(s)"
+    },
+    {
+      "text": "the one question is about the legacy table, not about the config file path",
+      "passed": true,
+      "evidence": "question text: 'The table legacy_limits is not read by the code after the move, but it holds 14 000 rows of limit history. There is no d'"
+    },
+    {
+      "text": "the card says why it is asked: the decision is irreversible",
+      "passed": true,
+      "evidence": "irreversibility named: True"
+    },
+    {
+      "text": "questions.md records the config path as a default decision with its basis",
+      "passed": true,
+      "evidence": "default with config/limits.yaml in questions.md: True"
+    },
+    {
+      "text": "questions.md contains exactly one question mark",
+      "passed": true,
+      "evidence": "1 question mark(s) in questions.md"
+    }
+  ],
+  "summary": {
+    "passed": 6,
+    "failed": 0,
+    "total": 6,
+    "pass_rate": 1.0
+  }
+}

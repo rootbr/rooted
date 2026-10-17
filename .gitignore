@@ -23,3 +23,6 @@ trash/
 
 # Skill-creator eval workspaces (per-iteration runs, not source)
 **/skills/*-workspace/
+
+# Run state of a research series (queue, handover, markers): the committed research is the note in research/
+research/**/.state/

@@ -126,7 +126,7 @@ Every agent has at minimum the tools: **Read, Write, WebSearch, Grep**. Agents t
 ## File naming
 
 - Run directory: `coverage-map-{topic-slug}/` under `tmp/`
-- Topic slug: lowercase, hyphens, ASCII only. Non-ASCII topics are transliterated (`психоанализ` → `psychoanalysis`).
+- Topic slug: lowercase, hyphens, ASCII only. Non-ASCII topics are transliterated (`naïve realism` → `naive-realism`).
 - Prompt files: `NN-short-method-name.md` where `NN` is the method number (01–10, zero-padded).
 - Output files: same name as prompt file, different directory.
 - The NN prefix is load-bearing — it defines dispatch order for agent 10 (which reads 01..09 in numerical order) and the final report assembly order.

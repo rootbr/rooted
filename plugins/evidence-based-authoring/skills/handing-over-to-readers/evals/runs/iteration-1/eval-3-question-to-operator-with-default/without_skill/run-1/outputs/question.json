@@ -1,0 +1,17 @@
+[
+  {
+    "question": "Delete the legacy table legacy_limits with a migration or keep it? After the move the code does not read it, but it holds 14 000 rows of limit history for the years 2019–2024, and there is no database backup on the test bench: the deletion cannot be rolled back on the test bench. Until there is an answer, I keep it.",
+    "header": "Table",
+    "multiSelect": false,
+    "options": [
+      {
+        "label": "Keep (recommended)",
+        "description": "The migration adds one line \"-- legacy_limits kept\", the history stays intact. It can be deleted later with a separate migration."
+      },
+      {
+        "label": "Delete",
+        "description": "The migration runs DROP TABLE legacy_limits. 0 rows of history remain on the test bench, there is nothing to bring them back with."
+      }
+    ]
+  }
+]

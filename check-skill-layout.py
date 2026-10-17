@@ -14,6 +14,12 @@ holds a SKILL.md. Rules:
      maintenance/<corpus>-provenance.md
   e  a skill with maintenance/ has maintenance/README.md and a README.md with a "## Layout" heading
   f  the two files of each SYNC_PAIRS entry are byte-identical; the first is the canonical one
+  g  no run-set Markdown file carries a provenance note outside code spans and fences: a
+     citation bracket (a bracketed source locator, eval expectation or evidence verdict), an
+     eval expectation tag `eval <name> E<n>`, or a fetch marker such as (fetched) or
+     **unfetched**; the source behind a rule stands on its line in
+     maintenance/<name>-provenance.md, and a card corpus keeps the compact `## Source`
+     locator its taxonomy documents
 
 Usage:  python3 check-skill-layout.py [--root <repository>] [--table]
 --table prints, per skill, the layout the check derives: each top-level entry and its set.
@@ -34,6 +40,17 @@ MAINTAINER_NAMES = ("*provenance*", "*taxonomy*", "pending-evidence*", "maintena
 AUTHORING_PHRASES = ("authoring time only", "never part of a build or a review")
 CORPUS = "*-cards*"
 LAYOUT_HEADING = re.compile(r"^## Layout\s*$", re.M)
+
+# Rule g. A bracket is a citation when it holds a source locator, an eval expectation, an evidence
+# verdict or two author-year pairs; a Markdown link, a footnote and a reference-style link are not.
+FENCE = re.compile(r"^\s*(?:`{3,}|~{3,})")
+INLINE_CODE = re.compile(r"`[^`\n]*`")
+BRACKET = re.compile(r"\[(?!\^)([^\[\]\n]+)\](?![\(\[])")
+SOURCE_ID = re.compile(r"arXiv:\d{4}\.\d{4,5}|\bdoi:\s*10\.|\b10\.\d{4,9}/\S|https?://|\bDOT/FAA/|\bRFC ?\d{3,5}\b|\bREADME \d+\b")
+AUTHOR_YEAR = re.compile(r"\b[A-Z][A-Za-z'’-]+(?: et al\.)?(?: & [A-Z][A-Za-z'’-]+)? (?:19|20)\d\d\b")
+EVIDENCE_VERDICT = re.compile(r"\b(?:untested|not opened|no source|no opened study|first-hand|relay(?:ed)?|consistent only|definition)\b")
+EVAL_TAG = re.compile(r"\beval [a-z][a-z0-9-]* E\d+\b")
+FETCH_MARKER = re.compile(r"\((?:un)?fetched\)|\(relayed\)|\*\*(?:un)?fetched\*\*|\*\*relayed\*\*")
 
 # (canonical, copy): the copy is kept byte-identical to the canonical file.
 SYNC_PAIRS = (
@@ -89,12 +106,30 @@ def rel(root, path):
     return os.path.relpath(path, root).replace(os.sep, "/")
 
 
+def is_citation(content):
+    return bool(SOURCE_ID.search(content) or EVAL_TAG.search(content) or EVIDENCE_VERDICT.search(content)
+                or len(AUTHOR_YEAR.findall(content)) >= 2)
+
+
+def check_provenance(key, number, prose, out):
+    """Rule g over one line of run-set prose with its code spans removed."""
+    for match in BRACKET.finditer(prose):
+        if is_citation(match.group(1)):
+            out.append(f"{key}:{number}: g: a citation bracket in a run-set file: [{match.group(1)[:60]}]")
+    if EVAL_TAG.search(BRACKET.sub("", prose)):
+        out.append(f"{key}:{number}: g: an eval expectation tag in a run-set file")
+    if FETCH_MARKER.search(prose):
+        out.append(f"{key}:{number}: g: a fetch marker in a run-set file")
+
+
 def check_names(root, path, out):
-    """Rules a and c over one run-set file."""
+    """Rules a, c and g over one run-set file."""
     text = read_text(path)
     key = rel(root, path)
     is_skill_md = os.path.basename(path) == "SKILL.md"
+    is_markdown = path.endswith(".md")
     pointer_lines = []
+    in_fence = False
     for number, line in enumerate(text.splitlines(), 1):
         if is_skill_md and POINTER in line:
             pointer_lines.append(number)
@@ -106,6 +141,11 @@ def check_names(root, path, out):
         for phrase in AUTHORING_PHRASES:
             if phrase in lowered:
                 out.append(f"{key}:{number}: c: a run-set file carries \"{phrase}\"")
+        if is_markdown:
+            if FENCE.match(line):
+                in_fence = not in_fence
+            elif not in_fence:
+                check_provenance(key, number, INLINE_CODE.sub("", line), out)
     if len(pointer_lines) > 1:
         out.append(f"{key}:{pointer_lines[1]}: a: SKILL.md names \"{POINTER}\" on more than one line "
                    f"(lines {', '.join(map(str, pointer_lines))})")

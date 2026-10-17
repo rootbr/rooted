@@ -1,0 +1,45 @@
+{
+  "expectations": [
+    {
+      "text": "check_report.py --profile operator --root fixtures/repo reports 0 errors on report.md",
+      "passed": true,
+      "evidence": "exit 0: 0 error(s), 0 warning(s)"
+    },
+    {
+      "text": "the first page carries the five labelled lines: Risk, From the reader, Not done, Wrong if, Status",
+      "passed": true,
+      "evidence": "first-page labels present: True"
+    },
+    {
+      "text": "the status line value is failed or findings and names the failure count from build.log",
+      "passed": true,
+      "evidence": "status line: 'failed; checked 5 tests in two classes and the linter; failed step: `mvn -q test` with `exit code: 1` on `RouterTest#ackTimeoutIsFourHundredMillis`; `./lint.sh` with `exit code: 0`.'"
+    },
+    {
+      "text": "at least two path:line anchors resolve under fixtures/repo with their fragment on the line",
+      "passed": true,
+      "evidence": "22 anchors, 0 errors, 0 fragment warnings"
+    },
+    {
+      "text": "the report does not claim that the tests pass",
+      "passed": true,
+      "evidence": "no self-report phrase"
+    },
+    {
+      "text": "the 250 vs 400 ms timeout conflict reaches the operator as one item with its single question mark at the end",
+      "passed": true,
+      "evidence": "1 question item(s) about 250/400 ending with one '?'"
+    },
+    {
+      "text": "the report names what is not done: JMH and the routing documentation",
+      "passed": true,
+      "evidence": "JMH and docs named as not done: True"
+    }
+  ],
+  "summary": {
+    "passed": 7,
+    "failed": 0,
+    "total": 7,
+    "pass_rate": 1.0
+  }
+}

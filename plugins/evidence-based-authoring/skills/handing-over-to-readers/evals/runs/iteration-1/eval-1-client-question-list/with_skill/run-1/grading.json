@@ -1,0 +1,50 @@
+{
+  "expectations": [
+    {
+      "text": "check_report.py --profile client reports 0 errors on questions.md",
+      "passed": true,
+      "evidence": "exit 0: 0 error(s), 0 warning(s)"
+    },
+    {
+      "text": "every list item of questions.md ends with exactly one question mark",
+      "passed": true,
+      "evidence": "3 items; all end with one '?': True"
+    },
+    {
+      "text": "the time-zone question is absent from questions.md (the sample file answers it)",
+      "passed": true,
+      "evidence": "no time-zone question"
+    },
+    {
+      "text": "the terminal-version question is absent from questions.md (the letter answers it)",
+      "passed": true,
+      "evidence": "no version question"
+    },
+    {
+      "text": "the CI question and the client's approval-process question are absent from questions.md",
+      "passed": true,
+      "evidence": "CI/approval questions absent"
+    },
+    {
+      "text": "the second channel appears in exactly one item of questions.md",
+      "passed": true,
+      "evidence": "1 item(s) mention the channel"
+    },
+    {
+      "text": "the field-name choice (ts) is not asked as a question (told as a fact is fine) and is recorded in internal.md",
+      "passed": true,
+      "evidence": "ts asked as a question: False; ts in internal: True"
+    },
+    {
+      "text": "internal.md records closures or default decisions with a basis",
+      "passed": true,
+      "evidence": "internal.md has closure/default/basis wording"
+    }
+  ],
+  "summary": {
+    "passed": 8,
+    "failed": 0,
+    "total": 8,
+    "pass_rate": 1.0
+  }
+}

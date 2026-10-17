@@ -1,0 +1,17 @@
+[
+  {
+    "question": "The table legacy_limits is not read by the code after the move, but it holds 14 000 rows of limit history. There is no database backup on the test bench, so deletion is irreversible. The answer changes the migration: one comment line or DROP TABLE. Only you know whether anyone outside the code needs this history. I recommend keeping it: a kept table can be deleted later, a deleted one cannot be brought back. Delete the table with a migration or keep it?",
+    "header": "Table DROP",
+    "multiSelect": false,
+    "options": [
+      {
+        "label": "Keep (recommended)",
+        "description": "The migration will add the line \"-- legacy_limits kept\", 14 000 rows of history remain. Cost of error: an extra table in the schema, deleting it later is one separate migration."
+      },
+      {
+        "label": "Delete",
+        "description": "The migration will run DROP TABLE legacy_limits, the limit history disappears with no way back: there is no backup on the test bench. Before the migration I will repeat this consequence and wait for a typed confirmation. Cost of error: 14 000 rows, nothing to restore them from."
+      }
+    ]
+  }
+]

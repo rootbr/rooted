@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Unit tests for check-skill-layout.py: one passing and one failing temporary skill tree per rule
-(a to f), the exemption list, and the command line.
+(a to g), the exemption list, and the command line.
 
 Run:  python3 -m unittest discover -s tests -p 'test_*.py'   (from the repository root)
 """
@@ -150,6 +150,35 @@ class RuleF(Tree):
         self.assertEqual(self.rules(sync_pairs=self.PAIR), ["f"])
         os.remove(os.path.join(self.tmp, self.PAIR[0][1]))
         self.assertEqual(self.rules(sync_pairs=self.PAIR), ["f"])
+
+
+class RuleG(Tree):
+    def test_prose_without_provenance_notes_passes(self):
+        self.write(SKILL + "references/rules.md",
+                   "4. Does the answer change our work? (rule 14) The tag `[eval list E1]` sits in code.\n"
+                   "Source: [Zwicky 1969, *Morphology*](https://example.org/gma.pdf), a footnote[^1] and a tag [cs.CR].\n"
+                   "```\n[Rao 2018, arXiv:1805.04655] (fetched)\n```\n"
+                   "## Source\nYang 2505.13360 §3.4 (bundling tax); Kim 2405.00623 (FAccT 2024).\n")
+        self.assertEqual(self.violations(), [])
+
+    def test_a_citation_bracket_an_eval_tag_and_a_fetch_marker_fail(self):
+        self.write(SKILL + "references/rules.md",
+                   "4. Does the answer change our work? [Rao 2018, arXiv:1805.04655; the rest untested]\n"
+                   "5. Research first. [Kahneman 2011; Tversky 1974]\n"
+                   "6. Decide by default. eval client-question-list E3 covers it.\n"
+                   "The abstract was read (fetched); the full text is **unfetched**.\n")
+        self.assertEqual(self.violations(), [
+            f"{SKILL}references/rules.md:1: g: a citation bracket in a run-set file: [Rao 2018, arXiv:1805.04655; the rest untested]",
+            f"{SKILL}references/rules.md:2: g: a citation bracket in a run-set file: [Kahneman 2011; Tversky 1974]",
+            f"{SKILL}references/rules.md:3: g: an eval expectation tag in a run-set file",
+            f"{SKILL}references/rules.md:4: g: a fetch marker in a run-set file"])
+
+    def test_a_script_and_the_maintainer_set_are_not_scanned(self):
+        self.write(SKILL + "scripts/grade.py", 'TAG = "[Rao 2018, arXiv:1805.04655]"  # (fetched)\n')
+        self.write(SKILL + "maintenance/rules-provenance.md", "- **R-1** · Rao 2018, arXiv:1805.04655 (fetched) · eval list E1\n")
+        self.write(SKILL + "maintenance/README.md", "# M\n")
+        self.write(SKILL + "README.md", "## Layout\n")
+        self.assertEqual(self.violations(), [])
 
 
 class CommandLine(Tree):
