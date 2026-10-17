@@ -29,6 +29,3 @@ For each cited claim, compare against the source's actual statement: (a) directi
 
 ## Patch output
 When a cited claim drifts from its source, emit one patch (`rule_id: R-56`, `location.section` = heading, severity high) re-aligning the claim with the source and restoring the dropped condition; set `needs_human: true` when the source was not re-fetched during the audit, since entailment is a semantic check.
-
-## Source
-Maynez 2005.00661, ACL 2020 (entailment correlates with faithfulness far better than n-gram overlap; the four drifts are intrinsic hallucination).

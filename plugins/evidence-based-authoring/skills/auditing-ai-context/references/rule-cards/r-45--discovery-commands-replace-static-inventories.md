@@ -34,6 +34,3 @@ Flag any sequence of ≥ 3 lines that enumerates files, directories, plugins, sk
 
 ## Patch output
 When auditing an enumeration of project state that the filesystem or build already answers, emit one patch (`rule_id: R-45`, location of the enumeration, severity medium) replacing it with "Run `<command>` to view current <thing>"; set `needs_human: true` when the command must first be created and allow-listed.
-
-## Source
-Gloaguen 2602.11988 App. B Fig. 12 (with repo docs removed, generated context files flip to +2.7%; anchor moved from §4.2 in v2).

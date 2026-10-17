@@ -28,6 +28,3 @@ For each agentless passive, ask two questions in order: is the agent known from 
 
 ## Patch output
 When auditing a target that keeps a known, material actor out of the subject position, emit one patch (`rule_id: S-25`, `location.section` + `line_hint`, severity low) proposing the actor-as-subject rewrite. Whether the agent is material, and whether the construction is a passive at all, are reading calls, so set `proposed: null` and `needs_human: true`.
-
-## Source
-Wolfer 2016, *Eyetracking and Applied Linguistics* 163–186, doi:10.17169/langsci.b108.298 — Table 3 p. 177 (total reading time β = 0.131, SE = 0.015, t = 8.911; skip probability β = -0.536, z = -16.087), pp. 178–179 (word-class comparison), p. 179 (baseline-model null), p. 182 (comprehension 84% / 88% / 87%); eye-tracking, 80 readers with no legal background, German court decisions — reading time only. Ferreira 2021, *American Psychologist* 76(1):145–153, doi:10.1037/amp0000620 — a review essay carrying no data of its own; p. 17 bounds the trigger to a known, material agent, p. 12 on the unreliability of surface passive detection. Both read first-hand.

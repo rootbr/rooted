@@ -29,6 +29,3 @@ For each sentence already flagged as depending on a prior state, delete its comp
 
 ## Patch output
 When a history sentence is flagged, emit one patch (`rule_id: D-02`, `location.section` + `line_hint`, `current` = the whole sentence, `proposed: null`, severity medium, `needs_human: true`) whose justification names the residue and the verdict it produces — the surviving fact for a rewrite, or the residue class for a deletion. A delete-class patch that names no residue is a recommendation, not a patch.
-
-## Source
-Verified hands-on experience — eval seeds 1–8 of the audit skill's eval suite, which split the two verdicts across one marker class. Delete: seed 1 `seed1_spec_redo.md`, seed 5 `seed5_dead_code.swift`, seed 6 `seed6_stale_ref.md`. Rewrite to the surviving fact: seed 2 `seed2_comment_history.swift`, seed 3 `seed3_hidden_cache.py`, seed 4 `seed4_hidden_actor.swift`, seed 7 `seed7_old_name.ts`. Do-not-cut control: seed 8 `seed8_negative_keep.swift`. Wen 2019, ICPC §IV-A p. 6 supplies the drift prevalence — 13%–20% of code changes trigger a class- or method-comment change — for Java systems only. Caveat: the rationale is maintenance cost, and no defect-rate claim is carried on this axis.

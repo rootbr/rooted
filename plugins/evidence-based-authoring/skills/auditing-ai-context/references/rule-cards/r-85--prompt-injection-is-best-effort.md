@@ -29,6 +29,3 @@ Find body sections describing high-trust operations (mutations, payments, deleti
 
 ## Patch output
 When auditing a high-trust operation triggered by user input with no human gate, emit one patch (`rule_id: R-85`, `location.section` = heading, severity high) proposing the same operation with an explicit human-confirmation gate before the mutation; set `needs_human: true` when whether the operation is high-trust requires judgement.
-
-## Source
-Li 2604.02837 §7.1 (prompt injection an open problem, not addressable by template discipline alone); Abdelnabi 2605.17634 §3–4.4 (limit is structural — cannot separate data from instructions without breaking the workflow); Anthropic, "How we contain Claude" (2026) — telemetry: ~93% of permission prompts approved; approval fatigue.

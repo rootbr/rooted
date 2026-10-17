@@ -28,6 +28,3 @@ Check the language of the request. Where it is not the working language, check t
 
 ## Patch output
 When auditing a reply to a request in another language that carries no leading restatement line, emit one patch (`rule_id: S-11`, `location` set to the first line, `current` = the reply's opening, `proposed` = the restatement line placed above it, severity low). Presence and position of the line are decidable from the reply itself, so no `needs_human` flag.
-
-## Source
-Yang 2505.13360 §3.2 (requirements left implicit are recovered at low rates: conditional and edge-case rules 22.9%, inferable format defaults 70.7%); Wendler 2402.10588 (multilingual transformers pivot through an abstract concept space lying closer to English than to other languages — analysis scoped to the Llama-2 family, so the transfer is an extrapolation).

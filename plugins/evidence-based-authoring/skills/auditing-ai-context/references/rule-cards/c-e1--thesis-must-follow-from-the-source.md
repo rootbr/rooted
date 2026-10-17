@@ -28,6 +28,3 @@ Compare the thesis against the source for each drift: is the direction reversed,
 
 ## Patch output
 When auditing a thesis that does not follow from its source, emit one patch (`rule_id: C-E1`, severity high) naming the drift and proposing a faithful restatement. Verifying entailment requires reading the source, so set `needs_human: true`.
-
-## Source
-KB card spec, faithfulness rules, group E; Maynez et al. ACL 2020 arXiv:2005.00661 (intrinsic hallucination; entailment correlates with faithfulness far better than n-gram overlap).

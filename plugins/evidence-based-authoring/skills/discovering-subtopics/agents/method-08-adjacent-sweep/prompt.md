@@ -28,7 +28,7 @@ Adjacent fields see structures invisible from inside the home discipline — eit
 Pick fields sharing **structural relations** (not just vocabulary) with the topic. Candidates: biology / ecology, architecture / urban planning, law / jurisprudence, economics / game theory, history, anthropology / sociology, medicine / epidemiology, engineering, linguistics, music theory, theatre / narrative, mathematics. Pick the 3–5 most structurally relevant.
 
 ### For each adjacent field
-Map the shared **relation**, not surface attributes (Gentner 1983). Produce 4–5 questions that a practitioner from that field would find:
+Map the shared **relation**, not surface attributes. Produce 4–5 questions that a practitioner from that field would find:
 - interesting in the current framing of the topic, or
 - troubling (under-addressed) in the current framing, or
 - obviously missing.
@@ -37,8 +37,6 @@ Group questions by adjacent field. Use the tag `[Adjacent:{field-name}]`.
 
 ### Cross-field synthesis (in-line)
 After the per-field questions, include 1–5 meta-questions whose relevance surfaces from ≥ 2 adjacent fields simultaneously. Tag: `[Adjacent:cross]`.
-
-Sources: [Gentner, D. (1983). "Structure-Mapping", *Cognitive Science* 7(2)](https://groups.psych.northwestern.edu/gentner/papers/Gentner83.2b.pdf); Benyus, J. (1997). *Biomimicry: Innovation Inspired by Nature*. Morrow.
 
 ## Output shape
 

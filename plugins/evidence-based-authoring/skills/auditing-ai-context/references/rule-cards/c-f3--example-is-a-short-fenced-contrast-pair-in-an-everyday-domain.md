@@ -28,6 +28,3 @@ Check the example block: is it fenced, a two-sided contrast pair (rejected/accep
 
 ## Patch output
 When auditing a card whose example is unfenced, overlong, not a contrast pair, or drawn from a niche domain, emit one patch (`rule_id: C-F3`, location of the example, severity medium) proposing a short fenced everyday-domain contrast pair. The form is mechanically decidable; set `needs_human: true` only when a faithful everyday replacement requires domain knowledge.
-
-## Source
-KB card spec, structural-consistency rules, group F (machine-parseable and uniform; an everyday domain parses for any consumer).

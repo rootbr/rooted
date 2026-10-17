@@ -34,6 +34,3 @@ Grep for `/Users/`, `/home/`, `/opt/`, `C:\`, and `~/`. For each hit inside inst
 
 ## Patch output
 When auditing a path in instruction prose that is absolute or machine-bound, emit one patch (`rule_id: R-42`, location of the path, severity high) proposing the repo-relative or symbol-based equivalent.
-
-## Source
-Verified hands-on experience: portable skills and CLAUDE.md files break on clone when they embed absolute paths. Anthropic, Agent Skills best practices — anti-pattern "Avoid Windows-style paths" (always forward slashes, even on Windows; agents navigate the skill directory like a filesystem).

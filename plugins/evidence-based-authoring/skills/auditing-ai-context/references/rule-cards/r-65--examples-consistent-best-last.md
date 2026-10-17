@@ -28,6 +28,3 @@ For each list of examples in the file: (1) count — if 1, propose adding one; i
 
 ## Patch output
 When an example list violates count, consistency, or ordering, emit one patch (`rule_id: R-65`, `location` set to the heading and line hint, `current` = the examples block, severity low) proposing the reordered, standardized, or pruned block.
-
-## Source
-Promptomatix §B.2.1 (final examples 2–3× influence; inconsistent label/format cuts effectiveness up to 40%). Appendix-B guidance ships without its own empirical citations — treat the figures as vendor-grade, not measured.

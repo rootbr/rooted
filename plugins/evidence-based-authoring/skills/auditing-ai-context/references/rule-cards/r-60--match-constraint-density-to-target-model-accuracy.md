@@ -28,6 +28,3 @@ Determine the target model from frontmatter (`model: <id>`) or treat as broad/un
 
 ## Patch output
 When auditing constraint density against the declared or inferred model target, emit one patch (`rule_id: R-60`, `location` set to the heading or frontmatter plus the model target, `current` = constraint and ALL-CAPS counts, severity medium) proposing to reduce, increase, or rephrase constraints for the tier; set `needs_human: true` when the intended tier is ambiguous.
-
-## Source
-Khan 2510.22251 §4.2, §4.4, §6.2.1, §6.3.2; Anthropic, Claude prompting best practices and the per-model guides.

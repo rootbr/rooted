@@ -28,6 +28,3 @@ Grep the body for source-deictic phrases: "this chapter", "this section", "the s
 
 ## Patch output
 When auditing a card containing source-deixis, emit one patch (`rule_id: C-C1`, location of the phrase, severity medium) rewriting the sentence to stand alone without the dangling reference. The presence of a deictic token is mechanically decidable, so no `needs_human` flag in the clear case.
-
-## Source
-KB card spec, self-containedness rules, group C (the card is read with no source in context).

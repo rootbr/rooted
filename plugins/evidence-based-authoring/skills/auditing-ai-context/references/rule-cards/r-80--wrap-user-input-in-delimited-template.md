@@ -29,6 +29,3 @@ Search the body for any instruction of the form "read user's <X>", "process the 
 
 ## Patch output
 When auditing an unwrapped user-input instruction, emit one patch (`rule_id: R-80`, `location.section` = heading, severity high) proposing the wrapped form with explicit instruction-vs-data separation.
-
-## Source
-Promptomatix 2507.14241 §B.5.1 (proactive system-prompt-tier delimiters beat reactive inline mitigation).

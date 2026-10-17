@@ -28,6 +28,3 @@ Compare the body against the description: enumerate every capability the body ex
 
 ## Patch output
 When the body gained a capability the description does not advertise, emit one patch (`rule_id: R-77`, location naming the file and commit range, severity medium, `needs_human: true`) proposing description text that advertises the new capability — the author confirms scope rather than the sub-agent silently rewriting the description.
-
-## Source
-Yang §3.3 (unspecified requirements regress > 20% over model updates ~2× as often as specified ones).

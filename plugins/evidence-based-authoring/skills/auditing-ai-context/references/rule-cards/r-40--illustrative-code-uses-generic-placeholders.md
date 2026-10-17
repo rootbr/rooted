@@ -31,6 +31,3 @@ For each code-shaped identifier in the target file, classify intent: is it point
 
 ## Patch output
 When auditing a code-shaped reference whose intent is illustrative, emit one patch (`rule_id: R-40`, location of the reference, severity medium) replacing the real identifier with `Class#method` or a domain placeholder; set `needs_human: true` when pattern-versus-pointer intent cannot be resolved from the surrounding prose.
-
-## Source
-Authoring heuristic on pattern-versus-pointer intent; verified hands-on experience maintaining portable instruction files.

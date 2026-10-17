@@ -29,6 +29,3 @@ From the discovery inventory, retrieve the normative claims grouped by topic. Fo
 
 ## Patch output
 When two sections prescribe conflicting actions for the same situation, emit one patch (`rule_id: R-70`, location naming both headings, severity high) proposing one unified rule with an explicit conditional, or the deletion of the stale rule.
-
-## Source
-Positional/primacy bias in long instructions (Hong 2025), relayed for the oscillation mechanism.

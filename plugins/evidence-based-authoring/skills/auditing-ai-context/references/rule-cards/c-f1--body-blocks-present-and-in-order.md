@@ -28,6 +28,3 @@ Parse the body headings into a sequence and compare against the corpus's require
 
 ## Patch output
 When auditing a card with a missing or misordered body block, emit one patch (`rule_id: C-F1`, severity medium) proposing the corrected block set and order. Block presence and order are mechanically decidable, so no `needs_human` flag.
-
-## Source
-KB card spec, structural-consistency rules, group F (one schema across the corpus yields predictable parse and grep context).

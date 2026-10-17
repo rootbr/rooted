@@ -28,6 +28,3 @@ Count the consumer blocks in the card and check each heading against the corpus'
 
 ## Patch output
 When auditing a card with a duplicate or misnamed consumer block, emit one patch (`rule_id: C-F2`, location of the offending block, severity medium) consolidating to one block under the corpus's name. Count and heading match are mechanically decidable, so no `needs_human` flag.
-
-## Source
-KB card spec, structural-consistency rules, group F (one block per card, one name per corpus).

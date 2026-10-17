@@ -28,6 +28,3 @@ Count the constraints the block holds simultaneously and read its order. Check t
 
 ## Patch output
 When auditing a context file whose resident block is oversized, topic-ordered, or carries the long form inline, emit one patch (`rule_id: S-02`, `location` set to the heading and line hint, severity medium) proposing the reduced core, the hard-to-easy order, and the pointer to the long form. Ranking rules by difficulty and load requires knowing the target's work, so set `proposed: null` and `needs_human: true`.
-
-## Source
-SEQUOR 2605.06353 (multi-turn constraint following: >11% accuracy drop as the conversation grows; >40% reduction under multiple simultaneous constraints; >9% when constraints are added or replaced mid-conversation — the abstract does not state absolute vs relative and gives no per-model breakdown); Order Matters 2502.17204 (performance fluctuates with constraint order; hard-to-easy ordering is the more performant one; no numeric spread in the abstract).

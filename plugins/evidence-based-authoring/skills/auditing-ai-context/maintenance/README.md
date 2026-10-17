@@ -16,6 +16,7 @@ Nothing under `maintenance/` is read or executed in a run of the audit. Paths ar
 ## Layout
 
 - `maintenance/rule-cards-provenance.md` — one line per rule card, keyed by `rule_id`: its source, origin and ownership.
+- `maintenance/skill-provenance.md` — one line per source reference behind a claim of `SKILL.md`, `references/gotchas.md` or `references/kb-card-specification.md`, keyed by gotcha id or by file and section.
 - `maintenance/rule-cards-taxonomy.md` — the card schema and the controlled vocabulary of every facet.
 - `maintenance/maintenance-map.md` — the legend of the anchor tokens runtime files carry and the dossiers of volatile dependencies with their flip sites.
 

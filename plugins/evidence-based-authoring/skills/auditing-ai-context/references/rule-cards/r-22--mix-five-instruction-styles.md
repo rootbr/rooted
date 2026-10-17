@@ -28,6 +28,3 @@ Sample 10–15 rule sentences from the body and categorize each by style. If any
 
 ## Patch output
 When a style is missing or under-represented, emit one patch (`rule_id: R-22`, `location.section` = whole file, `current` = the style distribution, severity low) proposing one or two sentences in the missing style with example phrasings; set `needs_human: true` when phrasing the new rule needs domain knowledge.
-
-## Source
-Mohsenimofidi §4.2 (five instruction styles); Yang 2505.13360 §3.2 (conditional rules recovered only 22.9% of the time when not made explicit).

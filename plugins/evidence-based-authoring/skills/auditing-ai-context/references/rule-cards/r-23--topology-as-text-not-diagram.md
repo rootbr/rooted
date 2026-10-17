@@ -28,6 +28,3 @@ Search for Mermaid fences (` ```mermaid `) and large ASCII boxes. For each occur
 
 ## Patch output
 When a Mermaid fence or ASCII diagram appears, emit one patch (`rule_id: R-23`, `location.section` + `line_hint`, `current` = the diagram, severity low) proposing the arrow-notation text equivalent.
-
-## Source
-Santos Section 5 (Mermaid found in only 2 of 328 surveyed files).

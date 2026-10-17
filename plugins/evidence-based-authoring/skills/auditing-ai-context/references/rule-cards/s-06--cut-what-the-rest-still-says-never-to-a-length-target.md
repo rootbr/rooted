@@ -28,6 +28,3 @@ For each candidate cut, restate what would remain and compare it against the ori
 
 ## Patch output
 When auditing text carrying an unearned fragment, or a cut justified by a length target, emit one patch (`rule_id: S-06`, `location` set to the heading and line hint, `current` = the fragment or the proposed cut, severity medium). Judging whether a fragment is load-bearing is a semantic call and the systematic error runs toward over-cutting, so set `proposed: null` and `needs_human: true`.
-
-## Source
-Singhal 2310.03716 (optimizing for response length is a significant factor behind RLHF gains; a purely length-based reward reproduces most downstream improvement over SFT; reward models are the dominant source of the length bias — three settings, no percentage in the abstract); Lee 2503.01141 (universal reasoning-length/accuracy tradeoff arising from a sharp per-question threshold — an intrinsic "token complexity"; adaptive compression is the recommended policy); Steyvers 2401.13835, *Nature Machine Intelligence* (users grow more confident with longer explanations even where the extra length does not improve accuracy — no magnitudes in the abstract).

@@ -25,6 +25,7 @@ This skill's instance of the repository `README.md` §Skill layout:
 | `scripts/audit-workflow.js` | the Workflow tool | every audit |
 | `maintenance/README.md` | a maintainer | before changing a card, a script, a sub-agent prompt or an eval |
 | `maintenance/rule-cards-provenance.md` | a maintainer | adding a card or re-verifying its source |
+| `maintenance/skill-provenance.md` | a maintainer | re-verifying a source behind `SKILL.md`, a gotcha or the KB card specification |
 | `maintenance/rule-cards-taxonomy.md` | a maintainer | adding a card or a facet value |
 | `maintenance/maintenance-map.md` | a maintainer, a reviewer | decoding an anchor token, flipping a volatile dependency |
 | `evals/` | a maintainer | a model upgrade, an edit judged against eval results |

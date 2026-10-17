@@ -28,6 +28,3 @@ Locate the spoken span. Read it alone, with the printed reply hidden, and ask wh
 
 ## Patch output
 When auditing an answer whose span carries less than the printed conclusion, or speaks material only the screen can carry, emit one patch (`rule_id: S-22`, `location.section` + `line_hint`, severity medium) proposing a span that states the conclusion whole and leaves the unspeakable material on screen. Identifying the conclusion requires reading the whole reply, so set `proposed: null` and `needs_human: true`.
-
-## Source
-Moreno & Mayer 2002, *J. Educational Psychology* 94(1):156–163, doi:10.1037/0022-0663.94.1.156, p. 158 — 74 college students aged 18–26 heard a lightning explanation as narration alone or as narration plus identical on-screen text, no concurrent animation; d = 0.78 retention, 1.62 transfer, 0.39 matching, all favouring the duplicated presentation. Mayer & Fiorella 2014, *Cambridge Handbook of Multimedia Learning* 2nd ed., ch. 12, doi:10.1017/CBO9781139547369.015 — pp. 279 and 297 (16 of 16 tests, median d = 0.86, range 0.19–1.91, the with-graphics case), pp. 299–300 (the stated boundary conditions). Both read first-hand; the effects are defined for multimedia instruction scored by retention and transfer tests.

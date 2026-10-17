@@ -28,6 +28,3 @@ Find prose that implies a conditional ("usually", "in most cases", "for typical 
 
 ## Patch output
 When prose implies a conditional without naming both branches, emit one patch (`rule_id: R-67`, `location` set to the heading and line hint, `current` = the implicit-conditional prose, severity medium) proposing the explicit conditional with both branches; set `needs_human: true` when the alternative branch's behavior is unknown.
-
-## Source
-Yang 2505.13360 §3.2 (format defaults inferred 70.7%; conditional / edge-case rules only 22.9%).

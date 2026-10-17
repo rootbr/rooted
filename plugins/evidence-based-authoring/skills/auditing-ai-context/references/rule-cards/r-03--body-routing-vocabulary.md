@@ -28,6 +28,3 @@ Inventory concrete tokens in the body — tool names, file extensions, framework
 
 ## Patch output
 When auditing a skill or agent-prompt body, emit one patch (`rule_id: R-03`, severity medium) adding concrete tool / file / framework tokens to the abstract passage; set `needs_human: true` when the real tools and files cannot be inferred from the file alone.
-
-## Source
-SkillRouter 2603.22455 §3, Fig 1 (31–44 pp Hit@1 from body ablation); App. A, Table 7 (catalog-wide median body 704 words vs 21-word description).

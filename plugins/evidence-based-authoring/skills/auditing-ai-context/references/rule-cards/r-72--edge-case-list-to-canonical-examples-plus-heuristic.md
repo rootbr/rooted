@@ -28,6 +28,3 @@ Scan each section for runs of 8 or more sequential conditional bullets of the fo
 
 ## Patch output
 When a section holds a long flat conditional list reducible to one rule, emit one patch (`rule_id: R-72`, location naming the section, severity medium) replacing the list with a declarative heuristic plus 3 to 5 representative examples.
-
-## Source
-Yang 2505.13360 §3.4 (bundling tax — each independent rule displaces others; heuristic + examples is ~1/10 the tokens).

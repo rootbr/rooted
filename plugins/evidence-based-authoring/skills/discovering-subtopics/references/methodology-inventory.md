@@ -40,13 +40,13 @@
 Break the topic into independent dimensions and enumerate possible states within each.
 
 ### Starbursting (5W1H questioning)
-Six question vectors (Who / What / Where / When / Why / How) applied to the topic. **Generate questions only — do not answer.** Primary lineage: Kipling, *Just So Stories* (1902) — "six honest serving-men"; modern form popularized in creative-problem-solving literature (see [Mindtools, *Starbursting*](https://www.mindtools.com/ab1w9zu/starbursting/)).
+Six question vectors (Who / What / Where / When / Why / How) applied to the topic. **Generate questions only — do not answer.**
 
 ### Morphological analysis (Zwicky box)
-List 3–7 logically independent parameters of the topic; list 3–7 values for each parameter; walk the n-dimensional matrix. Every cell is a candidate case. Combinations the canonical source doesn't address are non-obvious questions. Source: [Zwicky, 1969, *Discovery, Invention, Research — Through the Morphological Approach*](https://www.swemorph.com/pdf/gma.pdf) (Macmillan).
+List 3–7 logically independent parameters of the topic; list 3–7 values for each parameter; walk the n-dimensional matrix. Every cell is a candidate case. Combinations the canonical source doesn't address are non-obvious questions.
 
 ### SCAMPER
-Seven transformations applied to the topic: **S**ubstitute, **C**ombine, **A**dapt, **M**odify/Magnify, **P**ut to other uses, **E**liminate, **R**everse. Each transformation forces a distinct class of questions. Source: Eberle, B. (1971). *SCAMPER: Games for Imagination Development*; rooted in Osborn's *Applied Imagination* (1953) checklist questions.
+Seven transformations applied to the topic: **S**ubstitute, **C**ombine, **A**dapt, **M**odify/Magnify, **P**ut to other uses, **E**liminate, **R**everse. Each transformation forces a distinct class of questions.
 
 ---
 
@@ -54,7 +54,7 @@ Seven transformations applied to the topic: **S**ubstitute, **C**ombine, **A**da
 
 Force the topic through structurally different eyes.
 
-### Six Thinking Hats (de Bono)
+### Six Thinking Hats
 Six cognitive modes, applied sequentially, each generating a distinct question class:
 - **White** — facts, data, what is known
 - **Red** — emotions, intuitions, unreasoned reactions
@@ -63,16 +63,14 @@ Six cognitive modes, applied sequentially, each generating a distinct question c
 - **Green** — creativity, alternatives, possibilities
 - **Blue** — process, meta, governance of the inquiry itself
 
-Source: de Bono, E. (1985). *Six Thinking Hats*. Little, Brown.
-
 ### Stakeholder mapping
-Enumerate everyone affected by or interested in the topic: users, critics, regulators, outsiders, beneficiaries, opponents, future adopters, future victims. For each party, ask: *what do they want to understand about this topic that no one else does?* Source: Freeman, R. E. (1984). *Strategic Management: A Stakeholder Approach*. Pitman.
+Enumerate everyone affected by or interested in the topic: users, critics, regulators, outsiders, beneficiaries, opponents, future adopters, future victims. For each party, ask: *what do they want to understand about this topic that no one else does?*
 
 ### Rolestorming
-Temporarily adopt a specific persona — novice, skeptic, regulator, child, competitor, domain outsider — and generate questions exclusively from that persona's viewpoint. Blocks the author's default frame. Source: Griggs, R. E. (1985). *Rolestorming*. Training Magazine; formalized in [VanGundy 2004 *101 Activities for Teaching Creativity and Problem Solving*](https://www.griggsachieve.com/Rolestorming/).
+Temporarily adopt a specific persona — novice, skeptic, regulator, child, competitor, domain outsider — and generate questions exclusively from that persona's viewpoint. Blocks the author's default frame.
 
 ### Cross-domain analogy
-Ask how a biologist, architect, lawyer, economist, historian, musician, or any adjacent-discipline practitioner would frame the topic. Surface the questions their training would prompt. Underpinned by Gentner's structure-mapping theory: map **relations, not attributes**. Source: [Gentner, D. (1983). "Structure-Mapping: A Theoretical Framework for Analogy", *Cognitive Science* 7(2)](https://groups.psych.northwestern.edu/gentner/papers/Gentner83.2b.pdf).
+Ask how a biologist, architect, lawyer, economist, historian, musician, or any adjacent-discipline practitioner would frame the topic. Surface the questions their training would prompt. Underpinned by structure-mapping theory: map **relations, not attributes**.
 
 ---
 
@@ -81,13 +79,13 @@ Ask how a biologist, architect, lawyer, economist, historian, musician, or any a
 Turn the topic upside down to reach questions forward thinking never visits.
 
 ### Munger-Jacobi inversion
-Flip the framing: instead of *how does this work?* ask *under what conditions does it break, become false, or produce the opposite?* Source: Munger, C. (1986). "Harvard School commencement speech" — *Invert, always invert* — attributed to Carl Jacobi, 19th-century mathematician.
+Flip the framing: instead of *how does this work?* ask *under what conditions does it break, become false, or produce the opposite?*
 
 ### Pre-mortem
-Assume the plan / understanding / investigation has already failed; reconstruct the questions that were never asked and would have surfaced the failure. Source: [Klein, G. (2007). "Performing a Project Premortem", *Harvard Business Review*](https://hbr.org/2007/09/performing-a-project-premortem) — reports a 30 % risk-forecast accuracy lift via prospective hindsight (Mitchell, Russo & Pennington 1989).
+Assume the plan / understanding / investigation has already failed; reconstruct the questions that were never asked and would have surfaced the failure. Prospective hindsight is reported to lift risk-forecast accuracy by 30 %.
 
 ### Reverse brainstorming
-Instead of *how do we understand / solve this?* ask *how would we guarantee maximum misunderstanding or failure?* Invert the anti-answers into questions. Source: creative-problem-solving literature; see [Design Thinking Tools: Reverse Brainstorming](https://www.designorate.com/design-thinking-tools-reverse-brainstorming/).
+Instead of *how do we understand / solve this?* ask *how would we guarantee maximum misunderstanding or failure?* Invert the anti-answers into questions.
 
 ---
 
@@ -96,13 +94,13 @@ Instead of *how do we understand / solve this?* ask *how would we guarantee maxi
 Follow causes and effects until root questions emerge.
 
 ### 5 Whys
-Each answer generates a new *why?* Iterative causal drilling. Five is a heuristic; stop when further *why* no longer reveals structure. Source: Ohno, T. (1988). *Toyota Production System: Beyond Large-Scale Production*. Productivity Press. Attribution: Sakichi Toyoda, founder of Toyota.
+Each answer generates a new *why?* Iterative causal drilling. Five is a heuristic; stop when further *why* no longer reveals structure.
 
 ### Systems thinking
-Identify the topic's **stocks** (accumulations), **flows** (rates), **balancing loops** (self-correcting), and **reinforcing loops** (self-amplifying). Ask about delays, buffers, emergent properties, second- and third-order effects, and leverage points. Source: Meadows, D. H. (2008). *Thinking in Systems: A Primer*. Chelsea Green Publishing. Foundational: Forrester, J. (1961). *Industrial Dynamics*. MIT Press.
+Identify the topic's **stocks** (accumulations), **flows** (rates), **balancing loops** (self-correcting), and **reinforcing loops** (self-amplifying). Ask about delays, buffers, emergent properties, second- and third-order effects, and leverage points.
 
 ### TRIZ contradiction analysis
-Identify **technical contradictions** (improving X worsens Y) and **physical contradictions** (one property must be both A and not-A). Questions arise about the contradictions themselves and about the field's evasions of them. Source: Altshuller, G. (1984). *Creativity as an Exact Science: The Theory of the Solution of Inventive Problems*. Gordon and Breach. Original Russian work: 1946–1979.
+Identify **technical contradictions** (improving X worsens Y) and **physical contradictions** (one property must be both A and not-A). Questions arise about the contradictions themselves and about the field's evasions of them.
 
 ---
 
@@ -115,10 +113,10 @@ Shift the time horizon and the level of magnification.
 - **Present** — what is actively contested right now?
 - **Future** — where is this heading? What could change everything?
 
-Grounded in futures-studies practice: Bell, W. (1997). *Foundations of Futures Studies*. Transaction Publishers. Also *back-casting* from desired futures (Dreborg 1996).
+Grounded in futures-studies practice, including *back-casting* from desired futures.
 
 ### Scale shifting
-What changes when moving micro → macro, individual → systemic, local → global, short-term → long-term? Each scale surfaces a distinct question class. Holonic / nested-scale framing: Koestler, A. (1967). *The Ghost in the Machine*. Hutchinson.
+What changes when moving micro → macro, individual → systemic, local → global, short-term → long-term? Each scale surfaces a distinct question class; the framing is holonic, of nested scales.
 
 ---
 
@@ -127,10 +125,10 @@ What changes when moving micro → macro, individual → systemic, local → glo
 Make the invisible visible.
 
 ### First principles
-What must be true for everything else in this topic to hold? Strip each claim until only bedrock truths remain (axioms, physical constants, definitional invariants). Rebuild upward from the bedrock; mismatches with the field's standard decomposition are non-obvious questions. Sources: Aristotle, *Posterior Analytics* (Book I); Descartes, *Discourse on the Method* (1637), Part II.
+What must be true for everything else in this topic to hold? Strip each claim until only bedrock truths remain (axioms, physical constants, definitional invariants). Rebuild upward from the bedrock; mismatches with the field's standard decomposition are non-obvious questions.
 
 ### Assumption mapping
-Explicitly list everything taken for granted about the topic. For each item, ask: *what if this is false?* Questions that remain important under the negation are questions the canonical source hides. Source: VanGundy, A. B. (1988). *Techniques of Structured Problem Solving* (2nd ed.). Van Nostrand Reinhold — rooted in Osborn's *Applied Imagination* (1953) "rearrange / reverse" checklist.
+Explicitly list everything taken for granted about the topic. For each item, ask: *what if this is false?* Questions that remain important under the negation are questions the canonical source hides.
 
 ---
 
@@ -161,7 +159,7 @@ Triangulation discipline is detailed in [source-triangulation.md](source-triangu
 
 Operationalize cross-domain analogy into a scan. Identify 3–5 fields that neighbor or intersect the topic; for each, ask what a practitioner from that field would find interesting, troubling, or obviously missing in how the topic is currently framed. Adjacent fields see structures invisible from inside the home discipline — they have either solved analogous problems or asked fundamentally different questions about the same phenomena.
 
-Grounded in Gentner structure-mapping (1983) and in biomimicry literature: Benyus, J. (1997). *Biomimicry: Innovation Inspired by Nature*. Morrow.
+Grounded in structure-mapping theory and in biomimicry.
 
 ---
 
@@ -175,7 +173,7 @@ Ask questions about the topic's structure, history, and framing — not its cont
 - Who benefits from the current framing, and who does not?
 - What assumptions are so foundational that the field has stopped noticing them?
 
-Grounded in Paul & Elder's Socratic "question about the question" type (the sixth Socratic type). Source: [Paul, R. & Elder, L. (2006). *The Thinker's Guide to Socratic Questioning*](https://www.criticalthinking.org/files/SocraticQuestioning2006.pdf). Critical-systems-heuristics framing: Ulrich, W. (1983). *Critical Heuristics of Social Planning*.
+Grounded in the Socratic "question about the question" type (the sixth Socratic question type) and in critical-systems heuristics.
 
 ---
 

@@ -28,6 +28,3 @@ Count headings by level to build a histogram (`H1=N, H2=N, H3=N, H4=N, ...`). If
 
 ## Patch output
 When an H4 or deeper heading appears, emit one patch (`rule_id: R-20`, `location.section` = the H4 heading, severity low) proposing to promote the parent H3 to H2 and this H4 to H3.
-
-## Source
-Chatlatanagulchai 2509.14744 (median across 253 files H1=1, H2=5, H3=9; H4 in 37/253, under 15%).

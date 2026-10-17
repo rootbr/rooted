@@ -29,6 +29,3 @@ Check that the card carries an applicability facet and a limits/counter-example 
 
 ## Patch output
 When auditing a card with no self-situating scope, emit one patch (`rule_id: C-C3`, severity medium) proposing an applicability value and a limits boundary. Determining the correct scope requires judgement, so set `needs_human: true`.
-
-## Source
-KB card spec, self-containedness rules, group C; Anthropic Contextual Retrieval (situating context cuts top-20 retrieval failure 35%, 49% with lexical matching, 67% with reranking).

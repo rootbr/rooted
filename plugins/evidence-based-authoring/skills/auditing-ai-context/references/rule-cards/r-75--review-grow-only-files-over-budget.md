@@ -28,6 +28,3 @@ Compare the line and token counts recorded in the discovery inventory against th
 
 ## Patch output
 When the inventory marks a file over budget, emit one patch (`rule_id: R-75`, location naming the file, `current` = line/token count, severity medium) proposing a refactor pass that lists 3 to 5 candidate sections for demotion or split.
-
-## Source
-ACE, Zhang 2510.04618 §2.2 (bulk paraphrase compression drops accuracy 9.6 pp — hence refactor, not rewrite).

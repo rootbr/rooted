@@ -28,6 +28,3 @@ For each shape constraint — output schema, length cap, mandated opening, fixed
 
 ## Patch output
 When auditing text whose shape constraint binds the reasoning rather than the delivered artifact, emit one patch (`rule_id: S-01`, `location` set to the heading and line hint, `current` = the constraint as written, severity high) proposing that the constraint be scoped to the finished artifact. Judging what a constraint governs requires reading intent, so set `proposed: null` and `needs_human: true`.
-
-## Source
-Capacity, Not Format 2606.09410 (4 models × 5 benchmarks, 0% parse failures: −36.2 pp p < 0.0001; −28.0 pp p < 0.001; 96.2% → 91.0% under JSON; 88.7 ± 4.0 vs 89.3 ± 1.7 unaffected; penalty scales with schema complexity, McNemar p < 0.0001; delayed-structure recovery 80–87%); Tam 2408.02442 (significant decline in reasoning under format restrictions; stricter constraints degrade more — no figures in the abstract); Lanham 2307.13702 (step-by-step reasoning before answering improves performance).

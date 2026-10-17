@@ -28,6 +28,3 @@ Scan paragraphs. A paragraph with numbered or pseudo-numbered items ("First, …
 
 ## Patch output
 When a block's form mismatches its content, emit one patch (`rule_id: R-21`, `location.section` + `line_hint`, severity low) proposing the converted form (list, table, or split sentences); set `needs_human: true` when the content type is ambiguous.
-
-## Source
-Hong 2025 (structural coherence hurts retrieval in long inputs); ACE 2510.04618 §3.1 (itemized bullets outperform monolithic prose, permitting localized edits).

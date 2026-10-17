@@ -28,6 +28,3 @@ Find every place a distinction rides on colour alone: a diff-style block whose l
 
 ## Patch output
 When auditing an answer where colour is the only carrier of a distinction, emit one patch (`rule_id: S-08`, `location` set to the block and line hint, `current` = the colour-only row, `proposed` = the same row with the word, prefix, or symbol added, severity medium). Presence or absence of a text token is decidable from the answer itself, so no `needs_human` flag in the clear case.
-
-## Source
-WCAG 2.2, Success Criterion 1.4.1 *Use of Color*, Level A, and technique G14 (<https://www.w3.org/WAI/WCAG22/Understanding/use-of-color.html>); Cleveland & McGill 1984, *JASA* 79(387):531–554, doi:10.1080/01621459.1984.10478080, pp. 532 and 536.

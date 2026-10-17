@@ -28,6 +28,3 @@ Read the first sentence of each section: does it state a rule, fact, or instruct
 
 ## Patch output
 When an opening sentence only frames or comments on structure, emit one patch (`rule_id: R-25`, `location.section` + `line_hint`, `current` = the intro sentence, severity low) deleting it so the first rule moves into first position; set `needs_human: true` when the sentence also carries content that must be preserved.
-
-## Source
-Chatlatanagulchai 2509.14744 (token-economy convention; framing sentences are overhead).

@@ -29,6 +29,3 @@ If the file mentions installing community skills or accepting skill updates, loo
 
 ## Patch output
 When auditing an install or update instruction with no consent diff, emit one patch (`rule_id: R-84`, `location.section` = heading, severity medium) proposing the same instruction with an explicit diff against the last-consented version; set `needs_human: true` when accepting the diff requires a human review decision.
-
-## Source
-Li 2604.02837 §3.3 (trust binds to identity; post-install content changes bypass consent); Ji 2607.02357 abstract (self-extracting-skill packing bypasses all eight tested scanners at >90% — install-time scanning is defeatable).

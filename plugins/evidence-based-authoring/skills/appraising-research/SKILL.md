@@ -9,7 +9,7 @@ description: "Critically appraises a finished research report, recommendation, o
 
 Dispatcher for seven complementary critique methods plus an adjudicator, an adversarial-debate stage, and a reader-facing synthesis. The critic's job is to find **what genuinely needs re-checking, ranked** — not to rewrite the report and not to praise it. A false positive erodes trust in the whole appraisal; every finding MUST quote a verbatim anchor from the report or a source. Default bias: *a load-bearing weakness I can prove* beats *a long list of quibbles*.
 
-**Load-bearing design rule — external grounding is mandatory.** Pure self-reflection is an unreliable critic: intrinsic self-correction can degrade reasoning (Huang et al. 2023), and models are sycophantic (Sharma et al. 2023) and self-preferring (Zheng et al. 2023). So every agent obeys four invariants, restated in each agent prompt:
+**Load-bearing design rule — external grounding is mandatory.** Pure self-reflection is an unreliable critic: intrinsic self-correction can degrade reasoning, and models are sycophantic and self-preferring. So every agent obeys four invariants, restated in each agent prompt:
 
 1. **Adversarial framing** — find the flaw / refute the claim; never "confirm it's good".
 2. **Clean separate context** — each agent is a fresh sub-agent that did not author the report.
@@ -54,7 +54,7 @@ Dispatch the **decomposer** ([agents/decomposer/prompt.md](agents/decomposer/pro
 
 ### Phase 2: Execute methods
 
-For each method, write a thin spawn prompt to `prompts/cNN-*.md` that tells the sub-agent to **read its canonical prompt at `agents/method-cNN-*/prompt.md` in this skill directory and follow it**, and supplies the inputs: report path, `run_dir`, output path (`outputs/cNN-*.md`), and `depth_budget`. Reading the canonical file (not an inlined copy) is what makes the prompt's relative links — `../../references/appraisal-methodology.md`, `../../references/finding-schema.md` — resolve. Dispatch every method whose output is missing or incomplete in **batches of 4** with `run_in_background: true` (the cap protects against session-quota exhaustion; do not raise it). Barrier: proceed to Phase 3 only after all seven outputs end with the marker.
+For each method, write a thin spawn prompt to `prompts/cNN-*.md` that tells the sub-agent to **read its canonical prompt at `agents/method-cNN-*/prompt.md` in this skill directory and follow it**, and supplies the inputs: report path, `run_dir`, output path (`outputs/cNN-*.md`), and `depth_budget`. Reading the canonical file (not an inlined copy) is what makes the prompt's relative links — `../../references/appraisal-methodology.md`, `../../references/finding-schema.md` — resolve. Dispatch every method whose output is missing or incomplete in **batches of 4** with `run_in_background: true` (the cap protects against session-quota exhaustion; do not raise it). Barrier: proceed to Phase 3 only after all seven outputs carry the Phase 0 sentinel.
 
 | Method | Axis | Prefix | Agent prompt |
 |--|--|--|--|
@@ -117,11 +117,11 @@ The skill is idempotent: a re-invocation with the same report enters §Phase 0, 
 
 ## Gotchas
 
-G-01. The `<!-- COMPLETE -->` sentinel is the **only** truth signal for stage completion. Timestamps and exit codes are advisory. Grep for the sentinel before advancing.
+G-01. The `<!-- COMPLETE -->` sentinel is the **only** truth signal for stage completion. Timestamps and exit codes are advisory.
 
 G-02. Retrieval-grounded methods (c02 source-integrity, c06 beneficiary-funding) and the debaters take 2–3× longer because they fetch external pages. Long runtime is not failure.
 
-G-03. Overlap between methods is a **feature** — the same weakness from c03 and c05 is cross-validation. The adjudicator merges into the stronger formulation; do not deduplicate inside a method agent.
+G-03. Overlap between methods is a **feature** — the same weakness from c03 and c05 is cross-validation. Phase 3 merges them; do not deduplicate inside a method agent.
 
 G-04. A method returning `## No findings` is often correct, not a failure. Do not retry a quiet agent hoping for findings; a clean axis is a real result the synthesis should report.
 

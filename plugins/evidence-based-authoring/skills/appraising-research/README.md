@@ -13,3 +13,4 @@ Critically appraises a finished research report or analytical document: seven in
 | `references/finding-schema.md` | the session and every agent that emits or ranks findings | when a finding is written or ranked |
 | `references/checkpointing-protocol.md` | the session | on start and on resume |
 | `maintenance/README.md` | a maintainer | when the skill is evaluated, iterated or gated before a commit; never in a run |
+| `maintenance/appraisal-methodology-provenance.md` | a maintainer | adding a method or re-verifying the source behind a methodology claim; never in a run |

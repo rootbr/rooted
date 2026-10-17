@@ -28,6 +28,3 @@ For each MUST / SHALL / safety rule, record its line position and compute `posit
 
 ## Patch output
 When a load-bearing rule sits past ~30% of the file, emit one patch (`rule_id: R-14`, `location.position_pct` set, severity medium) proposing to hoist it into a top-of-file Quick Rules block while keeping the canonical body in its current section.
-
-## Source
-Hong 2025 (Context Rot): retrieval accuracy highest near input start, decay compounds with length; structural coherence hurts. Reports direction, not a percentage; ~30% is a working heuristic.

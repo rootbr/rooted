@@ -29,6 +29,3 @@ Check that the card ends with one consumer block naming all three: the sub-task,
 
 ## Patch output
 When auditing a card whose consumer block is absent or incomplete, emit one patch (`rule_id: C-D2`, severity medium) proposing a block that names the sub-task, the consumer, and the output field. Identifying the correct three requires knowing the pipeline, so set `needs_human: true`.
-
-## Source
-KB card spec, consumer-applicability rules, group D (without this bridge the card is a passive fact; with it the consumer knows when, who, and where).

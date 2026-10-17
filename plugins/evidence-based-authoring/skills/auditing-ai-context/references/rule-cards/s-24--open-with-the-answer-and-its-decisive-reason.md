@@ -28,6 +28,3 @@ Read the opening sentence alone. Ask whether it states the answer to the questio
 
 ## Patch output
 When auditing a target whose opening withholds the answer, emit one patch (`rule_id: S-24`, `location.section` + `line_hint`, severity medium) proposing an opening that states the answer and its decisive reason. Which reason is decisive, and whether the conclusion is contestable for this reader, are reading calls, so set `proposed: null` and `needs_human: true`.
-
-## Source
-Sternadori 2008, *Cognitive processing of news as a function of structure: a comparison between inverted pyramid and chronology*, PhD dissertation, University of Missouri-Columbia — https://pdfs.semanticscholar.org/f2eb/ad1fa4020d0647314314457ec2c003516087.pdf, p. vii and pp. 48–49 Tables 1–4: recognition F(1,50) = .01, p = .94; cued recall F(1,50) = 1.32, p = .26; comprehension F(1,49) = 3.20, p = .08; secondary-task reaction time F(1,44) = 3.92, p = .05 (396.4 ms against 412.7 ms). Read first-hand. One dissertation, printed news stories, whole-text reading; the premise→conclusion switch is a house heuristic, not a measured one.

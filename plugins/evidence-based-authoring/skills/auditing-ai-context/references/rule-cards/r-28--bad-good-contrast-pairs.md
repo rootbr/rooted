@@ -28,6 +28,3 @@ For each MUST or SHOULD rule, check whether at least one bad/good pair is adjace
 
 ## Patch output
 When a normative rule lacks an adjacent contrast example, emit one patch (`rule_id: R-28`, `location.section` + `line_hint`, `current` = the rule sentence, severity low) proposing an added pair (`bad: … / good: …`); set `needs_human: true` when constructing the example needs domain knowledge.
-
-## Source
-Chatlatanagulchai 2509.14744 (contrast-pair convention; normative rules gain from bad/good examples).

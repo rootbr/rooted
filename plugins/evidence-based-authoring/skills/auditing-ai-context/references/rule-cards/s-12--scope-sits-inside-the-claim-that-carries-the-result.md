@@ -28,6 +28,3 @@ Read the sentence carrying the result, then each caveat beneath it. Ask which of
 
 ## Patch output
 When auditing a target whose result claim is wider than what was done, with the narrowing parked in a trailing caveat, emit one patch (`rule_id: S-12`, `location.section` + `line_hint`, `current` = the claim together with the caveat, severity medium) proposing the result restated with its scope inside it. Telling a caveat that narrows the claim from one that states a consequence the reader must act on is a reading call, so set `proposed: null` and `needs_human: true`.
-
-## Source
-Yavchitz, Ravaud, Hopewell, Baron & Boutron 2014, *BMC Medical Research Methodology* 14:123, doi:10.1186/1471-2288-14-123, Table 4 and the trial abstract; Kim 2405.00623 (FAccT 2024).

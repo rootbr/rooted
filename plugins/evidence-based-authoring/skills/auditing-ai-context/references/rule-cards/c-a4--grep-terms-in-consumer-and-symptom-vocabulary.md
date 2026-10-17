@@ -28,6 +28,3 @@ Read the grep fields against the thesis: do they include the words a practitione
 
 ## Patch output
 When auditing a card whose grep terms lack consumer-vocabulary or symptom phrasing, emit one patch (`rule_id: C-A4`, `location.field` = the grep field, severity high). This is a semantic judgement of which lay terms apply, so set `needs_human: true`.
-
-## Source
-KB card spec, identity/retrievability rules, group A (grep is blind to source-only vocabulary); Anthropic Contextual Retrieval (recall@5 0.63 → 0.80 after adding symptom terms to 24 cards).

@@ -28,6 +28,3 @@ For each fenced code block, decide its source: generic syntax illustration, or p
 
 ## Patch output
 When a fenced block reproduces project code, emit one patch (`rule_id: R-74`, location naming the section, severity low) replacing the block with a pointer (`see <Class>#<method>`) plus, for short pattern-teaching snippets, a one- or two-line description.
-
-## Source
-Santos §5 (code examples in 17.68% of Development Guidelines sections).

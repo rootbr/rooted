@@ -28,6 +28,3 @@ For each sentence, identify the element recoverable from what precedes it and th
 
 ## Patch output
 When auditing prose whose sentence opens on new material or buries its emphasis mid-sentence, emit one patch (`rule_id: S-04`, `location` set to the heading and line hint, `current` = the sentence, severity low) proposing the given-first, new-last order. Deciding which element the reader already holds requires reading the surrounding text, so set `proposed: null` and `needs_human: true`.
-
-## Source
-Haviland & Clark 1974, *Journal of Verbal Learning and Verbal Behavior* 13:512–521, doi:10.1016/S0022-5371(74)80003-4 — Exp. I 835 vs 1016 ms (Δ181 ms, minF'(1,36) = 6.47, p < .025, n = 16); Exp. II with repetition controlled 1031 vs 1168 ms (Δ137 ms, minF'(1,23) = 15.7, p < .001, n = 10). Caveat: undergraduates, two-sentence pairs, comprehension-time measure — transfer to expert technical prose is an extrapolation.

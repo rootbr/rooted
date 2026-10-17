@@ -29,6 +29,3 @@ Search the body for sub-agent dispatch instructions. For each, check whether the
 
 ## Patch output
 When auditing a sub-agent dispatch with full inheritance, emit one patch (`rule_id: R-83`, `location.section` = heading, severity medium) proposing the dispatch with an explicit minimal tool set, declarative where the runtime allows.
-
-## Source
-OWASP Agentic Skills Top 10 v1.0 AST03 (least privilege). Caveat: not every dispatcher enforces a declared allowlist — Claude Code dynamic workflows grant `Write`/`Edit` regardless of `tools:` (claude-code#63762, disk-verified 2026-05).

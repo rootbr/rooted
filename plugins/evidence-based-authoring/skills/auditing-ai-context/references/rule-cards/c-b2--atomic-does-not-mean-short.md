@@ -29,6 +29,3 @@ Read the thesis and ask what conditions govern it: are the preconditions, trade-
 
 ## Patch output
 When auditing a card compressed below the qualifiers its thesis needs, emit one patch (`rule_id: C-B2`, severity medium) proposing restoration of the missing precondition, trade-off, or counter-example. Whether a qualifier is load-bearing is a judgement, so set `needs_human: true`.
-
-## Source
-KB card spec, atomicity rules, group B; ACE arXiv:2510.04618 (summary rewrite dropped accuracy 66.7 → 57.1, below the 63.7 no-context baseline); Anthropic (minimal does not necessarily mean short).

@@ -28,6 +28,3 @@ Find every fenced block whose rows carry bar glyphs (`▁▂▃▄▅▆▇█`)
 
 ## Patch output
 When auditing a target whose magnitude row draws a bar with no printed value, emit one patch (`rule_id: S-21`, `location.section` + `line_hint`, severity medium) proposing that the value be printed on the row. The quantity the bar encodes is not recoverable from the rendered text, so set `proposed: null` and `needs_human: true`.
-
-## Source
-Cleveland & McGill 1984, *JASA* 79(387):531–554, doi:10.1080/01621459.1984.10478080 — p. 541 (length errors 40%-250% larger than position), p. 542 (gross errors at 5.3 times the position rate), pp. 539–542 (two experiments, 51 usable subjects each, bar and pie charts), p. 536 (the six-rank ordering is hypothesized, not measured; length sits at rank 3, position along a common scale at rank 1), p. 531 and p. 552 (the guideline and its bound). Read first-hand from page images.

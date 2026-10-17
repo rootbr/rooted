@@ -28,6 +28,3 @@ For each sentence, check whether anything sits between the subject and its verb,
 
 ## Patch output
 When auditing prose that embeds a clause between a subject and its verb, emit one patch (`rule_id: S-05`, `location` set to the heading and line hint, `current` = the sentence, severity low) proposing the left-to-right reordering. Judging where the peak of open dependencies falls, and which reordering preserves the claim, is a semantic call, so set `proposed: null` and `needs_human: true`.
-
-## Source
-Gibson 2000, *The Dependency Locality Theory: A Distance-Based Theory of Linguistic Complexity*, in *Image, Language, Brain* (MIT Press) pp. 95–126, §5.2 at pp. 97–98 — difficulty indexed by the maximal number of incomplete syntactic dependencies (1 / 3 / 5 across the worked series); the minimal pair, the same words reordered out of the nesting, is easier — <https://tedlab.mit.edu/tedlab_website/researchpapers/Gibson_2000_DLT.pdf>. Shubi 2502.11150 (readability formulas, NLP-based methods, commercial systems and frontier LLMs are all poor predictors of eye-tracked reading ease; holds across L1/L2, reading regimes, and text lengths).

@@ -28,6 +28,3 @@ Classify each section of the file. Conventions: naming, formatting, tooling, lin
 
 ## Patch output
 When a class of the triple is missing from a hot-tier file, emit one patch (`rule_id: R-13`, `location.tier: hot`, `current` = which class is missing, severity medium) proposing a section skeleton (heading plus a 3-line bullet skeleton) for the missing class.
-
-## Source
-Lulla 2601.20404 (qualifying triple = inclusion criterion; −20.08% output tokens; partial triples untested).

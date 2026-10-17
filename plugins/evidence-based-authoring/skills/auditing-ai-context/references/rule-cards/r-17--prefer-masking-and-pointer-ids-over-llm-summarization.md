@@ -28,6 +28,3 @@ For skills whose tools return large blobs: if the tool inlines the blob → prop
 
 ## Patch output
 When an observation-handling instruction relies on summarization or inlines a large blob, emit one patch (`rule_id: R-17`, `current` = observation-handling instruction, `proposed` = masking or pointer-ID instruction, severity low). Set `needs_human: true` when the right mechanism depends on tool behavior the auditor cannot see.
-
-## Source
-Lindenbauer 2508.21433 §1 (tool outputs ~84% of agent tokens); Bulle Labate 2511.22729 §3.1–3.2 (masking 50.9–57.1%; summarization 41.5–55.4% + 0.65–7.20% pass; pointer-ID ~7× measured / ~16,900× estimated).

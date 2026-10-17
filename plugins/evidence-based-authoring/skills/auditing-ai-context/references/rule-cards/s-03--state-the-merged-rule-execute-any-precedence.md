@@ -28,6 +28,3 @@ Find pairs of rules that can both apply to one case and prescribe different acti
 
 ## Patch output
 When auditing a file that leaves two conflicting peer rules standing behind a declared precedence, emit one patch (`rule_id: S-03`, `location` set to the heading and line hint, `current` = the clause plus the conflicting pair, severity medium) proposing the merged rule with its explicit condition. Judging whether two rules truly conflict, and what condition separates them, is a semantic call, so set `proposed: null` and `needs_human: true`.
-
-## Source
-ConInstruct 2511.14342 (conflict detection within instructions — highest average F1 91.5% and 87.3%; models rarely notify users of a detected conflict or request clarification); IH-Benchmark 2607.25987 (declared-hierarchy compliance spans 98.2%–20.5% across 37 models; stronger warnings fix some failures, others persist at every strictness level — measures role privilege, not peer-rule precedence, so the transfer is an extrapolation); Wallace 2404.13208 (hierarchy following is obtained by a training method, not by declaration).

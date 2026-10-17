@@ -28,6 +28,3 @@ Compare the slug's kebab tokens against the title's central claim: do the conten
 
 ## Patch output
 When auditing a card whose slug and title encode different claims, emit one patch (`rule_id: C-A2`, `location.field: slug`, severity high) proposing a realigned slug or title; set `needs_human: true` when renaming the slug would require relinking references the sub-agent cannot see.
-
-## Source
-KB card spec, identity/retrievability rules, group A (the slug is the stable key in every link; drift breaks navigation).

@@ -28,6 +28,3 @@ Covers the `description` field only; body routing vocabulary and body/descriptio
 
 ## Patch output
 When auditing the `description` of a skill or agent-prompt, emit one patch (`rule_id: R-02`, `location.field: description`, severity high) that names the specific failure (too long | first-person | missing trigger list | missing NOT-for) and supplies a rewritten description; set `needs_human: true` when phrasing the triggers needs domain knowledge.
-
-## Source
-Anthropic, Agent Skills best practices (frontmatter spec: description non-empty, ≤1024 characters, no XML tags — violations auto-rejected); Dong 2512.14754 §2.2 (reliable@10 — up to 61.8 pp collapse); Xu & Yan 2602.12430 §7 (multi-skill conflict resolution underdeveloped → disjoint descriptions).

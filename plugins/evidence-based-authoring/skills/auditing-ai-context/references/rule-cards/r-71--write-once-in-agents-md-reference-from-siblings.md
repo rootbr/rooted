@@ -28,6 +28,3 @@ Request the discovery inventory's cross-file comparison. For each rule appearing
 
 ## Patch output
 When the same content appears in two or more context files, emit one patch (`rule_id: R-71`, location naming the current file and the duplicate-in file, severity medium) proposing to keep the canonical version in `AGENTS.md` and replace the duplicates with `see AGENTS.md#<anchor>`.
-
-## Source
-Galster 2602.14690 §6.1 (301 outgoing CLAUDE.md → AGENTS.md references; AGENTS.md is the dominant incoming-reference baseline).

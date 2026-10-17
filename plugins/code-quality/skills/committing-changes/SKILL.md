@@ -5,8 +5,6 @@ description: Review changes and create atomic commits following Conventional Com
 
 # Commit Changes
 
-Spec: https://www.conventionalcommits.org/en/v1.0.0/
-
 Review staged and modified files. Split into atomic commits.
 
 ## Workflow
@@ -44,10 +42,10 @@ Version bumps: `feat`→MINOR, `fix`→PATCH, `!` or `BREAKING CHANGE:` footer�
 
 ## Rules
 
-- MUST: each commit atomic and functional (builds, tests pass) (Git project, *SubmittingPatches*: "make separate commits for logically separate changes"; "after any code change, make sure that the entire test suite passes")
-- MUST: imperative mood, no trailing period (Beams, *How to Write a Git Commit Message*, cbea.ms/git-commit — rules 5 and 4); lowercase subject (Conventional Commits / Angular commit convention)
-- SHOULD: subject ≤50 chars, body wrap at 72 (Beams, rules 2 and 6)
-- Body explains WHAT and WHY, not HOW (Beams, rule 7)
+- MUST: each commit atomic and functional (builds, tests pass)
+- MUST: imperative mood, no trailing period; lowercase subject
+- SHOULD: subject ≤50 chars, body wrap at 72
+- Body explains WHAT and WHY, not HOW
 - Footer references issues: `Fixes #123`, `Refs #456`
 
 ## Grouping
@@ -79,6 +77,6 @@ Migrate to /api/v2/* which provides enhanced functionality.
 ## Gotchas
 
 1. Pre-commit hook failure means the commit did NOT happen — fix and create a NEW commit, never `--amend`
-2. AVOID `git add -A` / `git add .` — can leak `.env`, credentials, large binaries. Stage by name (house convention, hands-on)
+2. AVOID `git add -A` / `git add .` — can leak `.env`, credentials, large binaries. Stage by name
 3. Merge commits are exempt from format
 4. Never `--no-verify` unless user explicitly asks

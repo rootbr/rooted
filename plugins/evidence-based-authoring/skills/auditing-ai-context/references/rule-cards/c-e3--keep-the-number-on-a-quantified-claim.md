@@ -28,6 +28,3 @@ For each claim that asserts an effect, check whether a number is present where t
 
 ## Patch output
 When auditing a card whose quantified claim has been de-quantified, emit one patch (`rule_id: C-E3`, location of the claim, severity high) restoring the source's number. The presence or absence of the number is mechanically decidable, so no `needs_human` flag.
-
-## Source
-KB card spec, faithfulness rules, group E (a de-quantified claim is an unfalsifiable gesture).

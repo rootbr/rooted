@@ -29,9 +29,7 @@ Identify 3 surface-level observations about the topic. For each, iterate *why?* 
 
 Tag: `[5Whys:chain{n}:L{level}]` — e.g. `[5Whys:chain2:L3]` = chain 2, level 3.
 
-Source: Ohno, T. (1988). *Toyota Production System: Beyond Large-Scale Production*. Productivity Press. Attribution: Sakichi Toyoda.
-
-### Systems thinking (Meadows 2008)
+### Systems thinking
 Map the topic as a system. Produce ≥ 1 question per element:
 - `[Systems:Stock]` — accumulations that persist
 - `[Systems:Flow]` — rates that change stocks
@@ -42,16 +40,12 @@ Map the topic as a system. Produce ≥ 1 question per element:
 
 Also produce questions about **leverage points** (parameters, delays, feedback-loop gain, rules, goals, paradigm) — use `[Systems:Leverage]`.
 
-Source: Meadows, D. H. (2008). *Thinking in Systems: A Primer*. Chelsea Green Publishing. Foundational: Forrester, J. (1961). *Industrial Dynamics*. MIT.
-
 ### TRIZ contradiction analysis
 Identify 3–5 contradictions:
 - `[TRIZ:Technical]` — improving parameter X worsens parameter Y
 - `[TRIZ:Physical]` — one property must be both A and not-A simultaneously
 
 Produce 1–3 questions per contradiction.
-
-Source: Altshuller, G. (1984). *Creativity as an Exact Science: The Theory of the Solution of Inventive Problems*. Gordon and Breach.
 
 ## Output shape
 

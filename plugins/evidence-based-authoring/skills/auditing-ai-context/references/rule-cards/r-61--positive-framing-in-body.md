@@ -28,6 +28,3 @@ Grep the body for `do not`, `don't`, `never`, `must not`, `shall not`, `avoid`, 
 
 ## Patch output
 When auditing a body negative that is style- or edge-case-class, emit one patch (`rule_id: R-61`, `location` set to the heading and line hint, `current` = the negative phrasing, severity low) proposing the positive equivalent; set `needs_human: true` when the prohibition's class (safety vs style) is unclear.
-
-## Source
-Promptomatix §B.1.1 (positive phrasing processed more reliably); Khan 2510.22251 §5.3 (ONLY / must-NOT handcuff frontier models). Appendix guidance ships without its own empirical citations — treat as vendor-grade.

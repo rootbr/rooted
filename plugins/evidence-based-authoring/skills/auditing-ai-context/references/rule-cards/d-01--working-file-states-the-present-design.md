@@ -28,6 +28,3 @@ Take the temporal and contrast markers — previously, formerly, originally, in 
 
 ## Patch output
 When a sentence parses only as a correction of an earlier state, emit one patch (`rule_id: D-01`, `location.section` + `line_hint`, `current` = the whole sentence, `proposed: null`, severity medium, `needs_human: true`) whose justification names which present fact, if any, survives once the comparison is stripped. Judging whether a marker is an artifact or an innocent present-tense use is a reading call, so the disposition goes to the author.
-
-## Source
-2212.01479 (documentation references to code elements whose every source instance was deleted; most of 3,000+ GitHub projects carry at least one at some point in their history). Wen 2019, ICPC §IV-A p. 6 supplies the co-evolution prevalence — 13%–20% of code changes trigger a class- or method-comment change — for Java systems only. Vishnyakova 2603.09619 §9 (context poisoning: a wrong statement reproduced at every step) with Hong 2025, Context Rot (a single distractor lowers accuracy; direction only, no percentage). Caveat: the rationale is maintenance cost, and no defect-rate claim is carried on this axis.

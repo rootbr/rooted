@@ -29,6 +29,3 @@ Read the guidance: is it a heuristic with its reason, or has it collapsed into a
 
 ## Patch output
 When auditing a card pitched as a slogan or a brittle step-list, emit one patch (`rule_id: C-D3`, severity medium) proposing a heuristic-plus-reason rewrite. Judging the right altitude is semantic, so set `needs_human: true`.
-
-## Source
-KB card spec, consumer-applicability rules, group D; Anthropic (the right altitude between brittle logic and vague guidance); skill-authoring best practices (explain why, not only what — the model generalizes from reasons).

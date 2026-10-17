@@ -28,6 +28,3 @@ Scan the title, thesis, rationale, and terminology against the store's source-na
 
 ## Patch output
 When auditing a card that attributes an idea to an author or publication in its prose, emit one patch (`rule_id: C-E2`, location of the attribution, severity high) rewriting it to name the idea by what it is and moving any provenance to the map. The presence of an attribution token is mechanically decidable, so no `needs_human` flag in the clear case.
-
-## Source
-KB card spec, faithfulness rules, group E (author-bound jargon is dead weight; provenance belongs in the map).

@@ -28,6 +28,3 @@ Read the card for more than one independently-actable claim: could a consumer wa
 
 ## Patch output
 When auditing a card carrying a second distinct thesis, emit one patch (`rule_id: C-B1`, severity medium) proposing the split into a linked pair. Deciding whether two claims are truly separable is a judgement, so set `needs_human: true`.
-
-## Source
-KB card spec, atomicity rules, group B; Zettelkasten / evergreen-notes principle (a note holds one idea only, capturing the entirety of that thing).

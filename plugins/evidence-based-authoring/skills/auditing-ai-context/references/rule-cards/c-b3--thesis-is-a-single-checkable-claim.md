@@ -28,6 +28,3 @@ Read the thesis: could a reviewer state a concrete condition under which it woul
 
 ## Patch output
 When auditing a card whose thesis is not a single checkable claim, emit one patch (`rule_id: C-B3`, severity medium) proposing a sharpened, falsifiable restatement. Judging checkability requires reading the claim against its intent, so set `needs_human: true`.
-
-## Source
-KB card spec, atomicity rules, group B (foundation for faithfulness checking and downstream verification).

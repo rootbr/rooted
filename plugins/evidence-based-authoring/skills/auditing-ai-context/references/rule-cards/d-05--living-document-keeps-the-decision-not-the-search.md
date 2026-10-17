@@ -29,6 +29,3 @@ Take the deliberation markers — chosen, adopted, deliberately, consciously, in
 
 ## Patch output
 When a document carries the search that produced its design, emit one patch (`rule_id: D-05`, `location.section` + `line_hint`, `current` = the catalogue, announcement, or table, `proposed: null`, severity medium, `needs_human: true`) naming both the destination and the decision-plus-reason sentence that must survive in place. Choosing between relocation and removal turns on whether a future need is real, which the author decides.
-
-## Source
-2604.27333, abstract (five decision-record templates compared by comprehension, usability and ease of adoption; the concise template carrying no considered-alternatives section is the overall-score winner). Caveat: undergraduate participants, a template ranking with no numbers in the abstract and no causal claim about the alternatives section — the finding licenses relocating a candidate catalogue, not deleting a rationale.

@@ -28,6 +28,3 @@ Search the body for instructions of the form "produce a complete X", "write the 
 
 ## Patch output
 When a single-shot artifact instruction targets > 232 tokens, emit one patch (`rule_id: R-15`, `current` = single-shot instruction, `proposed` = decomposed instruction with bounded steps, severity medium). Set `needs_human: true` when the target length is hard to estimate.
-
-## Source
-Liang 2410.21647 §4.2 (GPT-4o pass@1 below 10% past 232-token canonical target; collapse from constraint/generation attention contention).

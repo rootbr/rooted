@@ -31,6 +31,3 @@ Scan for `p.<digits>`, `page <digits>`, `:<digits>` after a path, `pp.<digits>-<
 
 ## Patch output
 When auditing a citation whose only locator is a page, line, or offset, emit one patch (`rule_id: R-41`, location of the citation, severity high) proposing the structural anchor, keeping the page or line as a parenthetical when useful.
-
-## Source
-Pollertlam 2603.04814 §5.1 (flat extraction loses precise markers, implicit coreferences, one-off details).

@@ -28,6 +28,3 @@ Count `**` occurrences per 100 lines. If there are more than 10 per 100 lines, t
 
 ## Patch output
 When emphasis density exceeds 10 per 100 lines and a phrase is neither a warning nor a first-term introduction, emit one patch (`rule_id: R-27`, `location.section` + `line_hint`, `current` = the bolded phrase, severity low) proposing the unbolded equivalent; set `needs_human: true` when the phrase's status as a warning or term is unclear.
-
-## Source
-Chatlatanagulchai 2509.14744 (emphasis convention; bold is devalued past roughly 10 per 100 lines).

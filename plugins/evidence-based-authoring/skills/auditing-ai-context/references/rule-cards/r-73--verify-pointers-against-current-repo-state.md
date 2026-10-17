@@ -28,6 +28,3 @@ Inventory the file's pointers to in-repo entities. For each symbol, search the r
 
 ## Patch output
 When a pointer's target is absent from the current repo, emit one patch (`rule_id: R-73`, location naming the section, `proposed: null`, severity medium, `needs_human: true`) so the author supplies the current name or deletes the rule — the sub-agent cannot infer the new target.
-
-## Source
-Verified hands-on experience maintaining instruction files whose in-repo pointers rot after renames and deletions.

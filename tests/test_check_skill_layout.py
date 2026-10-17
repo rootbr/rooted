@@ -156,9 +156,9 @@ class RuleG(Tree):
     def test_prose_without_provenance_notes_passes(self):
         self.write(SKILL + "references/rules.md",
                    "4. Does the answer change our work? (rule 14) The tag `[eval list E1]` sits in code.\n"
-                   "Source: [Zwicky 1969, *Morphology*](https://example.org/gma.pdf), a footnote[^1] and a tag [cs.CR].\n"
-                   "```\n[Rao 2018, arXiv:1805.04655] (fetched)\n```\n"
-                   "## Source\nYang 2505.13360 §3.4 (bundling tax); Kim 2405.00623 (FAccT 2024).\n")
+                   "Morphological analysis (Zwicky), a footnote[^1], a tag [cs.CR] and `https://api.example.org/v1` as code.\n"
+                   "```\n[Rao 2018, arXiv:1805.04655] (fetched) https://example.org\n```\n"
+                   "The bundling tax: a duplicated rule takes two attention slots (R-43).\n")
         self.assertEqual(self.violations(), [])
 
     def test_a_citation_bracket_an_eval_tag_and_a_fetch_marker_fail(self):
@@ -168,10 +168,20 @@ class RuleG(Tree):
                    "6. Decide by default. eval client-question-list E3 covers it.\n"
                    "The abstract was read (fetched); the full text is **unfetched**.\n")
         self.assertEqual(self.violations(), [
+            f"{SKILL}references/rules.md:1: g: a source locator in a run-set file: arXiv:1805.04655",
             f"{SKILL}references/rules.md:1: g: a citation bracket in a run-set file: [Rao 2018, arXiv:1805.04655; the rest untested]",
             f"{SKILL}references/rules.md:2: g: a citation bracket in a run-set file: [Kahneman 2011; Tversky 1974]",
             f"{SKILL}references/rules.md:3: g: an eval expectation tag in a run-set file",
             f"{SKILL}references/rules.md:4: g: a fetch marker in a run-set file"])
+
+    def test_a_locator_in_prose_fails_and_a_locator_in_code_passes(self):
+        self.write(SKILL + "references/gotchas.md",
+                   "G-01. Routers use full text; the gap is 31.8pp (SkillRouter 2603.22455 App. D).\n"
+                   "G-02. See doi:10.1145/1028664.1028765 and https://example.org/paper.\n"
+                   "Fetch `https://api.example.org/v1` and read Yang 2505 §3.\n")
+        self.assertEqual(self.violations(), [
+            f"{SKILL}references/gotchas.md:1: g: a source locator in a run-set file: 2603.22455",
+            f"{SKILL}references/gotchas.md:2: g: a source locator in a run-set file: doi:10."])
 
     def test_a_script_and_the_maintainer_set_are_not_scanned(self):
         self.write(SKILL + "scripts/grade.py", 'TAG = "[Rao 2018, arXiv:1805.04655]"  # (fetched)\n')

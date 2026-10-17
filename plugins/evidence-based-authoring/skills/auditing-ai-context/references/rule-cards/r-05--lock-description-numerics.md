@@ -28,6 +28,3 @@ Extract every numeric value from the description. For each: is it the real hard 
 
 ## Patch output
 When auditing the `description` of a skill or agent-prompt, emit one patch (`rule_id: R-05`, `location.field: description`, severity medium) removing the number or aligning it with the body; set `needs_human: true` when deciding whether the number is a true limit needs author intent.
-
-## Source
-Dong 2512.14754 §3.1 (numeric edits and constraint reconfiguration degrade reliability more than pure rephrasing).

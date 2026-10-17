@@ -38,6 +38,3 @@ For each MUST / SHOULD, check that the rest of the sentence respects the strictn
 
 ## Patch output
 When a priority marker's strictness conflicts with its clause, emit one patch (`rule_id: R-63`, `location` set to the heading and line hint, `current` = the ambiguous usage, severity low) proposing a consistent marker-plus-clause pairing.
-
-## Source
-RFC 2119 (keyword definitions for requirement levels).

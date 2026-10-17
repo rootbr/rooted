@@ -31,6 +31,3 @@ Grep for "the parent", "the skill itself", "as noted earlier", "as we saw", "see
 
 ## Patch output
 When auditing a deictic phrase or a completing cross-reference, emit one patch (`rule_id: R-47`, location of the phrase, severity medium) proposing the named-document form or the inlined content; set `needs_human: true` when the operative content must be authored rather than merely renamed.
-
-## Source
-Anthropic, Skill authoring best practices (files two hops from SKILL.md get partial reads); verified on a real skill's own references.

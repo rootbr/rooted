@@ -31,8 +31,6 @@ For each obvious aspect of the topic, flip the question. Produce 8–10 inverted
 - Default *how do I succeed?* → invert *how would I reliably fail?*
 - Default *why is X best practice?* → invert *when was X best practice before, but has quietly stopped being so?*
 
-Source: Munger, C. (1986). *Harvard School commencement speech* — *Invert, always invert* — attributed to Carl Jacobi.
-
 Tag: `[Munger-Jacobi]`.
 
 ### Pre-mortem (three independent lenses)
@@ -43,8 +41,6 @@ Assume the topic has already failed catastrophically. Reconstruct questions that
 - `[Premortem:Semantic]` — *structurally correct but semantically wrong* (negative balance, double-booked slot, reversed translation, dosage-by-factor). ≥ 3 questions. **Most-skipped lens; include anyway.**
 
 Each lens runs independently — do not merge. Repetition across lenses is NOT permitted within this agent (cross-lens repetition within one method looks like lens confusion).
-
-Source: [Klein, G. (2007). "Performing a Project Premortem", *HBR*](https://hbr.org/2007/09/performing-a-project-premortem).
 
 ### Reverse brainstorming
 Ask *how would we guarantee maximum misunderstanding or failure?* Produce 5–7 anti-answers, then invert each into a question about what prevents that failure.

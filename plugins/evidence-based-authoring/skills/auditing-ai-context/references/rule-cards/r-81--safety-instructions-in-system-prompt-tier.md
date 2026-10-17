@@ -29,6 +29,3 @@ For each safety constraint found in the body adjacent to a user-payload referenc
 
 ## Patch output
 When auditing a safety rule placed next to a payload, emit one patch (`rule_id: R-81`, `location.section` = heading, `location.proposed_location` = hot-tier file, severity medium) proposing the move to the hot-tier Safety section; set `needs_human: true` when the target hot-tier file is ambiguous.
-
-## Source
-Promptomatix 2507.14241 §B.5.1 (safety constraints proactive at system-prompt tier beat reactive inline placement).

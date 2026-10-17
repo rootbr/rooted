@@ -29,6 +29,3 @@ For each cited claim, check whether the source's number is present in the file. 
 
 ## Patch output
 When a cited claim has been de-quantified, emit one patch (`rule_id: R-54`, `location.section` = heading, severity low) restoring the source's number to the claim. No `needs_human` flag — the number's presence or absence is mechanically decidable.
-
-## Source
-Yang 2505.13360 §3.3 (5.9% of unspecified requirements regress >20% over model updates, ~2× the specified rate).

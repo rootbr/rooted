@@ -25,12 +25,12 @@ Break the topic into independent dimensions and enumerate possible states within
 ## Method
 
 ### Starbursting (5W1H)
-Six question vectors. Produce 3–5 questions per vector. Primary lineage: Kipling, *Just So Stories* (1902). Tag: `[5W1H:Who]`, `[5W1H:What]`, `[5W1H:Where]`, `[5W1H:When]`, `[5W1H:Why]`, `[5W1H:How]`.
+Six question vectors. Produce 3–5 questions per vector. Tag: `[5W1H:Who]`, `[5W1H:What]`, `[5W1H:Where]`, `[5W1H:When]`, `[5W1H:Why]`, `[5W1H:How]`.
 
 ### Morphological analysis (Zwicky)
 Identify 4–6 logically independent dimensions. List 3–5 values per dimension. Walk the matrix; produce one question per **non-obvious** cell (skip trivial combinations). Prefer combinations the canonical overview of the topic would not naturally address.
 
-Source: [Zwicky, 1969, *Discovery, Invention, Research — Through the Morphological Approach*](https://www.swemorph.com/pdf/gma.pdf) (Macmillan). Tag: `[Zwicky:paramA×paramB]` with the actual parameter names.
+Tag: `[Zwicky:paramA×paramB]` with the actual parameter names.
 
 ### SCAMPER
 Seven transformations. Produce 1–3 questions per transformation. Each transformation forces a distinct question class:
@@ -42,8 +42,6 @@ Seven transformations. Produce 1–3 questions per transformation. Each transfor
 - `[SCAMPER:PutToOther]` — what other domain could use the same concept? What would the transfer look like?
 - `[SCAMPER:Eliminate]` — what could be removed without losing the essential behaviour? (Removing something exposes what it was silently doing — **highest-yield transformation**; do not skip.)
 - `[SCAMPER:Reverse]` — what if the flow / sequence / hierarchy is inverted?
-
-Source: Eberle, B. (1971). *SCAMPER: Games for Imagination Development* — rooted in Osborn, *Applied Imagination* (1953).
 
 ## Output shape
 

@@ -29,6 +29,3 @@ For each proposed compression, classify it as format (safe) or meaning (unsafe).
 
 ## Patch output
 When a verbose passage can be compressed in form, emit one patch (`rule_id: R-11`, `current` = verbose excerpt, `proposed` = format-compressed excerpt with the same propositional content, severity low). Set `needs_human: true` when it is unclear whether a bullet is load-bearing.
-
-## Source
-Zhang 2510.04618 §2.2, Fig 2 (ACE: 18,282 → 122 tokens, accuracy 66.7% → 57.1%, below baseline).

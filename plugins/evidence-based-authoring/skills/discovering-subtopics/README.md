@@ -13,3 +13,4 @@ Builds a maximum-breadth question map across any topic: ten complementary method
 | `references/output-template.md` | the session | when it writes the map |
 | `references/source-triangulation.md` | the field-intelligence agent | when it searches |
 | `maintenance/README.md` | a maintainer | when the skill is evaluated, iterated or gated before a commit; never in a run |
+| `maintenance/methodology-provenance.md` | a maintainer | adding a method or re-verifying the source behind one; never in a run |

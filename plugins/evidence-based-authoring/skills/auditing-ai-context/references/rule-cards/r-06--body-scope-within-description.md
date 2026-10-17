@@ -28,6 +28,3 @@ Read the body for tool invocations (Bash, network calls, writes outside referenc
 
 ## Patch output
 When auditing a skill or agent-prompt, emit one patch (`rule_id: R-06`, severity high) either adding the capability to the description or removing it from the body; set `needs_human: true`, because widening versus narrowing is the author's decision.
-
-## Source
-Li 2604.02837 §3.1 (YAML frontmatter is not a contract; nothing verifies the body stays within description scope, so a human must).

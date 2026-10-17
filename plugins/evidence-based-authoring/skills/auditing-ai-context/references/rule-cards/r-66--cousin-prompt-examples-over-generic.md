@@ -29,6 +29,3 @@ Examine the example user prompts in the file. Classify each as (a) realistic —
 
 ## Patch output
 When an example prompt is abstract, emit one patch (`rule_id: R-66`, `location` set to the heading and line hint, `current` = the abstract prompt, severity low) proposing a cousin-prompt rewrite with realistic detail; set `needs_human: true` when the realistic context to inject is unknown.
-
-## Source
-Dong 2512.14754 Fig 5 (cousin-augmented data lifts reliability >45%; generic Alpaca-style examples decline it).

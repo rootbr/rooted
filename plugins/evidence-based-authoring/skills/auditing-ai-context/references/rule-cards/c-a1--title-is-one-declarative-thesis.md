@@ -29,6 +29,3 @@ Inspect the `title`: does it end as a question (interrogative form, trailing "?"
 
 ## Patch output
 When auditing a card whose title is a question or bare topic, emit one patch (`rule_id: C-A1`, `location.field: title`, severity high) rewriting it as one complete declarative proposition; set `needs_human: true` only when the intended claim cannot be recovered from the body.
-
-## Source
-KB card spec, identity/retrievability rules, group A (index scan shows only the title); Dense X Retrieval (Chen et al. EMNLP 2024) arXiv:2312.06648 (proposition-level retrieval).

@@ -1,6 +1,6 @@
 # Maintenance of `discovering-subtopics` — the validation protocol
 
-Nothing under `maintenance/` is read or executed in a run; this file is the maintainer's guide — how the skill is evaluated, iterated and gated before a commit. The run set is `SKILL.md`, `agents/` and `references/`, listed in the skill's `README.md` §Layout.
+Nothing under `maintenance/` is read or executed in a run; this file is the maintainer's guide — how the skill is evaluated, iterated and gated before a commit. The run set is `SKILL.md`, `agents/` and `references/`, listed in the skill's `README.md` §Layout. The source behind each method stands on its line in `maintenance/methodology-provenance.md`.
 
 > The skill is only useful if it reproduces the breadth of expert-authored reference material. Eval corpus = a mix of in-repo checklists, public syllabi, and domain overviews, chosen to span technical / scientific / regulatory / humanities / practical-craft topics so evaluation is not biased toward one field. Success = ≥ 90 % sub-theme / question / source coverage against a reference, with no fabricated sources.
 
@@ -95,7 +95,7 @@ Failure modes to watch: false-trigger on #1/#2/#5/#9 (retrieval-only asks), over
 Per `/Users/aleksei/projects/claude-skills/CLAUDE.md`:
 - Run `/auditing-ai-context` on `SKILL.md` and each reference file.
 - MUST pass the self-review checklist and the reliable@10 description eval.
-- Every rule in every file MUST cite a primary source (academic / technical standard / verified hands-on). Brainstormed-only rules MUST be cut or marked provisional.
+- Every rule MUST trace to a primary source (academic / technical standard / verified hands-on) on its line in `maintenance/methodology-provenance.md`, and the run set carries no citation (rule g of the repository's `check-skill-layout.py`). Brainstormed-only rules MUST be cut or marked provisional.
 
 Fail any of the above → block commit, iterate, re-run gate.
 

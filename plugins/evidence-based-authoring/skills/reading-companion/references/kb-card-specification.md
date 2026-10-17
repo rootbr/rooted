@@ -2,7 +2,7 @@
 
 A specification for atomic knowledge cards consumed by AI agents. The subject domain of the knowledge is arbitrary — software engineering, law, medicine, finance, craft: the specification constrains the form of a card, not its subject.
 
-Contents: Governing principle · Terms · Card template · Frontmatter reference · Authoring rules (A identity/retrievability C-A1..A5 · B atomicity C-B1..B3 · C self-containedness C-C1..C3 · D consumer applicability C-D1..D3 · E faithfulness C-E1..E3 · F structural consistency C-F1..F3) · Principles · Corpus-level properties · Enforcement · Customization points · Sources.
+Contents: Governing principle · Terms · Card template · Frontmatter reference · Authoring rules (A identity/retrievability C-A1..A5 · B atomicity C-B1..B3 · C self-containedness C-C1..C3 · D consumer applicability C-D1..D3 · E faithfulness C-E1..E3 · F structural consistency C-F1..F3) · Principles · Corpus-level properties · Enforcement · Customization points.
 
 ---
 
@@ -129,8 +129,8 @@ accepted: Split any meeting longer than 90 minutes into two sessions with separa
 
 | Rule | Instruction | Why |
 |---|---|---|
-| **C-B1** | One thesis per card; if a second idea accretes, split into a linked pair. | Atomicity enables reuse and linking: a note holds "one idea and one idea only" (Zettelkasten); capture "the entirety of that thing" in one place (evergreen-notes principle). |
-| **C-B2** | Atomic does not mean short — keep the precondition, trade-off, and counter-example that make the thesis true. | Over-compression collapses accuracy: bulk-rewriting an accumulated agent context into a short summary dropped task accuracy 66.7 → 57.1, below the 63.7 no-context baseline (ACE); "minimal does not necessarily mean short" (Anthropic). |
+| **C-B1** | One thesis per card; if a second idea accretes, split into a linked pair. | Atomicity enables reuse and linking: a Zettelkasten note holds "one idea and one idea only", and an evergreen note captures "the entirety of that thing" in one place. |
+| **C-B2** | Atomic does not mean short — keep the precondition, trade-off, and counter-example that make the thesis true. | Over-compression collapses accuracy: bulk-rewriting an accumulated agent context into a short summary dropped task accuracy 66.7 → 57.1, below the 63.7 no-context baseline; "minimal does not necessarily mean short". |
 | **C-B3** | The thesis is a single checkable claim. | Foundation for faithfulness checking and downstream verification. |
 
 ### C. Self-containedness — the card is read in isolation
@@ -139,7 +139,7 @@ accepted: Split any meeting longer than 90 minutes into two sessions with separa
 |---|---|---|
 | **C-C1** | No source-deixis: never "this chapter", "the source", "as we saw", "as noted earlier". | The card is read with no source in context. (Bare "the author" as a role inside the consumer's own domain — e.g. the author of a requirement — is fine.) |
 | **C-C2** | Links enrich, never complete: the card must make sense without following any link. | Retrieved in isolation. |
-| **C-C3** | The card self-situates — `applies_to` plus Counter-example/limits state where it holds. | Situating context cuts top-20 retrieval failure rate by 35% — 49% with added lexical matching, 67% with reranking (Anthropic Contextual Retrieval). |
+| **C-C3** | The card self-situates — `applies_to` plus Counter-example/limits state where it holds. | Situating context cuts top-20 retrieval failure rate by 35% — 49% with added lexical matching, 67% with reranking. |
 
 ### D. Consumer applicability — shaped to the job, not the source
 
@@ -147,13 +147,13 @@ accepted: Split any meeting longer than 90 minutes into two sessions with separa
 |---|---|---|
 | **C-D1** | Write in the consumer's task vocabulary, shaped to its sub-task — not to the source's structure. | The card serves a job, not a syllabus. |
 | **C-D2** | End with exactly one consumer block naming three things: (1) the **sub-task** — the exact situation where the card applies; (2) the **downstream consumer** — which agent, skill, or tool acts on it; (3) the **output / artifact field** — the concrete field or structure the consumer populates. | Without this bridge the card is a passive fact; with it the consumer knows *when*, *who*, and *where*. Two or more blocks signal a second idea (C-B1). Count and name are governed by C-F2. |
-| **C-D3** | Give a heuristic plus its reason; avoid both rigid step-lists and vague slogans; no unexplained ALL-CAPS. | The "right altitude" between brittle hardcoded logic and vague guidance (Anthropic); explain *why*, not only *what* — the model generalizes from reasons (skill-authoring best practices). |
+| **C-D3** | Give a heuristic plus its reason; avoid both rigid step-lists and vague slogans; no unexplained ALL-CAPS. | The "right altitude" between brittle hardcoded logic and vague guidance; explain *why*, not only *what* — the model generalizes from reasons. |
 
 ### E. Faithfulness — the card must not outrun its source
 
 | Rule | Instruction | Why |
 |---|---|---|
-| **C-E1** | The thesis must follow from the source: no inversion, no stripped precondition, no refuted position stated as a recommendation, no conditional flattened to an absolute. | The four drifts are instances of intrinsic hallucination — content that misrepresents the source; entailment by the source correlates with faithfulness far better than n-gram overlap (Maynez et al.). |
+| **C-E1** | The thesis must follow from the source: no inversion, no stripped precondition, no refuted position stated as a recommendation, no conditional flattened to an absolute. | The four drifts are instances of intrinsic hallucination — content that misrepresents the source; entailment by the source correlates with faithfulness far better than n-gram overlap. |
 | **C-E2** | No attribution of a method or idea to an author, publication, or upstream source in the body, title, or Terminology. Name the idea by what it is, not by who wrote it. | A reader without the author in context cannot parse "X's method" — author-bound jargon is dead weight; in-body attribution is also a provenance. Provenance belongs in the map. |
 | **C-E3** | Keep the number on any quantified claim. | A de-quantified claim is an unfalsifiable gesture. |
 
@@ -171,11 +171,11 @@ accepted: Split any meeting longer than 90 minutes into two sessions with separa
 
 ### A card is a proposition for the consumer, not a summary of the source
 
-Two independent sources converge on the same unit of knowledge for an LLM consumer, and a third names the wording the rule follows:
+Two independent findings converge on the same unit of knowledge for an LLM consumer, and a note-taking convention names the wording the rule follows:
 
-1. **Dense X Retrieval** (Chen et al., EMNLP 2024) — evidence. The best indexing unit is the *proposition*: "atomic expressions within text, each encapsulating a distinct factoid and presented in a concise, self-contained natural language format". Proposition-level indexing beats passage-level retrieval (up to +9–12 points Recall@5 with retrievers not tuned to the corpus) and improves downstream QA under a fixed token budget — and an agent assembling its working context operates exactly in that fixed-budget, untuned regime. An ideal card is a proposition.
-2. **Anthropic** (*Effective context engineering for AI agents*) — evidence. Context engineering means finding "the smallest possible set of high-signal tokens that maximize the likelihood of some desired outcome", written at the right altitude — the Goldilocks zone between brittle hardcoded logic and vague guidance — and "minimal does not necessarily mean short".
-3. **Zettelkasten** (zettelkasten.de, "Atomicity"; Matuschak, "Evergreen notes should be atomic") — **the formulation C-B1 follows, never its evidence.** A permanent note holds "one idea and one idea only", written in full sentences, in your own words, as if for someone else. A note that needs "as mentioned above" to be understood is an essay fragment, not a note. Atomic does not mean small: notes should be "only about one thing — but which, as much as possible, capture the entirety of that thing" (Matuschak). Both pages call this a convention — "not a rigid law, but a guiding compass", with "no clear litmus test" — so the rule rests on the measurement in item 1 and takes only its wording here.
+1. **Proposition-level indexing** — evidence. The best indexing unit is the *proposition*: "atomic expressions within text, each encapsulating a distinct factoid and presented in a concise, self-contained natural language format". Proposition-level indexing beats passage-level retrieval (up to +9–12 points Recall@5 with retrievers not tuned to the corpus) and improves downstream QA under a fixed token budget — and an agent assembling its working context operates exactly in that fixed-budget, untuned regime. An ideal card is a proposition.
+2. **Context engineering** — evidence. Context engineering means finding "the smallest possible set of high-signal tokens that maximize the likelihood of some desired outcome", written at the right altitude — the Goldilocks zone between brittle hardcoded logic and vague guidance — and "minimal does not necessarily mean short".
+3. **Atomic notes** — **the formulation C-B1 follows, never its evidence.** A permanent Zettelkasten note holds "one idea and one idea only", written in full sentences, in your own words, as if for someone else. A note that needs "as mentioned above" to be understood is an essay fragment, not a note. Atomic does not mean small: an evergreen note is "only about one thing — but which, as much as possible, capture the entirety of that thing". The practice itself calls this a convention — "not a rigid law, but a guiding compass", with "no clear litmus test" — so the rule rests on the measurement in item 1 and takes only its wording here.
 
 Consequences for any KB pipeline:
 
@@ -217,21 +217,3 @@ The following are intentionally local to each store and are not unified:
 - **Consumer block name** — default `## Skill application`; a store may choose another name, but exactly one name per corpus, and C-F2/C-D2 then apply to the chosen name.
 
 Everything else in this specification is uniform across all stores.
-
----
-
-## Sources
-
-Evidence:
-
-- Anthropic. *Contextual Retrieval* (2024). anthropic.com/news/contextual-retrieval
-- Anthropic. *Effective context engineering for AI agents* (2025). anthropic.com/engineering/effective-context-engineering-for-ai-agents
-- Anthropic. *Skill authoring best practices*. platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices
-- Chen, T., et al. "Dense X Retrieval: What Retrieval Granularity Should We Use?" *EMNLP 2024*. arXiv:2312.06648
-- Maynez, J., et al. "On Faithfulness and Factuality in Abstractive Summarization." *ACL 2020*. arXiv:2005.00661
-- Zhang, Q., et al. "Agentic Context Engineering: Evolving Contexts for Self-Improving Language Models" (ACE). arXiv:2510.04618
-
-Formulation a rule follows — never a rule's evidence. C-B1 rests on Dense X Retrieval, which measures proposition-level indexing; these supply how the rule is worded, and each calls it a convention:
-
-- zettelkasten.de. "Atomicity." zettelkasten.de/atomicity/guide/ — "not a rigid law, but a guiding compass"
-- Matuschak, A. "Evergreen notes should be atomic." notes.andymatuschak.org/Evergreen_notes_should_be_atomic — "no clear litmus test"

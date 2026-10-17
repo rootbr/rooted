@@ -28,6 +28,3 @@ Spec check first: name over 64 characters, characters outside lowercase letters 
 
 ## Patch output
 When auditing the `name` of a skill or agent-prompt, emit one patch (`rule_id: R-01`, `location.field: name`, severity high) proposing a verb- or tool-anchored name; set `needs_human: true` when the right function word is ambiguous.
-
-## Source
-SkillRouter 2603.22455 App. C (`name` = 3.0% of tokens / 26.3% of router attention); App. L.1 (retrieval case studies — they measure retrieval quality, not renames; Case C is the specialized-domain counter-case, 8/12 vs 4/12); its Limitations (claims scoped to large registries with heavy overlap); Anthropic, Agent Skills best practices (frontmatter spec: name ≤64 chars, lowercase/numbers/hyphens only, no XML tags, no reserved words).

@@ -22,13 +22,10 @@ good: "Use 2–5 diverse examples; inconsistent label/format across examples
 ```
 
 ## Limits
-Covers source presence for each prescription. Whether the cited locator is structurally stable (anchor vs page/line) is a separate check and not flagged here. A rule may legitimately remain if marked provisional rather than asserted as fact.
+Covers source presence for each prescription. Whether the cited locator is structurally stable (anchor vs page/line) is a separate check and not flagged here. A rule may legitimately remain if marked provisional rather than asserted as fact. A repository that keeps every source on the rule's line of a provenance map, keyed by the rule's id and enforced by its layout check, satisfies the rule for its run-set files: the prescription traces through the map, and the audit opens the map's line instead of asking for an inline citation.
 
 ## Validator
-For each rule sentence, look in the surrounding 5 lines for a source pattern: `(Author <Year>)`, `(<Author> §<N>)`, `RFC <N>`, `<arxiv-id> §<N>`, `Verified on <project>`, or a link to a stable doc. If none is present, flag. Does this prescription rest on a source a reader could open, or only on assertion?
+For each rule sentence, look in the surrounding 5 lines for a source pattern: `(Author <Year>)`, `(<Author> §<N>)`, `RFC <N>`, `<arxiv-id> §<N>`, `Verified on <project>`, or a link to a stable doc — or, where the repository keeps provenance out of its runtime files, the rule's line in the repository's provenance map. If none is present, flag. Does this prescription rest on a source a reader could open, or only on assertion?
 
 ## Patch output
 When auditing a rule sentence with no source in its surrounding lines, emit one patch (`rule_id: R-50`, `location.section` = heading, severity medium) proposing either a citation appended or the rule marked provisional / cut; set `needs_human: true` because the sub-agent cannot invent a citation — the patch is a request to supply one or accept removal.
-
-## Source
-Repo CLAUDE.md "Evidence-Based Rule"; Yang 2505.13360 §3.4.

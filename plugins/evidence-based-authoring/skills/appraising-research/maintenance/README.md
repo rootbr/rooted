@@ -1,6 +1,6 @@
 # Maintenance of `appraising-research` — the validation protocol
 
-Nothing under `maintenance/` is read or executed in a run; this file is the maintainer's guide — how the skill is evaluated, iterated and gated before a commit. The run set is `SKILL.md`, `agents/` and `references/`, listed in the skill's `README.md` §Layout.
+Nothing under `maintenance/` is read or executed in a run; this file is the maintainer's guide — how the skill is evaluated, iterated and gated before a commit. The run set is `SKILL.md`, `agents/` and `references/`, listed in the skill's `README.md` §Layout. The source behind each claim of the run set stands on its line in `maintenance/appraisal-methodology-provenance.md`.
 
 > The critic is useful only if it finds the flaws that genuinely matter, ranks them so the load-bearing ones surface first, and does not flood the author with false positives. Unlike `discovering-subtopics` there is no expert "reference map" to recall against — a good appraisal is defined by *catching planted defects* and *rejecting unfounded findings*. Success = ≥ 90% recall on seeded load-bearing defects in the top-ranked band, ≤ 0.05 false-positive rate, and 0 fabricated sources.
 
@@ -81,7 +81,7 @@ Failure modes to watch: false-trigger on #1/#5/#8 (generation/lookup asks) and #
 Per the repo `CLAUDE.md`:
 - Run `/auditing-ai-context` on `SKILL.md`, every `agents/*/prompt.md`, and every `references/*.md`.
 - MUST pass the self-review checklist and the reliable@10 description eval above.
-- Every method in every file MUST cite a primary source (`references/appraisal-methodology.md`); brainstormed-only rules MUST be cut or marked provisional.
+- Every method MUST trace to a primary source on its line in `maintenance/appraisal-methodology-provenance.md`, and the run set carries no citation (rule g of the repository's `check-skill-layout.py`); brainstormed-only rules MUST be cut or marked provisional.
 
 Fail any of the above → block commit, iterate, re-run gate.
 

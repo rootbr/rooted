@@ -28,6 +28,3 @@ Compare each frontmatter key against the allowed consumer-field whitelist; flag 
 
 ## Patch output
 When auditing a card whose frontmatter carries a non-consumer field, emit one patch (`rule_id: C-A5`, `location.field` = the offending key, severity high) proposing its removal from frontmatter and relocation to the provenance map. The presence of a non-whitelisted key is mechanically decidable, so no `needs_human` flag.
-
-## Source
-KB card spec, identity/retrievability rules, group A (smallest set of high-signal tokens; service fields confuse retrieval and application).

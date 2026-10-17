@@ -28,6 +28,3 @@ Grep for "transcript", "history", "all prior turns", "full conversation". For ea
 
 ## Patch output
 When a skill implies unbounded history retention, emit one patch (`rule_id: R-16`, `current` = unbounded-history instruction, `proposed` = same instruction with an explicit window or summarization policy, severity medium).
-
-## Source
-Tokalator 2604.08290 §1, Eq. 1 (O(T²) growth; rot past ~20 turns, threshold provider-specific per §3.2.1, relaying Hong 2025); Gao & Peng 2510.16786 §1.

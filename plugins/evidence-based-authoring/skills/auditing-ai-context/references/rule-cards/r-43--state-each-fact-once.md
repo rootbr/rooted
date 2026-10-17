@@ -28,6 +28,3 @@ Build a near-duplicate inventory in two passes. First, exact-or-near-exact: slid
 
 ## Patch output
 When auditing a duplicate of a fact already stated earlier in the file, emit one patch (`rule_id: R-43`, location of the duplicate instance, severity medium) replacing the duplicate with a reference to the canonical section or tag, and record the canonical location on the patch.
-
-## Source
-Yang 2505.13360 §3.4 (a duplicated rule consumes two attention slots, displacing distinct rules).

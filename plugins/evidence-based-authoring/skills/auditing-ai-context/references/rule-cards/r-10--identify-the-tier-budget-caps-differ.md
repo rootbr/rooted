@@ -28,6 +28,3 @@ Inspect path and frontmatter. Path ends in `CLAUDE.md` / `AGENTS.md` / `copilot-
 
 ## Patch output
 When a tier exceeds its budget, emit one patch (`rule_id: R-10`, `location.tier` set, `current` = line/token count, severity medium) proposing to move a specific section to a target file so the tier fits inside budget.
-
-## Source
-Lulla 2601.20404 (hot-tier triple, −20.08% tokens; Codex + gpt-5.2; triple was the inclusion criterion, partial triples untested). Li 2602.12670 v4 App. A.2 Fig. 7 (median ~1.2k tokens; 767k clones / 2.01M snapshot); Galster 2602.14690 §6.2 (95% within 500 lines); Li v4 §5.1.3 Finding 6 + App. F.2 Table 9 (Compact/Standard/Detailed/Comprehensive deltas).

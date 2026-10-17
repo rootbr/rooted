@@ -12,7 +12,7 @@ This corpus is a specialization of `kb-card-specification.md` for one consumptio
 | `tags` (grep index) | dropped | no agent greps the pool |
 | Facets (retrieval filter) | repurposed as the **dispatch facet** `applies_to_target` | the workflow selects which cards to run for a given target type |
 | `group`, `confidence` facets | dropped from the card → provenance map | the sub-agent acts on neither; `group` is derivable from `rule_id` (workflow computes it), `confidence` is maintainer evidence-strength |
-| Inline citation | a compact locator stays in the card (`## Source`); the full citation + analysis go to the provenance map | the auditor consumer and the human reviewer benefit from the locator; the prose stays attribution-free, so C-E2's core concern holds. A documented deviation from C-A5 (provenance-out-of-card), justified by this corpus's verification need |
+| Inline citation | none in the card; the full citation and its analysis go to the provenance map, keyed by `rule_id` | the card's prose stays attribution-free (C-E2) and provenance stays out of the card (C-A5); a reviewer opens the map line, and an agent's context holds the rule alone |
 | Numbers in claims | kept in the card | C-E3 — the number is the load-bearing part |
 | Self-containedness (group C) | strict — no sibling-rule IDs, no "the skill", no deixis | each sub-agent sees only its card + the target + the inventory |
 | Cross-card concerns (ownership/defer, conflict priority) | in `audit-workflow.js` (`DEFER_TO`, `GROUP_PRIORITY`), keyed by `rule_id`/`group` | orchestration is the workflow's job, not the atom's |
@@ -28,7 +28,7 @@ This corpus is a specialization of `kb-card-specification.md` for one consumptio
 | `severity_default` | yes | default patch severity the sub-agent emits |
 | `defines` | optional | terms this card is the authority on within the corpus (usually omitted) |
 
-No `links`, no `tags`. `group` and `confidence` are not card fields — `group` is computed from `rule_id` (R-01 → G1) by the workflow; `confidence` is recorded as `evidence` in the provenance map. The academic source stays as a compact `## Source` footer (see body schema).
+No `links`, no `tags`. `group` and `confidence` are not card fields — `group` is computed from `rule_id` (R-01 → G1) by the workflow; `confidence` is recorded as `evidence` in the provenance map. The academic source stands on the card's line in the provenance map.
 
 ## Allowed values
 
@@ -40,16 +40,15 @@ No `links`, no `tags`. `group` and `confidence` are not card fields — `group` 
 
 ## Body block schema (one schema across the corpus, C-F1)
 
-In this order: `## Thesis` → `## Rationale` → `## Example` → `## Limits` → `## Validator` → `## Patch output` → `## Source`.
+In this order: `## Thesis` → `## Rationale` → `## Example` → `## Limits` → `## Validator` → `## Patch output`.
 
 - **Thesis** — the rule, one checkable claim.
-- **Rationale** — why it holds: the mechanism and its kept numbers (no source attribution — that is the `## Source` footer).
+- **Rationale** — why it holds: the mechanism and its kept numbers (no source attribution — the source stands on the provenance line).
 - **Example** — a fenced contrast pair, ≤ ~3 lines (C-F3): `bad: … / good: …` in the R-cards; the C-cards use the base spec's `rejected: … / accepted: …` labels — they model the convention of the corpora they audit.
 - **Limits** — the rule's own scope and applicability bound; caveats and extrapolations (C-C3). States its boundary without naming sibling rules.
 - **Validator** — the operative check the sub-agent runs (what to grep, what to flag, the validator question). Corpus-local block, added because an audit rule has an operative check distinct from its rationale.
 - **Patch output** — the consumer block (C-D2, one per card, one name per corpus): when (the audit sub-task), who (this rule's audit sub-agent), where (emit a patch with this `rule_id` against the dispatch-supplied schema, or `needs_human` for a semantic call).
-- **Source** — a compact provenance footer naming one of the three admissible classes of the repo's Evidence-Based Rule: academic research (article + §), a technical standard (RFC or specification + §), or verified hands-on experience (the test that demonstrated it). A trade book is not a source class — a practitioner text may be named as the formulation a rule follows, never as its evidence. Plus any one-line caveat. Not in-prose attribution (Thesis/Rationale stay attribution-free), so the spirit of C-E2 holds. Note: the audit sub-agent is read-only and usually cannot fetch the source at runtime, so the locator chiefly serves human verification of `needs_human` patches and model grounding; the full citation lives in the map.
 
 ## Provenance
 
-The full citation, evidence basis, origin reference file, ownership, and house-heuristic flags live in `rule-cards-provenance.md` — keyed by `rule_id`, never loaded at runtime. The card's `## Source` footer carries only a compact locator of the same citation.
+The full citation, evidence basis, origin reference file, ownership, and house-heuristic flags live in `rule-cards-provenance.md` — keyed by `rule_id`, never loaded at runtime. The card carries no citation; its provenance line is the one place the source is written.

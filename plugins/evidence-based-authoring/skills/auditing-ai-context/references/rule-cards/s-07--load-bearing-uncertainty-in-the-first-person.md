@@ -28,6 +28,3 @@ For each hedge, ask what uncertainty stands behind it. Where a real one does, re
 
 ## Patch output
 When auditing text whose uncertainty is expressed impersonally, or that carries a softener with no uncertainty behind it, emit one patch (`rule_id: S-07`, `location` set to the heading and line hint, `current` = the hedge, severity medium) proposing the first-person restatement or the removal. Telling a load-bearing uncertainty from an empty softener is a semantic call, so set `proposed: null` and `needs_human: true`.
-
-## Source
-Kim 2405.00623 (FAccT 2024) — pre-registered human-subject experiment, N = 404: first-person expressions decrease participants' confidence in the system and their tendency to agree with it while increasing participants' accuracy, through reduced overreliance on incorrect answers; effects for uncertainty expressed from a general perspective are weaker and not statistically significant. Steyvers 2401.13835, *Nature Machine Intelligence* (users show increased confidence with longer explanations even where the extra length does not improve accuracy). Caveat: medical questions, lay participants — transfer to an expert technical reader is an extrapolation.

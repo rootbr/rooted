@@ -28,6 +28,3 @@ For each sentence of the span, take the dependencies left open at its midpoint �
 
 ## Patch output
 When auditing a span whose sentence nests a clause or carries a second claim, emit one patch (`rule_id: S-23`, `location.section` + `line_hint`, severity low) proposing the split into left-to-right sentences. Where a sentence's claims divide is a reading call, so set `proposed: null` and `needs_human: true`.
-
-## Source
-Peelle, Troiani, Wingfield & Grossman 2010, *Cerebral Cortex* 20(4):773–782, PMC2837088 — 40 adults, twenty aged 19–27 and twenty aged 60–77, heard six-word sentences with a centre-embedded relative clause; object-relative sentences were answered less accurately than subject-relative, worsening at fast speech. Backs the nesting half only, and transfers no number to prose of other lengths. Clinton-Lisell 2022, *Review of Educational Research* 92(4):543–582, doi:10.3102/00346543211060871 — 46 studies, N = 4,687, listening against reading g = 0.07 (p = .23, n.s.); bounds the rule against a general claim that speech is harder. One claim per sentence is a house default with no located source.

@@ -14,12 +14,11 @@ holds a SKILL.md. Rules:
      maintenance/<corpus>-provenance.md
   e  a skill with maintenance/ has maintenance/README.md and a README.md with a "## Layout" heading
   f  the two files of each SYNC_PAIRS entry are byte-identical; the first is the canonical one
-  g  no run-set Markdown file carries a provenance note outside code spans and fences: a
-     citation bracket (a bracketed source locator, eval expectation or evidence verdict), an
-     eval expectation tag `eval <name> E<n>`, or a fetch marker such as (fetched) or
-     **unfetched**; the source behind a rule stands on its line in
-     maintenance/<name>-provenance.md, and a card corpus keeps the compact `## Source`
-     locator its taxonomy documents
+  g  no run-set Markdown file carries a source reference outside code spans and fences: a
+     source locator (an arXiv id, a DOI, a URL), a citation bracket (a bracketed locator, eval
+     expectation or evidence verdict), an eval expectation tag `eval <name> E<n>`, or a fetch
+     marker such as (fetched) or **unfetched**; the source behind a rule stands on its line in
+     maintenance/<name>-provenance.md, and a URL a run must open is written as code
 
 Usage:  python3 check-skill-layout.py [--root <repository>] [--table]
 --table prints, per skill, the layout the check derives: each top-level entry and its set.
@@ -41,11 +40,13 @@ AUTHORING_PHRASES = ("authoring time only", "never part of a build or a review")
 CORPUS = "*-cards*"
 LAYOUT_HEADING = re.compile(r"^## Layout\s*$", re.M)
 
-# Rule g. A bracket is a citation when it holds a source locator, an eval expectation, an evidence
-# verdict or two author-year pairs; a Markdown link, a footnote and a reference-style link are not.
+# Rule g. A locator in prose is a source reference; a bracket is a citation when it holds a locator,
+# an eval expectation, an evidence verdict or two author-year pairs; a Markdown link, a footnote and a
+# reference-style link are not brackets of that kind.
 FENCE = re.compile(r"^\s*(?:`{3,}|~{3,})")
 INLINE_CODE = re.compile(r"`[^`\n]*`")
 BRACKET = re.compile(r"\[(?!\^)([^\[\]\n]+)\](?![\(\[])")
+LOCATOR = re.compile(r"arXiv:\d{4}\.\d{4,5}|\b\d{4}\.\d{5}\b|\bdoi:\s*10\.|\b10\.\d{4,9}/\S|https?://")
 SOURCE_ID = re.compile(r"arXiv:\d{4}\.\d{4,5}|\bdoi:\s*10\.|\b10\.\d{4,9}/\S|https?://|\bDOT/FAA/|\bRFC ?\d{3,5}\b|\bREADME \d+\b")
 AUTHOR_YEAR = re.compile(r"\b[A-Z][A-Za-z'’-]+(?: et al\.)?(?: & [A-Z][A-Za-z'’-]+)? (?:19|20)\d\d\b")
 EVIDENCE_VERDICT = re.compile(r"\b(?:untested|not opened|no source|no opened study|first-hand|relay(?:ed)?|consistent only|definition)\b")
@@ -113,6 +114,9 @@ def is_citation(content):
 
 def check_provenance(key, number, prose, out):
     """Rule g over one line of run-set prose with its code spans removed."""
+    locator = LOCATOR.search(prose)
+    if locator:
+        out.append(f"{key}:{number}: g: a source locator in a run-set file: {locator.group(0)}")
     for match in BRACKET.finditer(prose):
         if is_citation(match.group(1)):
             out.append(f"{key}:{number}: g: a citation bracket in a run-set file: [{match.group(1)[:60]}]")

@@ -28,6 +28,3 @@ Read the body as if every link were unreachable: is the thesis still fully state
 
 ## Patch output
 When auditing a card whose body depends on a linked sibling, emit one patch (`rule_id: C-C2`, severity medium) proposing the missing content be inlined so the card stands alone. Judging whether the body is self-complete is a semantic call, so set `needs_human: true`.
-
-## Source
-KB card spec, self-containedness rules, group C (retrieved in isolation).

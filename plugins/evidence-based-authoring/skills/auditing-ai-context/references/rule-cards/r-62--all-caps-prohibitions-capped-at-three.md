@@ -28,6 +28,3 @@ Inventory every ALL-CAPS marker in the body. (1) Count them. (2) Classify each a
 
 ## Patch output
 When the ALL-CAPS count exceeds the ceiling or a marker is unjustified, emit one patch (`rule_id: R-62`, `location` set to the heading and line hint, `current` = the marker rule, severity medium) proposing a downgrade to SHOULD, a positive rephrase, or an added rationale.
-
-## Source
-Anthropic skill-creator guidance (bare ALL-CAPS = yellow flag; pair with hoisted rationale); Yang 2505.13360 §3.4 (bundling tax — marginal cost rises per rule).

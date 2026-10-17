@@ -29,6 +29,3 @@ Inventory all scripts referenced from the skill (`scripts/`, `bin/`, or any `Bas
 
 ## Patch output
 When auditing an undocumented or range-pinned script reference, emit one patch (`rule_id: R-82`, `location.script_path` = path, severity medium) proposing the four-item declaration added to the skill and re-audit on each version bump.
-
-## Source
-Liu 2601.10338 §1 (script-bundling skills 2.12× more vulnerable, OR=2.12, p<0.001); OWASP Agentic Skills Top 10 v1.0 AST07 (dependencies pinned to immutable hashes).

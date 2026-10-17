@@ -28,6 +28,3 @@ For each table, fenced diagram, or arrow chain, name the single inference the re
 
 ## Patch output
 When auditing a target whose structure holds content without cheapening a named inference, emit one patch (`rule_id: S-20`, `location.section` + `line_hint`, severity low) proposing either prose or a narrower structure carrying the same claim. Naming which inference the reader must make is a reading call, so set `proposed: null` and `needs_human: true`.
-
-## Source
-Larkin & Simon 1987, *Cognitive Science* 11(1):65–100, doi:10.1207/s15516709cog1101_4 — p. 67 (informational vs computational equivalence, ease judged over what is stated explicitly), p. 68 (two-dimensional indexing), p. 99 (the advantage is computational; irrelevant easy inferences), p. 71 (fails without the operators to read it), pp. 98–99 (must be constructed for it), p. 77 Table 2 (138 elements searched sententially; the diagrammatic count is never given). Read first-hand from page images.

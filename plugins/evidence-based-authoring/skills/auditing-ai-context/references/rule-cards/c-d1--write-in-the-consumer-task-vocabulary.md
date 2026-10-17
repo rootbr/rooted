@@ -28,6 +28,3 @@ Read the card and ask whose frame it speaks in: the consumer doing the task, or 
 
 ## Patch output
 When auditing a card written in the source's frame rather than the consumer's, emit one patch (`rule_id: C-D1`, severity medium) proposing a rewrite into the consumer's task vocabulary and sub-task framing. Judging the consumer-fit requires knowing the job, so set `needs_human: true`.
-
-## Source
-KB card spec, consumer-applicability rules, group D (the card serves a job, not a syllabus).

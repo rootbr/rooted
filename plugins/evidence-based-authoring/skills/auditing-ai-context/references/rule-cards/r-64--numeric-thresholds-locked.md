@@ -28,6 +28,3 @@ Extract all numeric thresholds from the file and group them by referent. Within 
 
 ## Patch output
 When a threshold drifts across references to the same referent, emit one patch (`rule_id: R-64`, `location` set to the heading and line hint, `current` = the inconsistent number, severity medium) proposing the consistent number taken from the canonical mention.
-
-## Source
-Dong 2512.14754 §3.1 (numeric edits and constraint reconfiguration degrade reliable@10 more than pure rephrasing).

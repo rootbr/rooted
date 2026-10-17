@@ -28,6 +28,3 @@ Take the identifier smells — `*V2` / `*V3`, `New*`, `Old*`, `Legacy*`, `*Impro
 
 ## Patch output
 When an identifier encodes a design that no longer exists, emit one patch (`rule_id: D-03`, `location.section` + `line_hint`, `current` = the identifier, `proposed: null`, severity low, `needs_human: true`) proposing a name that states present intent, and record in the justification that the rename must reach every reference — a repository-wide follow-up a single-file reader cannot complete.
-
-## Source
-Verified hands-on experience — eval seed 7, `seed7_old_name.ts` of the audit skill's eval suite: `parseConfigV2` becomes `parseConfig` with its call site updated, once it is the only parser in the file. 2212.01479 supplies the propagation half — most of 3,000+ GitHub projects carry at least one documentation reference to a code element whose every source instance was deleted.

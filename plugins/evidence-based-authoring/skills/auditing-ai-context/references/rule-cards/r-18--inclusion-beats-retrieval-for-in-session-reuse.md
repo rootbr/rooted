@@ -28,6 +28,3 @@ When the file recommends "retrieve from <vector store>" or "look up in <RAG inde
 
 ## Patch output
 When a retrieval-based instruction covers content reused in-session, emit one patch (`rule_id: R-18`, `current` = retrieval-based instruction, `proposed` = inclusion-based instruction, severity low). Set `needs_human: true` when the reuse frequency cannot be judged from the file.
-
-## Source
-Pollertlam 2603.04814 §4.1, Table 3 (long-context retention beats retrieval by 33–35 pp on LoCoMo/LongMemEval; PersonaMem v2 gap 7.3 pp); §4.3 (break-even ~10+ reuses of ~100k-token content with caching).

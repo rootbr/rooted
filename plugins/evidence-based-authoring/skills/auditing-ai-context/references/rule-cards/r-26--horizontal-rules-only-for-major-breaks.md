@@ -28,6 +28,3 @@ Count `---` lines and compare to the number of H2 headings. If the horizontal ru
 
 ## Patch output
 When horizontal rules outnumber H2 headings, emit one patch (`rule_id: R-26`, `location.section` + `line_hint`, `current` = `---`, severity low) deleting the decorative rule and relying on the H2 heading for separation.
-
-## Source
-Chatlatanagulchai 2509.14744 (horizontal-rule convention; decorative rules add no hierarchy beyond headings).

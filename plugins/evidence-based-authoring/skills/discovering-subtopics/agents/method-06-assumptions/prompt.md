@@ -31,8 +31,6 @@ Identify 5–7 assumptions so foundational the topic cannot exist without them. 
 
 Tag: `[FirstPrinciples]`.
 
-Sources: Aristotle, *Posterior Analytics* (Book I); Descartes, *Discourse on the Method* (1637), Part II.
-
 ### Assumption mapping
 List 8–12 things taken for granted about the topic — **especially the ones the canonical source does not flag as assumptions**. Categories:
 - Definitional ("X is well-defined")
@@ -45,8 +43,6 @@ List 8–12 things taken for granted about the topic — **especially the ones t
 For each, generate the question that its **operational negation** would raise.
 
 Tag: `[Assumption]`.
-
-Source: VanGundy, A. B. (1988). *Techniques of Structured Problem Solving*. Van Nostrand Reinhold; rooted in Osborn, *Applied Imagination* (1953).
 
 ### Blind-spot probe
 What questions does the field consistently **fail to ask about itself**? What is systematically ignored because it is inconvenient, destabilising, or outside accepted scope? Produce 5–8 questions.

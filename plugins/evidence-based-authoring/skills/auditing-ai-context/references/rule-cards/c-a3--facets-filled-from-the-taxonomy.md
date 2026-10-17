@@ -28,6 +28,3 @@ For each facet field, check every value for exact membership in the store's taxo
 
 ## Patch output
 When auditing a card carrying a facet value absent from the taxonomy or a folder that disagrees with its facet, emit one patch (`rule_id: C-A3`, `location.field` = the facet, severity high) proposing the nearest valid taxonomy value; set `needs_human: true` when no taxonomy value clearly fits.
-
-## Source
-KB card spec, identity/retrievability rules, group A (facets are the retrieval index — a wrong facet makes the card invisible).

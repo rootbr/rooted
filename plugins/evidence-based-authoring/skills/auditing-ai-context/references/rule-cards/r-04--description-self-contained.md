@@ -28,6 +28,3 @@ Search the description for `see `, `documented in `, `as described `, `this skil
 
 ## Patch output
 When auditing the `description` of a skill or agent-prompt, emit one patch (`rule_id: R-04`, `location.field: description`, severity high) rewriting it as standalone prose with the dangling reference removed; set `needs_human: true` when removing the reference would drop information the description needs.
-
-## Source
-Liu 2604.14228 §6.1, §6.3 (skills lazy-load on activation, so a cross-skill reference is inert until that skill fires); the rest follows from routing mechanics (the router sees only the description, with dozens pasted side by side).

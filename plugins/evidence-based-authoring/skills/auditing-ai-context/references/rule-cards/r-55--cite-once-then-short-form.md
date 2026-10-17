@@ -28,6 +28,3 @@ Count occurrences per cited source. If any source appears with its full ID plus 
 
 ## Patch output
 When a source's full ID + year recurs after its first mention, emit one patch (`rule_id: R-55`, `location.section` = heading, severity low) replacing the repeated full citation with its short form. No `needs_human` flag — occurrence counting is mechanical.
-
-## Source
-Convention; rationale is token economy (repeated full citation inflates length without adding locator value).

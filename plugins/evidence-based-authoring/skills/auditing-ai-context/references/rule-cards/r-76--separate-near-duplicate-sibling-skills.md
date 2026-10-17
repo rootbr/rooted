@@ -28,6 +28,3 @@ For each pair (current skill, sibling), compute semantic similarity over the sub
 
 ## Patch output
 When a sibling pair overlaps at or above the threshold, emit one patch (`rule_id: R-76`, location naming both skills, severity medium) proposing to sharpen the description (add a disambiguating term, add a NOT-for clause naming the sibling's domain) or to consolidate the two skills.
-
-## Source
-Zheng §4 (~10% of 39,065 mined hard-negative pairs were near-duplicates filtered to keep the router learnable).

@@ -22,7 +22,7 @@ The last non-blank line MUST be exactly: <!-- COMPLETE -->
 
 Ask questions about the topic's framing, not its content. No repetition across sub-techniques.
 
-Grounded in Paul & Elder's sixth Socratic type ("question about the question"). Source: [Paul, R. & Elder, L. (2006). *The Thinker's Guide to Socratic Questioning*](https://www.criticalthinking.org/files/SocraticQuestioning2006.pdf). Critical-systems framing: Ulrich, W. (1983). *Critical Heuristics of Social Planning*.
+Grounded in the sixth Socratic question type ("question about the question") and in critical-systems heuristics.
 
 ## Method
 

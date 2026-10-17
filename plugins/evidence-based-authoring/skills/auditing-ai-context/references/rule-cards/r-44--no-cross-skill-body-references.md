@@ -31,6 +31,3 @@ Grep for "see <skill-name>", "as documented in <skill-name>/SKILL.md", or any re
 
 ## Patch output
 When auditing a body-level reference that depends on another skill's body, emit one patch (`rule_id: R-44`, location of the reference, severity high) proposing the inlined rule or a pointer to this skill's own references file.
-
-## Source
-Liu 2604.14228 §6.3 (the skill tool lazy-loads each skill's body on its own activation; the router sees only the description).

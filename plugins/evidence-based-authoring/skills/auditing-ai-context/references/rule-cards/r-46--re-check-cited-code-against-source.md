@@ -28,6 +28,3 @@ For every repo-internal pointer the audit *proposes*, search the repo for `<symb
 
 ## Patch output
 When a proposed repo-internal pointer names an entity that grep cannot find, emit one patch (`rule_id: R-46`, location of the reference, severity info, `proposed: null`, `needs_human: true`) asking the reviewer to supply the current name.
-
-## Source
-Verified hands-on experience: a proposed pointer to a renamed symbol is worse than no proposal; grep before keeping it.
