@@ -10,7 +10,7 @@ A build run names its build model — `fable` for a task that adds or changes a 
 
 | Stage | What runs | Where it lives |
 |--|--|--|
-| Design | one developer agent on its design dispatch: reads the write zone and its neighbours, lists the `design` cards and writes the design brief `craft/design.md` — task, stack, design, failure paths, tests, steps, out of scope — shown with the scope summary for the one confirmation | `plugins/code-quality/agents/software-developer.md`, `SKILL.md` §Phase 3, `scripts/craft-cards.py` |
+| Design | one developer agent on its design dispatch: reads the write zone and its neighbours, lists the `design` cards, designs each significant decision twice and writes the design brief `craft/design.md` — task, stack, design with its decisions, failure paths, tests, steps, out of scope — checked by `brief-gate.py` and shown with the scope summary for the one confirmation | `plugins/code-quality/agents/software-developer.md`, `SKILL.md` §Phase 3, `scripts/craft-cards.py`, `scripts/brief-gate.py` |
 | Build | the same agent type on its build dispatch, inside the write zone the task names: reads the brief and follows its steps, lists the cards for each step and reads the ones whose titles apply, implements, tests, self-reviews with the pre-pass, reports with its deviations from the brief | `plugins/code-quality/agents/software-developer.md`, `scripts/craft-cards.py` |
 | Pre-pass | `static-craft.py` reads the diff (a commit range, or the working tree with its untracked files), measures eleven structural signals per hunk, matches the card frontmatter and your `config.md`, and writes `craft/plan.json`: which cards the diff triggers, which files each one reads, the logic-pass slices, mechanical candidates, your project invariants as cards, and whether the `META-` cards audit your `config.md` | `scripts/static-craft.py` |
 | Bundle | `bundle-run.py` embeds the plan, the design intent and the project context into `craft/run.js`, the workflow script the orchestrator runs by path, so a plan of any size never passes through a typed tool call; a large plan is bundled in parts, one workflow each, and `merge-parts.py` joins their outputs | `scripts/bundle-run.py`, `scripts/merge-parts.py` |
@@ -128,6 +128,7 @@ This skill's instance of the repository `README.md` §Skill layout:
 | `references/report-format.md` | the orchestrating session | writing or checking the two reports |
 | `scripts/static-craft.py` | the orchestrating session, the developer agent | the pre-pass of a review, the developer's self-review |
 | `scripts/craft-cards.py` | the developer agent; a reader with `--provenance` | before each design and build step |
+| `scripts/brief-gate.py` | the developer agent, then the orchestrating session | after the brief is written, before the confirmation; after a fix round amends the brief |
 | `scripts/bundle-run.py` | the orchestrating session | before each workflow call |
 | `scripts/craft-review-workflow.js` | the Workflow tool, as `craft/run.js` | every review |
 | `scripts/merge-parts.py` | the orchestrating session | a review run in parts |
@@ -136,6 +137,7 @@ This skill's instance of the repository `README.md` §Skill layout:
 | `maintenance/README.md` | a maintainer | before changing a card, a script, a prompt, a signal or a tier |
 | `maintenance/craft-cards-provenance.md`, `maintenance/craft-cards-python-provenance.md`, `maintenance/craft-cards-java-provenance.md` | a maintainer; `scripts/render-reports.py` and `scripts/craft-cards.py --provenance` through `cardlib.provenance_map_path` | authoring a card; a finding's source pointer in the report |
 | `maintenance/craft-cards-taxonomy.md` | a maintainer, the validator, the research agents | authoring a card or a facet value |
+| `maintenance/brief-provenance.md` | a maintainer | changing a rule of the design brief — the decisions, the operations of a module entry, the gate |
 | `maintenance/pending-evidence.md`, `maintenance/pending-evidence-python.md`, `maintenance/pending-evidence-java.md` | a maintainer, `maintenance/scripts/write-topic-result.py` | authoring |
 | `maintenance/java-invariants-review-checklist.md` | a project's author, a maintainer | discovering and writing the invariants of a Java project's `config.md` |
 | `maintenance/scripts/` | a maintainer | researching a topic, harvesting the Python catalogs, validating the cards (`maintenance/README.md` §Scripts) |

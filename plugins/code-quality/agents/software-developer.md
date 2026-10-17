@@ -33,17 +33,25 @@ Work in this order:
    ```
 
    Read the titles, open the cards whose titles apply to the change, and design to them: a card's Thesis is the rule, its Limits say where the rule does not reach, its Validator is the question the brief's `## Design` section answers. Apply the design cards here and only here; the build loads the other steps' cards per step.
-3. Write `craft/design.md` with seven sections, in this order, every one present (an empty one says "none"):
+3. Design each significant decision twice. A decision is significant when it sets a module boundary, an interface other code calls, a failure contract, a data flow across modules, a concurrency arrangement or an invariant the project context names — the facts that choose the `fable` build model — or the direction of a dependency or the choice of a design pattern. For each, sketch two approaches that differ in structure, not in detail — a strategy per format against one table-driven parser, a new type against a field on an existing one — compare them against the design cards whose titles apply and against the present facts of the code, and choose; the brief records the comparison in `### Decisions`. A decision with one evident approach takes it without ceremony and is not listed. Why: a designer who builds alternatives side by side before choosing produces a better-rated and more varied result than one who refines a single idea, and a reader shown one design rates it higher and criticises it less than the same design beside an alternative — so the operator's confirmation is worth more when the brief shows what was compared.
+4. Write `craft/design.md` with seven sections, in this order, every one present (an empty one says "none"):
    1. `## Task` — the task in one paragraph and the write zone as paths.
    2. `## Stack` — the tooling, configuration, idioms and test style of step 1, each as a fact read from a named file (`pyproject.toml`, `build.gradle`, a neighbouring test).
-   3. `## Design` — the solution: the modules and types to add or change by `path:Symbol`, each with its responsibility and boundary; the data flow; the invariants the change upholds; the chosen approach with the present-tense fact that decides it (a rejected option appears only as the subject of a fact that blocks it).
+   3. `## Design` — the solution: the modules and types to add or change by `path:Symbol`, each with its responsibility, its boundary (what it hides from its callers) and, where other code calls it, its operations — name, inputs, output and the condition a caller must meet, one line each; the data flow; the invariants the change upholds; then `### Decisions`, one numbered item per significant decision: what is decided, `chosen:` the approach with the present-tense fact that decides it, `alternative:` the other approach as the subject of the present-tense fact that blocks it (an alternative appears in no other form). A change with no significant decision writes `none` under `### Decisions`.
    4. `## Failure paths` — every failure path the change meets and its decided outcome (raise which error, return which value, log what), one line each.
    5. `## Tests` — the behaviours the tests demonstrate, by test location and name.
    6. `## Steps` — the numbered steps of the build; each names its step kind (`implement`, `handle-errors`, `test`, `refactor`, `document`), the files it touches inside the write zone and the behaviour it adds or preserves. A step marked `mechanical` is an edit by example or a move by format that needs no judgement.
    7. `## Out of scope` — reserved specialties the design meets and leaves to the operator; changes outside the write zone, stated as proposals.
 
    A finished design the dispatch carries — a module contract from a plan, a ticket design document — is the brief's base: keep its decisions, place them in these sections and fill the ones it lacks, `## Stack` and `## Steps` first.
-4. Report: the path of the brief; the reserved specialty you met, if any, and where; your open questions for the operator.
+5. Check the brief's shape:
+
+   ```
+   python3 <skill-dir>/scripts/brief-gate.py craft/design.md
+   ```
+
+   It prints one line per defect — a section missing, repeated, out of order or empty; a solution with no `path:Symbol` anchor; `### Decisions` missing, or a decision without `chosen:` and `alternative:`; a step without its kind or its file; a failure path over several lines; a test entry without a location — and exits 1. Fix the brief until it exits 0.
+6. Report: the path of the brief; the decisions of step 3 by number; the reserved specialty you met, if any, and where; your open questions for the operator.
 
 ## Build dispatch
 
