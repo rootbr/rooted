@@ -46,7 +46,7 @@ The pipeline has three sequential stages; the first stage's nine agents run in p
 
 Each stage has its own completion marker contract (below). A restart skips any stage whose output is already complete.
 
-- `{topic-slug}` follows the global naming rule: lowercase, hyphens, date-prefix optional per `~/.claude/CLAUDE.md` conventions. Example: `tmp/coverage-map-http-caching/`.
+- `{topic-slug}` follows the global naming rule: lowercase, hyphens, date-prefix optional per the shared global agent instructions. Example: `tmp/coverage-map-http-caching/`.
 - `run.md` is written **once** at dispatch and updated with timestamps as each agent completes.
 - `prompts/NN-method.md` is the **actual prompt dispatched** — it equals `agents/method-NN-*/prompt.md` with the topic + inputs substituted. Saving it (not the template) guarantees bit-exact reproducibility on restart.
 - `outputs/NN-method.md` is the agent's own writing. The agent writes a partial file as it works; the **completion marker is the last thing it writes**.
