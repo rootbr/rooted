@@ -1,0 +1,55 @@
+{
+  "expectations": [
+    {
+      "text": "check_report.py --profile operator reports 0 errors on report.md, its anchors read from the fixture or from the directory above the fixtures",
+      "passed": true,
+      "evidence": "exit 0: 0 error(s), 0 warning(s)"
+    },
+    {
+      "text": "the opening paragraph has at least three sentences",
+      "passed": true,
+      "evidence": "the opening has 6 sentence(s)"
+    },
+    {
+      "text": "no sentence of the story runs past twenty words",
+      "passed": true,
+      "evidence": "0 line(s) with a sentence past 20 words"
+    },
+    {
+      "text": "at least two path:line anchors resolve under the fixture with their fragment on the line",
+      "passed": true,
+      "evidence": "3 anchors, 0 errors, 0 without their fragment on the line"
+    },
+    {
+      "text": "the story holds exactly one question and it stands last, before the list of where to look",
+      "passed": true,
+      "evidence": "1 question mark(s) in the story; the last prose line asks: True"
+    },
+    {
+      "text": "the options of the decision stand in a fenced block with a gain (+) and a cost (-)",
+      "passed": true,
+      "evidence": "1 fenced block(s) with a gain and a cost, of 2 block(s)"
+    },
+    {
+      "text": "the parts after the opening stand under headings of one to four words",
+      "passed": true,
+      "evidence": "2 heading(s) before the list, 2 of one to four words"
+    },
+    {
+      "text": "the story says the alert no longer matches error lines after the upgrade",
+      "passed": true,
+      "evidence": "the alert no longer matching error lines is said: True"
+    },
+    {
+      "text": "the story says what was not verified: no build or run, the check ran on the samples",
+      "passed": true,
+      "evidence": "what was not verified is said: True"
+    }
+  ],
+  "summary": {
+    "passed": 9,
+    "failed": 0,
+    "total": 9,
+    "pass_rate": 1.0
+  }
+}

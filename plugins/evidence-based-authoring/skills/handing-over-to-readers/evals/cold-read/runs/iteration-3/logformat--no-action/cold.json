@@ -1,0 +1,47 @@
+{
+  "answers": [
+    {
+      "question": "What was the task?",
+      "found": "yes",
+      "answer": "The task was to upgrade the logging library to version 2, because the old version is no longer supported.",
+      "quotes": ["The task was to upgrade the logging library to version 2.", "The old version is no longer supported."],
+      "missing": ""
+    },
+    {
+      "question": "How did it end: what is done and what is not?",
+      "found": "yes",
+      "answer": "The build now takes the new library version and that is the whole change; the operations team's file was not touched, and the project was not built and no tests were run.",
+      "quotes": ["The build now takes the new version, and that is the whole change.", "I did not touch the operations team's file.", "I did not build the project or run any tests."],
+      "missing": ""
+    },
+    {
+      "question": "How does the thing that changed work?",
+      "found": "yes",
+      "answer": "The new library version writes each log line's time in UTC with a letter T and a dot before the milliseconds, instead of the old local time with a space and a comma, while the operations team's alert fires for every log line matching a pattern that expects the old form.",
+      "quotes": ["But the new version writes the time of each log line in a new form.", "It fires for every log line that matches a pattern in their file.", "The pattern expects the old time form: local time, a space, a comma before the milliseconds.", "The new version writes the time in UTC, with a letter T and a dot."],
+      "missing": ""
+    },
+    {
+      "question": "What is the problem, and what causes it?",
+      "found": "yes",
+      "answer": "If the change ships as it is, errors raise no alert, because the alert pattern expects the old time form and misses lines in the new form, as a run of the pattern on one line of each form showed.",
+      "quotes": ["So the operations team's alert on errors no longer sees our error lines.", "The pattern expects the old time form: local time, a space, a comma before the milliseconds.", "I ran their pattern on one error line written each way.", "It matched the old line and missed the new one.", "So if this ships as it is, our errors raise no alert at all."],
+      "missing": ""
+    },
+    {
+      "question": "What is not verified?",
+      "found": "yes",
+      "answer": "The project was not built and no tests were run.",
+      "quotes": ["I did not build the project or run any tests."],
+      "missing": ""
+    },
+    {
+      "question": "What do I have to decide, and what does each option give and cost?",
+      "found": "partly",
+      "answer": "The text names no decision; its closing list only mentions that a setting which keeps the old time form exists and is not set.",
+      "quotes": ["- the setting that keeps the old form, not set: `fixtures/logformat/src/main/resources/logkit.properties:2` `logkit.timestamp=legacy`"],
+      "missing": "What the reader has to decide, the options (for example setting the old-form setting or changing the operations team's pattern), and what each option gives and costs."
+    }
+  ],
+  "unexplained": []
+}

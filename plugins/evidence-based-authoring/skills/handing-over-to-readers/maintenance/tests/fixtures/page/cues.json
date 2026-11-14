@@ -1,0 +1,163 @@
+[
+ {
+  "paragraph": 1,
+  "sentence": 1,
+  "text": "The task was to stop a re-uploaded picture from showing its old thumbnail.",
+  "start": 0.0,
+  "end": 4.55
+ },
+ {
+  "paragraph": 1,
+  "sentence": 2,
+  "text": "That is fixed: a re-uploaded picture now gets a fresh thumbnail, and the tests pass.",
+  "start": 4.8,
+  "end": 10.05
+ },
+ {
+  "paragraph": 1,
+  "sentence": 3,
+  "text": "One thing is left.",
+  "start": 10.3,
+  "end": 11.7
+ },
+ {
+  "paragraph": 1,
+  "sentence": 4,
+  "text": "Thumbnails cached before the change stay wrong until they expire, for up to a day.",
+  "start": 11.95,
+  "end": 17.2
+ },
+ {
+  "paragraph": 1,
+  "sentence": 5,
+  "text": "You decide whether we purge the cache now or let them expire.",
+  "start": 17.45,
+  "end": 21.65
+ },
+ {
+  "paragraph": 2,
+  "sentence": 1,
+  "text": "How it broke.",
+  "start": 22.5,
+  "end": 23.55
+ },
+ {
+  "paragraph": 2,
+  "sentence": 2,
+  "text": "A thumbnail is stored in the cache under a key.",
+  "start": 23.8,
+  "end": 27.3
+ },
+ {
+  "paragraph": 2,
+  "sentence": 3,
+  "text": "The key was the picture's number alone.",
+  "start": 27.55,
+  "end": 30.0
+ },
+ {
+  "paragraph": 2,
+  "sentence": 4,
+  "text": "A re-uploaded picture keeps its number.",
+  "start": 30.25,
+  "end": 32.35
+ },
+ {
+  "paragraph": 2,
+  "sentence": 5,
+  "text": "So the cache answered with the thumbnail of the old file.",
+  "start": 32.6,
+  "end": 36.45
+ },
+ {
+  "paragraph": 2,
+  "sentence": 6,
+  "text": "Now the key also carries a version, and the version grows with every upload.",
+  "start": 36.7,
+  "end": 41.6
+ },
+ {
+  "paragraph": 3,
+  "sentence": 1,
+  "text": "What is left.",
+  "start": 42.45,
+  "end": 43.5
+ },
+ {
+  "paragraph": 3,
+  "sentence": 2,
+  "text": "Thumbnails cached before the change still sit under the old keys.",
+  "start": 43.75,
+  "end": 47.6
+ },
+ {
+  "paragraph": 3,
+  "sentence": 3,
+  "text": "They stay wrong until they expire.",
+  "start": 47.85,
+  "end": 49.95
+ },
+ {
+  "paragraph": 3,
+  "sentence": 4,
+  "text": "That takes up to a day.",
+  "start": 50.2,
+  "end": 52.3
+ },
+ {
+  "paragraph": 3,
+  "sentence": 5,
+  "text": "About three pictures in a hundred were re-uploaded during the last day.",
+  "start": 52.55,
+  "end": 56.75
+ },
+ {
+  "paragraph": 3,
+  "sentence": 6,
+  "text": "The load test was not run, so I do not know what the new key costs at peak load.",
+  "start": 57.0,
+  "end": 63.65
+ },
+ {
+  "paragraph": 4,
+  "sentence": 1,
+  "text": "What to decide.",
+  "start": 64.5,
+  "end": 65.55
+ },
+ {
+  "paragraph": 4,
+  "sentence": 2,
+  "text": "There are two ways.",
+  "start": 65.8,
+  "end": 67.2
+ },
+ {
+  "paragraph": 4,
+  "sentence": 3,
+  "text": "The first is to purge the cache now: the wrong thumbnails are gone at once, but every gallery page is slow for about twenty minutes.",
+  "start": 67.45,
+  "end": 76.2
+ },
+ {
+  "paragraph": 4,
+  "sentence": 4,
+  "text": "The second is to let the old entries expire: nothing slows down, but re-uploaded pictures show an old thumbnail for up to a day.",
+  "start": 76.45,
+  "end": 84.85
+ },
+ {
+  "paragraph": 4,
+  "sentence": 5,
+  "text": "I would purge at night, when twenty slow minutes cost least.",
+  "start": 85.1,
+  "end": 88.95
+ },
+ {
+  "paragraph": 4,
+  "sentence": 6,
+  "text": "Purge now or let them expire?",
+  "start": 89.2,
+  "end": 91.3
+ }
+]

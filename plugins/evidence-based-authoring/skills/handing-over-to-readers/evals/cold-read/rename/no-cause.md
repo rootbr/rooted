@@ -1,0 +1,29 @@
+The task was to rename the server timeout setting so that its name shows milliseconds. That is done in the code and in our settings file, and both tests pass. One thing is left. You decide whether operations rename their line first, or the code keeps reading the old name for a while.
+
+## What changed
+
+The code now reads only the new name. When the name is missing, it falls back to five seconds. Our settings file gives three seconds under the new name. The tests check both cases. They do not read the production file.
+
+## What to decide
+
+There are two ways.
+
+```diff
+  1. Operations rename their line to the new name before the release
++ one name everywhere, nothing to clean up later
+- the release waits for the operations team
+
+  2. The code also reads the old name, and the old name wins while it is set
++ the release can go now, and production keeps ten seconds
+- two names live in the code until operations rename their line and I remove the old one
+```
+
+I would ask operations first: it is one line for them, and nothing is left to remove later.
+
+Do you ask operations to rename their line, or do I make the code read the old name too?
+
+## Where to look
+
+- the code reads only the new name: `src/main/java/app/ServerConfig.java:16` `properties.getProperty("server.timeoutMs")`
+- our file with the new name: `config/app.properties:3` `server.timeoutMs=3000`
+- the tests: 2 of 2 passed, `./run-tests.sh` exit 0, `test.log:5` `exit code: 0`

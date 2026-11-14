@@ -1,0 +1,80 @@
+{
+  "answers": [
+    {
+      "question": "What was the task?",
+      "found": "yes",
+      "answer": "The task was to stop re-sending a job after an acknowledgement timeout and to read the per-queue limit from configuration.",
+      "quotes": ["The task was to stop re-sending a job after an acknowledgement timeout, and to read the per-queue limit from configuration."],
+      "missing": ""
+    },
+    {
+      "question": "How did it end: what is done and what is not?",
+      "found": "yes",
+      "answer": "Both edits are in the code and their two router tests pass, but the build is red because the colleague's test fails, the change cannot go out until the wait is decided, and the rollout is held until a dispatch-path measurement runs.",
+      "quotes": [
+        "Both edits are in the code, but the build is red.",
+        "You decide which wait is right, and only then can the change go out.",
+        "Four of five tests passed.",
+        "The two router tests for this change pass: no re-send, and a job over the limit is rejected.",
+        "The colleague's test fails.",
+        "A rollout is undone only by another rollout, so I hold it until that measurement runs.",
+        "The routing document was not updated."
+      ],
+      "missing": ""
+    },
+    {
+      "question": "How does the thing that changed work?",
+      "found": "yes",
+      "answer": "The router checks a job's size against its queue's limit, which is now read from configuration rather than a constant, and a job not acknowledged in time is no longer sent again.",
+      "quotes": [
+        "The router checks the size of a job against the limit of its queue.",
+        "That limit now comes from configuration instead of a constant.",
+        "A job a worker did not acknowledge in time used to be sent again.",
+        "Now it is not."
+      ],
+      "missing": ""
+    },
+    {
+      "question": "What is the problem, and what causes it?",
+      "found": "yes",
+      "answer": "The build is red because a colleague's test expects a 400 ms acknowledgement wait while the code waits 250 ms, and the author states he cannot tell whether the 250 came with this change or was there before.",
+      "quotes": [
+        "A colleague's test expects the router to wait 400 milliseconds for an acknowledgement.",
+        "The code waits 250.",
+        "I cannot tell whether the 250 came with this change or was there before."
+      ],
+      "missing": ""
+    },
+    {
+      "question": "What is not verified?",
+      "found": "yes",
+      "answer": "Nobody measured whether reading the limit for every job slows the dispatch path, the routing document was not updated, and what happens to a late-acknowledged job now that it is not re-sent was not checked.",
+      "quotes": [
+        "Nobody measured whether reading the limit for every job slows the dispatch path.",
+        "The routing document was not updated.",
+        "I did not check what happens to a job whose acknowledgement comes late, now that it is not re-sent."
+      ],
+      "missing": ""
+    },
+    {
+      "question": "What do I have to decide, and what does each option give and cost?",
+      "found": "yes",
+      "answer": "The reader decides between waiting 400 ms (build turns green, test stays, slow workers get more time, but a job sent to a dead worker waits longer) and keeping 250 ms (dispatch path keeps today's wait, but the colleague's test is rewritten with his agreement and slow acknowledgements time out sooner with no second attempt), with the author recommending 400.",
+      "quotes": [
+        "You decide which wait is right, and only then can the change go out.",
+        "1. Wait 400 milliseconds, as the test expects",
+        "+ the build turns green and the colleague's test stays as written",
+        "+ a slow worker gets more time, which matters now that nothing is re-sent",
+        "- a job sent to a dead worker waits longer before it times out",
+        "2. Keep 250 milliseconds and change the test",
+        "+ the dispatch path keeps the wait it has today",
+        "- the colleague's test is rewritten, and he has to agree",
+        "- a slow acknowledgement times out sooner, with no second attempt",
+        "I would take 400.",
+        "400 or 250?"
+      ],
+      "missing": ""
+    }
+  ],
+  "unexplained": []
+}

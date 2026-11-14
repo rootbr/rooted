@@ -1,0 +1,297 @@
+{
+  "runs": [
+    {
+      "run": "build--intact",
+      "kind": "intact",
+      "variant": null,
+      "removed": null,
+      "exit": 1,
+      "outcome": "false alarm",
+      "signal": null,
+      "detail": "question 3: partly: Where the 250 ms value came from (this change or earlier code) and why the colleague's test expects 400.",
+      "findings": [
+        "question 3: partly: Where the 250 ms value came from (this change or earlier code) and why the colleague's test expects 400.",
+        "unexplained: the router: \"A colleague's test expects the router to wait 400 milliseconds for an acknowledgement.\"",
+        "unexplained: a colleague (who he is): \"A colleague's test expects the router to wait 400 milliseconds for an acknowledgement.\"",
+        "unexplained: the dispatch path: \"Nobody measured whether reading the limit for every job slows the dispatch path.\"",
+        "unexplained: the routing document: \"The routing document was not updated.\""
+      ]
+    },
+    {
+      "run": "build--no-action",
+      "kind": "planted",
+      "variant": "no-action",
+      "removed": "the reader's decision: the sentence of the opening that names it and the part with the options, the choice and the question",
+      "exit": 1,
+      "outcome": "caught",
+      "signal": "question 5",
+      "detail": "missing",
+      "findings": [
+        "question 3: partly: Where the 250 came from (this change or earlier code) and which of 250 or 400 is the intended value.",
+        "question 5: missing: A decision addressed to the reader (for example whether the wait should be 250 or 400, or whether to roll out before the measurement) with its options and what each gives and costs; the text only says the author holds the rollout until the measurement runs.",
+        "unexplained: the per-queue limit: \"The task was to stop re-sending a job after an acknowledgement timeout, and to read the per-queue limit from configuration.\"",
+        "unexplained: the router: \"A colleague's test expects the router to wait 400 milliseconds for an acknowledgement.\"",
+        "unexplained: the colleague (who wrote the failing test): \"A colleague's test expects the router to wait 400 milliseconds for an acknowledgement.\"",
+        "unexplained: the dispatch path: \"Nobody measured whether reading the limit for every job slows the dispatch path.\"",
+        "unexplained: a rollout (what is rolled out, and why it is undone only by another rollout): \"A rollout is undone only by another rollout, so I hold it until that measurement runs.\"",
+        "unexplained: the routing document: \"The routing document was not updated.\""
+      ]
+    },
+    {
+      "run": "build--no-cause",
+      "kind": "planted",
+      "variant": "no-cause",
+      "removed": "why the build is red: the two sentences of the opening, the part on the red build and the two lines of the closing list that show the two waits",
+      "exit": 1,
+      "outcome": "not separated",
+      "signal": "question 3",
+      "detail": "partly; in the intact run too: partly",
+      "findings": [
+        "question 3: partly: A direct statement of which test fails and why: that the failing test expects a 400 ms wait (of which wait — the acknowledgement timeout?) while the code uses 250 ms, and when or by whom each value was set.",
+        "unexplained: the wait (which wait): \"You decide which wait is right, and only then can the change go out.\"",
+        "unexplained: the router: \"The router checks the size of a job against the limit of its queue.\"",
+        "unexplained: the colleague: \"the build turns green and the colleague's test stays as written\"",
+        "unexplained: the dispatch path: \"Nobody measured whether reading the limit for every job slows the dispatch path.\"",
+        "unexplained: the routing document: \"The routing document was not updated.\""
+      ]
+    },
+    {
+      "run": "build--no-term",
+      "kind": "planted",
+      "variant": "no-term",
+      "removed": "the sentence that says what the limit is, with its later uses kept",
+      "exit": 1,
+      "outcome": "not separated",
+      "signal": "terms",
+      "detail": "'limit' in the quote of the kept term 'the dispatch path'; in the intact run too: 'limit' in the quote of the kept term 'the dispatch path'",
+      "findings": [
+        "question 3: partly: Where the 250 comes from: whether this change introduced it or it predates the change, and why the test and the code disagree.",
+        "unexplained: the router: \"A colleague's test expects the router to wait 400 milliseconds for an acknowledgement.\"",
+        "unexplained: a colleague / he (who the colleague is): \"A colleague's test expects the router to wait 400 milliseconds for an acknowledgement.\"",
+        "unexplained: the dispatch path: \"Nobody measured whether reading the limit for every job slows the dispatch path.\"",
+        "unexplained: the routing document: \"The routing document was not updated.\""
+      ]
+    },
+    {
+      "run": "retry--intact",
+      "kind": "intact",
+      "variant": null,
+      "removed": null,
+      "exit": 1,
+      "outcome": "false alarm",
+      "signal": null,
+      "detail": "question 4: partly: A statement of what the five passing tests cover and what they do not — for example whether the doubling wait, the one-second cap or the total wait time were checked by a test or only reasoned about.",
+      "findings": [
+        "question 4: partly: A statement of what the five passing tests cover and what they do not — for example whether the doubling wait, the one-second cap or the total wait time were checked by a test or only reasoned about.",
+        "unexplained: the client: \"The client now repeats a payment too, and the payments team's test forbids that.\"",
+        "unexplained: the payments team: \"The client now repeats a payment too, and the payments team's test forbids that.\"",
+        "unexplained: the gateway: \"A payment that timed out may already have gone through at the gateway.\""
+      ]
+    },
+    {
+      "run": "retry--no-action",
+      "kind": "planted",
+      "variant": "no-action",
+      "removed": "the reader's decision: the sentence of the opening that names it and the part with the options, the choice and the question",
+      "exit": 1,
+      "outcome": "caught",
+      "signal": "question 5",
+      "detail": "missing",
+      "findings": [
+        "question 4: partly: A statement of which claims were checked and which were not, for example whether the maximum wait was measured, whether the one-second cap was tested, and whether a repeated payment actually charges twice at the gateway.",
+        "question 5: missing: The decision the reader must take (for example, whether to exclude payments or non-idempotent methods from the repeat, or to change the payments team's test) and, for each option, what it gives and what it costs.",
+        "unexplained: the client: \"The client now repeats a payment too, and the payments team's test forbids that.\"",
+        "unexplained: the payments team: \"The client now repeats a payment too, and the payments team's test forbids that.\"",
+        "unexplained: the gateway: \"A payment that timed out may already have gone through at the gateway.\""
+      ]
+    },
+    {
+      "run": "retry--no-cause",
+      "kind": "planted",
+      "variant": "no-cause",
+      "removed": "why the build is red: the sentence of the opening, the part on the red build and the two lines of the closing list that show the failing check",
+      "exit": 1,
+      "outcome": "caught",
+      "signal": "question 3",
+      "detail": "partly",
+      "findings": [
+        "question 3: partly: The text never says which test fails or states that the payments team's test is what turns the build red, nor what that test checks; the cause has to be inferred from the options.",
+        "question 4: partly: An explicit statement of what was and was not checked, e.g. whether the full build beyond the five tests was examined and whether the maximum wait was measured.",
+        "unexplained: the payments team: \"You decide whether the client repeats only reads, or the payments team changes its test.\"",
+        "unexplained: its test (the payments team's test): \"You decide whether the client repeats only reads, or the payments team changes its test.\""
+      ]
+    },
+    {
+      "run": "retry--no-term",
+      "kind": "planted",
+      "variant": "no-term",
+      "removed": "the sentence that says why a repeated payment is dangerous, with the conclusion drawn from it kept",
+      "exit": 1,
+      "outcome": "not separated",
+      "signal": "terms",
+      "detail": "'gateway' in the kept term 'gateway'; in the intact run too: 'gateway' in the kept term 'the gateway'",
+      "findings": [
+        "question 4: partly: An explicit statement of what in the delivered change was not checked, for example whether any test covers the one-second cap or the total wait, and whether the double charge was seen against a real gateway or only inferred from the test count.",
+        "unexplained: the client: \"The client now repeats a payment too, and the payments team's test forbids that.\"",
+        "unexplained: the payments team: \"The client now repeats a payment too, and the payments team's test forbids that.\"",
+        "unexplained: gateway: \"  client -> gateway: the payment, attempt 1, no answer in time\""
+      ]
+    },
+    {
+      "run": "rename--intact",
+      "kind": "intact",
+      "variant": null,
+      "removed": null,
+      "exit": 0,
+      "outcome": "clean",
+      "signal": null,
+      "detail": "",
+      "findings": [
+        "unexplained: our settings file: \"That is done in the code and in our settings file, and both tests pass.\"",
+        "unexplained: both tests: \"That is done in the code and in our settings file, and both tests pass.\"",
+        "unexplained: the operations team's production file: \"The operations team's production file still sets the timeout under the old name.\"",
+        "unexplained: the old name (and the new name) of the setting: \"The operations team's production file still sets the timeout under the old name.\"",
+        "unexplained: the release: \"The code no longer reads that name, so after the release production waits three seconds instead of ten.\""
+      ]
+    },
+    {
+      "run": "rename--no-action",
+      "kind": "planted",
+      "variant": "no-action",
+      "removed": "the reader's decision: the sentence of the opening that names it and the part with the options, the choice and the question",
+      "exit": 1,
+      "outcome": "caught",
+      "signal": "question 5",
+      "detail": "missing",
+      "findings": [
+        "question 5: missing: The text names no decision for the reader and no options: it does not say whether to ask operations to rename the key in the production file, have the code also read the old name, hold the release, or accept three seconds, nor what each choice gives and costs."
+      ]
+    },
+    {
+      "run": "rename--no-cause",
+      "kind": "planted",
+      "variant": "no-cause",
+      "removed": "what is wrong in production and why: the two sentences of the opening, the part on the production file and the two lines of the closing list about the operations file",
+      "exit": 1,
+      "outcome": "caught",
+      "signal": "question 3",
+      "detail": "partly",
+      "findings": [
+        "question 3: partly: A plain statement that the production settings line still carries the old name with ten seconds, and that if the release goes as it is the code ignores that line and production drops to the five-second fallback.",
+        "question 4: partly: What exactly stays unchecked in production because of that, and where the claim that production uses ten seconds under the old name comes from (seen or assumed).",
+        "unexplained: their line (operations' line): \"You decide whether operations rename their line first, or the code keeps reading the old name for a while.\"",
+        "unexplained: the old name: \"You decide whether operations rename their line first, or the code keeps reading the old name for a while.\"",
+        "unexplained: the production file: \"They do not read the production file.\"",
+        "unexplained: ten seconds (the production value): \"the release can go now, and production keeps ten seconds\""
+      ]
+    },
+    {
+      "run": "rename--no-term",
+      "kind": "planted",
+      "variant": "no-term",
+      "removed": "the sentences that say how the two settings files relate, with the conclusion drawn from them kept, and the line of the closing list that states it",
+      "exit": 1,
+      "outcome": "missed",
+      "signal": null,
+      "detail": "no signal of {'terms': ['on top', 'overrid', 'load', 'our file', 'ours']} fired",
+      "findings": [
+        "question 4: partly: An explicit statement of what was not checked: whether the three-second production outcome was observed in any run or only reasoned out, and whether how the settings files are combined in production (which one wins) was checked.",
+        "unexplained: both tests: \"That is done in the code and in our settings file, and both tests pass.\"",
+        "unexplained: both cases: \"The tests check both cases.\""
+      ]
+    },
+    {
+      "run": "logformat--intact",
+      "kind": "intact",
+      "variant": null,
+      "removed": null,
+      "exit": 0,
+      "outcome": "clean",
+      "signal": null,
+      "detail": "",
+      "findings": [
+        "unexplained: their file (the file holding the alert pattern): \"It fires for every log line that matches a pattern in their file.\"",
+        "unexplained: one setting in our config (which setting it is): \"1. Keep the old time form with one setting in our config\"",
+        "unexplained: the caret marks under the before/after lines: \"                   ^           ^   ^\"",
+        "unexplained: logkit: \"- the library version: `fixtures/logformat/build.gradle:2` `logkit:2.0.0`\"",
+        "unexplained: legacy (value of logkit.timestamp): \"- the setting that keeps the old form, not set: `fixtures/logformat/src/main/resources/logkit.properties:2` `logkit.timestamp=legacy`\"",
+        "unexplained: the samples: \"- the alert pattern on the samples: old line 1 match, new line 0 matches; on the new line alone grep exit 1\""
+      ]
+    },
+    {
+      "run": "logformat--no-action",
+      "kind": "planted",
+      "variant": "no-action",
+      "removed": "the reader's decision: the sentence of the opening that names it and the part with the options, the choice and the question",
+      "exit": 1,
+      "outcome": "caught",
+      "signal": "question 5",
+      "detail": "partly",
+      "findings": [
+        "question 5: partly: An explicit statement of what the reader must decide, the options (for example set the legacy timestamp setting, have the operations team change their pattern, or ship as is), and what each option gives and costs.",
+        "unexplained: their file (the operations team's file holding the alert pattern): \"It fires for every log line that matches a pattern in their file.\"",
+        "unexplained: the logging library (named logkit only in an anchor): \"The task was to upgrade the logging library to version 2.\"",
+        "unexplained: the ^ marks under the after line: \"^           ^   ^\""
+      ]
+    },
+    {
+      "run": "logformat--no-cause",
+      "kind": "planted",
+      "variant": "no-cause",
+      "removed": "what breaks and why: the two sentences of the opening, the part on how the alert works and the two lines of the closing list about the alert pattern",
+      "exit": 1,
+      "outcome": "caught",
+      "signal": "question 3",
+      "detail": "partly",
+      "findings": [
+        "question 2: partly: A plain statement of what is left undone and what state things are in now: whether, with the change as it stands, the alert already stops firing on errors, and whether the change was built or tested.",
+        "question 3: partly: The problem stated outright: that version 2 changes the timestamp form of the log line, what the old and new forms look like, and that the operations team's alert matches lines by a pattern built on the old form and so stops matching.",
+        "unexplained: the old time form: \"You decide whether we keep the old time form on our side or the operations team changes its alert.\"",
+        "unexplained: the operations team's alert (what it watches and why the upgrade affects it): \"You decide whether we keep the old time form on our side or the operations team changes its alert.\"",
+        "unexplained: its pattern / the new form: \"The operations team changes its pattern to the new form\"",
+        "unexplained: the old line: \"our logs stay in local time; I have not checked that the setting gives exactly the old line\"",
+        "unexplained: the operations team's file: \"I did not choose by default, because the second way is the operations team's file and their timing.\"",
+        "unexplained: logkit: \"the library version: `fixtures/logformat/build.gradle:2` `logkit:2.0.0`\""
+      ]
+    },
+    {
+      "run": "logformat--no-term",
+      "kind": "planted",
+      "variant": "no-term",
+      "removed": "the two sentences that say what the alert is and that it finds lines by a pattern, with the later uses of the pattern kept",
+      "exit": 0,
+      "outcome": "not separated",
+      "signal": "terms",
+      "detail": "'pattern' in the kept term 'the pattern (of the alert)'; in the intact run too: 'pattern' in the kept term 'their file (the file holding the alert pattern)'",
+      "findings": [
+        "unexplained: the pattern (of the alert): \"The pattern expects the old time form: local time, a space, a comma before the milliseconds.\""
+      ]
+    }
+  ],
+  "summary": {
+    "variants": {
+      "no-action": {
+        "caught": 4,
+        "not_separated": 0,
+        "missed": 0,
+        "planted": 4
+      },
+      "no-cause": {
+        "caught": 3,
+        "not_separated": 1,
+        "missed": 0,
+        "planted": 4
+      },
+      "no-term": {
+        "caught": 0,
+        "not_separated": 3,
+        "missed": 1,
+        "planted": 4
+      }
+    },
+    "false_alarms": 2,
+    "intact": 4,
+    "unusable": 0,
+    "runs": 16
+  }
+}

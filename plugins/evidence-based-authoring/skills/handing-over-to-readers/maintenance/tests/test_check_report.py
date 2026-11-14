@@ -1,7 +1,8 @@
-"""check_report.py: the report form of the operator profile and the list form of the client profile."""
+"""check_report.py: the story form of the operator profile and the list form of the client profile."""
 from __future__ import annotations
 
 import json
+import os
 import subprocess
 import sys
 import tempfile
@@ -14,38 +15,39 @@ import check_report as cr  # noqa: E402
 
 SOURCE = "package x;\n\nclass Router {\n    boolean retryOnTimeout = false;\n    int limit = 3;\n}\n"
 
-GOOD_OPERATOR = """**Risk:** medium: the change touches the order path.
-**From the reader:** approve the diff.
-**Not done:** the JMH run.
-**Wrong if:** the limit is set at runtime.
-**Status:** findings; checked 3 units; failed steps: none.
+STORY = """The task was to switch retries off after a timeout. That is done: an order now goes out once, and the tests pass. Nothing is needed from you.
 
-## Claims
-- Retry is off: `src/Router.java:4` `retryOnTimeout = false`; evidence: the test fails on rollback.
-- The limit is read from the configuration; evidence: exit code 0 of `LimitsTest`.
+## How it works
 
-## Decisions
-- The field name stays; basis: the glossary; overturned by: a rename.
+The router repeated a request after a timeout, so a slow server got it twice. It now sends once.
 
-## Questions
-- The timeout is 250 ms and the exchange p99 is 180 ms. The answer changes the retry limit; the decision is irreversible after rollout. Keep 250 ms?
+```
+attempt 1   order sent      `Router` waits
+attempt 2   no resend       wf_abcdef12 is a label in a picture
+```
 
-## Internal
-- Transcript: 2 files of 2 read.
+## Where to look
+
+- the switch: `src/Router.java:4` `retryOnTimeout = false`
+- the tests: 3 of 3 passed in 12 s, `./gradlew test` exit 0
 """
 
-GOOD_CLIENT = """# Questions on the quote feed
+GOOD_CLIENT = """# Questions on the arrival feed
 
 1. The feed now runs over one channel, and a channel drop loses data. If you need a second channel, we build it on your side. Do you need a second channel?
-2. The time format in your file differs from the exchange's by a time zone. The answer decides where we convert it. In which time zone do you want the time?
+2. The time format in your file differs from the tracker's by a time zone. The answer decides where we convert it. In which time zone do you want the time?
 """
 
-
-def run_script(*args, stdin=None):
-    return subprocess.run([sys.executable, "-I", str(SCRIPTS / "check_report.py"), *args], input=stdin, capture_output=True, text=True)
+FOREIGN_HEADING = "Где смотреть"
 
 
-class OperatorProfile(unittest.TestCase):
+def run_script(*args, config_home: Path | None = None):
+    """Run the script as a caller does; the lexicon default resolves under config_home, never the user's own."""
+    env = {"PATH": os.environ.get("PATH", "/usr/bin:/bin"), "XDG_CONFIG_HOME": str(config_home or Path(tempfile.gettempdir()) / "check-report-no-config")}
+    return subprocess.run([sys.executable, "-I", str(SCRIPTS / "check_report.py"), *args], capture_output=True, text=True, env=env)
+
+
+class StoryForm(unittest.TestCase):
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
         self.root = Path(self.tmp.name)
@@ -58,66 +60,71 @@ class OperatorProfile(unittest.TestCase):
     def codes(self, text, level=None):
         return [f.code for f in cr.check(text, "operator", self.root) if level is None or f.level == level]
 
-    def test_good_report_has_no_errors(self):
-        self.assertEqual(self.codes(GOOD_OPERATOR, cr.ERROR), [])
+    def test_good_story_has_no_findings(self):
+        self.assertEqual([], self.codes(STORY))
 
-    def test_missing_first_page_lines(self):
-        text = GOOD_OPERATOR.replace("**Wrong if:** the limit is set at runtime.\n", "")
-        self.assertIn("FIRST-PAGE", self.codes(text, cr.ERROR))
+    def test_operator_is_the_default_profile(self):
+        self.assertEqual([], [f.code for f in cr.check(STORY, root=self.root)])
 
-    def test_first_page_line_without_value(self):
-        text = GOOD_OPERATOR.replace("**Not done:** the JMH run.", "**Not done:**")
-        self.assertIn("FIRST-PAGE", self.codes(text, cr.ERROR))
+    def test_code_in_the_story_is_an_error(self):
+        self.assertIn("STORY-CODE", self.codes(STORY.replace("The router repeated", "`Router` repeated"), cr.ERROR))
+        self.assertIn("STORY-CODE", self.codes(STORY.replace("It now sends once.", "The build ended with exit code 1."), cr.ERROR))
+        self.assertIn("STORY-CODE", self.codes(STORY.replace("## How it works", "## How `Router` works"), cr.ERROR))
 
-    def test_status_needs_enumerated_value_and_count(self):
-        bad_value = GOOD_OPERATOR.replace("**Status:** findings; checked 3 units", "**Status:** all good; checked 3 units")
-        self.assertIn("STATUS", self.codes(bad_value, cr.ERROR))
-        no_count = GOOD_OPERATOR.replace("**Status:** findings; checked 3 units; failed steps: none.", "**Status:** clean")
-        self.assertIn("STATUS", self.codes(no_count, cr.ERROR))
-        not_run = GOOD_OPERATOR.replace("**Status:** findings; checked 3 units; failed steps: none.", "**Status:** not-run")
-        self.assertNotIn("STATUS", self.codes(not_run, cr.ERROR))
+    def test_missing_list_is_an_error(self):
+        self.assertIn("WHERE-TO-LOOK", self.codes(STORY.split("## Where to look")[0], cr.ERROR))
+
+    def test_list_heading_forms(self):
+        for heading in ("Where to look:", "**Where to look**", "### where to look"):
+            self.assertNotIn("WHERE-TO-LOOK", self.codes(STORY.replace("## Where to look", heading)))
 
     def test_anchor_file_line_and_fragment(self):
-        missing = GOOD_OPERATOR.replace("src/Router.java:4", "src/Gone.java:4")
-        self.assertIn("ANCHOR", self.codes(missing, cr.ERROR))
-        out_of_range = GOOD_OPERATOR.replace("src/Router.java:4", "src/Router.java:40")
-        self.assertIn("ANCHOR", self.codes(out_of_range, cr.ERROR))
-        wrong_fragment = GOOD_OPERATOR.replace("`retryOnTimeout = false`", "`retryOnTimeout = true`")
-        self.assertIn("ANCHOR-FRAGMENT", self.codes(wrong_fragment, cr.ERROR))
-        moved = GOOD_OPERATOR.replace("src/Router.java:4", "src/Router.java:5")
-        findings = cr.check(moved, "operator", self.root)
-        self.assertIn(("ANCHOR-FRAGMENT", cr.WARNING), [(f.code, f.level) for f in findings])
-        no_fragment = GOOD_OPERATOR.replace(" `retryOnTimeout = false`", "")
-        self.assertIn("ANCHOR-FRAGMENT", self.codes(no_fragment, cr.WARNING))
+        self.assertIn("ANCHOR", self.codes(STORY.replace("src/Router.java:4", "src/Gone.java:4"), cr.ERROR))
+        self.assertIn("ANCHOR", self.codes(STORY.replace("src/Router.java:4", "src/Router.java:40"), cr.ERROR))
+        self.assertIn("ANCHOR-FRAGMENT", self.codes(STORY.replace("`retryOnTimeout = false`", "`retryOnTimeout = true`"), cr.ERROR))
+        self.assertIn("ANCHOR-FRAGMENT", self.codes(STORY.replace("src/Router.java:4", "src/Router.java:5"), cr.WARNING))
+        self.assertIn("ANCHOR-FRAGMENT", self.codes(STORY.replace(" `retryOnTimeout = false`", ""), cr.WARNING))
 
-    def test_claim_without_evidence(self):
-        text = GOOD_OPERATOR.replace("- The limit is read from the configuration; evidence: exit code 0 of `LimitsTest`.", "- The limit is read from the configuration.")
-        self.assertIn("CLAIM-EVIDENCE", self.codes(text, cr.ERROR))
+    def test_long_list_is_a_warning(self):
+        long_list = STORY + "".join(f"- place {n}: exit 0\n" for n in range(4))
+        self.assertIn("WHERE-TO-LOOK", self.codes(long_list, cr.WARNING))
 
-    def test_question_item_form(self):
-        no_mark = GOOD_OPERATOR.replace("Keep 250 ms?", "Keep 250 ms.")
-        self.assertIn("QUESTION", self.codes(no_mark, cr.ERROR))
-        two_marks = GOOD_OPERATOR.replace("Keep 250 ms?", "Keep 250 ms? Or raise it?")
-        self.assertIn("QUESTION", self.codes(two_marks, cr.ERROR))
-        not_last = GOOD_OPERATOR.replace("Keep 250 ms?", "Keep 250 ms? This matters.")
-        self.assertIn("QUESTION", self.codes(not_last, cr.ERROR))
+    def test_thin_or_missing_opening_is_a_warning(self):
+        thin = STORY.replace("That is done: an order now goes out once, and the tests pass. Nothing is needed from you.", "That is done.")
+        self.assertIn("OPENING-SHORT", self.codes(thin, cr.WARNING))
+        headed = "## Summary\n\n" + STORY
+        self.assertIn("OPENING-SHORT", self.codes(headed, cr.WARNING))
+
+    def test_long_story_sentence_is_a_warning(self):
+        long_sentence = "The router repeated " + "the same request to the same gateway " * 4 + "and never looked at its kind."
+        self.assertIn("STORY-SENTENCE", self.codes(STORY.replace("It now sends once.", long_sentence), cr.WARNING))
+
+    def test_list_lines_and_headings_carry_no_sentence_warning(self):
+        long_item = STORY.replace("## How it works\n", "## How it works\n\n- " + "a place named at length " * 6 + "\n")
+        long_heading = STORY.replace("## How it works", "## " + "a heading named at length " * 6)
+        self.assertNotIn("STORY-SENTENCE", self.codes(long_item))
+        self.assertNotIn("STORY-SENTENCE", self.codes(long_heading))
+
+    def test_three_numbers_in_a_story_sentence_is_a_warning(self):
+        numbers = STORY.replace("It now sends once.", "It waited 200, 400 and 800 ms.")
+        self.assertIn("NUMBERS", self.codes(numbers, cr.WARNING))
+
+    def test_self_report_needs_an_exit_code_under_the_list(self):
+        self.assertNotIn("SELF-REPORT", self.codes(STORY))
+        no_exit = STORY.replace(", `./gradlew test` exit 0", "")
+        self.assertIn("SELF-REPORT", self.codes(no_exit, cr.WARNING))
 
     def test_identifiers_flagged_but_commit_hash_allowed(self):
-        with_agent_id = GOOD_OPERATOR.replace("## Internal", "Agent a9facb10357345e1e returned the report.\n\n## Internal")
+        with_agent_id = STORY.replace("It now sends once.", "Agent a9facb10357345e1e returned it.")
         self.assertIn("IDENTIFIER", self.codes(with_agent_id, cr.ERROR))
-        with_hash = GOOD_OPERATOR.replace("## Internal", "The approval is bound to commit `f8a3c9a`.\n\n## Internal")
-        self.assertNotIn("IDENTIFIER", self.codes(with_hash, cr.ERROR))
+        with_hash = STORY.replace("It now sends once.", "The approval is bound to commit f8a3c9a.")
+        self.assertEqual([], self.codes(with_hash))
 
-    def test_warnings_self_report_and_numbers(self):
-        text = GOOD_OPERATOR.replace("## Decisions", "All tests pass.\nThe sample has 12 files, 3 classes and 7 tests.\n\n## Decisions")
-        warnings = self.codes(text, cr.WARNING)
-        for code in ("SELF-REPORT", "NUMBERS"):
-            self.assertIn(code, warnings)
-        self.assertEqual(self.codes(text, cr.ERROR), [])
-
-    def test_fenced_blocks_are_skipped(self):
-        text = GOOD_OPERATOR + "\n```\nwf_abcdef12 all tests pass? really?\n```\n"
-        self.assertEqual(self.codes(text, cr.ERROR), [])
+    def test_long_prose_is_a_warning(self):
+        filler = "This sentence adds ten words that answer no question here. "
+        long_report = STORY.replace("It now sends once.", "It now sends once.\n\n" + filler * 30)
+        self.assertIn("LENGTH", self.codes(long_report, cr.WARNING))
+        self.assertNotIn("LENGTH", self.codes(STORY))
 
 
 class ClientProfile(unittest.TestCase):
@@ -144,6 +151,11 @@ class ClientProfile(unittest.TestCase):
         self.assertIn("QUESTION", [f.code for f in findings if f.level == cr.ERROR])
         self.assertIn("DUPLICATE", [f.code for f in findings if f.level == cr.WARNING])
 
+    def test_numbers_and_identifiers(self):
+        text = GOOD_CLIENT + "3. The sample has 12 files, 3 classes and 7 tests, built at f8a3c9a. Is the sample enough?\n"
+        self.assertIn("NUMBERS", self.codes(text, cr.WARNING))
+        self.assertIn("IDENTIFIER", self.codes(text, cr.ERROR))
+
     def test_internal_block_is_exempt(self):
         text = GOOD_CLIENT + "\n## Internal\n- Our file src/feed.py and the deadline by Friday.\n"
         self.assertEqual(self.codes(text, cr.ERROR), [])
@@ -156,17 +168,26 @@ class CommandLine(unittest.TestCase):
             (root / "src").mkdir()
             (root / "src" / "Router.java").write_text(SOURCE, encoding="utf-8")
             report = root / "report.md"
-            report.write_text(GOOD_OPERATOR, encoding="utf-8")
+            report.write_text(STORY, encoding="utf-8")
             ok = run_script("--root", d, str(report))
             self.assertEqual(ok.returncode, 0, ok.stdout)
-            report.write_text(GOOD_OPERATOR.replace("**Status:** findings; checked 3 units; failed steps: none.\n", ""), encoding="utf-8")
+            report.write_text(STORY.split("## Where to look")[0], encoding="utf-8")
             bad = run_script("--root", d, "--json", str(report))
             self.assertEqual(bad.returncode, 1)
-            self.assertIn('"STATUS"', bad.stdout)
+            self.assertIn('"WHERE-TO-LOOK"', bad.stdout)
+            self.assertEqual(run_script("--root", d, str(root / "missing.md")).returncode, 2)
+
+    def test_strict_fails_on_a_warning(self):
+        with tempfile.TemporaryDirectory() as d:
+            report = Path(d) / "report.md"
+            report.write_text(STORY.replace(" `retryOnTimeout = false`", "").replace("src/Router.java:4", "Router.java:4"), encoding="utf-8")
+            (Path(d) / "Router.java").write_text(SOURCE, encoding="utf-8")
+            self.assertEqual(run_script("--root", d, str(report)).returncode, 0)
+            self.assertEqual(run_script("--root", d, "--strict", str(report)).returncode, 1)
 
 
 class Lexicon(unittest.TestCase):
-    """A lexicon file adds a language's labels and words to the English ones; the patterns are rebuilt from it."""
+    """A lexicon file adds a language's headings and words to the English ones; the patterns are rebuilt from it."""
 
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
@@ -174,26 +195,52 @@ class Lexicon(unittest.TestCase):
         (self.root / "src").mkdir()
         (self.root / "src" / "Router.java").write_text(SOURCE, encoding="utf-8")
         self.report = self.root / "report.md"
-        self.report.write_text(GOOD_OPERATOR.replace("**Risk:**", "**Danger:**"), encoding="utf-8")
+        self.report.write_text(STORY.replace("## Where to look", f"## {FOREIGN_HEADING}"), encoding="utf-8")
         self.lexicon = self.root / "lexicon.json"
-        self.lexicon.write_text(json.dumps({"check_report": {"RISK": ["Danger"]}}), encoding="utf-8")
+        self.lexicon.write_text(json.dumps({"check_report": {"WHERE_TO_LOOK": [FOREIGN_HEADING]}}), encoding="utf-8")
 
     def tearDown(self):
         self.tmp.cleanup()
 
-    def test_label_from_the_lexicon_is_accepted(self):
+    def test_report_on_stdin_is_read_as_utf8_under_another_stream_encoding(self):
+        env = {"PATH": os.environ.get("PATH", "/usr/bin:/bin"), "PYTHONIOENCODING": "cp1252", "XDG_CONFIG_HOME": str(self.root / "no-config")}
+        done = subprocess.run([sys.executable, str(SCRIPTS / "check_report.py"), "--root", str(self.root), "--lexicon", str(self.lexicon), "-"],
+                              input=self.report.read_bytes(), capture_output=True, env=env)
+        self.assertEqual(done.returncode, 0, done.stdout.decode("utf-8", "replace") + done.stderr.decode("utf-8", "replace"))
+        self.assertIn("0 error(s)", done.stdout.decode("utf-8"))
+        cr.build_patterns()
+
+    def test_list_heading_from_the_lexicon_is_accepted(self):
         without = run_script("--root", str(self.root), str(self.report))
         self.assertEqual(without.returncode, 1)
-        self.assertIn("FIRST-PAGE", without.stdout)
+        self.assertIn("WHERE-TO-LOOK", without.stdout)
         with_lexicon = run_script("--root", str(self.root), "--lexicon", str(self.lexicon), str(self.report))
         self.assertEqual(with_lexicon.returncode, 0, with_lexicon.stdout)
+
+    def test_lexicon_rebuilds_the_exported_heading_pattern(self):
+        self.assertIsNone(cr.LOOK_HEADING.match(f"## {FOREIGN_HEADING}"))
+        cr.apply_lexicon(str(self.lexicon))
+        self.assertIsNotNone(cr.LOOK_HEADING.match(f"## {FOREIGN_HEADING}"))
+        self.assertIsNotNone(cr.LOOK_HEADING.match("## Where to look"))
+
+    def test_default_file_is_read(self):
+        config = self.root / "config"
+        (config / "handing-over-to-readers").mkdir(parents=True)
+        (config / "handing-over-to-readers" / "lexicon.json").write_text(self.lexicon.read_text(encoding="utf-8"), encoding="utf-8")
+        run = run_script("--root", str(self.root), str(self.report), config_home=config)
+        self.assertEqual(run.returncode, 0, run.stdout)
+
+    def test_missing_default_file_is_no_lexicon(self):
+        run = run_script("--root", str(self.root), str(self.report), config_home=self.root / "no-config")
+        self.assertEqual(run.returncode, 1)
+        self.assertNotIn("lexicon", run.stderr)
 
     def test_unknown_key_or_bad_regex_is_unreadable(self):
         self.lexicon.write_text(json.dumps({"check_report": {"DANGER": ["Risk"]}}), encoding="utf-8")
         unknown = run_script("--root", str(self.root), "--lexicon", str(self.lexicon), str(self.report))
         self.assertEqual(unknown.returncode, 2)
         self.assertIn("unknown keys", unknown.stderr)
-        self.lexicon.write_text(json.dumps({"check_report": {"RISK": ["Danger("]}}), encoding="utf-8")
+        self.lexicon.write_text(json.dumps({"check_report": {"WHERE_TO_LOOK": ["Look("]}}), encoding="utf-8")
         bad = run_script("--root", str(self.root), "--lexicon", str(self.lexicon), str(self.report))
         self.assertEqual(bad.returncode, 2)
         self.assertIn("regex", bad.stderr)
@@ -201,12 +248,6 @@ class Lexicon(unittest.TestCase):
         section = run_script("--root", str(self.root), "--lexicon", str(self.lexicon), str(self.report))
         self.assertEqual(section.returncode, 2)
         self.assertIn("sections", section.stderr)
-
-    def test_missing_default_file_is_no_lexicon(self):
-        env = {"XDG_CONFIG_HOME": str(self.root / "no-config"), "PATH": "/usr/bin:/bin"}
-        run = subprocess.run([sys.executable, "-I", str(SCRIPTS / "check_report.py"), "--root", str(self.root), str(self.report)], capture_output=True, text=True, env=env)
-        self.assertEqual(run.returncode, 1)
-        self.assertNotIn("lexicon", run.stderr)
 
 
 if __name__ == "__main__":

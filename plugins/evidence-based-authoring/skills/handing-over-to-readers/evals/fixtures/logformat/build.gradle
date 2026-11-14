@@ -1,0 +1,3 @@
+dependencies {
+    implementation "org.example:logkit:2.0.0"
+}

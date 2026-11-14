@@ -1,0 +1,7 @@
+The task was to stop a re-uploaded picture from showing its old thumbnail. That is fixed: a re-uploaded picture now gets a fresh thumbnail, and the tests pass. One thing is left. Thumbnails cached before the change stay wrong until they expire, for up to a day. You decide whether we purge the cache now or let them expire.
+
+How it broke. A thumbnail is stored in the cache under a key. The key was the picture's number alone. A re-uploaded picture keeps its number. So the cache answered with the thumbnail of the old file. Now the key also carries a version, and the version grows with every upload.
+
+What is left. Thumbnails cached before the change still sit under the old keys. They stay wrong until they expire. That takes up to a day. About three pictures in a hundred were re-uploaded during the last day. The load test was not run, so I do not know what the new key costs at peak load.
+
+What to decide. There are two ways. The first is to purge the cache now: the wrong thumbnails are gone at once, but every gallery page is slow for about twenty minutes. The second is to let the old entries expire: nothing slows down, but re-uploaded pictures show an old thumbnail for up to a day. I would purge at night, when twenty slow minutes cost least. Purge now or let them expire?

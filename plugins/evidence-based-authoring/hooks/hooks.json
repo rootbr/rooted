@@ -7,6 +7,14 @@
           { "type": "command", "command": "python3 -I \"${CLAUDE_PLUGIN_ROOT}\"/skills/handing-over-to-readers/scripts/check_question.py --hook", "timeout": 15 }
         ]
       }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "AskUserQuestion",
+        "hooks": [
+          { "type": "command", "command": "python3 -I \"${CLAUDE_PLUGIN_ROOT}\"/skills/handing-over-to-readers/scripts/records.py ledger capture --hook", "timeout": 15 }
+        ]
+      }
     ]
   }
 }

@@ -1,33 +1,57 @@
 # Report template for the operator
 
-The first page is a handover: a reader who was away learns in five lines the risk, what is expected of him, what is not done, and the condition under which the conclusion is wrong. The output of the checks fills the status line, never prose. Then come the claims with their evidence, the decisions, the questions, the internal block. `scripts/check_report.py --profile operator` checks this form; it accepts the English labels below and their Russian equivalents.
+A report is a story, its pictures and a short list of where to look. Its opening paragraph gives the whole matter. The story tells a colleague who was away what the task was, what happened and what is needed from him; it is written for the ear, so the same text is read in the chat and voiced on a page (`references/media.md`). Each part that has something to show carries one picture, drawn here as pseudographics. The list lets him check it. `scripts/check_report.py --profile operator` checks this form.
 
-```markdown
-**Risk:** medium: the change touches the order path, the tests on it are green, jcstress was not run.
-**From the reader:** approve the diff of `src/order/Router.java` and answer the question below.
-**Not done:** the JMH run against the baseline; the documentation `docs/routing.md` is not updated.
-**Wrong if:** the per-instrument limit is set at runtime rather than in `limits.yaml`.
-**Status:** findings; 14 units checked; failed steps: `mvn test` (exit 1, 1 failure in RouterTest).
+````markdown
+The task was to stop a re-uploaded picture from showing its old thumbnail. That is fixed: a re-uploaded picture now gets a fresh thumbnail, and the tests pass. One thing is left. Thumbnails cached before the change stay wrong until they expire, for up to a day. You decide whether we purge the cache now or let them expire.
 
-## Claims
-- The retry on timeout is off: `src/order/Router.java:118` `retryOnTimeout = false`; evidence: `RouterTest#timeoutDoesNotRetry` fails when the change is reverted.
-- The limit comes from the configuration, not from a constant: `src/order/Limits.java:42` `return config.limit(instrument)`; evidence: the test `LimitsTest#readsFromConfig`, exit 0.
+## How it broke
 
-## Decisions
-- The field name `retryOnTimeout` stays as in the neighbouring class; basis: the project's vocabulary; overturned by: a rename in `Sender`. Recorded in the registry.
+A thumbnail is stored in the cache under a key. The key was the picture's number alone. A re-uploaded picture keeps its number. So the cache answered with the thumbnail of the old file. Now the key also carries a version, and the version grows with every upload.
 
-## Questions
-- The acknowledgement timeout is 250 ms, and the exchange's p99 response is 180 ms. The answer changes the retry limit and its test; the decision is irreversible after the rollout to production. Keep 250 ms or raise it to 400?
-
-## Internal
-- Transcript: 6 of 6 assigned files read; `docs/routing.md` opened, not changed.
 ```
+picture 42, uploaded twice     key before      key now
+upload 1                       thumb:42        thumb:42:v1
+upload 2                       thumb:42        thumb:42:v2   <-- a new key, so a fresh thumbnail
+```
+
+## What is left
+
+Thumbnails cached before the change still sit under the old keys. They stay wrong until they expire. That takes up to a day. About three pictures in a hundred were re-uploaded during the last day. The load test was not run, so I do not know what the new key costs at peak load.
+
+## What to decide
+
+There are two ways.
+
+```diff
+  1. Purge the cache now
++ the wrong thumbnails are gone at once
+- every gallery page is slow for about twenty minutes
+
+  2. Let the old entries expire
++ nothing slows down
+- re-uploaded pictures show an old thumbnail for up to a day
+```
+
+I would purge at night, when twenty slow minutes cost least.
+
+Purge now or let them expire?
+
+## Where to look
+
+- the key with the version: `src/cache/ThumbKey.java:23` `":v" + version`
+- how long an entry lives: `config/cache.yaml:8` `ttl: 24h`
+- the test that fails when the change is reverted: `ThumbCacheTest#reuploadMissesCache`
+- the tests: 9 of 9 passed, `./gradlew test` exit 0
+````
 
 Rules of the form:
 
-- The four first-page lines and the status line stand first, in this order. The status value is one of `clean`, `findings`, `failed`, `not-run`; with `clean` and `findings` the count of checked units and the list of failed steps, or "none", stand beside it.
-- A claim about code carries a `path:line` anchor and the line's fragment in the adjacent code span; a claim about behaviour carries evidence that `references/evidence.md` accepts. A claim with neither stays out of the report.
-- The riskiest claim stands first.
-- A question follows the card: the fact with its decisive number, what the answer changes and why the decision was not taken by default, one question at the end. Options, where there are any, each carry their consequence and the cost of error.
-- The prose carries no identifiers of runs, workflows and agents; a commit hash is allowed as what an approval is bound to.
-- What the prose carries beyond the claims — the motive, the decisions, what is unverified — follows the bullet in `references/rules.md` § What the research adds.
+- **The story** is plain prose written for the ear (`references/explaining.md` § The story): short sentences of one claim, a phrase that opens each part. It carries no path, identifier, file name, command or exit code, no labels and no bold.
+- **The opening** is one paragraph of three to five sentences without a heading and without a picture: the task in the reader's words, how it ended, the problem with its cause, what is needed from him. Every later part stands under a heading of one to four words in the reader's words.
+- **A picture** follows the sentences of a part that has something to show (`references/explaining.md` § The pictures): the mechanism with its values, the failure, the options. It is the picture the page draws, here in pseudographics, within 100 columns.
+- **A decision that is the reader's** closes the story: a sentence that counts the options, their picture with one block per option, the author's choice with its reason, one question last.
+- **What was not done or not verified** is a sentence of the story or a cost line of an option, and only when it changes what the reader does or trusts.
+- **Where to look** is the last part: at most five lines, each a plain name of what is there and its `path:line` anchor, with the fragment of the line when the line proves something. The checks that ran stand here with their exit codes, taken from their output and never from memory.
+- **Nothing else.** A decision taken by default that he may want to overturn is one sentence of the story; the decision registry (`SKILL.md` § 7) holds the rest.
+- **Length.** A small change takes twenty to thirty short sentences, about two hundred words, and two or three pictures; the check script warns about an opening of fewer than three sentences, past twenty words in a sentence and past 300 words of prose.

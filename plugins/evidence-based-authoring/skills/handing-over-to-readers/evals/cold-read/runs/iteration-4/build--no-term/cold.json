@@ -1,0 +1,76 @@
+{
+ "answers": [
+  {
+   "question": "What was the task?",
+   "found": "yes",
+   "answer": "The task was to stop re-sending a job after an acknowledgement timeout and to read the per-queue limit from configuration.",
+   "quotes": [
+    "The task was to stop re-sending a job after an acknowledgement timeout, and to read the per-queue limit from configuration."
+   ],
+   "missing": ""
+  },
+  {
+   "question": "How did it end: what is done and what is not?",
+   "found": "yes",
+   "answer": "Both edits are in the code but the build is red (4 of 5 tests pass), so the change cannot go out until the wait question is decided; the rollout is held, the routing document was not updated, and the late-acknowledgement behaviour and dispatch slowdown were not checked.",
+   "quotes": [
+    "Both edits are in the code, but the build is red.",
+    "You decide which wait is right, and only then can the change go out.",
+    "The routing document was not updated."
+   ],
+   "missing": ""
+  },
+  {
+   "question": "How does the thing that changed work?",
+   "found": "yes",
+   "answer": "The limit of a queue is now read from configuration instead of a constant, and a job a worker did not acknowledge in time is no longer sent again.",
+   "quotes": [
+    "That limit now comes from configuration instead of a constant.",
+    "A job a worker did not acknowledge in time used to be sent again. Now it is not."
+   ],
+   "missing": ""
+  },
+  {
+   "question": "What is the problem, and what causes it?",
+   "found": "yes",
+   "answer": "The build is red because a colleague's test expects the router to wait 400 milliseconds for an acknowledgement while the code waits 250, and the text says it cannot tell whether the 250 came with this change or was there before.",
+   "quotes": [
+    "A colleague's test expects the router to wait 400 milliseconds for an acknowledgement. The code waits 250.",
+    "I cannot tell whether the 250 came with this change or was there before."
+   ],
+   "missing": ""
+  },
+  {
+   "question": "What is not verified?",
+   "found": "yes",
+   "answer": "Not checked: whether reading the limit for every job slows the dispatch path, and what happens to a job whose acknowledgement comes late now that it is not re-sent; also the routing document was not updated and the origin of the 250 is unknown.",
+   "quotes": [
+    "Nobody measured whether reading the limit for every job slows the dispatch path.",
+    "I did not check what happens to a job whose acknowledgement comes late, now that it is not re-sent.",
+    "The routing document was not updated."
+   ],
+   "missing": ""
+  },
+  {
+   "question": "What do I have to decide, and what does each option give and cost?",
+   "found": "yes",
+   "answer": "Decide between waiting 400 ms (green build, test unchanged, more time for slow workers; costs a longer wait before a job to a dead worker times out) and keeping 250 ms with the test changed (keeps today's wait; costs rewriting the colleague's test with his agreement and earlier timeouts with no second attempt), with 400 recommended.",
+   "quotes": [
+    "1. Wait 400 milliseconds, as the test expects",
+    "+ the build turns green and the colleague's test stays as written",
+    "- a job sent to a dead worker waits longer before it times out",
+    "2. Keep 250 milliseconds and change the test",
+    "- the colleague's test is rewritten, and he has to agree",
+    "- a slow acknowledgement times out sooner, with no second attempt",
+    "I would take 400."
+   ],
+   "missing": ""
+  }
+ ],
+ "unexplained": [
+  {
+   "term": "the limit (what it measures)",
+   "quote": "The two router tests for this change pass: no re-send, and a job over the limit is rejected."
+  }
+ ]
+}

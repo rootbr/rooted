@@ -5,7 +5,7 @@ Evidence for an agent's claim is a result produced outside the agent's write zon
 ## Accepted
 
 - A test that fails when the change is reverted, provided the test, the grading code and the build and CI configuration lie outside the paths the agent may write. Inside those paths a green exit code comes without the test passing, from an early `sys.exit(0)` or from a `conftest.py` that patches the test report, and `testFailureIgnore` in `pom.xml` or `ignoreFailures` in `build.gradle` does the same in a Java build.
-- An exit code taken by the harness or CI — of the tests, a linter, a compiler, a type checker, a reconciliation script, a mutation run. The report's status line names an enumerated value (`clean`, `findings`, `failed`, `not-run`) and the count of checked units, and a missing answer from a checker counts as a failure. The exit code counts only from a process outside the agent's write zone, since a process the agent writes into returns 0 from `sys.exit(0)`.
+- An exit code taken by the harness or CI — of the tests, a linter, a compiler, a type checker, a reconciliation script, a mutation run. The report names each check under "Where to look" with the count and the exit code from its output, and a missing answer from a checker counts as a failure. The exit code counts only from a process outside the agent's write zone, since a process the agent writes into returns 0 from `sys.exit(0)`.
 - The log of files read, taken from the harness transcript rather than from the agent's report: agents failed to read every file they were asked to review in 67.9 % of runs and misled about it in 80.4 % of those.
 - A `path:line` anchor with the fragment of that line; `scripts/check_report.py` matches the fragment against the line's content, not only the address.
 

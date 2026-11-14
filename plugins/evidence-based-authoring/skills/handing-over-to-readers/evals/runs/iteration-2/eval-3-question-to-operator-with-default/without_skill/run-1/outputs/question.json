@@ -1,0 +1,17 @@
+[
+  {
+    "question": "After the move the code no longer reads legacy_limits, but it holds 14 000 rows of limit history (2019–2024) and the test bench has no database backup. Should the migration delete the table or keep it?",
+    "header": "legacy_limits",
+    "multiSelect": false,
+    "options": [
+      {
+        "label": "Keep the table (Recommended)",
+        "description": "The migration adds only the line '-- legacy_limits kept'. All 14 000 history rows stay, and you can still drop the table later."
+      },
+      {
+        "label": "Delete the table",
+        "description": "The migration runs DROP TABLE legacy_limits. The 14 000 history rows are gone for good, and the test bench has no backup to restore them."
+      }
+    ]
+  }
+]

@@ -1,0 +1,230 @@
+{
+  "runs": [
+    {
+      "run": "build--intact",
+      "kind": "intact",
+      "variant": null,
+      "removed": null,
+      "exit": 0,
+      "outcome": "clean",
+      "signal": null,
+      "detail": "",
+      "findings": []
+    },
+    {
+      "run": "build--no-action",
+      "kind": "planted",
+      "variant": "no-action",
+      "removed": "the reader's decision: the sentence of the opening that names it and the part with the options, the choice and the question",
+      "exit": 1,
+      "outcome": "caught",
+      "signal": "question 6",
+      "detail": "missing",
+      "findings": [
+        "question 6: missing: The text names no decision for the reader: it would have to say what the reader must choose (for example whether the wait should be 400 or 250, or whether to roll out before the measurement) and what each option gives and costs."
+      ]
+    },
+    {
+      "run": "build--no-cause",
+      "kind": "planted",
+      "variant": "no-cause",
+      "removed": "why the build is red: the two sentences of the opening, the part on the red build and the two lines of the closing list that show the two waits",
+      "exit": 1,
+      "outcome": "caught",
+      "signal": "question 4",
+      "detail": "partly",
+      "findings": [
+        "question 4: partly: A direct statement of which test fails and why: that the colleague's test expects a 400 millisecond acknowledgement wait while the code waits 250 milliseconds, and how that wait relates to the change.",
+        "unexplained: which wait: \"You decide which wait is right, and only then can the change go out.\""
+      ]
+    },
+    {
+      "run": "build--no-term",
+      "kind": "planted",
+      "variant": "no-term",
+      "removed": "the sentence that says what the limit is, with its later uses kept",
+      "exit": 0,
+      "outcome": "missed",
+      "signal": null,
+      "detail": "no signal of {'question': 3, 'terms': ['limit']} fired",
+      "findings": []
+    },
+    {
+      "run": "retry--intact",
+      "kind": "intact",
+      "variant": null,
+      "removed": null,
+      "exit": 0,
+      "outcome": "clean",
+      "signal": null,
+      "detail": "",
+      "findings": []
+    },
+    {
+      "run": "retry--no-action",
+      "kind": "planted",
+      "variant": "no-action",
+      "removed": "the reader's decision: the sentence of the opening that names it and the part with the options, the choice and the question",
+      "exit": 1,
+      "outcome": "caught",
+      "signal": "question 6",
+      "detail": "missing",
+      "findings": [
+        "question 5: missing: A statement of what was not checked or remains unknown; the text only marks the nine-and-a-half-second maximum as 'by my count' without saying whether it was measured.",
+        "question 6: missing: The decision the reader has to take (for example about the payment being repeated or the failing test) and the options with what each gives and costs."
+      ]
+    },
+    {
+      "run": "retry--no-cause",
+      "kind": "planted",
+      "variant": "no-cause",
+      "removed": "why the build is red: the sentence of the opening, the part on the red build and the two lines of the closing list that show the failing check",
+      "exit": 1,
+      "outcome": "caught",
+      "signal": "question 4",
+      "detail": "partly",
+      "findings": [
+        "question 4: partly: Which test fails and why: that the payments team's test fails because the client now repeats a payment (write) request after a timeout is implied by the options, not stated."
+      ]
+    },
+    {
+      "run": "retry--no-term",
+      "kind": "planted",
+      "variant": "no-term",
+      "removed": "the sentence that says why a repeated payment is dangerous, with the conclusion drawn from it kept",
+      "exit": 1,
+      "outcome": "missed",
+      "signal": null,
+      "detail": "no signal of {'question': 4, 'terms': ['gateway', 'charge', 'twice', 'gone through']} fired",
+      "findings": [
+        "question 5: partly: A statement of what in the delivered change was not checked, or that everything else was checked; the text does not say whether the maximum wait was measured or only computed beyond 'by my count'."
+      ]
+    },
+    {
+      "run": "rename--intact",
+      "kind": "intact",
+      "variant": null,
+      "removed": null,
+      "exit": 0,
+      "outcome": "clean",
+      "signal": null,
+      "detail": "",
+      "findings": []
+    },
+    {
+      "run": "rename--no-action",
+      "kind": "planted",
+      "variant": "no-action",
+      "removed": "the reader's decision: the sentence of the opening that names it and the part with the options, the choice and the question",
+      "exit": 1,
+      "outcome": "caught",
+      "signal": "question 6",
+      "detail": "missing",
+      "findings": [
+        "question 6: missing: The text states no decision for the reader and no options: it does not say whether to ask operations to rename the key in their file, have the code also read the old name, hold the release, or accept three seconds, nor what each of these gives and costs."
+      ]
+    },
+    {
+      "run": "rename--no-cause",
+      "kind": "planted",
+      "variant": "no-cause",
+      "removed": "what is wrong in production and why: the two sentences of the opening, the part on the production file and the two lines of the closing list about the operations file",
+      "exit": 1,
+      "outcome": "caught",
+      "signal": "question 4",
+      "detail": "partly",
+      "findings": [
+        "question 4: partly: A plain statement that production's settings set the timeout to ten seconds under the old name, and that with the code reading only the new name production would silently fall back to five seconds.",
+        "unexplained: their line (the operations team's line): \"You decide whether operations rename their line first, or the code keeps reading the old name for a while.\"",
+        "unexplained: ten seconds in production: \"+ the release can go now, and production keeps ten seconds\""
+      ]
+    },
+    {
+      "run": "rename--no-term",
+      "kind": "planted",
+      "variant": "no-term",
+      "removed": "the sentences that say how the two settings files relate, with the conclusion drawn from them kept, and the line of the closing list that states it",
+      "exit": 0,
+      "outcome": "missed",
+      "signal": null,
+      "detail": "no signal of {'question': 4, 'terms': ['on top', 'overrid', 'operations file', 'production file']} fired",
+      "findings": []
+    },
+    {
+      "run": "logformat--intact",
+      "kind": "intact",
+      "variant": null,
+      "removed": null,
+      "exit": 0,
+      "outcome": "clean",
+      "signal": null,
+      "detail": "",
+      "findings": []
+    },
+    {
+      "run": "logformat--no-action",
+      "kind": "planted",
+      "variant": "no-action",
+      "removed": "the reader's decision: the sentence of the opening that names it and the part with the options, the choice and the question",
+      "exit": 1,
+      "outcome": "caught",
+      "signal": "question 6",
+      "detail": "partly",
+      "findings": [
+        "question 6: partly: What the reader has to decide, the options (for example setting the old-form setting or changing the operations team's pattern), and what each option gives and costs."
+      ]
+    },
+    {
+      "run": "logformat--no-cause",
+      "kind": "planted",
+      "variant": "no-cause",
+      "removed": "what breaks and why: the two sentences of the opening, the part on how the alert works and the two lines of the closing list about the alert pattern",
+      "exit": 1,
+      "outcome": "caught",
+      "signal": "question 4",
+      "detail": "partly",
+      "findings": [
+        "question 3: partly: What the old and the new time form look like in a log line, and how the setting changes what the new version writes.",
+        "question 4: partly: An explicit statement that the operations team's alert matches log lines by a pattern built on the old time form, and that the new version's time form no longer matches it.",
+        "unexplained: the old time form (and its link to the operations team's alert): \"You decide whether we keep the old time form on our side or the operations team changes its alert.\""
+      ]
+    },
+    {
+      "run": "logformat--no-term",
+      "kind": "planted",
+      "variant": "no-term",
+      "removed": "the two sentences that say what the alert is and that it finds lines by a pattern, with the later uses of the pattern kept",
+      "exit": 0,
+      "outcome": "missed",
+      "signal": null,
+      "detail": "no signal of {'question': 3, 'terms': ['pattern']} fired",
+      "findings": []
+    }
+  ],
+  "summary": {
+    "variants": {
+      "no-action": {
+        "caught": 4,
+        "not_separated": 0,
+        "missed": 0,
+        "planted": 4
+      },
+      "no-cause": {
+        "caught": 4,
+        "not_separated": 0,
+        "missed": 0,
+        "planted": 4
+      },
+      "no-term": {
+        "caught": 0,
+        "not_separated": 0,
+        "missed": 4,
+        "planted": 4
+      }
+    },
+    "false_alarms": 0,
+    "intact": 4,
+    "unusable": 0,
+    "runs": 16
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "expectations": [
+    {
+      "text": "check_question.py on question.json reports no problem",
+      "passed": true,
+      "evidence": "no problem"
+    },
+    {
+      "text": "question.json holds exactly one question",
+      "passed": true,
+      "evidence": "1 question(s)"
+    },
+    {
+      "text": "the one question is about the legacy table, not about the config file path",
+      "passed": true,
+      "evidence": "question text: 'After the move, the code stops reading the old limits table in the database, but the table still holds the limit history'"
+    },
+    {
+      "text": "the card says why it is asked: the decision is irreversible",
+      "passed": true,
+      "evidence": "irreversibility named: True"
+    },
+    {
+      "text": "questions.md tells the config location as a decision already taken, with its basis",
+      "passed": true,
+      "evidence": "the config location told as decided, with its basis: True"
+    },
+    {
+      "text": "questions.md contains exactly one question mark",
+      "passed": true,
+      "evidence": "1 question mark(s) in questions.md"
+    }
+  ],
+  "summary": {
+    "passed": 6,
+    "failed": 0,
+    "total": 6,
+    "pass_rate": 1.0
+  }
+}

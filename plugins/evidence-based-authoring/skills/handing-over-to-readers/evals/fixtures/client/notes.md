@@ -1,18 +1,18 @@
-# Notes on the project "Quote feed for Alder Capital" (internal, raw)
+# Notes on the project "Arrival feed for Northgate Transit" (internal, raw)
 
-Contract: we deliver a quote feed from the MOEX exchange into their trading terminal. First-release deadline in the contract: 30 November 2026. Message format: FIX 4.4 (appendix B of the contract). Their contact: Marina, head of the trading desk.
+Contract: we deliver a feed of bus arrival predictions from the city's vehicle tracker into their stop displays. First-release deadline in the contract: 30 November 2026. Message format: JSON Lines 1.2 (appendix B of the contract). Their contact: Dana, head of the dispatch office.
 
-Measurements on our test bench (run 2026-10-19): p99 latency 180 µs on one channel; on a channel drop, quotes are lost for up to 2,4 s until reconnection. A second channel on their side is not provided for by the contract; our fallback: a buffer on our side, 50 MB, holds 40 s.
+Measurements on our test bench (run 2026-10-19): p99 delay 180 ms on one channel; on a channel drop, predictions are lost for up to 2,4 s until reconnection. A second channel on their side is not provided for by the contract; our fallback: a buffer on our side, 50 MB, holds 40 s.
 
 Open questions from our architecture report (section 4.2):
-- What time zone is in their terminal? In the sample file from them the time carries no zone. (The sample shows UTC+3 in the file header, line 2: "TZ=Europe/Moscow".)
+- What time zone is in their displays? In the sample file from them the time carries no zone. (The sample shows UTC+1 in the file header, line 2: "TZ=Europe/Vienna".)
 - Do they need a second channel on their side, or is our buffer enough? If a second channel, they have to assign a network engineer for a week.
-- What to do when a quote diverges from the exchange tape by more than 1 tick? Options: skip, mark, stop the feed. The filter design and the tests depend on the answer.
+- What to do when a prediction diverges from the tracker's log by more than 1 minute? Options: skip, mark, stop the feed. The filter design and the tests depend on the answer.
 - Which licence to take for the compression library (our internal topic: LZ4 Apache-2 or zstd BSD)?
 - Do they want us to use their CI? We do not care, our work does not change.
-- What version is their terminal? If below 7.2, FIX 4.4 is not supported. (Marina wrote in the letter of 12.10: version 7.4.)
-- Is a second channel needed? (duplicate of the item above, phrased separately by Ivan)
-- How to count a "missed quote" for the SLA: by sequence number or by time? Changes our quality report and the alert threshold.
+- What firmware version are their displays? If below 7.2, JSON Lines 1.2 is not supported. (Dana wrote in the letter of 12.10: version 7.4.)
+- Is a second channel needed? (duplicate of the item above, phrased separately by Sam)
+- How to count a "missed prediction" for the SLA: by sequence number or by time? Changes our quality report and the alert threshold.
 - What is their internal approval process for protocol changes (their organization, none of our business)?
 - Field name for the time in their schema: "ts" or "timestamp"? Reversible, the cost of error is low, our default is "ts" as in the rest of their files.
 

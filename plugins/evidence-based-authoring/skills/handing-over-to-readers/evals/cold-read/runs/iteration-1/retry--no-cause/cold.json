@@ -1,0 +1,62 @@
+{
+  "answers": [
+    {
+      "question": "What was the task?",
+      "found": "yes",
+      "answer": "To make the client resend a request after a timeout, doubling the wait between attempts and making at most four attempts.",
+      "quotes": ["The task was to repeat a request after a timeout, with the wait doubling and four attempts at most."],
+      "missing": ""
+    },
+    {
+      "question": "How did it end: what is done and what is not?",
+      "found": "yes",
+      "answer": "The repeat is built and its own five tests pass, but the build is red, and the read-only variant is not written yet.",
+      "quotes": [
+        "The repeat works, and its own five tests pass.",
+        "But the build is red.",
+        "- not written yet, so its tests have not run"
+      ],
+      "missing": ""
+    },
+    {
+      "question": "What is the problem, and what causes it?",
+      "found": "partly",
+      "answer": "The build is red, apparently because a payments team test conflicts with repeating every request, since a repeated payment after a timeout can be charged twice.",
+      "quotes": [
+        "But the build is red.",
+        "You decide whether the client repeats only reads, or the payments team changes its test.",
+        "- a payment that timed out can be charged twice"
+      ],
+      "missing": "The text never says which test fails or states that the payments team's test is what turns the build red, nor what that test checks; the cause has to be inferred from the options."
+    },
+    {
+      "question": "What is not verified?",
+      "found": "partly",
+      "answer": "The read-only option is not written, so its tests have not run, and the maximum wait of about nine and a half seconds is the author's own count rather than a measurement.",
+      "quotes": [
+        "- not written yet, so its tests have not run",
+        "By my count, a caller waits at most about nine and a half seconds."
+      ],
+      "missing": "An explicit statement of what was and was not checked, e.g. whether the full build beyond the five tests was examined and whether the maximum wait was measured."
+    },
+    {
+      "question": "What do I have to decide, and what does each option give and cost?",
+      "found": "yes",
+      "answer": "Whether to repeat only reading requests (green build, a payment goes out once, but writes get no retry and this is not yet written or tested) or to repeat every request and have the payments team change its test (the task is done as written, but a timed-out payment can be charged twice); the author recommends the first.",
+      "quotes": [
+        "Repeat only reads, or ask the payments team to change its test?",
+        "+ the build turns green, and a payment goes out once",
+        "- a request that writes gets no repeat after a timeout",
+        "- not written yet, so its tests have not run",
+        "+ the task is done as it was written",
+        "- a payment that timed out can be charged twice",
+        "I would take the first."
+      ],
+      "missing": ""
+    }
+  ],
+  "unexplained": [
+    {"term": "the payments team", "quote": "You decide whether the client repeats only reads, or the payments team changes its test."},
+    {"term": "its test (the payments team's test)", "quote": "You decide whether the client repeats only reads, or the payments team changes its test."}
+  ]
+}

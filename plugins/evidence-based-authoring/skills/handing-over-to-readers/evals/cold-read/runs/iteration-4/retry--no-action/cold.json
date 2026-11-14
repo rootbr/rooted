@@ -1,0 +1,47 @@
+{
+  "answers": [
+    {
+      "question": "What was the task?",
+      "found": "yes",
+      "answer": "The task was to repeat a request after a timeout, with the wait doubling and at most four attempts.",
+      "quotes": ["The task was to repeat a request after a timeout, with the wait doubling and four attempts at most."],
+      "missing": ""
+    },
+    {
+      "question": "How did it end: what is done and what is not?",
+      "found": "yes",
+      "answer": "The repeat works and its own five tests pass, but the build is red because the client now also repeats a payment, which the payments team's test forbids.",
+      "quotes": ["The repeat works, and its own five tests pass. But the build is red. The client now repeats a payment too, and the payments team's test forbids that.", "the build: `./run-tests.sh` exit 1, 6 tests, 1 failure, `build.log:3` `expected: <1> but was: <4>`"],
+      "missing": ""
+    },
+    {
+      "question": "How does the thing that changed work?",
+      "found": "yes",
+      "answer": "The client waits two seconds for an answer, and if none comes it waits (starting at 200 ms and doubling, capped at one second) and resends, giving up and passing the timeout to the caller after the fourth attempt.",
+      "quotes": ["The client sends a request and waits two seconds for an answer. If none comes, it waits and sends the request again. The wait starts at a fifth of a second and doubles each time. After the fourth attempt the client gives up and passes the timeout on. I also capped the wait at one second, which four attempts never reach."],
+      "missing": ""
+    },
+    {
+      "question": "What is the problem, and what causes it?",
+      "found": "yes",
+      "answer": "The client sent a payment that always times out four times where the payments team's test expects once, because the repeat loop applies to every request whatever its method, and a repeated payment can charge the customer twice.",
+      "quotes": ["The payments team's test sends a payment that always times out. It expects the client to send it once. The client sent it four times. A payment that timed out may already have gone through at the gateway. So a repeat can charge the customer twice.", "the loop that repeats every request, whatever its method: `src/main/java/http/RetryingClient.java:20` `attempt <= RetryPolicy.MAX_ATTEMPTS`"],
+      "missing": ""
+    },
+    {
+      "question": "What is not verified?",
+      "found": "no",
+      "answer": "",
+      "quotes": [],
+      "missing": "The text does not say what was left unchecked; the nine-and-a-half-second maximum wait is only given as 'by my count', and no statement says whether it was measured or what else was not run."
+    },
+    {
+      "question": "What do I have to decide, and what does each option give and cost?",
+      "found": "no",
+      "answer": "",
+      "quotes": [],
+      "missing": "The text names no decision for the reader and lists no options with their gains and costs (for example how to resolve the conflict between repeating payments and the payments team's test)."
+    }
+  ],
+  "unexplained": []
+}

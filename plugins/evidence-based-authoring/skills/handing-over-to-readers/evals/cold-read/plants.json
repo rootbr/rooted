@@ -1,0 +1,272 @@
+{
+ "cases": [
+  {
+   "case": "build",
+   "report_intact": "build/intact.md",
+   "questions": "questions.json",
+   "variants": [
+    {
+     "variant": "no-action",
+     "report": "build/no-action.md",
+     "removed": "the reader's decision: the sentence of the opening that names it and the part with the options, the choice and the question",
+     "expect": {
+      "question": 6
+     },
+     "remove": [
+      {
+       "sentence": "You decide which wait is right"
+      },
+      {
+       "section": "## What to decide"
+      }
+     ]
+    },
+    {
+     "variant": "no-cause",
+     "report": "build/no-cause.md",
+     "removed": "why the build is red: the two sentences of the opening, the part on the red build and the two lines of the closing list that show the two waits",
+     "expect": {
+      "question": 4
+     },
+     "remove": [
+      {
+       "sentence": "A colleague's test expects the router to wait 400"
+      },
+      {
+       "sentence": "The code waits 250."
+      },
+      {
+       "section": "## The red build"
+      },
+      {
+       "line": "the wait in the code"
+      },
+      {
+       "line": "the colleague's test:"
+      }
+     ]
+    },
+    {
+     "variant": "no-term",
+     "report": "build/no-term.md",
+     "removed": "the sentence that says what the limit is, with its later uses kept",
+     "expect": {
+      "question": 3,
+      "terms": [
+       "limit"
+      ]
+     },
+     "remove": [
+      {
+       "sentence": "The router checks the size of a job against the limit of its queue."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "case": "retry",
+   "report_intact": "retry/intact.md",
+   "questions": "questions.json",
+   "variants": [
+    {
+     "variant": "no-action",
+     "report": "retry/no-action.md",
+     "removed": "the reader's decision: the sentence of the opening that names it and the part with the options, the choice and the question",
+     "expect": {
+      "question": 6
+     },
+     "remove": [
+      {
+       "sentence": "You decide whether the client repeats only reads"
+      },
+      {
+       "section": "## What to decide"
+      }
+     ]
+    },
+    {
+     "variant": "no-cause",
+     "report": "retry/no-cause.md",
+     "removed": "why the build is red: the sentence of the opening, the part on the red build and the two lines of the closing list that show the failing check",
+     "expect": {
+      "question": 4
+     },
+     "remove": [
+      {
+       "sentence": "The client now repeats a payment too"
+      },
+      {
+       "section": "## The red build"
+      },
+      {
+       "line": "PaymentsClientTest"
+      },
+      {
+       "line": "expected: <1> but was: <4>"
+      }
+     ]
+    },
+    {
+     "variant": "no-term",
+     "report": "retry/no-term.md",
+     "removed": "the sentence that says why a repeated payment is dangerous, with the conclusion drawn from it kept",
+     "expect": {
+      "question": 4,
+      "terms": [
+       "gateway",
+       "charge",
+       "twice",
+       "gone through"
+      ]
+     },
+     "remove": [
+      {
+       "sentence": "A payment that timed out may already have gone through at the gateway."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "case": "rename",
+   "report_intact": "rename/intact.md",
+   "questions": "questions.json",
+   "variants": [
+    {
+     "variant": "no-action",
+     "report": "rename/no-action.md",
+     "removed": "the reader's decision: the sentence of the opening that names it and the part with the options, the choice and the question",
+     "expect": {
+      "question": 6
+     },
+     "remove": [
+      {
+       "sentence": "You decide whether operations rename"
+      },
+      {
+       "section": "## What to decide"
+      }
+     ]
+    },
+    {
+     "variant": "no-cause",
+     "report": "rename/no-cause.md",
+     "removed": "what is wrong in production and why: the two sentences of the opening, the part on the production file and the two lines of the closing list about the operations file",
+     "expect": {
+      "question": 4
+     },
+     "remove": [
+      {
+       "sentence": "The operations team's production file still sets"
+      },
+      {
+       "sentence": "The code no longer reads that name, so after the release"
+      },
+      {
+       "section": "## The production file"
+      },
+      {
+       "line": "the operations file overrides ours"
+      },
+      {
+       "line": "the operations file still has the old name"
+      }
+     ]
+    },
+    {
+     "variant": "no-term",
+     "report": "rename/no-term.md",
+     "removed": "the sentences that say how the two settings files relate, with the conclusion drawn from them kept, and the line of the closing list that states it",
+     "expect": {
+      "question": 4,
+      "terms": [
+       "on top",
+       "overrid",
+       "operations file",
+       "production file"
+      ]
+     },
+     "remove": [
+      {
+       "sentence": "Production loads our settings file and puts the operations file on top of it."
+      },
+      {
+       "sentence": "I know this from a comment in the code; I did not see the loading itself."
+      },
+      {
+       "line": "the operations file overrides ours"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "case": "logformat",
+   "report_intact": "logformat/intact.md",
+   "questions": "questions.json",
+   "variants": [
+    {
+     "variant": "no-action",
+     "report": "logformat/no-action.md",
+     "removed": "the reader's decision: the sentence of the opening that names it and the part with the options, the choice and the question",
+     "expect": {
+      "question": 6
+     },
+     "remove": [
+      {
+       "sentence": "You decide whether we keep"
+      },
+      {
+       "section": "## What to decide"
+      }
+     ]
+    },
+    {
+     "variant": "no-cause",
+     "report": "logformat/no-cause.md",
+     "removed": "what breaks and why: the two sentences of the opening, the part on how the alert works and the two lines of the closing list about the alert pattern",
+     "expect": {
+      "question": 4
+     },
+     "remove": [
+      {
+       "sentence": "But the new version writes the time of each log line in a new form."
+      },
+      {
+       "sentence": "So the operations team's alert on errors no longer sees our error lines."
+      },
+      {
+       "section": "## How the alert works"
+      },
+      {
+       "line": "the alert pattern:"
+      },
+      {
+       "line": "the alert pattern on the samples"
+      }
+     ]
+    },
+    {
+     "variant": "no-term",
+     "report": "logformat/no-term.md",
+     "removed": "the two sentences that say what the alert is and that it finds lines by a pattern, with the later uses of the pattern kept",
+     "expect": {
+      "question": 3,
+      "terms": [
+       "pattern"
+      ]
+     },
+     "remove": [
+      {
+       "sentence": "The operations team has an alert on errors."
+      },
+      {
+       "sentence": "It fires for every log line that matches a pattern in their file."
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

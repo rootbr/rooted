@@ -1,0 +1,71 @@
+{
+  "answers": [
+    {
+      "question": "What was the task?",
+      "found": "yes",
+      "answer": "Make the client send a request again after a timeout, with the wait between attempts doubling and at most four attempts.",
+      "quotes": ["The task was to repeat a request after a timeout, with the wait doubling and four attempts at most."],
+      "missing": ""
+    },
+    {
+      "question": "How did it end: what is done and what is not?",
+      "found": "yes",
+      "answer": "The repeat is built and its own five tests pass, but the build is red because the payments team's test fails, and the fix that would repeat only reads is not written.",
+      "quotes": [
+        "The repeat works, and its own five tests pass.",
+        "But the build is red.",
+        "- not written yet, so its tests have not run",
+        "- the build: `./run-tests.sh` exit 1, 6 tests, 1 failure, `build.log:3` `expected: <1> but was: <4>`",
+        "- the repeat's own tests: 5 of 5 passed, `build.log:4` `Tests run: 5, Failures: 0`"
+      ],
+      "missing": ""
+    },
+    {
+      "question": "What is the problem, and what causes it?",
+      "found": "yes",
+      "answer": "The client repeats every request whatever its method, so a payment that times out is sent four times while the payments team's test expects it once, which fails the build and could charge a customer twice.",
+      "quotes": [
+        "The client now repeats a payment too, and the payments team's test forbids that.",
+        "The payments team's test sends a payment that always times out.",
+        "It expects the client to send it once.",
+        "The client sent it four times.",
+        "So a repeat can charge the customer twice.",
+        "- the loop that repeats every request, whatever its method: `src/main/java/http/RetryingClient.java:20` `attempt <= RetryPolicy.MAX_ATTEMPTS`"
+      ],
+      "missing": ""
+    },
+    {
+      "question": "What is not verified?",
+      "found": "partly",
+      "answer": "The first option is not written and its tests have not run, and the caller's maximum wait of about nine and a half seconds is the author's own count rather than a measurement.",
+      "quotes": [
+        "- not written yet, so its tests have not run",
+        "By my count, a caller waits at most about nine and a half seconds."
+      ],
+      "missing": "An explicit statement of what in the delivered change was not checked, for example whether any test covers the one-second cap or the total wait, and whether the double charge was seen against a real gateway or only inferred from the test count."
+    },
+    {
+      "question": "What do I have to decide, and what does each option give and cost?",
+      "found": "yes",
+      "answer": "Choose between repeating only reads, which turns the build green and sends a payment once but gives writes no repeat and is not yet written or tested, and repeating every request with the payments team changing its test, which completes the task as written but lets a timed-out payment be charged twice; the author recommends the first.",
+      "quotes": [
+        "You decide whether the client repeats only reads, or the payments team changes its test.",
+        "  1. Repeat only requests that read",
+        "+ the build turns green, and a payment goes out once",
+        "- a request that writes gets no repeat after a timeout",
+        "- not written yet, so its tests have not run",
+        "  2. Repeat every request, and the payments team changes its test",
+        "+ the task is done as it was written",
+        "- a payment that timed out can be charged twice",
+        "I would take the first.",
+        "A double charge reaches a customer, and no change of ours takes it back."
+      ],
+      "missing": ""
+    }
+  ],
+  "unexplained": [
+    {"term": "the client", "quote": "The client now repeats a payment too, and the payments team's test forbids that."},
+    {"term": "the payments team", "quote": "The client now repeats a payment too, and the payments team's test forbids that."},
+    {"term": "gateway", "quote": "  client -> gateway: the payment, attempt 1, no answer in time"}
+  ]
+}

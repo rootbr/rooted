@@ -1,0 +1,75 @@
+{
+  "answers": [
+    {
+      "question": "What was the task?",
+      "found": "yes",
+      "answer": "The task was to upgrade the logging library to version 2 because the old version is no longer supported.",
+      "quotes": [
+        "The task was to upgrade the logging library to version 2.",
+        "The old version is no longer supported."
+      ],
+      "missing": ""
+    },
+    {
+      "question": "How did it end: what is done and what is not?",
+      "found": "yes",
+      "answer": "The build now takes the new library version and that is the only change; the operations team's file was not touched, the setting that keeps the old time form is not set, and the project was not built nor tests run.",
+      "quotes": [
+        "The build now takes the new version, and that is the whole change.",
+        "I did not touch the operations team's file.",
+        "I did not build the project or run any tests.",
+        "- the setting that keeps the old form, not set: `fixtures/logformat/src/main/resources/logkit.properties:2` `logkit.timestamp=legacy`"
+      ],
+      "missing": ""
+    },
+    {
+      "question": "What is the problem, and what causes it?",
+      "found": "yes",
+      "answer": "The operations team's error alert no longer matches our error lines, because its pattern expects the old local-time form with a space and a comma before the milliseconds while version 2 writes UTC time with a T and a dot, so shipping as is means errors raise no alert.",
+      "quotes": [
+        "But the new version writes the time of each log line in a new form.",
+        "So the operations team's alert on errors no longer sees our error lines.",
+        "The pattern expects the old time form: local time, a space, a comma before the milliseconds.",
+        "The new version writes the time in UTC, with a letter T and a dot.",
+        "It matched the old line and missed the new one.",
+        "So if this ships as it is, our errors raise no alert at all."
+      ],
+      "missing": ""
+    },
+    {
+      "question": "What is not verified?",
+      "found": "yes",
+      "answer": "The project was not built and no tests were run; the only check was running the alert pattern on one old-form and one new-form error line.",
+      "quotes": [
+        "I did not build the project or run any tests.",
+        "I ran their pattern on one error line written each way."
+      ],
+      "missing": ""
+    },
+    {
+      "question": "What do I have to decide, and what does each option give and cost?",
+      "found": "partly",
+      "answer": "The text implies a choice about the alert before shipping, pointing at an unset setting that keeps the old time form and at the operations team's file it did not touch, but it states no decision and no options with their gains and costs.",
+      "quotes": [
+        "So if this ships as it is, our errors raise no alert at all.",
+        "I did not touch the operations team's file.",
+        "- the setting that keeps the old form, not set: `fixtures/logformat/src/main/resources/logkit.properties:2` `logkit.timestamp=legacy`"
+      ],
+      "missing": "An explicit statement of what the reader must decide, the options (for example set the legacy timestamp setting, have the operations team change their pattern, or ship as is), and what each option gives and costs."
+    }
+  ],
+  "unexplained": [
+    {
+      "term": "their file (the operations team's file holding the alert pattern)",
+      "quote": "It fires for every log line that matches a pattern in their file."
+    },
+    {
+      "term": "the logging library (named logkit only in an anchor)",
+      "quote": "The task was to upgrade the logging library to version 2."
+    },
+    {
+      "term": "the ^ marks under the after line",
+      "quote": "^           ^   ^"
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+$ ./run-tests.sh
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0 -- in app.ServerConfigTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0
+[INFO] BUILD SUCCESS
+exit code: 0

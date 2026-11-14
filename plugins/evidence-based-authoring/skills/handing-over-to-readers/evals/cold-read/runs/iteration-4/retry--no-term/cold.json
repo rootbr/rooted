@@ -1,0 +1,47 @@
+{
+  "answers": [
+    {
+      "question": "What was the task?",
+      "found": "yes",
+      "answer": "The task was to make the client repeat a request after a timeout, with the wait doubling and at most four attempts.",
+      "quotes": ["The task was to repeat a request after a timeout, with the wait doubling and four attempts at most."],
+      "missing": ""
+    },
+    {
+      "question": "How did it end: what is done and what is not?",
+      "found": "yes",
+      "answer": "The repeat works and its own five tests pass, but the build is red because the client also repeats a payment, which the payments team's test forbids; the read-only option is not written yet.",
+      "quotes": ["The repeat works, and its own five tests pass. But the build is red.", "The client now repeats a payment too, and the payments team's test forbids that.", "- not written yet, so its tests have not run"],
+      "missing": ""
+    },
+    {
+      "question": "How does the thing that changed work?",
+      "found": "yes",
+      "answer": "The client waits two seconds for an answer, and if none comes it waits (starting at a fifth of a second and doubling) and resends, giving up and passing the timeout to the caller after the fourth attempt, with the wait capped at one second.",
+      "quotes": ["The client sends a request and waits two seconds for an answer. If none comes, it waits and sends the request again. The wait starts at a fifth of a second and doubles each time. After the fourth attempt the client gives up and passes the timeout on. I also capped the wait at one second, which four attempts never reach."],
+      "missing": ""
+    },
+    {
+      "question": "What is the problem, and what causes it?",
+      "found": "yes",
+      "answer": "The build fails because the payments team's test expects a timed-out payment to be sent once but the client sent it four times, since the repeat loop applies to every request whatever its method.",
+      "quotes": ["The payments team's test sends a payment that always times out. It expects the client to send it once. The client sent it four times. So a repeat can charge the customer twice.", "the loop that repeats every request, whatever its method: `src/main/java/http/RetryingClient.java:20` `attempt <= RetryPolicy.MAX_ATTEMPTS`"],
+      "missing": ""
+    },
+    {
+      "question": "What is not verified?",
+      "found": "yes",
+      "answer": "The option of repeating only reads is not written yet, so its tests have not run; the nine-and-a-half-second maximum wait is the author's own count.",
+      "quotes": ["- not written yet, so its tests have not run", "By my count, a caller waits at most about nine and a half seconds."],
+      "missing": ""
+    },
+    {
+      "question": "What do I have to decide, and what does each option give and cost?",
+      "found": "yes",
+      "answer": "Decide whether the client repeats only reads (build green and a payment goes out once, but writes get no repeat and that is not yet written or tested) or repeats everything with the payments team changing its test (task done as written, but a timed-out payment can be charged twice); the author recommends the first.",
+      "quotes": ["Repeat only reads, or ask the payments team to change its test?", "+ the build turns green, and a payment goes out once", "- a request that writes gets no repeat after a timeout", "+ the task is done as it was written", "- a payment that timed out can be charged twice", "I would take the first. A double charge reaches a customer, and no change of ours takes it back."],
+      "missing": ""
+    }
+  ],
+  "unexplained": []
+}

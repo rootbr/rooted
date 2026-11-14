@@ -1,0 +1,45 @@
+<h1>Fresh thumbnails for re-uploaded pictures</h1>
+<p data-say="1.1 1.2 1.3 1.4 1.5"></p>
+
+<h2 id="h-broke" data-lit="2.1">How it broke</h2>
+<p data-say="2.2 2.3 2.4 2.5 2.6"></p>
+<figure aria-labelledby="h-broke">
+  <div class="figscroll">
+    <table>
+      <thead>
+        <tr><th>picture 42, uploaded twice</th><th data-lit="2.3">key before</th><th data-lit="2.6">key now</th></tr>
+      </thead>
+      <tbody>
+        <tr><td data-lit="2.4">upload 1</td><td data-lit="2.3"><code>thumb:42</code></td><td data-lit="2.6"><code>thumb:42:v1</code></td></tr>
+        <tr><td data-lit="2.4">upload 2</td><td class="bad" data-lit="2.5"><code>thumb:42</code>, the old thumbnail</td><td class="good" data-lit="2.6"><code>thumb:42:v2</code>, a fresh thumbnail</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <figcaption>The same picture before and after the change: the version in the key grows with every upload.</figcaption>
+</figure>
+
+<h2 data-lit="3.1">What is left</h2>
+<p data-say="3.2 3.3 3.4 3.5 3.6"></p>
+
+<h2 data-lit="4.1">What to decide</h2>
+<section class="decision" data-decision="old-thumbnails" data-title="Old thumbnails in the cache">
+  <p data-say="4.2"></p>
+  <div class="options">
+    <div class="option" data-option="purge the cache at night" data-mine="1" data-lit="4.3">
+      <h4>Purge the cache now <span class="tag">my choice</span></h4>
+      <ul>
+        <li class="plus">the wrong thumbnails are gone at once</li>
+        <li class="minus">every gallery page is slow for about twenty minutes</li>
+      </ul>
+      <p class="why" data-say="4.5"></p>
+    </div>
+    <div class="option" data-option="let the old entries expire" data-lit="4.4">
+      <h4>Let the old entries expire</h4>
+      <ul>
+        <li class="plus">nothing slows down</li>
+        <li class="minus">re-uploaded pictures show an old thumbnail for up to a day</li>
+      </ul>
+    </div>
+  </div>
+  <p class="ask" data-say="4.6"></p>
+</section>

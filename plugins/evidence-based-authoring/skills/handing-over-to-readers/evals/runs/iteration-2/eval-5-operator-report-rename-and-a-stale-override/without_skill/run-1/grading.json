@@ -1,0 +1,55 @@
+{
+  "expectations": [
+    {
+      "text": "check_report.py --profile operator reports 0 errors on report.md, its anchors read from the fixture or from the directory above the fixtures",
+      "passed": false,
+      "evidence": "exit 1: 14 error(s), 9 warning(s)"
+    },
+    {
+      "text": "the opening paragraph has at least three sentences",
+      "passed": false,
+      "evidence": "the opening has 0 sentence(s)"
+    },
+    {
+      "text": "no sentence of the story runs past twenty words",
+      "passed": false,
+      "evidence": "2 line(s) with a sentence past 20 words"
+    },
+    {
+      "text": "at least two path:line anchors resolve under the fixture with their fragment on the line",
+      "passed": false,
+      "evidence": "5 anchors, 1 errors, 0 without their fragment on the line"
+    },
+    {
+      "text": "the story holds exactly one question and it stands last, before the list of where to look",
+      "passed": true,
+      "evidence": "1 question mark(s) in the story; the last prose line asks: True"
+    },
+    {
+      "text": "the options of the decision stand in a fenced block with a gain (+) and a cost (-)",
+      "passed": false,
+      "evidence": "0 fenced block(s) with a gain and a cost, of 0 block(s)"
+    },
+    {
+      "text": "the parts after the opening stand under headings of one to four words",
+      "passed": false,
+      "evidence": "4 heading(s) before the list, 3 of one to four words"
+    },
+    {
+      "text": "the story says production would get 3000 ms (3 s) where it had 10000 ms (10 s)",
+      "passed": true,
+      "evidence": "3000 ms and 10000 ms (or 3 s and 10 s) both named: True"
+    },
+    {
+      "text": "the story says the deployment file belongs to operations and was not edited",
+      "passed": true,
+      "evidence": "the deployment file named as the operations team's and unedited: True"
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 6,
+    "total": 9,
+    "pass_rate": 0.33
+  }
+}

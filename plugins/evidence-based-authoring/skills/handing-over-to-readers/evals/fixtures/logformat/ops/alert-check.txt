@@ -1,0 +1,3 @@
+$ grep -cE "<error_line of ops/alerts.conf>" samples/log-before.txt samples/log-after.txt
+samples/log-before.txt: 1 matching line(s)
+samples/log-after.txt: 0 matching line(s)

@@ -1,0 +1,14 @@
+{
+  "answers": [
+    {"question": "What was the task?", "found": "yes", "answer": "The task was to make the client repeat a request after a timeout, doubling the wait each time, with at most four attempts.", "quotes": ["The task was to repeat a request after a timeout, with the wait doubling and four attempts at most."], "missing": ""},
+    {"question": "How did it end: what is done and what is not?", "found": "yes", "answer": "The repeat works and its own five tests pass, but the build is red because the payments team's test fails, and the author left that test untouched.", "quotes": ["The repeat works, and its own five tests pass.", "But the build is red.", "I did not touch that test."], "missing": ""},
+    {"question": "What is the problem, and what causes it?", "found": "yes", "answer": "The client repeats every request whatever its method, so a timed-out payment is sent four times while the payments team's test expects it once, and a repeated payment can charge the customer twice because the first may already have gone through at the gateway.", "quotes": ["The client now repeats a payment too, and the payments team's test forbids that.", "The payments team's test sends a payment that always times out.", "It expects the client to send it once.", "The client sent it four times.", "A payment that timed out may already have gone through at the gateway.", "So a repeat can charge the customer twice."], "missing": ""},
+    {"question": "What is not verified?", "found": "partly", "answer": "The text only signals that the maximum wait of about nine and a half seconds is the author's own count rather than a measurement.", "quotes": ["By my count, a caller waits at most about nine and a half seconds."], "missing": "A statement of which claims were checked and which were not, for example whether the maximum wait was measured, whether the one-second cap was tested, and whether a repeated payment actually charges twice at the gateway."},
+    {"question": "What do I have to decide, and what does each option give and cost?", "found": "no", "answer": "", "quotes": [], "missing": "The decision the reader must take (for example, whether to exclude payments or non-idempotent methods from the repeat, or to change the payments team's test) and, for each option, what it gives and what it costs."}
+  ],
+  "unexplained": [
+    {"term": "the client", "quote": "The client now repeats a payment too, and the payments team's test forbids that."},
+    {"term": "the payments team", "quote": "The client now repeats a payment too, and the payments team's test forbids that."},
+    {"term": "the gateway", "quote": "A payment that timed out may already have gone through at the gateway."}
+  ]
+}

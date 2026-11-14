@@ -1,0 +1,143 @@
+{
+ "cases": [
+  {
+   "case": "build",
+   "report_intact": "../../build/intact.md",
+   "questions": "questions.json",
+   "variants": [
+    {
+     "variant": "no-action",
+     "report": "../../build/no-action.md",
+     "removed": "the reader's decision: the sentence of the opening that names it and the part with the options, the choice and the question",
+     "expect": {
+      "question": 5
+     }
+    },
+    {
+     "variant": "no-cause",
+     "report": "../../build/no-cause.md",
+     "removed": "why the build is red: the two sentences of the opening, the part on the red build and the two lines of the closing list that show the two waits",
+     "expect": {
+      "question": 3
+     }
+    },
+    {
+     "variant": "no-term",
+     "report": "../../build/no-term.md",
+     "removed": "the sentence that says what the limit is, with its later uses kept",
+     "expect": {
+      "terms": [
+       "limit"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "case": "retry",
+   "report_intact": "../../retry/intact.md",
+   "questions": "questions.json",
+   "variants": [
+    {
+     "variant": "no-action",
+     "report": "../../retry/no-action.md",
+     "removed": "the reader's decision: the sentence of the opening that names it and the part with the options, the choice and the question",
+     "expect": {
+      "question": 5
+     }
+    },
+    {
+     "variant": "no-cause",
+     "report": "../../retry/no-cause.md",
+     "removed": "why the build is red: the sentence of the opening, the part on the red build and the two lines of the closing list that show the failing check",
+     "expect": {
+      "question": 3
+     }
+    },
+    {
+     "variant": "no-term",
+     "report": "../../retry/no-term.md",
+     "removed": "the sentence that says why a repeated payment is dangerous, with the conclusion drawn from it kept",
+     "expect": {
+      "terms": [
+       "twice",
+       "charge",
+       "gateway",
+       "gone through"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "case": "rename",
+   "report_intact": "../../rename/intact.md",
+   "questions": "questions.json",
+   "variants": [
+    {
+     "variant": "no-action",
+     "report": "../../rename/no-action.md",
+     "removed": "the reader's decision: the sentence of the opening that names it and the part with the options, the choice and the question",
+     "expect": {
+      "question": 5
+     }
+    },
+    {
+     "variant": "no-cause",
+     "report": "../../rename/no-cause.md",
+     "removed": "what is wrong in production and why: the two sentences of the opening, the part on the production file and the two lines of the closing list about the operations file",
+     "expect": {
+      "question": 3
+     }
+    },
+    {
+     "variant": "no-term",
+     "report": "../../rename/no-term.md",
+     "removed": "the sentences that say how the two settings files relate, with the conclusion drawn from them kept, and the line of the closing list that states it",
+     "expect": {
+      "terms": [
+       "on top",
+       "overrid",
+       "load",
+       "our file",
+       "ours"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "case": "logformat",
+   "report_intact": "../../logformat/intact.md",
+   "questions": "questions.json",
+   "variants": [
+    {
+     "variant": "no-action",
+     "report": "../../logformat/no-action.md",
+     "removed": "the reader's decision: the sentence of the opening that names it and the part with the options, the choice and the question",
+     "expect": {
+      "question": 5
+     }
+    },
+    {
+     "variant": "no-cause",
+     "report": "../../logformat/no-cause.md",
+     "removed": "what breaks and why: the two sentences of the opening, the part on how the alert works and the two lines of the closing list about the alert pattern",
+     "expect": {
+      "question": 3
+     }
+    },
+    {
+     "variant": "no-term",
+     "report": "../../logformat/no-term.md",
+     "removed": "the two sentences that say what the alert is and that it finds lines by a pattern, with the later uses of the pattern kept",
+     "expect": {
+      "terms": [
+       "pattern"
+      ]
+     }
+    }
+   ]
+  }
+ ]
+}

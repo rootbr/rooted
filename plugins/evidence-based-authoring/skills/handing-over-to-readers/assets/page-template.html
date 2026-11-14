@@ -1,0 +1,488 @@
+<title><!--TITLE--></title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+/* Layout: one column; a sticky player over one article. The article is the body the builder joins in;
+   its words come from the body and from DATA.strings, never from this file. */
+:root {
+  --bg: #f6f7f9;
+  --surface: #ffffff;
+  --ink: #15181d;
+  --muted: #5a6370;
+  --line: #d6dbe3;
+  --accent: #2f4bd8;
+  --accent-soft: #e4e9fb;
+  --keep: #1c7a45;
+  --keep-soft: #e1f3e8;
+  --drop: #b3232c;
+  --drop-soft: #fbe4e5;
+  --tint: #e9ecf1;
+  --lit: #fff0b3;        /* what the voice is speaking about: the one colour of the highlight */
+  --lit-line: #d9a514;
+  --font-text: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-head: var(--font-text);
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  --col: 76ch;
+  --gutter: 20px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #101317; --surface: #181c22; --ink: #e6e9ee; --muted: #9aa4b2; --line: #2c333d;
+    --accent: #93a5ff; --accent-soft: #1f2748; --keep: #5cc48b; --keep-soft: #173324; --drop: #f07a81; --drop-soft: #3a1c20;
+    --tint: #222831; --lit: #4d4012; --lit-line: #d6ad3a;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #101317; --surface: #181c22; --ink: #e6e9ee; --muted: #9aa4b2; --line: #2c333d;
+  --accent: #93a5ff; --accent-soft: #1f2748; --keep: #5cc48b; --keep-soft: #173324; --drop: #f07a81; --drop-soft: #3a1c20;
+  --tint: #222831; --lit: #4d4012; --lit-line: #d6ad3a;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink); font-family: var(--font-text); font-size: 16.5px; line-height: 1.6;
+  padding-block: 28px 96px;
+  padding-left: max(var(--gutter), env(safe-area-inset-left, 0px));
+  padding-right: max(var(--gutter), env(safe-area-inset-right, 0px));
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+main { max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; gap: 18px; }
+h1, h2, h3, h4 { font-family: var(--font-head); text-wrap: balance; line-height: 1.25; margin: 0; }
+h1 { font-size: clamp(26px, 4vw, 34px); font-weight: 700; }
+h2 { font-size: 20px; font-weight: 600; }
+h3 { font-size: 17.5px; font-weight: 600; }
+p { margin: 0; }
+code { font-family: var(--font-mono); font-size: 0.86em; background: var(--tint); padding: 1px 5px; border-radius: 4px; overflow-wrap: anywhere; font-variant-ligatures: none; }
+[hidden] { display: none !important; }  /* a class that sets display must not show a hidden element */
+.muted { color: var(--muted); font-size: 14.5px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* the player */
+.player {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--surface); border: 1px solid var(--line);
+  border-radius: 10px; padding: 10px 14px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center;
+  box-shadow: 0 6px 14px -10px var(--ink);
+}
+.player audio { flex: 1 1 260px; max-width: 420px; height: 36px; }
+.now { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-size: 14px; }
+.now strong { font-weight: 600; min-width: 9.5em; }
+.chapters { display: flex; flex-wrap: wrap; gap: 8px; }
+.linkbtn { font: inherit; font-size: 13.5px; font-weight: 600; color: var(--accent); background: none; border: 1px solid var(--line); border-radius: 8px; padding: 5px 11px; cursor: pointer; font-variant-numeric: tabular-nums; }
+.linkbtn:disabled { opacity: 0.5; cursor: default; }
+.no-audio { color: var(--muted); font-size: 14px; }
+
+/* the article */
+.sheet {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 26px 28px;
+  display: flex; flex-direction: column; gap: 16px; font-size: 15.5px; line-height: 1.6;
+}
+.sheet > p, .sheet > ul, .sheet > ol { max-width: var(--col); }
+.sheet > h2 { margin-top: 12px; }
+.sheet > :is(h1, h2, h3)[data-lit] { align-self: flex-start; }
+.sheet ul, .sheet ol { margin: 0; padding-left: 1.3em; display: flex; flex-direction: column; gap: 5px; }
+.sheet pre { margin: 0; overflow-x: auto; background: var(--tint); border-radius: 8px; padding: 12px 14px; font-family: var(--font-mono); font-size: 13px; line-height: 1.5; white-space: pre; font-variant-ligatures: none; }
+.sheet pre code { background: none; padding: 0; font-size: inherit; overflow-wrap: normal; }
+.ask { font-weight: 600; font-size: 16.5px; }
+
+/* what the voice speaks about: one colour, nothing moves */
+.s { border-radius: 3px; }
+.sheet :where(.s, h1, h2, h3, h4, p, li, td, th, tr, span, code, small, figure, .option, .decision) { transition: background-color 0.15s, box-shadow 0.15s; }
+.sheet :is(.s, h1, h2, h3, h4, p, li, td, th, tr, span, code, small).lit { background: var(--lit); box-shadow: 0 0 0 3px var(--lit); }
+.sheet :is(figure, .option, .decision, .twocol).lit { box-shadow: 0 0 0 3px var(--lit-line); }
+
+/* figures: each in its own frame, in the page's palette */
+figure { margin: 4px 0 8px; border: 1px solid var(--line); border-radius: 10px; background: var(--bg); padding: 16px 18px; display: flex; flex-direction: column; gap: 12px; }
+figcaption { color: var(--muted); font-size: 13.5px; }
+.figscroll { overflow-x: auto; }
+figure table { border-collapse: collapse; font-size: 14.5px; line-height: 1.45; font-variant-numeric: tabular-nums; min-width: 480px; }
+figure th, figure td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--line); }
+figure th { font-weight: 600; color: var(--muted); font-size: 13px; }
+figure td.good { color: var(--keep); } figure td.bad { color: var(--drop); }
+svg.fig { display: block; width: 100%; min-width: 620px; height: auto; font-family: var(--font-text); }
+.fig text { fill: var(--ink); font-size: 14px; }
+.fig text.mono { font-family: var(--font-mono); font-size: 12.5px; font-variant-ligatures: none; }
+.fig text.small { font-size: 12.5px; }
+.fig text.lane { font-size: 13px; font-weight: 600; fill: var(--muted); }
+.fig text.dim { fill: var(--muted); }
+.fig text.bad { fill: var(--drop); }
+.fig text.good { fill: var(--keep); }
+.fig .box { fill: var(--surface); stroke: var(--muted); stroke-width: 1.4; }
+.fig .attempt { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1.4; }
+.fig .pause { fill: var(--tint); stroke: var(--muted); stroke-width: 1.2; }
+.fig .ok { fill: var(--keep-soft); stroke: var(--keep); stroke-width: 1.4; }
+.fig .no { fill: var(--drop-soft); stroke: var(--drop); stroke-width: 1.4; }
+.fig .codebg { fill: var(--surface); stroke: var(--line); stroke-width: 1.2; }
+.fig .hl { fill: none; stroke: var(--accent); stroke-width: 1.6; stroke-dasharray: 5 3; }
+.fig .arr { stroke: var(--muted); stroke-width: 1.6; fill: none; }
+.fig .arrh { fill: var(--muted); }
+.fig [data-lit].lit rect:not(.codebg):not(.hl):not(.ok):not(.no), .fig rect[data-lit].lit:not(.codebg):not(.hl):not(.ok):not(.no) { fill: var(--lit); stroke: var(--lit-line); stroke-width: 2.4; }
+.fig [data-lit].lit rect.ok, .fig [data-lit].lit rect.no { stroke: var(--lit-line); stroke-width: 3.2; }  /* a verdict keeps its own fill while lit */
+.fig [data-lit].lit .codebg { stroke: var(--lit-line); stroke-width: 2.4; }
+.fig [data-lit].lit .arr { stroke: var(--lit-line); stroke-width: 2.4; }
+.fig [data-lit].lit .arrh { fill: var(--lit-line); }
+.fig [data-lit].lit text { font-weight: 600; }
+.fig text[data-lit].lit { font-weight: 600; paint-order: stroke; stroke: var(--lit); stroke-width: 9px; stroke-linejoin: round; }
+
+/* a switch: .seg[data-switch] toggles the class "safe" on its target */
+.only-safe { display: none; }
+.safe .only-safe { display: revert; }
+.safe .only-now { display: none; }
+.controls { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; font-size: 14px; }
+.seg { display: inline-flex; flex-wrap: wrap; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.seg button { font: inherit; font-size: 13.5px; color: var(--ink); background: var(--surface); border: 0; padding: 6px 12px; cursor: pointer; }
+.seg button + button { border-left: 1px solid var(--line); }
+.seg button[aria-pressed="true"] { background: var(--accent); color: var(--bg); font-weight: 600; }
+
+/* a two-column list */
+.twocol { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 6px 28px; }
+.twocol ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 6px; }
+.twocol li, .option li { padding-left: 1.3em; position: relative; }
+.twocol li::before, .option li::before { position: absolute; left: 0; font-weight: 700; }
+.twocol li.plus::before, .option li.plus::before { content: "+"; color: var(--keep); }
+.twocol li.minus::before, .option li.minus::before { content: "\2212"; color: var(--drop); }
+
+/* the decisions */
+.decision { display: flex; flex-direction: column; gap: 12px; border-top: 1px solid var(--line); padding-top: 16px; border-radius: 3px; }
+.decision > h3 { align-self: flex-start; }
+.options { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 14px; }
+.option { border: 1.5px solid var(--line); border-radius: 10px; padding: 16px 18px; display: flex; flex-direction: column; gap: 10px; cursor: pointer; transition: box-shadow 0.15s; }
+.option.chosen { border-color: var(--accent); background: var(--accent-soft); }
+.option h4 { font-size: 16px; font-weight: 600; display: flex; flex-wrap: wrap; gap: 8px; align-items: baseline; }
+.option ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 5px; }
+.option .why { color: var(--muted); font-size: 14px; }
+.tag { font-family: var(--font-text); font-size: 12px; font-weight: 600; color: var(--keep); background: var(--keep-soft); border-radius: 999px; padding: 2px 9px; }
+.choose { font: inherit; font-size: 13.5px; font-weight: 600; color: var(--accent); background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 5px 11px; cursor: pointer; align-self: flex-start; margin-top: auto; }
+.option.chosen .choose { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+.decision label { font-size: 14px; color: var(--muted); }
+textarea {
+  font: inherit; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 8px;
+  padding: 9px 11px; width: 100%; max-width: var(--col); min-height: 56px; resize: vertical;
+}
+/* the reader's words on a part: one row that grows with its text */
+.part-words { display: flex; flex-direction: column; gap: 6px; max-width: var(--col); }
+.part-words label { font-size: 14px; color: var(--muted); }
+.part-words textarea { min-height: 0; resize: none; overflow: hidden; }
+.answer { display: flex; flex-direction: column; gap: 8px; max-width: var(--col); }
+.answer-row { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; }
+.primary { font: inherit; font-weight: 600; color: var(--bg); background: var(--accent); border: 0; border-radius: 8px; padding: 10px 18px; cursor: pointer; }
+.primary:disabled { opacity: 0.5; cursor: default; }
+.answer-note.bad { color: var(--drop); }
+.answer-text { white-space: pre-wrap; user-select: all; font-family: var(--font-text); font-size: 14.5px; }
+
+/* where to look */
+.look { display: flex; flex-direction: column; gap: 10px; }
+.sheet .look-list { list-style: none; padding: 0; gap: 8px; max-width: none; }
+.look-item { border-top: 1px solid var(--line); padding-top: 8px; }
+.look-item:first-child { border-top: 0; padding-top: 0; }
+.look-item summary { cursor: pointer; }
+.look-item details[open] summary { margin-bottom: 8px; }
+.src .ln { color: var(--muted); user-select: none; }
+.src .hit { background: var(--accent-soft); display: inline-block; min-width: 100%; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; scroll-behavior: auto !important; }
+}
+</style>
+
+<main>
+  <div class="player" id="player">
+    <audio id="voice" controls preload="metadata"></audio>
+    <p class="no-audio" id="no-audio" data-string="noAudio" hidden></p>
+    <div class="now" id="now"><span class="muted" data-string="now"></span> <strong id="now-part" data-string="notPlaying"></strong> <button type="button" class="linkbtn" id="now-jump" data-string="jump" disabled></button></div>
+    <div class="chapters" id="parts"></div>
+  </div>
+  <article class="sheet" id="article">
+<!--BODY-->
+  </article>
+</main>
+
+<script type="application/json" id="page-data">/*DATA*/</script>
+<script>
+(function () {
+  "use strict";
+  var DATA = JSON.parse(document.getElementById("page-data").textContent);
+  var S = DATA.strings, ID = DATA.id, CUES = DATA.cues, PARTS = DATA.parts;
+  var article = document.getElementById("article");
+  var calm = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function $(id) { return document.getElementById(id); }
+  function el(tag, cls, text) { var e = document.createElement(tag); if (cls) { e.className = cls; } if (text != null) { e.textContent = text; } return e; }
+  function all(root, selector) { return Array.prototype.slice.call(root.querySelectorAll(selector)); }
+  function mmss(s) { s = Math.round(s); return Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0"); }
+  function ids(e) { return (e.getAttribute("data-lit") || "").split(/\s+/).filter(Boolean); }
+  function scrollTo(e) { e.scrollIntoView({ block: "center", behavior: calm ? "auto" : "smooth" }); }
+  all(document, "[data-string]").forEach(function (e) { e.textContent = S[e.getAttribute("data-string")] || ""; });
+
+  /* ---------- the voice: the sentence and the elements that name it are lit while it is spoken ---------- */
+  var voice = $("voice"), partOf = {}, LIT = all(article, "[data-lit]").map(function (e) { return { e: e, ids: ids(e) }; });
+  PARTS.forEach(function (p) { partOf[p.paragraph] = p; });
+  CUES.forEach(function (c) { c.id = c.paragraph + "." + c.sentence; });
+  var played = false, litId = null, frame = 0;
+  function cueAt(t) {
+    var current = null;
+    for (var i = 0; i < CUES.length; i++) { if (t >= CUES[i].start - 0.08) { current = CUES[i]; } else { break; } }
+    return current;
+  }
+  function light() {
+    var cue = played && !voice.ended ? cueAt(voice.currentTime) : null;
+    var id = cue ? cue.id : null;
+    if (id === litId) { return; }
+    litId = id;
+    LIT.forEach(function (x) { x.e.classList.toggle("lit", id !== null && x.ids.indexOf(id) >= 0); });
+    $("now-part").textContent = cue && partOf[cue.paragraph] ? partOf[cue.paragraph].title : S.notPlaying;
+    $("now-jump").disabled = !cue;
+  }
+  function follow() { light(); frame = voice.paused ? 0 : requestAnimationFrame(follow); }
+  ["play", "pause", "seeked", "ended", "timeupdate"].forEach(function (name) {
+    voice.addEventListener(name, function () {
+      if (name === "play") { played = true; }
+      light();
+      if (name === "play" && !frame) { frame = requestAnimationFrame(follow); }
+    });
+  });
+  $("now-jump").addEventListener("click", function () {
+    var target = article.querySelector(".s.lit") || article.querySelector(".lit");
+    if (target) { scrollTo(target); }
+  });
+  PARTS.forEach(function (part) {
+    var b = el("button", "linkbtn", mmss(part.start) + "  " + part.title);
+    b.type = "button";
+    b.addEventListener("click", function () {
+      voice.currentTime = Math.max(0, part.start - 0.05);
+      var started = voice.play();
+      if (started && started.catch) { started.catch(function () { /* the reader starts it from the controls */ }); }
+    });
+    $("parts").appendChild(b);
+  });
+  if (DATA.voice) {
+    voice.src = DATA.voice;
+  } else {
+    voice.hidden = true; $("now").hidden = true; $("parts").hidden = true; $("no-audio").hidden = false;
+  }
+
+  /* ---------- switches: a .seg[data-switch] group toggles the class "safe" on its target ---------- */
+  all(article, ".seg[data-switch]").forEach(function (group) {
+    var target = $(group.getAttribute("data-switch")), buttons = all(group, "button[data-mode]");
+    if (!target) { return; }
+    function set(mode) {
+      target.classList.toggle("safe", mode === "safe");
+      buttons.forEach(function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-mode") === mode ? "true" : "false"); });
+    }
+    buttons.forEach(function (b) { b.type = "button"; b.addEventListener("click", function () { set(b.getAttribute("data-mode")); }); });
+    set(target.classList.contains("safe") ? "safe" : "now");
+  });
+
+  /* ---------- the answer: pick an option in each decision, add words to a decision or a part, copy the whole answer for the chat ---------- */
+  var DECISIONS = all(article, ".decision[data-decision]").map(function (box, i) {
+    var d = { key: box.getAttribute("data-decision"), title: box.getAttribute("data-title") || "", box: box, options: [], mine: null };
+    all(box, ".option[data-option]").forEach(function (o) {
+      var b = el("button", "choose");
+      b.type = "button";
+      o.appendChild(b);
+      d.options.push({ e: o, name: o.getAttribute("data-option"), button: b });
+      if (o.getAttribute("data-mine") === "1") { d.mine = o.getAttribute("data-option"); }
+    });
+    var label = el("label", "", S.words);
+    label.htmlFor = "words-" + i;
+    d.words = el("textarea");
+    d.words.id = "words-" + i;
+    box.appendChild(label);
+    box.appendChild(d.words);
+    return d;
+  });
+
+  /* A part runs from the top-level element that holds its sentence N.1 (the opening: from the article's start) to the next
+     part's start, the "Where to look" section or the article's end. A part holding a decision takes no field: its decisions
+     carry their own. A part whose start cannot be placed after the previous part's takes none either. */
+  function holdsDecision(e) { return e.matches(".decision[data-decision]") || !!e.querySelector(".decision[data-decision]"); }
+  function grow(area) { area.style.height = "auto"; area.style.height = (area.scrollHeight + area.offsetHeight - area.clientHeight) + "px"; }
+  var REMARKS = (function () {
+    var children = Array.prototype.slice.call(article.children), end = children.length, placed = [], fields = [];
+    for (var c = 0; c < children.length; c++) {
+      if (children[c].matches("section.look")) { end = c; break; }
+    }
+    function startOf(sentence) {
+      var lit = '[data-lit~="' + sentence + '"]';
+      for (var i = 0; i < end; i++) { if (children[i].matches(lit) || children[i].querySelector(lit)) { return i; } }
+      return -1;
+    }
+    PARTS.forEach(function (part, n) {
+      var at = n === 0 ? 0 : startOf(part.paragraph + ".1");
+      if (at < 0 || (placed.length && at < placed[placed.length - 1].at)) { return; }
+      placed.push({ part: part, at: at });
+    });
+    placed.forEach(function (x, k) {
+      var stop = k + 1 < placed.length ? placed[k + 1].at : end, own = children.slice(x.at, stop);
+      if (!own.length || own.some(holdsDecision)) { return; }
+      var box = el("div", "part-words"), label = el("label", "", S.partWords), area = el("textarea");
+      area.id = "part-words-" + x.part.paragraph;
+      area.rows = 1;
+      label.htmlFor = area.id;
+      box.appendChild(label);
+      box.appendChild(area);
+      article.insertBefore(box, children[stop] || null);
+      fields.push({ key: String(x.part.paragraph), title: x.part.title, area: area, box: box });
+    });
+    return fields;
+  })();
+  if (!DECISIONS.length && !REMARKS.length) { return; }
+
+  var bar = el("div", "answer"), row = el("div", "answer-row");
+  var copyBtn = el("button", "primary", S.copy), shown = el("pre", "answer-text");
+  var note = el("span", "muted answer-note", DECISIONS.length ? S.pick : S.write);
+  copyBtn.type = "button";
+  note.setAttribute("role", "status");
+  shown.hidden = true;
+  var withMine = DECISIONS.filter(function (d) { return d.mine; });
+  if (withMine.length >= 2) {
+    var takeMine = el("button", "linkbtn", S.takeMine);
+    takeMine.type = "button";
+    takeMine.addEventListener("click", function () {
+      withMine.forEach(function (d) { answer.choices[d.key] = d.mine; });
+      paint(); keep(); say(S.picked);
+    });
+    row.appendChild(takeMine);
+  }
+  row.appendChild(copyBtn);
+  row.appendChild(note);
+  bar.appendChild(row);
+  bar.appendChild(shown);
+  /* The bar closes the page's fields: it stands after the last decision or the last part field, whichever comes later. */
+  var lastDecision = DECISIONS.length ? DECISIONS[DECISIONS.length - 1].box : null;
+  var lastRemark = REMARKS.length ? REMARKS[REMARKS.length - 1].box : null;
+  var barAfter = lastDecision && lastRemark
+    ? ((lastDecision.compareDocumentPosition(lastRemark) & Node.DOCUMENT_POSITION_FOLLOWING) ? lastRemark : lastDecision)
+    : (lastDecision || lastRemark);
+  barAfter.insertAdjacentElement("afterend", bar);
+
+  function blank() { return { choices: {}, words: {}, remarks: {}, text: "", savedAt: 0 }; }
+  function normal(a) {
+    var n = blank();
+    if (a && typeof a === "object") {
+      n.choices = a.choices && typeof a.choices === "object" ? a.choices : {};
+      n.words = a.words && typeof a.words === "object" ? a.words : {};
+      n.remarks = a.remarks && typeof a.remarks === "object" ? a.remarks : {};
+      n.text = typeof a.text === "string" ? a.text : "";
+      n.savedAt = typeof a.savedAt === "number" ? a.savedAt : 0;
+    }
+    return n;
+  }
+  function readLocal() { try { return JSON.parse(localStorage.getItem(ID) || "null"); } catch (e) { return null; } }
+  function writeLocal(a) { try { localStorage.setItem(ID, JSON.stringify(a)); } catch (e) { /* storage may be blocked: the answer still copies */ } }
+  var answer = normal(readLocal()), db = null;
+
+  function compose() {
+    var lines = [];
+    DECISIONS.forEach(function (d, i) {
+      var choice = answer.choices[d.key], said = d.words.value.trim();
+      if (!choice && !said) { return; }
+      lines.push((i + 1) + ". " + d.title + ": " + (choice ? choice + "." : "") + (said ? (choice ? " " : "") + said : ""));
+    });
+    REMARKS.forEach(function (p) {
+      var said = p.area.value.trim();
+      if (said) { lines.push(p.title + ": " + said); }
+    });
+    return lines.join("\n");
+  }
+  function paint() {
+    DECISIONS.forEach(function (d) {
+      d.options.forEach(function (o) {
+        var on = answer.choices[d.key] === o.name;
+        o.e.classList.toggle("chosen", on);
+        o.button.setAttribute("aria-pressed", on ? "true" : "false");
+        o.button.textContent = on ? S.chosen : S.choose;
+      });
+    });
+    copyBtn.disabled = !compose();
+  }
+  function say(text, bad) { note.textContent = text; note.className = "answer-note " + (bad ? "bad" : "muted"); }
+  function snapshot() {
+    DECISIONS.forEach(function (d) { answer.words[d.key] = d.words.value.trim(); });
+    REMARKS.forEach(function (p) { answer.remarks[p.key] = p.area.value.trim(); });
+    answer.text = compose();
+    answer.savedAt = Date.now();
+    return JSON.parse(JSON.stringify(answer));
+  }
+  /* Keeps the answer in localStorage and, when the page has a store, in answers/<id>; resolves to true when the store took it. */
+  function keep() {
+    var copy = snapshot();
+    writeLocal(copy);
+    if (!db) { return Promise.resolve(false); }
+    try {
+      return Promise.resolve(db.doc("answers/" + ID).set(copy)).then(function () { return true; }, function () { return false; });
+    } catch (e) { return Promise.resolve(false); }
+  }
+  function restore(a) {
+    answer = normal(a);
+    DECISIONS.forEach(function (d) { d.words.value = answer.words[d.key] || ""; });
+    REMARKS.forEach(function (p) { p.area.value = answer.remarks[p.key] || ""; grow(p.area); });
+    paint();
+  }
+
+  DECISIONS.forEach(function (d) {
+    d.options.forEach(function (o) {
+      o.e.addEventListener("click", function (event) {
+        if (event.target.closest("a, textarea, input, select, summary")) { return; }
+        answer.choices[d.key] = answer.choices[d.key] === o.name ? "" : o.name;
+        paint(); keep(); say(answer.choices[d.key] ? S.picked : S.pick);
+      });
+    });
+  });
+  REMARKS.forEach(function (p) { p.area.addEventListener("input", function () { grow(p.area); }); });
+
+  /* Every words field, a decision's or a part's, in page order: Enter moves to the next one, in the last it copies. */
+  var FIELDS = DECISIONS.map(function (d) { return { area: d.words, box: d.box }; })
+    .concat(REMARKS.map(function (p) { return { area: p.area, box: p.box }; }))
+    .sort(function (a, b) { return a.area.compareDocumentPosition(b.area) & Node.DOCUMENT_POSITION_FOLLOWING ? -1 : 1; });
+  FIELDS.forEach(function (f, i) {
+    f.area.addEventListener("input", function () { paint(); writeLocal(snapshot()); });
+    f.area.addEventListener("change", function () { keep(); });
+    f.area.addEventListener("keydown", function (e) {
+      if (e.key !== "Enter" || e.shiftKey || e.isComposing) { return; }
+      e.preventDefault();
+      var next = FIELDS[i + 1];
+      if (next) { next.area.focus(); scrollTo(next.box); } else if (!copyBtn.disabled) { copyBtn.click(); }
+    });
+  });
+
+  function selectShown() {
+    try {
+      var range = document.createRange();
+      range.selectNodeContents(shown);
+      var selection = window.getSelection();
+      selection.removeAllRanges();
+      selection.addRange(range);
+      return document.execCommand("copy");
+    } catch (e) { return false; }
+  }
+  copyBtn.addEventListener("click", function () {
+    var text = compose();
+    if (!text) { return; }
+    var kept = keep();
+    shown.textContent = text;
+    shown.hidden = false;
+    var copied;
+    try {
+      copied = navigator.clipboard && navigator.clipboard.writeText
+        ? navigator.clipboard.writeText(text).then(function () { return true; }, selectShown)
+        : Promise.resolve(selectShown());
+    } catch (e) { copied = Promise.resolve(selectShown()); }
+    Promise.all([copied, kept]).then(function (r) {
+      var tail = r[1] ? " " + S.saved : "";
+      if (r[0]) { say(S.copied + tail); } else { say(S.copyFailed + tail, true); }
+    });
+  });
+
+  restore(answer);
+  try {
+    var use = window.claude && window.claude.use ? window.claude.use("db") : null;
+    Promise.resolve(use).then(function (store) {
+      db = store || null;
+      if (!db) { return null; }
+      return db.doc("answers/" + ID).get().then(function (snap) {
+        var stored = snap && snap.exists ? normal(snap.data()) : null;
+        if (stored && stored.savedAt > answer.savedAt) { restore(stored); writeLocal(stored); }
+      });
+    }).catch(function () { db = null; /* the answer still copies and stays in localStorage without the store */ });
+  } catch (e) { db = null; /* no store on this page */ }
+})();
+</script>

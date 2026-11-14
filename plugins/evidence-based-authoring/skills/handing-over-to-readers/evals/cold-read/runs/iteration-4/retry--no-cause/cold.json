@@ -1,0 +1,47 @@
+{
+  "answers": [
+    {
+      "question": "What was the task?",
+      "found": "yes",
+      "answer": "The task was to repeat a request after a timeout, with the wait doubling and at most four attempts.",
+      "quotes": ["The task was to repeat a request after a timeout, with the wait doubling and four attempts at most."],
+      "missing": ""
+    },
+    {
+      "question": "How did it end: what is done and what is not?",
+      "found": "yes",
+      "answer": "The repeat works and its own five tests pass, but the build is red, and the choice between the two ways to resolve that is left to the reader.",
+      "quotes": ["The repeat works, and its own five tests pass. But the build is red. You decide whether the client repeats only reads, or the payments team changes its test."],
+      "missing": ""
+    },
+    {
+      "question": "How does the thing that changed work?",
+      "found": "yes",
+      "answer": "The client sends a request, waits two seconds, and on no answer waits and resends, starting at 0.2 s and doubling, giving up after the fourth attempt and passing the timeout to the caller, with the wait capped at one second.",
+      "quotes": ["The client sends a request and waits two seconds for an answer. If none comes, it waits and sends the request again. The wait starts at a fifth of a second and doubles each time. After the fourth attempt the client gives up and passes the timeout on. I also capped the wait at one second, which four attempts never reach. By my count, a caller waits at most about nine and a half seconds."],
+      "missing": ""
+    },
+    {
+      "question": "What is the problem, and what causes it?",
+      "found": "partly",
+      "answer": "The text says the build is red and that the client repeats every request whatever its method, so a payment that timed out can be charged twice, but it does not say which test fails or that this is why the build is red.",
+      "quotes": ["But the build is red.", "- a payment that timed out can be charged twice", "- the loop that repeats every request, whatever its method: `src/main/java/http/RetryingClient.java:20` `attempt <= RetryPolicy.MAX_ATTEMPTS`"],
+      "missing": "Which test fails in the build, and that its failure is caused by the repeat of a payment request."
+    },
+    {
+      "question": "What is not verified?",
+      "found": "partly",
+      "answer": "The text says only that the read-only option is not written yet, so its tests have not run; it does not say what else is unchecked, such as the cause of the red build.",
+      "quotes": ["- not written yet, so its tests have not run"],
+      "missing": "A statement of what else was not checked, for example whether the red build is caused by the repeat of payment requests, and whether the nine-and-a-half-second figure was measured rather than counted."
+    },
+    {
+      "question": "What do I have to decide, and what does each option give and cost?",
+      "found": "yes",
+      "answer": "The reader chooses between repeating only reads, which turns the build green and sends a payment once but gives no repeat for writes and is not written yet, and repeating every request, which finishes the task as written but can charge a timed-out payment twice and needs the payments team to change its test.",
+      "quotes": ["Repeat only reads, or ask the payments team to change its test?", "+ the build turns green, and a payment goes out once", "- a request that writes gets no repeat after a timeout", "- not written yet, so its tests have not run", "+ the task is done as it was written", "- a payment that timed out can be charged twice"],
+      "missing": ""
+    }
+  ],
+  "unexplained": []
+}

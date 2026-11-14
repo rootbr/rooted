@@ -1,0 +1,47 @@
+{
+  "answers": [
+    {
+      "question": "What was the task?",
+      "found": "yes",
+      "answer": "The task was to repeat a request after a timeout, with the wait doubling between attempts and at most four attempts.",
+      "quotes": ["The task was to repeat a request after a timeout, with the wait doubling and four attempts at most."],
+      "missing": ""
+    },
+    {
+      "question": "How did it end: what is done and what is not?",
+      "found": "yes",
+      "answer": "The repeat works and its five tests pass, but the build is red, and the read-only option is not written yet.",
+      "quotes": ["The repeat works, and its own five tests pass.", "But the build is red.", "- not written yet, so its tests have not run"],
+      "missing": ""
+    },
+    {
+      "question": "How does the thing that changed work?",
+      "found": "yes",
+      "answer": "The client waits two seconds for an answer and, if none comes, resends after a wait that starts at 200 ms and doubles (capped at one second), giving up after the fourth attempt and passing the timeout to the caller, who waits at most about nine and a half seconds.",
+      "quotes": ["The client sends a request and waits two seconds for an answer.", "If none comes, it waits and sends the request again.", "The wait starts at a fifth of a second and doubles each time.", "After the fourth attempt the client gives up and passes the timeout on.", "I also capped the wait at one second, which four attempts never reach.", "By my count, a caller waits at most about nine and a half seconds."],
+      "missing": ""
+    },
+    {
+      "question": "What is the problem, and what causes it?",
+      "found": "partly",
+      "answer": "The build is red, and repeating every request means a payment that timed out can be charged twice; the text links the red build to a test of the payments team only through the options.",
+      "quotes": ["But the build is red.", "You decide whether the client repeats only reads, or the payments team changes its test.", "- a payment that timed out can be charged twice"],
+      "missing": "Which test fails and why: that the payments team's test fails because the client now repeats a payment (write) request after a timeout is implied by the options, not stated."
+    },
+    {
+      "question": "What is not verified?",
+      "found": "yes",
+      "answer": "The read-only option is not written, so its tests have not run; the nine-and-a-half-second maximum wait is the author's own count.",
+      "quotes": ["- not written yet, so its tests have not run", "By my count, a caller waits at most about nine and a half seconds."],
+      "missing": ""
+    },
+    {
+      "question": "What do I have to decide, and what does each option give and cost?",
+      "found": "yes",
+      "answer": "Either repeat only reads, which turns the build green and sends a payment once but gives writes no repeat and is not yet written or tested, or repeat every request with the payments team changing its test, which completes the task as written but can charge a timed-out payment twice; the author recommends the first.",
+      "quotes": ["Repeat only reads, or ask the payments team to change its test?", "  1. Repeat only requests that read", "+ the build turns green, and a payment goes out once", "- a request that writes gets no repeat after a timeout", "- not written yet, so its tests have not run", "  2. Repeat every request, and the payments team changes its test", "+ the task is done as it was written", "- a payment that timed out can be charged twice", "I would take the first."],
+      "missing": ""
+    }
+  ],
+  "unexplained": []
+}

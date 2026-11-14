@@ -1,0 +1,47 @@
+{
+  "answers": [
+    {
+      "question": "What was the task?",
+      "found": "yes",
+      "answer": "The task was to upgrade the logging library to version 2 because the old version is no longer supported.",
+      "quotes": ["The task was to upgrade the logging library to version 2.", "The old version is no longer supported."],
+      "missing": ""
+    },
+    {
+      "question": "How did it end: what is done and what is not?",
+      "found": "yes",
+      "answer": "The build now takes the new version and that is the whole change; the operations team's file was not touched, the project was not built, no tests were run, and the choice between keeping the old time form and changing the alert is left to the reader.",
+      "quotes": ["The build now takes the new version, and that is the whole change.", "I did not touch the operations team's file.", "I did not build the project or run any tests.", "You decide whether we keep the old time form on our side or the operations team changes its alert."],
+      "missing": ""
+    },
+    {
+      "question": "How does the thing that changed work?",
+      "found": "yes",
+      "answer": "The new library version writes each log line's time in UTC with a letter T and a dot, where the old one wrote local time with a space and a comma before the milliseconds, and the operations team's alert fires only for lines matching a pattern that expects the old form.",
+      "quotes": ["But the new version writes the time of each log line in a new form.", "The pattern expects the old time form: local time, a space, a comma before the milliseconds.", "The new version writes the time in UTC, with a letter T and a dot.", "It fires for every log line that matches a pattern in their file."],
+      "missing": ""
+    },
+    {
+      "question": "What is the problem, and what causes it?",
+      "found": "yes",
+      "answer": "The operations team's error alert no longer sees our error lines, so if shipped as is our errors raise no alert, because the alert pattern expects the old time form and the new version writes a different one.",
+      "quotes": ["So the operations team's alert on errors no longer sees our error lines.", "The pattern expects the old time form: local time, a space, a comma before the milliseconds.", "I ran their pattern on one error line written each way.", "It matched the old line and missed the new one.", "So if this ships as it is, our errors raise no alert at all."],
+      "missing": ""
+    },
+    {
+      "question": "What is not verified?",
+      "found": "yes",
+      "answer": "The project was not built, no tests were run, and it was not checked that the config setting gives exactly the old line.",
+      "quotes": ["I did not build the project or run any tests.", "- our logs stay in local time; I have not checked that the setting gives exactly the old line"],
+      "missing": ""
+    },
+    {
+      "question": "What do I have to decide, and what does each option give and cost?",
+      "found": "yes",
+      "answer": "The reader decides between keeping the old time form with one setting in our config, which keeps the alert firing with no one else changing anything but keeps logs in local time and is unchecked for an exact match, and having the operations team change its pattern, which moves logs to UTC as the new version intends but leaves errors without alerts until their change is live so the release waits for them.",
+      "quotes": ["Keep the old time form, or ask the operations team to change the alert?", "  1. Keep the old time form with one setting in our config", "+ the alert keeps firing, and nobody else has to change anything", "- our logs stay in local time; I have not checked that the setting gives exactly the old line", "  2. The operations team changes its pattern to the new form", "+ logs move to UTC, which the new version intends", "- until their change is live, errors raise no alert, so our release waits for them"],
+      "missing": ""
+    }
+  ],
+  "unexplained": []
+}

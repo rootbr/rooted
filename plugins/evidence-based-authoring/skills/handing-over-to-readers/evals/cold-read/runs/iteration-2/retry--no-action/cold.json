@@ -1,0 +1,65 @@
+{
+  "answers": [
+    {
+      "question": "What was the task?",
+      "found": "yes",
+      "answer": "The task was to make the client repeat a request after a timeout, doubling the wait between attempts and making at most four attempts.",
+      "quotes": ["The task was to repeat a request after a timeout, with the wait doubling and four attempts at most."],
+      "missing": ""
+    },
+    {
+      "question": "How did it end: what is done and what is not?",
+      "found": "yes",
+      "answer": "The repeat works and its own five tests pass, but the build is red because the client now also repeats a payment, which the payments team's test forbids.",
+      "quotes": [
+        "The repeat works, and its own five tests pass.",
+        "But the build is red.",
+        "The client now repeats a payment too, and the payments team's test forbids that."
+      ],
+      "missing": ""
+    },
+    {
+      "question": "How does the thing that changed work?",
+      "found": "yes",
+      "answer": "The client waits two seconds for an answer and, if none comes, waits and resends, with the wait starting at 200 ms and doubling, a cap of one second that is never reached, giving up after the fourth attempt and passing the timeout to the caller, so a caller waits at most about nine and a half seconds.",
+      "quotes": [
+        "The client sends a request and waits two seconds for an answer.",
+        "If none comes, it waits and sends the request again.",
+        "The wait starts at a fifth of a second and doubles each time.",
+        "After the fourth attempt the client gives up and passes the timeout on.",
+        "I also capped the wait at one second, which four attempts never reach.",
+        "By my count, a caller waits at most about nine and a half seconds."
+      ],
+      "missing": ""
+    },
+    {
+      "question": "What is the problem, and what causes it?",
+      "found": "yes",
+      "answer": "The payments team's test expects a timed-out payment to be sent once, but the client sent it four times because the loop repeats every request whatever its method, and a repeated payment can charge the customer twice since the timed-out one may already have gone through at the gateway.",
+      "quotes": [
+        "The payments team's test sends a payment that always times out.",
+        "It expects the client to send it once.",
+        "The client sent it four times.",
+        "A payment that timed out may already have gone through at the gateway.",
+        "So a repeat can charge the customer twice.",
+        "the loop that repeats every request, whatever its method: `src/main/java/http/RetryingClient.java:20` `attempt <= RetryPolicy.MAX_ATTEMPTS`"
+      ],
+      "missing": ""
+    },
+    {
+      "question": "What is not verified?",
+      "found": "partly",
+      "answer": "The text marks only the maximum wait of about nine and a half seconds as the author's own count rather than something stated as measured.",
+      "quotes": ["By my count, a caller waits at most about nine and a half seconds."],
+      "missing": "An explicit statement of what was not checked or tested (for example whether the one-second cap or the total wait were exercised by a test), or a statement that everything was verified."
+    },
+    {
+      "question": "What do I have to decide, and what does each option give and cost?",
+      "found": "no",
+      "answer": "",
+      "quotes": [],
+      "missing": "What the reader is asked to decide (for example whether payments are excluded from repeats or the payments test changes), the options, and what each option gives and costs."
+    }
+  ],
+  "unexplained": []
+}

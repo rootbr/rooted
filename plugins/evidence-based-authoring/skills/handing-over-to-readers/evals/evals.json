@@ -1,13 +1,13 @@
 {
   "skill_name": "handing-over-to-readers",
   "fixtures_language": "en",
-  "note": "The recorded run runs/iteration-1 was made on the Russian originals of these prompts and fixtures; its benchmark.md states the translation.",
+  "note": "runs/iteration-2 is the run of these prompts and fixtures, once with the skill and once without it; its benchmark.md states the baseline.",
   "evals": [
     {
       "id": 1,
       "name": "client-question-list",
-      "prompt": "Draw up a list of questions for the client from my raw notes in fixtures/client/notes.md. The client is a trading desk; they do not open our files or reports. Write the list to outputs/questions.md and what does not go to the client to outputs/internal.md.",
-      "expected_output": "The list keeps only the items that pass the filters: the time zone question is closed from the sample file, the terminal version is closed from the letter, the licence and the field name go to the internal block or the default registry, the CI question and the approval-process question are dropped, the two second-channel items merge into one. Each delivered item opens with the fact, ends with its single question, carries no dates, section references, file paths, run identifiers or effort estimates; internal.md holds the closures and the default decision with basis. check_report.py --profile client reports no error.",
+      "prompt": "Draw up a list of questions for the client from my raw notes in fixtures/client/notes.md. The client is a city transit operator; they do not open our files or reports. Write the list to outputs/questions.md and what does not go to the client to outputs/internal.md.",
+      "expected_output": "The list keeps only the items that pass the filters: the time zone question is closed from the sample file, the firmware version is closed from the letter, the licence and the field name go to the internal block or the default registry, the CI question and the approval-process question are dropped, the two second-channel items merge into one. Each delivered item opens with the fact, ends with its single question, carries no dates, section references, file paths, run identifiers or effort estimates; internal.md holds the closures and the default decision with basis. check_report.py --profile client reports no error.",
       "files": [
         "fixtures/client/notes.md"
       ],
@@ -15,9 +15,9 @@
         "check_report.py --profile client reports 0 errors on questions.md",
         "every list item of questions.md ends with exactly one question mark",
         "the time-zone question is absent from questions.md (the sample file answers it)",
-        "the terminal-version question is absent from questions.md (the letter answers it)",
+        "the firmware-version question is absent from questions.md (the letter answers it)",
         "the CI question and the client's approval-process question are absent from questions.md",
-        "the second channel appears in exactly one item of questions.md",
+        "the second channel (or second line) appears in exactly one item of questions.md",
         "the field-name choice (ts) is not asked as a question (told as a fact is fine) and is recorded in internal.md",
         "internal.md records closures or default decisions with a basis"
       ]
@@ -26,22 +26,25 @@
       "id": 2,
       "name": "operator-report-with-failing-build",
       "prompt": "Write me a report on the state of the change in fixtures/repo (the task is in task.md, the check output in build.log): what is done, what is verified, what I have to decide. Write it to outputs/report.md.",
-      "expected_output": "The report opens with the five first-page lines: risk names the order path and the untested latency, the reader's action, not done (docs, JMH), wrong if, and a status line with value failed or findings and the counts taken from build.log (1 failure in 3 RouterTest tests, lint 0 problems). Claims carry path:line anchors with fragments that resolve in fixtures/repo (retryOnTimeout = false, config.limit(instrument)), the failing test is reported as a claim with its exit code rather than as 'tests pass'. The timeout 250 vs 400 conflict reaches the operator as one card-form question (fact with the numbers, what the answer changes, irreversible after rollout, one question last). check_report.py --profile operator --root fixtures/repo reports no error.",
+      "expected_output": "The report is a story with pictures and a short list. Its opening paragraph gives the whole matter in three to five short sentences: the task, that the change is made, that one test fails on a timeout the code and the test disagree about, and that the operator has to decide. Parts follow under short headings, each with a picture in a fenced block where it has something to show. The story names what is not done (the routing documentation, JMH) and never says the tests pass. The decision closes the story: the 250 against 400 ms conflict with its options in a fenced block of gains and costs, the author's choice, and the single question last. The list of where to look gives path:line anchors with fragments that resolve in fixtures/repo and the checks with their exit codes. check_report.py --profile operator --root fixtures/repo reports no error.",
       "files": [
         "fixtures/repo/task.md",
         "fixtures/repo/build.log",
-        "fixtures/repo/src/main/java/order/Router.java",
-        "fixtures/repo/src/main/java/order/Limits.java",
-        "fixtures/repo/src/test/java/order/RouterTest.java"
+        "fixtures/repo/src/main/java/dispatch/Router.java",
+        "fixtures/repo/src/main/java/dispatch/Limits.java",
+        "fixtures/repo/src/test/java/dispatch/RouterTest.java"
       ],
       "expectations": [
-        "check_report.py --profile operator --root fixtures/repo reports 0 errors on report.md",
-        "the first page carries the five labelled lines: Risk, From the reader, Not done, Wrong if, Status",
-        "the status line value is failed or findings and names the failure count from build.log",
-        "at least two path:line anchors resolve under fixtures/repo with their fragment on the line",
-        "the report does not claim that the tests pass",
-        "the 250 vs 400 ms timeout conflict reaches the operator as one item with its single question mark at the end",
-        "the report names what is not done: JMH and the routing documentation"
+        "check_report.py --profile operator reports 0 errors on report.md, its anchors read from the fixture or from the directory above the fixtures",
+        "the opening paragraph has at least three sentences",
+        "no sentence of the story runs past twenty words",
+        "at least two path:line anchors resolve under the fixture with their fragment on the line",
+        "the story holds exactly one question and it stands last, before the list of where to look",
+        "the options of the decision stand in a fenced block with a gain (+) and a cost (-)",
+        "the parts after the opening stand under headings of one to four words",
+        "the report does not claim that the tests pass: a count of passing tests stands only beside the exit code of the run",
+        "the story names both timeouts of the conflict, 250 and 400 ms",
+        "the report names what is not done: the performance run (JMH) and the routing documentation"
       ]
     },
     {
@@ -57,8 +60,89 @@
         "question.json holds exactly one question",
         "the one question is about the legacy table, not about the config file path",
         "the card says why it is asked: the decision is irreversible",
-        "questions.md records the config path as a default decision with its basis",
+        "questions.md tells the config location as a decision already taken, with its basis",
         "questions.md contains exactly one question mark"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "operator-report-retry-and-another-teams-test",
+      "prompt": "You made the change in fixtures/retry (the task is in task.md, the build output in build.log); the test of the payments team you did not touch. Write me a short report: what is done, what is verified, what I have to decide. Write it to outputs/report.md.",
+      "expected_output": "A story with pictures: the opening says the retry is made, the build is red because the payments team's test forbids repeating a payment while the client repeats every request, and the operator has to decide. A part explains the mechanism with a picture of the four attempts and the delays of 200, 400 and 800 ms; a part explains the failure; the decision closes the story with its options in a fenced block, the author's choice and one question. The list of where to look anchors the doubling, the loop, the test's requirement and the failure in build.log, and gives the test counts with the exit code. check_report.py reports no error.",
+      "files": [
+        "fixtures/retry/build.log",
+        "fixtures/retry/src/main/java/http/Request.java",
+        "fixtures/retry/src/main/java/http/Response.java",
+        "fixtures/retry/src/main/java/http/RetryPolicy.java",
+        "fixtures/retry/src/main/java/http/RetryingClient.java",
+        "fixtures/retry/src/main/java/http/Sleeper.java",
+        "fixtures/retry/src/main/java/http/Transport.java",
+        "fixtures/retry/src/test/java/http/RetryingClientTest.java",
+        "fixtures/retry/src/test/java/payments/PaymentsClientTest.java",
+        "fixtures/retry/task.md"
+      ],
+      "expectations": [
+        "check_report.py --profile operator reports 0 errors on report.md, its anchors read from the fixture or from the directory above the fixtures",
+        "the opening paragraph has at least three sentences",
+        "no sentence of the story runs past twenty words",
+        "at least two path:line anchors resolve under the fixture with their fragment on the line",
+        "the story holds exactly one question and it stands last, before the list of where to look",
+        "the options of the decision stand in a fenced block with a gain (+) and a cost (-)",
+        "the parts after the opening stand under headings of one to four words",
+        "the story names the failing test of the payments team and the red build",
+        "a fenced picture shows the delays 200, 400 and 800 ms",
+        "the story says that a payment can reach the gateway more than once"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "operator-report-rename-and-a-stale-override",
+      "prompt": "You made the change in fixtures/rename (the task is in task.md, the test output in test.log); the deployment file of the operations team you did not touch. Write me a short report: what is done and what I have to decide. Write it to outputs/report.md.",
+      "expected_output": "A story with pictures: the opening says the setting is renamed and the tests pass, but the production file still carries the old key, so production would silently run with 3000 ms instead of 10000 ms, and the operator has to decide. A picture sets the two files before and after side by side. The decision closes the story with its options in a fenced block, the author's choice and one question. The list of where to look anchors the key the code reads, both files and the test log with its exit code. check_report.py reports no error.",
+      "files": [
+        "fixtures/rename/config/app.properties",
+        "fixtures/rename/deploy/prod.properties",
+        "fixtures/rename/src/main/java/app/ServerConfig.java",
+        "fixtures/rename/src/test/java/app/ServerConfigTest.java",
+        "fixtures/rename/task.md",
+        "fixtures/rename/test.log"
+      ],
+      "expectations": [
+        "check_report.py --profile operator reports 0 errors on report.md, its anchors read from the fixture or from the directory above the fixtures",
+        "the opening paragraph has at least three sentences",
+        "no sentence of the story runs past twenty words",
+        "at least two path:line anchors resolve under the fixture with their fragment on the line",
+        "the story holds exactly one question and it stands last, before the list of where to look",
+        "the options of the decision stand in a fenced block with a gain (+) and a cost (-)",
+        "the parts after the opening stand under headings of one to four words",
+        "the story says production would get 3000 ms (3 s) where it had 10000 ms (10 s)",
+        "the story says the deployment file belongs to operations and was not edited"
+      ]
+    },
+    {
+      "id": 6,
+      "name": "operator-report-upgrade-that-silences-an-alert",
+      "prompt": "You made the change in fixtures/logformat (the task is in task.md; ops/alert-check.txt is the output of the check that was run); the file of the operations team you did not touch. Write me a short report: what changed and what I have to decide. Write it to outputs/report.md.",
+      "expected_output": "A story with pictures: the opening says the library is upgraded, that the new timestamp format no longer matches the operations team's alert pattern, so errors would raise no alert, and that the operator has to decide. A picture sets the old and the new log line against the pattern. The story says what was not verified: the project was not built or run, the pattern was checked on the two samples. The decision closes the story with its options in a fenced block, the author's choice and one question. The list of where to look anchors the version, the pattern, the sample line and the check output. check_report.py reports no error.",
+      "files": [
+        "fixtures/logformat/build.gradle",
+        "fixtures/logformat/ops/alert-check.txt",
+        "fixtures/logformat/ops/alerts.conf",
+        "fixtures/logformat/samples/log-after.txt",
+        "fixtures/logformat/samples/log-before.txt",
+        "fixtures/logformat/src/main/resources/logkit.properties",
+        "fixtures/logformat/task.md"
+      ],
+      "expectations": [
+        "check_report.py --profile operator reports 0 errors on report.md, its anchors read from the fixture or from the directory above the fixtures",
+        "the opening paragraph has at least three sentences",
+        "no sentence of the story runs past twenty words",
+        "at least two path:line anchors resolve under the fixture with their fragment on the line",
+        "the story holds exactly one question and it stands last, before the list of where to look",
+        "the options of the decision stand in a fenced block with a gain (+) and a cost (-)",
+        "the parts after the opening stand under headings of one to four words",
+        "the story says the alert no longer matches error lines after the upgrade",
+        "the story says what was not verified: no build or run, the check ran on the samples"
       ]
     }
   ]

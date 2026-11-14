@@ -1,0 +1,9 @@
+# Thumbnail cache.
+cache:
+  name: thumbnails
+  backend: redis
+  max-entries: 500000
+  eviction: lru
+  entry:
+    ttl: 24h
+  metrics: true

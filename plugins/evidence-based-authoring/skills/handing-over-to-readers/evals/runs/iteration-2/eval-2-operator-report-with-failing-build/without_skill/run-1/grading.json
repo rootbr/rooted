@@ -1,0 +1,60 @@
+{
+  "expectations": [
+    {
+      "text": "check_report.py --profile operator reports 0 errors on report.md, its anchors read from the fixture or from the directory above the fixtures",
+      "passed": false,
+      "evidence": "exit 1: 17 error(s), 6 warning(s)"
+    },
+    {
+      "text": "the opening paragraph has at least three sentences",
+      "passed": false,
+      "evidence": "the opening has 0 sentence(s)"
+    },
+    {
+      "text": "no sentence of the story runs past twenty words",
+      "passed": false,
+      "evidence": "1 line(s) with a sentence past 20 words"
+    },
+    {
+      "text": "at least two path:line anchors resolve under the fixture with their fragment on the line",
+      "passed": false,
+      "evidence": "6 anchors, 3 errors, 0 without their fragment on the line"
+    },
+    {
+      "text": "the story holds exactly one question and it stands last, before the list of where to look",
+      "passed": false,
+      "evidence": "4 question mark(s) in the story; the last prose line asks: False"
+    },
+    {
+      "text": "the options of the decision stand in a fenced block with a gain (+) and a cost (-)",
+      "passed": false,
+      "evidence": "0 fenced block(s) with a gain and a cost, of 0 block(s)"
+    },
+    {
+      "text": "the parts after the opening stand under headings of one to four words",
+      "passed": false,
+      "evidence": "5 heading(s) before the list, 3 of one to four words"
+    },
+    {
+      "text": "the report does not claim that the tests pass: a count of passing tests stands only beside the exit code of the run",
+      "passed": true,
+      "evidence": "no claim that the tests pass without their exit code"
+    },
+    {
+      "text": "the story names both timeouts of the conflict, 250 and 400 ms",
+      "passed": true,
+      "evidence": "250 and 400 both named in the story: True"
+    },
+    {
+      "text": "the report names what is not done: the performance run (JMH) and the routing documentation",
+      "passed": true,
+      "evidence": "JMH and the documentation named as not done: True"
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 7,
+    "total": 10,
+    "pass_rate": 0.3
+  }
+}

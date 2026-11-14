@@ -1,29 +1,29 @@
 #!/usr/bin/env python3
 """Check a report or a question list against the reading contract.
 
-    check_report.py [--profile operator|client] [--root DIR] [--json] [--strict] FILE|-
+    check_report.py [--profile operator|client] [--root DIR] [--json] [--strict] [--lexicon FILE] FILE|-
 
-Profile `operator` (default): the text reaches the operator of the session, who opens files and
-runs commands himself. Errors: a missing first-page line (Risk, From the reader, Not done, Wrong
-if) or one without a value; a status line without an
-enumerated value (clean, findings, failed, not-run) or without the count of checked units; a
-`path:line` anchor whose file or line does not exist under --root, or whose fragment (the next
-code span on the same line) is not on that line; a claim item without an anchor and without an
-evidence token; a run, workflow or agent identifier in the text; a question item without its one
-question mark at the end.
+Profile `operator` (default): a report to the operator of the session, who opens files and runs
+commands himself. The report is a story in plain words closed by the list "Where to look".
+Errors: no "Where to look" heading; a code span or an exit code in the story above that heading;
+a `path:line` anchor whose file or line does not exist under --root, or whose fragment (the next
+code span on the same line) is not on that line; a run, workflow or agent identifier in the text.
+Warnings: an opening paragraph of fewer than three sentences; a story sentence of more than twenty
+words; a story sentence with three or more numbers; a self-report in the story while no exit code
+stands under "Where to look"; more than five lines under "Where to look"; more than 300 words of
+prose outside fences and tables; an anchor without a fragment, or one whose fragment stands within
+two lines of the anchor instead of on it.
 
 Profile `client`: the list reaches an addressee who opens nothing of ours. Errors: a file path,
 a section reference, a date or deadline, an effort estimate, a contract reference, an identifier
-or hash; a list item without its one question mark at the end.
+or hash; a list item without its one question mark at the end. Warnings: a sentence with three or
+more numbers, two items on one topic. A section whose heading names the internal block is exempt.
 
-Warnings on both profiles (exit 0 unless --strict): a sentence with three or more numbers, a
-self-report without evidence, two items on one topic, an anchor without a fragment, a fragment
-found within two lines of the anchor instead of on it.
-
-The labels and words the checks match are English. A lexicon adds those of another language:
-`--lexicon FILE`, or the file `$XDG_CONFIG_HOME/handing-over-to-readers/lexicon.json` when it
-exists — a JSON object with one section per script, each from a key of its WORDS to extra regex
-alternatives: {"check_report": {"RISK": ["Danger"]}, "check_question": {...}}.
+Warnings exit 0 unless --strict. The headings and words the checks match are English. A lexicon
+adds those of another language: `--lexicon FILE`, or the file
+`$XDG_CONFIG_HOME/handing-over-to-readers/lexicon.json` when it exists — a JSON object with one
+section per script, each from a key of its WORDS to extra regex alternatives:
+{"check_report": {"WHERE_TO_LOOK": ["Evidence"]}, "check_question": {...}}.
 
 Output: one line per finding, `FILE:LINE: LEVEL CODE: message`, or a JSON array with --json.
 Exit: 0 no error; 1 at least one error (or a warning under --strict); 2 unreadable input or
@@ -51,21 +51,11 @@ ANCHOR = re.compile(r"^(?P<path>[^\s`:*?\"<>|]+?):(?P<line>\d+)(?:-(?P<end>\d+))
 NUMBER = re.compile(r"(?<![\w.,])\d+(?:[.,]\d+)?(?![\w])")
 SENTENCE_END = re.compile(r"(?<=[.!?])\s+")
 
-STATUS_VALUES = ("clean", "findings", "failed", "not-run")
 MONTHS = ("january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december")
 WEEKDAYS = ("monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday")
 WORDS: dict[str, list[str]] = {
-    "RISK": ["Risk"],
-    "READER": ["From the reader", "Reader"],
-    "NOT_DONE": ["Not done"],
-    "WRONG_IF": ["Wrong if"],
-    "STATUS": ["Status"],
+    "WHERE_TO_LOOK": ["where to look"],
     "SECTION_INTERNAL": ["internal"],
-    "SECTION_QUESTIONS": ["question"],
-    "SECTION_DECISIONS": ["decision", "registry"],
-    "SECTION_CLAIMS": ["claim", "finding", "done", "change"],
-    "EVIDENCE": [r"exit\s*(?:code|\d)", r"\btests?\b", r"\blog\b", r"\bcommand", "status", r"\bCI\b", r"\bbuild\b",
-                 "linter", r"compil\w*", "mutation", "jcstress", "jmh"],
     "EXIT_CODE": [r"exit\s*(?:code|\d)"],
     "SELF_REPORT": [r"tests? (?:pass|passed|passes|are green)", "works as expected", "ready to merge"],
     "SECTION_REF": ["section", r"sec\.", "chapter", "§"],
@@ -105,25 +95,21 @@ def read_lexicon(path: Path, required: bool) -> dict[str, list[str]]:
 
 
 def build_patterns(extra: dict[str, list[str]] | None = None) -> None:
-    """Compile the language-bound patterns from WORDS plus the lexicon's alternatives."""
-    global FIRST_PAGE, STATUS, SECTION_KIND, EVIDENCE, EXIT_CODE, SELF_REPORT
+    """Compile the language-bound patterns from WORDS plus the lexicon's alternatives.
+
+    The patterns are module globals rebuilt in place, so a caller that imported one by name keeps
+    the English pattern; read it from the module after apply_lexicon.
+    """
+    global LOOK_HEADING, SECTION_INTERNAL, EXIT_CODE, SELF_REPORT
     global CLIENT_SECTION_REF, CLIENT_DATE, CLIENT_DEADLINE, CLIENT_EFFORT, CLIENT_AS_AGREED
     words = {k: v + (extra or {}).get(k, []) for k, v in WORDS.items()}
 
     def alt(key: str) -> str:
         return "|".join(words[key])
 
-    def label(key: str) -> re.Pattern[str]:
-        return re.compile(rf"^\*\*(?:{alt(key)}):?\*\*:?\s*(?P<v>.*)$", re.IGNORECASE)
-
     try:
-        FIRST_PAGE = {key: label(key) for key in ("RISK", "READER", "NOT_DONE", "WRONG_IF")}
-        STATUS = label("STATUS")
-        SECTION_KIND = tuple(
-            (kind, re.compile(rf"\b(?:{alt(f'SECTION_{kind.upper()}')})", re.IGNORECASE))
-            for kind in ("internal", "questions", "decisions", "claims")
-        )
-        EVIDENCE = re.compile(f"({alt('EVIDENCE')})", re.IGNORECASE)
+        LOOK_HEADING = re.compile(rf"^\s*(?:#{{1,6}}\s+)?\**(?:{alt('WHERE_TO_LOOK')})\**:?\s*$", re.IGNORECASE)
+        SECTION_INTERNAL = re.compile(rf"\b(?:{alt('SECTION_INTERNAL')})", re.IGNORECASE)
         EXIT_CODE = re.compile(alt("EXIT_CODE"), re.IGNORECASE)
         SELF_REPORT = re.compile(f"({alt('SELF_REPORT')})", re.IGNORECASE)
         CLIENT_SECTION_REF = re.compile(rf"(?:{alt('SECTION_REF')})\s*\d", re.IGNORECASE)
@@ -156,6 +142,11 @@ CLIENT_HASH = re.compile(r"\b[0-9a-f]{7,40}\b")
 CLIENT_PATH = re.compile(r"(?<![\w/])(?:[\w.-]+/)+[\w.-]+|\b[\w-]+\.(?:md|py|java|kt|ts|js|json|ya?ml|toml|xml|sh|sql|csv|gradle)\b")
 QUESTION_TAIL = re.compile(r"[\s*)»\"'\]_]+$")
 
+REPORT_WORDS = 300  # prose outside fences and tables; a house limit
+LOOK_LINES = 5  # lines under "Where to look"; a house limit
+STORY_OPENING_SENTENCES = 3  # the task, how it ended, the problem with its cause and what is needed take at least three
+STORY_SENTENCE_WORDS = 20  # headroom over 16, the longest sentence of a narration read as clear; the written story of the same case, read as tangled, reaches 40
+
 
 @dataclass(frozen=True)
 class Finding:
@@ -177,10 +168,7 @@ def strip_code(text: str) -> str:
 
 
 def section_kind(title: str) -> str:
-    for kind, pattern in SECTION_KIND:
-        if pattern.search(title):
-            return kind
-    return "other"
+    return "internal" if SECTION_INTERNAL.search(title) else "other"
 
 
 def prose_lines(lines: list[str]):
@@ -215,36 +203,78 @@ def list_items(lines: list[str]) -> list[Item]:
     return items
 
 
-def check_first_page(lines: list[str]) -> list[Finding]:
-    findings: list[Finding] = []
-    head = [(i, l) for i, l, _ in prose_lines(lines) if l.strip()][:15]
-    for code, pattern in FIRST_PAGE.items():
-        found = None
-        for i, line in head:
-            m = pattern.match(line.strip())
-            if m:
-                found = (i, m.group("v").strip())
+def has_three_numbers(text: str) -> bool:
+    return any(len(NUMBER.findall(sentence)) >= 3 for sentence in SENTENCE_END.split(text))
+
+
+def opening_sentences(lines: list[str]) -> int:
+    """Sentences of the first paragraph; a report that opens on a heading, a list, a table or a fence has none."""
+    opening: list[str] = []
+    for line in lines:
+        if not line.strip():
+            if opening:
                 break
-        if found is None:
-            findings.append(Finding(1, ERROR, "FIRST-PAGE", f"first-page line missing: {code.lower().replace('_', ' ')}"))
-        elif not found[1]:
-            findings.append(Finding(found[0] + 1, ERROR, "FIRST-PAGE", f"first-page line without a value: {code.lower().replace('_', ' ')}"))
-    status = None
-    for i, line in head:
-        m = STATUS.match(line.strip())
-        if m:
-            status = (i, m.group("v").strip())
+            continue
+        if FENCE.match(line) or HEADING.match(line) or LIST_ITEM.match(line) or TABLE_ROW.match(line):
             break
-    if status is None:
-        findings.append(Finding(1, ERROR, "STATUS", "status line missing (clean | findings | failed | not-run; checked N units; failed steps)"))
-    else:
-        value = status[1].lower()
-        head_word = re.match(r"[a-z-]+", value)
-        if not head_word or head_word.group(0) not in STATUS_VALUES:
-            findings.append(Finding(status[0] + 1, ERROR, "STATUS", f"status value must be one of {', '.join(STATUS_VALUES)}"))
-        elif head_word.group(0) in ("clean", "findings") and not re.search(r"\d+", value):
-            findings.append(Finding(status[0] + 1, ERROR, "STATUS", "status without the count of checked units"))
+        opening.append(line.strip())
+    return len([part for part in SENTENCE_END.split(" ".join(opening)) if part])
+
+
+def check_story(lines: list[str]) -> list[Finding]:
+    """The story above "Where to look" in plain words, the list itself short and carrying the checks."""
+    findings: list[Finding] = []
+    fenced = False
+    look_at: int | None = None
+    look_lines = 0
+    look_has_exit_code = False
+    self_reports: list[int] = []
+    for i, line in enumerate(lines):
+        if FENCE.match(line):
+            fenced = not fenced
+            continue
+        if fenced or not line.strip():
+            continue
+        if look_at is None and LOOK_HEADING.match(line):
+            look_at = i
+            continue
+        if look_at is not None:
+            look_lines += bool(LIST_ITEM.match(line))
+            look_has_exit_code = look_has_exit_code or bool(EXIT_CODE.search(line))
+            continue
+        if TABLE_ROW.match(line):
+            continue
+        if CODE_SPAN.search(line) or EXIT_CODE.search(line):
+            findings.append(Finding(i + 1, ERROR, "STORY-CODE", "a code span or an exit code inside the story: name the thing by its role, the anchor goes under Where to look"))
+        if HEADING.match(line):
+            continue
+        if not LIST_ITEM.match(line):
+            longest = max((len(sentence.split()) for sentence in SENTENCE_END.split(line.strip())), default=0)
+            if longest > STORY_SENTENCE_WORDS:
+                findings.append(Finding(i + 1, WARNING, "STORY-SENTENCE", f"a sentence of {longest} words in the story, past {STORY_SENTENCE_WORDS}: one claim per sentence, the way it is said aloud"))
+        if has_three_numbers(line):
+            findings.append(Finding(i + 1, WARNING, "NUMBERS", "three or more numbers in one sentence: one number per claim, the rest in a picture or a table (rule 17)"))
+        if SELF_REPORT.search(line):
+            self_reports.append(i)
+    if not look_has_exit_code:
+        for i in self_reports:
+            findings.append(Finding(i + 1, WARNING, "SELF-REPORT", "self-report while no check with its exit code stands under Where to look: not evidence"))
+    sentences = opening_sentences(lines)
+    if sentences < STORY_OPENING_SENTENCES:
+        findings.append(Finding(1, WARNING, "OPENING-SHORT", f"the opening paragraph has {sentences} sentence(s): give the task, how it ended, the problem with its cause and what is needed from the reader"))
+    if look_at is None:
+        findings.append(Finding(1, ERROR, "WHERE-TO-LOOK", "no Where to look list: the story's claims need their anchors and checks"))
+    elif look_lines > LOOK_LINES:
+        findings.append(Finding(look_at + 1, WARNING, "WHERE-TO-LOOK", f"{look_lines} lines under Where to look, past {LOOK_LINES}: keep the places the story turns on"))
     return findings
+
+
+def check_length(lines: list[str]) -> list[Finding]:
+    """The report's prose, outside fenced blocks and tables, stays within one screen."""
+    words = sum(len(line.split()) for _, line, _ in prose_lines(lines) if not TABLE_ROW.match(line))
+    if words > REPORT_WORDS:
+        return [Finding(1, WARNING, "LENGTH", f"{words} words of prose, past {REPORT_WORDS}: cut what answers no question of the reader")]
+    return []
 
 
 def check_anchors(lines: list[str], root: Path) -> list[Finding]:
@@ -284,23 +314,10 @@ def check_anchors(lines: list[str], root: Path) -> list[Finding]:
     return findings
 
 
-def check_claims(items: list[Item]) -> list[Finding]:
-    findings: list[Finding] = []
-    for item in items:
-        if item.section != "claims":
-            continue
-        has_anchor = any(ANCHOR.match(s) for s in CODE_SPAN.findall(item.text))
-        if not has_anchor and not EVIDENCE.search(strip_code(item.text)):
-            findings.append(Finding(item.line, ERROR, "CLAIM-EVIDENCE", "claim without an anchor and without evidence (test, exit code, log, command)"))
-    return findings
-
-
-def check_questions(items: list[Item], profile: str) -> list[Finding]:
+def check_questions(items: list[Item]) -> list[Finding]:
     findings: list[Finding] = []
     for item in items:
         if item.section == "internal":
-            continue
-        if profile == "operator" and item.section != "questions":
             continue
         text = strip_code(item.text)
         marks = text.count("?")
@@ -314,9 +331,9 @@ def check_questions(items: list[Item], profile: str) -> list[Finding]:
     return findings
 
 
-def check_duplicates(items: list[Item], profile: str) -> list[Finding]:
+def check_duplicates(items: list[Item]) -> list[Finding]:
     findings: list[Finding] = []
-    scoped = [it for it in items if it.section != "internal" and (profile == "client" or it.section == "questions")]
+    scoped = [it for it in items if it.section != "internal"]
 
     def tokens(text: str) -> set[str]:
         return {w for w in re.findall(r"[^\W\d_]{4,}", strip_code(text).lower())}
@@ -357,44 +374,35 @@ def check_client_prose(lines: list[str]) -> list[Finding]:
     for i, line, section in prose_lines(lines):
         if section == "internal":
             continue
-        text = line
         for code, pattern, message in checks:
-            if pattern.search(text):
+            if pattern.search(line):
                 findings.append(Finding(i + 1, ERROR, code, message))
     return findings
 
 
-def check_prose_warnings(lines: list[str], profile: str) -> list[Finding]:
+def check_client_numbers(lines: list[str]) -> list[Finding]:
     findings: list[Finding] = []
     for i, line, section in prose_lines(lines):
         if section == "internal" or TABLE_ROW.match(line) or not line.strip():
             continue
-        text = strip_code(line)
-        for sentence in SENTENCE_END.split(text):
-            if len(NUMBER.findall(sentence)) >= 3:
-                findings.append(Finding(i + 1, WARNING, "NUMBERS", "three or more numbers in one sentence: one number per claim, the rest in a table (rule 17)"))
-                break
-        if profile == "operator" and SELF_REPORT.search(text):
-            has_anchor = any(ANCHOR.match(s) for s in CODE_SPAN.findall(line))
-            if not has_anchor and not EXIT_CODE.search(text):
-                findings.append(Finding(i + 1, WARNING, "SELF-REPORT", "self-report without an exit code or an anchor: not evidence"))
+        if has_three_numbers(strip_code(line)):
+            findings.append(Finding(i + 1, WARNING, "NUMBERS", "three or more numbers in one sentence: one number per claim, the rest in a table (rule 17)"))
     return findings
 
 
 def check(text: str, profile: str = "operator", root: Path | str = ".") -> list[Finding]:
     lines = text.splitlines()
-    items = list_items(lines)
-    findings: list[Finding] = []
+    findings = check_identifiers(lines, profile)
     if profile == "operator":
-        findings += check_first_page(lines)
+        findings += check_story(lines)
         findings += check_anchors(lines, Path(root))
-        findings += check_claims(items)
+        findings += check_length(lines)
     else:
+        items = list_items(lines)
         findings += check_client_prose(lines)
-    findings += check_questions(items, profile)
-    findings += check_duplicates(items, profile)
-    findings += check_identifiers(lines, profile)
-    findings += check_prose_warnings(lines, profile)
+        findings += check_questions(items)
+        findings += check_duplicates(items)
+        findings += check_client_numbers(lines)
     return sorted(findings, key=lambda f: (f.line, f.level != ERROR, f.code))
 
 
@@ -430,5 +438,14 @@ def main(argv: list[str] | None = None) -> int:
     return 1 if failed else 0
 
 
+def utf8_streams() -> None:
+    """The standard streams carry UTF-8 on every platform; Python gives a pipe the system code page on Windows."""
+    for stream in (sys.stdin, sys.stdout, sys.stderr):
+        reconfigure = getattr(stream, "reconfigure", None)
+        if reconfigure:
+            reconfigure(encoding="utf-8")
+
+
 if __name__ == "__main__":
+    utf8_streams()
     sys.exit(main())

@@ -1,0 +1,60 @@
+{
+  "expectations": [
+    {
+      "text": "check_report.py --profile operator reports 0 errors on report.md, its anchors read from the fixture or from the directory above the fixtures",
+      "passed": true,
+      "evidence": "exit 0: 0 error(s), 0 warning(s)"
+    },
+    {
+      "text": "the opening paragraph has at least three sentences",
+      "passed": true,
+      "evidence": "the opening has 5 sentence(s)"
+    },
+    {
+      "text": "no sentence of the story runs past twenty words",
+      "passed": true,
+      "evidence": "0 line(s) with a sentence past 20 words"
+    },
+    {
+      "text": "at least two path:line anchors resolve under the fixture with their fragment on the line",
+      "passed": true,
+      "evidence": "5 anchors, 0 errors, 0 without their fragment on the line"
+    },
+    {
+      "text": "the story holds exactly one question and it stands last, before the list of where to look",
+      "passed": true,
+      "evidence": "1 question mark(s) in the story; the last prose line asks: True"
+    },
+    {
+      "text": "the options of the decision stand in a fenced block with a gain (+) and a cost (-)",
+      "passed": true,
+      "evidence": "2 fenced block(s) with a gain and a cost, of 3 block(s)"
+    },
+    {
+      "text": "the parts after the opening stand under headings of one to four words",
+      "passed": true,
+      "evidence": "3 heading(s) before the list, 3 of one to four words"
+    },
+    {
+      "text": "the story names the failing test of the payments team and the red build",
+      "passed": true,
+      "evidence": "the payments team's failing test and the red build named: True"
+    },
+    {
+      "text": "a fenced picture shows the delays 200, 400 and 800 ms",
+      "passed": true,
+      "evidence": "200, 400 and 800 inside a fenced picture: True"
+    },
+    {
+      "text": "the story says that a payment can reach the gateway more than once",
+      "passed": true,
+      "evidence": "a payment reaching the gateway more than once is said: True"
+    }
+  ],
+  "summary": {
+    "passed": 10,
+    "failed": 0,
+    "total": 10,
+    "pass_rate": 1.0
+  }
+}

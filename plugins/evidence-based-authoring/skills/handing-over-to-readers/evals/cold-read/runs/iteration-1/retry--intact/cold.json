@@ -1,0 +1,69 @@
+{
+  "answers": [
+    {
+      "question": "What was the task?",
+      "found": "yes",
+      "answer": "Make the client repeat a request after a timeout, with the wait between attempts doubling and at most four attempts.",
+      "quotes": ["The task was to repeat a request after a timeout, with the wait doubling and four attempts at most."],
+      "missing": ""
+    },
+    {
+      "question": "How did it end: what is done and what is not?",
+      "found": "yes",
+      "answer": "The repeat is built and its five own tests pass, but the build is red because the client also repeats payments, which the payments team's test forbids; the fix of repeating only reads is not written yet.",
+      "quotes": [
+        "The repeat works, and its own five tests pass.",
+        "But the build is red.",
+        "The client now repeats a payment too, and the payments team's test forbids that.",
+        "- not written yet, so its tests have not run",
+        "I did not touch that test."
+      ],
+      "missing": ""
+    },
+    {
+      "question": "What is the problem, and what causes it?",
+      "found": "yes",
+      "answer": "The client's loop repeats every request whatever its method, so a timed-out payment is sent four times while the payments team's test expects one send, and since a timed-out payment may already have gone through at the gateway, a repeat can charge the customer twice.",
+      "quotes": [
+        "The payments team's test sends a payment that always times out.",
+        "It expects the client to send it once.",
+        "The client sent it four times.",
+        "A payment that timed out may already have gone through at the gateway.",
+        "So a repeat can charge the customer twice.",
+        "- the loop that repeats every request, whatever its method: `src/main/java/http/RetryingClient.java:20` `attempt <= RetryPolicy.MAX_ATTEMPTS`"
+      ],
+      "missing": ""
+    },
+    {
+      "question": "What is not verified?",
+      "found": "partly",
+      "answer": "The text says the first option (repeating only reads) is not written and its tests have not run, and gives the caller's maximum wait of about nine and a half seconds only as the author's own count.",
+      "quotes": [
+        "- not written yet, so its tests have not run",
+        "By my count, a caller waits at most about nine and a half seconds."
+      ],
+      "missing": "A statement of what the five passing tests cover and what they do not — for example whether the doubling wait, the one-second cap or the total wait time were checked by a test or only reasoned about."
+    },
+    {
+      "question": "What do I have to decide, and what does each option give and cost?",
+      "found": "yes",
+      "answer": "Decide between repeating only read requests, which turns the build green and sends a payment once but leaves writes without a repeat after a timeout and is not yet written or tested, and repeating every request with the payments team changing its test, which completes the task as written but lets a timed-out payment be charged twice; the author recommends the first.",
+      "quotes": [
+        "You decide whether the client repeats only reads, or the payments team changes its test.",
+        "+ the build turns green, and a payment goes out once",
+        "- a request that writes gets no repeat after a timeout",
+        "- not written yet, so its tests have not run",
+        "+ the task is done as it was written",
+        "- a payment that timed out can be charged twice",
+        "I would take the first.",
+        "A double charge reaches a customer, and no change of ours takes it back."
+      ],
+      "missing": ""
+    }
+  ],
+  "unexplained": [
+    {"term": "the client", "quote": "The client now repeats a payment too, and the payments team's test forbids that."},
+    {"term": "the payments team", "quote": "The client now repeats a payment too, and the payments team's test forbids that."},
+    {"term": "the gateway", "quote": "A payment that timed out may already have gone through at the gateway."}
+  ]
+}

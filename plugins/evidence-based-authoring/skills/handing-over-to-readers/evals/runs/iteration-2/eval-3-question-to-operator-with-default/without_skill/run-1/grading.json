@@ -1,0 +1,40 @@
+{
+  "expectations": [
+    {
+      "text": "check_question.py on question.json reports no problem",
+      "passed": false,
+      "evidence": "question 1 WHY-ASKED: say why this is not decided by default: irreversible, costly, or known only to the addressee (rule 6)"
+    },
+    {
+      "text": "question.json holds exactly one question",
+      "passed": true,
+      "evidence": "1 question(s)"
+    },
+    {
+      "text": "the one question is about the legacy table, not about the config file path",
+      "passed": true,
+      "evidence": "question text: 'After the move the code no longer reads legacy_limits, but it holds 14 000 rows of limit history (2019–2024) and the tes'"
+    },
+    {
+      "text": "the card says why it is asked: the decision is irreversible",
+      "passed": false,
+      "evidence": "irreversibility named: False"
+    },
+    {
+      "text": "questions.md tells the config location as a decision already taken, with its basis",
+      "passed": true,
+      "evidence": "the config location told as decided, with its basis: True"
+    },
+    {
+      "text": "questions.md contains exactly one question mark",
+      "passed": true,
+      "evidence": "1 question mark(s) in questions.md"
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 2,
+    "total": 6,
+    "pass_rate": 0.67
+  }
+}

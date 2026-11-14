@@ -1,0 +1,17 @@
+[
+  {
+    "question": "After the move, the code stops reading the old limits table in the database, but the table still holds the limit history: for example, which limits were in force in March 2021. The table is legacy_limits, with 14 000 rows for 2019 to 2024, and the test bench has no database backup. Your answer decides the migration: one comment line that keeps the table, or a DROP TABLE that leaves 0 rows of history. I did not decide this by default: deletion is irreversible, and only you know whether anyone still needs that history.\nRecommendation: keep the table, because keeping costs one line and a later migration can still drop it.\nKeep the table or delete it?",
+    "header": "Old table",
+    "multiSelect": false,
+    "options": [
+      {
+        "label": "Keep the table (Recommended)",
+        "description": "The migration adds one comment line and all 14 000 rows stay. If this is wrong, an unread table stays in the schema until a later migration drops it; nothing is lost."
+      },
+      {
+        "label": "Delete the table",
+        "description": "The migration drops the table and the 2019 to 2024 history is gone, with no backup to restore it. Before I run it, I repeat this consequence and wait for you to type the table name. If this is wrong, the history cannot be recovered."
+      }
+    ]
+  }
+]
