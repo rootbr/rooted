@@ -8,10 +8,21 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
 
 SCRIPTS = Path(__file__).resolve().parents[2] / "scripts"
 sys.path.insert(0, str(SCRIPTS))
 import check_cold_read as cc  # noqa: E402
+
+
+def setUpModule():
+    """Every run of a script in this module, in process or as a child, journals into a temporary directory, never the user's own."""
+    feedback = tempfile.TemporaryDirectory(prefix="handover-feedback-")
+    unittest.addModuleCleanup(feedback.cleanup)
+    environment = mock.patch.dict(os.environ, {"HANDOVER_FEEDBACK_DIR": feedback.name})
+    environment.start()
+    unittest.addModuleCleanup(environment.stop)
+
 
 REPORT = """# Retry for payments
 
@@ -298,7 +309,7 @@ class StreamEncoding(TempDir):
         cold = {"answers": [answer("Was war die Aufgabe?", quotes=["Das Ergebnis: zwei von drei Tests grün"], text="Zahlung wiederholen — „grün“ ✓")],
                 "unexplained": [{"term": "Prüfsumme", "quote": "Die Prüfsumme fehlt."}]}
         files = Files(self.dir, cold, questions=questions, report=report)
-        env = {"PATH": os.environ.get("PATH", "/usr/bin:/bin"), "PYTHONIOENCODING": "cp1252"}
+        env = {"PATH": os.environ.get("PATH", "/usr/bin:/bin"), "PYTHONIOENCODING": "cp1252", "HANDOVER_FEEDBACK_DIR": os.environ["HANDOVER_FEEDBACK_DIR"]}
         run = subprocess.run([sys.executable, str(SCRIPTS / "check_cold_read.py"), *files.args()], capture_output=True, env=env)
         out = run.stdout.decode("utf-8")
         self.assertEqual(run.returncode, 0, run.stderr.decode("utf-8", "replace"))

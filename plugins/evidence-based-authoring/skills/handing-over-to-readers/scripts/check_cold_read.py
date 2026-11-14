@@ -57,8 +57,10 @@ QUESTIONS.json does not hold, two answers to one question, a question repeated i
 QUESTIONS.json, or a question without an answer — one line per defect on stderr.
 
 The script reads the three files named on its command line as UTF-8, never edits the report and
-never judges its style, writes nothing, opens no network connection and uses the standard
-library alone.
+never judges its style, opens no network connection and uses the standard library alone. It
+writes nothing but, with the usage journal of feedback.py turned on, one line of counts to that
+journal on a run that checked: the number of questions, of each verdict and of the unexplained
+and dropped terms.
 """
 from __future__ import annotations
 
@@ -67,6 +69,7 @@ import json
 import re
 import sys
 import unicodedata
+from collections import Counter
 from pathlib import Path
 
 ANSWERED = "answered"
@@ -303,7 +306,24 @@ def main(argv: list[str] | None = None) -> int:
     else:
         for line in render(result):
             print(line)
+    verdicts = Counter(row["verdict"] for row in result["questions"])
+    journal("cold_read", questions=result["total"], answered=verdicts[ANSWERED], partly=verdicts[PARTLY],
+            unsupported=verdicts[UNSUPPORTED], missing=verdicts[MISSING],
+            unexplained=len(result["unexplained"]), dropped=len(result["dropped"]))
     return exit_code(result)
+
+
+def journal(event: str, **fields: object) -> None:
+    """Add one line of counts to the usage journal of feedback.py beside this script, when the user turned it on."""
+    try:
+        here = str(Path(__file__).resolve().parent)
+        if here not in sys.path:
+            sys.path.insert(0, here)
+        import feedback
+
+        feedback.record(event, **fields)
+    except Exception:  # noqa: BLE001 - an isolation point: a missing or broken feedback.py changes nothing in this run
+        pass
 
 
 def utf8_streams() -> None:

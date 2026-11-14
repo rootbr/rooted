@@ -10,6 +10,7 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
 
 SKILL = Path(__file__).resolve().parents[2]
 SCRIPT = SKILL / "scripts/build_page.py"
@@ -17,6 +18,16 @@ spec = importlib.util.spec_from_file_location("build_page", SCRIPT)
 bp = importlib.util.module_from_spec(spec)
 sys.modules["build_page"] = bp
 spec.loader.exec_module(bp)
+
+
+def setUpModule():
+    """Every run of a script in this module, in process or as a child, journals into a temporary directory, never the user's own."""
+    feedback = tempfile.TemporaryDirectory(prefix="handover-feedback-")
+    unittest.addModuleCleanup(feedback.cleanup)
+    environment = mock.patch.dict(os.environ, {"HANDOVER_FEEDBACK_DIR": feedback.name})
+    environment.start()
+    unittest.addModuleCleanup(environment.stop)
+
 
 FIXTURES = Path(__file__).resolve().parent / "fixtures/page"
 EXAMPLE_BODY = SKILL / "assets/page-body-example.html"
@@ -274,7 +285,7 @@ class Output(Build):
         (self.dir / "body.html").write_text(BODY, encoding="utf-8")
         (self.dir / "cues.json").write_text(json.dumps(CUES), encoding="utf-8")
         out = self.dir / "страница.html"
-        env = dict(self.environ, PATH=os.environ.get("PATH", "/usr/bin:/bin"), PYTHONIOENCODING="cp1252")
+        env = dict(self.environ, PATH=os.environ.get("PATH", "/usr/bin:/bin"), PYTHONIOENCODING="cp1252", HANDOVER_FEEDBACK_DIR=os.environ["HANDOVER_FEEDBACK_DIR"])
         done = subprocess.run([sys.executable, str(SCRIPT), "--body", str(self.dir / "body.html"), "--cues", str(self.dir / "cues.json"),
                                "--report", str(FIXTURES / "report.md"), "--out", str(out)], capture_output=True, env=env)
         self.assertEqual(done.returncode, 0, done.stderr.decode("utf-8", "replace"))

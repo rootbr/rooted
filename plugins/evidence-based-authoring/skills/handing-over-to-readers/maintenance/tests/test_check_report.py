@@ -8,10 +8,21 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
 
 SCRIPTS = Path(__file__).resolve().parents[2] / "scripts"
 sys.path.insert(0, str(SCRIPTS))
 import check_report as cr  # noqa: E402
+
+
+def setUpModule():
+    """Every run of a script in this module, in process or as a child, journals into a temporary directory, never the user's own."""
+    feedback = tempfile.TemporaryDirectory(prefix="handover-feedback-")
+    unittest.addModuleCleanup(feedback.cleanup)
+    environment = mock.patch.dict(os.environ, {"HANDOVER_FEEDBACK_DIR": feedback.name})
+    environment.start()
+    unittest.addModuleCleanup(environment.stop)
+
 
 SOURCE = "package x;\n\nclass Router {\n    boolean retryOnTimeout = false;\n    int limit = 3;\n}\n"
 
@@ -43,7 +54,7 @@ FOREIGN_HEADING = "Где смотреть"
 
 def run_script(*args, config_home: Path | None = None):
     """Run the script as a caller does; the lexicon default resolves under config_home, never the user's own."""
-    env = {"PATH": os.environ.get("PATH", "/usr/bin:/bin"), "XDG_CONFIG_HOME": str(config_home or Path(tempfile.gettempdir()) / "check-report-no-config")}
+    env = {"PATH": os.environ.get("PATH", "/usr/bin:/bin"), "HANDOVER_FEEDBACK_DIR": os.environ["HANDOVER_FEEDBACK_DIR"], "XDG_CONFIG_HOME": str(config_home or Path(tempfile.gettempdir()) / "check-report-no-config")}
     return subprocess.run([sys.executable, "-I", str(SCRIPTS / "check_report.py"), *args], capture_output=True, text=True, env=env)
 
 
@@ -203,7 +214,7 @@ class Lexicon(unittest.TestCase):
         self.tmp.cleanup()
 
     def test_report_on_stdin_is_read_as_utf8_under_another_stream_encoding(self):
-        env = {"PATH": os.environ.get("PATH", "/usr/bin:/bin"), "PYTHONIOENCODING": "cp1252", "XDG_CONFIG_HOME": str(self.root / "no-config")}
+        env = {"PATH": os.environ.get("PATH", "/usr/bin:/bin"), "PYTHONIOENCODING": "cp1252", "HANDOVER_FEEDBACK_DIR": os.environ["HANDOVER_FEEDBACK_DIR"], "XDG_CONFIG_HOME": str(self.root / "no-config")}
         done = subprocess.run([sys.executable, str(SCRIPTS / "check_report.py"), "--root", str(self.root), "--lexicon", str(self.lexicon), "-"],
                               input=self.report.read_bytes(), capture_output=True, env=env)
         self.assertEqual(done.returncode, 0, done.stdout.decode("utf-8", "replace") + done.stderr.decode("utf-8", "replace"))

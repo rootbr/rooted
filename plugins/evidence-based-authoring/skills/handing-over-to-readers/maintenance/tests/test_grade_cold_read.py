@@ -4,15 +4,27 @@ from __future__ import annotations
 import contextlib
 import io
 import json
+import os
 import subprocess
 import sys
 import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
 
 EVALS = Path(__file__).resolve().parents[2] / "evals"
 sys.path.insert(0, str(EVALS))
 import grade_cold_read as gcr  # noqa: E402
+
+
+def setUpModule():
+    """Every run of a script in this module, in process or as a child, journals into a temporary directory, never the user's own."""
+    feedback = tempfile.TemporaryDirectory(prefix="handover-feedback-")
+    unittest.addModuleCleanup(feedback.cleanup)
+    environment = mock.patch.dict(os.environ, {"HANDOVER_FEEDBACK_DIR": feedback.name})
+    environment.start()
+    unittest.addModuleCleanup(environment.stop)
+
 
 INTACT = """The task was to add a retry to the payment call. Two of three tests pass.
 The gateway may already have charged a payment that timed out.

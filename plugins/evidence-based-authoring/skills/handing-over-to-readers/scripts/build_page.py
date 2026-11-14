@@ -44,7 +44,9 @@ The template's <!--TITLE--> takes the title (--title, else the body's first h1, 
 with <title> and carries no html, head or body tag; --standalone wraps it in a complete document.
 
 Reads the files named on the command line, the two configuration files named above when they
-exist, and the anchored files under --root; writes PAGE.html.
+exist, and the anchored files under --root; writes PAGE.html and, with the usage journal of
+feedback.py turned on, one line of counts to that journal on exit 0 or 1: built or refused, the
+numbers of sentences, parts, decisions, look items and violations.
 Exit: 0 written; 1 the body breaks its contract; 2 unreadable input, template or strings.
 """
 from __future__ import annotations
@@ -503,6 +505,7 @@ def main(argv: list[str] | None = None, environ: Mapping[str, str] | None = None
     if violations:
         for line, message in violations:
             print(f"{args.body}:{line}: {message}" if line else f"{args.body}: {message}", file=sys.stderr)
+        journal("page", outcome="refused", sentences=len(cues), decisions=len(scan.decisions), look=len(items), violations=len(violations))
         return 1
     article = expand(body, scan, cues).rstrip() + "\n" + look_section(heading, items, args.root)
     data = {"cues": cues, "parts": derive_parts(cues, scan, strings), "strings": strings, "voice": args.voice, "id": args.id}
@@ -513,7 +516,21 @@ def main(argv: list[str] | None = None, environ: Mapping[str, str] | None = None
         print(f"build_page: cannot write {args.out}: {e}", file=sys.stderr)
         return 2
     print(f"{len(cues)} sentences, {len(data['parts'])} parts, {len(scan.decisions)} decision(s), {len(items)} look item(s) -> {args.out}")
+    journal("page", outcome="built", sentences=len(cues), parts=len(data["parts"]), decisions=len(scan.decisions), look=len(items), violations=0)
     return 0
+
+
+def journal(event: str, **fields: object) -> None:
+    """Add one line of counts to the usage journal of feedback.py beside this script, when the user turned it on."""
+    try:
+        here = str(Path(__file__).resolve().parent)
+        if here not in sys.path:
+            sys.path.insert(0, here)
+        import feedback
+
+        feedback.record(event, **fields)
+    except Exception:  # noqa: BLE001 - an isolation point: a missing or broken feedback.py changes nothing in this run
+        pass
 
 
 def utf8_streams() -> None:

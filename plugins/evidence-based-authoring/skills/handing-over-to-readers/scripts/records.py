@@ -2,7 +2,7 @@
 """Keep what a reader holds and the answers he gave, and find the records that may answer a question.
 
     records.py reader find --topic TEXT [--floor F] [--json]
-    records.py reader add --topic TEXT --basis TEXT [--holds X ...] [--lacks Y ...] [--use U] [--depth D]
+    records.py reader add --topic TEXT --basis TEXT [--holds X ...] [--lacks Y ...] [--use U] [--depth D] [--turns N]
     records.py reader show
     records.py ledger find --question TEXT [--floor F] [--json]
     records.py ledger add --kind K --question TEXT --answer TEXT --basis TEXT [--scope TEXT] [--overturns TEXT]
@@ -21,8 +21,9 @@ when the variable is unset or empty); --reader-file, else $HANDOVER_READER_FILE,
 Every reader command refuses, with exit 2, a reader file inside a git work tree unless that work
 tree ignores it, so the record never becomes content of a repository. A record:
     {"id": "r-0001", "date": "YYYY-MM-DD", "topic": "...", "holds": ["..."], "lacks": ["..."],
-     "use": "decide|defend|build|know", "depth": "mechanism|change", "basis": "..."}
-holds, lacks, use and depth are optional.
+     "use": "decide|defend|build|know", "depth": "mechanism|change", "turns": 1, "basis": "..."}
+holds, lacks, use, depth and turns are optional; turns, from 1 to 3, is the number of intake
+cards that were asked.
 
 The ledger holds the answers and decisions of one project: the file is
 <root>/.claude/handing-over-to-readers/ledger.jsonl. --ledger-file names another file, else
@@ -79,7 +80,9 @@ unwritable ledger is one line on stderr and nothing on stdout.
 Exit: 0 done (find: a record printed); 1 find printed none; 2 unusable input or an unreadable
 or unwritable store. The script reads and writes only the stores named above, runs git only to
 ask whether a reader file is ignored, opens no network connection and uses the Python standard
-library alone.
+library alone. With the usage journal of feedback.py turned on, every command but show that did
+its work adds to it one line of counts: what find found, the number of items and the words of use, depth and turns of
+a reader record, the kind of a ledger record, the number of answers capture recorded.
 """
 from __future__ import annotations
 
@@ -109,6 +112,7 @@ MIN_SENTENCE_UNITS = 6
 LEDGER_KINDS = ("answer", "default", "closure")
 READER_USES = ("decide", "defend", "build", "know")
 READER_DEPTHS = ("mechanism", "change")
+READER_TURNS = (1, 2, 3)
 
 
 class StoreError(Exception):
@@ -145,7 +149,7 @@ READER = Store(
     head=lambda r: one_line(r.get("topic", "")),
     body=_reader_body,
     tags=lambda r: [],
-    extra=lambda r: [f"{name}: {r[name]}" for name in ("use", "depth") if r.get(name)],
+    extra=lambda r: [f"{name}: {r[name]}" for name in ("use", "depth", "turns") if r.get(name)],
 )
 LEDGER = Store(
     prefix="a",
@@ -363,6 +367,10 @@ def cmd_find(store: Store, path: Path, query: str, floor: float, as_json: bool) 
     else:
         for s, r in hits:
             print(found_line(store, s, r))
+    if store is READER:
+        journal("reader_find", found=bool(hits))
+    else:
+        journal("ledger_find", found=len(hits))
     return 0 if hits else 1
 
 
@@ -385,11 +393,14 @@ def reader_add(path: Path, args: argparse.Namespace) -> int:
         values = [v.strip() for v in getattr(args, name) or [] if v.strip()]
         if values:
             fields[name] = values
-    for name in ("use", "depth"):
+    for name in ("use", "depth", "turns"):
         if getattr(args, name):
             fields[name] = getattr(args, name)
     fields["basis"] = nonblank(args.basis, "--basis")
     print(append(READER, path, fields))
+    counts = {"turns": args.turns} if args.turns else {}
+    journal("reader_add", holds=len(fields.get("holds", [])), lacks=len(fields.get("lacks", [])),
+            use=args.use or "none", depth=args.depth or "none", **counts)
     return 0
 
 
@@ -405,6 +416,7 @@ def ledger_add(path: Path, args: argparse.Namespace) -> int:
             fields[name] = nonblank(getattr(args, name), f"--{name}")
     fields["status"] = "active"
     print(append(LEDGER, path, fields))
+    journal("ledger_add", kind=args.kind)
     return 0
 
 
@@ -423,6 +435,7 @@ def ledger_note(path: Path, args: argparse.Namespace) -> int:
     records[index_of(records, args.id, path)].update(changes)
     write_records(path, records)
     print(args.id)
+    journal("ledger_note")
     return 0
 
 
@@ -436,6 +449,7 @@ def ledger_supersede(path: Path, args: argparse.Namespace) -> int:
     old["superseded_by"] = args.by
     write_records(path, records)
     print(f"{args.id} superseded by {args.by}")
+    journal("ledger_supersede")
     return 0
 
 
@@ -489,6 +503,7 @@ def capture(stdin_text: str, path: Path) -> int:
         f"python3 -I {script} ledger note <id> --ledger-file {path} --scope TEXT --overturns TEXT"
     )
     print(json.dumps({"hookSpecificOutput": {"hookEventName": "PostToolUse", "additionalContext": context}}, ensure_ascii=False))
+    journal("answer", count=len(new))
     return 0
 
 
@@ -518,6 +533,7 @@ def parser() -> argparse.ArgumentParser:
     p.add_argument("--lacks", nargs="+", action="extend")
     p.add_argument("--use", choices=READER_USES)
     p.add_argument("--depth", choices=READER_DEPTHS)
+    p.add_argument("--turns", type=int, choices=READER_TURNS, help="the number of intake cards that were asked")
     reader.add_parser("show", parents=[reader_file])
 
     ledger = stores.add_parser("ledger", help="the answers and decisions of one project").add_subparsers(dest="command", required=True)
@@ -575,6 +591,19 @@ def main(argv: list[str] | None = None, environ: Mapping[str, str] | None = None
     except StoreError as e:
         print(f"records.py: {e}", file=sys.stderr)
         return 2
+
+
+def journal(event: str, **fields: object) -> None:
+    """Add one line of counts to the usage journal of feedback.py beside this script, when the user turned it on."""
+    try:
+        here = str(Path(__file__).resolve().parent)
+        if here not in sys.path:
+            sys.path.insert(0, here)
+        import feedback
+
+        feedback.record(event, **fields)
+    except Exception:  # noqa: BLE001 - an isolation point: a missing or broken feedback.py changes nothing in this run
+        pass
 
 
 def utf8_streams() -> None:

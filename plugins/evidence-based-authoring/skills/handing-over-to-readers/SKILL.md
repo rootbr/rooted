@@ -1,17 +1,17 @@
 ---
 name: handing-over-to-readers
 description: >-
-  Shapes a report, a question or a client list so its reader understands, checks and decides:
-  a report is a story written for the ear closed by `path:line` anchors and exit codes, sent
-  as text and, for a figure or a choice, as a page with voice; questions are cut to those only
-  he can answer and put into a card form that a hook checks; before a page it may ask an
-  unknown reader up to three intake cards. Runs check scripts; a read-only agent reads a
-  report with a decision cold; for a page runs the synthesiser named on its command line (it
-  may use the network) and writes audio, timings and a page file; keeps a ledger of answers in
-  the project, and a private reader record and the hook's state in the user's directories. Use
-  when a report or question list is written for an operator or client ("write up the results",
-  "explain what you changed"), and before any AskUserQuestion. NOT for sentence-level style,
-  code review (software-craft) or the author's PR gate (preparing-for-review).
+  Shapes a report, a question or a client list so its reader understands, checks and decides: a
+  report is a story for the ear closed by `path:line` anchors and exit codes, sent as text and, for
+  a figure or a choice, as a page with voice; questions are cut to those only he can answer and put
+  into a card form a hook checks; before a page it may ask an unknown reader up to three intake
+  cards. Runs check scripts; a read-only agent reads a report with a decision cold; for a page runs
+  the synthesiser named on its command line (it may use the network) and writes audio, timings and a
+  page file; keeps a ledger of answers in the project and a private reader record, hook state and an
+  opt-in usage journal in the user's directories. Use when a report or question list is written for
+  an operator or client ("write up the results", "explain what you changed"), and before any
+  AskUserQuestion. NOT for sentence-level style, code review (software-craft) or the author's PR
+  gate (preparing-for-review).
 ---
 
 # Reading contract
@@ -33,8 +33,10 @@ and which answers he already holds, whether an answer to a question of ours is a
 files, whether it changes the work, whether a decision is reversible. The form is checked by
 `scripts/check_report.py` and `scripts/check_question.py`. The plugin's `hooks/hooks.json` holds
 a PreToolUse hook on `AskUserQuestion` that runs `scripts/check_question.py --hook` and rejects a
-question outside the card form. Run the scripts with the interpreter (commands in § 6); they need
-no setup. Both read the files named on their command line, or standard input when the file is
+question outside the card form. While the reader has turned the usage journal on (§ 8), every
+script of the skill also appends one line of counts and rule codes to it, never text; what
+follows names what each script writes beside that line. Run the scripts with the interpreter
+(commands in § 6); they need no setup. Both read the files named on their command line, or standard input when the file is
 `-` (`check_question.py --hook` reads the hook payload from stdin), print their findings to
 stdout and return an exit code; they write nothing but the hook mode's state file named below,
 open no network connection and use the Python standard library alone. A finding is fixed in the text, never in the check (§ 6). Two more
@@ -56,6 +58,9 @@ standard library alone. The hook on `AskUserQuestion` also searches that ledger 
 card to the agent once with the earlier answers it found, keeping the ids it has shown in a file
 under the user's state directory; a PostToolUse hook on the same tool runs
 `scripts/records.py ledger capture --hook` and writes each answer into the ledger.
+`scripts/feedback.py` reads and writes that journal and its switch under the user's state
+directory, reads the plugin's manifest, opens no network connection and uses the Python standard
+library alone.
 
 ## 1. Resolve the addressee
 
@@ -242,6 +247,19 @@ decision cards in a store of its own keeps that store beside the ledger. The del
 carries the ledger. A question the reader asks after a report is appended to the project's record
 of his questions, and the next report reads that record first (§ 2); what the question shows
 about his knowledge goes into the reader record (`references/intake.md`).
+
+## 8. Usage journal and feedback
+
+`scripts/feedback.py` keeps a journal of how the skill's scripts are used: one line a run with
+counts and rule codes, and no text, path or name. The journal is off until the reader turns it
+on, and nothing in it leaves his machine.
+
+- Turn the journal on or off only at the reader's word:
+  `python3 -I <skill-dir>/scripts/feedback.py on` or `off`. `status` says which it is, and
+  `reset` deletes what the journal holds.
+- When the reader asks for his usage summary or for feedback on the skill, or invokes the skill
+  with the word `feedback`, run `python3 -I <skill-dir>/scripts/feedback.py summary` and show its
+  output unchanged. He reads it and pastes it into the form it names; send it nowhere yourself.
 
 ## What a report carries
 

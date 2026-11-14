@@ -46,6 +46,12 @@ the records on stderr and exits 2; when every one was shown before, the card pas
 returns a card once in a session, however the question is reworded. Without a session_id or a
 ledger file the card passes; a failure of the gate itself (an unreadable ledger, an unwritable
 state file) lets the card pass with one line on stderr. The gate writes that state file alone.
+
+With the usage journal of feedback.py turned on, a run that read a card adds to it one line: the
+mode, the outcome (passed; form, the form check found a problem; returned, the gate sent the card
+back; resent, the card passed the gate although the ledger holds records for it, all shown
+before), the number of questions, the number of records the gate found and the count of each
+problem code.
 """
 from __future__ import annotations
 
@@ -54,6 +60,7 @@ import json
 import os
 import re
 import sys
+from collections import Counter
 from pathlib import Path
 from typing import Mapping
 
@@ -125,6 +132,7 @@ GATE_GUIDANCE = (
     "If none does, send the same card again: it passes."
 )
 SESSION_UNSAFE = re.compile(r"[^A-Za-z0-9._-]")
+PROBLEM_CODE = re.compile(r"question \d+ ([A-Z][A-Z-]*):")
 
 
 def problems(questions: list[dict]) -> list[str]:
@@ -185,11 +193,15 @@ def read_shown(path: Path) -> set[str]:
     return {str(x) for x in data["shown"]}
 
 
-def gate(payload, environ: Mapping[str, str]) -> int:
-    """Return a card once per session when an earlier answer may cover it; 2 blocks, 0 passes."""
+def gate(payload, environ: Mapping[str, str]) -> tuple[int, int]:
+    """Return a card once per session when an earlier answer may cover it.
+
+    The result is the exit code, 2 blocks and 0 passes, and the number of ledger records found for
+    the card; a card that passes although records were found had every one of them shown before.
+    """
     session_id = payload.get("session_id") if isinstance(payload, dict) else None
     if not isinstance(session_id, str) or not session_id.strip():
-        return 0
+        return 0, 0
     # The gate is an isolation point: any fault of its own, a defect included, lets the card pass,
     # because a hook that blocks on its own failure would stop every question the agent asks.
     try:
@@ -198,7 +210,7 @@ def gate(payload, environ: Mapping[str, str]) -> int:
 
         ledger = records.ledger_path(None, None, environ)
         if not ledger.is_file():
-            return 0
+            return 0, 0
         entries = records.read_records(ledger)
         found: dict[str, tuple[float, dict]] = {}
         for q in load(payload):
@@ -209,19 +221,19 @@ def gate(payload, environ: Mapping[str, str]) -> int:
                 if score > found.get(record["id"], (-1.0, None))[0]:
                     found[record["id"]] = (score, record)
         if not found:
-            return 0
+            return 0, 0
         state = gate_state_file(session_id, environ)
         shown = read_shown(state)
         if set(found) <= shown:
-            return 0
+            return 0, len(found)
         records.write_text_atomic(state, json.dumps({"shown": sorted(shown | set(found))}) + "\n")
     except Exception as e:  # noqa: BLE001 - the isolation point above
         print(f"the ledger gate let the card pass: {type(e).__name__}: {e}", file=sys.stderr)
-        return 0
+        return 0, 0
     print(GATE_GUIDANCE, file=sys.stderr)
     for score, record in sorted(found.values(), key=lambda pair: -pair[0]):
         print(records.found_line(records.LEDGER, score, record), file=sys.stderr)
-    return 2
+    return 2, len(found)
 
 
 def main(argv: list[str] | None = None, environ: Mapping[str, str] | None = None) -> int:
@@ -242,17 +254,37 @@ def main(argv: list[str] | None = None, environ: Mapping[str, str] | None = None
     except (OSError, ValueError) as e:
         print(f"unreadable input: {e}", file=sys.stderr)
         return 0 if args.hook else 2
-    found = problems(load(payload))
-    if args.hook:
-        if not found:
-            return gate(payload, os.environ if environ is None else environ)
+    questions = load(payload)
+    found = problems(questions)
+    tally = {"mode": "hook" if args.hook else "file", "questions": len(questions) if isinstance(questions, list) else 0}
+    if found:
         for p in found:
-            print(p, file=sys.stderr)
-        print(GUIDANCE, file=sys.stderr)
-        return 2
-    for p in found:
-        print(p)
-    return 1 if found else 0
+            print(p, file=sys.stderr if args.hook else sys.stdout)
+        if args.hook:
+            print(GUIDANCE, file=sys.stderr)
+        code = 2 if args.hook else 1
+        tally.update(outcome="form", codes=Counter(m.group(1) for p in found if (m := PROBLEM_CODE.match(p))))
+    elif args.hook:
+        code, candidates = gate(payload, os.environ if environ is None else environ)
+        tally.update(outcome="returned" if code == 2 else "resent" if candidates else "passed", candidates=candidates)
+    else:
+        code = 0
+        tally.update(outcome="passed")
+    journal("card", **tally)
+    return code
+
+
+def journal(event: str, **fields: object) -> None:
+    """Add one line of counts to the usage journal of feedback.py beside this script, when the user turned it on."""
+    try:
+        here = str(Path(__file__).resolve().parent)
+        if here not in sys.path:
+            sys.path.insert(0, here)
+        import feedback
+
+        feedback.record(event, **fields)
+    except Exception:  # noqa: BLE001 - an isolation point: a missing or broken feedback.py changes nothing in this run
+        pass
 
 
 def utf8_streams() -> None:

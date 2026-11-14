@@ -15,6 +15,7 @@ Nothing under `maintenance/` or `evals/` is read or executed in a run of the ski
 - The cold read: `SKILL.md` § 6, `references/explaining.md` § The cold read, the plugin's `../../agents/cold-reader.md`, `scripts/check_cold_read.py` with `maintenance/tests/test_check_cold_read.py`, and the measurement `evals/cold-read/` graded by `evals/grade_cold_read.py` (`maintenance/tests/test_grade_cold_read.py`). A change to the agent's instructions or to the questions is a new iteration under `evals/cold-read/runs/`, which keeps the instructions and the questions it ran with beside its answers; `evals/cold-read/plant.py` writes the planted reports and the blind copies.
 - The reader record and the intake: `references/intake.md`, `SKILL.md` § 2, the `reader` commands of `scripts/records.py` with `maintenance/tests/test_records.py`, and the Intake lines of `maintenance/rules-provenance.md`.
 - The ledger and the gate: `SKILL.md` §§ 4 and 7, rules 3 and 25 of `references/rules.md`, the `ledger` commands of `scripts/records.py`, the gate in the hook mode of `scripts/check_question.py` with its tests, both entries of `../../hooks/hooks.json`, and the Gate lines of `maintenance/rules-provenance.md`. The floor and the count of candidates are house defaults held in `maintenance/pending-evidence.md`.
+- The usage journal: `scripts/feedback.py` with its closed `SCHEMA`, the `journal()` call of every other script, `maintenance/tests/test_feedback.py`, `SKILL.md` § 8, `README.md` § Feedback and the issue form `.github/ISSUE_TEMPLATE/handing-over-feedback.yml` at the repository root, whose file name the summary's address carries. A script records an event or a field only after `SCHEMA` holds it: a line outside the schema is dropped.
 - A source: a reference file carries the rule and its numbers alone; the sources with their locators, the pointer to the quoted fragment, the evidence class, the fit and the eval that tested the rule stand on the rule's line in `maintenance/rules-provenance.md`, and rule g of the repository's `check-skill-layout.py` rejects a citation bracket, an eval tag or a fetch marker in a run-set file. The repository `README.md` §Handing-over-to-readers sources lists the first-hand academic and standard sources.
 
 ## Tests
@@ -25,7 +26,7 @@ From the repository root:
 python3 -m unittest discover -s plugins/evidence-based-authoring/skills/handing-over-to-readers/maintenance/tests -p 'test_*.py'
 ```
 
-The test fixtures are English reports and cards; the `Lexicon` cases add a heading or a word through a lexicon file and resolve the default lexicon under a temporary `XDG_CONFIG_HOME`, never the user's own; the `--hook` tests run the script as the hook runs it.
+The test fixtures are English reports and cards; the `Lexicon` cases add a heading or a word through a lexicon file and resolve the default lexicon under a temporary `XDG_CONFIG_HOME`, never the user's own; the `--hook` tests run the script as the hook runs it; every test module points `HANDOVER_FEEDBACK_DIR` at a temporary directory, never the user's own journal.
 
 ## Evals
 

@@ -23,7 +23,10 @@ given on the command line overrides both variables.
 Every WAV of a run has the same channels, sample width and rate. OUT.wav joins them in order.
 OUT.json lists the sentences: [{"paragraph", "sentence", "text", "start", "end"}], numbered from
 1, in seconds of OUT.wav. The script writes OUT.wav and OUT.json and nothing else beside the
-command's temporary files; a failed run leaves no OUT.wav behind.
+command's temporary files and, with the usage journal of feedback.py turned on, one line of
+counts to that journal: the backend, written or failed, the numbers of sentences and paragraphs
+and the whole seconds of audio; a failed run leaves no OUT.wav behind and journals only a failure
+of the backend it chose.
 
 Exit: 0 written; 2 no usable backend, unreadable input, or a backend failure (the message names
 the sentence or paragraph).
@@ -255,6 +258,7 @@ def main(argv: list[str] | None = None, environ: Mapping[str, str] | None = None
     parser.add_argument("--gap", type=float, default=0.25, help="seconds of silence after each sentence of --tts-command")
     args = parser.parse_args(argv)
     joiner = WavJoiner(args.wav)
+    voicing = False  # true while the chosen backend runs: only its failure is journaled
     try:
         kind, backend = choose_backend(args.voice_module, args.tts_command, os.environ if environ is None else environ)
         try:
@@ -263,18 +267,36 @@ def main(argv: list[str] | None = None, environ: Mapping[str, str] | None = None
             raise VoiceError(f"cannot read the story {args.story}: {e}") from e
         if not story:
             raise VoiceError(f"the story {args.story} has no paragraph")
+        voicing = True
         if kind == "module":
             cues = voice_with_module(story, load_speak(backend), args.lang, args.pause, joiner)
         else:
             cues = voice_with_command(story, command_template(backend), args.pause, args.gap, joiner)
+        voicing = False
         joiner.close()
         args.cues.write_text(json.dumps(cues, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
     except (VoiceError, OSError) as e:
         joiner.abandon()
         print(f"voice_cues: {e}", file=sys.stderr)
+        if voicing:
+            journal("voice", backend=kind, outcome="failed", paragraphs=len(story))
         return 2
     print(f"{len(cues)} sentences in {cues[-1]['paragraph']} paragraphs, {joiner.seconds:.1f} s -> {args.wav}, {args.cues}")
+    journal("voice", backend=kind, outcome="written", sentences=len(cues), paragraphs=len(story), seconds=round(joiner.seconds))
     return 0
+
+
+def journal(event: str, **fields: object) -> None:
+    """Add one line of counts to the usage journal of feedback.py beside this script, when the user turned it on."""
+    try:
+        here = str(Path(__file__).resolve().parent)
+        if here not in sys.path:
+            sys.path.insert(0, here)
+        import feedback
+
+        feedback.record(event, **fields)
+    except Exception:  # noqa: BLE001 - an isolation point: a missing or broken feedback.py changes nothing in this run
+        pass
 
 
 def utf8_streams() -> None:

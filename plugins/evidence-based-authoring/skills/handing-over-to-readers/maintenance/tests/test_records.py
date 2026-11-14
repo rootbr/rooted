@@ -17,6 +17,16 @@ SCRIPTS = Path(__file__).resolve().parents[2] / "scripts"
 sys.path.insert(0, str(SCRIPTS))
 import records  # noqa: E402
 
+
+def setUpModule():
+    """Every run of a script in this module, in process or as a child, journals into a temporary directory, never the user's own."""
+    feedback = tempfile.TemporaryDirectory(prefix="handover-feedback-")
+    unittest.addModuleCleanup(feedback.cleanup)
+    environment = mock.patch.dict(os.environ, {"HANDOVER_FEEDBACK_DIR": feedback.name})
+    environment.start()
+    unittest.addModuleCleanup(environment.stop)
+
+
 TIMEOUT_Q = "The acknowledgement timeout is 250 ms. Keep the acknowledgement timeout at 250 ms?"
 REWORDED_Q = "Should we keep a 250 ms timeout for the acknowledgement?"
 UNRELATED_Q = "What colour should the dashboard header have?"
@@ -24,7 +34,8 @@ RETRY_Q = "Should the retry limit stay at three attempts?"
 
 
 def run_script(*args, env, stdin=None, cwd=None):
-    return subprocess.run([sys.executable, "-I", str(SCRIPTS / "records.py"), *args], input=stdin, capture_output=True, text=True, env=env, cwd=cwd)
+    return subprocess.run([sys.executable, "-I", str(SCRIPTS / "records.py"), *args], input=stdin, capture_output=True, text=True,
+                          env={**env, "HANDOVER_FEEDBACK_DIR": os.environ["HANDOVER_FEEDBACK_DIR"]}, cwd=cwd)
 
 
 class InProcess(unittest.TestCase):
@@ -512,7 +523,7 @@ class StreamEncoding(unittest.TestCase):
         question = "Лимит подтверждения 250 ms, für Rückfragen zu knapp. Оставить?"
         with tempfile.TemporaryDirectory() as tmp:
             ledger = Path(tmp) / "ledger.jsonl"
-            env = {"PATH": os.environ.get("PATH", "/usr/bin:/bin"), "HOME": tmp, "PYTHONIOENCODING": "cp1252", "HANDOVER_LEDGER_FILE": str(ledger)}
+            env = {"PATH": os.environ.get("PATH", "/usr/bin:/bin"), "HOME": tmp, "PYTHONIOENCODING": "cp1252", "HANDOVER_LEDGER_FILE": str(ledger), "HANDOVER_FEEDBACK_DIR": os.environ["HANDOVER_FEEDBACK_DIR"]}
             payload = json.dumps({"tool_input": {"questions": [{"question": question}]}, "tool_response": {"answers": {question: "Оставить"}}}, ensure_ascii=False).encode("utf-8")
             capture = subprocess.run([sys.executable, str(SCRIPTS / "records.py"), "ledger", "capture", "--hook"], input=payload, capture_output=True, env=env)
             self.assertEqual(capture.returncode, 0)

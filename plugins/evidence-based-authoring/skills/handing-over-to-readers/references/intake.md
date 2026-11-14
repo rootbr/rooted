@@ -30,7 +30,7 @@ At most three turns, each one question card in the card form (`SKILL.md` § 5), 
 
 - Stop as soon as the answers settle what to explain and how deep: one or two probing turns recovered a reader's level in most cases.
 - Every option says what the deliverable will then contain: "then I leave out how the cache is keyed", where a bare label such as "expert" says nothing of it. A question whose answer would not change the deliverable is not asked (rule 4 of `references/rules.md`).
-- Record the answers before writing: `records.py reader add --topic ... --holds ... --lacks ... --use ... --depth ... --basis "intake dialogue"`.
+- Record the answers before writing: `records.py reader add --topic ... --holds ... --lacks ... --use ... --depth ... --basis "intake dialogue" --turns <cards asked>`.
 
 ## After an intake
 

@@ -10,12 +10,23 @@ import tempfile
 import unittest
 import wave
 from pathlib import Path
+from unittest import mock
 
 SCRIPT = Path(__file__).resolve().parents[2] / "scripts/voice_cues.py"
 spec = importlib.util.spec_from_file_location("voice_cues", SCRIPT)
 vc = importlib.util.module_from_spec(spec)
 sys.modules["voice_cues"] = vc
 spec.loader.exec_module(vc)
+
+
+def setUpModule():
+    """Every run of a script in this module, in process or as a child, journals into a temporary directory, never the user's own."""
+    feedback = tempfile.TemporaryDirectory(prefix="handover-feedback-")
+    unittest.addModuleCleanup(feedback.cleanup)
+    environment = mock.patch.dict(os.environ, {"HANDOVER_FEEDBACK_DIR": feedback.name})
+    environment.start()
+    unittest.addModuleCleanup(environment.stop)
+
 
 # A synthesiser that speaks one word a second into a silent WAV of 10 frames a second.
 FAKE_VOICE = '''
@@ -127,7 +138,7 @@ class CommandBackend(Workspace):
     def test_the_closing_line_is_utf8_under_another_stream_encoding(self):
         (self.dir / "story.txt").write_text("One two.\n", encoding="utf-8")
         out = self.dir / "рассказ.wav"
-        env = {"PATH": os.environ.get("PATH", "/usr/bin:/bin"), "PYTHONIOENCODING": "cp1252"}
+        env = {"PATH": os.environ.get("PATH", "/usr/bin:/bin"), "PYTHONIOENCODING": "cp1252", "HANDOVER_FEEDBACK_DIR": os.environ["HANDOVER_FEEDBACK_DIR"]}
         done = subprocess.run([sys.executable, str(SCRIPT), "--tts-command", self.command, str(self.dir / "story.txt"), str(out), str(self.dir / "cues.json")],
                               capture_output=True, env=env)
         self.assertEqual(done.returncode, 0, done.stderr.decode("utf-8", "replace"))

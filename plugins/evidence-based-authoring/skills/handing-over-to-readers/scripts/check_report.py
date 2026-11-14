@@ -27,7 +27,8 @@ section per script, each from a key of its WORDS to extra regex alternatives:
 
 Output: one line per finding, `FILE:LINE: LEVEL CODE: message`, or a JSON array with --json.
 Exit: 0 no error; 1 at least one error (or a warning under --strict); 2 unreadable input or
-lexicon.
+lexicon. With the usage journal of feedback.py turned on, a run that checked a text adds to it one
+line: the profile, the counts of errors and warnings and the count of each finding code.
 """
 from __future__ import annotations
 
@@ -36,6 +37,7 @@ import json
 import os
 import re
 import sys
+from collections import Counter
 from dataclasses import asdict, dataclass
 from pathlib import Path
 
@@ -427,15 +429,29 @@ def main(argv: list[str] | None = None) -> int:
         return 2
     findings = check(text, args.profile, args.root)
     name = args.file
+    errors = sum(1 for f in findings if f.level == ERROR)
     if args.json:
         print(json.dumps([asdict(f) for f in findings], ensure_ascii=False, indent=2))
     else:
         for f in findings:
             print(f"{name}:{f.line}: {f.level} {f.code}: {f.message}")
-        errors = sum(1 for f in findings if f.level == ERROR)
         print(f"{errors} error(s), {len(findings) - errors} warning(s)")
+    journal("report", profile=args.profile, errors=errors, warnings=len(findings) - errors, codes=Counter(f.code for f in findings))
     failed = any(f.level == ERROR or (args.strict and f.level == WARNING) for f in findings)
     return 1 if failed else 0
+
+
+def journal(event: str, **fields: object) -> None:
+    """Add one line of counts to the usage journal of feedback.py beside this script, when the user turned it on."""
+    try:
+        here = str(Path(__file__).resolve().parent)
+        if here not in sys.path:
+            sys.path.insert(0, here)
+        import feedback
+
+        feedback.record(event, **fields)
+    except Exception:  # noqa: BLE001 - an isolation point: a missing or broken feedback.py changes nothing in this run
+        pass
 
 
 def utf8_streams() -> None:

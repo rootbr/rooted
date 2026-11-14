@@ -8,10 +8,21 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
 
 SCRIPTS = Path(__file__).resolve().parents[2] / "scripts"
 sys.path.insert(0, str(SCRIPTS))
 import check_question as cq  # noqa: E402
+
+
+def setUpModule():
+    """Every run of a script in this module, in process or as a child, journals into a temporary directory, never the user's own."""
+    feedback = tempfile.TemporaryDirectory(prefix="handover-feedback-")
+    unittest.addModuleCleanup(feedback.cleanup)
+    environment = mock.patch.dict(os.environ, {"HANDOVER_FEEDBACK_DIR": feedback.name})
+    environment.start()
+    unittest.addModuleCleanup(environment.stop)
+
 
 GOOD = {
     "question": "The acknowledgement timeout is 250 ms and the worker p99 is 180 ms. The answer changes the retry limit and its test; after rollout the decision is irreversible. Keep 250 ms?",
@@ -28,7 +39,8 @@ def codes(questions):
 
 
 def run_script(*args, stdin, env=None):
-    return subprocess.run([sys.executable, "-I", str(SCRIPTS / "check_question.py"), *args], input=stdin, capture_output=True, text=True, env=env)
+    return subprocess.run([sys.executable, "-I", str(SCRIPTS / "check_question.py"), *args], input=stdin, capture_output=True, text=True,
+                          env=None if env is None else {**env, "HANDOVER_FEEDBACK_DIR": os.environ["HANDOVER_FEEDBACK_DIR"]})
 
 
 class CardForm(unittest.TestCase):
@@ -234,7 +246,7 @@ class Lexicon(unittest.TestCase):
             lexicon = Path(tmp) / "lexicon.json"
             lexicon.write_text(json.dumps({"check_question": {"WHY_ASKED": ["nicht rückgängig"]}}, ensure_ascii=False), encoding="utf-8")
             payload = json.dumps({"tool_input": {"questions": [card]}}, ensure_ascii=False).encode("utf-8")
-            env = {"PATH": os.environ.get("PATH", "/usr/bin:/bin"), "PYTHONIOENCODING": "cp1252"}
+            env = {"PATH": os.environ.get("PATH", "/usr/bin:/bin"), "PYTHONIOENCODING": "cp1252", "HANDOVER_FEEDBACK_DIR": os.environ["HANDOVER_FEEDBACK_DIR"]}
             done = subprocess.run([sys.executable, str(SCRIPTS / "check_question.py"), "--hook", "--lexicon", str(lexicon)], input=payload, capture_output=True, env=env)
         self.assertEqual(done.returncode, 0, done.stderr.decode("utf-8", "replace"))
 

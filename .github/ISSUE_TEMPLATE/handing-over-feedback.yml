@@ -1,0 +1,68 @@
+name: Feedback on handing-over-to-readers
+description: Tell how the reports, question cards and pages of the handing-over-to-readers skill work for you.
+title: "handing-over-to-readers feedback: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        The skill sends nothing by itself, so this form is the only way its author learns how it works in use.
+        Everything below is optional except the two text fields. Write in any language.
+  - type: textarea
+    id: worked
+    attributes:
+      label: What worked
+      description: A report, a question card or a page that did its job. What did you understand or decide faster than before?
+    validations:
+      required: true
+  - type: textarea
+    id: hindered
+    attributes:
+      label: What got in the way
+      description: A report you had to ask about, a question you should not have been asked, a rule that fired without reason, a page that confused you.
+    validations:
+      required: true
+  - type: textarea
+    id: summary
+    attributes:
+      label: Usage summary
+      description: |
+        If you turned the usage journal on, ask Claude for your handing-over usage summary and paste it here.
+        The summary holds counts and rule codes only. Read it before you paste it.
+      render: text
+  - type: dropdown
+    id: reader
+    attributes:
+      label: Who reads what the skill writes
+      options:
+        - I do, as the operator of the session
+        - A client, a colleague or another team
+        - Both
+  - type: input
+    id: language
+    attributes:
+      label: Language of the reports
+      placeholder: English, German, Russian
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platform
+      options:
+        - macOS
+        - Linux
+        - Windows with Git for Windows
+        - Windows without Git for Windows
+  - type: dropdown
+    id: forms
+    attributes:
+      label: Which forms you used
+      multiple: true
+      options:
+        - Text reports in the chat
+        - Pages with voice
+        - Question cards
+        - Question lists for a client
+  - type: input
+    id: version
+    attributes:
+      label: Plugin version and Claude Code version
+      placeholder: evidence-based-authoring 6.0.0, Claude Code 2.1.325

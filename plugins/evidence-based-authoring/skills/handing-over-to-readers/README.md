@@ -25,6 +25,16 @@ The plugin's `../../hooks/hooks.json` registers a PreToolUse hook on `AskUserQue
 
 `scripts/records.py` keeps two JSON Lines files. The reader record is one private file a person, `$XDG_DATA_HOME/handing-over-to-readers/reader.jsonl`: for a topic, what the reader holds and lacks, what he does with a result, the depth he wants, the basis and the date; the script refuses a file that a repository would track. The ledger is the project's, `.claude/handing-over-to-readers/ledger.jsonl`: every answer the reader gave on a card, every closure and every default decision, with its date, basis, what it applies to, what overturns it and its status. `find` scores a record sentence against sentence: for the best pair of a sentence of the query and a sentence of the record, the share of the shorter one's character trigrams found in the other; it prints the records at or above a floor of 0.40, and the agent decides what a found record means. The score is not weighted by the rarity of a word, since a project's ledger holds few records, and it is not taken over whole texts, since a card carries the card form's own sentences. `references/intake.md` and `SKILL.md` §§ 2, 4 and 7 say when each command runs.
 
+## Feedback
+
+Claude Code reports nothing of a plugin's use to its author, and the skill sends nothing either. Three things let a user tell how it works for him:
+
+- **A usage journal on his machine, off until he turns it on.** `python3 -I scripts/feedback.py on` starts it and `off` stops it; `status` and `reset` show and delete it. While it is on, every script of the skill appends one line to `$XDG_STATE_HOME/handing-over-to-readers/journal.jsonl` (`$HANDOVER_FEEDBACK_DIR` names another directory): the day, the plugin version, the event and its counts and rule codes. The schema is closed, so no script can write a text, a path or a name into it.
+- **A summary he reads before it goes anywhere.** `python3 -I scripts/feedback.py summary` prints counts without dates: reports checked and their most frequent rule codes, cards passed and returned, reader lookups and intakes, ledger lookups, cold reads, pages and voice.
+- **A form in the repository.** The summary ends with the address of the issue form `handing-over-feedback.yml`; he pastes the summary there and says in his own words what worked and what got in the way.
+
+The switch is a file that a command writes, and not an option asked at installation: a plugin's `userConfig` value reaches hook processes, while the scripts also run from the session's shell.
+
 ## Another language, another system
 
 The rules are the same in every language; three files carry the language. `lexicon.json` adds a language's words to the English ones the checks match, per key: the heading of the closing list, the words for an exit code and a self-report, the words that say why a question is asked. `page-strings.json`, or `--strings`, replaces the labels of the page. The voice is whatever the synthesiser named on the command line speaks.
@@ -64,6 +74,7 @@ This skill's instance of the repository `README.md` §Skill layout:
 | `scripts/check_cold_read.py` | the session | before a report with a decision, or a page, is delivered: checks the cold reader's answers against the report |
 | `../../agents/cold-reader.md` | the session, as a dispatched agent | the cold read: answers the reader's questions from the report alone |
 | `scripts/records.py` | the session; the plugin hooks | looking the reader up before a long deliverable and recording an intake; searching and writing the project's ledger of answers; `ledger capture --hook` after every `AskUserQuestion` |
+| `scripts/feedback.py` | the session, at the reader's word; every other script through its `journal()` call | turning the usage journal on or off, printing its summary; one journal line a run while it is on |
 | `scripts/voice_cues.py` | the session | voicing a story for the page with voice: writes the audio and the time of every sentence |
 | `scripts/build_page.py` | the session | building the page with voice: joins the page template, the body the agent wrote and the cues, and refuses a page that breaks the form |
 | `assets/page-template.html` | `scripts/build_page.py` | on every page build |
