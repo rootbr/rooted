@@ -20,7 +20,7 @@ bad:  Follow the placeholder rules from <other-skill>.
 good: Use generic placeholders for illustrative code (Class#method form, not real names). See ../references/<file>.md for rationale.
 
 bad:  Defer to <other-skill>/SKILL.md on sourcing.
-good: Every rule must trace to a peer-reviewed paper, standard, or dated hands-on note. (Self-contained.)
+good: Every rule names what it rests on: a test, a norm, a decision or a definition. (Self-contained.)
 ```
 
 ## Limits

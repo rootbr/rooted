@@ -1,0 +1,14 @@
+{
+  "id": "H-02",
+  "kind": "claim",
+  "standing": "supported",
+  "answers": [
+    {"rule": 1, "verdict": "holds", "quote": "two readers who work independently from the definitions of the method give the same kind to the same rule · kind: claim", "missing": ""},
+    {"rule": 2, "verdict": "holds", "quote": "refuter: fewer than 24 of the 30 rules get the same kind from both readers", "missing": ""},
+    {"rule": 3, "verdict": "holds", "quote": "threshold: 24 of 30 · runs: one pair of readers over one sample of thirty rules", "missing": ""},
+    {"rule": 4, "verdict": "holds", "quote": "The measure is the number of the thirty rules to which both readers give the same kind, printed by `kind_agreement.py score` with Cohen's kappa beside it.", "missing": ""},
+    {"rule": 5, "verdict": "fails", "quote": "", "missing": "The scope ('the rules of this repository's four card corpora, read with their provenance lines by Claude Opus 5.5 at effort xhigh') reaches beyond the bounds ('the thirty rules of the draw with seed 20261120 from the four card corpora; ... the kinds and the reading rule as the protocol states them'; protocol.md, Bounds: 'These thirty rules'), yet the record says fit: direct. Either the scope narrows to the bounds, or the record says fit: transfer and names in transfer: (a) the corpora's rules outside the thirty drawn, and rules added later; (b) the reading rule of protocol.md, which both readers got in brief.md but which is not part of method.md's definitions, while the statement says the readers work 'from the definitions of the method' and the scope leaves the reading rule out; (c) no rule of kind definition in the draw ('definition 0'), so agreement on that kind was not observed."},
+    {"rule": 6, "verdict": "fails", "quote": "", "missing": "The record names no commit order, and nothing in the record or the run files shows that H-02 with this measure, refuter and threshold stood in a commit earlier than runs/run-1/reader-a.json and reader-b.json: protocol.md's 'The threshold, fixed before the run, is 24 of 30' is the protocol's own statement, and no PREDICTION check output is cited. Nor does anything show the reading rule was fixed before the drawn rules' provenance lines were read: protocol.md says 'The draw is committed with this protocol', so the reading rule (for instance 'A line that names both such a test and a document is a claim', the clause that decides R-10, PRF-31, ERR-12 and JAVA-148, whose lines name a measurement beside documents) could have been written against the same thirty lines it was then scored on. The record would have to name the commit holding the hypothesis and the protocol's reading rule, and show it precedes the run's answer files and the drafting against the drawn lines."},
+    {"rule": 7, "verdict": "holds", "quote": "30 of 30 rules got the same kind from both readers, Cohen's kappa 1.00, in the one run made (evals/kind-agreement/runs/run-1)", "missing": ""}
+  ]
+}

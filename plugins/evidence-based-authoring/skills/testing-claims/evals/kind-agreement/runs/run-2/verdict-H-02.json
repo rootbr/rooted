@@ -1,0 +1,14 @@
+{
+  "id": "H-02",
+  "kind": "claim",
+  "standing": "supported",
+  "answers": [
+    {"rule": 1, "verdict": "holds", "quote": "two readers who work independently from the definitions of the method give the same kind to the same rule · kind: claim", "missing": ""},
+    {"rule": 2, "verdict": "holds", "quote": "refuter: fewer than 24 of the 30 rules get the same kind from both readers", "missing": ""},
+    {"rule": 3, "verdict": "holds", "quote": "threshold: 24 of 30 · runs: two pairs of readers, each over its own draw of thirty rules", "missing": ""},
+    {"rule": 4, "verdict": "holds", "quote": "The measure is the number of the thirty rules to which both readers give the same kind, printed by `kind_agreement.py score` with Cohen's kappa beside it.", "missing": ""},
+    {"rule": 5, "verdict": "holds", "quote": "fit: transfer · transfer: sixty rules of about a thousand were read; the readers had the reading rule of the protocol beside the definitions of the method; no rule of the kind definition was drawn; the two readers of a pair are one model, so agreement between different readers is untested", "missing": ""},
+    {"rule": 6, "verdict": "holds", "quote": "Its seed is the full hash of the commit that adds this section, a value nobody can know while the section is written, so the reading rule and the threshold stand in history before the draw exists.", "missing": ""},
+    {"rule": 7, "verdict": "holds", "quote": "run 1 gave 30 of 30, Cohen's kappa 1.00; run 2 gave 29 of 30, kappa 0.94, the readers parting on API-30 over a local run that its line calls corroboration only", "missing": ""}
+  ]
+}

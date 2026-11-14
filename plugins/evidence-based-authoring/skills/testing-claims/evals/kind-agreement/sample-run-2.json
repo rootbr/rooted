@@ -1,0 +1,215 @@
+{
+  "seed": "2abcbd4c4b137be74e9e9cdccdd10948ca9d5972",
+  "rules": [
+    {
+      "id": "R-84",
+      "corpus": "audit",
+      "card": "plugins/evidence-based-authoring/skills/auditing-ai-context/references/rule-cards/r-84--diff-third-party-skills-against-consent.md",
+      "provenance": "plugins/evidence-based-authoring/skills/auditing-ai-context/maintenance/rule-cards-provenance.md",
+      "line": 90
+    },
+    {
+      "id": "C-A4",
+      "corpus": "audit",
+      "card": "plugins/evidence-based-authoring/skills/auditing-ai-context/references/rule-cards/c-a4--grep-terms-in-consumer-and-symptom-vocabulary.md",
+      "provenance": "plugins/evidence-based-authoring/skills/auditing-ai-context/maintenance/rule-cards-provenance.md",
+      "line": 98
+    },
+    {
+      "id": "R-62",
+      "corpus": "audit",
+      "card": "plugins/evidence-based-authoring/skills/auditing-ai-context/references/rule-cards/r-62--all-caps-prohibitions-capped-at-three.md",
+      "provenance": "plugins/evidence-based-authoring/skills/auditing-ai-context/maintenance/rule-cards-provenance.md",
+      "line": 66
+    },
+    {
+      "id": "R-21",
+      "corpus": "audit",
+      "card": "plugins/evidence-based-authoring/skills/auditing-ai-context/references/rule-cards/r-21--match-form-to-function.md",
+      "provenance": "plugins/evidence-based-authoring/skills/auditing-ai-context/maintenance/rule-cards-provenance.md",
+      "line": 34
+    },
+    {
+      "id": "R-50",
+      "corpus": "audit",
+      "card": "plugins/evidence-based-authoring/skills/auditing-ai-context/references/rule-cards/r-50--every-rule-names-what-it-rests-on.md",
+      "provenance": "plugins/evidence-based-authoring/skills/auditing-ai-context/maintenance/rule-cards-provenance.md",
+      "line": 55
+    },
+    {
+      "id": "C-B2",
+      "corpus": "audit",
+      "card": "plugins/evidence-based-authoring/skills/auditing-ai-context/references/rule-cards/c-b2--atomic-does-not-mean-short.md",
+      "provenance": "plugins/evidence-based-authoring/skills/auditing-ai-context/maintenance/rule-cards-provenance.md",
+      "line": 101
+    },
+    {
+      "id": "D-03",
+      "corpus": "audit",
+      "card": "plugins/evidence-based-authoring/skills/auditing-ai-context/references/rule-cards/d-03--identifier-encoding-a-superseded-design-is-renamed.md",
+      "provenance": "plugins/evidence-based-authoring/skills/auditing-ai-context/maintenance/rule-cards-provenance.md",
+      "line": 120
+    },
+    {
+      "id": "S-04",
+      "corpus": "audit",
+      "card": "plugins/evidence-based-authoring/skills/auditing-ai-context/references/rule-cards/s-04--sentence-opens-on-the-antecedent-ends-on-the-new.md",
+      "provenance": "plugins/evidence-based-authoring/skills/auditing-ai-context/maintenance/rule-cards-provenance.md",
+      "line": 130
+    },
+    {
+      "id": "R-55",
+      "corpus": "audit",
+      "card": "plugins/evidence-based-authoring/skills/auditing-ai-context/references/rule-cards/r-55--cite-once-then-short-form.md",
+      "provenance": "plugins/evidence-based-authoring/skills/auditing-ai-context/maintenance/rule-cards-provenance.md",
+      "line": 58
+    },
+    {
+      "id": "R-42",
+      "corpus": "audit",
+      "card": "plugins/evidence-based-authoring/skills/auditing-ai-context/references/rule-cards/r-42--cross-file-paths-must-be-repo-relative.md",
+      "provenance": "plugins/evidence-based-authoring/skills/auditing-ai-context/maintenance/rule-cards-provenance.md",
+      "line": 46
+    },
+    {
+      "id": "CODE-65",
+      "corpus": "craft",
+      "card": "plugins/code-quality/skills/software-craft/references/craft-cards/code-65--a-declaration-comment-states-what-name-and-type-leave-open.md",
+      "provenance": "plugins/code-quality/skills/software-craft/maintenance/craft-cards-provenance.md",
+      "line": 75
+    },
+    {
+      "id": "DSN-19",
+      "corpus": "craft",
+      "card": "plugins/code-quality/skills/software-craft/references/craft-cards/dsn-19--no-interface-extension-point-or-option-before-a-present-need.md",
+      "provenance": "plugins/code-quality/skills/software-craft/maintenance/craft-cards-provenance.md",
+      "line": 117
+    },
+    {
+      "id": "DSN-01",
+      "corpus": "craft",
+      "card": "plugins/code-quality/skills/software-craft/references/craft-cards/dsn-01--code-implementing-a-design-pattern-names-it-in-a-comment.md",
+      "provenance": "plugins/code-quality/skills/software-craft/maintenance/craft-cards-provenance.md",
+      "line": 99
+    },
+    {
+      "id": "ERR-54",
+      "corpus": "craft",
+      "card": "plugins/code-quality/skills/software-craft/references/craft-cards/err-54--errors-told-apart-by-type-identity-or-code-not-message.md",
+      "provenance": "plugins/code-quality/skills/software-craft/maintenance/craft-cards-provenance.md",
+      "line": 264
+    },
+    {
+      "id": "TST-04",
+      "corpus": "craft",
+      "card": "plugins/code-quality/skills/software-craft/references/craft-cards/tst-04--a-test-uses-a-real-value-object-or-collection-not-a-double.md",
+      "provenance": "plugins/code-quality/skills/software-craft/maintenance/craft-cards-provenance.md",
+      "line": 270
+    },
+    {
+      "id": "TOOL-39",
+      "corpus": "craft",
+      "card": "plugins/code-quality/skills/software-craft/references/craft-cards/tool-39--user-visible-text-from-catalog.md",
+      "provenance": "plugins/code-quality/skills/software-craft/maintenance/craft-cards-provenance.md",
+      "line": 435
+    },
+    {
+      "id": "DOC-05",
+      "corpus": "craft",
+      "card": "plugins/code-quality/skills/software-craft/references/craft-cards/doc-05--change-adds-no-unrelated-file.md",
+      "provenance": "plugins/code-quality/skills/software-craft/maintenance/craft-cards-provenance.md",
+      "line": 451
+    },
+    {
+      "id": "TOOL-33",
+      "corpus": "craft",
+      "card": "plugins/code-quality/skills/software-craft/references/craft-cards/tool-33--explicit-encoding-at-bytes-text-boundary.md",
+      "provenance": "plugins/code-quality/skills/software-craft/maintenance/craft-cards-provenance.md",
+      "line": 429
+    },
+    {
+      "id": "API-30",
+      "corpus": "craft",
+      "card": "plugins/code-quality/skills/software-craft/references/craft-cards/api-30--runtime-deprecation-warning-is-attributed-to-the-callers-line.md",
+      "provenance": "plugins/code-quality/skills/software-craft/maintenance/craft-cards-provenance.md",
+      "line": 204
+    },
+    {
+      "id": "CODE-04",
+      "corpus": "craft",
+      "card": "plugins/code-quality/skills/software-craft/references/craft-cards/code-04--an-identifier-is-never-a-placeholder-or-a-filler-word.md",
+      "provenance": "plugins/code-quality/skills/software-craft/maintenance/craft-cards-provenance.md",
+      "line": 14
+    },
+    {
+      "id": "PY-112",
+      "corpus": "craft-python",
+      "card": "plugins/code-quality/skills/software-craft/references/craft-cards-python/py-112--requires-python-declares-lowest-supported-python.md",
+      "provenance": "plugins/code-quality/skills/software-craft/maintenance/craft-cards-python-provenance.md",
+      "line": 189
+    },
+    {
+      "id": "PY-18",
+      "corpus": "craft-python",
+      "card": "plugins/code-quality/skills/software-craft/references/craft-cards-python/py-18--typeerror-for-wrong-type-valueerror-for-wrong-value.md",
+      "provenance": "plugins/code-quality/skills/software-craft/maintenance/craft-cards-python-provenance.md",
+      "line": 120
+    },
+    {
+      "id": "PY-152",
+      "corpus": "craft-python",
+      "card": "plugins/code-quality/skills/software-craft/references/craft-cards-python/py-152--copy-os-environ-with-os-environ-copy.md",
+      "provenance": "plugins/code-quality/skills/software-craft/maintenance/craft-cards-python-provenance.md",
+      "line": 59
+    },
+    {
+      "id": "PY-11",
+      "corpus": "craft-python",
+      "card": "plugins/code-quality/skills/software-craft/references/craft-cards-python/py-11--raise-in-except-chains-with-from.md",
+      "provenance": "plugins/code-quality/skills/software-craft/maintenance/craft-cards-python-provenance.md",
+      "line": 113
+    },
+    {
+      "id": "PY-135",
+      "corpus": "craft-python",
+      "card": "plugins/code-quality/skills/software-craft/references/craft-cards-python/py-135--post-init-parameters-carry-no-defaults.md",
+      "provenance": "plugins/code-quality/skills/software-craft/maintenance/craft-cards-python-provenance.md",
+      "line": 95
+    },
+    {
+      "id": "JAVA-85",
+      "corpus": "craft-java",
+      "card": "plugins/code-quality/skills/software-craft/references/craft-cards-java/java-85--a-credential-is-never-a-literal-in-java-source.md",
+      "provenance": "plugins/code-quality/skills/software-craft/maintenance/craft-cards-java-provenance.md",
+      "line": 100
+    },
+    {
+      "id": "JAVA-07",
+      "corpus": "craft-java",
+      "card": "plugins/code-quality/skills/software-craft/references/craft-cards-java/java-07--a-lock-is-acquired-before-the-try-block-and-released-in-its-finally.md",
+      "provenance": "plugins/code-quality/skills/software-craft/maintenance/craft-cards-java-provenance.md",
+      "line": 19
+    },
+    {
+      "id": "JAVA-97",
+      "corpus": "craft-java",
+      "card": "plugins/code-quality/skills/software-craft/references/craft-cards-java/java-97--cors-configured-through-the-security-filter-chain.md",
+      "provenance": "plugins/code-quality/skills/software-craft/maintenance/craft-cards-java-provenance.md",
+      "line": 112
+    },
+    {
+      "id": "JAVA-178",
+      "corpus": "craft-java",
+      "card": "plugins/code-quality/skills/software-craft/references/craft-cards-java/java-178--a-bulk-persist-loop-flushes-and-clears-per-batch.md",
+      "provenance": "plugins/code-quality/skills/software-craft/maintenance/craft-cards-java-provenance.md",
+      "line": 199
+    },
+    {
+      "id": "JAVA-153",
+      "corpus": "craft-java",
+      "card": "plugins/code-quality/skills/software-craft/references/craft-cards-java/java-153--a-rate-limit-rejection-is-429-and-an-overload-rejection-is-503.md",
+      "provenance": "plugins/code-quality/skills/software-craft/maintenance/craft-cards-java-provenance.md",
+      "line": 174
+    }
+  ]
+}

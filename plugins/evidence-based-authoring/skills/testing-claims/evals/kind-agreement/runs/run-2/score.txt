@@ -1,0 +1,10 @@
+API-30: a=claim b=norm
+a \ b           decision  definition        norm       claim
+decision               3           0           0           0
+definition             0           0           0           0
+norm                   0           0          15           0
+claim                  0           0           1          11
+agreed: 29 of 30
+kappa: 0.94
+threshold: 24
+holds

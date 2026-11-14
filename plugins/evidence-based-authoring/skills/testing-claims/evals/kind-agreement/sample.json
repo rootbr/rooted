@@ -1,0 +1,215 @@
+{
+  "seed": "20261120",
+  "rules": [
+    {
+      "id": "R-45",
+      "corpus": "audit",
+      "card": "plugins/evidence-based-authoring/skills/auditing-ai-context/references/rule-cards/r-45--discovery-commands-replace-static-inventories.md",
+      "provenance": "plugins/evidence-based-authoring/skills/auditing-ai-context/maintenance/rule-cards-provenance.md",
+      "line": 49
+    },
+    {
+      "id": "S-09",
+      "corpus": "audit",
+      "card": "plugins/evidence-based-authoring/skills/auditing-ai-context/references/rule-cards/s-09--aligned-block-uses-context-independent-glyph-widths.md",
+      "provenance": "plugins/evidence-based-authoring/skills/auditing-ai-context/maintenance/rule-cards-provenance.md",
+      "line": 135
+    },
+    {
+      "id": "S-11",
+      "corpus": "audit",
+      "card": "plugins/evidence-based-authoring/skills/auditing-ai-context/references/rule-cards/s-11--restate-a-foreign-language-request-as-one-prompt-line.md",
+      "provenance": "plugins/evidence-based-authoring/skills/auditing-ai-context/maintenance/rule-cards-provenance.md",
+      "line": 137
+    },
+    {
+      "id": "R-25",
+      "corpus": "audit",
+      "card": "plugins/evidence-based-authoring/skills/auditing-ai-context/references/rule-cards/r-25--trim-section-intros-and-meta-commentary.md",
+      "provenance": "plugins/evidence-based-authoring/skills/auditing-ai-context/maintenance/rule-cards-provenance.md",
+      "line": 37
+    },
+    {
+      "id": "R-46",
+      "corpus": "audit",
+      "card": "plugins/evidence-based-authoring/skills/auditing-ai-context/references/rule-cards/r-46--re-check-cited-code-against-source.md",
+      "provenance": "plugins/evidence-based-authoring/skills/auditing-ai-context/maintenance/rule-cards-provenance.md",
+      "line": 50
+    },
+    {
+      "id": "R-27",
+      "corpus": "audit",
+      "card": "plugins/evidence-based-authoring/skills/auditing-ai-context/references/rule-cards/r-27--bold-italic-sparingly.md",
+      "provenance": "plugins/evidence-based-authoring/skills/auditing-ai-context/maintenance/rule-cards-provenance.md",
+      "line": 39
+    },
+    {
+      "id": "R-10",
+      "corpus": "audit",
+      "card": "plugins/evidence-based-authoring/skills/auditing-ai-context/references/rule-cards/r-10--identify-the-tier-budget-caps-differ.md",
+      "provenance": "plugins/evidence-based-authoring/skills/auditing-ai-context/maintenance/rule-cards-provenance.md",
+      "line": 22
+    },
+    {
+      "id": "C-B1",
+      "corpus": "audit",
+      "card": "plugins/evidence-based-authoring/skills/auditing-ai-context/references/rule-cards/c-b1--one-thesis-per-card.md",
+      "provenance": "plugins/evidence-based-authoring/skills/auditing-ai-context/maintenance/rule-cards-provenance.md",
+      "line": 100
+    },
+    {
+      "id": "C-C2",
+      "corpus": "audit",
+      "card": "plugins/evidence-based-authoring/skills/auditing-ai-context/references/rule-cards/c-c2--links-enrich-never-complete.md",
+      "provenance": "plugins/evidence-based-authoring/skills/auditing-ai-context/maintenance/rule-cards-provenance.md",
+      "line": 104
+    },
+    {
+      "id": "C-A2",
+      "corpus": "audit",
+      "card": "plugins/evidence-based-authoring/skills/auditing-ai-context/references/rule-cards/c-a2--slug-matches-the-title-thesis.md",
+      "provenance": "plugins/evidence-based-authoring/skills/auditing-ai-context/maintenance/rule-cards-provenance.md",
+      "line": 96
+    },
+    {
+      "id": "PRF-31",
+      "corpus": "craft",
+      "card": "plugins/code-quality/skills/software-craft/references/craft-cards/prf-31--benchmark-leaves-repetition-to-the-harness.md",
+      "provenance": "plugins/code-quality/skills/software-craft/maintenance/craft-cards-provenance.md",
+      "line": 394
+    },
+    {
+      "id": "CODE-63",
+      "corpus": "craft",
+      "card": "plugins/code-quality/skills/software-craft/references/craft-cards/code-63--non-obvious-code-carries-a-comment-stating-its-reason.md",
+      "provenance": "plugins/code-quality/skills/software-craft/maintenance/craft-cards-provenance.md",
+      "line": 73
+    },
+    {
+      "id": "CODE-53",
+      "corpus": "craft",
+      "card": "plugins/code-quality/skills/software-craft/references/craft-cards/code-53--a-shift-or-bitwise-mix-shows-its-grouping-with-parentheses.md",
+      "provenance": "plugins/code-quality/skills/software-craft/maintenance/craft-cards-provenance.md",
+      "line": 63
+    },
+    {
+      "id": "DSN-18",
+      "corpus": "craft",
+      "card": "plugins/code-quality/skills/software-craft/references/craft-cards/dsn-18--a-member-is-public-only-when-code-outside-its-module-uses-it.md",
+      "provenance": "plugins/code-quality/skills/software-craft/maintenance/craft-cards-provenance.md",
+      "line": 116
+    },
+    {
+      "id": "ERR-12",
+      "corpus": "craft",
+      "card": "plugins/code-quality/skills/software-craft/references/craft-cards/err-12--an-expected-failure-is-returned-to-the-caller-not-aborted.md",
+      "provenance": "plugins/code-quality/skills/software-craft/maintenance/craft-cards-provenance.md",
+      "line": 222
+    },
+    {
+      "id": "TOOL-36",
+      "corpus": "craft",
+      "card": "plugins/code-quality/skills/software-craft/references/craft-cards/tool-36--string-length-and-offsets-in-intended-unit.md",
+      "provenance": "plugins/code-quality/skills/software-craft/maintenance/craft-cards-provenance.md",
+      "line": 432
+    },
+    {
+      "id": "ERR-41",
+      "corpus": "craft",
+      "card": "plugins/code-quality/skills/software-craft/references/craft-cards/err-41--a-log-statements-level-matches-its-event.md",
+      "provenance": "plugins/code-quality/skills/software-craft/maintenance/craft-cards-provenance.md",
+      "line": 251
+    },
+    {
+      "id": "CHG-36",
+      "corpus": "craft",
+      "card": "plugins/code-quality/skills/software-craft/references/craft-cards/chg-36--temporary-flag-declares-owner-and-expiry.md",
+      "provenance": "plugins/code-quality/skills/software-craft/maintenance/craft-cards-provenance.md",
+      "line": 359
+    },
+    {
+      "id": "TST-27",
+      "corpus": "craft",
+      "card": "plugins/code-quality/skills/software-craft/references/craft-cards/tst-27--behaviour-not-verified-only-through-ui-or-system-tests.md",
+      "provenance": "plugins/code-quality/skills/software-craft/maintenance/craft-cards-provenance.md",
+      "line": 293
+    },
+    {
+      "id": "CODE-58",
+      "corpus": "craft",
+      "card": "plugins/code-quality/skills/software-craft/references/craft-cards/code-58--a-line-holds-one-statement-and-no-multi-clause-statement.md",
+      "provenance": "plugins/code-quality/skills/software-craft/maintenance/craft-cards-provenance.md",
+      "line": 68
+    },
+    {
+      "id": "PY-88",
+      "corpus": "craft-python",
+      "card": "plugins/code-quality/skills/software-craft/references/craft-cards-python/py-88--cancellation-handler-re-raises-after-cleanup.md",
+      "provenance": "plugins/code-quality/skills/software-craft/maintenance/craft-cards-python-provenance.md",
+      "line": 126
+    },
+    {
+      "id": "PY-03",
+      "corpus": "craft-python",
+      "card": "plugins/code-quality/skills/software-craft/references/craft-cards-python/py-03--none-test-uses-is-or-is-not.md",
+      "provenance": "plugins/code-quality/skills/software-craft/maintenance/craft-cards-python-provenance.md",
+      "line": 13
+    },
+    {
+      "id": "PY-33",
+      "corpus": "craft-python",
+      "card": "plugins/code-quality/skills/software-craft/references/craft-cards-python/py-33--utc-moment-from-aware-now-not-utcnow.md",
+      "provenance": "plugins/code-quality/skills/software-craft/maintenance/craft-cards-python-provenance.md",
+      "line": 33
+    },
+    {
+      "id": "PY-150",
+      "corpus": "craft-python",
+      "card": "plugins/code-quality/skills/software-craft/references/craft-cards-python/py-150--operator-or-builtin-over-direct-dunder-call.md",
+      "provenance": "plugins/code-quality/skills/software-craft/maintenance/craft-cards-python-provenance.md",
+      "line": 57
+    },
+    {
+      "id": "PY-24",
+      "corpus": "craft-python",
+      "card": "plugins/code-quality/skills/software-craft/references/craft-cards-python/py-24--union-written-with-pipe-not-union-or-optional.md",
+      "provenance": "plugins/code-quality/skills/software-craft/maintenance/craft-cards-python-provenance.md",
+      "line": 24
+    },
+    {
+      "id": "JAVA-228",
+      "corpus": "craft-java",
+      "card": "plugins/code-quality/skills/software-craft/references/craft-cards-java/java-228--adjacent-same-typed-parameters-do-not-mean-different-things.md",
+      "provenance": "plugins/code-quality/skills/software-craft/maintenance/craft-cards-java-provenance.md",
+      "line": 252
+    },
+    {
+      "id": "JAVA-102",
+      "corpus": "craft-java",
+      "card": "plugins/code-quality/skills/software-craft/references/craft-cards-java/java-102--a-nested-loop-over-a-two-dimensional-array-walks-memory-in-row-order.md",
+      "provenance": "plugins/code-quality/skills/software-craft/maintenance/craft-cards-java-provenance.md",
+      "line": 120
+    },
+    {
+      "id": "JAVA-171",
+      "corpus": "craft-java",
+      "card": "plugins/code-quality/skills/software-craft/references/craft-cards-java/java-171--a-possibly-null-element-is-not-passed-to-list-of-set-of-or-map-of.md",
+      "provenance": "plugins/code-quality/skills/software-craft/maintenance/craft-cards-java-provenance.md",
+      "line": 192
+    },
+    {
+      "id": "JAVA-30",
+      "corpus": "craft-java",
+      "card": "plugins/code-quality/skills/software-craft/references/craft-cards-java/java-30--cpu-bound-work-runs-on-a-platform-pool.md",
+      "provenance": "plugins/code-quality/skills/software-craft/maintenance/craft-cards-java-provenance.md",
+      "line": 42
+    },
+    {
+      "id": "JAVA-148",
+      "corpus": "craft-java",
+      "card": "plugins/code-quality/skills/software-craft/references/craft-cards-java/java-148--retry-delays-grow-exponentially-and-carry-jitter.md",
+      "provenance": "plugins/code-quality/skills/software-craft/maintenance/craft-cards-java-provenance.md",
+      "line": 169
+    }
+  ]
+}

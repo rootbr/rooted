@@ -4,24 +4,45 @@
 [![GitHub stars](https://img.shields.io/github/stars/rootbr/rooted?style=social)](https://github.com/rootbr/rooted/stargazers)
 [![Rules cited from](https://img.shields.io/badge/rules%20cited%20from-158%20papers%20%C2%B7%2035%20standards-success)](#references)
 
-Skills for the full evidence-based preparation pipeline: research any topic with source verification, map its complete question space before you start, then write AI agent context that actually works — grounded instructions and disciplined reasoning instead of vibes. [Research shows](https://arxiv.org/abs/2602.11988) LLM-generated context files do not generally improve agent task success while raising inference cost by 20–23% — and the repository overviews they typically contain are specifically unhelpful. Rooted structurally refuses them: every rule traces to a peer-reviewed paper or an RFC. Software-development and code-review skills apply the same discipline to everyday coding.
+Skills for the full evidence-based preparation pipeline: research any topic with source verification, map its complete question space before you start, then write AI agent context that actually works — grounded instructions and disciplined reasoning instead of vibes. [Research shows](https://arxiv.org/abs/2602.11988) LLM-generated context files do not generally improve agent task success while raising inference cost by 20–23% — and the repository overviews they typically contain are specifically unhelpful. Rooted admits rules by the scientific method instead: a claim rests on a test that could have refuted it, a norm is named as a norm and a decision as a decision. Software-development and code-review skills apply the same discipline to everyday coding.
 
-- **Evidence-based, not LLM-generated.** Every rule traces to a peer-reviewed paper, RFC/spec, or a hands-on test — not to "ask the model to write a skill."
+- **Tested, not asserted.** A rule that claims a technique works rests on a test that could have refuted it — a study opened and read, or a test of our own committed to the repository. A citation is the address of such a test, and where an idea came from carries no weight.
 - **Lean context over static dumps.** For example, instead of an `/init`-style project-structure blob in `CLAUDE.md` (a file class shown not to improve success while raising inference cost 20–23%, with repository overviews specifically found unhelpful [[15]](#references)), orientation happens on demand via [`overview.sh`](overview.sh) with an explicit stop-instruction. The agent doesn't preemptively slurp the whole tree into context, so it doesn't fill its working memory with project content it doesn't need and later lose focus on the actual task.
 
 ## Methodology
 
-Every rule, checklist item, and review criterion traces to one of:
+Rooted admits rules by the scientific method. The method here is neither a sequence of steps nor a demand for a citation: it is a way of treating statements about how the world works. A claim is stated so that an observation could refute it, put to a test that would have found the error, accepted to the degree and under the conditions the test supports, and kept open to revision. A citation is the address of someone else's test and never the support itself; a test of our own, committed to the repository, counts the same.
 
-- **Academic research** — arxiv.org, peer-reviewed papers, Google Scholar, PubMed
-- **Technical standards** — RFCs, official specifications, language/framework documentation
-- **Human-tested** — a linked hands-on test (a commit or a gist) confirmed through practice
+**Every statement names its kind**, and each kind is presented as itself:
+
+| Kind | What it rests on |
+|--|--|
+| decision — a goal, a priority, a taste | the owner's word |
+| definition | agreement |
+| norm — a standard, a specification, a tool's rule | the document, opened, with its issuer and version; it shows that a practice is accepted, and whether the practice works better is a separate claim |
+| claim — "this technique works" | a test |
+
+**A claim has a standing**, and the strongest of them is still open to a new test. An *opinion* names no outcome that would refute it and stays out of the rules. A *hypothesis* names one and waits for its test. *Supported* means it passed a test that could have refuted it, within the bounds of that test. A *law* has independent tests under varied conditions behind it. *Contested* means the tests disagree. *Refuted* means withdrawn, with the record kept.
+
+**Seven rules follow from the method:**
+
+| Rule | What it requires | After |
+|--|--|--|
+| Facts apart from decisions | every statement names its kind, and no kind passes for another | Hume, Popper |
+| Refutability | a claim names its measure, its comparison, its conditions and the outcome that would refute it | Popper |
+| Severity of the test | only a test that could have come out against the claim supports it: a comparison, enough repetitions, a threshold fixed in advance | Popper, Mayo |
+| Reproducibility | another person can repeat the test, or open its source and find the test there; an author's name supports nothing | Popper, the Royal Society |
+| Bounds of transfer | a supported claim holds for the conditions of its test; beyond them it is a hypothesis again | Hume, Deaton and Cartwright |
+| No fitting | the prediction is recorded before the result, every run is kept, and a patch that saves a refuted claim is a new hypothesis | Popper, Lakatos, Kerr |
+| Revision | a standing follows the tests in both directions, and a test that went against a rule stays on record | Popper, Duhem |
+
+A claim of our own needs no citation. Its hypothesis is committed first, the test runs with the technique and without it, and the result is committed after — a script reads that order from history. The full text of the method, the record a rule carries and the checks are the [`/testing-claims`](plugins/evidence-based-authoring/skills/testing-claims/SKILL.md) skill, with the method itself in [`references/method.md`](plugins/evidence-based-authoring/skills/testing-claims/references/method.md); the texts the method follows are listed under [Scientific method sources](#scientific-method-sources). The seven rules are a convention the repository adopts: the philosophy of science offers no single criterion of what is scientific, so the method takes what its main lines agree on. A record is required on every rule line that is added or changed; the lines not yet touched carry their sources without a record.
 
 ## Plugins
 
 ### evidence-based-authoring
 
-Six evidence-based skills. Three form a preparation pipeline — research → explore → write: gather verified sources, map every angle of a topic, then produce agent instructions grounded in evidence. `/appraising-research` adds a critical-appraisal gate over a finished report — grading evidence quality, surfacing hidden assumptions, hunting competing hypotheses and blind spots, and mapping who benefits. `/reading-companion` is an active-reading companion for a book you study yourself — grounded in learning-science research. The last, `/handing-over-to-readers`, shapes what an agent hands to a human — a report, an explanation, a question, a client's question list — into a handover the reader checks against evidence.
+Seven evidence-based skills. Three form a preparation pipeline — research → explore → write: gather verified sources, map every angle of a topic, then produce agent instructions grounded in evidence. `/appraising-research` adds a critical-appraisal gate over a finished report — grading evidence quality, surfacing hidden assumptions, hunting competing hypotheses and blind spots, and mapping who benefits. `/reading-companion` is an active-reading companion for a book you study yourself — grounded in learning-science research. `/handing-over-to-readers` shapes what an agent hands to a human — a report, an explanation, a question, a client's question list — into a handover the reader checks against evidence. `/testing-claims` is the repository's own method made a skill: it takes a statement on its way to becoming a rule through the scientific method and leaves a record of what the rule rests on.
 
 | Skill | Description |
 |--|--|
@@ -31,6 +52,7 @@ Six evidence-based skills. Three form a preparation pipeline — research → ex
 | `/auditing-ai-context` | Audit the prose an agent reads and the prose an agent writes: CLAUDE.md, SKILL.md, prompts and KB cards; design docs and the comments attached to code; a drafted answer against the house output-style rules. Purges superseded-design traces after a rework |
 | `/reading-companion` | Active-reading companion for a book you study yourself — classify it, scaffold a per-book workspace, then explain intent, translate fragments, walk proofs, and capture your own notes; amplifies recall, never substitutes for it |
 | `/handing-over-to-readers` | Shape a report, an explanation, a question or a client's question list so the reader understands, checks and decides — a report told as a story written for the ear, with an opening that gives the whole matter, one picture per part and the decision last, closed by a list of `path:line` anchors and checks with exit codes; sent as text and, where a figure or a choice needs it, as a page with voice that lights what is spoken and takes the reader's answer; an explanation of a mechanism for a team as such a page, with each reader's question answered in its first table; filtered questions as decision cards, reversible decisions taken by default — with a plugin hook that blocks an `AskUserQuestion` outside the card form |
+| `/testing-claims` | Take a statement on its way to becoming a rule through the scientific method: name its kind (decision, definition, norm, claim), state a claim with its measure, comparison, conditions and refuting outcome, find or run the test that could have refuted it, and write a record with the result, the bounds and the standing; a claim of our own enters through a test in the repository, its hypothesis committed before its result — one script checks the record and reads that order from history, a read-only reader answers the seven check questions, and a second script checks the reader's verdict |
 
 ### code-quality
 
@@ -65,7 +87,7 @@ Install plugins:
 
 ## Contributing
 
-See [`CONTRIBUTING.md`](CONTRIBUTING.md). Every new rule must cite a source — an arXiv ID, an RFC number, or a linked hands-on test. PRs without citations are rejected by design, not by oversight.
+See [`CONTRIBUTING.md`](CONTRIBUTING.md). Every new rule says what it rests on, and a claim rests on a test that could have refuted it — a study opened and read, or a test of your own committed to the repository. A PR that offers a citation in place of a test is returned by design, not by oversight.
 
 ## References
 
@@ -268,6 +290,33 @@ Sources behind the [`/handing-over-to-readers`](plugins/evidence-based-authoring
 ### Software craft sources
 
 Sources behind the `/software-craft` craft cards. Every card rests on an openable source — a paper by DOI or arXiv id, a standard or official documentation by section, a static-analysis rule page, or a hands-on check recorded with the card — and carries no citation itself: the full citation, its fetch status, every quoted statement and the formulation each rule follows (a practitioner text is named there only, never in a card) live on the card's line in [`craft-cards-provenance.md`](plugins/code-quality/skills/software-craft/maintenance/craft-cards-provenance.md), found by `rule_id` (`scripts/craft-cards.py --provenance <RULE_ID>` prints it), and the research behind each topic, with its candidate rules, verdicts and the rules held back for want of an openable source, in the notes under [`research/software-craft/`](research/software-craft/). Rules whose only anchor is a trade book or a talk are not cards; they wait in [`pending-evidence.md`](plugins/code-quality/skills/software-craft/maintenance/pending-evidence.md) with the source class they need. The rules of the design brief the developer agent writes — two structurally different approaches per significant decision, the operations of a module entry, the brief gate — rest on their lines in [`brief-provenance.md`](plugins/code-quality/skills/software-craft/maintenance/brief-provenance.md).
+
+### Scientific method sources
+
+The texts the [Methodology](#methodology) follows. They are formulations of the method, read in the philosophy of science, and none of them is offered as a test of it; the line of each rule in [`method-provenance.md`](plugins/evidence-based-authoring/skills/testing-claims/maintenance/method-provenance.md) carries the passage it follows and how the text was seen. A thinker named with an encyclopedia entry is reported as that entry reports him.
+
+- Stanford Encyclopedia of Philosophy. *Scientific Method.* [plato.stanford.edu/entries/scientific-method](https://plato.stanford.edu/entries/scientific-method/) — No single universal method (§6.1); science differs from everyday knowledge by being more systematic (§7); the consequences of an error enter the choice between hypotheses (§4).
+- Stanford Encyclopedia of Philosophy. *Science and Pseudo-Science.* [plato.stanford.edu/entries/pseudo-science](https://plato.stanford.edu/entries/pseudo-science/) — Popper's falsifiability and its critics (§4); philosophers agree on particular cases and disagree on the general criterion (§8).
+- Stanford Encyclopedia of Philosophy. *Karl Popper.* [plato.stanford.edu/entries/popper](https://plato.stanford.edu/entries/popper/) — A scientific theory prohibits outcomes; only a risky prediction corroborates; a tested theory is corroborated and never verified (§3–5).
+- Popper (1959). *The Logic of Scientific Discovery*, selections. [course document, University of Washington](https://earthweb.ess.washington.edu/roe/Knowability_590/Week1/Popper.doc) — Methodological rules are conventions, "the rules of the game of empirical science"; only a reproducible effect refutes; statements enter science only when they can be tested by others; how an idea occurred to someone is irrelevant to its testing.
+- Mayo (2018). *Statistical Inference as Severe Testing: How to Get Beyond the Statistics Wars*, §1.1. [Cambridge University Press, excerpt](https://assets.cambridge.org/97811076/64647/excerpt/9781107664647_excerpt.pdf) — The severity requirement: "One does not have evidence for a claim if nothing has been done to rule out ways the claim may be false."
+- Stanford Encyclopedia of Philosophy. *Scientific Objectivity.* [plato.stanford.edu/entries/scientific-objectivity](https://plato.stanford.edu/entries/scientific-objectivity/) — Objectivity as testing by others (§5.2); values decide how much evidence suffices and are not themselves evidence (§3).
+- Stanford Encyclopedia of Philosophy. *Hume's Moral Philosophy*, §5 "Is and ought". [plato.stanford.edu/entries/hume-moral](https://plato.stanford.edu/entries/hume-moral/) — On the dominant reading, no evaluative conclusion follows from purely factual premises.
+- Stanford Encyclopedia of Philosophy. *The Problem of Induction.* [plato.stanford.edu/entries/induction-problem](https://plato.stanford.edu/entries/induction-problem/) — The step from observed cases to unobserved ones rests on a uniformity that reason does not establish (§1–2).
+- Hume (1748). *An Enquiry concerning Human Understanding*, 10.4. [davidhume.org/texts/e/10](https://davidhume.org/texts/e/10) — "A wise man, therefore, proportions his belief to the evidence."
+- Deaton & Cartwright (2018). *Understanding and Misunderstanding Randomized Controlled Trials.* [doi:10.1016/j.socscimed.2017.12.005](https://doi.org/10.1016/j.socscimed.2017.12.005) — A trial's result is true of the trial sample; extending it to other groups takes its own justification.
+- Stanford Encyclopedia of Philosophy. *Imre Lakatos*, §2.2. [plato.stanford.edu/entries/lakatos](https://plato.stanford.edu/entries/lakatos/) — A progressive research programme predicts novel facts; a degenerating one patches itself after the event.
+- Stanford Encyclopedia of Philosophy. *Underdetermination of Scientific Theory*, §2.1. [plato.stanford.edu/entries/scientific-underdetermination](https://plato.stanford.edu/entries/scientific-underdetermination/) — Duhem: an experiment tests a group of hypotheses and does not say which of them failed.
+- Stanford Encyclopedia of Philosophy. *Reproducibility of Scientific Results.* [plato.stanford.edu/entries/scientific-reproducibility](https://plato.stanford.edu/entries/scientific-reproducibility/) — Replication (§1); hypothesising after the results are known, after Kerr 1998 (§2.3); preregistration separates prediction from postdiction (§4.2).
+- Stanford Encyclopedia of Philosophy. *Operationalism.* [plato.stanford.edu/entries/operationalism](https://plato.stanford.edu/entries/operationalism/) — A concept tied to the operations that measure it (§2.1); no extension of a concept without operational grounds (§3.2).
+- Stanford Encyclopedia of Philosophy. *Experiment in Physics*, §2.1, and *Theory and Observation in Science*, §3. [plato.stanford.edu/entries/physics-experiment](https://plato.stanford.edu/entries/physics-experiment/), [plato.stanford.edu/entries/science-theory-observation](https://plato.stanford.edu/entries/science-theory-observation/) — How an experimental result is validated, with no strategy guaranteeing it; observation depends on theory and still tests it.
+- Stanford Encyclopedia of Philosophy. *The Social Dimensions of Scientific Knowledge*, §2. [plato.stanford.edu/entries/scientific-knowledge-social](https://plato.stanford.edu/entries/scientific-knowledge-social/) — In large experiments researchers take one another's results on trust (Hardwig).
+- Stanford Encyclopedia of Philosophy. *Naturalism*, §2.1. [plato.stanford.edu/entries/naturalism](https://plato.stanford.edu/entries/naturalism/) — Philosophical issues are rarely resolved by new observational data.
+- Russell (1912). *The Problems of Philosophy*, ch. XV. [wikisource](https://en.wikisource.org/wiki/The_Problems_of_Philosophy/Chapter_15) — A subject leaves philosophy and becomes a science once definite knowledge of it is possible.
+- The Royal Society. *History of the Royal Society.* [royalsociety.org/about-us/who-we-are/history](https://royalsociety.org/about-us/who-we-are/history/) — The motto *Nullius in verba*, "take nobody's word for it": statements are verified by an appeal to facts determined by experiment.
+- National Academy of Sciences (1998). *Teaching About Evolution and the Nature of Science*, definitions as reproduced by [Weber State University](https://physics.weber.edu/carroll/honors/scidefs.htm) — Fact, hypothesis and law: a hypothesis is "a tentative statement about the natural world leading to deductions that can be tested".
+- Меркулов. «Гипотеза». *Новая философская энциклопедия.* [iphlib.ru](https://iphlib.ru/library/collection/newphilenc/document/HASHde83409a66a4b8acacdcde) — A hypothesis is a scientific supposition whose truth value is undetermined; testability in principle is necessary and not sufficient.
+- Feynman (1965). *The Character of Physical Law*, ch. 7, as quoted at [wikiquote](https://en.wikiquote.org/wiki/Richard_Feynman) — "It does not make any difference how smart you are, who made the guess, or what his name is. If it disagrees with experiment it is wrong."
 
 ## License
 

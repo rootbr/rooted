@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# Runs before a commit is made, on the content that commit will hold: the skill layout when the
+# commit touches plugins/, and the record of every rule line it adds or changes. git points
+# GIT_INDEX_FILE at the index of this commit, so a commit by path is checked as exactly as a commit
+# of the whole index. Enable once per clone: git config core.hooksPath .githooks
+
+root=$(git rev-parse --show-toplevel) || exit 1
+cd "$root" || exit 1
+status=0
+
+if git diff --cached --name-only | grep -q '^plugins/'; then
+    if ! layout=$(python3 check-skill-layout.py 2>&1); then
+        printf 'pre-commit: the skill layout check fails\n%s\n' "$layout" >&2
+        status=1
+    fi
+fi
+
+records=$(python3 -I plugins/evidence-based-authoring/skills/testing-claims/scripts/check_record.py --root . --staged 2>&1)
+case $? in
+    0) ;;
+    *) printf 'pre-commit: the record check fails (references/record-format.md of the testing-claims skill names each code)\n%s\n' "$records" >&2
+       status=1 ;;
+esac
+
+exit $status

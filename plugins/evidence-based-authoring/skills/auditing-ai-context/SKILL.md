@@ -121,7 +121,7 @@ The Workflow path returns an already-aggregated patch list; the manual fallback 
 
 - Integrity first: `git status` / `git diff` every target — workflow sub-agents hold `Write`/`Edit` regardless of allowlists (the Phase 1 enforcement caveat; G-24). A target mutated during the run means a compromised audit: discard its patches, restore the target, re-run via manual dispatch.
 - For each G4 R-43 duplicate, verify the kept copy respects keep-and-refine priority — sourced beats unsourced, established beats recent (R-78); swap when the wrong copy was kept.
-- Where git history is available, adjust G5 R-50 severity by `git blame`: recent unsourced addition → medium; long-lived → low + `needs_human: true`.
+- Where git history is available, adjust G5 R-50 severity by `git blame`: recent addition that names no ground → medium; long-lived → low + `needs_human: true`.
 
 Write the aggregated patch list to `tmp/audit-<target-basename>-patches.json` and a human-readable summary to `tmp/audit-<target-basename>-summary.md` (`tmp/` discipline per §Phase 0) with the structure:
 
@@ -264,7 +264,7 @@ Self-authoring regresses on average — see G-05 for the numbers, citations, and
 - ALL-CAPS prohibitions: see R-62
 - Eval constraint density matches model heuristic (R-60)
 - Gotchas present with stable IDs (house convention — no owning R-rule)
-- Every rule traces to a named source (R-50)
+- Every rule names what it rests on (R-50)
 - Citations use stable structural anchors (R-41)
 - Cited claims entailed by their sources (R-56)
 - No service metadata in bodies (R-57)

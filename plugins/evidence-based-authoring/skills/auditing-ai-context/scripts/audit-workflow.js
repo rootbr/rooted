@@ -354,7 +354,7 @@ const main_agent_followups = [
   'Integrity: `git status` / `git diff` every target — the workflow runtime grants Write/Edit to sub-agents regardless of their tools: allowlist (claude-code#63762). A target mutated during the run = compromised audit: discard its patches, restore the target, re-run via manual dispatch.',
 ]
 if (finalPatches.some(p => p.rule_id === 'R-50'))
-  main_agent_followups.push('R-50: adjust unsourced-rule severity by `git blame` (recent add → medium; long-lived → low + needs_human).')
+  main_agent_followups.push('R-50: adjust the severity of a rule that names no ground by `git blame` (recent add → medium; long-lived → low + needs_human).')
 if (finalPatches.some(p => p.rule_id === 'R-43'))
   main_agent_followups.push('R-43/R-78: verify each kept duplicate is the canonical copy (sourced beats unsourced, established beats recent); swap if the wrong copy was kept.')
 

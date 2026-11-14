@@ -1,0 +1,9 @@
+a \ b           decision  definition        norm       claim
+decision               2           0           0           0
+definition             0           0           0           0
+norm                   0           0          19           0
+claim                  0           0           0           9
+agreed: 30 of 30
+kappa: 1.00
+threshold: 24
+holds
