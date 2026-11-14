@@ -31,7 +31,7 @@ A page with voice is built from the report's own story once that form is chosen 
 
    Without a publisher: build with `--standalone` and `--voice story.wav`, keep the audio beside the page, and give the reader the page's path.
 6. **Deliver** the text form in the chat with the page's address after the opening paragraph. Say in one sentence what of the page you did not see working.
-7. **Read the answer.** The reader answers a decision on the page, writes his words under any part, and copies the answer into the chat: a numbered line for each decision, then a line `<part title>: <words>` for each part he commented. A page with a document store also keeps it as the document `answers/<id>` (`choices`, `words`, `remarks` by the part's number, `text`). When he says he answered on the page, read that document.
+7. **Read the answer.** The reader answers a decision on the page, writes his words under any part, comments on any piece of the text, and copies the answer into the chat: a numbered line for each decision, then a line `<part title>: <words>` for each part he commented, then one line for each comment on a piece: the piece in quotation marks, the title of the part it stands in, his comment. A page with a document store also keeps it as the document `answers/<id>` (`choices`, `words`, `remarks` by the part's number, `notes` with each piece as `quote`, its `part` and the comment as `text`, and the whole copied `text`). When he says he answered on the page, read that document.
 
 ## The body
 
@@ -115,7 +115,7 @@ Group the shapes and the label of one thing in a `<g data-lit="…">`, so they l
 - `data-option` is the option in the words the copied answer will carry; `data-title` names the decision there.
 - The author's choice carries `data-mine="1"` and its reason in `.why`, so the reason is readable without the sound.
 - Several decisions are several sections, each with a heading of its own lit by the sentence that names it; the question that closes the story stands after the last. A decision that rests on one part may stand inside that part; the control that copies the answer follows the last field of the page.
-- The page adds the pick controls, the field for the reader's words under each decision and under each part without one, and the control that copies the answer; the body writes none of them.
+- The page adds the pick controls, the field for the reader's words under each decision and under each part without one, the pause beside the spoken sentence, the window for a comment on a piece of the text and the control that copies the answer; the body writes none of them.
 
 ## Before delivery
 

@@ -179,6 +179,29 @@ textarea {
 .src .ln { color: var(--muted); user-select: none; }
 .src .hit { background: var(--accent-soft); display: inline-block; min-width: 100%; }
 
+/* the pause beside the spoken sentence: a round button in the article's left padding, its glyph drawn here */
+main, .sheet { position: relative; }
+.hint { flex-basis: 100%; font-size: 13px; color: var(--muted); }
+.side-tools { position: absolute; left: 2px; display: flex; flex-direction: column; gap: 4px; z-index: 2; }
+.round { width: 24px; height: 24px; border-radius: 50%; border: 1px solid var(--line); background: var(--surface); padding: 0; cursor: pointer; display: grid; place-items: center; }
+.round::before { content: ""; width: 8px; height: 10px; border-left: 3px solid var(--accent); border-right: 3px solid var(--accent); }
+.round.is-paused::before { width: 0; height: 0; border-left: 9px solid var(--accent); border-right: 0; border-top: 6px solid transparent; border-bottom: 6px solid transparent; margin-left: 2px; }
+.round.note::before { width: 10px; height: 10px; border: 0; margin: 0;
+  background: linear-gradient(var(--accent), var(--accent)) center / 100% 2px no-repeat, linear-gradient(var(--accent), var(--accent)) center / 2px 100% no-repeat; }
+.sheet.with-voice .s { cursor: pointer; }
+.sheet.with-voice .decision .s { cursor: auto; }
+
+/* a comment on a piece of the text: the window under the piece, the piece marked, the list before the answer bar */
+.note-pop { position: absolute; z-index: 7; background: var(--surface); border: 1.5px solid var(--accent); border-radius: 10px; padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; box-shadow: 0 10px 24px -12px var(--ink); font-size: 14.5px; }
+.note-pop textarea { min-height: 52px; max-width: none; }
+.note-quote { display: block; font-size: 13.5px; color: var(--muted); }
+.notes { display: flex; flex-direction: column; gap: 6px; max-width: var(--col); font-size: 14.5px; }
+.sheet .notes ol { margin: 0; padding-left: 1.4em; display: flex; flex-direction: column; gap: 6px; }
+.notes q { color: var(--muted); }
+::highlight(note) { background-color: var(--accent-soft); text-decoration: underline; text-decoration-color: var(--accent); }
+::highlight(note-draft) { background-color: var(--accent-soft); }
+.s.noted { text-decoration: underline; text-decoration-color: var(--accent); }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; scroll-behavior: auto !important; }
 }
@@ -230,7 +253,10 @@ textarea {
     LIT.forEach(function (x) { x.e.classList.toggle("lit", id !== null && x.ids.indexOf(id) >= 0); });
     $("now-part").textContent = cue && partOf[cue.paragraph] ? partOf[cue.paragraph].title : S.notPlaying;
     $("now-jump").disabled = !cue;
+    placeSide();
   }
+  /* The place of the spoken sentence: its own span, else the first element its id lights. */
+  function spoken() { return article.querySelector(".s.lit") || article.querySelector(".lit"); }
   function follow() { light(); frame = voice.paused ? 0 : requestAnimationFrame(follow); }
   ["play", "pause", "seeked", "ended", "timeupdate"].forEach(function (name) {
     voice.addEventListener(name, function () {
@@ -240,7 +266,7 @@ textarea {
     });
   });
   $("now-jump").addEventListener("click", function () {
-    var target = article.querySelector(".s.lit") || article.querySelector(".lit");
+    var target = spoken();
     if (target) { scrollTo(target); }
   });
   PARTS.forEach(function (part) {
@@ -324,13 +350,11 @@ textarea {
     });
     return fields;
   })();
-  if (!DECISIONS.length && !REMARKS.length) { return; }
-
   var bar = el("div", "answer"), row = el("div", "answer-row");
   var copyBtn = el("button", "primary", S.copy), shown = el("pre", "answer-text");
-  var note = el("span", "muted answer-note", DECISIONS.length ? S.pick : S.write);
+  var status = el("span", "muted answer-note", DECISIONS.length ? S.pick : REMARKS.length ? S.write : "");
   copyBtn.type = "button";
-  note.setAttribute("role", "status");
+  status.setAttribute("role", "status");
   shown.hidden = true;
   var withMine = DECISIONS.filter(function (d) { return d.mine; });
   if (withMine.length >= 2) {
@@ -343,24 +367,37 @@ textarea {
     row.appendChild(takeMine);
   }
   row.appendChild(copyBtn);
-  row.appendChild(note);
+  row.appendChild(status);
   bar.appendChild(row);
   bar.appendChild(shown);
-  /* The bar closes the page's fields: it stands after the last decision or the last part field, whichever comes later. */
+  /* The bar closes the page's fields: it stands after the last decision or the last part field, whichever comes later.
+     A page without either still takes comments on its text: there the bar stands before "Where to look" (or at the
+     article's end) and shows once a comment exists. */
   var lastDecision = DECISIONS.length ? DECISIONS[DECISIONS.length - 1].box : null;
   var lastRemark = REMARKS.length ? REMARKS[REMARKS.length - 1].box : null;
   var barAfter = lastDecision && lastRemark
     ? ((lastDecision.compareDocumentPosition(lastRemark) & Node.DOCUMENT_POSITION_FOLLOWING) ? lastRemark : lastDecision)
     : (lastDecision || lastRemark);
-  barAfter.insertAdjacentElement("afterend", bar);
+  if (barAfter) {
+    barAfter.insertAdjacentElement("afterend", bar);
+  } else {
+    article.insertBefore(bar, article.querySelector(":scope > section.look"));
+  }
 
-  function blank() { return { choices: {}, words: {}, remarks: {}, text: "", savedAt: 0 }; }
+  /* A comment's anchor {sb, so, eb, eo}: the indexes of its first and last text block and the text offsets in them. */
+  function isNote(n) {
+    return !!n && typeof n === "object" && typeof n.text === "string" && typeof n.quote === "string" && typeof n.part === "string" &&
+      [n.sb, n.so, n.eb, n.eo].every(function (v) { return Number.isInteger(v) && v >= 0; });
+  }
+  function byPlace(a, b) { return a.sb - b.sb || a.so - b.so || a.eb - b.eb || a.eo - b.eo; }
+  function blank() { return { choices: {}, words: {}, remarks: {}, notes: [], text: "", savedAt: 0 }; }
   function normal(a) {
     var n = blank();
     if (a && typeof a === "object") {
       n.choices = a.choices && typeof a.choices === "object" ? a.choices : {};
       n.words = a.words && typeof a.words === "object" ? a.words : {};
       n.remarks = a.remarks && typeof a.remarks === "object" ? a.remarks : {};
+      n.notes = Array.isArray(a.notes) ? a.notes.filter(isNote).sort(byPlace) : [];
       n.text = typeof a.text === "string" ? a.text : "";
       n.savedAt = typeof a.savedAt === "number" ? a.savedAt : 0;
     }
@@ -381,6 +418,9 @@ textarea {
       var said = p.area.value.trim();
       if (said) { lines.push(p.title + ": " + said); }
     });
+    answer.notes.forEach(function (n) {
+      lines.push(S.noteLine.replace(/\{(quote|part|text)\}/g, function (whole, key) { return key === "quote" ? clip(n.quote, 160) : n[key]; }));
+    });
     return lines.join("\n");
   }
   function paint() {
@@ -393,8 +433,9 @@ textarea {
       });
     });
     copyBtn.disabled = !compose();
+    bar.hidden = !DECISIONS.length && !REMARKS.length && !answer.notes.length;
   }
-  function say(text, bad) { note.textContent = text; note.className = "answer-note " + (bad ? "bad" : "muted"); }
+  function say(text, bad) { status.textContent = text; status.className = "answer-note " + (bad ? "bad" : "muted"); }
   function snapshot() {
     DECISIONS.forEach(function (d) { answer.words[d.key] = d.words.value.trim(); });
     REMARKS.forEach(function (p) { answer.remarks[p.key] = p.area.value.trim(); });
@@ -415,13 +456,16 @@ textarea {
     answer = normal(a);
     DECISIONS.forEach(function (d) { d.words.value = answer.words[d.key] || ""; });
     REMARKS.forEach(function (p) { p.area.value = answer.remarks[p.key] || ""; grow(p.area); });
+    drawNotes();
     paint();
   }
 
+  /* A click that ends a selection of text in an option starts a comment; only its button picks it then. */
+  function selecting() { var selection = window.getSelection(); return !!selection && !selection.isCollapsed; }
   DECISIONS.forEach(function (d) {
     d.options.forEach(function (o) {
       o.e.addEventListener("click", function (event) {
-        if (event.target.closest("a, textarea, input, select, summary")) { return; }
+        if (event.target.closest("a, textarea, input, select, summary") || (selecting() && !event.target.closest("button"))) { return; }
         answer.choices[d.key] = answer.choices[d.key] === o.name ? "" : o.name;
         paint(); keep(); say(answer.choices[d.key] ? S.picked : S.pick);
       });
@@ -470,6 +514,268 @@ textarea {
       var tail = r[1] ? " " + S.saved : "";
       if (r[0]) { say(S.copied + tail); } else { say(S.copyFailed + tail, true); }
     });
+  });
+
+  /* ---------- the pause: a click on the story's text, Space, or the round button beside the spoken sentence; only with audio ---------- */
+  var main = document.querySelector("main"), side = null, sidePause = null, sideNote = null;
+  function playVoice() {
+    var started = voice.play();
+    if (started && started.catch) { started.catch(function () { /* the reader starts it from the controls */ }); }
+  }
+  function toggleVoice() { if (voice.paused) { playVoice(); } else { voice.pause(); } }
+  /* Keeps the side group on the first line of the spoken sentence, its pause glyph and label on the voice's state. */
+  function placeSide() {
+    if (!side) { return; }
+    var target = spoken(), label = voice.paused ? S.resume : S.pause;
+    sidePause.classList.toggle("is-paused", voice.paused);
+    sidePause.title = label;
+    sidePause.setAttribute("aria-label", label);
+    side.hidden = !target;
+    if (!target) { return; }
+    var line = target.getClientRects()[0] || target.getBoundingClientRect(), box = article.getBoundingClientRect();
+    side.style.top = Math.round(line.top - box.top + (line.height - sidePause.offsetHeight) / 2) + "px";
+  }
+  $("player").appendChild(el("p", "hint", DATA.voice ? [S.hintPause, S.hintNote, S.hintNoteSpoken].join(" ") : S.hintNote));
+  if (DATA.voice) {
+    article.classList.add("with-voice");
+    side = el("div", "side-tools");
+    sidePause = el("button", "round");
+    sideNote = el("button", "round note");
+    sidePause.type = sideNote.type = "button";
+    sideNote.title = S.noteSpoken;
+    sideNote.setAttribute("aria-label", S.noteSpoken);
+    side.appendChild(sidePause);
+    side.appendChild(sideNote);
+    side.hidden = true;
+    article.appendChild(side);
+    sidePause.addEventListener("click", toggleVoice);
+    sideNote.addEventListener("click", function () { noteOnSpoken(); });
+    ["play", "pause", "ended"].forEach(function (name) { voice.addEventListener(name, placeSide); });
+    window.addEventListener("resize", placeSide);
+    if (window.ResizeObserver) { new ResizeObserver(placeSide).observe(article); }
+    /* a words field takes the reader's dictation: the voice stops while he speaks into it */
+    FIELDS.forEach(function (f) { f.area.addEventListener("focus", function () { if (!voice.paused) { voice.pause(); } }); });
+  }
+
+  /* ---------- a comment on a piece of the text: select it, or press C or the plus for the spoken sentence ---------- */
+  var BLOCK = "p, li, td, th, h1, h2, h3, h4, figcaption";
+  var BLOCKS = all(article, BLOCK).filter(function (b) { return !b.closest(".part-words, .answer, .look, .notes"); });
+  var RANGES = [], draft = null, canMark = !!(window.CSS && CSS.highlights && window.Highlight);
+  function clip(text, n) { return text.length > n ? text.slice(0, n - 1).replace(/\s+\S*$/, "") + "…" : text; }
+  function clean(text) { return text.replace(/\s+/g, " ").trim(); }
+  function blockOf(node) {
+    var e = node && (node.nodeType === 1 ? node : node.parentElement);
+    e = e && e.closest ? e.closest(BLOCK) : null;
+    return e ? BLOCKS.indexOf(e) : -1;
+  }
+  function textNodes(block) {
+    var walker = document.createTreeWalker(block, NodeFilter.SHOW_TEXT), list = [], node;
+    while ((node = walker.nextNode())) { list.push(node); }
+    return list;
+  }
+  function offsetIn(block, node, offset) {
+    var r = document.createRange();
+    r.selectNodeContents(block);
+    try { r.setEnd(node, offset); } catch (e) { return -1; /* the point lies outside the block: no anchor */ }
+    return r.toString().length;
+  }
+  function pointAt(block, offset) {
+    var nodes = textNodes(block), total = 0;
+    for (var i = 0; i < nodes.length; i++) {
+      if (offset <= total + nodes[i].length) { return { node: nodes[i], offset: offset - total }; }
+      total += nodes[i].length;
+    }
+    return nodes.length ? { node: nodes[nodes.length - 1], offset: nodes[nodes.length - 1].length } : null;
+  }
+  function anchorOf(range) {
+    var sb = blockOf(range.startContainer), eb = blockOf(range.endContainer);
+    if (sb < 0) { return null; }
+    var so = offsetIn(BLOCKS[sb], range.startContainer, range.startOffset), eo;
+    if (eb < sb) { eb = sb; eo = BLOCKS[sb].textContent.length; } else { eo = offsetIn(BLOCKS[eb], range.endContainer, range.endOffset); }
+    if (so < 0 || eo < 0 || (sb === eb && eo <= so)) { return null; }
+    return { sb: sb, so: so, eb: eb, eo: eo };
+  }
+  /* The DOM range of an anchor, or null when its blocks are not on this page. */
+  function rangeOf(a) {
+    if (!BLOCKS[a.sb] || !BLOCKS[a.eb]) { return null; }
+    var from = pointAt(BLOCKS[a.sb], a.so), to = pointAt(BLOCKS[a.eb], a.eo);
+    if (!from || !to) { return null; }
+    var r = document.createRange();
+    try { r.setStart(from.node, from.offset); r.setEnd(to.node, to.offset); } catch (e) { return null; /* a stale anchor: the comment stays listed, unmarked */ }
+    return r;
+  }
+  function lastRect(range) { var rects = range.getClientRects(); return rects.length ? rects[rects.length - 1] : range.getBoundingClientRect(); }
+  /* The title of the part a node stands in: the part of the lit element holding it or preceding it; the opening before any. */
+  function partTitle(node) {
+    var e = node && (node.nodeType === 1 ? node : node.parentElement), found = e && e.closest ? e.closest("[data-lit]") : null;
+    if (!found) {
+      LIT.forEach(function (x) { if (e && (x.e.compareDocumentPosition(e) & Node.DOCUMENT_POSITION_FOLLOWING)) { found = x.e; } });
+    }
+    var first = found ? ids(found)[0] : null, part = first ? partOf[Number(first.split(".")[0])] : null;
+    return part ? part.title : (PARTS.length ? PARTS[0].title : "");
+  }
+
+  var pop = el("div", "note-pop"), popQuote = el("q", "note-quote"), popArea = el("textarea"), popRow = el("div", "answer-row");
+  var popSave = el("button", "primary", S.noteSave), popCancel = el("button", "linkbtn", S.noteCancel), popDelete = el("button", "linkbtn", S.noteDelete);
+  popSave.type = popCancel.type = popDelete.type = "button";
+  popArea.id = "note-text";
+  popArea.rows = 2;
+  popArea.setAttribute("aria-label", S.noteField);
+  popRow.appendChild(popSave);
+  popRow.appendChild(popCancel);
+  popRow.appendChild(popDelete);
+  popRow.appendChild(el("span", "muted", S.noteKeys));
+  pop.appendChild(popQuote);
+  pop.appendChild(popArea);
+  pop.appendChild(popRow);
+  pop.hidden = true;
+  main.appendChild(pop);
+
+  var notesBox = el("div", "notes"), notesList = el("ol");
+  notesBox.appendChild(el("p", "muted", S.notes));
+  notesBox.appendChild(notesList);
+  notesBox.hidden = true;
+  bar.insertAdjacentElement("beforebegin", notesBox);
+
+  function mark(name, ranges) {
+    if (!canMark) { return; }
+    if (!ranges.length) { CSS.highlights.delete(name); return; }
+    var h = new Highlight();
+    ranges.forEach(function (r) { h.add(r); });
+    CSS.highlights.set(name, h);
+  }
+  /* Marks every comment on the text, by a highlight or, without the Highlight API, by a class on the sentences it touches; lists them. */
+  function drawNotes() {
+    RANGES = answer.notes.map(function (n) { return rangeOf(n); });
+    var drawn = RANGES.filter(Boolean);
+    mark("note", drawn);
+    if (!canMark) {
+      all(article, ".s").forEach(function (s) { s.classList.toggle("noted", drawn.some(function (r) { return r.intersectsNode(s); })); });
+    }
+    notesList.textContent = "";
+    answer.notes.forEach(function (n, i) {
+      var item = el("li"), edit = el("button", "linkbtn", S.noteEdit);
+      edit.type = "button";
+      edit.hidden = !RANGES[i];
+      edit.addEventListener("click", function () { editNote(n); });
+      item.appendChild(el("q", "", clip(n.quote, 90)));
+      item.appendChild(document.createTextNode(" " + n.text + " "));
+      item.appendChild(edit);
+      notesList.appendChild(item);
+    });
+    notesBox.hidden = !answer.notes.length;
+  }
+  function noteAt(x, y) {
+    for (var i = 0; i < answer.notes.length; i++) {
+      var rects = RANGES[i] ? RANGES[i].getClientRects() : [];
+      for (var k = 0; k < rects.length; k++) {
+        if (x >= rects[k].left && x <= rects[k].right && y >= rects[k].top && y <= rects[k].bottom) { return answer.notes[i]; }
+      }
+    }
+    return null;
+  }
+  /* Opens the window under the piece with the cursor in its field; a voice it interrupts stops and remembers its sentence. */
+  function openPop(d, range) {
+    draft = d;
+    d.wasPlaying = !!DATA.voice && !voice.paused;
+    d.cue = played ? cueAt(voice.currentTime) : null;
+    if (d.wasPlaying) { voice.pause(); }
+    mark("note-draft", [range]);
+    popQuote.textContent = clip(d.quote, 140);
+    popArea.value = d.note ? d.note.text : "";
+    popDelete.hidden = !d.note;
+    pop.hidden = false;
+    var rect = lastRect(range), m = main.getBoundingClientRect(), width = Math.min(460, m.width - 16);
+    pop.style.width = width + "px";
+    pop.style.left = Math.round(Math.max(8, Math.min(rect.left - m.left, m.width - width - 8))) + "px";
+    pop.style.top = Math.round(rect.bottom - m.top + 8) + "px";
+    popArea.focus({ preventScroll: true });
+    var box = pop.getBoundingClientRect();
+    if (box.bottom > window.innerHeight || box.top < 0) { pop.scrollIntoView({ block: "center", behavior: calm ? "auto" : "smooth" }); }
+  }
+  /* Closes the window; a voice the comment interrupted goes on from the start of its sentence, a paused one stays paused. */
+  function closePop() {
+    var d = draft;
+    draft = null;
+    popArea.blur();
+    pop.hidden = true;
+    mark("note-draft", []);
+    var selection = window.getSelection();
+    if (selection) { selection.removeAllRanges(); }
+    if (d && d.wasPlaying) {
+      if (d.cue) { voice.currentTime = Math.max(0, d.cue.start - 0.05); }
+      playVoice();
+    }
+  }
+  /* Keeps the comment in page order; an empty text keeps none and removes a saved one. */
+  function saveNote() {
+    if (!draft) { return; }
+    var text = popArea.value.trim(), at = draft.note ? answer.notes.indexOf(draft.note) : -1;
+    if (at >= 0 && text) {
+      draft.note.text = text;
+    } else if (at >= 0) {
+      answer.notes.splice(at, 1);
+    } else if (text) {
+      answer.notes.push({ sb: draft.anchor.sb, so: draft.anchor.so, eb: draft.anchor.eb, eo: draft.anchor.eo,
+        quote: draft.quote, part: draft.part, text: text });
+      answer.notes.sort(byPlace);
+    }
+    drawNotes(); paint(); keep();
+    closePop();
+  }
+  function editNote(n) {
+    var r = RANGES[answer.notes.indexOf(n)];
+    if (!r || draft) { return; }
+    openPop({ note: n, anchor: n, quote: n.quote, part: n.part }, r);
+  }
+  /* A range the reader picked: a piece already commented opens its comment, any other opens a new one. */
+  function startNote(range) {
+    var a = anchorOf(range);
+    if (!a) { return; }
+    var same = answer.notes.filter(function (n) { return byPlace(n, a) === 0; })[0];
+    if (same) { editNote(same); return; }
+    var r = rangeOf(a), quote = r ? clean(r.toString()) : "";
+    if (!quote) { return; }
+    openPop({ note: null, anchor: a, quote: quote, part: partTitle(r.startContainer) }, r);
+  }
+  function noteFromSelection() {
+    var selection = window.getSelection();
+    if (draft || !selection || selection.isCollapsed || !selection.rangeCount) { return; }
+    var range = selection.getRangeAt(0);
+    if (!article.contains(range.commonAncestorContainer)) { return; }
+    startNote(range);
+  }
+  function noteOnSpoken() {
+    var target = spoken();
+    if (draft || !target) { return; }
+    var range = document.createRange();
+    range.selectNodeContents(target);
+    startNote(range);
+  }
+  article.addEventListener("mouseup", function () { setTimeout(noteFromSelection, 0); });
+  article.addEventListener("touchend", function () { setTimeout(noteFromSelection, 300); });
+  popSave.addEventListener("click", saveNote);
+  popCancel.addEventListener("click", closePop);
+  popDelete.addEventListener("click", function () { popArea.value = ""; saveNote(); });
+  pop.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") { e.preventDefault(); closePop(); }
+    else if (e.target === popArea && e.key === "Enter" && !e.shiftKey && !e.isComposing) { e.preventDefault(); saveNote(); }
+  });
+
+  /* ---------- the reader's hand on the story: a click reopens a comment or toggles the voice, Space and C act on the voice ---------- */
+  var STORY = ".s, h1, h2, h3, h4, p, li, figcaption";
+  var NOT_STORY = "a, button, textarea, input, select, summary, label, audio, .decision, .look, .part-words, .answer, .notes, .side-tools";
+  article.addEventListener("click", function (e) {
+    if (draft || !e.target.closest || e.target.closest(NOT_STORY) || selecting()) { return; }
+    var hit = noteAt(e.clientX, e.clientY);
+    if (hit) { editNote(hit); return; }
+    if (DATA.voice && e.target.closest(STORY)) { toggleVoice(); }
+  });
+  document.addEventListener("keydown", function (e) {
+    if (!DATA.voice || draft || e.metaKey || e.ctrlKey || e.altKey || e.isComposing || e.repeat) { return; }
+    if (e.target && e.target.closest && e.target.closest("a, button, textarea, input, select, summary, audio, [contenteditable]")) { return; }
+    if (e.code === "Space") { e.preventDefault(); toggleVoice(); }
+    else if (e.code === "KeyC") { e.preventDefault(); noteOnSpoken(); }
   });
 
   restore(answer);

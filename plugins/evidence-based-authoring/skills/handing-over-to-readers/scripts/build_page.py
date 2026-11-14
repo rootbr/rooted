@@ -14,6 +14,13 @@ BODY.html is the article: HTML without scripts. Its contract:
       author's choice). The page adds the pick controls, the words fields and the copy bar.
   Figures: inline SVG of class "fig" or HTML inside <figure>, in the template's classes.
 
+The page lets the reader comment on any piece of the article's text: he selects it, or, on a page
+with --voice, presses C or the plus beside the spoken sentence. The copied answer and the stored
+one carry the comments after the decisions and the parts. On a page with --voice a click on the
+text, the Space key or the button beside the spoken sentence pauses and resumes the voice; a
+comment pauses it and, when it was playing, resumes it from the start of that sentence; a words
+field pauses it when the cursor enters.
+
 CUES.json is the list voice_cues.py writes: [{"paragraph", "sentence", "text", "start", "end"}].
 
 The builder refuses a body, one line per violation on stderr, when it names a sentence the cues
@@ -82,6 +89,20 @@ STRINGS = {
     "copied": "Copied: paste it into the chat.",
     "copyFailed": "The page could not copy: the answer is shown below, copy it yourself.",
     "saved": "The answer is saved on the page.",
+    "hintPause": "Pause: click the text, press Space, or use the button beside the spoken sentence.",
+    "hintNote": "Comment: select a piece of text.",
+    "hintNoteSpoken": "Press C to comment on the spoken sentence.",
+    "pause": "Pause",
+    "resume": "Resume",
+    "noteSpoken": "Comment on the spoken sentence",
+    "noteField": "Your comment on this piece of text, typed or dictated",
+    "noteSave": "Save",
+    "noteCancel": "Cancel",
+    "noteDelete": "Delete",
+    "noteKeys": "Enter saves, Esc closes.",
+    "notes": "Comments on the text:",
+    "noteEdit": "Edit",
+    "noteLine": "On the text “{quote}” ({part}): {text}",
 }
 STRINGS_FILE = Path("handing-over-to-readers") / "page-strings.json"
 LEXICON_FILE = Path("handing-over-to-readers") / "lexicon.json"
@@ -476,7 +497,7 @@ def main(argv: list[str] | None = None, environ: Mapping[str, str] | None = None
     parser.add_argument("--report", type=Path, required=True)
     parser.add_argument("--out", type=Path, required=True)
     parser.add_argument("--root", type=Path, help="directory the report's path:line anchors resolve under")
-    parser.add_argument("--voice", default="", help="address of the audio; empty: the page has no player")
+    parser.add_argument("--voice", default="", help="address of the audio; empty: the page has no player and no pause, comments come by selection only")
     parser.add_argument("--title")
     parser.add_argument("--id", default="report", help="name under which the page keeps the reader's answer")
     parser.add_argument("--strings", type=Path)

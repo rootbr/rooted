@@ -244,6 +244,37 @@ class Strings(Build):
         self.assertEqual(("Ваши слова к этой части", "Добавьте слова к любой части."),
                          (self.strings(page)["partWords"], self.strings(page)["write"]))
 
+    PAUSE_AND_NOTES = {
+        "hintPause": "Pause: click the text, press Space, or use the button beside the spoken sentence.",
+        "hintNote": "Comment: select a piece of text.",
+        "hintNoteSpoken": "Press C to comment on the spoken sentence.",
+        "pause": "Pause",
+        "resume": "Resume",
+        "noteSpoken": "Comment on the spoken sentence",
+        "noteField": "Your comment on this piece of text, typed or dictated",
+        "noteSave": "Save",
+        "noteCancel": "Cancel",
+        "noteDelete": "Delete",
+        "noteKeys": "Enter saves, Esc closes.",
+        "notes": "Comments on the text:",
+        "noteEdit": "Edit",
+        "noteLine": "On the text “{quote}” ({part}): {text}",
+    }
+
+    def test_the_pause_and_comment_strings_have_english_defaults(self):
+        code, err, page = self.build()
+        self.assertEqual(0, code, err)
+        strings = self.strings(page)
+        self.assertEqual(self.PAUSE_AND_NOTES, {key: strings[key] for key in self.PAUSE_AND_NOTES})
+
+    def test_the_pause_and_comment_strings_are_overridden_from_a_file(self):
+        overrides = {"pause": "Anhalten", "resume": "Weiter", "noteLine": "Zum Text „{quote}“ ({part}): {text}"}
+        (self.dir / "strings.json").write_text(json.dumps(overrides), encoding="utf-8")
+        code, err, page = self.build(args=["--strings", str(self.dir / "strings.json")])
+        self.assertEqual(0, code, err)
+        self.assertEqual(overrides, {key: self.strings(page)[key] for key in overrides})
+        self.assertEqual(self.PAUSE_AND_NOTES["noteSave"], self.strings(page)["noteSave"])
+
     def test_the_strings_option_overrides_keys(self):
         (self.dir / "strings.json").write_text(json.dumps({"copy": "Скопировать ответ"}), encoding="utf-8")
         code, err, page = self.build(args=["--strings", str(self.dir / "strings.json")])
@@ -370,6 +401,11 @@ class TheTemplate(unittest.TestCase):
 
     def test_the_template_loads_nothing_from_elsewhere(self):
         self.assertIsNone(re.search(r"https?:|<script[^>]+src=|<link\b", self.TEXT))
+
+    def test_the_template_holds_no_cyrillic_letter_and_no_word_of_the_prototype(self):
+        self.assertIsNone(re.search("[\u0400-\u04ff]", self.TEXT))
+        for word in ("PROTO", "corner"):
+            self.assertNotIn(word, self.TEXT)
 
 
 class Example(Build):
