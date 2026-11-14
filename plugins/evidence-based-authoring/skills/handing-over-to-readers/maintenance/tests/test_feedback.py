@@ -7,6 +7,7 @@ import io
 import json
 import os
 import re
+import shlex
 import shutil
 import subprocess
 import sys
@@ -49,6 +50,7 @@ EXAMPLES = {
     "cold_read": {"questions": 3, "answered": 1, "partly": 1, "unsupported": 0, "missing": 1, "unexplained": 0, "dropped": 2},
     "page": {"outcome": "built", "sentences": 4, "parts": 2, "decisions": 1, "look": 4, "violations": 0},
     "voice": {"backend": "module", "outcome": "written", "sentences": 9, "paragraphs": 3, "seconds": 41},
+    "page_check": {"outcome": "findings", "parts": 4, "findings": 2, "shots": 8},
 }
 
 # A good card of the card form, as in test_check_question.py.
@@ -79,7 +81,8 @@ CUES = [
     {"paragraph": 2, "sentence": 1, "text": "How it broke.", "start": 4.1, "end": 5.0},
     {"paragraph": 2, "sentence": 2, "text": "The key had no version.", "start": 5.3, "end": 7.0},
 ]
-BODY = '<p data-say="1.1 1.2"></p>\n<h2 data-lit="2.1">How it broke</h2>\n<p data-say="2.2"></p>\n'
+BODY = ('<p data-say>The cache served old thumbnails. Now it does not.</p>\n'
+        '<h2 data-part="How it broke.">How it broke</h2>\n<p data-say>The key had no version.</p>\n')
 FIXTURE_LOOK_ITEMS = 4  # the items under "Where to look" of fixtures/page/report.md
 
 # A TTS command: a silent WAV of one second per word at 10 frames a second; the word "fail" exits 3.
@@ -118,7 +121,7 @@ class Workspace(unittest.TestCase):
             "cold-questions.json": json.dumps(COLD_QUESTIONS),
             "cold-answers.json": json.dumps(COLD_ANSWERS),
             "body.html": BODY,
-            "bad-body.html": BODY.replace("2.2", "2.2 9.9"),
+            "bad-body.html": BODY + '<p><a href="#nowhere">back</a></p>\n',
             "cues.json": json.dumps(CUES),
             "story.txt": "One two three.\n\nFour five.\n",
             "fail.txt": "This will fail.\n",
@@ -182,6 +185,7 @@ class Workspace(unittest.TestCase):
             self.run_script("check_cold_read.py", "--report", str(w / "cold-report.md"), "--questions", str(w / "cold-questions.json"), "--answers", str(w / "cold-answers.json")),
             self.run_script("build_page.py", "--body", str(w / "body.html"), "--cues", str(w / "cues.json"), "--report", str(FIXTURES / "report.md"), "--out", str(w / "page.html")),
             self.run_script("voice_cues.py", "--tts-command", self.tts(), str(w / "story.txt"), str(w / "out.wav"), str(w / "out.json")),
+            self.run_script("check_page.py", str(w / "page.html"), "--chrome", str(w / "no-browser")),
         ]
         return runs
 
@@ -195,7 +199,7 @@ class Switch(Workspace):
 
     def test_off_by_default_a_run_of_each_script_writes_no_file(self):
         runs = self.all_runs()
-        self.assertEqual(len(runs), 13)
+        self.assertEqual(len(runs), 14)
         self.assertFalse(self.journal_dir.exists())
 
     def test_on_sets_the_switch_and_says_what_the_journal_holds_and_where(self):
@@ -307,6 +311,8 @@ class Record(Workspace):
             ("code count zero", "report", {"codes": {"ANCHOR": 0}}),
             ("code count text", "report", {"codes": {"ANCHOR": "1"}}),
             ("codes as a list", "report", {"codes": ["ANCHOR"]}),
+            ("field outside the schema of the page check", "page_check", {"outcome": "clean", "seconds": 3}),
+            ("outcome outside its set", "page_check", {"outcome": "passed"}),
         ]
         for _, event, fields in dropped:
             self.record(event, **fields)
@@ -458,6 +464,31 @@ class ScriptEvents(Workspace):
             {"event": "voice", "backend": "command", "outcome": "failed", "paragraphs": 1},
         ])
 
+    def test_page_check_without_a_browser(self):
+        w = self.work
+        (w / "page.html").write_text("<title>A page</title>\n", encoding="utf-8")
+        self.assertEqual(self.run_script("check_page.py", str(w / "page.html"), "--chrome", str(w / "no-browser"))[0], 3)
+        self.assertEqual(self.events(), [{"event": "page_check", "outcome": "no_browser"}])
+
+    @unittest.skipIf(os.name != "posix", "the fake browser is started by its first line, as POSIX starts a script")
+    def test_page_check_with_a_browser(self):
+        """clean with the parts and the pictures counted; findings with their number."""
+        w = self.work
+        (w / "page.html").write_text("<title>A page</title>\n", encoding="utf-8")
+        browser = w / "fake-browser"
+        browser.write_text(f"#!/bin/sh\nexec {shlex.quote(sys.executable)} {shlex.quote(str(FIXTURES / 'fake_browser.py'))} \"$@\"\n", encoding="utf-8")
+        browser.chmod(0o755)
+        parts = [{"title": "Opening", "top": 0, "bottom": 300}, {"title": "How it broke", "top": 300, "bottom": 900}]
+        clean = {"errors": [], "figures": [], "parts": parts}
+        fake = {"FAKE_BROWSER_LOG": str(w / "runs.jsonl"), "FAKE_BROWSER_PICTURE": "1"}
+        args = [str(w / "page.html"), "--chrome", str(browser)]
+        self.assertEqual(self.run_script("check_page.py", *args, "--shots", str(w / "shots"), env=self.env(**fake, FAKE_BROWSER_PROBE=json.dumps(clean)))[0], 0)
+        self.assertEqual(self.run_script("check_page.py", *args, env=self.env(**fake, FAKE_BROWSER_PROBE=json.dumps({**clean, "errors": ["boom"]})))[0], 1)
+        self.assertEqual(self.events(), [
+            {"event": "page_check", "outcome": "clean", "parts": 2, "findings": 0, "shots": 4},
+            {"event": "page_check", "outcome": "findings", "parts": 2, "findings": 1, "shots": 0},
+        ])
+
     def test_a_run_that_stops_on_unusable_input_records_nothing(self):
         w = self.work
         runs = [
@@ -469,8 +500,9 @@ class ScriptEvents(Workspace):
             self.run_script("check_cold_read.py", "--report", str(w / "absent.md"), "--questions", str(w / "cold-questions.json"), "--answers", str(w / "cold-answers.json")),
             self.run_script("build_page.py", "--body", str(w / "absent.html"), "--cues", str(w / "cues.json"), "--report", str(FIXTURES / "report.md"), "--out", str(w / "page.html")),
             self.run_script("voice_cues.py", str(w / "story.txt"), str(w / "out.wav"), str(w / "out.json")),
+            self.run_script("check_page.py", str(w / "absent.html"), "--chrome", str(w / "no-browser")),
         ]
-        self.assertEqual([code for code, _, _ in runs], [2, 2, 0, 2, 0, 2, 2, 2])
+        self.assertEqual([code for code, _, _ in runs], [2, 2, 0, 2, 0, 2, 2, 2, 2])
         self.assertEqual(self.events(), [])
 
     def test_reader_add_turns_is_stored_and_bounded(self):
@@ -493,13 +525,13 @@ class SameOutput(Workspace):
         off = self.outputs()
         self.turn_on()
         on = self.outputs()
-        self.assertEqual(len(self.events()), 13)
+        self.assertEqual(len(self.events()), 14)
         (self.journal_dir / fb.JOURNAL_FILE).unlink()
         (self.journal_dir / fb.JOURNAL_FILE).mkdir()
         unwritable = self.outputs()
         self.assertEqual(on, off)
         self.assertEqual(unwritable, off)
-        self.assertEqual([code for code, _, _ in off], [1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0])
+        self.assertEqual([code for code, _, _ in off], [1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 3])
 
 
 class Summary(unittest.TestCase):
@@ -531,17 +563,21 @@ class Summary(unittest.TestCase):
         ("2026-11-03", "6.0.0", "voice", {"backend": "module", "outcome": "written", "sentences": 9, "paragraphs": 3, "seconds": 40}),
         ("2026-11-03", "6.0.0", "voice", {"backend": "command", "outcome": "written", "sentences": 4, "paragraphs": 2, "seconds": 15}),
         ("2026-11-03", "6.0.0", "voice", {"backend": "command", "outcome": "failed", "paragraphs": 1}),
+        ("2026-11-03", "6.0.0", "page_check", {"outcome": "clean", "parts": 4, "findings": 0, "shots": 8}),
+        ("2026-11-03", "6.0.0", "page_check", {"outcome": "findings", "parts": 4, "findings": 2, "shots": 8}),
+        ("2026-11-03", "6.0.0", "page_check", {"outcome": "no_browser"}),
     ]
     EXPECTED = [
         "handing-over-to-readers: usage summary",
-        "plugin versions 5.9.0, 6.0.0; 3 day(s) with use; 25 event(s)",
+        "plugin versions 5.9.0, 6.0.0; 3 day(s) with use; 28 event(s)",
         "reports checked: 3 (operator 2, client 1); 1 without an error; most frequent codes: ANCHOR 2, STORY-SENTENCE 2, AS-AGREED 1, DATE 1, EFFORT 1",
         "question cards: 1 passed, 1 returned for the form (WHY-ASKED 2, FACT 1), 1 returned with earlier answers, 1 sent again after a return",
         "answers recorded: 3",
         "reader lookups: 1 known, 1 unknown; intakes recorded: 2 (1 after 2 card(s), 1 without a count of cards; depth: mechanism 1, none 1)",
         "ledger: 2 lookup(s), 1 found a record; 1 closure(s), 1 default decision(s)",
         "cold reads: 1 with every question answered, 1 left a gap",
-        "pages: 1 built, 1 refused; voiced: 1 by module, 1 by command, 1 failed; 55 seconds of audio",
+        ("pages: 1 built, 1 refused; voiced: 1 by module, 1 by command, 1 failed; 55 seconds of audio; "
+         "checked in a browser: 1 clean, 1 with findings, 1 without a browser"),
         fb.HOLDS_LINE,
         "Paste this summary into the feedback form: https://example.org/owner/repo/issues/new?template=handing-over-feedback.yml",
     ]
@@ -559,6 +595,10 @@ class Summary(unittest.TestCase):
         lines = fb.summary_lines(fb.read_events(self.dir), self.MANIFEST)
         self.assertEqual(lines, self.EXPECTED)
         self.assertIsNone(DATE.search("\n".join(lines)))
+
+    def test_the_page_line_names_the_browser_checks_only_when_one_ran(self):
+        pages = {"page": [{"outcome": "built"}], "voice": []}
+        self.assertEqual("pages: 1 built, 0 refused; voiced: 0 by module, 0 by command; 0 seconds of audio", fb.page_line(pages))
 
     def test_without_a_repository_the_last_line_names_the_form_without_an_address(self):
         for manifest in ({"version": "6.0.0"}, {"repository": 7}, {"repository": "not an address"}, {}):

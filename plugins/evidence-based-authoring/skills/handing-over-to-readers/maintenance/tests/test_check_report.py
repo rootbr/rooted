@@ -138,6 +138,43 @@ class StoryForm(unittest.TestCase):
         self.assertNotIn("LENGTH", self.codes(STORY))
 
 
+class Anchors(unittest.TestCase):
+    """STORY anchors line 4 of a file of 30 lines; the fragment stands on the lines a test chooses."""
+
+    FRAGMENT_LINE = "    boolean retryOnTimeout = false;"
+    NOT_ON_THAT_LINE = "`src/Router.java:4`: fragment `retryOnTimeout = false` is not on that line; "
+
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.root = Path(self.tmp.name)
+        (self.root / "src").mkdir()
+
+    def tearDown(self):
+        self.tmp.cleanup()
+
+    def fragment_findings(self, *places):
+        lines = [self.FRAGMENT_LINE if number in places else f"    int field{number} = {number};" for number in range(1, 31)]
+        (self.root / "src" / "Router.java").write_text("\n".join(lines) + "\n", encoding="utf-8")
+        return [(f.level, f.message) for f in cr.check(STORY, "operator", self.root) if f.code == "ANCHOR-FRAGMENT"]
+
+    def test_the_error_names_where_the_fragment_stands(self):
+        cases = (
+            ((17,), "it stands on line 17"),
+            ((7,), "it stands on line 7"),  # three lines below the anchor, one past the warning's reach
+            ((17, 25), "it stands on lines 17 and 25"),
+            ((10, 12, 14, 16, 18), "it stands on lines 10, 12, 14, 16 and 18"),
+            ((10, 12, 14, 16, 18, 20), "it stands on lines 10, 12, 14, 16, 18 and 1 more"),
+            ((), "it stands nowhere in the file"),
+        )
+        for places, where in cases:
+            with self.subTest(places=places):
+                self.assertEqual([(cr.ERROR, self.NOT_ON_THAT_LINE + where)], self.fragment_findings(*places))
+
+    def test_a_fragment_within_two_lines_of_the_anchor_stays_a_warning(self):
+        expected = [(cr.WARNING, "`src/Router.java:4`: fragment found within two lines of the anchor, not on it")]
+        self.assertEqual(expected, self.fragment_findings(6, 20))
+
+
 class ClientProfile(unittest.TestCase):
     def codes(self, text, level=None):
         return [f.code for f in cr.check(text, "client") if level is None or f.level == level]

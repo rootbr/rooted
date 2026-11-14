@@ -1,4 +1,5 @@
 import contextlib
+import hashlib
 import importlib.util
 import io
 import json
@@ -28,10 +29,12 @@ def setUpModule():
     unittest.addModuleCleanup(environment.stop)
 
 
-# A synthesiser that speaks one word a second into a silent WAV of 10 frames a second.
+# A synthesiser that speaks one word a second into a silent WAV of 10 frames a second and logs each
+# call as one line of speak.log beside itself. The word "hush" is spoken without a word timing.
 FAKE_VOICE = '''
 import io, re, wave
 from dataclasses import dataclass
+from pathlib import Path
 
 @dataclass
 class Speech:
@@ -39,21 +42,27 @@ class Speech:
     words: list
 
 def speak(text, lang, words=False):
+    with open(Path(__file__).with_name("speak.log"), "a", encoding="utf-8") as log:
+        log.write(text + "\\\\n")
+    spoken = list(re.finditer(r"\\\\w+", text))
     found = [{"offset": m.start(), "length": len(m.group()), "start": float(i), "end": i + 0.8}
-             for i, m in enumerate(re.finditer(r"\\\\w+", text))]
+             for i, m in enumerate(spoken) if m.group().lower() != "hush"]
     buffer = io.BytesIO()
     with wave.open(buffer, "wb") as out:
         out.setnchannels(1); out.setsampwidth(2); out.setframerate(10)
-        out.writeframes(b"\\\\0\\\\0" * 10 * len(found))
+        out.writeframes(b"\\\\0\\\\0" * 10 * len(spoken))
     return Speech(buffer.getvalue(), found)
 '''.replace("\\\\", "\\")
 
 # A TTS command: writes a silent WAV of one second per word, at 10 frames a second, to the path after
-# --out. The word "fail" makes it exit 3, the word "nothing" makes it write no file, the word
-# "stereo" makes it write two channels.
+# --out, and logs each run as one line of tts.log beside itself. The word "fail" makes it exit 3,
+# the word "nothing" makes it write no file, the word "stereo" makes it write two channels.
 FAKE_COMMAND = '''
 import sys, wave
+from pathlib import Path
 text, out = sys.argv[sys.argv.index("--text") + 1], sys.argv[sys.argv.index("--out") + 1]
+with open(Path(__file__).with_name("tts.log"), "a", encoding="utf-8") as log:
+    log.write(text + "\\n")
 words = text.split()
 if "fail" in text:
     print("synthesis failed", file=sys.stderr)
@@ -69,10 +78,20 @@ with wave.open(out, "wb") as audio:
 
 def run(argv, environ=None):
     """main() with its stderr captured: (exit code, stderr text)."""
-    err = io.StringIO()
-    with contextlib.redirect_stderr(err), contextlib.redirect_stdout(io.StringIO()):
+    code, _, err = run_printing(argv, environ)
+    return code, err
+
+
+def run_printing(argv, environ=None):
+    """main() with both streams captured: (exit code, stdout text, stderr text)."""
+    out, err = io.StringIO(), io.StringIO()
+    with contextlib.redirect_stderr(err), contextlib.redirect_stdout(out):
         code = vc.main(argv, environ if environ is not None else {})
-    return code, err.getvalue()
+    return code, out.getvalue(), err.getvalue()
+
+
+def sha256(*parts):
+    return hashlib.sha256("\0".join(parts).encode("utf-8")).hexdigest()
 
 
 class Splitting(unittest.TestCase):
@@ -106,6 +125,7 @@ class Workspace(unittest.TestCase):
         (self.dir / "voice.py").write_text(FAKE_VOICE, encoding="utf-8")
         (self.dir / "tts.py").write_text(FAKE_COMMAND, encoding="utf-8")
         self.command = f"{shlex.quote(sys.executable)} {shlex.quote(str(self.dir / 'tts.py'))} --text {{text}} --out {{out}}"
+        self.cache = self.dir / "cache"
 
     def tearDown(self):
         self._tmp.cleanup()
@@ -116,6 +136,19 @@ class Workspace(unittest.TestCase):
 
     def cues(self):
         return json.loads((self.dir / "cues.json").read_text(encoding="utf-8"))
+
+    def audio(self):
+        """The format and the frames of OUT.wav."""
+        with wave.open(str(self.dir / "out.wav")) as audio:
+            return audio.getparams(), audio.readframes(audio.getnframes())
+
+    def calls(self, log):
+        """How many times a fake backend ran, by the lines of its log."""
+        path = self.dir / log
+        return len(path.read_text(encoding="utf-8").splitlines()) if path.exists() else 0
+
+    def entries(self):
+        return sorted(self.cache.iterdir())
 
 
 class ModuleBackend(Workspace):
@@ -132,6 +165,45 @@ class ModuleBackend(Workspace):
         code, err = run(["--voice-module", str(self.dir / "absent.py")] + self.story("One.\n"))
         self.assertEqual(2, code)
         self.assertIn("absent.py", err)
+
+    def test_a_second_run_with_a_cache_does_not_call_speak(self):
+        argv = ["--voice-module", str(self.dir / "voice.py"), "--cache", str(self.cache)] + self.story("One two. Three.\n\nFour five.\n")
+        code, _, err = run_printing(argv)
+        self.assertEqual(0, code, err)
+        first_cues, first_audio = self.cues(), self.audio()
+        code, out, err = run_printing(argv)
+        self.assertEqual(0, code, err)
+        self.assertEqual(2, self.calls("speak.log"))
+        self.assertEqual(first_cues, self.cues())
+        self.assertEqual(first_audio, self.audio())
+        self.assertIn("; 0 paragraphs synthesised, 2 from the cache", out)
+
+    def test_a_paragraph_entry_is_named_by_the_module_path_the_language_and_the_paragraph(self):
+        code, err = run(["--voice-module", str(self.dir / "voice.py"), "--lang", "en", "--cache", str(self.cache)] + self.story("One two.\n"))
+        self.assertEqual(0, code, err)
+        self.assertEqual([sha256(str((self.dir / "voice.py").resolve()), "en", "One two.")], [entry.name for entry in self.entries()])
+
+    def test_a_module_without_word_timings_is_exit_2_naming_the_first_sentence(self):
+        code, err = run(["--voice-module", str(self.dir / "voice.py")] + self.story("Hush hush. Hush.\n"))
+        self.assertEqual(2, code)
+        self.assertIn("sentence 1.1: the synthesiser module returned no word timing", err)
+        self.assertIn("--tts-command needs none", err)
+        self.assertFalse((self.dir / "out.wav").exists())
+        self.assertFalse((self.dir / "cues.json").exists())
+
+    def test_timings_that_miss_the_second_sentence_name_it_and_keep_nothing_in_the_cache(self):
+        code, err = run(["--voice-module", str(self.dir / "voice.py"), "--cache", str(self.cache)] + self.story("One two. Hush.\n"))
+        self.assertEqual(2, code)
+        self.assertIn("sentence 1.2:", err)
+        self.assertFalse((self.dir / "out.wav").exists())
+        self.assertEqual([], self.entries())
+
+    def test_a_later_paragraph_without_timings_leaves_no_wav_and_only_the_earlier_paragraph_cached(self):
+        code, err = run(["--voice-module", str(self.dir / "voice.py"), "--cache", str(self.cache)] + self.story("One two.\n\nThree. Hush.\n"))
+        self.assertEqual(2, code)
+        self.assertIn("sentence 2.2:", err)
+        self.assertFalse((self.dir / "out.wav").exists())
+        self.assertEqual([sha256(str((self.dir / "voice.py").resolve()), "ru", "One two.")], [entry.name for entry in self.entries()])
 
 
 class CommandBackend(Workspace):
@@ -186,6 +258,96 @@ class CommandBackend(Workspace):
         code, err = run(["--tts-command", "say {text}"] + self.story("One.\n"))
         self.assertEqual(2, code)
         self.assertIn("{out}", err)
+
+    def test_a_second_run_with_a_cache_runs_the_command_for_no_sentence_and_writes_the_same_cues_and_audio(self):
+        argv = ["--tts-command", self.command, "--cache", str(self.cache)] + self.story("One two. Three.\n\nFour five six.\n")
+        code, err = run(argv)
+        self.assertEqual(0, code, err)
+        first_cues, first_audio = self.cues(), self.audio()
+        code, err = run(argv)
+        self.assertEqual(0, code, err)
+        self.assertEqual(3, self.calls("tts.log"))
+        self.assertEqual(first_cues, self.cues())
+        self.assertEqual(first_audio, self.audio())
+
+    def test_after_one_sentence_is_edited_the_command_runs_once(self):
+        cached = ["--tts-command", self.command, "--gap", "0.2", "--pause", "0.5", "--cache", str(self.cache)]
+        code, err = run(cached + self.story("One two. Three.\n\nFour five six.\n"))
+        self.assertEqual(0, code, err)
+        code, err = run(cached + self.story("One two. Три четыре.\n\nFour five six.\n"))
+        self.assertEqual(0, code, err)
+        self.assertEqual(4, self.calls("tts.log"))
+        # 2 s, gap 0.2; 2 s, gap 0.2, pause 0.5; 3 s
+        self.assertEqual([(0.0, 2.0), (2.2, 4.2), (4.9, 7.9)], [(c["start"], c["end"]) for c in self.cues()])
+
+    def test_another_command_template_misses_the_cache(self):
+        story = self.story("One two. Three.\n")
+        self.assertEqual(0, run(["--tts-command", self.command, "--cache", str(self.cache)] + story)[0])
+        code, err = run(["--tts-command", self.command + " --voice other", "--cache", str(self.cache)] + story)
+        self.assertEqual(0, code, err)
+        self.assertEqual(4, self.calls("tts.log"))
+
+    def test_a_sentence_entry_is_named_by_the_command_line_as_given_and_the_sentence(self):
+        code, err = run(["--tts-command", self.command, "--cache", str(self.cache)] + self.story("One two.\n"))
+        self.assertEqual(0, code, err)
+        self.assertEqual([sha256(self.command, "One two.")], [entry.name for entry in self.entries()])
+
+
+class Cache(Workspace):
+    def test_without_a_cache_no_directory_is_created_and_the_closing_line_counts_nothing(self):
+        code, out, err = run_printing(["--tts-command", self.command] + self.story("One two. Three.\n"))
+        self.assertEqual(0, code, err)
+        self.assertEqual([], [path.name for path in self.dir.iterdir() if path.is_dir()])
+        self.assertNotIn("cache", out)
+
+    def test_the_closing_line_counts_the_sentences_synthesised_and_those_from_the_cache(self):
+        cached = ["--tts-command", self.command, "--cache", str(self.cache)]
+        code, out, err = run_printing(cached + self.story("One two. Three.\n\nFour five six.\n"))
+        self.assertEqual(0, code, err)
+        self.assertIn("; 3 sentences synthesised, 0 from the cache", out)
+        code, out, err = run_printing(cached + self.story("One two. Three four.\n\nFour five six.\n"))
+        self.assertEqual(0, code, err)
+        self.assertIn("; 1 sentences synthesised, 2 from the cache", out)
+
+    def assert_each_damage_is_a_miss(self, argv, log, damaged):
+        """Each damaged form written over the one entry makes the backend run once more and brings the whole entry back."""
+        (entry,) = self.entries()
+        whole = entry.read_bytes()
+        for runs, damage in enumerate(damaged, 2):
+            with self.subTest(damage=damage[:24]):
+                entry.write_bytes(damage)
+                code, err = run(argv)
+                self.assertEqual(0, code, err)
+                self.assertEqual(runs, self.calls(log))
+                self.assertEqual(whole, entry.read_bytes())
+
+    def test_a_damaged_sentence_entry_is_a_miss_and_is_replaced(self):
+        argv = ["--tts-command", self.command, "--cache", str(self.cache)] + self.story("One two.\n")
+        self.assertEqual(0, run(argv)[0])
+        whole = self.entries()[0].read_bytes()
+        self.assert_each_damage_is_a_miss(argv, "tts.log", (b"not audio", whole[:-4]))
+
+    def test_a_damaged_paragraph_entry_is_a_miss_and_is_replaced(self):
+        argv = ["--voice-module", str(self.dir / "voice.py"), "--cache", str(self.cache)] + self.story("One two.\n")
+        self.assertEqual(0, run(argv)[0])
+        whole = self.entries()[0].read_bytes()
+        speech = vc.cached_speech(whole)
+        damaged = (
+            b"{",
+            json.dumps({"wav": "not base64!", "words": speech.words}).encode(),
+            json.dumps({"wav": json.loads(whole)["wav"]}).encode(),
+            vc.speech_entry(vc.Speech(speech.wav[:-4], speech.words)),
+            vc.speech_entry(vc.Speech(speech.wav, [])),  # timings that miss the sentence
+        )
+        self.assert_each_damage_is_a_miss(argv, "speak.log", damaged)
+
+    def test_a_cache_that_cannot_be_created_is_exit_2_before_the_backend_runs(self):
+        story = self.story("One two.\n")
+        code, err = run(["--tts-command", self.command, "--cache", str(self.dir / "story.txt" / "cache")] + story)
+        self.assertEqual(2, code)
+        self.assertIn("cannot create or write the cache directory", err)
+        self.assertEqual(0, self.calls("tts.log"))
+        self.assertFalse((self.dir / "out.wav").exists())
 
 
 class ChoosingTheBackend(Workspace):

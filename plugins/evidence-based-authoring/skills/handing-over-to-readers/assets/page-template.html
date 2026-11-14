@@ -70,6 +70,16 @@ code { font-family: var(--font-mono); font-size: 0.86em; background: var(--tint)
 .linkbtn { font: inherit; font-size: 13.5px; font-weight: 600; color: var(--accent); background: none; border: 1px solid var(--line); border-radius: 8px; padding: 5px 11px; cursor: pointer; font-variant-numeric: tabular-nums; }
 .linkbtn:disabled { opacity: 0.5; cursor: default; }
 .no-audio { color: var(--muted); font-size: 14px; }
+/* past six parts the part buttons open from one control, as a list over the page under the player */
+.parts-toggle { display: inline-flex; align-items: center; gap: 8px; }
+.parts-toggle::after { content: ""; width: 6px; height: 6px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: translateY(-2px) rotate(45deg); }
+.parts-toggle[aria-expanded="true"]::after { transform: translateY(2px) rotate(-135deg); }
+.player.many-parts .chapters {
+  position: absolute; top: calc(100% + 6px); right: 0; z-index: 6; flex-direction: column; flex-wrap: nowrap; gap: 4px;
+  width: max-content; max-width: min(520px, 100%); max-height: 60vh; overflow-y: auto; background: var(--surface);
+  border: 1px solid var(--line); border-radius: 10px; padding: 8px; box-shadow: 0 10px 24px -12px var(--ink);
+}
+.player.many-parts .chapters .linkbtn { text-align: left; border-color: transparent; }
 
 /* the article */
 .sheet {
@@ -149,7 +159,7 @@ svg.fig { display: block; width: 100%; min-width: 620px; height: auto; font-fami
 .option.chosen { border-color: var(--accent); background: var(--accent-soft); }
 .option h4 { font-size: 16px; font-weight: 600; display: flex; flex-wrap: wrap; gap: 8px; align-items: baseline; }
 .option ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 5px; }
-.option .why { color: var(--muted); font-size: 14px; }
+.decision .why { color: var(--muted); font-size: 14px; }
 .tag { font-family: var(--font-text); font-size: 12px; font-weight: 600; color: var(--keep); background: var(--keep-soft); border-radius: 999px; padding: 2px 9px; }
 .choose { font: inherit; font-size: 13.5px; font-weight: 600; color: var(--accent); background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 5px 11px; cursor: pointer; align-self: flex-start; margin-top: auto; }
 .option.chosen .choose { background: var(--accent); color: var(--bg); border-color: var(--accent); }
@@ -162,7 +172,7 @@ textarea {
 .part-words { display: flex; flex-direction: column; gap: 6px; max-width: var(--col); }
 .part-words label { font-size: 14px; color: var(--muted); }
 .part-words textarea { min-height: 0; resize: none; overflow: hidden; }
-.answer { display: flex; flex-direction: column; gap: 8px; max-width: var(--col); }
+.answer-bar { display: flex; flex-direction: column; gap: 8px; max-width: var(--col); }
 .answer-row { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; }
 .primary { font: inherit; font-weight: 600; color: var(--bg); background: var(--accent); border: 0; border-radius: 8px; padding: 10px 18px; cursor: pointer; }
 .primary:disabled { opacity: 0.5; cursor: default; }
@@ -178,6 +188,17 @@ textarea {
 .look-item details[open] summary { margin-bottom: 8px; }
 .src .ln { color: var(--muted); user-select: none; }
 .src .hit { background: var(--accent-soft); display: inline-block; min-width: 100%; }
+
+/* a question after a part: its answer opens at the reader's click, his marks are his own, the parts he missed are listed */
+figure.quiz { gap: 10px; }
+details.q + details.q { border-top: 1px solid var(--line); padding-top: 10px; }
+details.q > summary { cursor: pointer; font-weight: 600; }
+details.q[open] > summary { margin-bottom: 8px; }
+details.q > .answer { max-width: var(--col); }
+.marks { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.marks button { font: inherit; font-size: 13.5px; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 5px 11px; cursor: pointer; }
+.marks button[aria-pressed="true"] { background: var(--accent-soft); border-color: var(--accent); font-weight: 600; }
+.return-to { display: flex; flex-wrap: wrap; gap: 8px 10px; align-items: center; max-width: var(--col); }
 
 /* the pause beside the spoken sentence: a round button in the article's left padding, its glyph drawn here */
 main, .sheet { position: relative; }
@@ -225,6 +246,7 @@ main, .sheet { position: relative; }
   "use strict";
   var DATA = JSON.parse(document.getElementById("page-data").textContent);
   var S = DATA.strings, ID = DATA.id, CUES = DATA.cues, PARTS = DATA.parts;
+  var OPEN_PARTS = 6;  /* the most parts whose buttons stand open in the player */
   var article = document.getElementById("article");
   var calm = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   function $(id) { return document.getElementById(id); }
@@ -251,7 +273,9 @@ main, .sheet { position: relative; }
     if (id === litId) { return; }
     litId = id;
     LIT.forEach(function (x) { x.e.classList.toggle("lit", id !== null && x.ids.indexOf(id) >= 0); });
-    $("now-part").textContent = cue && partOf[cue.paragraph] ? partOf[cue.paragraph].title : S.notPlaying;
+    var part = cue ? partOf[cue.paragraph] : null;
+    $("now-part").textContent = !part ? S.notPlaying
+      : part.paragraph > 1 ? S.part + " " + part.paragraph + "/" + PARTS.length + ": " + part.title : part.title;
     $("now-jump").disabled = !cue;
     placeSide();
   }
@@ -269,20 +293,51 @@ main, .sheet { position: relative; }
     var target = spoken();
     if (target) { scrollTo(target); }
   });
+  var partList = $("parts"), partsToggle = null;
+  /* The part list of a page with more than OPEN_PARTS parts opens and closes under its control. A list that closes with
+     the focus inside hands the focus to its control, so the keyboard does not land on a hidden button. */
+  function openParts() {
+    partList.hidden = false;
+    partsToggle.setAttribute("aria-expanded", "true");
+  }
+  function closeParts() {
+    if (!partsToggle) { return; }
+    var focusInside = partList.contains(document.activeElement);
+    partList.hidden = true;
+    partsToggle.setAttribute("aria-expanded", "false");
+    if (focusInside) { partsToggle.focus(); }
+  }
   PARTS.forEach(function (part) {
     var b = el("button", "linkbtn", mmss(part.start) + "  " + part.title);
     b.type = "button";
     b.addEventListener("click", function () {
+      closeParts();
       voice.currentTime = Math.max(0, part.start - 0.05);
       var started = voice.play();
       if (started && started.catch) { started.catch(function () { /* the reader starts it from the controls */ }); }
     });
-    $("parts").appendChild(b);
+    partList.appendChild(b);
   });
   if (DATA.voice) {
     voice.src = DATA.voice;
   } else {
-    voice.hidden = true; $("now").hidden = true; $("parts").hidden = true; $("no-audio").hidden = false;
+    voice.hidden = true; $("now").hidden = true; partList.hidden = true; $("no-audio").hidden = false;
+  }
+  /* Past OPEN_PARTS parts the buttons would fill the top of the page: they open from one control placed before them. */
+  if (DATA.voice && PARTS.length > OPEN_PARTS) {
+    partsToggle = el("button", "linkbtn parts-toggle", S.parts);
+    partsToggle.type = "button";
+    partsToggle.setAttribute("aria-controls", partList.id);
+    partList.insertAdjacentElement("beforebegin", partsToggle);
+    $("player").classList.add("many-parts");
+    closeParts();
+    partsToggle.addEventListener("click", function () { if (partList.hidden) { openParts(); } else { closeParts(); } });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && !e.defaultPrevented && !partList.hidden) { closeParts(); }
+    });
+    document.addEventListener("click", function (e) {
+      if (!partList.hidden && !partList.contains(e.target) && !partsToggle.contains(e.target)) { closeParts(); }
+    });
   }
 
   /* ---------- switches: a .seg[data-switch] group toggles the class "safe" on its target ---------- */
@@ -350,7 +405,7 @@ main, .sheet { position: relative; }
     });
     return fields;
   })();
-  var bar = el("div", "answer"), row = el("div", "answer-row");
+  var bar = el("div", "answer-bar"), row = el("div", "answer-row");
   var copyBtn = el("button", "primary", S.copy), shown = el("pre", "answer-text");
   var status = el("span", "muted answer-note", DECISIONS.length ? S.pick : REMARKS.length ? S.write : "");
   copyBtn.type = "button";
@@ -559,7 +614,7 @@ main, .sheet { position: relative; }
 
   /* ---------- a comment on a piece of the text: select it, or press C or the plus for the spoken sentence ---------- */
   var BLOCK = "p, li, td, th, h1, h2, h3, h4, figcaption";
-  var BLOCKS = all(article, BLOCK).filter(function (b) { return !b.closest(".part-words, .answer, .look, .notes"); });
+  var BLOCKS = all(article, BLOCK).filter(function (b) { return !b.closest(".part-words, .answer-bar, .look, .notes, .return-to"); });
   var RANGES = [], draft = null, canMark = !!(window.CSS && CSS.highlights && window.Highlight);
   function clip(text, n) { return text.length > n ? text.slice(0, n - 1).replace(/\s+\S*$/, "") + "…" : text; }
   function clean(text) { return text.replace(/\s+/g, " ").trim(); }
@@ -605,15 +660,16 @@ main, .sheet { position: relative; }
     return r;
   }
   function lastRect(range) { var rects = range.getClientRects(); return rects.length ? rects[rects.length - 1] : range.getBoundingClientRect(); }
-  /* The title of the part a node stands in: the part of the lit element holding it or preceding it; the opening before any. */
-  function partTitle(node) {
+  /* The part a node stands in: the part of the lit element holding it or preceding it; the first part before any. */
+  function partAt(node) {
     var e = node && (node.nodeType === 1 ? node : node.parentElement), found = e && e.closest ? e.closest("[data-lit]") : null;
     if (!found) {
       LIT.forEach(function (x) { if (e && (x.e.compareDocumentPosition(e) & Node.DOCUMENT_POSITION_FOLLOWING)) { found = x.e; } });
     }
     var first = found ? ids(found)[0] : null, part = first ? partOf[Number(first.split(".")[0])] : null;
-    return part ? part.title : (PARTS.length ? PARTS[0].title : "");
+    return part || PARTS[0] || null;
   }
+  function partTitle(node) { var part = partAt(node); return part ? part.title : ""; }
 
   var pop = el("div", "note-pop"), popQuote = el("q", "note-quote"), popArea = el("textarea"), popRow = el("div", "answer-row");
   var popSave = el("button", "primary", S.noteSave), popCancel = el("button", "linkbtn", S.noteCancel), popDelete = el("button", "linkbtn", S.noteDelete);
@@ -726,6 +782,8 @@ main, .sheet { position: relative; }
   function editNote(n) {
     var r = RANGES[answer.notes.indexOf(n)];
     if (!r || draft) { return; }
+    var closed = r.startContainer.parentElement.closest("details:not([open])");
+    if (closed) { closed.open = true; /* a piece inside a hidden answer is shown before its window opens under it */ }
     openPop({ note: n, anchor: n, quote: n.quote, part: n.part }, r);
   }
   /* A range the reader picked: a piece already commented opens its comment, any other opens a new one. */
@@ -762,14 +820,83 @@ main, .sheet { position: relative; }
     else if (e.target === popArea && e.key === "Enter" && !e.shiftKey && !e.isComposing) { e.preventDefault(); saveNote(); }
   });
 
+  /* ---------- a question after a part: the answer opens at the reader's click, he marks for himself whether he had it ---------- */
+  /* The marks are the reader's notes to himself: they stay in this browser, under a key of their own, and reach neither the
+     copied answer nor the stored one. ":" stands in no page id, so no page's answer is kept under this key. */
+  var MARKS_KEY = ID + ":marks", MARK_LABELS = { knew: S.knew, missed: S.missed }, MARKS = Object.keys(MARK_LABELS);
+  var QUESTIONS = all(article, "figure.quiz details.q").map(function (box) {
+    var question = box.querySelector("summary");
+    return { box: box, text: clean(question ? question.textContent : ""), part: partAt(box), buttons: null };
+  });
+  /* The marks by question text; storage that is blocked or holds anything else gives none, and the marks live for the visit. */
+  function readMarks() {
+    var marks = Object.create(null), stored;
+    try { stored = JSON.parse(localStorage.getItem(MARKS_KEY) || "null"); } catch (e) { stored = null; }
+    if (stored && typeof stored === "object") {
+      Object.keys(stored).forEach(function (q) { if (MARKS.indexOf(stored[q]) >= 0) { marks[q] = stored[q]; } });
+    }
+    return marks;
+  }
+  var marks = readMarks();
+  function writeMarks() { try { localStorage.setItem(MARKS_KEY, JSON.stringify(marks)); } catch (e) { /* blocked storage: the marks live for the visit */ } }
+  function paintMarks(q) {
+    if (!q.buttons) { return; }
+    MARKS.forEach(function (name) { q.buttons[name].setAttribute("aria-pressed", marks[q.text] === name ? "true" : "false"); });
+  }
+  /* Two toggles under an opened answer; choosing one clears the other, choosing the pressed one clears both. */
+  function addMarks(q) {
+    var row = el("div", "marks");
+    q.buttons = {};
+    MARKS.forEach(function (name) {
+      var b = el("button", "", MARK_LABELS[name]);
+      b.type = "button";
+      b.addEventListener("click", function () { setMark(q, marks[q.text] === name ? "" : name); });
+      q.buttons[name] = b;
+      row.appendChild(b);
+    });
+    q.box.appendChild(row);
+    paintMarks(q);
+  }
+  function setMark(q, name) {
+    if (name) { marks[q.text] = name; } else { delete marks[q.text]; }
+    writeMarks();
+    QUESTIONS.forEach(paintMarks);  /* questions of the same text share one mark */
+    drawReturns();
+  }
+  /* The parts that hold a question marked "missed", in page order, each a button to its heading; hidden while there is none. */
+  var returnBox = el("div", "return-to");
+  function drawReturns() {
+    var parts = [];
+    QUESTIONS.forEach(function (q) { if (marks[q.text] === "missed" && q.part && parts.indexOf(q.part) < 0) { parts.push(q.part); } });
+    parts.sort(function (a, b) { return a.paragraph - b.paragraph; });
+    returnBox.textContent = "";
+    returnBox.appendChild(el("p", "muted", S.returnTo));
+    parts.forEach(function (part) {
+      var go = el("button", "linkbtn", part.title), heading = article.querySelector('[data-lit~="' + part.paragraph + '.1"]');
+      go.type = "button";
+      go.addEventListener("click", function () { if (heading) { scrollTo(heading); } });
+      returnBox.appendChild(go);
+    });
+    returnBox.hidden = !parts.length;
+  }
+  if (QUESTIONS.length) {
+    notesBox.insertAdjacentElement("beforebegin", returnBox);
+    QUESTIONS.forEach(function (q) {
+      if (q.box.open) { addMarks(q); }
+      q.box.addEventListener("toggle", function () { if (q.box.open && !q.buttons) { addMarks(q); } });
+    });
+    drawReturns();
+  }
+
   /* ---------- the reader's hand on the story: a click reopens a comment or toggles the voice, Space and C act on the voice ---------- */
   var STORY = ".s, h1, h2, h3, h4, p, li, figcaption";
-  var NOT_STORY = "a, button, textarea, input, select, summary, label, audio, .decision, .look, .part-words, .answer, .notes, .side-tools";
+  var NOT_STORY = "a, button, textarea, input, select, summary, label, audio, .decision, .look, .part-words, .answer-bar, .notes, .return-to, .side-tools";
+  var OWN_WORK = ".quiz";  /* the reader's own work on a question: a click there reopens a comment and leaves the voice as it is */
   article.addEventListener("click", function (e) {
     if (draft || !e.target.closest || e.target.closest(NOT_STORY) || selecting()) { return; }
     var hit = noteAt(e.clientX, e.clientY);
     if (hit) { editNote(hit); return; }
-    if (DATA.voice && e.target.closest(STORY)) { toggleVoice(); }
+    if (DATA.voice && e.target.closest(STORY) && !e.target.closest(OWN_WORK)) { toggleVoice(); }
   });
   document.addEventListener("keydown", function (e) {
     if (!DATA.voice || draft || e.metaKey || e.ctrlKey || e.altKey || e.isComposing || e.repeat) { return; }

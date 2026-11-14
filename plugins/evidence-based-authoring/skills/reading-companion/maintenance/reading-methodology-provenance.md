@@ -13,6 +13,9 @@ One line per source reference behind a claim of `references/reading-methodology.
 - **§4 Only two techniques of ten have high utility** · Dunlosky et al. 2013 (PSPI) — retrieval practice and distributed practice high; highlighting and rereading at the bottom.
 - **§4.1 Read by chapters with retrieval** · Roediger & Karpicke 2006 — over 2 days rereading lost ~56% of reproducible material, testing ~13%.
 - **§4.2 Feynman check** · Dunlosky et al. 2013 — self-explanation rated moderate.
+- **§4.5 Questions that ask to apply** · Agarwal 2019, *Retrieval Practice & Bloom's Taxonomy: Do Students Need Fact Knowledge Before Higher Order Learning?*, doi:10.1037/edu0000282 (abstract) — higher order and mixed quizzes improved higher order test performance, fact quizzes did not; middle school and college students.
+- **§4.5 A prediction** · Brod 2021, *Predicting as a learning strategy*, doi:10.3758/s13423-021-01904-1 (full text through a summarising fetch) — a response given with some confidence and followed by immediate feedback; the benefit runs through surprise at an incorrect prediction; the review covers simple declarative material and reports no pooled effect.
+- **§4.5 A comparison** · Alfieri, Nokes-Malach & Schunn 2013, *Learning Through Case Comparisons: A Meta-Analytic Review*, doi:10.1080/00461520.2013.775712 (abstract) — d = 0.50, 95 % CI [0.44, 0.56], 57 experiments, 336 tests; larger when learners are asked for similarities, given the principle after the comparison and tested at once. The four forms themselves are the session's wording after one explanation page whose 22 questions were of these kinds; no reader had answered them when the claim was written.
 - **§4 Desirable difficulty** · Bjork & Bjork — retrieval, interleaving and generation improve long-term retention at the price of visible slowing.
 - **§5.1 Distribute the reviews** · Cepeda et al. 2006 — distributed reviews beat massed ones at equal cost.
 - **§5.2 Let at least one sleep pass** · Diekelmann & Born 2010 — consolidation in sleep, resistance to interference.
@@ -31,9 +34,9 @@ One line per source reference behind a claim of `references/reading-methodology.
 - **§13.3 One graduated, contingent question** · Wood, Bruner & Ross 1976 — the contingent-shift principle.
 - **§13.3 One graduated, contingent question** · Chi et al. 2001 — tutors suppressed to prompts still produced learning.
 - **§13.3 Default to under-helping** · van de Pol et al. 2015 — frequent help erases the benefit.
-- **§13.4 Feedback elaborates** · Van der Kleij et al. 2015 — knowledge-of-results d ≈ 0.05; elaborated d ≈ 0.49.
+- **§13.4 Feedback elaborates** · Van der Kleij, Feskens & Eggen 2015, doi:10.3102/0034654314564881 (abstract) — feedback in computer-based learning environments, 70 effect sizes from 40 studies: knowledge-of-results 0.05, knowledge of the correct response 0.32, elaborated 0.49.
 - **§13.5 Never a quiz** · Herbel-Eisenmann & Breyfogle 2005; Mehan 1979 — funneling / the IRE triad, qualitative.
-- **§13.5 Never a quiz** · Kluger & DeNisi 1996, 607 effect sizes — feedback drawing attention to the self decreased performance in 38% of cases; the same source backs the feedback-locus mechanism of §13 Honest limits.
+- **§13.5 Never a quiz** · Kluger & DeNisi 1996, doi:10.1037/0033-2909.119.2.254 (abstract, first page of the scanned article) — 607 effect sizes, 23,663 observations: over 1/3 of the feedback interventions decreased performance, and "effectiveness decreases as attention moves up the hierarchy closer to the self and away from the task"; the share belongs to feedback interventions as a whole, the attention to the self is the paper's moderator; the same source backs the feedback-locus mechanism of §13 Honest limits.
 - **§13.5 Never a quiz** · Roll et al. 2011 — graded hint ladders get gamed for answers.
 - **§13.6a Know when to simply explain** · Sweller & Cooper 1985; Atkinson et al. 2003 — the worked-example effect, d ≈ 0.55.
 - **§13.6b Know when to simply explain** · Sinha & Kapur 2021; Schwartz & Bransford 1998 — "a time for telling" / productive failure, observed g ≈ 0.36.
@@ -45,7 +48,7 @@ One line per source reference behind a claim of `references/reading-methodology.
 
 The bibliography as the methodology carried it, by theme.
 
-- **Memory & techniques (§§2,4):** Dunlosky et al. 2013 (PSPI); Roediger & Karpicke 2006; Karpicke & Blunt 2011; Cepeda et al. 2006, 2008; Karpicke & Roediger 2007; Bjork & Bjork; Koriat & Bjork; Murre & Dros 2015; Diekelmann & Born 2010; Pan & Rickard 2018; van Gog & Sweller / Karpicke & Aue 2015; Sparrow et al. 2011.
+- **Memory & techniques (§§2,4):** Dunlosky et al. 2013 (PSPI); Roediger & Karpicke 2006; Karpicke & Blunt 2011; Cepeda et al. 2006, 2008; Karpicke & Roediger 2007; Bjork & Bjork; Koriat & Bjork; Murre & Dros 2015; Diekelmann & Born 2010; Pan & Rickard 2018; van Gog & Sweller / Karpicke & Aue 2015; Sparrow et al. 2011; Agarwal 2019; Brod 2021; Alfieri, Nokes-Malach & Schunn 2013.
 - **Transfer (§8):** Barnett & Ceci 2002; Detterman 1993; Godden & Baddeley 1975; Gollwitzer 1999, Gollwitzer & Sheeran 2006; Pfeffer & Sutton 2000; Pan & Carpenter 2023.
 - **Selection & modes (§3):** Adler & Van Doren, *How to Read a Book*; Rayner et al. 2016; Springer 2024 (multiple-text vs rereading).
 - **Notes & PKM (§§6,7):** Slamecka & Graf 1978; Bangert-Drowns et al. 2004; Ahrens 2017; Luhmann; Forte (Progressive Summarization); "collector's fallacy". AI-writing & offloading: OpenAI Academy (Writing); Zapier (voice tuning); EDUCAUSE / MDPI / MIT EEG (Kosmyna et al. 2025, preprint); Barcaui 2025 (RCT, preliminary).

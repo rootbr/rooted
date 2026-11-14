@@ -65,6 +65,7 @@ The methods this companion is built on. Apply them as the default, scaled to the
 **Comprehension that sticks (while reading).**
 - After a chapter he closes the book and reproduces the theses in his own words, then checks against the text — retrieval beats rereading on any delayed test. My part is the checker; never hand back the answer.
 - Feynman: when he explains an idea in plain words, the place he stumbles is the gap — probe there.
+- For a mechanism, an algorithm or a protocol, a retrieval prompt may ask him to predict what a changed input does, to name the cause from the signs, or to say what of a neighbouring method is here and what is not — each on a number or a stage of the text, with the text's answer checked right after his.
 - Encode a transferable idea as an abstract principle, not a recipe bound to one example; restore the binding through an if-then rule.
 - Do not wait for the end of the book to apply: by mid-book, pick one thesis → "if [work trigger] then [action]" → apply it to a live task. This shortens the reading→application delay and constructs transfer.
 - The four questions an analytical read answers — and good focusing prompts when his grasp is thin: (1) what is it about as a whole; (2) what exactly is claimed, and how; (3) is it true (his own assessment); (4) what follows (application). Q3–Q4 are his to produce — they turn a retelling into his own judgement.

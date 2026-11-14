@@ -1,6 +1,6 @@
 # The reader record and the intake
 
-A long explanation fits its reader only when the author holds valid information about what that reader knows. With such information experts' written explanations taught about half again as much (1.52 against 0.99 on a scale of 0 to 3) and drew half the follow-up questions; with random information they gained no more than with none (0.80). So the skill looks the reader up, asks when the record is empty, and never guesses.
+A long explanation fits its reader only when the author holds valid information about what that reader knows. With such information experts' written explanations taught about half again as much (1.52 against 0.99 on a scale of 0 to 3) and drew half the follow-up questions; with random information they gained no more than with none (0.80). So before a deliverable that takes the page form the skill looks the reader up, asks when the record is empty, and never guesses.
 
 ## The reader record
 
@@ -14,7 +14,7 @@ A long explanation fits its reader only when the author holds valid information 
 
 ## When the reader is unknown
 
-- **The detector is the record.** Before a deliverable that takes the page form, that is, a report with a mechanism a figure shows or a decision among options (`references/media.md`), run `records.py reader find --topic "<the topic in the reader's words>"`. What the session's instructions say about its reader counts before the file. A record answers; no record (exit 1) means the reader is unknown for this topic, and the intake dialogue follows.
+- **The detector is the record.** Before a deliverable that takes the page form, that is, a report with a mechanism a figure shows or a decision among options, or an explanation for several readers (`references/media.md`), run `records.py reader find --topic "<the topic in the reader's words>"`. What the session's instructions say about its reader counts before the file. A record answers; no record (exit 1) means the reader is unknown for this topic, and the intake dialogue follows.
 - **No inference from the wording, no self-rating.** An agent that inferred expertise from one request was right about one time in five, and a pasted jargon-heavy request fakes expertise; a person's own rating of his ability tracks his real ability at about r = .29. Tutors who judged without asking detected none of their students' false beliefs.
 - **A deliverable that goes out as text alone, and a sub-agent's hand-back, take no intake.** There the text is written for a professional reader and explains in full, in parts he can skip: withholding help from a novice cost more (d = 0.505) than redundant help cost an expert (d = −0.428), and an answer pitched below the reader's level went with lower satisfaction on complex tasks.
 

@@ -83,6 +83,7 @@ SCHEMA: dict[str, dict[str, object]] = {
              "look": INTEGER, "violations": INTEGER},
     "voice": {"backend": ("module", "command"), "outcome": ("written", "failed"), "sentences": INTEGER,
               "paragraphs": INTEGER, "seconds": INTEGER},
+    "page_check": {"outcome": ("clean", "findings", "no_browser"), "parts": INTEGER, "findings": INTEGER, "shots": INTEGER},
 }
 HOLDS_LINE = "The journal holds counts and rule codes only: no text of a report or a question, no path and no name."
 
@@ -322,17 +323,20 @@ def cold_read_line(by: dict[str, list[dict]]) -> str | None:
 
 
 def page_line(by: dict[str, list[dict]]) -> str | None:
-    pages, voices = by.get("page", []), by.get("voice", [])
-    if not pages and not voices:
+    pages, voices, checks = by.get("page", []), by.get("voice", []), by.get("page_check", [])
+    if not pages and not voices and not checks:
         return None
     built = Counter(p.get("outcome") for p in pages)
     written = [v for v in voices if v.get("outcome") == "written"]
     backends = Counter(v.get("backend") for v in written)
     failed = len(voices) - len(written)
     seconds = sum(v.get("seconds", 0) for v in written)
+    checked = Counter(c.get("outcome") for c in checks)
     return (f"pages: {built['built']} built, {built['refused']} refused; "
             f"voiced: {backends['module']} by module, {backends['command']} by command"
-            + (f", {failed} failed" if failed else "") + f"; {seconds} seconds of audio")
+            + (f", {failed} failed" if failed else "") + f"; {seconds} seconds of audio"
+            + (f"; checked in a browser: {checked['clean']} clean, {checked['findings']} with findings, "
+               f"{checked['no_browser']} without a browser" if checks else ""))
 
 
 SUMMARY_LINES = (report_line, card_line, answer_line, reader_line, ledger_line, cold_read_line, page_line)

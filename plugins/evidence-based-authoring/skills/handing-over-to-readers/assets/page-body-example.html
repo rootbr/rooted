@@ -1,39 +1,52 @@
 <h1>Fresh thumbnails for re-uploaded pictures</h1>
-<p data-say="1.1 1.2 1.3 1.4 1.5"></p>
+<p data-say>The task was to stop a re-uploaded picture from showing its old thumbnail.
+  That is fixed: a re-uploaded picture now gets a fresh thumbnail, and the tests pass.
+  One thing is left.
+  Thumbnails cached before the change stay wrong until they expire, for up to a day.
+  You decide whether we purge the cache now or let them expire.</p>
 
-<h2 id="h-broke" data-lit="2.1">How it broke</h2>
-<p data-say="2.2 2.3 2.4 2.5 2.6"></p>
+<h2 id="h-broke" data-part="How it broke.">How it broke</h2>
+<p data-say>A thumbnail is stored in the cache under a key.
+  [@key-before] The key was the picture's number alone.
+  [@same-number] A re-uploaded picture keeps its number.
+  [@old-file] So the cache answered with the thumbnail of the old file.
+  [@key-now] Now the key also carries a version, and the version grows with every upload.</p>
 <figure aria-labelledby="h-broke">
   <div class="figscroll">
     <table>
       <thead>
-        <tr><th>picture 42, uploaded twice</th><th data-lit="2.3">key before</th><th data-lit="2.6">key now</th></tr>
+        <tr><th>picture 42, uploaded twice</th><th data-lit="@key-before">key before</th><th data-lit="@key-now">key now</th></tr>
       </thead>
       <tbody>
-        <tr><td data-lit="2.4">upload 1</td><td data-lit="2.3"><code>thumb:42</code></td><td data-lit="2.6"><code>thumb:42:v1</code></td></tr>
-        <tr><td data-lit="2.4">upload 2</td><td class="bad" data-lit="2.5"><code>thumb:42</code>, the old thumbnail</td><td class="good" data-lit="2.6"><code>thumb:42:v2</code>, a fresh thumbnail</td></tr>
+        <tr><td data-lit="@same-number">upload 1</td><td data-lit="@key-before"><code>thumb:42</code></td><td data-lit="@key-now"><code>thumb:42:v1</code></td></tr>
+        <tr><td data-lit="@same-number">upload 2</td><td class="bad" data-lit="@old-file"><code>thumb:42</code>, the old thumbnail</td><td class="good" data-lit="@key-now"><code>thumb:42:v2</code>, a fresh thumbnail</td></tr>
       </tbody>
     </table>
   </div>
   <figcaption>The same picture before and after the change: the version in the key grows with every upload.</figcaption>
 </figure>
 
-<h2 data-lit="3.1">What is left</h2>
-<p data-say="3.2 3.3 3.4 3.5 3.6"></p>
+<h2 data-part="What is left.">What is left</h2>
+<p data-say>Thumbnails cached before the change still sit under the old keys.
+  They stay wrong until they expire.
+  That takes up to a day.
+  About three pictures in a hundred were re-uploaded during the last day.
+  The load test was not run, so I do not know what the new key costs at peak load.</p>
 
-<h2 data-lit="4.1">What to decide</h2>
+<h2 data-part="What to decide.">What to decide</h2>
 <section class="decision" data-decision="old-thumbnails" data-title="Old thumbnails in the cache">
-  <p data-say="4.2"></p>
+  <p data-say>There are two ways.</p>
   <div class="options">
-    <div class="option" data-option="purge the cache at night" data-mine="1" data-lit="4.3">
+    <div class="option" data-option="purge the cache at night" data-mine="1"
+         data-voice="The first is to purge the cache now: the wrong thumbnails are gone at once, but every gallery page is slow for about twenty minutes.">
       <h4>Purge the cache now <span class="tag">my choice</span></h4>
       <ul>
         <li class="plus">the wrong thumbnails are gone at once</li>
         <li class="minus">every gallery page is slow for about twenty minutes</li>
       </ul>
-      <p class="why" data-say="4.5"></p>
     </div>
-    <div class="option" data-option="let the old entries expire" data-lit="4.4">
+    <div class="option" data-option="let the old entries expire"
+         data-voice="The second is to let the old entries expire: nothing slows down, but re-uploaded pictures show an old thumbnail for up to a day.">
       <h4>Let the old entries expire</h4>
       <ul>
         <li class="plus">nothing slows down</li>
@@ -41,5 +54,6 @@
       </ul>
     </div>
   </div>
-  <p class="ask" data-say="4.6"></p>
+  <p class="why" data-say>I would purge at night, when twenty slow minutes cost least.</p>
+  <p class="ask" data-say>Purge now or let them expire?</p>
 </section>

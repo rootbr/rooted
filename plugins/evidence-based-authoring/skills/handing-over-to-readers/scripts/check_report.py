@@ -7,7 +7,8 @@ Profile `operator` (default): a report to the operator of the session, who opens
 commands himself. The report is a story in plain words closed by the list "Where to look".
 Errors: no "Where to look" heading; a code span or an exit code in the story above that heading;
 a `path:line` anchor whose file or line does not exist under --root, or whose fragment (the next
-code span on the same line) is not on that line; a run, workflow or agent identifier in the text.
+code span on the same line) is not on that line, the message naming the lines of the file where
+it stands or that it stands nowhere; a run, workflow or agent identifier in the text.
 Warnings: an opening paragraph of fewer than three sentences; a story sentence of more than twenty
 words; a story sentence with three or more numbers; a self-report in the story while no exit code
 stands under "Where to look"; more than five lines under "Where to look"; more than 300 words of
@@ -146,6 +147,7 @@ QUESTION_TAIL = re.compile(r"[\s*)»\"'\]_]+$")
 
 REPORT_WORDS = 300  # prose outside fences and tables; a house limit
 LOOK_LINES = 5  # lines under "Where to look"; a house limit
+FRAGMENT_LINES_LISTED = 5  # lines a misplaced anchor fragment's message names; a house limit
 STORY_OPENING_SENTENCES = 3  # the task, how it ended, the problem with its cause and what is needed take at least three
 STORY_SENTENCE_WORDS = 20  # headroom over 16, the longest sentence of a narration read as clear; the written story of the same case, read as tangled, reaches 40
 
@@ -312,8 +314,22 @@ def check_anchors(lines: list[str], root: Path) -> list[Finding]:
             if any(needle in w for w in window):
                 findings.append(Finding(i + 1, WARNING, "ANCHOR-FRAGMENT", f"`{span}`: fragment found within two lines of the anchor, not on it"))
             else:
-                findings.append(Finding(i + 1, ERROR, "ANCHOR-FRAGMENT", f"`{span}`: fragment `{needle}` is not on that line"))
+                elsewhere = [number for number, text in enumerate(target_lines, 1) if needle in text]
+                findings.append(Finding(i + 1, ERROR, "ANCHOR-FRAGMENT", f"`{span}`: fragment `{needle}` is not on that line; {fragment_place(elsewhere)}"))
     return findings
+
+
+def fragment_place(numbers: list[int]) -> str:
+    """Where in the anchored file a fragment stands, by its line numbers, at most FRAGMENT_LINES_LISTED of them."""
+    if not numbers:
+        return "it stands nowhere in the file"
+    if len(numbers) == 1:
+        return f"it stands on line {numbers[0]}"
+    listed = [str(number) for number in numbers[:FRAGMENT_LINES_LISTED]]
+    rest = len(numbers) - len(listed)
+    if rest:
+        return f"it stands on lines {', '.join(listed)} and {rest} more"
+    return f"it stands on lines {', '.join(listed[:-1])} and {listed[-1]}"
 
 
 def check_questions(items: list[Item]) -> list[Finding]:
