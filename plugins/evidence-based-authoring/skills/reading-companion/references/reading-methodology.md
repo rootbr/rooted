@@ -13,7 +13,7 @@ The goal of reading is not to get through the text but to extract and apply. The
 1. Reading is training in retrieval and application, not the acquisition of information. A durable memory trace is left by **retrieval** (retrieval practice), **distribution over time** (spacing), and **self-generation** of the formulation (the *generation effect*). The popular passive techniques — rereading, highlighting, summarization, speed reading — are low-effectiveness and feed the illusion of knowledge.
 2. A technique is chosen by its sustainability, not its laboratory efficacy. The long-term outcome is set not by the best protocol but by the mediocre one a person actually adheres to over years (*efficacy versus effectiveness*, from evidence-based medicine).
 
-**The AI boundary that follows from this (the binding frame).** An assistant must amplify the reader's own act of retrieval and formulation, never substitute for it. It *amplifies* when it stays a source of difficulty and feedback — posing questions, checking a reconstruction, pointing out gaps, removing a language barrier. It *supplants* when it produces the finished product in the reader's place — a ready summary instead of their recall, the answer instead of their search, their notes rewritten by the machine. The freed effort *is* the mechanism of retention; offloading it trades "less effort now" for "worse retention and worse independent capability later" (§7 below). Delegation is admissible as a pointer (what to read, where to look) and as feedback on the reader's own reconstruction; it becomes substitution the moment it replaces the act of reading and generation over material that must enter the reader's operative model.
+**The AI boundary that follows from this (the binding frame).** An assistant must amplify the reader's own act of retrieval and formulation, never substitute for it. It *amplifies* when it stays a source of difficulty and feedback — posing retrieval and checking questions, checking a reconstruction, pointing out gaps, removing a language barrier. It *supplants* when it produces the finished product in the reader's place — a ready summary instead of their recall, the answer instead of their search, a note worded by the machine before the idea stands there in the reader's own words (§6). The freed effort *is* the mechanism of retention; offloading it trades "less effort now" for "worse retention and worse independent capability later" (§7 below). Delegation is admissible as a pointer (what to read, where to look) and as feedback on the reader's own reconstruction; it becomes substitution the moment it replaces the act of reading and generation over material that must enter the reader's operative model.
 
 ---
 
@@ -27,7 +27,7 @@ The chain "read → remembered → applying" is not one thing; it decomposes int
 | **Fluency illusion** | The ease of perceiving a familiar text feels like knowledge; the judgment is made with the text in view, the real test (application) without it (**high**) | The feeling "I know this" | An external indicator: reproduced / applied with no prompt |
 | **Know → apply** | Transfer is context-bound; at the moment of the task, knowledge is not retrieved on its own (**high** for the gap; **contested** for far transfer) | Good memorization of theses | The rule "if situation X — then action Y", bound to a work trigger |
 
-- **Forgetting is interference, not time.** Reading several similar sources on one topic in a row amplifies interference; distribution over time and content reduces it. After sleep (~24 h) retention gets a bonus.
+- **Forgetting is interference, not time.** What is read next disturbs what has not yet consolidated, whether or not the two are alike, and material that shares its cues adds the interference known from list learning. Several similar sources read in a row, each for its own content, carry both; distribution over time and content reduces it. Sources read together to be compared are the syntopical mode, and §3 says what separates the two. After sleep (~24 h) retention gets a bonus.
 - **The reliable signal of knowledge** is not "the text is familiar" but "reproduced / applied with the book closed" (fluency illusion / foresight bias).
 - **A long-term effect is attainable without holding the fact in the head.** For much material the goal is to change a disposition or build a reliable pointer "I know where to look" (transactive / external memory) — **moderate**.
 
@@ -50,6 +50,8 @@ Adler's four levels: elementary → **inspectional** (a fast survey of structure
 | Large volume, goal "be informed" | **Skim / inspectional** | A conscious trade of understanding for coverage |
 | A practical skill (code, a tool) | **Foundations only** from the book; the rest is practice, a mentor, reading code | The book lacks feedback |
 
+**A syntopical set is read for the comparison; a row of similar books is not.** What the reader reads for divides the two. Books read each for its own content are spaced as §2 prescribes. Books read to compare their authors go together: the reader puts the same questions to every author and sets the authors' terms and answers side by side. Comparing cases beat studying them one by one (§4, item 5), and students who wrote an argument of their own from several sources did better on inference and analogy tasks than those who wrote a summary, a narrative or an explanation from them — **low / extrapolation** from short cases and one study to whole books.
+
 **Adler's four analytical questions** (questions 3–4 are the reader's own contribution — they turn a retelling into an original note):
 1. What is the chapter about as a whole? (the leading theme)
 2. What exactly is asserted, and how? (the main ideas, the arguments)
@@ -57,7 +59,7 @@ Adler's four levels: elementary → **inspectional** (a fast survey of structure
 4. What follows from it? (the significance, the application)
 
 **Two before-reading actions:**
-- **Formulate the goal and 3–5 questions** the book must answer for the current task. Prequestioning improves later assimilation and sets the criterion for measuring the effect — **high**. The goal and questions are the *reader's* to produce; authoring them is substitution.
+- **Formulate the goal and 3–5 questions** the book must answer for the current task. The questions set the criterion for measuring the effect. Prequestions — questions on material not yet studied, attempted first, the answers studied afterwards — often improve later learning, by an amount that varies with the procedure and the measure — **moderate**; that goal questions the reader writes for a task work the same way is **extrapolation**. The goal and questions are the *reader's* to produce; authoring them is substitution.
 - **Raise the starting stock** in an unfamiliar field — an overview, a glossary, an introductory text — to launch the Matthew loop (§10) and avoid an "undesirable difficulty". Without a foundation, deep reading is not assimilated, and self-questioning on unsupported material is counterproductive.
 
 **Speed reading is refuted** (an established fact). The speed–accuracy trade-off is physiologically irremovable; RSVP/Spritz worsen comprehension above ~250 wpm. The only loss-free way to read faster is growth of language skill and vocabulary — **high**.
@@ -108,13 +110,13 @@ Permanent-note rules: one idea per note (atomicity); write as if for another per
 | 1. Inspection | Survey the chapter's structure | None — this is the reader's reading |
 | 2. Analytical reading | Read against Adler's 4 questions; mark agreement / dispute | None |
 | 3. Fleeting notes | Capture sparks of thought on the fly | None |
-| 4. Close the book and recall | Explain the main idea from memory (Feynman) | **Examiner** — poses checking questions, does not answer for the reader |
+| 4. Close the book and recall | Explain the main idea from memory (Feynman) | **Examiner** — poses retrieval questions and leaves the answering to the reader; what follows the reader's answer is §13 |
 | 5. Literature note | Write the ideas taken, in own words, one idea, with a reference | Minimal — may flag where a phrasing sounds like someone else's |
 | 6. Permanent note | Rewrite as atomic and self-contained; add own example and assessment (Q3–4) | **Prose editor** — turns the draft into smooth text in the reader's style |
 | 7. Atomicity & links | Check "is it one idea"; link to existing notes | May *suggest* link candidates — the reader decides |
 | 8. Attribution | State the source and the AI assistance | Add a standard source + AI-disclosure line |
 
-**The critical invariant:** the "someone else's → your own" transformation completes at **step 5** (source closed, own words). The AI joins only from **step 6** and works with the reader's literature note, **never with the source text**.
+**The critical invariant:** the "someone else's → your own" transformation completes at **step 5** (source closed, own words), and until it completes the AI puts no words into the note: at step 4 it asks, at step 5 it flags. From **step 6** it edits the prose of the reader's note within the bounds of §7, and it edits from that note alone, **never from the source text**. The table and the invariant govern the note. Outside the note the source stays open to the AI: it reads the source to remove a language barrier and to check the reader's reconstruction or finished note against it (§1, §13), and what the check finds goes back to the reader as the lines to reread.
 
 **Auxiliary methods, chosen by task:** *Cornell* (notes / questions / own-words summary — a one-page structure with built-in self-testing); *Progressive Summarization* (layered compression, when findability across many sources matters more than deep comprehension); *Zettelkasten* as the frame for a growing network. Adler at the entrance (depth), Feynman/recall at comprehension.
 
@@ -122,16 +124,16 @@ Permanent-note rules: one idea per note (atomicity); write as if for another per
 
 ## 7. Writing notes with AI — the division of labour
 
-One rule governs everything: the thinking is the reader's, the prose is the AI's.
+One rule governs the division: the thinking is the reader's; the prose is the AI's to edit once the reader's own words carry the idea (step 6).
 
 - **The reader does:** read, understand, recall from memory, extract the ideas, set the structure, add own examples and judgement.
 - **The AI does:** turn the reader's notes into smooth prose; fix clarity, rhythm, grammar.
 
-Why the line falls exactly here: when the thinking itself is handed off, both learning and quality fall and the ability to work without AI declines (cognitive offloading; the signals are one EEG study and one RCT, both preliminary). The protective test, before bringing in the AI at step 6: "Can I explain this idea and my assessment with no text in front of me at all?" If not — go back to recall (steps 2–4); the AI will not help here.
+Why the line falls exactly here: when the thinking itself is handed off, both learning and quality fall and the ability to work without AI declines (cognitive offloading; the signals are one EEG study and one RCT, both preliminary). The protective test, before bringing in the AI as editor at step 6: "Can I explain this idea and my assessment with no text in front of me at all?" If not — go back to recall (steps 2–4): an edit cannot supply the understanding, and at recall the AI's part is the examiner's.
 
 **The safe AI roles** (with ready prompts):
 
-- **Examiner** (step 4, before writing): *"I will explain an idea in my own words: '[explanation]'. Ask me 3 questions that check whether I understood it and where the gaps are. Do not explain for me — only ask."*
+- **Examiner** (step 4, before writing): *"I will explain an idea in my own words: '[explanation]'. Ask me 3 questions that check whether I understood it and where the gaps are. Do not answer them for me."* The questions are retrieval prompts (§4): open, answered by reconstructing. What the AI does with the reader's answers is §13: the check against the source, one focusing question at a gap, the explanation where its item 6 allows.
 - **Prose editor** (step 6, the safest mode): *"Here is my draft: '[draft]'. Improve clarity and rhythm; keep my structure, meaning, and examples. Mark separately any phrasing that sounds like someone else's, so I can rewrite it myself."*
 - **Atomicity checker** (step 7): *"Here is my note: '[text]'. Does it contain exactly one idea? If more, name the atomic ideas to split it into. Do not rewrite the content."*
 - **Link-candidate finder** (step 7): *"New note: '[text]'. Titles of existing notes: [list]. Which 3 is it connected to, and why? Leave the decision to me."*
@@ -179,7 +181,7 @@ Reading accumulates *stocks* (mental models, the vocabulary of the discipline, t
 - Do not reread or highlight instead of reproducing from memory.
 - Do not trust the feeling "I know this" with the text open — check with the book closed.
 - Do not chase reading speed: a gain in speed inevitably cuts comprehension.
-- Do not read several similar sources back-to-back — it amplifies interference; distribute over time and content.
+- Do not read several similar sources back-to-back each for its own content (§2); sources read to be compared go together (§3).
 - Do not over-engineer the note system — tuning the tool is an ideal pretext for procrastination; both hoarding and perfecting the system mask the absence of processing.
 - Do not hand the AI the generation of formulations or a summary of material that is to become the reader's working model — see §1 (the binding frame) and §7.
 

@@ -4,11 +4,12 @@ One line per source reference behind a claim of `references/reading-methodology.
 
 ## By section
 
-- **§2 Forgetting is interference** · Murre & Dros 2015 — the retention bonus after sleep (~24 h).
+- **§2 Forgetting is interference** · Murre & Dros 2015 — the retention bonus after sleep (~24 h). Wixted 2004, *The psychology and neuroscience of forgetting*, doi:10.1146/annurev.psych.55.090902.141555 (abstract through a summarising fetch of the Europe PMC record) — everyday forgetting is attributed to interference: recently formed memories that have not had a chance to consolidate are open to later mental activity and memory formation, even when that activity is not similar to what was learned; interference from material that shares cues is the form of the list-learning procedures, which the review holds to pertain mainly to the laboratory; sleep improves memory for a recently learned list. Whole books are outside the reviewed procedures, and that similar books read in a row carry both forms is the methodology's inference.
 - **§2 The reliable signal of knowledge** · Koriat & Bjork — fluency illusion / foresight bias.
 - **§2 A long-term effect without holding the fact** · Sparrow et al. 2011 — transactive / external memory.
 - **§3 Most books do not deserve analytical reading** · Adler & Van Doren, *How to Read a Book* — the inspection filter; the four levels and the four analytical questions of the same section name the method.
-- **§3 Formulate the goal and 3–5 questions** · Pan & Carpenter 2023 — prequestioning improves later assimilation.
+- **§3 A syntopical set is read for the comparison** · Alfieri, Nokes-Malach & Schunn 2013 (the §4.5 line) — comparing cases against studying them one by one. Wiley & Voss 1999, *Constructing arguments from multiple sources: Tasks that promote understanding and not just memory for text*, doi:10.1037/0022-0663.91.2.301 (abstract through a summarising fetch) — two experiments on historical subject matter: students who wrote an argument from several sources, against a narrative, a summary or an explanation, wrote the most integrated essays and did better on inference and analogy tasks. Neither source reads whole books or measures interference. The division of the two rules by what the reader reads for is the session's own reading of them; the name of the mode and its steps follow Adler & Van Doren.
+- **§3 Formulate the goal and 3–5 questions** · Pan & Carpenter 2023, *Prequestioning and Pretesting Effects: A Review of Empirical Research, Theoretical Perspectives, and Implications for Educational Practice*, doi:10.1007/s10648-023-09814-5 (abstract through a summarising fetch of the ERIC record EJ1393374) — testing students on information they do not know, with an opportunity to study the correct answers afterwards, can often enhance learning; the benefit may vary with the procedure and with how learning is assessed. The review's questions are posed to the learner; questions a reader writes for a task of their own are outside it, which is why the methodology marks that step an extrapolation.
 - **§3 Speed reading is refuted** · Rayner et al. 2016 — the speed–accuracy trade-off; RSVP/Spritz worsen comprehension above ~250 wpm.
 - **§4 Only two techniques of ten have high utility** · Dunlosky et al. 2013 (PSPI) — retrieval practice and distributed practice high; highlighting and rereading at the bottom.
 - **§4.1 Read by chapters with retrieval** · Roediger & Karpicke 2006 — over 2 days rereading lost ~56% of reproducible material, testing ~13%.
@@ -22,6 +23,7 @@ One line per source reference behind a claim of `references/reading-methodology.
 - **§5.4 Retell it to others** · Nestojko et al. 2014 — the expectation of teaching yields fuller, better-organized recall.
 - **§5.4 Retell it to others** · Fiorella & Mayer 2013 — on a delayed test the best are those who actually taught.
 - **§6 Three note types** · Ahrens / Luhmann frame — practical, not controlled-verified.
+- **§6 The critical invariant** · house design, not a tested protocol: the step at which a note becomes the reader's own (step 5) and the AI's part at each step apply the generation effect of the same section (Slamecka & Graf 1978, in the bibliography below) and the offloading signals of §7 (Kosmyna et al. 2025, preprint; Barcaui 2025). No source tests the pipeline or its step boundaries.
 - **§7 Why the line falls exactly here** · MIT EEG (Kosmyna et al. 2025, preprint); Barcaui 2025 (RCT, preliminary) — the cognitive-offloading signals.
 - **§8 Implementation intentions** · Gollwitzer & Sheeran 2006 — self-examination by 100% of if-then planners against 53% with intention alone; meta-analysis d ≈ 0.65.
 - **§9 The habit period** · Lally et al. 2010 — median ~66 days to automaticity, spread 18–254.
@@ -48,9 +50,9 @@ One line per source reference behind a claim of `references/reading-methodology.
 
 The bibliography as the methodology carried it, by theme.
 
-- **Memory & techniques (§§2,4):** Dunlosky et al. 2013 (PSPI); Roediger & Karpicke 2006; Karpicke & Blunt 2011; Cepeda et al. 2006, 2008; Karpicke & Roediger 2007; Bjork & Bjork; Koriat & Bjork; Murre & Dros 2015; Diekelmann & Born 2010; Pan & Rickard 2018; van Gog & Sweller / Karpicke & Aue 2015; Sparrow et al. 2011; Agarwal 2019; Brod 2021; Alfieri, Nokes-Malach & Schunn 2013.
+- **Memory & techniques (§§2,4):** Wixted 2004; Dunlosky et al. 2013 (PSPI); Roediger & Karpicke 2006; Karpicke & Blunt 2011; Cepeda et al. 2006, 2008; Karpicke & Roediger 2007; Bjork & Bjork; Koriat & Bjork; Murre & Dros 2015; Diekelmann & Born 2010; Pan & Rickard 2018; van Gog & Sweller / Karpicke & Aue 2015; Sparrow et al. 2011; Agarwal 2019; Brod 2021; Alfieri, Nokes-Malach & Schunn 2013.
 - **Transfer (§8):** Barnett & Ceci 2002; Detterman 1993; Godden & Baddeley 1975; Gollwitzer 1999, Gollwitzer & Sheeran 2006; Pfeffer & Sutton 2000; Pan & Carpenter 2023.
-- **Selection & modes (§3):** Adler & Van Doren, *How to Read a Book*; Rayner et al. 2016; Springer 2024 (multiple-text vs rereading).
+- **Selection & modes (§3):** Adler & Van Doren, *How to Read a Book*; Rayner et al. 2016; Springer 2024 (multiple-text vs rereading); Wiley & Voss 1999.
 - **Notes & PKM (§§6,7):** Slamecka & Graf 1978; Bangert-Drowns et al. 2004; Ahrens 2017; Luhmann; Forte (Progressive Summarization); "collector's fallacy". AI-writing & offloading: OpenAI Academy (Writing); Zapier (voice tuning); EDUCAUSE / MDPI / MIT EEG (Kosmyna et al. 2025, preprint); Barcaui 2025 (RCT, preliminary).
 - **Habit (§9):** Lally et al. 2010; 2024 meta-analysis (PMC11641623); Wood & Neal 2007; Fogg, *Tiny Habits*; Clear; Hagger et al. 2016 (ego depletion).
 - **Systems & obsolescence (§10):** Meadows, *Thinking in Systems* / *Leverage Points*; Stanovich 1986; Arbesman 2012; Shepardizing (Stanford Law); Hedberg / Rushmer & Davies (unlearning).
