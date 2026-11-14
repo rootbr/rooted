@@ -1,0 +1,215 @@
+{
+  "seed": "fa0bdaf4f8d6bbd16b8987834eb8efe2d4ed6706",
+  "rules": [
+    {
+      "id": "R-22",
+      "corpus": "audit",
+      "card": "plugins/evidence-based-authoring/skills/auditing-ai-context/references/rule-cards/r-22--mix-five-instruction-styles.md",
+      "provenance": "plugins/evidence-based-authoring/skills/auditing-ai-context/maintenance/rule-cards-provenance.md",
+      "line": 35
+    },
+    {
+      "id": "D-05",
+      "corpus": "audit",
+      "card": "plugins/evidence-based-authoring/skills/auditing-ai-context/references/rule-cards/d-05--living-document-keeps-the-decision-not-the-search.md",
+      "provenance": "plugins/evidence-based-authoring/skills/auditing-ai-context/maintenance/rule-cards-provenance.md",
+      "line": 122
+    },
+    {
+      "id": "S-06",
+      "corpus": "audit",
+      "card": "plugins/evidence-based-authoring/skills/auditing-ai-context/references/rule-cards/s-06--cut-what-the-rest-still-says-never-to-a-length-target.md",
+      "provenance": "plugins/evidence-based-authoring/skills/auditing-ai-context/maintenance/rule-cards-provenance.md",
+      "line": 132
+    },
+    {
+      "id": "D-04",
+      "corpus": "audit",
+      "card": "plugins/evidence-based-authoring/skills/auditing-ai-context/references/rule-cards/d-04--commented-out-code-is-deleted.md",
+      "provenance": "plugins/evidence-based-authoring/skills/auditing-ai-context/maintenance/rule-cards-provenance.md",
+      "line": 121
+    },
+    {
+      "id": "R-76",
+      "corpus": "audit",
+      "card": "plugins/evidence-based-authoring/skills/auditing-ai-context/references/rule-cards/r-76--separate-near-duplicate-sibling-skills.md",
+      "provenance": "plugins/evidence-based-authoring/skills/auditing-ai-context/maintenance/rule-cards-provenance.md",
+      "line": 81
+    },
+    {
+      "id": "C-E2",
+      "corpus": "audit",
+      "card": "plugins/evidence-based-authoring/skills/auditing-ai-context/references/rule-cards/c-e2--no-author-attribution-in-the-body.md",
+      "provenance": "plugins/evidence-based-authoring/skills/auditing-ai-context/maintenance/rule-cards-provenance.md",
+      "line": 110
+    },
+    {
+      "id": "C-F3",
+      "corpus": "audit",
+      "card": "plugins/evidence-based-authoring/skills/auditing-ai-context/references/rule-cards/c-f3--example-is-a-short-fenced-contrast-pair-in-an-everyday-domain.md",
+      "provenance": "plugins/evidence-based-authoring/skills/auditing-ai-context/maintenance/rule-cards-provenance.md",
+      "line": 114
+    },
+    {
+      "id": "R-64",
+      "corpus": "audit",
+      "card": "plugins/evidence-based-authoring/skills/auditing-ai-context/references/rule-cards/r-64--numeric-thresholds-locked.md",
+      "provenance": "plugins/evidence-based-authoring/skills/auditing-ai-context/maintenance/rule-cards-provenance.md",
+      "line": 68
+    },
+    {
+      "id": "R-55",
+      "corpus": "audit",
+      "card": "plugins/evidence-based-authoring/skills/auditing-ai-context/references/rule-cards/r-55--cite-once-then-short-form.md",
+      "provenance": "plugins/evidence-based-authoring/skills/auditing-ai-context/maintenance/rule-cards-provenance.md",
+      "line": 58
+    },
+    {
+      "id": "D-06",
+      "corpus": "audit",
+      "card": "plugins/evidence-based-authoring/skills/auditing-ai-context/references/rule-cards/d-06--alternative-appears-only-as-a-blocking-fact.md",
+      "provenance": "plugins/evidence-based-authoring/skills/auditing-ai-context/maintenance/rule-cards-provenance.md",
+      "line": 123
+    },
+    {
+      "id": "DSN-21",
+      "corpus": "craft",
+      "card": "plugins/code-quality/skills/software-craft/references/craft-cards/dsn-21--a-block-repeated-to-do-the-same-thing-is-written-once.md",
+      "provenance": "plugins/code-quality/skills/software-craft/maintenance/craft-cards-provenance.md",
+      "line": 119
+    },
+    {
+      "id": "INP-04",
+      "corpus": "craft",
+      "card": "plugins/code-quality/skills/software-craft/references/craft-cards/inp-04--untrusted-process-arguments-as-validated-argument-vector.md",
+      "provenance": "plugins/code-quality/skills/software-craft/maintenance/craft-cards-provenance.md",
+      "line": 475
+    },
+    {
+      "id": "PRF-01",
+      "corpus": "craft",
+      "card": "plugins/code-quality/skills/software-craft/references/craft-cards/prf-01--regression-test-feeds-reduced-failing-input.md",
+      "provenance": "plugins/code-quality/skills/software-craft/maintenance/craft-cards-provenance.md",
+      "line": 364
+    },
+    {
+      "id": "DOC-01",
+      "corpus": "craft",
+      "card": "plugins/code-quality/skills/software-craft/references/craft-cards/doc-01--standard-call-used-as-documented-not-as-named.md",
+      "provenance": "plugins/code-quality/skills/software-craft/maintenance/craft-cards-provenance.md",
+      "line": 447
+    },
+    {
+      "id": "CODE-22",
+      "corpus": "craft",
+      "card": "plugins/code-quality/skills/software-craft/references/craft-cards/code-22--a-variable-or-constant-is-declared-in-the-narrowest-scope.md",
+      "provenance": "plugins/code-quality/skills/software-craft/maintenance/craft-cards-provenance.md",
+      "line": 32
+    },
+    {
+      "id": "ARCH-14",
+      "corpus": "craft",
+      "card": "plugins/code-quality/skills/software-craft/references/craft-cards/arch-14--implementation-dependencies-stay-private.md",
+      "provenance": "plugins/code-quality/skills/software-craft/maintenance/craft-cards-provenance.md",
+      "line": 516
+    },
+    {
+      "id": "META-09",
+      "corpus": "craft",
+      "card": "plugins/code-quality/skills/software-craft/references/craft-cards/meta-09--an-invariant-keeps-its-number-across-revisions.md",
+      "provenance": "plugins/code-quality/skills/software-craft/maintenance/craft-cards-provenance.md",
+      "line": 562
+    },
+    {
+      "id": "ERR-09",
+      "corpus": "craft",
+      "card": "plugins/code-quality/skills/software-craft/references/craft-cards/err-09--a-thrown-or-returned-error-has-a-type-that-says-what-failed.md",
+      "provenance": "plugins/code-quality/skills/software-craft/maintenance/craft-cards-provenance.md",
+      "line": 219
+    },
+    {
+      "id": "CODE-77",
+      "corpus": "craft",
+      "card": "plugins/code-quality/skills/software-craft/references/craft-cards/code-77--a-loops-control-variable-is-changed-only-by-the-loop-header.md",
+      "provenance": "plugins/code-quality/skills/software-craft/maintenance/craft-cards-provenance.md",
+      "line": 87
+    },
+    {
+      "id": "CODE-80",
+      "corpus": "craft",
+      "card": "plugins/code-quality/skills/software-craft/references/craft-cards/code-80--every-path-returns-a-value-explicitly.md",
+      "provenance": "plugins/code-quality/skills/software-craft/maintenance/craft-cards-provenance.md",
+      "line": 90
+    },
+    {
+      "id": "PY-111",
+      "corpus": "craft-python",
+      "card": "plugins/code-quality/skills/software-craft/references/craft-cards-python/py-111--build-system-table-names-backend-and-requires.md",
+      "provenance": "plugins/code-quality/skills/software-craft/maintenance/craft-cards-python-provenance.md",
+      "line": 188
+    },
+    {
+      "id": "PY-120",
+      "corpus": "craft-python",
+      "card": "plugins/code-quality/skills/software-craft/references/craft-cards-python/py-120--first-element-taken-with-next-not-a-full-list.md",
+      "provenance": "plugins/code-quality/skills/software-craft/maintenance/craft-cards-python-provenance.md",
+      "line": 178
+    },
+    {
+      "id": "PY-63",
+      "corpus": "craft-python",
+      "card": "plugins/code-quality/skills/software-craft/references/craft-cards-python/py-63--dataclass-field-annotated-or-classvar.md",
+      "provenance": "plugins/code-quality/skills/software-craft/maintenance/craft-cards-python-provenance.md",
+      "line": 83
+    },
+    {
+      "id": "PY-97",
+      "corpus": "craft-python",
+      "card": "plugins/code-quality/skills/software-craft/references/craft-cards-python/py-97--md5-sha1-only-for-marked-non-security-use.md",
+      "provenance": "plugins/code-quality/skills/software-craft/maintenance/craft-cards-python-provenance.md",
+      "line": 197
+    },
+    {
+      "id": "PY-36",
+      "corpus": "craft-python",
+      "card": "plugins/code-quality/skills/software-craft/references/craft-cards-python/py-36--regex-pattern-raw-string.md",
+      "provenance": "plugins/code-quality/skills/software-craft/maintenance/craft-cards-python-provenance.md",
+      "line": 36
+    },
+    {
+      "id": "JAVA-208",
+      "corpus": "craft-java",
+      "card": "plugins/code-quality/skills/software-craft/references/craft-cards-java/java-208--optional-of-wraps-a-value-proven-non-null.md",
+      "provenance": "plugins/code-quality/skills/software-craft/maintenance/craft-cards-java-provenance.md",
+      "line": 232
+    },
+    {
+      "id": "JAVA-20",
+      "corpus": "craft-java",
+      "card": "plugins/code-quality/skills/software-craft/references/craft-cards-java/java-20--after-shutdown-the-result-of-awaittermination-is-checked-and-false-escalates-to-shutdownnow.md",
+      "provenance": "plugins/code-quality/skills/software-craft/maintenance/craft-cards-java-provenance.md",
+      "line": 32
+    },
+    {
+      "id": "JAVA-25",
+      "corpus": "craft-java",
+      "card": "plugins/code-quality/skills/software-craft/references/craft-cards-java/java-25--custom-collector-combiner-is-associative.md",
+      "provenance": "plugins/code-quality/skills/software-craft/maintenance/craft-cards-java-provenance.md",
+      "line": 37
+    },
+    {
+      "id": "JAVA-59",
+      "corpus": "craft-java",
+      "card": "plugins/code-quality/skills/software-craft/references/craft-cards-java/java-59--state-changing-handler-never-mapped-to-get.md",
+      "provenance": "plugins/code-quality/skills/software-craft/maintenance/craft-cards-java-provenance.md",
+      "line": 74
+    },
+    {
+      "id": "JAVA-87",
+      "corpus": "craft-java",
+      "card": "plugins/code-quality/skills/software-craft/references/craft-cards-java/java-87--jackson-polymorphic-typing-never-lets-the-json-name-the-class.md",
+      "provenance": "plugins/code-quality/skills/software-craft/maintenance/craft-cards-java-provenance.md",
+      "line": 102
+    }
+  ]
+}

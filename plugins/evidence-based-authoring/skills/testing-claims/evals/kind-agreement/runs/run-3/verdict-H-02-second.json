@@ -1,0 +1,14 @@
+{
+  "id": "H-02",
+  "kind": "claim",
+  "standing": "supported",
+  "answers": [
+    {"rule": 1, "verdict": "holds", "quote": "two readers who work independently from the definitions of the method give the same kind to the same rule · kind: claim", "missing": ""},
+    {"rule": 2, "verdict": "holds", "quote": "refuter: fewer than 24 of the 30 rules get the same kind from both readers", "missing": ""},
+    {"rule": 3, "verdict": "holds", "quote": "refuter: fewer than 24 of the 30 rules get the same kind from both readers · threshold: 24 of 30", "missing": ""},
+    {"rule": 4, "verdict": "holds", "quote": "Two agents on Claude Opus 5.5 at effort `xhigh`, each in its own context and started without the project's instruction files, each given the same brief.", "missing": ""},
+    {"rule": 5, "verdict": "holds", "quote": "fit: transfer · transfer: thirty rules of about a thousand were read in the run that counts; the readers had the reading rule of the protocol beside the definitions of the method; no rule of the kind definition was drawn; the two readers are one model, so agreement between different readers is untested", "missing": ""},
+    {"rule": 6, "verdict": "holds", "quote": "The seed is the hash of the main-line commit that registered it, `fa0bdaf4f8d6bbd16b8987834eb8efe2d4ed6706`.", "missing": ""},
+    {"rule": 7, "verdict": "holds", "quote": "gave 30 of 30, Cohen's kappa 1.00: claim 9, norm 18, decision 3, definition 0; two earlier runs, made in the working history kept on the branch pre-squash-scientific-method and entered here in one commit with the hypothesis, gave 30 of 30 and 29 of 30 and do not count on this line", "missing": ""}
+  ]
+}
