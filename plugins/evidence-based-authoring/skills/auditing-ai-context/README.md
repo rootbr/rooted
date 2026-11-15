@@ -23,9 +23,13 @@ This skill's instance of the repository `README.md` §Skill layout:
 | `references/gotchas.md` | the session | when a skill misbehaves or the audit workflow fails |
 | `scripts/static-audit.py` | the session | the static pre-pass of every audit |
 | `scripts/audit-workflow.js` | the Workflow tool | every audit |
+| `scripts/trace_list.py`, `scripts/check_trace.py` | a maintainer | the test of the trace pass by `evals/absent-rule/protocol.md`: the first lists the sentences a change added with a cue of denial, contrast or history, the second settles the reviewers' verdicts on them |
+| `../../agents/trace-reviewer.md` | a reviewer sub-agent of that test | each reading of one list |
 | `maintenance/README.md` | a maintainer | before changing a card, a script, a sub-agent prompt or an eval |
 | `maintenance/rule-cards-provenance.md` | a maintainer | adding a card or re-verifying its source |
 | `maintenance/skill-provenance.md` | a maintainer | re-verifying a source behind `SKILL.md`, a gotcha or the KB card specification |
+| `maintenance/pending-evidence.md` | a maintainer | registering a claim about the skill's own checks before its test, and recording the result |
+| `maintenance/tests/` | a maintainer | after changing a script of the trace pass or the script that scores its test |
 | `maintenance/rule-cards-taxonomy.md` | a maintainer | adding a card or a facet value |
 | `maintenance/maintenance-map.md` | a maintainer, a reviewer | decoding an anchor token, flipping a volatile dependency |
-| `evals/` | a maintainer | a model upgrade, an edit judged against eval results |
+| `evals/` | a maintainer | a model upgrade, an edit judged against eval results, the test of a hypothesis of `maintenance/pending-evidence.md` |

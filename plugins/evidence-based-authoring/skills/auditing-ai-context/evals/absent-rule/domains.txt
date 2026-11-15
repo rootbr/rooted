@@ -1,0 +1,25 @@
+# One domain per line. A case is a short internal design note in that domain.
+feature flags in a web service
+schema migrations of a relational database
+log retention on a fleet of servers
+pagination of a public REST API
+access tokens of a mobile app's backend
+the on-call rotation of a platform team
+the code-review policy of a monorepo
+rendered-page caching at a content delivery edge
+rate limiting at an API gateway
+release branching of a desktop application
+secrets handling in a continuous-integration pipeline
+alert thresholds of a monitoring stack
+dependency updates in a JavaScript workspace
+data retention in an analytics warehouse
+image builds for container deployments
+error handling conventions of a Go service
+test data for an integration suite
+the incident postmortem process of an engineering group
+interface versioning of an internal RPC framework
+search indexing of a document store
+commit message style in a team repository
+queue consumers and their acknowledgement mode
+configuration loading order of a command-line tool
+time-zone handling in a scheduling service
