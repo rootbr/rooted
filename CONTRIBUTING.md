@@ -17,7 +17,7 @@ Cite a source in the form anyone can open: an arXiv ID or DOI, an RFC number or 
 
 ## A rule of your own
 
-A rule needs no paper behind it. It needs a test:
+A rule of your own enters on a test of your own:
 
 1. Commit the hypothesis: the measure, the comparison, the scope, the refuting outcome, the threshold and the number of runs.
 2. Run the same work with the technique and without it, and keep every run.
@@ -27,11 +27,11 @@ A rule needs no paper behind it. It needs a test:
 
 ## When the rule comes from a book or a blog
 
-A practitioner text is where a formulation comes from, and the origin of a claim carries no weight either way. Three steps:
+A practitioner text is where a formulation comes from; the rule rests on the test of its claim. Three steps:
 
 1. Word the claim so that it can fail.
 2. Find the study that tested it, open it, and rest the rule on that test — or run the test yourself. Most durable craft rules have such a study; the practitioner text usually restates it.
-3. Name the practitioner text on the rule's provenance line as the formulation the rule follows — never inside the card, where `C-E2` forbids attribution, and never as the rule's test.
+3. Name the practitioner text on the rule's provenance line as the formulation the rule follows. Attribution lives on that line alone (`C-E2`), and the rule rests on the test of step 2.
 
 Worked example: the "one thesis per card" rule was formulated by the Zettelkasten literature, whose own pages call it "a guiding compass" with "no clear litmus test". The test is Dense X Retrieval (Chen et al., EMNLP 2024, [arXiv:2312.06648](https://arxiv.org/abs/2312.06648)), which measures proposition-level indexing beating passage-level retrieval. The rule rests on that measurement, within the retrieval setting it was run in; the Zettelkasten pages are named as its formulation.
 
@@ -50,7 +50,7 @@ Find the smallest change that solves the problem. Then run the three checks of `
 
 - A claim presented as a finding with no test behind it, whoever or whatever proposed it
 - Rules with "best practice" or "everyone knows" as the only ground
-- A citation offered in place of a test: a paper that states the rule without testing it, a source nobody opened
+- A claim whose only ground is a paper that states the rule without testing it, or a source nobody opened
 
 ## Code of conduct
 

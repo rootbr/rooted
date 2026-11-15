@@ -4,10 +4,11 @@ description: >-
   Takes a statement about to become a rule through the scientific method: names its kind (decision,
   definition, norm, claim), states a claim with its measure, comparison, conditions and refuting
   outcome, finds or runs the test that could have refuted it, and writes a record with the result,
-  bounds and standing. A claim with no citation enters through a test the project runs itself. Runs two check scripts, one reading git history;
-  dispatches a read-only reader that fetches cited sources over the network; writes the record line
-  into the project's provenance map or list of hypotheses and the reader's verdict into a JSON
-  file; has the hypothesis committed before the result. Use when a rule is added or changed and someone has to say what it rests on: "is that an
+  bounds and standing. A test the project runs itself counts the same as a published one. Runs two
+  check scripts, one reading git history; dispatches a read-only reader that fetches the sources a
+  record names over the network; writes the record line into the project's provenance map or list
+  of hypotheses and the reader's verdict into a JSON file; has the hypothesis committed before the
+  result. Use when a rule is added or changed and someone has to say what it rests on: "is that an
   opinion or a hypothesis", «на чём держится правило». NOT for finding sources on the web
   (researching-topics), appraising a finished report (appraising-research) or auditing a context
   file's wording (auditing-ai-context).
@@ -96,6 +97,6 @@ When a new test arrives, add it to `test` and `result` and move the standing whe
 
 - `scripts/check_record.py` reads the Markdown files named on its command line or found under `--root` by name. With `--changed` or `--staged` it also runs `git show`, `git rev-parse` and `git ls-tree` to read the base state. It prints its findings, writes nothing, opens no network connection and uses the Python standard library alone.
 - `scripts/check_verdict.py` reads one JSON file or standard input, prints its findings, writes nothing, opens no network connection and uses the Python standard library alone.
-- The `claim-skeptic` agent is read-only: it reads and searches files under the repository and fetches the sources a record cites over the network.
+- The `claim-skeptic` agent is read-only: it reads and searches files under the repository and fetches the sources a record names over the network.
 
 `maintenance/README.md` names what changes together.

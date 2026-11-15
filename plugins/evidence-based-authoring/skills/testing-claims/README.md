@@ -1,6 +1,6 @@
 # testing-claims
 
-Skill for Claude Code that takes a statement on its way to becoming a rule through the scientific method and leaves a record of what the rule rests on; paths in this file are relative to this directory. The method is `references/method.md`: four kinds of statement (decision, definition, norm, claim), six standings of a claim (opinion, hypothesis, supported, law, contested, refuted), seven rules with a check question each, and one acceptance path. The support of a claim is a test that could have refuted it — someone else's, opened, or our own, committed — and a citation is only the address of such a test.
+Skill for Claude Code that takes a statement on its way to becoming a rule through the scientific method and leaves a record of what the rule rests on; paths in this file are relative to this directory. The method is `references/method.md`: four kinds of statement (decision, definition, norm, claim), six standings of a claim (opinion, hypothesis, supported, law, contested, refuted), seven rules with a check question each, and one acceptance path. The support of a claim is a test that could have refuted it: someone else's, opened, or our own, committed.
 
 ## Checks
 
@@ -15,7 +15,7 @@ python3 -I scripts/check_verdict.py <verdict.json>
 
 ## A claim of our own
 
-A claim with no citation enters through a test in the repository. Its hypothesis is committed first, with the measure, the comparison, the scope, the refuting outcome and the threshold; the result is committed after it. `check_record.py --staged` rejects a result whose hypothesis is absent from the base revision or stands there with a different prediction. The order is read from history and never from commit dates, so it holds in a repository that sets its dates by hand.
+A claim of our own enters through a test in the repository. Its hypothesis is committed first, with the measure, the comparison, the scope, the refuting outcome and the threshold; the result is committed after it. `check_record.py --staged` rejects a result whose hypothesis is absent from the base revision or stands there with a different prediction. The order is read from the ancestry of the commits, so it holds in a repository that sets its commit dates by hand.
 
 ## The reader
 

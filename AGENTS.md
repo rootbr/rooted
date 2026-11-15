@@ -17,7 +17,7 @@ MUST run `/auditing-ai-context` on every SKILL.md or agent prompt change before 
 
 ## Method
 
-The repository admits rules by the scientific method: a rule that claims a technique works rests on a test that could have refuted the claim, and a citation is the address of such a test, never the support itself.
+The repository admits rules by the scientific method: a rule that claims a technique works rests on a test that could have refuted the claim.
 
 Before adding or changing a rule, a checklist item or a review criterion, take it through `/testing-claims` and write its record: a decision with its owner and goal, a definition with its term, a norm with its document opened, a claim with its refuting outcome and its test. A claim with no test yet waits in its skill's list of hypotheses, and a claim that names no refuting outcome stays out.
 

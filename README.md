@@ -4,39 +4,82 @@
 [![GitHub stars](https://img.shields.io/github/stars/rootbr/rooted?style=social)](https://github.com/rootbr/rooted/stargazers)
 [![Rules cited from](https://img.shields.io/badge/rules%20cited%20from-158%20papers%20%C2%B7%2035%20standards-success)](#references)
 
-Skills for the full evidence-based preparation pipeline: research any topic with source verification, map its complete question space before you start, then write AI agent context that actually works — grounded instructions and disciplined reasoning instead of vibes. [Research shows](https://arxiv.org/abs/2602.11988) LLM-generated context files do not generally improve agent task success while raising inference cost by 20–23% — and the repository overviews they typically contain are specifically unhelpful. Rooted admits rules by the scientific method instead: a claim rests on a test that could have refuted it, a norm is named as a norm and a decision as a decision. Software-development and code-review skills apply the same discipline to everyday coding.
+Skills for the full evidence-based preparation pipeline: research any topic with source verification, map its complete question space before you start, then write AI agent context that actually works — grounded instructions and disciplined reasoning instead of vibes. [Research shows](https://arxiv.org/abs/2602.11988) LLM-generated context files do not generally improve agent task success while raising inference cost by 20–23% — and the repository overviews they typically contain are specifically unhelpful. Rooted admits rules by the scientific method: a claim rests on a test that could have refuted it, a norm is named as a norm and a decision as a decision. Software-development and code-review skills apply the same discipline to everyday coding.
 
-- **Tested, not asserted.** A rule that claims a technique works rests on a test that could have refuted it — a study opened and read, or a test of our own committed to the repository. A citation is the address of such a test, and where an idea came from carries no weight.
+- **Rules that rest on tests.** A rule that claims a technique works rests on a test that could have refuted it: a study opened and read, or a test of our own committed to the repository.
 - **Lean context over static dumps.** For example, instead of an `/init`-style project-structure blob in `CLAUDE.md` (a file class shown not to improve success while raising inference cost 20–23%, with repository overviews specifically found unhelpful [[15]](#references)), orientation happens on demand via [`overview.sh`](overview.sh) with an explicit stop-instruction. The agent doesn't preemptively slurp the whole tree into context, so it doesn't fill its working memory with project content it doesn't need and later lose focus on the actual task.
 
 ## Methodology
 
-Rooted admits rules by the scientific method. The method here is neither a sequence of steps nor a demand for a citation: it is a way of treating statements about how the world works. A claim is stated so that an observation could refute it, put to a test that would have found the error, accepted to the degree and under the conditions the test supports, and kept open to revision. A citation is the address of someone else's test and never the support itself; a test of our own, committed to the repository, counts the same.
+The scientific method judges a claim about how the world works by its test. The claim is stated so that an observation could refute it. It is put to a test that would have found the error, had there been one. Anyone can repeat the test, or open its description, and see the same result. The claim is accepted to the degree, and under the conditions, that the test supports. A new test can revise it.
 
-**Every statement names its kind**, and each kind is presented as itself:
+A claim of any origin is judged the same way: a paper, practice, a model and one's own guess are equal as origins, and a test committed to this repository counts the same as a published one.
 
-| Kind | What it rests on |
-|--|--|
-| decision — a goal, a priority, a taste | the owner's word |
-| definition | agreement |
-| norm — a standard, a specification, a tool's rule | the document, opened, with its issuer and version; it shows that a practice is accepted, and whether the practice works better is a separate claim |
-| claim — "this technique works" | a test |
+The method is taken from the philosophy of science. Seven rules hold what its main lines share, and Rooted adopts them as the convention by which it admits its own rules. Each rule is named below with the thinkers it follows, and the texts are listed under [Scientific method sources](#scientific-method-sources).
 
-**A claim has a standing**, and the strongest of them is still open to a new test. An *opinion* names no outcome that would refute it and stays out of the rules. A *hypothesis* names one and waits for its test. *Supported* means it passed a test that could have refuted it, within the bounds of that test. A *law* has independent tests under varied conditions behind it. *Contested* means the tests disagree. *Refuted* means withdrawn, with the record kept.
+### Kinds of statement
 
-**Seven rules follow from the method:**
+Every statement names its kind, and each kind rests on a ground of its own.
 
-| Rule | What it requires | After |
+| Kind | What it is | What it rests on | Example |
+|--|--|--|--|
+| decision | a choice: a goal, a priority, a taste, a threshold | the owner's word | "figures on a page are calm" |
+| definition | the name of a thing | agreement | "a card is one checkable rule" |
+| norm | what an accepted document prescribes: a standard, a specification, a regulation | the document, opened, with its issuer and version | "exit status zero means success" |
+| claim | a statement about how the world works | a test | "with this paragraph the agent reads the file before editing more often" |
+
+A norm shows that a practice is accepted; whether the practice works better is a separate claim.
+
+### Standings of a claim
+
+| Standing | What it is | Where it goes |
 |--|--|--|
-| Facts apart from decisions | every statement names its kind, and no kind passes for another | Hume, Popper |
-| Refutability | a claim names its measure, its comparison, its conditions and the outcome that would refute it | Popper |
-| Severity of the test | only a test that could have come out against the claim supports it: a comparison, enough repetitions, a threshold fixed in advance | Popper, Mayo |
-| Reproducibility | another person can repeat the test, or open its source and find the test there; an author's name supports nothing | Popper, the Royal Society |
-| Bounds of transfer | a supported claim holds for the conditions of its test; beyond them it is a hypothesis again | Hume, Deaton and Cartwright |
-| No fitting | the prediction is recorded before the result, every run is kept, and a patch that saves a refuted claim is a new hypothesis | Popper, Lakatos, Kerr |
-| Revision | a standing follows the tests in both directions, and a test that went against a rule stays on record | Popper, Duhem |
+| opinion | no observation is named that would refute it | stays out of the rules |
+| hypothesis | the refuting outcome is named, and the claim awaits its test | the list of hypotheses |
+| supported | it passed a test that could have refuted it | a rule, with the bounds of its test |
+| law | independent tests under varied conditions support it | a rule with wide bounds |
+| contested | the tests disagree and no tested condition separates them | the list of hypotheses, both sides recorded |
+| refuted | a repeatable test within the same bounds went against it | withdrawn; the record stays |
 
-A claim of our own needs no citation. Its hypothesis is committed first, the test runs with the technique and without it, and the result is committed after — a script reads that order from history. The full text of the method, the record a rule carries and the checks are the [`/testing-claims`](plugins/evidence-based-authoring/skills/testing-claims/SKILL.md) skill, with the method itself in [`references/method.md`](plugins/evidence-based-authoring/skills/testing-claims/references/method.md); the texts the method follows are listed under [Scientific method sources](#scientific-method-sources). The seven rules are a convention the repository adopts: the philosophy of science offers no single criterion of what is scientific, so the method takes what its main lines agree on. A record is required on every rule line that is added or changed; the lines not yet touched carry their sources without a record.
+A fact is the material of a test: an observation anyone can repeat or open. The result of a run is a fact; a conclusion drawn from it is a claim.
+
+### The seven rules
+
+| Rule | What it requires | Check question | Follows |
+|--|--|--|--|
+| 1. Facts apart from decisions | every statement names its kind and is presented as that kind: a taste as a decision, a norm as accepted practice, a tested claim as a finding | Is this about the world, about our choice, about a name, or about what a document prescribes? | Hume, Popper |
+| 2. Refutability | a claim names what is compared with what, by which measure and under which conditions, and the outcome that would refute it | Which result would make us give it up? | Popper |
+| 3. Severity of the test | a test supports a claim when it could have come out against it: the same work done with the technique and without it, and enough repetitions to tell the effect from chance, their number fixed before the test | Had the claim been false, would the test have shown it? | Popper, Mayo |
+| 4. Reproducibility | another person can repeat the test: a test of our own runs by a command from the repository, and a published one is opened and its comparison, measure, sample and result are found in it | Would another person, following the record, see the same? | Popper, the Royal Society |
+| 5. Bounds of transfer | a supported claim holds for the conditions of its test; beyond them it is a hypothesis again, and applying it there is a decision marked as a transfer | Does the place where the rule is applied match the place where it was tested? | Hume, Deaton and Cartwright |
+| 6. No fitting | the prediction, the measure and the threshold are recorded before the test; the record holds every run, the failed ones included; a condition added to save a refuted claim is a new hypothesis | What was recorded before the result was seen? | Popper, Lakatos, Kerr |
+| 7. Revision | a standing follows the tests in both directions, and a test that went against a rule stays on record | What changes in the record if a new test goes the other way? | Popper, Duhem |
+
+### How a rule enters
+
+Every new statement takes one path.
+
+```
+a new statement
+└── which kind is it?
+    ├── decision ────► enters under its owner's name
+    ├── definition ──► enters as an agreement
+    ├── norm ────────► enters as a norm
+    └── claim about the world
+        └── are the measure, the comparison, the conditions and the refuting outcome named?
+            ├── no ───► opinion: stays out
+            └── yes ──► hypothesis
+                └── is there a test that could have refuted it, ours or someone else's?
+                    ├── no ─────────────────────────► waits in the list of hypotheses
+                    ├── yes, it held ───────────────► enters as a rule with the bounds of its test
+                    ├── yes, it failed once ────────► waits, the failure recorded
+                    ├── yes, the tests disagree ────► contested: waits, both sides recorded
+                    └── yes, it failed repeatably ──► refuted: the record stays
+```
+
+A claim tested in this repository takes the lowest branches. Its hypothesis is committed first, with its measure, its refuting outcome and its threshold. The test runs the same work with the technique and without it, and the result is committed after. The repository's pre-commit hook runs the record check on the content of each commit. The check passes when every rule line the commit adds or changes in a provenance map or a list of hypotheses carries a record, and when a result follows a hypothesis that already stands in the commit history.
+
+The full method, with a bad and a good example for each rule, is [`references/method.md`](plugins/evidence-based-authoring/skills/testing-claims/references/method.md). The [`/testing-claims`](plugins/evidence-based-authoring/skills/testing-claims/SKILL.md) skill carries the procedure, the fields of a record and the checks.
 
 ## Plugins
 
@@ -87,7 +130,7 @@ Install plugins:
 
 ## Contributing
 
-See [`CONTRIBUTING.md`](CONTRIBUTING.md). Every new rule says what it rests on, and a claim rests on a test that could have refuted it — a study opened and read, or a test of your own committed to the repository. A PR that offers a citation in place of a test is returned by design, not by oversight.
+See [`CONTRIBUTING.md`](CONTRIBUTING.md). Every new rule says what it rests on, as [Methodology](#methodology) requires. Maintainers return a PR whose rule names no ground.
 
 ## References
 
@@ -293,7 +336,7 @@ Sources behind the `/software-craft` craft cards. Every card rests on an openabl
 
 ### Scientific method sources
 
-The texts the [Methodology](#methodology) follows. They are formulations of the method, read in the philosophy of science, and none of them is offered as a test of it; the line of each rule in [`method-provenance.md`](plugins/evidence-based-authoring/skills/testing-claims/maintenance/method-provenance.md) carries the passage it follows and how the text was seen. A thinker named with an encyclopedia entry is reported as that entry reports him.
+The texts the [Methodology](#methodology) follows. Each is a formulation of the method, read in the philosophy of science; the line of each rule in [`method-provenance.md`](plugins/evidence-based-authoring/skills/testing-claims/maintenance/method-provenance.md) carries the passage the rule follows and how the text was seen. The method is a convention the repository adopts, and what would count as a test of it stands in the skill's [list of hypotheses](plugins/evidence-based-authoring/skills/testing-claims/maintenance/pending-evidence.md). A thinker named with an encyclopedia entry is reported as that entry reports him.
 
 - Stanford Encyclopedia of Philosophy. *Scientific Method.* [plato.stanford.edu/entries/scientific-method](https://plato.stanford.edu/entries/scientific-method/) — No single universal method (§6.1); science differs from everyday knowledge by being more systematic (§7); the consequences of an error enter the choice between hypotheses (§4).
 - Stanford Encyclopedia of Philosophy. *Science and Pseudo-Science.* [plato.stanford.edu/entries/pseudo-science](https://plato.stanford.edu/entries/pseudo-science/) — Popper's falsifiability and its critics (§4); philosophers agree on particular cases and disagree on the general criterion (§8).
