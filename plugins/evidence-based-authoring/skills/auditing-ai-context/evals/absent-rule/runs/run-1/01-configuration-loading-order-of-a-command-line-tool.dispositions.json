@@ -1,0 +1,348 @@
+{
+ "readings": 3,
+ "candidates": [
+  {
+   "id": "c001",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/new.md",
+   "line": 19,
+   "sentence": "Tern stops its search for the project file at the repository root and never reads a dotfile above it.",
+   "disposition": "keep",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "licensed",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "licensed",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "licensed",
+     "outcome": "keep",
+     "code": ""
+    }
+   ],
+   "quotes": [
+    "Several tools look for a dotfile in every parent directory up to the filesystem root."
+   ]
+  },
+  {
+   "id": "c002",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/new.md",
+   "line": 23,
+   "sentence": "A key set in a later layer overrides the same key from an earlier one, and a key no layer sets takes its built-in default.",
+   "disposition": "keep",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c003",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/new.md",
+   "line": 23,
+   "sentence": "There is no winning file any more, and every layer that exists contributes the keys it sets.",
+   "disposition": "rewrite",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c004",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/new.md",
+   "line": 23,
+   "sentence": "A layer whose file is missing is skipped silently and never makes the command fail.",
+   "disposition": "keep",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c005",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/new.md",
+   "line": 31,
+   "sentence": "When there is no repository, the project layer is empty.",
+   "disposition": "keep",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c006",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/new.md",
+   "line": 31,
+   "sentence": "Precedence comes from the layer a key was read from, not from when the file was last modified.",
+   "disposition": "rewrite",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c007",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/new.md",
+   "line": 35,
+   "sentence": "That is not the case in tern, where a flag given on the command line always overrides the matching variable.",
+   "disposition": "keep",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "licensed",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "licensed",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "licensed",
+     "outcome": "keep",
+     "code": ""
+    }
+   ],
+   "quotes": [
+    "Some operators expect an environment variable to beat a flag, because the variable is often set by the deployment."
+   ]
+  },
+  {
+   "id": "c008",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/new.md",
+   "line": 39,
+   "sentence": "A project file does not have to repeat personal settings such as the editor or the colour theme to keep them in effect.",
+   "disposition": "rewrite",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c009",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/new.md",
+   "line": 39,
+   "sentence": "Adding a project file never hides the user file or the system file as a whole.",
+   "disposition": "rewrite",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c010",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/new.md",
+   "line": 43,
+   "sentence": "Tern does not concatenate, and a list set in a higher layer replaces the lower list entirely.",
+   "disposition": "keep",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "licensed",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "licensed",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "licensed",
+     "outcome": "keep",
+     "code": ""
+    }
+   ],
+   "quotes": [
+    "Some tools combine lists by concatenating the values from every layer."
+   ]
+  },
+  {
+   "id": "c011",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/new.md",
+   "line": 51,
+   "sentence": "Plugins see the merged result as one table rather than a separate copy per layer.",
+   "disposition": "rewrite",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c012",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/new.md",
+   "line": 55,
+   "sentence": "Loading never writes to any configuration file, even when a key falls back to its built-in default.",
+   "disposition": "keep",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  }
+ ],
+ "findings": []
+}

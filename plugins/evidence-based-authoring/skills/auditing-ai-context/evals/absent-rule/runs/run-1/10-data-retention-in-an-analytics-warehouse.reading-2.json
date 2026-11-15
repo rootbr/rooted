@@ -1,0 +1,62 @@
+{
+ "verdicts": [
+  {
+   "id": "c001",
+   "target": "the seven-year finance retention rule",
+   "verdict": "licensed",
+   "quote": "The finance schemas follow a seven-year retention rule set by the tax authority.",
+   "reason": "The preceding sentence presents the seven-year rule as a rule in force, so the denial has a target the reader was shown."
+  },
+  {
+   "id": "c002",
+   "target": "an approval step before a partition is dropped",
+   "verdict": "rewrite",
+   "reason": "The document never mentions any approval of drops, so the sentence excuses the reader from the deleted purge-ticket approval they were never shown."
+  },
+  {
+   "id": "c003",
+   "target": "analysts deciding expiry per query",
+   "verdict": "rewrite",
+   "reason": "No earlier sentence presents per-analyst or per-query expiry, so it argues with an alternative nobody presented."
+  },
+  {
+   "id": "c004",
+   "target": "copying expired partitions to cold storage",
+   "verdict": "licensed",
+   "quote": "Some warehouses copy expired partitions to cold storage before dropping them.",
+   "reason": "The earlier sentence presents the cold-storage copy as a practice elsewhere, which this sentence then declines."
+  },
+  {
+   "id": "c005",
+   "target": "a separate streaming pipeline feeding rollups",
+   "verdict": "rewrite",
+   "reason": "No streaming pipeline is presented anywhere in the document, so this contrasts with an alternative nobody mentioned."
+  },
+  {
+   "id": "c006",
+   "target": "the earlier full-year reach of raw tables",
+   "verdict": "rewrite",
+   "reason": "\"No longer\" speaks of an earlier state (the 400-day window) the reader never saw."
+  },
+  {
+   "id": "c007",
+   "target": "pseudonymized identifiers counting as personal data",
+   "verdict": "licensed",
+   "quote": "The legal team holds that pseudonymized identifiers still count as personal data.",
+   "reason": "The preceding sentence presents the legal view that makes a reader expect the rollups to be asked about."
+  },
+  {
+   "id": "c008",
+   "target": "none",
+   "verdict": "plain",
+   "question": "What happens to an erasure request that names no user identifier?",
+   "reason": "States a condition and its outcome in the erasure process that a reader acts on, setting it against no other rule or version."
+  },
+  {
+   "id": "c009",
+   "target": "a retention steward reviewing expired partitions",
+   "verdict": "rewrite",
+   "reason": "The document never introduces a retention steward or a review step, so this denies the deleted purge-ticket process the reader cannot see."
+  }
+ ]
+}

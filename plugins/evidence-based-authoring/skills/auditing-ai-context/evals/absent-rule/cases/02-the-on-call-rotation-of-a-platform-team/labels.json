@@ -1,0 +1,17 @@
+{
+  "topic": "the on-call rotation of a platform team",
+  "old_rule": "One engineer holds the pager for a whole pager week, from Monday 10:00 to the following Monday 10:00, answering every page day and night, with unacknowledged pages escalating to the engineering manager after 15 minutes.",
+  "new_rule": "The pager follows the sun in two twelve-hour shifts a day, one per office, each with a primary and a secondary from the same office, handed over by a written note at the end of each shift.",
+  "planted": [
+    {"id": "p01", "class": "trace", "form": "named", "text": "A swap covers a single shift and never a whole pager week."},
+    {"id": "p02", "class": "trace", "form": "quiet", "text": "The primary does not have to stay reachable around the clock for several days in a row."},
+    {"id": "p03", "class": "trace", "form": "quiet", "text": "Handover is a written note at the end of each shift, and nobody has to wait for a weekly meeting to learn what is open."},
+    {"id": "p04", "class": "foil", "text": "The note is a few lines in the incident channel, not a formal report with sign-off."},
+    {"id": "p05", "class": "foil", "text": "Schedules live in the paging tool itself and are not copied into a spreadsheet."},
+    {"id": "p06", "class": "licensed", "text": "On the platform team a swap counts only once it is recorded in the scheduling tool.", "licence": "Some teams in the company let engineers swap shifts by agreeing on it in a direct message."},
+    {"id": "p07", "class": "licensed", "text": "We compensate each shift with half a day of time off rather than with money.", "licence": "Many on-call guides recommend paying a flat stipend for every shift."},
+    {"id": "p08", "class": "licensed", "text": "Open incidents pass to the incoming primary as they stand, and the outgoing primary signs off at the end of the shift.", "licence": "A reader might expect the outgoing primary to stay on until every open incident is resolved."},
+    {"id": "p09", "class": "plain", "text": "The paging tool never drops an unacknowledged page, and it keeps escalating until a person acknowledges it."},
+    {"id": "p10", "class": "plain", "text": "A primary never deploys to production during a shift except to mitigate an incident in progress."}
+  ]
+}

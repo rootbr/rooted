@@ -1,0 +1,340 @@
+{
+ "version": 1,
+ "mode": "pair",
+ "files": [
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/new.md",
+   "sha256": "1bf766b433c913ca68b8d3a26d152ee77586bbdd32f26cb211151b5662366a24"
+  }
+ ],
+ "deleted": [
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/old.md",
+   "line": 3,
+   "text": "Owner: CLI platform team."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/old.md",
+   "line": 3,
+   "text": "Status: in force for tern 3.x."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/old.md",
+   "line": 11,
+   "text": "Tern can take settings from five sources."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/old.md",
+   "line": 19,
+   "text": "The three files share one format and one set of keys, so any key may appear in any of them."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/old.md",
+   "line": 23,
+   "text": "Tern searches for a file in the order project, user, system, and loads only the first file it finds."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/old.md",
+   "line": 23,
+   "text": "That file is called the winning file."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/old.md",
+   "line": 23,
+   "text": "The other files are never opened, so none of their keys take effect, even keys the winning file does not mention."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/old.md",
+   "line": 23,
+   "text": "A key that the winning file omits takes its built-in default."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/old.md",
+   "line": 25,
+   "text": "Step"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/old.md",
+   "line": 25,
+   "text": "Location"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/old.md",
+   "line": 25,
+   "text": "Loaded when"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/old.md",
+   "line": 27,
+   "text": "1"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/old.md",
+   "line": 27,
+   "text": "Project file"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/old.md",
+   "line": 27,
+   "text": "It exists"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/old.md",
+   "line": 28,
+   "text": "2"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/old.md",
+   "line": 28,
+   "text": "User file"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/old.md",
+   "line": 28,
+   "text": "No project file exists"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/old.md",
+   "line": 29,
+   "text": "3"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/old.md",
+   "line": 29,
+   "text": "System file"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/old.md",
+   "line": 29,
+   "text": "Neither of the files above exists"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/old.md",
+   "line": 31,
+   "text": "The repository root is the nearest parent directory that contains a .git directory."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/old.md",
+   "line": 31,
+   "text": "When there is no repository, the search starts at the user file."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/old.md",
+   "line": 35,
+   "text": "Once the winning file is read, environment variables are applied on top of it, key by key."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/old.md",
+   "line": 35,
+   "text": "Flags are applied last and override both the file and the environment."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/old.md",
+   "line": 35,
+   "text": "A variable or flag for an unknown key is reported as an error."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/old.md",
+   "line": 39,
+   "text": "A project file must hold every setting the project needs, including personal ones such as the editor and the colour theme, because the user file is ignored once a project file exists."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/old.md",
+   "line": 39,
+   "text": "Most teams keep a shared template of personal keys and paste it into each new project file."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/old.md",
+   "line": 39,
+   "text": "Administrators who need a setting enforced everywhere cannot rely on the system file, since any user or project file wins over it."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/old.md",
+   "line": 43,
+   "text": "Keys hold strings, integers, booleans or lists."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/old.md",
+   "line": 43,
+   "text": "A list in the winning file is used as written."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/old.md",
+   "line": 43,
+   "text": "Unknown keys in the winning file produce a warning and are otherwise ignored."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/old.md",
+   "line": 47,
+   "text": "The command tern config show prints the path of the winning file followed by every resolved key and its value."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/old.md",
+   "line": 47,
+   "text": "Keys that came from an environment variable or a flag are marked with their source."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/old.md",
+   "line": 47,
+   "text": "The command tern config path prints only the path of the winning file, which scripts use to decide which file to edit."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/old.md",
+   "line": 51,
+   "text": "Plugins receive the resolved settings after flags are applied."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/old.md",
+   "line": 51,
+   "text": "A plugin reads its own section of the winning file, named after the plugin, and cannot see the other files."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/old.md",
+   "line": 55,
+   "text": "A syntax error in the winning file aborts the command with the file path and line number."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/old.md",
+   "line": 55,
+   "text": "Files that are not loaded are never parsed, so an error in them goes unnoticed until they become the winning file."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/old.md",
+   "line": 59,
+   "text": "Loading opens at most one file and finishes in well under a millisecond on a warm cache."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/old.md",
+   "line": 59,
+   "text": "The resolved settings are kept in memory for the life of the process."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/old.md",
+   "line": 63,
+   "text": "Whether tern config show should also list files that were found but not loaded."
+  }
+ ],
+ "candidates": [
+  {
+   "id": "c001",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/new.md",
+   "line": 19,
+   "end_line": 19,
+   "sentence": "Tern stops its search for the project file at the repository root and never reads a dotfile above it.",
+   "cues": [
+    "never"
+   ]
+  },
+  {
+   "id": "c002",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/new.md",
+   "line": 23,
+   "end_line": 23,
+   "sentence": "A key set in a later layer overrides the same key from an earlier one, and a key no layer sets takes its built-in default.",
+   "cues": [
+    "no"
+   ]
+  },
+  {
+   "id": "c003",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/new.md",
+   "line": 23,
+   "end_line": 23,
+   "sentence": "There is no winning file any more, and every layer that exists contributes the keys it sets.",
+   "cues": [
+    "no",
+    "any more"
+   ]
+  },
+  {
+   "id": "c004",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/new.md",
+   "line": 23,
+   "end_line": 23,
+   "sentence": "A layer whose file is missing is skipped silently and never makes the command fail.",
+   "cues": [
+    "never"
+   ]
+  },
+  {
+   "id": "c005",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/new.md",
+   "line": 31,
+   "end_line": 31,
+   "sentence": "When there is no repository, the project layer is empty.",
+   "cues": [
+    "no"
+   ]
+  },
+  {
+   "id": "c006",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/new.md",
+   "line": 31,
+   "end_line": 31,
+   "sentence": "Precedence comes from the layer a key was read from, not from when the file was last modified.",
+   "cues": [
+    "not"
+   ]
+  },
+  {
+   "id": "c007",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/new.md",
+   "line": 35,
+   "end_line": 35,
+   "sentence": "That is not the case in tern, where a flag given on the command line always overrides the matching variable.",
+   "cues": [
+    "not"
+   ]
+  },
+  {
+   "id": "c008",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/new.md",
+   "line": 39,
+   "end_line": 39,
+   "sentence": "A project file does not have to repeat personal settings such as the editor or the colour theme to keep them in effect.",
+   "cues": [
+    "not"
+   ]
+  },
+  {
+   "id": "c009",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/new.md",
+   "line": 39,
+   "end_line": 39,
+   "sentence": "Adding a project file never hides the user file or the system file as a whole.",
+   "cues": [
+    "never"
+   ]
+  },
+  {
+   "id": "c010",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/new.md",
+   "line": 43,
+   "end_line": 43,
+   "sentence": "Tern does not concatenate, and a list set in a higher layer replaces the lower list entirely.",
+   "cues": [
+    "not"
+   ]
+  },
+  {
+   "id": "c011",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/new.md",
+   "line": 51,
+   "end_line": 51,
+   "sentence": "Plugins see the merged result as one table rather than a separate copy per layer.",
+   "cues": [
+    "rather than"
+   ]
+  },
+  {
+   "id": "c012",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/new.md",
+   "line": 55,
+   "end_line": 55,
+   "sentence": "Loading never writes to any configuration file, even when a key falls back to its built-in default.",
+   "cues": [
+    "never"
+   ]
+  }
+ ]
+}

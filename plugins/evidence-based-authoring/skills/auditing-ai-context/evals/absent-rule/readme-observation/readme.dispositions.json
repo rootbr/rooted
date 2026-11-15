@@ -1,0 +1,820 @@
+{
+ "readings": 3,
+ "candidates": [
+  {
+   "id": "c001",
+   "file": "tmp/absent-rule-method/readme-case/new/README.md",
+   "line": 7,
+   "sentence": "Skills for the full evidence-based preparation pipeline: research any topic with source verification, map its complete question space before you start, then write AI agent context that actually works — grounded instructions and disciplined reasoning instead of vibes.",
+   "disposition": "rewrite",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c002",
+   "file": "tmp/absent-rule-method/readme-case/new/README.md",
+   "line": 7,
+   "sentence": "[Research shows](https://arxiv.org/abs/2602.11988) LLM-generated context files do not generally improve agent task success while raising inference cost by 20–23% — and the repository overviews they typically contain are specifically unhelpful.",
+   "disposition": "keep",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c003",
+   "file": "tmp/absent-rule-method/readme-case/new/README.md",
+   "line": 7,
+   "sentence": "Rooted admits rules by the scientific method instead: a claim rests on a test that could have refuted it, a norm is named as a norm and a decision as a decision.",
+   "disposition": "rewrite",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c004",
+   "file": "tmp/absent-rule-method/readme-case/new/README.md",
+   "line": 9,
+   "sentence": "**Tested, not asserted.**",
+   "disposition": "rewrite",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c005",
+   "file": "tmp/absent-rule-method/readme-case/new/README.md",
+   "line": 9,
+   "sentence": "A citation is the address of such a test, and where an idea came from carries no weight.",
+   "disposition": "rewrite",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c006",
+   "file": "tmp/absent-rule-method/readme-case/new/README.md",
+   "line": 14,
+   "sentence": "The method here is neither a sequence of steps nor a demand for a citation: it is a way of treating statements about how the world works.",
+   "disposition": "rewrite",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c007",
+   "file": "tmp/absent-rule-method/readme-case/new/README.md",
+   "line": 14,
+   "sentence": "A citation is the address of someone else's test and never the support itself; a test of our own, committed to the repository, counts the same.",
+   "disposition": "rewrite",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c008",
+   "file": "tmp/absent-rule-method/readme-case/new/README.md",
+   "line": 25,
+   "sentence": "An *opinion* names no outcome that would refute it and stays out of the rules.",
+   "disposition": "keep",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c009",
+   "file": "tmp/absent-rule-method/readme-case/new/README.md",
+   "line": 31,
+   "sentence": "every statement names its kind, and no kind passes for another",
+   "disposition": "keep",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c010",
+   "file": "tmp/absent-rule-method/readme-case/new/README.md",
+   "line": 34,
+   "sentence": "another person can repeat the test, or open its source and find the test there; an author's name supports nothing",
+   "disposition": "rewrite",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c011",
+   "file": "tmp/absent-rule-method/readme-case/new/README.md",
+   "line": 36,
+   "sentence": "No fitting",
+   "disposition": "keep",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c012",
+   "file": "tmp/absent-rule-method/readme-case/new/README.md",
+   "line": 39,
+   "sentence": "A claim of our own needs no citation.",
+   "disposition": "rewrite",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c013",
+   "file": "tmp/absent-rule-method/readme-case/new/README.md",
+   "line": 39,
+   "sentence": "Its hypothesis is committed first, the test runs with the technique and without it, and the result is committed after — a script reads that order from history.",
+   "disposition": "keep",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c014",
+   "file": "tmp/absent-rule-method/readme-case/new/README.md",
+   "line": 39,
+   "sentence": "The seven rules are a convention the repository adopts: the philosophy of science offers no single criterion of what is scientific, so the method takes what its main lines agree on.",
+   "disposition": "keep",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c015",
+   "file": "tmp/absent-rule-method/readme-case/new/README.md",
+   "line": 39,
+   "sentence": "A record is required on every rule line that is added or changed; the lines not yet touched carry their sources without a record.",
+   "disposition": "rewrite",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c016",
+   "file": "tmp/absent-rule-method/readme-case/new/README.md",
+   "line": 90,
+   "sentence": "A PR that offers a citation in place of a test is returned by design, not by oversight.",
+   "disposition": "rewrite",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c017",
+   "file": "tmp/absent-rule-method/readme-case/new/README.md",
+   "line": 296,
+   "sentence": "They are formulations of the method, read in the philosophy of science, and none of them is offered as a test of it; the line of each rule in [`method-provenance.md`](plugins/evidence-based-authoring/skills/testing-claims/maintenance/method-provenance.md) carries the passage it follows and how the text was seen.",
+   "disposition": "keep",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "licensed",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    }
+   ],
+   "quotes": [
+    "A rule that claims a technique works rests on a test that could have refuted it"
+   ]
+  },
+  {
+   "id": "c018",
+   "file": "tmp/absent-rule-method/readme-case/new/README.md",
+   "line": 298,
+   "sentence": "[plato.stanford.edu/entries/scientific-method](https://plato.stanford.edu/entries/scientific-method/) — No single universal method (§6.1); science differs from everyday knowledge by being more systematic (§7); the consequences of an error enter the choice between hypotheses (§4).",
+   "disposition": "keep",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c019",
+   "file": "tmp/absent-rule-method/readme-case/new/README.md",
+   "line": 300,
+   "sentence": "[plato.stanford.edu/entries/popper](https://plato.stanford.edu/entries/popper/) — A scientific theory prohibits outcomes; only a risky prediction corroborates; a tested theory is corroborated and never verified (§3–5).",
+   "disposition": "keep",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c020",
+   "file": "tmp/absent-rule-method/readme-case/new/README.md",
+   "line": 302,
+   "sentence": "[Cambridge University Press, excerpt](https://assets.cambridge.org/97811076/64647/excerpt/9781107664647_excerpt.pdf) — The severity requirement: \"One does not have evidence for a claim if nothing has been done to rule out ways the claim may be false.\"",
+   "disposition": "keep",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c021",
+   "file": "tmp/absent-rule-method/readme-case/new/README.md",
+   "line": 303,
+   "sentence": "[plato.stanford.edu/entries/scientific-objectivity](https://plato.stanford.edu/entries/scientific-objectivity/) — Objectivity as testing by others (§5.2); values decide how much evidence suffices and are not themselves evidence (§3).",
+   "disposition": "keep",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c022",
+   "file": "tmp/absent-rule-method/readme-case/new/README.md",
+   "line": 304,
+   "sentence": "[plato.stanford.edu/entries/hume-moral](https://plato.stanford.edu/entries/hume-moral/) — On the dominant reading, no evaluative conclusion follows from purely factual premises.",
+   "disposition": "keep",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c023",
+   "file": "tmp/absent-rule-method/readme-case/new/README.md",
+   "line": 305,
+   "sentence": "[plato.stanford.edu/entries/induction-problem](https://plato.stanford.edu/entries/induction-problem/) — The step from observed cases to unobserved ones rests on a uniformity that reason does not establish (§1–2).",
+   "disposition": "keep",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c024",
+   "file": "tmp/absent-rule-method/readme-case/new/README.md",
+   "line": 309,
+   "sentence": "[plato.stanford.edu/entries/scientific-underdetermination](https://plato.stanford.edu/entries/scientific-underdetermination/) — Duhem: an experiment tests a group of hypotheses and does not say which of them failed.",
+   "disposition": "keep",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c025",
+   "file": "tmp/absent-rule-method/readme-case/new/README.md",
+   "line": 311,
+   "sentence": "[plato.stanford.edu/entries/operationalism](https://plato.stanford.edu/entries/operationalism/) — A concept tied to the operations that measure it (§2.1); no extension of a concept without operational grounds (§3.2).",
+   "disposition": "keep",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c026",
+   "file": "tmp/absent-rule-method/readme-case/new/README.md",
+   "line": 312,
+   "sentence": "[plato.stanford.edu/entries/physics-experiment](https://plato.stanford.edu/entries/physics-experiment/), [plato.stanford.edu/entries/science-theory-observation](https://plato.stanford.edu/entries/science-theory-observation/) — How an experimental result is validated, with no strategy guaranteeing it; observation depends on theory and still tests it.",
+   "disposition": "keep",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c027",
+   "file": "tmp/absent-rule-method/readme-case/new/README.md",
+   "line": 316,
+   "sentence": "[royalsociety.org/about-us/who-we-are/history](https://royalsociety.org/about-us/who-we-are/history/) — The motto *Nullius in verba*, \"take nobody's word for it\": statements are verified by an appeal to facts determined by experiment.",
+   "disposition": "keep",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c028",
+   "file": "tmp/absent-rule-method/readme-case/new/README.md",
+   "line": 318,
+   "sentence": "[iphlib.ru](https://iphlib.ru/library/collection/newphilenc/document/HASHde83409a66a4b8acacdcde) — A hypothesis is a scientific supposition whose truth value is undetermined; testability in principle is necessary and not sufficient.",
+   "disposition": "keep",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c029",
+   "file": "tmp/absent-rule-method/readme-case/new/README.md",
+   "line": 319,
+   "sentence": "7, as quoted at [wikiquote](https://en.wikiquote.org/wiki/Richard_Feynman) — \"It does not make any difference how smart you are, who made the guess, or what his name is.",
+   "disposition": "keep",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  }
+ ],
+ "findings": []
+}

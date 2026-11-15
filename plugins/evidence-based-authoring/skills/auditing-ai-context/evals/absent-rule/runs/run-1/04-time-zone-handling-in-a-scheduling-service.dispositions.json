@@ -1,0 +1,432 @@
+{
+ "readings": 3,
+ "candidates": [
+  {
+   "id": "c001",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/new.md",
+   "line": 20,
+   "sentence": "The zone comes from the organizer's choice in the event form rather than from a guess based on the network address of the request.",
+   "disposition": "rewrite",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c002",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/new.md",
+   "line": 24,
+   "sentence": "timestamp without zone",
+   "disposition": "keep",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c003",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/new.md",
+   "line": 31,
+   "sentence": "The gap between two occurrences is not a fixed count of hours, since a week that crosses a transition is an hour shorter or longer.",
+   "disposition": "rewrite",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c004",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/new.md",
+   "line": 33,
+   "sentence": "This service does not materialise occurrences ahead of time, so an edit to a series touches a single row.",
+   "disposition": "keep",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "licensed",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "licensed",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "licensed",
+     "outcome": "keep",
+     "code": ""
+    }
+   ],
+   "quotes": [
+    "Some calendar products store each occurrence as a separate row as soon as a series is created."
+   ]
+  },
+  {
+   "id": "c005",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/new.md",
+   "line": 39,
+   "sentence": "When a local time occurs twice in an autumn overlap, the expander takes the earlier of the two instants.",
+   "disposition": "keep",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c006",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/new.md",
+   "line": 41,
+   "sentence": "Organizers do not have to edit a series after a clock change to keep it at its usual hour.",
+   "disposition": "rewrite",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c007",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/new.md",
+   "line": 43,
+   "sentence": "There is no rebase job, and organizers receive no email around the spring and autumn clock changes.",
+   "disposition": "rewrite",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c008",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/new.md",
+   "line": 47,
+   "sentence": "Reminder jobs are written to the shared job queue rather than registered as cron entries on the worker hosts.",
+   "disposition": "rewrite",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c009",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/new.md",
+   "line": 49,
+   "sentence": "A reminder is never sent for an occurrence that has been cancelled or deleted.",
+   "disposition": "keep",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c010",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/new.md",
+   "line": 51,
+   "sentence": "When an event has no reminder setting, no notification is sent before it starts.",
+   "disposition": "keep",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c011",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/new.md",
+   "line": 61,
+   "sentence": "The service therefore does not read zone rules from the host but ships its own pinned copy of the tz database.",
+   "disposition": "keep",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "licensed",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "licensed",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "licensed",
+     "outcome": "keep",
+     "code": ""
+    }
+   ],
+   "quotes": [
+    "The operating system zone files on a host can lag behind those releases by months."
+   ]
+  },
+  {
+   "id": "c012",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/new.md",
+   "line": 67,
+   "sentence": "Create and update requests carry the start as a local date-time string without an offset, plus a zone field holding an IANA name.",
+   "disposition": "keep",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c013",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/new.md",
+   "line": 68,
+   "sentence": "The iCalendar standard allows a floating time that carries no zone at all.",
+   "disposition": "keep",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c014",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/new.md",
+   "line": 68,
+   "sentence": "The import endpoint does not accept floating times and asks the user to pick a zone instead.",
+   "disposition": "keep",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "licensed",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "licensed",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "licensed",
+     "outcome": "keep",
+     "code": ""
+    }
+   ],
+   "quotes": [
+    "The iCalendar standard allows a floating time that carries no zone at all."
+   ]
+  },
+  {
+   "id": "c015",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/new.md",
+   "line": 77,
+   "sentence": "Whether organizers should be able to change the zone of an existing series without moving its occurrences in local time.",
+   "disposition": "keep",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  }
+ ],
+ "findings": []
+}

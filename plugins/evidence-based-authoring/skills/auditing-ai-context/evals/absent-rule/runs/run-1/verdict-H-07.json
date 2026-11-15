@@ -1,0 +1,49 @@
+{
+ "id": "H-07",
+ "kind": "claim",
+ "standing": "hypothesis",
+ "answers": [
+  {
+   "rule": 1,
+   "verdict": "holds",
+   "quote": "shown the lines a change deleted, the audit's cards flag about as few sound denials as without them · kind: claim",
+   "missing": ""
+  },
+  {
+   "rule": 2,
+   "verdict": "holds",
+   "quote": "refuter: the share with the deleted statements stands more than 0.10 above the share without them",
+   "missing": ""
+  },
+  {
+   "rule": 3,
+   "verdict": "not-applicable",
+   "quote": "",
+   "missing": ""
+  },
+  {
+   "rule": 4,
+   "verdict": "not-applicable",
+   "quote": "",
+   "missing": ""
+  },
+  {
+   "rule": 5,
+   "verdict": "not-applicable",
+   "quote": "",
+   "missing": ""
+  },
+  {
+   "rule": 6,
+   "verdict": "not-applicable",
+   "quote": "",
+   "missing": ""
+  },
+  {
+   "rule": 7,
+   "verdict": "holds",
+   "quote": "had the four cards flag 16 of 60 planted sound sentences with the deleted statements in the inventory and 15 of 60 without them, every flag on a licensed sentence, and could not have refuted the claim: the inventory with the deleted statements was opened by 3 of the 12 readers of D-06, the card behind most of those flags, and by no reader of R-61",
+   "missing": ""
+  }
+ ]
+}

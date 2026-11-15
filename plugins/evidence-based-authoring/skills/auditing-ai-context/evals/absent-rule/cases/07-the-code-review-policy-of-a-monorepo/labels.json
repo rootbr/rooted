@@ -1,0 +1,17 @@
+{
+  "topic": "the code-review policy of a monorepo",
+  "old_rule": "Every pull request needs two approvals from members of the review desk, a weekly rota of four engineers, and package maintainers' approvals do not count.",
+  "new_rule": "Every pull request needs one approval from an owner, listed in the package's owners file, of each package it touches.",
+  "planted": [
+    {"id": "p01", "class": "trace", "form": "named", "text": "No review desk sign-off is needed, even for changes that span many packages."},
+    {"id": "p02", "class": "trace", "form": "quiet", "text": "The reviewer is chosen by what the change touches, not by whose turn it is."},
+    {"id": "p03", "class": "trace", "form": "quiet", "text": "Approvals from people outside the owning group carry no weight, however many of them a change collects."},
+    {"id": "p04", "class": "foil", "text": "Owners review for correctness and fit with the package, not for code style, which the formatter already settles."},
+    {"id": "p05", "class": "foil", "text": "An approval is a statement about the code as merged, not a courtesy to the author."},
+    {"id": "p06", "class": "licensed", "text": "The merge queue accepts only squash merges, and the other methods are disabled in the repository settings.", "licence": "Git offers several ways to land a branch, including merge commits, squashing and rebasing."},
+    {"id": "p07", "class": "licensed", "text": "That request does not extend to the client libraries, which call the auth service but hold no secrets.", "licence": "The security team has asked that every change touching authentication code be reviewed by one of its members."},
+    {"id": "p08", "class": "licensed", "text": "It is not, because the build checks behaviour while the owner checks whether the change belongs in the package.", "licence": "Newcomers often expect that a green build is enough to merge."},
+    {"id": "p09", "class": "plain", "text": "The merge queue never lands a pull request whose required checks have not finished on the exact commit being merged."},
+    {"id": "p10", "class": "plain", "text": "If a package has no owners file, the merge bot refuses every pull request that touches it."}
+  ]
+}

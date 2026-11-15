@@ -1,0 +1,346 @@
+{
+ "readings": 3,
+ "candidates": [
+  {
+   "id": "c001",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/08-the-incident-postmortem-process-of-an-engineering-group/new.md",
+   "line": 9,
+   "sentence": "Our template has no such score, and contributing factors are described only as conditions of the system, its tooling and its processes.",
+   "disposition": "keep",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "licensed",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "licensed",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "licensed",
+     "outcome": "keep",
+     "code": ""
+    }
+   ],
+   "quotes": [
+    "Some organizations assign a numeric blame score to each contributing factor."
+   ]
+  },
+  {
+   "id": "c002",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/08-the-incident-postmortem-process-of-an-engineering-group/new.md",
+   "line": 27,
+   "sentence": "When no single team clearly owns the affected service, the author is taken from the incident commander's own team.",
+   "disposition": "keep",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c003",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/08-the-incident-postmortem-process-of-an-engineering-group/new.md",
+   "line": 29,
+   "sentence": "It is built from these records rather than from anyone's recollection of the night.",
+   "disposition": "rewrite",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c004",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/08-the-incident-postmortem-process-of-an-engineering-group/new.md",
+   "line": 35,
+   "sentence": "A postmortem is never reviewed in a meeting, and its author is not asked to walk a room through it.",
+   "disposition": "rewrite",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c005",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/08-the-incident-postmortem-process-of-an-engineering-group/new.md",
+   "line": 37,
+   "sentence": "Authors do not book a slot at the Thursday Postmortem Review, since approval happens entirely in the document.",
+   "disposition": "rewrite",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c006",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/08-the-incident-postmortem-process-of-an-engineering-group/new.md",
+   "line": 39,
+   "sentence": "If a reviewer has not responded by then, the incident commander replaces them from the rota.",
+   "disposition": "keep",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c007",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/08-the-incident-postmortem-process-of-an-engineering-group/new.md",
+   "line": 52,
+   "sentence": "The author gets two full working weeks rather than one, because the timeline is rarely complete within the first few days.",
+   "disposition": "rewrite",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c008",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/08-the-incident-postmortem-process-of-an-engineering-group/new.md",
+   "line": 52,
+   "sentence": "A postmortem not approved by then is flagged in the group's weekly report.",
+   "disposition": "keep",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c009",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/08-the-incident-postmortem-process-of-an-engineering-group/new.md",
+   "line": 56,
+   "sentence": "Items are filed in the owning team's regular backlog instead of a separate tracker that someone would have to remember to check.",
+   "disposition": "rewrite",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c010",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/08-the-incident-postmortem-process-of-an-engineering-group/new.md",
+   "line": 60,
+   "sentence": "A common view in the group is that a postmortem with no action items is an unfinished postmortem.",
+   "disposition": "keep",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c011",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/08-the-incident-postmortem-process-of-an-engineering-group/new.md",
+   "line": 60,
+   "sentence": "We disagree, and a postmortem that finds nothing worth changing is approved like any other one.",
+   "disposition": "keep",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "licensed",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "licensed",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "licensed",
+     "outcome": "keep",
+     "code": ""
+    }
+   ],
+   "quotes": [
+    "A common view in the group is that a postmortem with no action items is an unfinished postmortem."
+   ]
+  },
+  {
+   "id": "c012",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/08-the-incident-postmortem-process-of-an-engineering-group/new.md",
+   "line": 70,
+   "sentence": "The postmortem document never contains customer names, account identifiers or credentials copied from logs.",
+   "disposition": "keep",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  }
+ ],
+ "findings": []
+}

@@ -1,0 +1,354 @@
+{
+ "version": 1,
+ "mode": "pair",
+ "files": [
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/new.md",
+   "sha256": "4346473d2ba1d5463713432f7cb13ea36aadace383af74b4835b55d48b809278"
+  }
+ ],
+ "deleted": [
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/old.md",
+   "line": 13,
+   "text": "Flyway applies the files in sequence order and records each one in the flyway_schema_history table."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/old.md",
+   "line": 18,
+   "text": "All schema changes for a release are collected into one release migration file and applied in the Sunday window, between 02:00 and 04:00 UTC."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/old.md",
+   "line": 18,
+   "text": "The release DBA applies that file by hand with Flyway while the orders application is stopped and a downtime banner is shown to customers."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/old.md",
+   "line": 18,
+   "text": "Application code that depends on the new schema is deployed in the same window, right after the migration succeeds."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/old.md",
+   "line": 22,
+   "text": "Developers add their statements to the release migration file on the release branch, not to a file of their own."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/old.md",
+   "line": 23,
+   "text": "Any statement is allowed, including renames, drops and type changes, because no running code reads the tables while the window is open."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/old.md",
+   "line": 24,
+   "text": "Data backfills go into the same file after the schema statements so that the release DBA can watch them finish."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/old.md",
+   "line": 25,
+   "text": "A statement that is expected to run longer than twenty minutes is flagged in the file header so the window can be planned."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/old.md",
+   "line": 29,
+   "text": "Every change to the release migration file needs approval from one member of the platform data team."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/old.md",
+   "line": 29,
+   "text": "The reviewer checks the SQL for correctness, estimates its running time on a production-sized copy, and adds the estimate to the release checklist."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/old.md",
+   "line": 29,
+   "text": "The release DBA reads the whole file on the Friday before the window and may move statements to the next release if the window would overrun."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/old.md",
+   "line": 33,
+   "text": "On Sunday at 02:00 UTC the release DBA enables the downtime banner and scales the orders application to zero."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/old.md",
+   "line": 34,
+   "text": "The release DBA takes a snapshot of the database."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/old.md",
+   "line": 35,
+   "text": "The release DBA runs Flyway against production and watches its output."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/old.md",
+   "line": 36,
+   "text": "When Flyway reports success, the deploy pipeline releases the new application version."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/old.md",
+   "line": 37,
+   "text": "The release DBA scales the application back up, removes the banner and posts a note in the release channel."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/old.md",
+   "line": 41,
+   "text": "If Flyway stops with an error, the release DBA restores the snapshot taken in step 2 and redeploys the previous application version."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/old.md",
+   "line": 41,
+   "text": "The failed statements are fixed on the release branch and wait for the next Sunday window."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/old.md",
+   "line": 41,
+   "text": "Because the application is offline for the whole procedure, a failure costs only the time of the restore."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/old.md",
+   "line": 47,
+   "text": "Developer"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/old.md",
+   "line": 47,
+   "text": "Adds statements to the release migration file and tests them locally"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/old.md",
+   "line": 48,
+   "text": "Reviewer"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/old.md",
+   "line": 48,
+   "text": "Approves the SQL and estimates its running time"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/old.md",
+   "line": 49,
+   "text": "Release DBA"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/old.md",
+   "line": 49,
+   "text": "Runs the Sunday window, applies the file and restores on failure"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/old.md",
+   "line": 50,
+   "text": "Support lead"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/old.md",
+   "line": 50,
+   "text": "Tells customers about the window in advance"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/old.md",
+   "line": 51,
+   "text": "On-call engineer"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/old.md",
+   "line": 51,
+   "text": "Handles alerts once the application is back up"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/old.md",
+   "line": 55,
+   "text": "Every migration runs in the test suite against an empty local database and against a copy of the staging database."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/old.md",
+   "line": 55,
+   "text": "The staging copy is refreshed every Thursday so that the release migration file can be rehearsed on realistic data before the window."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/old.md",
+   "line": 55,
+   "text": "A rehearsal that runs longer than the estimate on the release checklist is reported to the release DBA."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/old.md",
+   "line": 59,
+   "text": "After the window the release DBA compares the row counts of the changed tables with the snapshot and records them on the release checklist."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/old.md",
+   "line": 59,
+   "text": "Query latency dashboards are watched for one hour after the application comes back up."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/old.md",
+   "line": 59,
+   "text": "Any regression is reported in the release channel and handled by the on-call engineer."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/old.md",
+   "line": 63,
+   "text": "Whether the Sunday window should move to Saturday for customers in Asia."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/old.md",
+   "line": 64,
+   "text": "Whether the snapshot can be replaced by point-in-time recovery."
+  }
+ ],
+ "candidates": [
+  {
+   "id": "c001",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/new.md",
+   "line": 13,
+   "end_line": 13,
+   "sentence": "The runner learns which migrations have run from the history table, not from comparing the live schema against a model.",
+   "cues": [
+    "not"
+   ]
+  },
+  {
+   "id": "c002",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/new.md",
+   "line": 15,
+   "end_line": 15,
+   "sentence": "We write no down migrations, and every correction ships as a new forward migration.",
+   "cues": [
+    "no"
+   ]
+  },
+  {
+   "id": "c003",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/new.md",
+   "line": 19,
+   "end_line": 19,
+   "sentence": "The deploy pipeline applies pending migrations automatically before it rolls out the new application version, and a contract migration that removes or tightens something ships only once no running version reads the old shape.",
+   "cues": [
+    "no",
+    "the old"
+   ]
+  },
+  {
+   "id": "c004",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/new.md",
+   "line": 19,
+   "end_line": 19,
+   "sentence": "Nobody takes the application offline for a schema change, and customers keep placing orders while it is applied.",
+   "cues": [
+    "nobody"
+   ]
+  },
+  {
+   "id": "c005",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/new.md",
+   "line": 23,
+   "end_line": 23,
+   "sentence": "Migrations are not saved up and applied together at the end of a release, since each one ships with the change that needs it.",
+   "cues": [
+    "not"
+   ]
+  },
+  {
+   "id": "c006",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/new.md",
+   "line": 24,
+   "end_line": 24,
+   "sentence": "An expand migration may add tables, nullable columns, columns with a constant default, indexes, and constraints marked NOT VALID.",
+   "cues": [
+    "not"
+   ]
+  },
+  {
+   "id": "c007",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/new.md",
+   "line": 25,
+   "end_line": 25,
+   "sentence": "Our migrations never build an index in that blocking form and always use the concurrent variant instead.",
+   "cues": [
+    "never",
+    "instead"
+   ]
+  },
+  {
+   "id": "c008",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/new.md",
+   "line": 26,
+   "end_line": 26,
+   "sentence": "A rename is carried out as a new column filled by a backfill, rather than as a view that keeps the old name alive.",
+   "cues": [
+    "rather than",
+    "the old"
+   ]
+  },
+  {
+   "id": "c009",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/new.md",
+   "line": 26,
+   "end_line": 26,
+   "sentence": "The old column is dropped by a later contract migration.",
+   "cues": [
+    "the old"
+   ]
+  },
+  {
+   "id": "c010",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/new.md",
+   "line": 27,
+   "end_line": 27,
+   "sentence": "On PostgreSQL 11 and later that is not the case, because a constant default is kept in the catalog without touching existing rows.",
+   "cues": [
+    "not",
+    "without"
+   ]
+  },
+  {
+   "id": "c011",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/new.md",
+   "line": 32,
+   "end_line": 32,
+   "sentence": "The reviewer checks that an expand migration is safe for the application version currently in production, and that a contract migration removes only what no deployed version still reads.",
+   "cues": [
+    "currently",
+    "no"
+   ]
+  },
+  {
+   "id": "c012",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/new.md",
+   "line": 41,
+   "end_line": 41,
+   "sentence": "There is no Sunday window to book and no release DBA to page before a migration goes out.",
+   "cues": [
+    "no"
+   ]
+  },
+  {
+   "id": "c013",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/new.md",
+   "line": 45,
+   "end_line": 45,
+   "sentence": "The pipeline never rolls out new application code after a migration has failed.",
+   "cues": [
+    "never"
+   ]
+  },
+  {
+   "id": "c014",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/new.md",
+   "line": 45,
+   "end_line": 45,
+   "sentence": "If a migration file has no matching row in the history table while a later file does, Flyway refuses to start and names the missing file.",
+   "cues": [
+    "no"
+   ]
+  },
+  {
+   "id": "c015",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/new.md",
+   "line": 58,
+   "end_line": 58,
+   "sentence": "The test suite also runs the previous application version against the migrated schema to show that an expand migration is safe.",
+   "cues": [
+    "the previous"
+   ]
+  }
+ ]
+}

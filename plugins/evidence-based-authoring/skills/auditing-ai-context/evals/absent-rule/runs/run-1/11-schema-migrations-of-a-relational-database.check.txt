@@ -1,0 +1,16 @@
+plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/new.md:13: REWRITE c001 [reading 1: rewrite; reading 2: rewrite; reading 3: rewrite] The runner learns which migrations have run from the …
+plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/new.md:15: KEEP c002 [licensed ×3] quote: "Some frameworks generate a down migration for every up migration automatically."
+plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/new.md:19: KEEP c003 [plain ×3]
+plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/new.md:19: REWRITE c004 [reading 1: rewrite; reading 2: rewrite; reading 3: rewrite] Nobody takes the application offline for a schema change, …
+plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/new.md:23: REWRITE c005 [reading 1: rewrite; reading 2: rewrite; reading 3: rewrite] Migrations are not saved up and applied together at the end …
+plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/new.md:24: KEEP c006 [plain ×3]
+plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/new.md:25: KEEP c007 [licensed ×1, plain ×2] quote: "PostgreSQL takes a lock that blocks writes on a table while an index is built in the ordinary way."
+plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/new.md:26: REWRITE c008 [reading 1: rewrite; reading 2: rewrite; reading 3: rewrite] A rename is carried out as a new column filled by a …
+plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/new.md:26: KEEP c009 [plain ×3]
+plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/new.md:27: KEEP c010 [licensed ×3] quote: "A common belief is that adding a column with a default value rewrites the whole table."
+plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/new.md:32: KEEP c011 [plain ×3]
+plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/new.md:41: REWRITE c012 [reading 1: rewrite; reading 2: rewrite; reading 3: rewrite] There is no Sunday window to book and no release DBA to …
+plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/new.md:45: KEEP c013 [plain ×3]
+plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/new.md:45: KEEP c014 [plain ×3]
+plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/new.md:58: KEEP c015 [plain ×3]
+15 candidates: 10 kept, 5 to rewrite; readings: 3

@@ -1,0 +1,98 @@
+{
+ "verdicts": [
+  {
+   "id": "c001",
+   "target": "a compiled artifact that needs a build to change",
+   "verdict": "rewrite",
+   "reason": "The sentence sets the ruleset against a compiled-artifact alternative that the document never presents."
+  },
+  {
+   "id": "c002",
+   "target": "naming flags by ticket number",
+   "verdict": "rewrite",
+   "reason": "It corrects a ticket-number naming habit that nobody in the document voiced."
+  },
+  {
+   "id": "c003",
+   "target": "reuse of a deleted flag name",
+   "verdict": "plain",
+   "question": "Can the name of a deleted flag be used for a new flag?",
+   "reason": "It states a prohibition on the subject that a reader acts on and sets it against no other rule."
+  },
+  {
+   "id": "c004",
+   "target": "the payments rule that every flag defaults to off",
+   "verdict": "licensed",
+   "quote": "The payments team keeps a stricter local rule under which every flag in its services must default to off.",
+   "reason": "The preceding paragraph sentence presents the payments rule that this sentence excuses other teams from."
+  },
+  {
+   "id": "c005",
+   "target": "upstream evaluation handed along with the request",
+   "verdict": "rewrite",
+   "reason": "It denies a design (value decided upstream and passed with the request) that the document never presents, and the deleted gateway statements required exactly that."
+  },
+  {
+   "id": "c006",
+   "target": "network hop or waiting on another component",
+   "verdict": "plain",
+   "question": "Does evaluating a flag need a network call or wait on another service?",
+   "reason": "It is a guarantee that follows from the in-memory lookup the document just described."
+  },
+  {
+   "id": "c007",
+   "target": "caching of evaluation results advised by commercial flag services",
+   "verdict": "licensed",
+   "quote": "Some commercial flag services bill per evaluation and advise clients to cache each result for several hours.",
+   "reason": "The earlier sentence presents the caching practice that this sentence sets the SDK against."
+  },
+  {
+   "id": "c008",
+   "target": "a flag without targeting rules",
+   "verdict": "plain",
+   "question": "What does a flag with no targeting rules return?",
+   "reason": "It states what holds when rules are absent, as a default does."
+  },
+  {
+   "id": "c009",
+   "target": "services disagreeing after a ruleset change",
+   "verdict": "plain",
+   "question": "Can two services see different values of one flag, and for how long?",
+   "reason": "It states a limit of the present mechanism and the previous ruleset is only the instances' own state, not an earlier version of the document."
+  },
+  {
+   "id": "c010",
+   "target": "a handler seeing two values of one flag",
+   "verdict": "plain",
+   "question": "What must a handler do if it needs one consistent value of a flag?",
+   "reason": "It gives a condition and the action a reader takes, arguing with no other design."
+  },
+  {
+   "id": "c011",
+   "target": "the starting state of a new flag",
+   "verdict": "plain",
+   "question": "With what default and rules do I merge a new flag?",
+   "reason": "It is a step of the procedure; the old behaviour means the behaviour before the feature, not an earlier version of this note."
+  },
+  {
+   "id": "c012",
+   "target": "building a snapshot header in tests",
+   "verdict": "rewrite",
+   "reason": "It speaks of an earlier state with 'any more' and of a snapshot header the document never presents."
+  },
+  {
+   "id": "c013",
+   "target": "the flag store as the source in integration tests",
+   "verdict": "licensed",
+   "quote": "The SDK pulls the full ruleset from the flag store every 30 seconds and evaluates it locally, keyed on the user ID carried in the request context.",
+   "reason": "The document has already presented the flag store as the SDK's source, which the fixed ruleset file replaces in tests."
+  },
+  {
+   "id": "c014",
+   "target": "flag store unreachable",
+   "verdict": "plain",
+   "question": "What does the SDK do when the flag store cannot be reached?",
+   "reason": "It states the behaviour under a failure condition that a reader acts on."
+  }
+ ]
+}

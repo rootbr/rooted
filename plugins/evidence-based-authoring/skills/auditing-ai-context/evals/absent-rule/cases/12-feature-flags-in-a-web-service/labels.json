@@ -1,0 +1,17 @@
+{
+  "topic": "feature flags in a web service",
+  "old_rule": "All flags are evaluated once per request by the edge gateway, which writes the results into the X-Flag-Snapshot header that downstream services read, and services never call the flag store.",
+  "new_rule": "Each service evaluates flags itself through the in-process SDK, which pulls the full ruleset from the flag store every 30 seconds and evaluates locally on the user ID in the request context.",
+  "planted": [
+    {"id": "p01", "class": "trace", "form": "named", "text": "No test has to build a flag snapshot header any more, since the fixture answers every question about a flag directly."},
+    {"id": "p02", "class": "trace", "form": "quiet", "text": "A flag value is worked out inside the service that uses it, not decided upstream and handed along with the request."},
+    {"id": "p03", "class": "trace", "form": "quiet", "text": "Evaluating a flag therefore costs no network hop, and no service waits on another component to learn which variant a user gets."},
+    {"id": "p04", "class": "foil", "text": "The ruleset is a plain JSON document that anyone can read in review, not a compiled artifact that needs a build to change."},
+    {"id": "p05", "class": "foil", "text": "Flag names describe the behaviour a user sees rather than the ticket number under which the work was planned."},
+    {"id": "p06", "class": "licensed", "text": "Our SDK keeps no evaluation results between requests, so a ruleset change reaches users on the very next refresh.", "licence": "Some commercial flag services bill per evaluation and advise clients to cache each result for several hours."},
+    {"id": "p07", "class": "licensed", "text": "Outside payments, a team may give a flag an on default when the old code path is the riskier of the two.", "licence": "The payments team keeps a stricter local rule under which every flag in its services must default to off."},
+    {"id": "p08", "class": "licensed", "text": "That assumption is wrong here, because every release flag carries a removal date and the linter fails the build once it passes.", "licence": "New engineers often assume that a release flag can stay in the code indefinitely as a safety switch."},
+    {"id": "p09", "class": "plain", "text": "A flag name is never reused once the flag has been deleted, even years later."},
+    {"id": "p10", "class": "plain", "text": "A flag with no targeting rules returns its declared default to every user."}
+  ]
+}

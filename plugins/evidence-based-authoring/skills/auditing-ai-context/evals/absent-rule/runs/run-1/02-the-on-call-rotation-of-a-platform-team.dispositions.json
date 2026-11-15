@@ -1,0 +1,316 @@
+{
+ "readings": 3,
+ "candidates": [
+  {
+   "id": "c001",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/02-the-on-call-rotation-of-a-platform-team/new.md",
+   "line": 20,
+   "sentence": "The primary does not have to stay reachable around the clock for several days in a row.",
+   "disposition": "rewrite",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c002",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/02-the-on-call-rotation-of-a-platform-team/new.md",
+   "line": 30,
+   "sentence": "A primary never deploys to production during a shift except to mitigate an incident in progress.",
+   "disposition": "keep",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c003",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/02-the-on-call-rotation-of-a-platform-team/new.md",
+   "line": 34,
+   "sentence": "The note lists every open incident, every silenced alert and every toil ticket that was started but not finished.",
+   "disposition": "keep",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c004",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/02-the-on-call-rotation-of-a-platform-team/new.md",
+   "line": 34,
+   "sentence": "The note is a few lines in the incident channel, not a formal report with sign-off.",
+   "disposition": "rewrite",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c005",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/02-the-on-call-rotation-of-a-platform-team/new.md",
+   "line": 38,
+   "sentence": "Handover is a written note at the end of each shift, and nobody has to wait for a weekly meeting to learn what is open.",
+   "disposition": "rewrite",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c006",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/02-the-on-call-rotation-of-a-platform-team/new.md",
+   "line": 42,
+   "sentence": "A page that the primary does not acknowledge goes up a fixed chain within the office that holds the shift.",
+   "disposition": "keep",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c007",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/02-the-on-call-rotation-of-a-platform-team/new.md",
+   "line": 50,
+   "sentence": "The paging tool never drops an unacknowledged page, and it keeps escalating until a person acknowledges it.",
+   "disposition": "keep",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c008",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/02-the-on-call-rotation-of-a-platform-team/new.md",
+   "line": 54,
+   "sentence": "A swap covers a single shift and never a whole pager week.",
+   "disposition": "rewrite",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c009",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/02-the-on-call-rotation-of-a-platform-team/new.md",
+   "line": 60,
+   "sentence": "We compensate each shift with half a day of time off rather than with money.",
+   "disposition": "keep",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "licensed",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "licensed",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "licensed",
+     "outcome": "keep",
+     "code": ""
+    }
+   ],
+   "quotes": [
+    "Many on-call guides recommend paying a flat stipend for every shift."
+   ]
+  },
+  {
+   "id": "c010",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/02-the-on-call-rotation-of-a-platform-team/new.md",
+   "line": 64,
+   "sentence": "Schedules live in the paging tool itself and are not copied into a spreadsheet.",
+   "disposition": "rewrite",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c011",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/02-the-on-call-rotation-of-a-platform-team/new.md",
+   "line": 70,
+   "sentence": "An alert that fired more than five times in a quarter without leading to action is either fixed or deleted.",
+   "disposition": "keep",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  }
+ ],
+ "findings": []
+}

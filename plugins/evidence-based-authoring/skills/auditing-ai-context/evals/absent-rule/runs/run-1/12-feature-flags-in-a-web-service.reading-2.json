@@ -1,0 +1,98 @@
+{
+ "verdicts": [
+  {
+   "id": "c001",
+   "target": "a compiled artifact that needs a build to change",
+   "verdict": "rewrite",
+   "reason": "The document never presents a compiled ruleset as an option, so the sentence argues with an alternative nobody showed."
+  },
+  {
+   "id": "c002",
+   "target": "naming flags after ticket numbers",
+   "verdict": "rewrite",
+   "reason": "No earlier sentence presents ticket-number names, so the contrast is with an alternative the reader was never shown."
+  },
+  {
+   "id": "c003",
+   "target": "reusing the name of a deleted flag",
+   "verdict": "plain",
+   "question": "May a flag name be reused after its flag is deleted?",
+   "reason": "It states a prohibition a reader acts on and sets the subject against no other rule."
+  },
+  {
+   "id": "c004",
+   "target": "the payments rule that every flag defaults to off",
+   "verdict": "licensed",
+   "quote": "The payments team keeps a stricter local rule under which every flag in its services must default to off.",
+   "reason": "The preceding sentence presents the payments default-off rule, so the outside-payments permission is read against a rule the document states."
+  },
+  {
+   "id": "c005",
+   "target": "upstream evaluation handed along with the request",
+   "verdict": "rewrite",
+   "reason": "The document presents no upstream evaluator, and the sentence denies the deleted gateway-and-header design."
+  },
+  {
+   "id": "c006",
+   "target": "network hops and waiting on another component during evaluation",
+   "verdict": "plain",
+   "question": "Does evaluating a flag need a network call or wait on another component?",
+   "reason": "It states a consequence of local in-memory evaluation, which the document has just described, and a reader relies on it."
+  },
+  {
+   "id": "c007",
+   "target": "commercial services' advice to cache each result for hours",
+   "verdict": "licensed",
+   "quote": "Some commercial flag services bill per evaluation and advise clients to cache each result for several hours.",
+   "reason": "The preceding sentence presents the caching advice that this sentence contrasts with."
+  },
+  {
+   "id": "c008",
+   "target": "behaviour of a flag without targeting rules",
+   "verdict": "plain",
+   "question": "What does a flag with no targeting rules return?",
+   "reason": "It states what holds when rules are absent, as a default does."
+  },
+  {
+   "id": "c009",
+   "target": "how long services can disagree after a ruleset change",
+   "verdict": "plain",
+   "question": "How long can services see different values of one flag after a change?",
+   "reason": "It states a limit of the present design, which the 30-second refresh explains, and does not speak of an earlier version of the text."
+  },
+  {
+   "id": "c010",
+   "target": "a handler seeing two values of one flag",
+   "verdict": "plain",
+   "question": "What does a handler do if it needs one consistent value of a flag?",
+   "reason": "It gives a condition and the action a reader takes, and it argues with no other rule."
+  },
+  {
+   "id": "c011",
+   "target": "the default and targeting a new flag is merged with",
+   "verdict": "plain",
+   "question": "What default and targeting does a new flag have when it is merged?",
+   "reason": "It is a procedure step that sets the starting state and denies nothing."
+  },
+  {
+   "id": "c012",
+   "target": "the snapshot header tests used to build",
+   "verdict": "rewrite",
+   "reason": "A snapshot header appears nowhere else in the document and \"any more\" speaks of an earlier state, which is the deleted helper design."
+  },
+  {
+   "id": "c013",
+   "target": "the flag store as the ruleset source in integration tests",
+   "verdict": "plain",
+   "question": "What ruleset do integration tests run against?",
+   "reason": "The flag store is presented earlier, and the sentence says what the tests use."
+  },
+  {
+   "id": "c014",
+   "target": "behaviour of the SDK when the flag store is unreachable",
+   "verdict": "plain",
+   "question": "What does the SDK do when the flag store is unreachable?",
+   "reason": "It states failure behaviour a reader acts on and sets the subject against no other design."
+  }
+ ]
+}

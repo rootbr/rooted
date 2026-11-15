@@ -1,0 +1,49 @@
+{
+ "id": "H-05",
+ "kind": "claim",
+ "standing": "supported",
+ "answers": [
+  {
+   "rule": 1,
+   "verdict": "holds",
+   "quote": "shown the lines a change deleted, the audit's cards flag more of the quiet sentences that argue with them · kind: claim",
+   "missing": ""
+  },
+  {
+   "rule": 2,
+   "verdict": "holds",
+   "quote": "refuter: the share with the deleted statements stands under 0.15 above the share without them",
+   "missing": ""
+  },
+  {
+   "rule": 3,
+   "verdict": "holds",
+   "quote": "had the four cards flag 21 of 24 such sentences with the deleted statements in the inventory and 9 of 24 without them, a difference of 0.50",
+   "missing": ""
+  },
+  {
+   "rule": 4,
+   "verdict": "holds",
+   "quote": "H-05 deleted lines: PASS: quiet flagged by the cards given the deleted lines 21/24 = 0.88; cards as shipped 9/24 = 0.38; margin 0.50 (>= 0.15)",
+   "missing": ""
+  },
+  {
+   "rule": 5,
+   "verdict": "fails",
+   "quote": "",
+   "missing": "The scope reaches beyond the bounds, and the record says `fit: direct` with no `transfer`. (1) Writer: the scope takes notes and planted sentences from any writer ('a writer that saw neither the scripts nor the cards'). The bounds hold twelve notes written by Claude Opus 5.5 at effort high from one brief, with ten sentences planted in each to that brief's class definitions. protocol.md § Bounds itself says 'sentences planted by a model and written to the same definitions'. (2) Card sub-agents: the scope sets no condition on their instruction files. The bounds name sub-agents 'that received the session's instruction files', and protocol.md § Arms says those are the operator's own files, outside the repository, holding style rules on denials. A rule that adds the deleted statements to any audit's inventory reaches sub-agents without those rules. (3) Length: the scope says 60 to 90 lines and the bounds say 64 to 83. The record should either narrow the scope to the bounds, or set `fit: transfer` and name these three differences in `transfer`. The bounds should also say that the deleted statements reached a sub-agent only if it opened the inventory path. By runs/run-1/cards-deleted.calls.txt, 17 of the 48 sub-agents in that arm opened inventory-deleted.md (D-01 5, D-02 9, D-06 3, R-61 0). By cards.calls.txt, 12 of 48 opened inventory.md. Both counts contradict runs/run-1/notes.md, which says every card sub-agent opened 'its document, its card and the inventory'."
+  },
+  {
+   "rule": 6,
+   "verdict": "holds",
+   "quote": "Twelve cases, written after the registering commit by writers that see neither the scripts nor the reviewer's instructions.",
+   "missing": ""
+  },
+  {
+   "rule": 7,
+   "verdict": "holds",
+   "quote": "in one note of the twelve the cards with the deleted statements flagged none of its three sentences that argue with the deleted rule",
+   "missing": ""
+  }
+ ]
+}

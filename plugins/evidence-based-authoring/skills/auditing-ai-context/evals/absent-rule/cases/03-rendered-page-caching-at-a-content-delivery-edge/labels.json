@@ -1,0 +1,17 @@
+{
+  "topic": "rendered-page caching at a content delivery edge",
+  "old_rule": "Every rendered page is cached at the edge with a fixed 300-second TTL and no purge on publish, so a change reaches readers only after the staleness window of up to 300 seconds has passed.",
+  "new_rule": "Rendered pages stay in the edge cache until purged, and the publish service purges every page tagged with a changed article or section identifier before the publish request returns.",
+  "planted": [
+    {"id": "p01", "class": "trace", "form": "named", "text": "There is no staleness window to account for when scheduling an embargoed story."},
+    {"id": "p02", "class": "trace", "form": "quiet", "text": "A corrected headline therefore reaches readers when the publish commits, not whenever a cached copy happens to run out."},
+    {"id": "p03", "class": "trace", "form": "quiet", "text": "An editor who has just published can reload the live page straight away instead of holding off before checking it."},
+    {"id": "p04", "class": "foil", "text": "The key is derived from the request alone rather than from a hash of the rendered page body."},
+    {"id": "p05", "class": "foil", "text": "Purge requests travel over that authenticated API, not through any shared message queue that other teams could write to."},
+    {"id": "p06", "class": "licensed", "text": "We do not vary by cookies beyond the consent flag, because no other cookie changes what our rendered pages contain.", "licence": "Many sites vary cached pages by the full cookie header."},
+    {"id": "p07", "class": "licensed", "text": "Purging by URL would not work for us, because one article appears on dozens of section fronts and listing pages.", "licence": "The provider's documentation recommends purging by URL for small sites."},
+    {"id": "p08", "class": "licensed", "text": "A purge never reaches those browsers, and their copies are bounded only by the short client lifetime set by the origin.", "licence": "Some editors assume that a purge clears the browser caches of readers who already loaded the page."},
+    {"id": "p09", "class": "plain", "text": "The edge never stores a response that carries a session cookie or an authorisation header."},
+    {"id": "p10", "class": "plain", "text": "When the tag header is missing from an origin response, the edge passes the page through without storing it."}
+  ]
+}

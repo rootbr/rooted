@@ -1,0 +1,83 @@
+{
+ "verdicts": [
+  {
+   "id": "c001",
+   "target": "refill all at once at a fixed moment (fixed window reset)",
+   "verdict": "rewrite",
+   "reason": "It sets the refill against a fixed-moment reset that the document never presents, which is the deleted quota-window rule."
+  },
+  {
+   "id": "c002",
+   "target": "what an empty-bucket request does",
+   "verdict": "plain",
+   "question": "What happens to a request that finds the bucket empty, and does it use up anything?",
+   "reason": "It states what the limiter does and does not do for a rejected request, with no other design in view."
+  },
+  {
+   "id": "c003",
+   "target": "stored state for a full bucket",
+   "verdict": "plain",
+   "question": "When does a bucket's entry in Redis expire?",
+   "reason": "It gives the expiry condition and its reason, and sets the subject against no other rule."
+  },
+  {
+   "id": "c004",
+   "target": "gateways that charge failed and successful requests at different rates",
+   "verdict": "licensed",
+   "quote": "Some gateways charge failed requests and successful requests at different rates.",
+   "reason": "The earlier sentence presents the differing-rate practice that this one answers."
+  },
+  {
+   "id": "c005",
+   "target": "per source IP address limits",
+   "verdict": "licensed",
+   "quote": "Many public APIs apply their limits per source IP address.",
+   "reason": "The earlier sentence presents the per-IP view that this one declines."
+  },
+  {
+   "id": "c006",
+   "target": "behaviour when the account service is unreachable",
+   "verdict": "plain",
+   "question": "Which plan applies to a key when the account service cannot be reached?",
+   "reason": "It states a default for an absent lookup that a reader acts on."
+  },
+  {
+   "id": "c007",
+   "target": "a client raising its limit per request with a header",
+   "verdict": "rewrite",
+   "reason": "It denies a per-request header override that nobody in the document presented."
+  },
+  {
+   "id": "c008",
+   "target": "letting the backend judge whether it has room",
+   "verdict": "rewrite",
+   "reason": "It sets the gateway's own decision against a backend-decides alternative the document never presented."
+  },
+  {
+   "id": "c009",
+   "target": "429 meaning the backend is overloaded",
+   "verdict": "licensed",
+   "quote": "Support staff sometimes assume that a 429 response means the backend is overloaded.",
+   "reason": "The earlier sentence voices the misconception that this one corrects."
+  },
+  {
+   "id": "c010",
+   "target": "watching the quota window roll over",
+   "verdict": "rewrite",
+   "reason": "The quota window appears nowhere else in the document, so it speaks of the deleted window rule."
+  },
+  {
+   "id": "c011",
+   "target": "gateway holding and redelivering rejected requests",
+   "verdict": "plain",
+   "question": "Does the gateway retry a rejected request for the client?",
+   "reason": "It states what the gateway does not do, a limit a client acts on, with no other design set against it."
+  },
+  {
+   "id": "c012",
+   "target": "being shut out for the remainder of a fixed period",
+   "verdict": "rewrite",
+   "reason": "It argues with a fixed-period lockout that the document never presents, which is the deleted quota window."
+  }
+ ]
+}

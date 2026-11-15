@@ -1,0 +1,90 @@
+{
+ "verdicts": [
+  {
+   "id": "c001",
+   "target": "pushing the expiry forward on each request (sliding expiry)",
+   "verdict": "rewrite",
+   "reason": "The document never presents sliding expiry; the sentence denies the deleted rule that every accepted request moved the expiry forward."
+  },
+  {
+   "id": "c002",
+   "target": "personal data in token claims",
+   "verdict": "plain",
+   "question": "Which personal data does an access token carry?",
+   "reason": "It states what the token's own claims exclude, a guarantee a reader acts on, and sets it against no other design."
+  },
+  {
+   "id": "c003",
+   "target": "the gateway's earlier sessions-table lookup",
+   "verdict": "rewrite",
+   "reason": "\"No longer\" speaks of an earlier state and denies the deleted gateway lookup that the document never mentions."
+  },
+  {
+   "id": "c004",
+   "target": "",
+   "verdict": "plain",
+   "question": "What does a service answer when the signature or the expiry fails?",
+   "reason": "It states the service's response to an invalid token, a condition a reader acts on."
+  },
+  {
+   "id": "c005",
+   "target": "",
+   "verdict": "plain",
+   "question": "When do services refetch the published keys?",
+   "reason": "It states a cache rule and the condition for refetching; the negation is only part of that condition."
+  },
+  {
+   "id": "c006",
+   "target": "a per-request round trip to the auth service",
+   "verdict": "rewrite",
+   "reason": "\"No longer\" speaks of an earlier state and leans on the deleted lookup that the document never shows the reader."
+  },
+  {
+   "id": "c007",
+   "target": "an app-side countdown timer",
+   "verdict": "rewrite",
+   "reason": "No earlier sentence presents a countdown timer; the sentence argues with an alternative nobody presented."
+  },
+  {
+   "id": "c008",
+   "target": "a refresh token that stays the same for its whole life",
+   "verdict": "licensed",
+   "quote": "The OAuth specification also allows a refresh token to stay the same for its whole life.",
+   "reason": "The preceding sentence presents the option that Lumen declines."
+  },
+  {
+   "id": "c009",
+   "target": "shared preferences and user defaults as token storage",
+   "verdict": "licensed",
+   "quote": "Many mobile apps keep tokens in shared preferences on Android or in user defaults on iOS.",
+   "reason": "The preceding sentence presents those plain stores as what other apps do."
+  },
+  {
+   "id": "c010",
+   "target": "",
+   "verdict": "plain",
+   "question": "Which keys does the auth service sign with and publish?",
+   "reason": "\"The previous key\" is the key in rotation that the section describes, not a prior version of the document."
+  },
+  {
+   "id": "c011",
+   "target": "",
+   "verdict": "plain",
+   "question": "How often are keys generated and how long does the old key stay published?",
+   "reason": "It states the rotation interval and the overlap, a limit a reader acts on."
+  },
+  {
+   "id": "c012",
+   "target": "incident-driven key rotation",
+   "verdict": "rewrite",
+   "reason": "No earlier sentence presents incident response as a reading of key rotation; the sentence corrects a misconception nobody voiced."
+  },
+  {
+   "id": "c013",
+   "target": "",
+   "verdict": "plain",
+   "question": "What does the app do when the refresh endpoint cannot be reached?",
+   "reason": "It states the app's behaviour under an absent endpoint, a default a reader acts on, and sets it against no other rule."
+  }
+ ]
+}

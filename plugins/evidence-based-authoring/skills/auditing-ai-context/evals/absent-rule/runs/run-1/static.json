@@ -1,0 +1,309 @@
+{
+ "patches": [
+  {
+   "rule_id": "D-01",
+   "location": {
+    "section": "Publishing workflow",
+    "line_hint": 55
+   },
+   "current": "Once the publish request returns, the change is live at every edge location. An editor who has just published can reload the live page straight away instead of holding off before checking it.",
+   "proposed": null,
+   "justification": "temporal / contrast marker: 'instead of' \u2014 a candidate for review, not a finding",
+   "severity": "medium",
+   "needs_human": true,
+   "meta": {
+    "static": true
+   },
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/03-rendered-page-caching-at-a-content-delivery-edge/new.md"
+  },
+  {
+   "rule_id": "D-05",
+   "location": {
+    "section": "Storing event times",
+    "line_hint": 18
+   },
+   "current": "Every event start is stored as a local wall-clock date and time together with an IANA zone name such as Europe/Berlin. A recurring series is a recurrence rule over local dates, and each occurrence becomes a UTC instant only when it is expanded. The zone belongs to the event and is chosen by the organizer when the event is created.",
+   "proposed": null,
+   "justification": "deliberation / search marker: 'chosen' \u2014 a candidate for review, not a finding",
+   "severity": "medium",
+   "needs_human": true,
+   "meta": {
+    "static": true
+   },
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/new.md"
+  },
+  {
+   "rule_id": "D-05",
+   "location": {
+    "section": "Zone data",
+    "line_hint": 63
+   },
+   "current": "A new release is adopted through an ordinary deployment, after which future occurrences are expanded under the new rules.",
+   "proposed": null,
+   "justification": "deliberation / search marker: 'adopted' \u2014 a candidate for review, not a finding",
+   "severity": "medium",
+   "needs_human": true,
+   "meta": {
+    "static": true
+   },
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/new.md"
+  },
+  {
+   "rule_id": "D-01",
+   "location": {
+    "section": "Request validation",
+    "line_hint": 17
+   },
+   "current": "Every request from the app passes through the API gateway, which routes it and enforces rate limits. The gateway no longer looks up the sessions table before it forwards a request.",
+   "proposed": null,
+   "justification": "temporal / contrast marker: 'no longer' \u2014 a candidate for review, not a finding",
+   "severity": "medium",
+   "needs_human": true,
+   "meta": {
+    "static": true
+   },
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/05-access-tokens-of-a-mobile-apps-backend/new.md"
+  },
+  {
+   "rule_id": "D-01",
+   "location": {
+    "section": "Request validation",
+    "line_hint": 25
+   },
+   "current": "Services cache the published keys for one hour and fetch them again when a token names a key identifier they do not know. Services no longer wait on a round trip to the auth service before they serve a request.",
+   "proposed": null,
+   "justification": "temporal / contrast marker: 'no longer' \u2014 a candidate for review, not a finding",
+   "severity": "medium",
+   "needs_human": true,
+   "meta": {
+    "static": true
+   },
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/05-access-tokens-of-a-mobile-apps-backend/new.md"
+  },
+  {
+   "rule_id": "D-01",
+   "location": {
+    "section": "Refresh",
+    "line_hint": 38
+   },
+   "current": "The app renews the access token by sending the refresh token to the refresh endpoint of the auth service. It does so when less than two minutes of the access token's life remain, or at once after a 401. The app reads the expiry time from the token's claims instead of keeping a countdown timer of its own.",
+   "proposed": null,
+   "justification": "temporal / contrast marker: 'instead of' \u2014 a candidate for review, not a finding",
+   "severity": "medium",
+   "needs_human": true,
+   "meta": {
+    "static": true
+   },
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/05-access-tokens-of-a-mobile-apps-backend/new.md"
+  },
+  {
+   "rule_id": "D-05",
+   "location": {
+    "section": "Purpose",
+    "line_hint": 7
+   },
+   "current": "This note describes how the public API gateway limits the request rate of each customer. It is the reference for engineers who change the gateway, for support staff who answer questions about rejected requests, and for the documentation team.",
+   "proposed": null,
+   "justification": "deliberation / search marker: 'rejected' \u2014 a candidate for review, not a finding",
+   "severity": "medium",
+   "needs_human": true,
+   "meta": {
+    "static": true
+   },
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/06-rate-limiting-at-an-api-gateway/new.md"
+  },
+  {
+   "rule_id": "D-05",
+   "location": {
+    "section": "The token bucket",
+    "line_hint": 15
+   },
+   "current": "A request that finds at least one token in its key's bucket takes that token and goes through. A request that finds the bucket empty is rejected and takes nothing. A new key starts with a full bucket.",
+   "proposed": null,
+   "justification": "deliberation / search marker: 'rejected' \u2014 a candidate for review, not a finding",
+   "severity": "medium",
+   "needs_human": true,
+   "meta": {
+    "static": true
+   },
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/06-rate-limiting-at-an-api-gateway/new.md"
+  },
+  {
+   "rule_id": "D-05",
+   "location": {
+    "section": "What is counted",
+    "line_hint": 22
+   },
+   "current": "- Requests without a valid key are rejected by authentication before the limiter sees them.",
+   "proposed": null,
+   "justification": "deliberation / search marker: 'rejected' \u2014 a candidate for review, not a finding",
+   "severity": "medium",
+   "needs_human": true,
+   "meta": {
+    "static": true
+   },
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/06-rate-limiting-at-an-api-gateway/new.md"
+  },
+  {
+   "rule_id": "D-01",
+   "location": {
+    "section": "Responses",
+    "line_hint": 48
+   },
+   "current": "A rejected response also carries Retry-After, set to the seconds until the bucket holds one token again, rounded up. The gateway makes this decision on its own instead of forwarding the request and letting the backend judge whether it has room.",
+   "proposed": null,
+   "justification": "temporal / contrast marker: 'instead of' \u2014 a candidate for review, not a finding",
+   "severity": "medium",
+   "needs_human": true,
+   "meta": {
+    "static": true
+   },
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/06-rate-limiting-at-an-api-gateway/new.md"
+  },
+  {
+   "rule_id": "D-05",
+   "location": {
+    "section": "Responses",
+    "line_hint": 48
+   },
+   "current": "A rejected response also carries Retry-After, set to the seconds until the bucket holds one token again, rounded up. The gateway makes this decision on its own instead of forwarding the request and letting the backend judge whether it has room.",
+   "proposed": null,
+   "justification": "deliberation / search marker: 'rejected' \u2014 a candidate for review, not a finding",
+   "severity": "medium",
+   "needs_human": true,
+   "meta": {
+    "static": true
+   },
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/06-rate-limiting-at-an-api-gateway/new.md"
+  },
+  {
+   "rule_id": "D-05",
+   "location": {
+    "section": "Guidance for clients",
+    "line_hint": 58
+   },
+   "current": "Retrying is the client's job. The gateway never holds a rejected request back to deliver it later on the client's behalf.",
+   "proposed": null,
+   "justification": "deliberation / search marker: 'rejected' \u2014 a candidate for review, not a finding",
+   "severity": "medium",
+   "needs_human": true,
+   "meta": {
+    "static": true
+   },
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/06-rate-limiting-at-an-api-gateway/new.md"
+  },
+  {
+   "rule_id": "D-05",
+   "location": {
+    "section": "Who reviews",
+    "line_hint": 19
+   },
+   "current": "The reviewer is chosen by what the change touches, not by whose turn it is. Approvals from people outside the owning group carry no weight, however many of them a change collects. Anyone may leave comments, and owners are expected to read them.",
+   "proposed": null,
+   "justification": "deliberation / search marker: 'chosen' \u2014 a candidate for review, not a finding",
+   "severity": "medium",
+   "needs_human": true,
+   "meta": {
+    "static": true
+   },
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/07-the-code-review-policy-of-a-monorepo/new.md"
+  },
+  {
+   "rule_id": "D-01",
+   "location": {
+    "section": "Action items",
+    "line_hint": 56
+   },
+   "current": "Each action item has one owner, one due date and a link back to the postmortem. Items are filed in the owning team's regular backlog instead of a separate tracker that someone would have to remember to check. They are labelled with the incident number.",
+   "proposed": null,
+   "justification": "temporal / contrast marker: 'instead of' \u2014 a candidate for review, not a finding",
+   "severity": "medium",
+   "needs_human": true,
+   "meta": {
+    "static": true
+   },
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/08-the-incident-postmortem-process-of-an-engineering-group/new.md"
+  },
+  {
+   "rule_id": "D-01",
+   "location": {
+    "section": "Request parameters",
+    "line_hint": 13
+   },
+   "current": "The cursor encodes the sort key of the last item returned, together with the filters and the sort order of the first request. A client no longer works out where the next request starts from the number of the page it is on and the size of each page.",
+   "proposed": null,
+   "justification": "temporal / contrast marker: 'no longer' \u2014 a candidate for review, not a finding",
+   "severity": "medium",
+   "needs_human": true,
+   "meta": {
+    "static": true
+   },
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/09-pagination-of-a-public-rest-api/new.md"
+  },
+  {
+   "rule_id": "D-05",
+   "location": {
+    "section": "Ordering and consistency",
+    "line_hint": 29
+   },
+   "current": "Each endpoint sorts by a stable key, by default creation time followed by item id. Endpoint authors may offer other sort keys, but every key must end with the item id so that the order is total. The sort key is chosen from the list the endpoint publishes, not composed by the client as a free-form expression.",
+   "proposed": null,
+   "justification": "deliberation / search marker: 'chosen' \u2014 a candidate for review, not a finding",
+   "severity": "medium",
+   "needs_human": true,
+   "meta": {
+    "static": true
+   },
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/09-pagination-of-a-public-rest-api/new.md"
+  },
+  {
+   "rule_id": "D-01",
+   "location": {
+    "section": "Partition expiry",
+    "line_hint": 15
+   },
+   "current": "Every raw event table is partitioned by event date and carries a partition expiry of 180 days in its table definition. Each night at 02:00 UTC, the warehouse scheduler runs the expiry job, which drops every partition whose event date is more than 180 days in the past. An expired partition is dropped without anyone having to approve it first.",
+   "proposed": null,
+   "justification": "temporal / contrast marker: 'in the past' \u2014 a candidate for review, not a finding",
+   "severity": "medium",
+   "needs_human": true,
+   "meta": {
+    "static": true
+   },
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/10-data-retention-in-an-analytics-warehouse/new.md"
+  },
+  {
+   "rule_id": "D-01",
+   "location": {
+    "section": "Rollups",
+    "line_hint": 25
+   },
+   "current": "Any comparison that spans more than 180 days, such as year-over-year growth, runs against the rollups. Raw tables no longer reach back a full year, so year-over-year queries against them will come back short.",
+   "proposed": null,
+   "justification": "temporal / contrast marker: 'no longer' \u2014 a candidate for review, not a finding",
+   "severity": "medium",
+   "needs_human": true,
+   "meta": {
+    "static": true
+   },
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/10-data-retention-in-an-analytics-warehouse/new.md"
+  },
+  {
+   "rule_id": "D-01",
+   "location": {
+    "section": "Testing",
+    "line_hint": 56
+   },
+   "current": "Unit tests choose a variant through the test fixture of the SDK, which overrides named flags for the length of one test. No test has to build a flag snapshot header any more, since the fixture answers every question about a flag directly. Integration tests start the SDK with a fixed ruleset file instead of the flag store. Every test suite covers both values of each release flag it touches.",
+   "proposed": null,
+   "justification": "temporal / contrast marker: 'instead of' \u2014 a candidate for review, not a finding",
+   "severity": "medium",
+   "needs_human": true,
+   "meta": {
+    "static": true
+   },
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/12-feature-flags-in-a-web-service/new.md"
+  }
+ ],
+ "files_scanned": 12
+}

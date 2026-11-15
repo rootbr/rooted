@@ -1,0 +1,49 @@
+{
+ "id": "H-01",
+ "kind": "claim",
+ "standing": "supported",
+ "answers": [
+  {
+   "rule": 1,
+   "verdict": "holds",
+   "quote": "kind: claim",
+   "missing": ""
+  },
+  {
+   "rule": 2,
+   "verdict": "holds",
+   "quote": "refuter: under 0.90 of either class stands on the list",
+   "missing": ""
+  },
+  {
+   "rule": 3,
+   "verdict": "holds",
+   "quote": "nine other planted sentences, seven licensed and two plain, carry no cue and stand off the list",
+   "missing": ""
+  },
+  {
+   "rule": 4,
+   "verdict": "holds",
+   "quote": "python3 -I $E/scripts/trace_list.py --old <case>/old.md --new <case>/new.md --out $RUN/<case>.list.json",
+   "missing": ""
+  },
+  {
+   "rule": 5,
+   "verdict": "holds",
+   "quote": "fit: transfer · transfer: the scope takes notes of 60 to 90 lines from any writer, and the run had notes of 64 to 83 lines from one model at one effort and one brief",
+   "missing": ""
+  },
+  {
+   "rule": 6,
+   "verdict": "holds",
+   "quote": "run 1, registered in the commit before this result and drawn by that commit's hash",
+   "missing": ""
+  },
+  {
+   "rule": 7,
+   "verdict": "holds",
+   "quote": "held 36 of 36 planted sentences that argue with the deleted rule and 23 of 23 planted contrasts on the list",
+   "missing": ""
+  }
+ ]
+}

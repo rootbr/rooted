@@ -1,0 +1,197 @@
+{
+ "verdicts": [
+  {
+   "id": "c001",
+   "target": "unnamed 'vibes' as the alternative to grounded instructions",
+   "verdict": "rewrite",
+   "reason": "Sets the pipeline against a practice nobody presented in this document."
+  },
+  {
+   "id": "c002",
+   "target": "LLM-generated context files",
+   "verdict": "plain",
+   "question": "What does the cited research find about LLM-generated context files?",
+   "reason": "Reports what a named, linked source says."
+  },
+  {
+   "id": "c003",
+   "target": "the earlier way of admitting rules (a rule traced to a paper or generated context)",
+   "verdict": "rewrite",
+   "reason": "'Instead' leans on a way of admitting rules that the document never presents; the previous sentence speaks of context files, not of how rules were admitted."
+  },
+  {
+   "id": "c004",
+   "target": "rules that are merely asserted",
+   "verdict": "rewrite",
+   "reason": "The heading sets the repository against asserted rules, a practice nobody presented."
+  },
+  {
+   "id": "c005",
+   "target": "the weight of an idea's origin / citation as support",
+   "verdict": "rewrite",
+   "reason": "Denies that provenance matters, answering the deleted rule that every rule traces to a paper, which the reader never saw."
+  },
+  {
+   "id": "c006",
+   "target": "method as a sequence of steps or a demand for a citation",
+   "verdict": "rewrite",
+   "reason": "Corrects two readings of the method that the document never voiced; the citation demand is from the deleted text."
+  },
+  {
+   "id": "c007",
+   "target": "citation as the support of a rule",
+   "verdict": "rewrite",
+   "reason": "Corrects the view that a citation supports a rule, which only the deleted statements held."
+  },
+  {
+   "id": "c008",
+   "target": "opinion as a standing of a claim",
+   "verdict": "plain",
+   "question": "What happens to a claim that names no refuting outcome?",
+   "reason": "States what the document's own standing 'opinion' does and where it stays."
+  },
+  {
+   "id": "c009",
+   "target": "kinds of statement passing for one another",
+   "verdict": "plain",
+   "question": "What does the rule 'Facts apart from decisions' require?",
+   "reason": "States a requirement of the rule itself, set against no other rule."
+  },
+  {
+   "id": "c010",
+   "target": "an author's name as support",
+   "verdict": "rewrite",
+   "reason": "Denies appeal to authority, a view the document never presents and which the deleted peer-reviewed-paper rule leaned on."
+  },
+  {
+   "id": "c011",
+   "target": "the rule's name",
+   "verdict": "plain",
+   "question": "What is the rule called that forbids fitting a claim to its result?",
+   "reason": "'No fitting' is the name of the repository's own rule, not a denial of a presented alternative."
+  },
+  {
+   "id": "c012",
+   "target": "citation requirement for a claim of our own",
+   "verdict": "rewrite",
+   "reason": "Excuses the reader from the deleted rule that every rule cite a source."
+  },
+  {
+   "id": "c013",
+   "target": "procedure for a claim of our own",
+   "verdict": "plain",
+   "question": "How is a claim of our own tested and recorded?",
+   "reason": "Describes the test procedure as a condition a reader acts on, with no other view in play."
+  },
+  {
+   "id": "c014",
+   "target": "a single criterion of what is scientific",
+   "verdict": "plain",
+   "question": "Why are the seven rules called a convention?",
+   "reason": "Reports what the philosophy of science holds, a limit the document itself cites under its sources."
+  },
+  {
+   "id": "c015",
+   "target": "lines not yet touched and their sources",
+   "verdict": "rewrite",
+   "reason": "Speaks of an earlier state of the rule lines that carry sources without a record, a state the reader was never shown."
+  },
+  {
+   "id": "c016",
+   "target": "PRs that cite instead of test, and the suspicion of oversight",
+   "verdict": "rewrite",
+   "reason": "'Not by oversight' answers a misconception nobody voiced and restates the deleted rejection of PRs without citations."
+  },
+  {
+   "id": "c017",
+   "target": "the listed texts as tests of the method",
+   "verdict": "licensed",
+   "quote": "A rule that claims a technique works rests on a test that could have refuted it",
+   "reason": "The document has already said that a rule rests on a test, so the reader expects sources to be taken for tests and learns they are not."
+  },
+  {
+   "id": "c018",
+   "target": "a single universal method",
+   "verdict": "plain",
+   "question": "What does this source say?",
+   "reason": "Annotation reporting what a named source says."
+  },
+  {
+   "id": "c019",
+   "target": "verification of a tested theory",
+   "verdict": "plain",
+   "question": "What does this source say about Popper?",
+   "reason": "Annotation reporting what a named source says."
+  },
+  {
+   "id": "c020",
+   "target": "evidence for a claim not tested",
+   "verdict": "plain",
+   "question": "What does Mayo's text say?",
+   "reason": "Shows a quoted passage of a named source."
+  },
+  {
+   "id": "c021",
+   "target": "values as evidence",
+   "verdict": "plain",
+   "question": "What does this source say about objectivity?",
+   "reason": "Annotation reporting what a named source says."
+  },
+  {
+   "id": "c022",
+   "target": "evaluative conclusions from factual premises",
+   "verdict": "plain",
+   "question": "What does this source say about is and ought?",
+   "reason": "Annotation reporting what a named source says."
+  },
+  {
+   "id": "c023",
+   "target": "reason's establishing uniformity",
+   "verdict": "plain",
+   "question": "What does this source say about induction?",
+   "reason": "Annotation reporting what a named source says."
+  },
+  {
+   "id": "c024",
+   "target": "which hypothesis failed",
+   "verdict": "plain",
+   "question": "What does this source say about Duhem?",
+   "reason": "Annotation reporting what a named source says."
+  },
+  {
+   "id": "c025",
+   "target": "concept extension without operational grounds",
+   "verdict": "plain",
+   "question": "What does this source say about operationalism?",
+   "reason": "Annotation reporting what a named source says."
+  },
+  {
+   "id": "c026",
+   "target": "strategy guaranteeing a result",
+   "verdict": "plain",
+   "question": "What do these sources say about validating experiments?",
+   "reason": "Annotation reporting what named sources say."
+  },
+  {
+   "id": "c027",
+   "target": "taking someone's word",
+   "verdict": "plain",
+   "question": "What does the Royal Society's motto say?",
+   "reason": "Annotation reporting and quoting a named source."
+  },
+  {
+   "id": "c028",
+   "target": "sufficiency of testability",
+   "verdict": "plain",
+   "question": "What does this encyclopedia entry say about a hypothesis?",
+   "reason": "Annotation reporting what a named source says."
+  },
+  {
+   "id": "c029",
+   "target": "the guesser's name and cleverness",
+   "verdict": "plain",
+   "question": "What does Feynman say?",
+   "reason": "Shows a quoted passage of a named source."
+  }
+ ]
+}

@@ -1,0 +1,16 @@
+{
+  "classes": {
+    "p01": {"class": "trace", "reason": "It denies the Sunday window and the release DBA of the old release rule, and new.md nowhere tells its reader that either existed."},
+    "p02": {"class": "trace", "reason": "It sets the present design against the old rule of stopping the application behind a downtime banner, which new.md never presents."},
+    "p03": {"class": "trace", "reason": "It denies the old rule of collecting all changes of a release into one release migration file, which new.md never tells its reader about."},
+    "p04": {"class": "foil", "reason": "It contrasts the history table with comparing the live schema against a model, an approach neither old.md nor new.md presents anywhere."},
+    "p05": {"class": "foil", "reason": "It sets the backfilled new column against a view keeping the old name alive, an alternative neither document presents; old.md allowed direct renames, not views."},
+    "p06": {"class": "licensed", "licence": "Some frameworks generate a down migration for every up migration automatically.", "reason": "It denies down migrations, which new.md introduced in the sentence just before it, and old.md had no down migrations to replace."},
+    "p07": {"class": "licensed", "licence": "PostgreSQL takes a lock that blocks writes on a table while an index is built in the ordinary way.", "reason": "It refuses the blocking index build that new.md described in the sentence just before it."},
+    "p08": {"class": "licensed", "licence": "A common belief is that adding a column with a default value rewrites the whole table.", "reason": "It corrects the belief new.md stated in the sentence just before it, not anything of old.md."},
+    "p09": {"class": "plain", "reason": "It is a prohibition on the pipeline that old.md also kept (new code shipped only after Flyway success), so it sets nothing against rule A or another design."},
+    "p10": {"class": "plain", "reason": "It states what Flyway does when a history row is absent, a guarantee that contrasts with no other design and touches nothing of rule A."}
+  },
+  "presents_old_rule": false,
+  "presenting_sentence": ""
+}

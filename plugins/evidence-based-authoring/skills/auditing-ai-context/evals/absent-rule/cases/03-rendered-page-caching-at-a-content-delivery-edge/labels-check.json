@@ -1,0 +1,16 @@
+{
+  "classes": {
+    "p01": {"class": "trace", "reason": "It denies the staleness window that old.md's fixed 300-second TTL created for updates to embargoed stories, and new.md never tells its reader that such a window existed."},
+    "p02": {"class": "trace", "reason": "It sets purge-on-commit against old.md's rule that a changed page reaches readers only when its cached copy expires, and new.md never presents expiry-based freshness."},
+    "p03": {"class": "trace", "reason": "It excuses the editor from old.md's rule that editors wait out the staleness window before reloading the live page, which new.md never states."},
+    "p04": {"class": "foil", "reason": "It contrasts the request-derived key with a key hashed from the rendered body, an alternative that neither old.md nor new.md presents."},
+    "p05": {"class": "foil", "reason": "It contrasts the authenticated API with a shared message queue, which neither old.md nor new.md mentions anywhere."},
+    "p06": {"class": "licensed", "licence": "Many sites vary cached pages by the full cookie header.", "reason": "It contrasts the consent-flag-only key with full-cookie variation, which new.md presents in the sentence just before it."},
+    "p07": {"class": "licensed", "licence": "The provider's documentation recommends purging by URL for small sites.", "reason": "It rejects purging by URL, the alternative new.md introduced in the sentence before it."},
+    "p08": {"class": "licensed", "licence": "Some editors assume that a purge clears the browser caches of readers who already loaded the page.", "reason": "It corrects the misreading new.md stated in the sentence before it, and the 60-second client lifetime is the same in both versions."},
+    "p09": {"class": "plain", "reason": "It states a prohibition on what the edge stores and sets it against no other design and touches nothing of the TTL rule."},
+    "p10": {"class": "plain", "reason": "It states the default when the tag header is absent and contrasts it with nothing."}
+  },
+  "presents_old_rule": false,
+  "presenting_sentence": ""
+}

@@ -1,0 +1,260 @@
+{
+ "version": 1,
+ "mode": "pair",
+ "files": [
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/08-the-incident-postmortem-process-of-an-engineering-group/new.md",
+   "sha256": "6b477b858f2dd83dd28999d1c8885023c34ce0be35c6afec58033216a257de26"
+  }
+ ],
+ "deleted": [
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/08-the-incident-postmortem-process-of-an-engineering-group/old.md",
+   "line": 9,
+   "text": "We write postmortems blamelessly."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/08-the-incident-postmortem-process-of-an-engineering-group/old.md",
+   "line": 9,
+   "text": "Contributing factors are described as conditions of the system, its tooling and its processes."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/08-the-incident-postmortem-process-of-an-engineering-group/old.md",
+   "line": 20,
+   "text": "**Incident commander**: ran the response and opens the postmortem document from the template within one business day."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/08-the-incident-postmortem-process-of-an-engineering-group/old.md",
+   "line": 22,
+   "text": "**Review chair**: a senior engineer from the rotating chair rota who runs the Thursday Postmortem Review that week."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/08-the-incident-postmortem-process-of-an-engineering-group/old.md",
+   "line": 27,
+   "text": "The author starts from the shared template."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/08-the-incident-postmortem-process-of-an-engineering-group/old.md",
+   "line": 27,
+   "text": "The template has five parts: summary, impact, timeline, contributing factors and action items."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/08-the-incident-postmortem-process-of-an-engineering-group/old.md",
+   "line": 29,
+   "text": "The timeline is assembled from the incident channel, the paging history and the deploy log."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/08-the-incident-postmortem-process-of-an-engineering-group/old.md",
+   "line": 29,
+   "text": "Each entry has a timestamp in UTC and a source."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/08-the-incident-postmortem-process-of-an-engineering-group/old.md",
+   "line": 35,
+   "text": "Every postmortem is presented by its author at the Thursday Postmortem Review within five business days of the incident."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/08-the-incident-postmortem-process-of-an-engineering-group/old.md",
+   "line": 35,
+   "text": "The review chair and the attendees question the author in the room, and the postmortem is approved when the chair records the decision in the meeting notes."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/08-the-incident-postmortem-process-of-an-engineering-group/old.md",
+   "line": 35,
+   "text": "A postmortem that misses its Thursday slot is carried to the next week and flagged in the group's weekly report."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/08-the-incident-postmortem-process-of-an-engineering-group/old.md",
+   "line": 37,
+   "text": "The author books a slot on the review agenda as soon as the draft exists."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/08-the-incident-postmortem-process-of-an-engineering-group/old.md",
+   "line": 37,
+   "text": "Slots are twenty minutes long, and the agenda holds at most six postmortems per week."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/08-the-incident-postmortem-process-of-an-engineering-group/old.md",
+   "line": 39,
+   "text": "Before the meeting, the author circulates the draft to the attendees by Wednesday noon so that they can read it in advance."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/08-the-incident-postmortem-process-of-an-engineering-group/old.md",
+   "line": 41,
+   "text": "Attendees who cannot come may leave written questions in the draft, and the chair reads them out during the slot."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/08-the-incident-postmortem-process-of-an-engineering-group/old.md",
+   "line": 48,
+   "text": "Draft circulated"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/08-the-incident-postmortem-process-of-an-engineering-group/old.md",
+   "line": 48,
+   "text": "Wednesday noon before the review"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/08-the-incident-postmortem-process-of-an-engineering-group/old.md",
+   "line": 49,
+   "text": "Presented and approved"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/08-the-incident-postmortem-process-of-an-engineering-group/old.md",
+   "line": 49,
+   "text": "5 business days after the incident"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/08-the-incident-postmortem-process-of-an-engineering-group/old.md",
+   "line": 52,
+   "text": "If the agenda is full, the review chair may add an extra session on Friday morning."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/08-the-incident-postmortem-process-of-an-engineering-group/old.md",
+   "line": 56,
+   "text": "Each action item has one owner, one due date and a link back to the postmortem."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/08-the-incident-postmortem-process-of-an-engineering-group/old.md",
+   "line": 56,
+   "text": "Action items are filed in the owning team's regular backlog and labelled with the incident number."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/08-the-incident-postmortem-process-of-an-engineering-group/old.md",
+   "line": 68,
+   "text": "Postmortems are internal documents."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/08-the-incident-postmortem-process-of-an-engineering-group/old.md",
+   "line": 68,
+   "text": "Data copied from logs is redacted before the draft is circulated to the attendees."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/08-the-incident-postmortem-process-of-an-engineering-group/old.md",
+   "line": 70,
+   "text": "A postmortem that touches a security incident is shared only with the review chair and the security team until the chair approves wider circulation."
+  }
+ ],
+ "candidates": [
+  {
+   "id": "c001",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/08-the-incident-postmortem-process-of-an-engineering-group/new.md",
+   "line": 9,
+   "end_line": 9,
+   "sentence": "Our template has no such score, and contributing factors are described only as conditions of the system, its tooling and its processes.",
+   "cues": [
+    "no"
+   ]
+  },
+  {
+   "id": "c002",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/08-the-incident-postmortem-process-of-an-engineering-group/new.md",
+   "line": 27,
+   "end_line": 27,
+   "sentence": "When no single team clearly owns the affected service, the author is taken from the incident commander's own team.",
+   "cues": [
+    "no"
+   ]
+  },
+  {
+   "id": "c003",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/08-the-incident-postmortem-process-of-an-engineering-group/new.md",
+   "line": 29,
+   "end_line": 29,
+   "sentence": "It is built from these records rather than from anyone's recollection of the night.",
+   "cues": [
+    "rather than"
+   ]
+  },
+  {
+   "id": "c004",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/08-the-incident-postmortem-process-of-an-engineering-group/new.md",
+   "line": 35,
+   "end_line": 35,
+   "sentence": "A postmortem is never reviewed in a meeting, and its author is not asked to walk a room through it.",
+   "cues": [
+    "never",
+    "not"
+   ]
+  },
+  {
+   "id": "c005",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/08-the-incident-postmortem-process-of-an-engineering-group/new.md",
+   "line": 37,
+   "end_line": 37,
+   "sentence": "Authors do not book a slot at the Thursday Postmortem Review, since approval happens entirely in the document.",
+   "cues": [
+    "not"
+   ]
+  },
+  {
+   "id": "c006",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/08-the-incident-postmortem-process-of-an-engineering-group/new.md",
+   "line": 39,
+   "end_line": 39,
+   "sentence": "If a reviewer has not responded by then, the incident commander replaces them from the rota.",
+   "cues": [
+    "not"
+   ]
+  },
+  {
+   "id": "c007",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/08-the-incident-postmortem-process-of-an-engineering-group/new.md",
+   "line": 52,
+   "end_line": 52,
+   "sentence": "The author gets two full working weeks rather than one, because the timeline is rarely complete within the first few days.",
+   "cues": [
+    "rather than"
+   ]
+  },
+  {
+   "id": "c008",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/08-the-incident-postmortem-process-of-an-engineering-group/new.md",
+   "line": 52,
+   "end_line": 52,
+   "sentence": "A postmortem not approved by then is flagged in the group's weekly report.",
+   "cues": [
+    "not"
+   ]
+  },
+  {
+   "id": "c009",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/08-the-incident-postmortem-process-of-an-engineering-group/new.md",
+   "line": 56,
+   "end_line": 56,
+   "sentence": "Items are filed in the owning team's regular backlog instead of a separate tracker that someone would have to remember to check.",
+   "cues": [
+    "instead"
+   ]
+  },
+  {
+   "id": "c010",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/08-the-incident-postmortem-process-of-an-engineering-group/new.md",
+   "line": 60,
+   "end_line": 60,
+   "sentence": "A common view in the group is that a postmortem with no action items is an unfinished postmortem.",
+   "cues": [
+    "no"
+   ]
+  },
+  {
+   "id": "c011",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/08-the-incident-postmortem-process-of-an-engineering-group/new.md",
+   "line": 60,
+   "end_line": 60,
+   "sentence": "We disagree, and a postmortem that finds nothing worth changing is approved like any other one.",
+   "cues": [
+    "nothing"
+   ]
+  },
+  {
+   "id": "c012",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/08-the-incident-postmortem-process-of-an-engineering-group/new.md",
+   "line": 70,
+   "end_line": 70,
+   "sentence": "The postmortem document never contains customer names, account identifiers or credentials copied from logs.",
+   "cues": [
+    "never"
+   ]
+  }
+ ]
+}

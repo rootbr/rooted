@@ -1,0 +1,76 @@
+{
+ "verdicts": [
+  {
+   "id": "c001",
+   "target": "a pager held around the clock for several days in a row",
+   "verdict": "rewrite",
+   "reason": "The document never presents a multi-day around-the-clock pager, so the sentence denies the deleted pager-week rule the reader cannot see."
+  },
+  {
+   "id": "c002",
+   "target": "production deploys during a shift",
+   "verdict": "plain",
+   "question": "May the primary deploy to production during a shift?",
+   "reason": "It states a prohibition on the primary with its one exception and sets the subject against no other rule or earlier state."
+  },
+  {
+   "id": "c003",
+   "target": "contents of the handover note",
+   "verdict": "plain",
+   "question": "What does the handover note list?",
+   "reason": "The negation is only part of the description of unfinished toil tickets; the sentence states what the note contains and argues with nothing."
+  },
+  {
+   "id": "c004",
+   "target": "a formal report with sign-off",
+   "verdict": "rewrite",
+   "reason": "No formal report or sign-off is presented anywhere in the document, so the sentence argues with an alternative nobody raised."
+  },
+  {
+   "id": "c005",
+   "target": "a weekly meeting for handover",
+   "verdict": "rewrite",
+   "reason": "The document never mentions a weekly handover meeting, which was the deleted Monday call, so the sentence argues with a practice the reader was never shown."
+  },
+  {
+   "id": "c006",
+   "target": "a page the primary leaves unacknowledged",
+   "verdict": "plain",
+   "question": "What happens to a page the primary does not acknowledge?",
+   "reason": "The negation names a condition, and the sentence states the default that follows from it, which the table below spells out."
+  },
+  {
+   "id": "c007",
+   "target": "dropping of an unacknowledged page",
+   "verdict": "plain",
+   "question": "Can an unacknowledged page be lost?",
+   "reason": "It is a guarantee about the paging tool's behaviour that a reader acts on, with no other design or version set against it."
+  },
+  {
+   "id": "c008",
+   "target": "swapping a whole pager week",
+   "verdict": "rewrite",
+   "reason": "The document never mentions a pager week, and the deleted statements allowed swapping one, so the sentence corrects a rule the reader cannot see."
+  },
+  {
+   "id": "c009",
+   "target": "paying a flat stipend",
+   "verdict": "licensed",
+   "quote": "Many on-call guides recommend paying a flat stipend for every shift.",
+   "reason": "The preceding sentence presents the stipend as the view of many guides, so the contrast with money is introduced in the document."
+  },
+  {
+   "id": "c010",
+   "target": "copying schedules into a spreadsheet",
+   "verdict": "rewrite",
+   "reason": "No spreadsheet or copy of the schedule is presented anywhere in the document, so the sentence denies an alternative nobody raised."
+  },
+  {
+   "id": "c011",
+   "target": "alerts that fire without leading to action",
+   "verdict": "plain",
+   "question": "What happens to an alert that keeps firing without action?",
+   "reason": "The sentence states a rule in force with its threshold, and 'without' only names the condition; it sets the subject against no other rule."
+  }
+ ]
+}

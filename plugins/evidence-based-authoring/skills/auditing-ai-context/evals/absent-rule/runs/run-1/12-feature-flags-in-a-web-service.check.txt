@@ -1,0 +1,15 @@
+plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/12-feature-flags-in-a-web-service/new.md:17: REWRITE c001 [reading 1: rewrite; reading 2: rewrite; reading 3: rewrite] The ruleset is a plain JSON document that anyone can read …
+plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/12-feature-flags-in-a-web-service/new.md:27: REWRITE c002 [reading 1: rewrite; reading 2: rewrite; reading 3: rewrite] Flag names describe the behaviour a user sees rather than …
+plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/12-feature-flags-in-a-web-service/new.md:27: KEEP c003 [plain ×3]
+plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/12-feature-flags-in-a-web-service/new.md:29: KEEP c004 [licensed ×3] quote: "The payments team keeps a stricter local rule under which every flag in its services must default to off."
+plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/12-feature-flags-in-a-web-service/new.md:33: REWRITE c005 [reading 1: rewrite; reading 2: rewrite; reading 3: rewrite] A flag value is worked out inside the service that uses it, …
+plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/12-feature-flags-in-a-web-service/new.md:35: KEEP c006 [plain ×3]
+plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/12-feature-flags-in-a-web-service/new.md:37: KEEP c007 [licensed ×3] quote: "Some commercial flag services bill per evaluation and advise clients to cache each result for several hours."
+plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/12-feature-flags-in-a-web-service/new.md:41: KEEP c008 [plain ×3]
+plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/12-feature-flags-in-a-web-service/new.md:43: KEEP c009 [plain ×3]
+plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/12-feature-flags-in-a-web-service/new.md:43: KEEP c010 [plain ×3]
+plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/12-feature-flags-in-a-web-service/new.md:47: KEEP c011 [plain ×3]
+plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/12-feature-flags-in-a-web-service/new.md:56: REWRITE c012 [reading 1: rewrite; reading 2: rewrite; reading 3: rewrite] No test has to build a flag snapshot header any more, since …
+plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/12-feature-flags-in-a-web-service/new.md:56: KEEP c013 [plain ×2, licensed ×1] quote: "The SDK pulls the full ruleset from the flag store every 30 seconds and evaluates it locally, keyed on the user ID carried in the request context."
+plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/12-feature-flags-in-a-web-service/new.md:60: KEEP c014 [plain ×3]
+14 candidates: 10 kept, 4 to rewrite; readings: 3

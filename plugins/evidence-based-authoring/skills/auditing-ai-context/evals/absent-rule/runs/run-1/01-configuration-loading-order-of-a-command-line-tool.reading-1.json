@@ -1,0 +1,83 @@
+{
+ "verdicts": [
+  {
+   "id": "c001",
+   "target": "tools that search every parent directory for a dotfile",
+   "verdict": "licensed",
+   "quote": "Several tools look for a dotfile in every parent directory up to the filesystem root.",
+   "reason": "The preceding sentence presents the upward dotfile search that this sentence sets tern against."
+  },
+  {
+   "id": "c002",
+   "target": "none",
+   "verdict": "plain",
+   "question": "Which value does a key take when several layers set it, or none does?",
+   "reason": "States the document's own precedence and default rule and sets it against no other rule."
+  },
+  {
+   "id": "c003",
+   "target": "the winning file of the earlier text",
+   "verdict": "rewrite",
+   "reason": "It says 'no winning file any more', a term the document never introduces, and speaks of an earlier state."
+  },
+  {
+   "id": "c004",
+   "target": "none",
+   "verdict": "plain",
+   "question": "What happens when a layer's file does not exist?",
+   "reason": "A guarantee a reader acts on, with no other rule or version set against it."
+  },
+  {
+   "id": "c005",
+   "target": "none",
+   "verdict": "plain",
+   "question": "What is the project layer when the directory is not in a repository?",
+   "reason": "States what holds when the repository is absent, as a default does."
+  },
+  {
+   "id": "c006",
+   "target": "modification-time precedence",
+   "verdict": "rewrite",
+   "reason": "It denies a file-modification-time alternative that the document never presents."
+  },
+  {
+   "id": "c007",
+   "target": "the expectation that an environment variable beats a flag",
+   "verdict": "licensed",
+   "quote": "Some operators expect an environment variable to beat a flag, because the variable is often set by the deployment.",
+   "reason": "The preceding sentence voices the expectation this sentence corrects."
+  },
+  {
+   "id": "c008",
+   "target": "the requirement that a project file repeat personal settings",
+   "verdict": "rewrite",
+   "reason": "It excuses the reader from repeating settings, which the deleted statements required and the document never mentions."
+  },
+  {
+   "id": "c009",
+   "target": "a project file hiding the user and system files",
+   "verdict": "rewrite",
+   "reason": "It denies the deleted rule that the user file is ignored once a project file exists, which the reader was never shown."
+  },
+  {
+   "id": "c010",
+   "target": "tools that concatenate lists across layers",
+   "verdict": "licensed",
+   "quote": "Some tools combine lists by concatenating the values from every layer.",
+   "reason": "The preceding sentence presents the concatenating behaviour this sentence sets tern against."
+  },
+  {
+   "id": "c011",
+   "target": "a separate copy of settings per layer for plugins",
+   "verdict": "rewrite",
+   "reason": "It sets the merged table against an alternative that no earlier sentence presents."
+  },
+  {
+   "id": "c012",
+   "target": "none",
+   "verdict": "plain",
+   "question": "Does loading modify configuration files, for example to write defaults?",
+   "reason": "A guarantee about what the subject does not do, which a reader acts on, with no other rule set against it."
+  }
+ ]
+}

@@ -1,0 +1,83 @@
+{
+ "verdicts": [
+  {
+   "id": "c001",
+   "target": "storing responses with a session cookie or authorisation header",
+   "verdict": "plain",
+   "question": "Which responses does the edge refuse to store?",
+   "reason": "A guarantee about the edge's own behaviour that sets it against no other rule or version."
+  },
+  {
+   "id": "c002",
+   "target": "a cache key derived from a hash of the rendered page body",
+   "verdict": "rewrite",
+   "reason": "The note never presents a body-hash key, so the sentence argues with an alternative the reader was never shown."
+  },
+  {
+   "id": "c003",
+   "target": "varying cached pages by the full cookie header",
+   "verdict": "licensed",
+   "quote": "Many sites vary cached pages by the full cookie header.",
+   "reason": "The preceding sentence of the document presents the full-cookie variation the sentence declines."
+  },
+  {
+   "id": "c004",
+   "target": "readers getting corrections only when a cached copy expires",
+   "verdict": "rewrite",
+   "reason": "The note presents no expiry-based freshness, so the contrast leans on the deleted TTL design."
+  },
+  {
+   "id": "c005",
+   "target": "purging by URL",
+   "verdict": "licensed",
+   "quote": "The provider's documentation recommends purging by URL for small sites.",
+   "reason": "The preceding sentence presents URL purging as a recommendation the sentence then rejects."
+  },
+  {
+   "id": "c006",
+   "target": "a shared message queue for purge requests",
+   "verdict": "rewrite",
+   "reason": "No queue is presented anywhere in the document, so the sentence rules out an alternative nobody raised."
+  },
+  {
+   "id": "c007",
+   "target": "origin responses missing the tag header",
+   "verdict": "plain",
+   "question": "What does the edge do with a response that has no tag header?",
+   "reason": "States a condition and the resulting behaviour of the edge, which a reader acts on."
+  },
+  {
+   "id": "c008",
+   "target": "lifetimes configured at the edge",
+   "verdict": "plain",
+   "question": "Where are cache lifetimes set, and so where do I change one?",
+   "reason": "Says what the edge configuration does without and where the change goes, against no other design the reader was shown."
+  },
+  {
+   "id": "c009",
+   "target": "purge clearing browser caches",
+   "verdict": "licensed",
+   "quote": "Some editors assume that a purge clears the browser caches of readers who already loaded the page.",
+   "reason": "The preceding sentence voices the assumption that the sentence corrects."
+  },
+  {
+   "id": "c010",
+   "target": "editors waiting before reloading the live page",
+   "verdict": "rewrite",
+   "reason": "The note never says editors wait, so the contrast leans on the deleted wait-out-the-window rule."
+  },
+  {
+   "id": "c011",
+   "target": "cache state of a new URL at embargo time",
+   "verdict": "plain",
+   "question": "When does an embargoed story's new URL appear, and how are later updates handled?",
+   "reason": "Describes what happens to a new URL and its updates, setting nothing against another rule."
+  },
+  {
+   "id": "c012",
+   "target": "the staleness window",
+   "verdict": "rewrite",
+   "reason": "The term is defined nowhere in this document, so the sentence denies a concept from the deleted text."
+  }
+ ]
+}

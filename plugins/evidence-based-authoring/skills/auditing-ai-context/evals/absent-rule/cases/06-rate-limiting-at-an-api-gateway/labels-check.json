@@ -1,0 +1,16 @@
+{
+  "classes": {
+    "p01": {"class": "trace", "reason": "It excuses the reader from rule A's guidance to pause until the fixed one-minute quota window ends, and names rule A's own 'quota window', which new.md never explains anywhere else."},
+    "p02": {"class": "trace", "reason": "It sets gradual refill against rule A's counter resetting all at once at the start of each clock minute, and new.md never describes that reset."},
+    "p03": {"class": "trace", "reason": "It denies rule A's consequence that a key which used its allowance early sat idle for the rest of the quota window, a fixed period new.md never presents."},
+    "p04": {"class": "foil", "reason": "It sets the gateway's own decision against forwarding the request so the backend judges its room, an alternative neither old.md nor new.md presents."},
+    "p05": {"class": "foil", "reason": "It sets plan-fixed limits against a client raising them per request with a header, a mechanism neither document presents."},
+    "p06": {"class": "licensed", "licence": "Some gateways charge failed requests and successful requests at different rates.", "reason": "It denies the differential charging that new.md introduced in the sentence just before it, and the one-per-request rule is unchanged from old.md."},
+    "p07": {"class": "licensed", "licence": "Many public APIs apply their limits per source IP address.", "reason": "It denies per-address keying, which new.md introduced in the sentence just before it, and old.md had no such rule."},
+    "p08": {"class": "licensed", "licence": "Support staff sometimes assume that a 429 response means the backend is overloaded.", "reason": "It corrects the misreading that new.md stated in the sentence just before it, not anything from rule A."},
+    "p09": {"class": "plain", "reason": "It is a prohibition on what the gateway never does with a rejected request, sets it against no named design, and old.md queued nothing either."},
+    "p10": {"class": "plain", "reason": "It states the default a key gets when the account service is absent, contrasts it with nothing and does not touch the quota window."}
+  },
+  "presents_old_rule": false,
+  "presenting_sentence": ""
+}

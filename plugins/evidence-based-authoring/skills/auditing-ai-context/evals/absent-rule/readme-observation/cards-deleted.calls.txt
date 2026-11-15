@@ -1,0 +1,35 @@
+## D-01:readme/new.md
+Read   tmp/absent-rule-method/readme-case/cases/readme/new.md
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/references/rule-cards/d-01--working-file-states-the-present-design.md
+Read   tmp/absent-rule-method/readme-case/run/inventory-deleted.md
+Read   tmp/absent-rule-method/readme-case/cases/readme/new.md
+StructuredOutput
+
+## D-02:readme/new.md
+Read   tmp/absent-rule-method/readme-case/cases/readme/new.md
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/references/rule-cards/d-02--rewrite-only-when-a-present-fact-survives-the-strip.md
+Read   tmp/absent-rule-method/readme-case/run/inventory-deleted.md
+Grep   instead of|replaced|no longer|formerly|previously|used to|now |anymore|\bold\b|no more|rather than
+StructuredOutput
+
+## D-06:readme/new.md
+Read   tmp/absent-rule-method/readme-case/cases/readme/new.md
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/references/rule-cards/d-06--alternative-appears-only-as-a-blocking-fact.md
+Read   tmp/absent-rule-method/readme-case/run/inventory-deleted.md
+Read   tmp/absent-rule-method/readme-case/cases/readme/new.md
+StructuredOutput
+
+## R-61:readme/new.md
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/references/rule-cards/r-61--positive-framing-in-body.md
+Read   tmp/absent-rule-method/readme-case/cases/readme/new.md
+Read   tmp/absent-rule-method/readme-case/run/inventory-deleted.md
+Grep   (?i)\b(do not|don't|never|must not|shall not|avoid|refrain from|not)\b
+Grep   (?i)\b(do not|don't|doesn't|never|must not|shall not|avoid|refrain from)\b
+Grep   (?i)\b(do not|never|must not|avoid)\b
+StructuredOutput
+
+## index-cards
+Bash   python3 -I -c " import os,json,glob,re d='plugins/evidence-based-authoring/skills/auditing-ai-context/references/rule-cards' out=[] for p in sorted(glob.glob(os.path.join(d,'*.md'))): txt=open(p,encoding='utf-8').read() m=re.match(r'^---\n(
+Read   <outside>
+StructuredOutput
+StructuredOutput

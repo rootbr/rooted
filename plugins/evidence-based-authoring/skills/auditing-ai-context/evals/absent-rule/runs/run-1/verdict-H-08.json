@@ -1,0 +1,49 @@
+{
+ "id": "H-08",
+ "kind": "claim",
+ "standing": "hypothesis",
+ "answers": [
+  {
+   "rule": 1,
+   "verdict": "holds",
+   "quote": "on a document changed in the course of work the trace pass finds more of the sentences that argue with a deleted rule than the audit's cards do when shown the deleted lines · kind: claim",
+   "missing": ""
+  },
+  {
+   "rule": 2,
+   "verdict": "holds",
+   "quote": "refuter: the pass's share stands under 0.15 above the cards' share",
+   "missing": ""
+  },
+  {
+   "rule": 3,
+   "verdict": "not-applicable",
+   "quote": "",
+   "missing": ""
+  },
+  {
+   "rule": 4,
+   "verdict": "not-applicable",
+   "quote": "",
+   "missing": ""
+  },
+  {
+   "rule": 5,
+   "verdict": "not-applicable",
+   "quote": "",
+   "missing": ""
+  },
+  {
+   "rule": 6,
+   "verdict": "not-applicable",
+   "quote": "",
+   "missing": ""
+  },
+  {
+   "rule": 7,
+   "verdict": "holds",
+   "quote": "standing: hypothesis",
+   "missing": ""
+  }
+ ]
+}

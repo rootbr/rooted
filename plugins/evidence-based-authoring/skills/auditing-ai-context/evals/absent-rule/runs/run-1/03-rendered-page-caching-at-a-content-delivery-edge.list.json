@@ -1,0 +1,285 @@
+{
+ "version": 1,
+ "mode": "pair",
+ "files": [
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/03-rendered-page-caching-at-a-content-delivery-edge/new.md",
+   "sha256": "021411c7c92d7c67f2489a69bda88474864c91c60dba43203388c9e179fd4330"
+  }
+ ],
+ "deleted": [
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/03-rendered-page-caching-at-a-content-delivery-edge/old.md",
+   "line": 5,
+   "text": "This note describes how the newsroom site caches rendered HTML pages at the content delivery edge."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/03-rendered-page-caching-at-a-content-delivery-edge/old.md",
+   "line": 5,
+   "text": "It covers what is cached, how the cache key is formed, how long a page stays fresh, and what editors should expect after they publish."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/03-rendered-page-caching-at-a-content-delivery-edge/old.md",
+   "line": 7,
+   "text": "The goal is to keep origin load flat during traffic spikes while letting readers see corrections within a predictable time."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/03-rendered-page-caching-at-a-content-delivery-edge/old.md",
+   "line": 15,
+   "text": "Personalised responses are marked private by the origin and pass through the edge untouched."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/03-rendered-page-caching-at-a-content-delivery-edge/old.md",
+   "line": 19,
+   "text": "The cache key is the normalised path plus the consent flag."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/03-rendered-page-caching-at-a-content-delivery-edge/old.md",
+   "line": 19,
+   "text": "The normaliser lowercases the host, strips tracking parameters such as utm_source, and sorts the remaining query parameters."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/03-rendered-page-caching-at-a-content-delivery-edge/old.md",
+   "line": 21,
+   "text": "Many sites vary cached pages by the full cookie header."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/03-rendered-page-caching-at-a-content-delivery-edge/old.md",
+   "line": 21,
+   "text": "Our pages read only the consent cookie, so the key carries that one flag and nothing else from the request headers."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/03-rendered-page-caching-at-a-content-delivery-edge/old.md",
+   "line": 25,
+   "text": "Every rendered page is cached at the edge with a fixed 300-second TTL."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/03-rendered-page-caching-at-a-content-delivery-edge/old.md",
+   "line": 25,
+   "text": "The publishing system sends no purges to the edge, so a changed page reaches readers only when its cached copy expires at each edge location."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/03-rendered-page-caching-at-a-content-delivery-edge/old.md",
+   "line": 27,
+   "text": "We call the period between a publish and the moment every edge location has refetched the page the staleness window."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/03-rendered-page-caching-at-a-content-delivery-edge/old.md",
+   "line": 27,
+   "text": "The staleness window never exceeds 300 seconds, and editors, support staff and the corrections desk all plan around that figure."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/03-rendered-page-caching-at-a-content-delivery-edge/old.md",
+   "line": 29,
+   "text": "Browsers receive a client lifetime of 60 seconds in the response headers, which comes on top of the staleness window."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/03-rendered-page-caching-at-a-content-delivery-edge/old.md",
+   "line": 35,
+   "text": "Edge lifetime"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/03-rendered-page-caching-at-a-content-delivery-edge/old.md",
+   "line": 35,
+   "text": "edge"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/03-rendered-page-caching-at-a-content-delivery-edge/old.md",
+   "line": 35,
+   "text": "300 seconds"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/03-rendered-page-caching-at-a-content-delivery-edge/old.md",
+   "line": 39,
+   "text": "The origin sets all three directives on every cacheable response."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/03-rendered-page-caching-at-a-content-delivery-edge/old.md",
+   "line": 39,
+   "text": "The edge configuration holds no lifetimes of its own, so a change to any of them is a change to the origin."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/03-rendered-page-caching-at-a-content-delivery-edge/old.md",
+   "line": 44,
+   "text": "The origin starts rendering the new version for any request that reaches it."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/03-rendered-page-caching-at-a-content-delivery-edge/old.md",
+   "line": 45,
+   "text": "Each edge location keeps serving its cached copy until the 300-second TTL runs out there."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/03-rendered-page-caching-at-a-content-delivery-edge/old.md",
+   "line": 46,
+   "text": "The next request at that location fetches the new version from the origin and caches it again."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/03-rendered-page-caching-at-a-content-delivery-edge/old.md",
+   "line": 48,
+   "text": "Editors who need to check a correction wait out the staleness window before reloading the live page."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/03-rendered-page-caching-at-a-content-delivery-edge/old.md",
+   "line": 48,
+   "text": "The corrections desk adds five minutes to every promised correction time it gives to readers or to legal."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/03-rendered-page-caching-at-a-content-delivery-edge/old.md",
+   "line": 50,
+   "text": "Embargoed stories are scheduled to publish at the embargo time."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/03-rendered-page-caching-at-a-content-delivery-edge/old.md",
+   "line": 50,
+   "text": "A new URL is never in the cache, so it appears at once, but any update made after it goes live is subject to the staleness window like any other change."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/03-rendered-page-caching-at-a-content-delivery-edge/old.md",
+   "line": 56,
+   "text": "The origin is sized for the refetch load that follows a full expiry cycle, which on a normal weekday peaks at about 350 requests per second."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/03-rendered-page-caching-at-a-content-delivery-edge/old.md",
+   "line": 62,
+   "text": "Count of pages served past their TTL during origin errors."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/03-rendered-page-caching-at-a-content-delivery-edge/old.md",
+   "line": 63,
+   "text": "Weekly report of corrections that readers flagged before the staleness window closed."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/03-rendered-page-caching-at-a-content-delivery-edge/old.md",
+   "line": 67,
+   "text": "The web platform team owns the edge configuration and the origin headers."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/03-rendered-page-caching-at-a-content-delivery-edge/old.md",
+   "line": 67,
+   "text": "Changes to cache rules go through a pull request reviewed by one platform engineer and one newsroom product owner."
+  }
+ ],
+ "candidates": [
+  {
+   "id": "c001",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/03-rendered-page-caching-at-a-content-delivery-edge/new.md",
+   "line": 15,
+   "end_line": 15,
+   "sentence": "The edge never stores a response that carries a session cookie or an authorisation header.",
+   "cues": [
+    "never"
+   ]
+  },
+  {
+   "id": "c002",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/03-rendered-page-caching-at-a-content-delivery-edge/new.md",
+   "line": 19,
+   "end_line": 19,
+   "sentence": "The key is derived from the request alone rather than from a hash of the rendered page body.",
+   "cues": [
+    "rather than"
+   ]
+  },
+  {
+   "id": "c003",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/03-rendered-page-caching-at-a-content-delivery-edge/new.md",
+   "line": 21,
+   "end_line": 21,
+   "sentence": "We do not vary by cookies beyond the consent flag, because no other cookie changes what our rendered pages contain.",
+   "cues": [
+    "not",
+    "no"
+   ]
+  },
+  {
+   "id": "c004",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/03-rendered-page-caching-at-a-content-delivery-edge/new.md",
+   "line": 27,
+   "end_line": 27,
+   "sentence": "A corrected headline therefore reaches readers when the publish commits, not whenever a cached copy happens to run out.",
+   "cues": [
+    "not"
+   ]
+  },
+  {
+   "id": "c005",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/03-rendered-page-caching-at-a-content-delivery-edge/new.md",
+   "line": 29,
+   "end_line": 29,
+   "sentence": "Purging by URL would not work for us, because one article appears on dozens of section fronts and listing pages.",
+   "cues": [
+    "not"
+   ]
+  },
+  {
+   "id": "c006",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/03-rendered-page-caching-at-a-content-delivery-edge/new.md",
+   "line": 31,
+   "end_line": 31,
+   "sentence": "Purge requests travel over that authenticated API, not through any shared message queue that other teams could write to.",
+   "cues": [
+    "not"
+   ]
+  },
+  {
+   "id": "c007",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/03-rendered-page-caching-at-a-content-delivery-edge/new.md",
+   "line": 33,
+   "end_line": 33,
+   "sentence": "When the tag header is missing from an origin response, the edge passes the page through without storing it.",
+   "cues": [
+    "without"
+   ]
+  },
+  {
+   "id": "c008",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/03-rendered-page-caching-at-a-content-delivery-edge/new.md",
+   "line": 44,
+   "end_line": 44,
+   "sentence": "The edge configuration holds no lifetimes of its own, so a change to any of them is a change to the origin.",
+   "cues": [
+    "no"
+   ]
+  },
+  {
+   "id": "c009",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/03-rendered-page-caching-at-a-content-delivery-edge/new.md",
+   "line": 46,
+   "end_line": 46,
+   "sentence": "A purge never reaches those browsers, and their copies are bounded only by the short client lifetime set by the origin.",
+   "cues": [
+    "never"
+   ]
+  },
+  {
+   "id": "c010",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/03-rendered-page-caching-at-a-content-delivery-edge/new.md",
+   "line": 55,
+   "end_line": 55,
+   "sentence": "An editor who has just published can reload the live page straight away instead of holding off before checking it.",
+   "cues": [
+    "instead"
+   ]
+  },
+  {
+   "id": "c011",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/03-rendered-page-caching-at-a-content-delivery-edge/new.md",
+   "line": 59,
+   "end_line": 59,
+   "sentence": "A new URL is never in the cache, so it appears at once, and later updates are purged like any other change.",
+   "cues": [
+    "never"
+   ]
+  },
+  {
+   "id": "c012",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/03-rendered-page-caching-at-a-content-delivery-edge/new.md",
+   "line": 59,
+   "end_line": 59,
+   "sentence": "There is no staleness window to account for when scheduling an embargoed story.",
+   "cues": [
+    "no"
+   ]
+  }
+ ]
+}

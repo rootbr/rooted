@@ -1,0 +1,49 @@
+{
+ "id": "H-07",
+ "kind": "claim",
+ "standing": "supported",
+ "answers": [
+  {
+   "rule": 1,
+   "verdict": "holds",
+   "quote": "shown the lines a change deleted, the audit's cards flag about as few sound denials as without them · kind: claim",
+   "missing": ""
+  },
+  {
+   "rule": 2,
+   "verdict": "holds",
+   "quote": "refuter: the share with the deleted statements stands more than 0.10 above the share without them",
+   "missing": ""
+  },
+  {
+   "rule": 3,
+   "verdict": "fails",
+   "quote": "",
+   "missing": "The comparison needs the deleted arm's card readers to have actually received the deleted statements. Otherwise the record has to be bounded to the share that did. scripts/audit-workflow.js:prompt gives each reader the inventory only as a path to read. By runs/run-1/cards-deleted.calls.txt, 17 of the 48 card sub-agents of the deleted arm opened inventory-deleted.md: D-01 5 of 12, D-02 9 of 12, D-06 3 of 12, R-61 0 of 12, and no card at all in cases 04 and 09. The record itself says most flags on sound sentences came 'through D-06'. With one reading per card, 7 of the 60 sound sentences changed flag between the arms, for a net change of +1. Case 09 p06 gained a D-06/R-61 flag and case 04 p07 lost one, both in cases where no reader saw the deleted lines. So between-reading noise is near the 0.10 threshold (6 sentences), and the run would have come out about the same had the deleted lines raised D-06 flags. A severe test would put the deleted statements inline in every card prompt (or verify the read) and fix repeated readings per arm against the 0.10 threshold."
+  },
+  {
+   "rule": 4,
+   "verdict": "fails",
+   "quote": "",
+   "missing": "The card arms that make up H-07's measure depend on files outside the repository. protocol.md says the card sub-agents 'receive the session's instruction files' and that 'The operator's files hold style rules on denials', which is the subject H-07 measures. Those files are neither named nor kept, so another person rerunning the arms would read with different instructions. The record would need those files kept or named by path and version, or the card arms run without them, as the reviewers were. Also, runs/run-1/notes.md says every card sub-agent opened 'its document, its card and the inventory', but the kept calls files show 12 of 48 (cards.calls.txt) and 17 of 48 (cards-deleted.calls.txt). The run's own record does not match what a reader of the kept files sees."
+  },
+  {
+   "rule": 5,
+   "verdict": "fails",
+   "quote": "",
+   "missing": "The scope reaches beyond the bounds under 'fit: direct'. The record needs 'fit: transfer' with the differences named, or a scope narrowed to the bounds. The scope covers notes of 60 to 90 lines with sentences from any planting writer; the bounds are twelve notes of 64 to 83 lines, written and planted by Claude Opus 5.5 at effort high from one brief. The scope's card sub-agents carry no instruction-file condition; the bounds' sub-agents 'received the session's instruction files', which hold the operator's style rules on denials. The statement says the cards were 'shown the lines a change deleted', but the bounds leave out that 31 of the 48 card sub-agents of that arm never opened the inventory holding them."
+  },
+  {
+   "rule": 6,
+   "verdict": "holds",
+   "quote": "run 1, registered in the commit before this result and drawn by that commit's hash",
+   "missing": ""
+  },
+  {
+   "rule": 7,
+   "verdict": "fails",
+   "quote": "",
+   "missing": "'supported' requires a passed test that could have refuted the claim. The treatment reached 17 of 48 card readers (3 of 12 for D-06, the card behind most flags on sound sentences, and 0 of 12 for R-61), so the standing says more than the run shows. The record would keep 'hypothesis' until a run delivers the deleted statements to every card reader. Otherwise 'result' and 'bounds' have to state this delivery, and the claim has to be narrowed to it."
+  }
+ ]
+}

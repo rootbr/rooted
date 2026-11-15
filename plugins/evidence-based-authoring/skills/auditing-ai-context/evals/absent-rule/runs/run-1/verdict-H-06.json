@@ -1,0 +1,49 @@
+{
+ "id": "H-06",
+ "kind": "claim",
+ "standing": "hypothesis",
+ "answers": [
+  {
+   "rule": 1,
+   "verdict": "holds",
+   "quote": "on the quiet form of such sentences the trace pass removes more than the audit's cards flag when shown the deleted lines · kind: claim",
+   "missing": ""
+  },
+  {
+   "rule": 2,
+   "verdict": "holds",
+   "quote": "refuter: the pass's share stands under 0.15 above the cards' share",
+   "missing": ""
+  },
+  {
+   "rule": 3,
+   "verdict": "holds",
+   "quote": "threshold: a difference of 0.15 · runs: one pass of each arm over twelve generated notes with two such sentences planted in each",
+   "missing": ""
+  },
+  {
+   "rule": 4,
+   "verdict": "holds",
+   "quote": "Everything a run produced is kept under `evals/absent-rule/runs/run-1/`.",
+   "missing": ""
+  },
+  {
+   "rule": 5,
+   "verdict": "holds",
+   "quote": "fit: transfer · transfer: the scope takes notes of 60 to 90 lines from any writer, and the run had notes of 64 to 83 lines from one model at one effort and one brief",
+   "missing": ""
+  },
+  {
+   "rule": 6,
+   "verdict": "holds",
+   "quote": "Twelve cases, written after the registering commit by writers that see neither the scripts nor the reviewer's instructions.",
+   "missing": ""
+  },
+  {
+   "rule": 7,
+   "verdict": "holds",
+   "quote": "a difference of 0.04 under the threshold of 0.15; one failed run, which waits for its repetition",
+   "missing": ""
+  }
+ ]
+}

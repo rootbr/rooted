@@ -1,0 +1,355 @@
+{
+ "version": 1,
+ "mode": "pair",
+ "files": [
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/new.md",
+   "sha256": "12c0fc8911b90dd357f0d4a8ee545aa82807b3272b25201010f59a09c506ee36"
+  }
+ ],
+ "deleted": [
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/old.md",
+   "line": 11,
+   "text": "An event happens at one well-defined instant, the same for every attendee."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/old.md",
+   "line": 18,
+   "text": "Every event start is stored as a UTC instant in the anchor column, and this value is called the anchor instant."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/old.md",
+   "line": 18,
+   "text": "A recurring series is the anchor instant plus a repeat interval counted in whole hours, so a weekly series repeats every 168 hours."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/old.md",
+   "line": 18,
+   "text": "The organizer's zone is kept only as a display hint and plays no part in scheduling."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/old.md",
+   "line": 22,
+   "text": "anchor_utc"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/old.md",
+   "line": 22,
+   "text": "timestamp"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/old.md",
+   "line": 22,
+   "text": "Start of the first occurrence as a UTC instant"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/old.md",
+   "line": 23,
+   "text": "interval_hours"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/old.md",
+   "line": 23,
+   "text": "integer"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/old.md",
+   "line": 23,
+   "text": "Hours between two occurrences, empty for a single event"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/old.md",
+   "line": 25,
+   "text": "display_zone"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/old.md",
+   "line": 25,
+   "text": "text"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/old.md",
+   "line": 25,
+   "text": "Zone shown to the organizer, unused by scheduling"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/old.md",
+   "line": 29,
+   "text": "The expander reads a series and adds the repeat interval to the anchor instant until it leaves the requested window."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/old.md",
+   "line": 29,
+   "text": "Each result is already a UTC instant, so expansion needs no zone data and runs as plain integer arithmetic."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/old.md",
+   "line": 31,
+   "text": "Exceptions such as a moved or cancelled occurrence are stored as overrides keyed by the occurrence's original instant."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/old.md",
+   "line": 31,
+   "text": "An override replaces the computed occurrence when the expander reaches that instant."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/old.md",
+   "line": 35,
+   "text": "Because the interval is fixed in hours, a weekly 09:00 meeting in Berlin moves to 08:00 local time after the autumn change and back to 09:00 after the spring change."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/old.md",
+   "line": 35,
+   "text": "Attendees in zones without daylight saving see no shift at all."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/old.md",
+   "line": 37,
+   "text": "Twice a year the rebase job finds recurring series whose display zone changed its offset and emails their organizers, asking them to re-save the series at the intended local hour."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/old.md",
+   "line": 37,
+   "text": "Re-saving writes a new anchor instant from the next occurrence onward and keeps earlier occurrences unchanged."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/old.md",
+   "line": 41,
+   "text": "A reminder is an offset before an occurrence, such as 15 minutes or one day."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/old.md",
+   "line": 41,
+   "text": "The reminder worker expands each series for the next 48 hours every five minutes and enqueues one job per reminder at the occurrence's instant minus the offset."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/old.md",
+   "line": 43,
+   "text": "After a transition, reminders follow the anchor instant, so they fire at the shifted local hour until the organizer re-saves the series."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/old.md",
+   "line": 43,
+   "text": "Each job carries the occurrence's instant so that a duplicate job for the same occurrence is dropped."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/old.md",
+   "line": 47,
+   "text": "The API returns each occurrence with its UTC instant."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/old.md",
+   "line": 47,
+   "text": "Clients render the time in the viewer's zone, which the web client reads from the browser and the user may override in settings."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/old.md",
+   "line": 49,
+   "text": "The organizer view also shows the time in the display zone, so an organizer can notice when a series has drifted from its intended local hour."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/old.md",
+   "line": 53,
+   "text": "The zone rules come from the IANA tz database, which publishes several releases a year as governments change their rules."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/old.md",
+   "line": 53,
+   "text": "The operating system zone files on a host can lag behind those releases by months."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/old.md",
+   "line": 53,
+   "text": "The service ships its own pinned copy of the tz database, used for display and by the rebase job."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/old.md",
+   "line": 55,
+   "text": "A new release is adopted through an ordinary deployment."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/old.md",
+   "line": 55,
+   "text": "It changes how times are displayed but never moves a stored occurrence."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/old.md",
+   "line": 59,
+   "text": "Create and update requests carry the start as a UTC timestamp with a trailing Z, plus an optional display zone."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/old.md",
+   "line": 60,
+   "text": "Imports from iCalendar files are accepted, and each local time in the file is converted to a UTC instant once, at import."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/old.md",
+   "line": 65,
+   "text": "The test suite runs the expander against series in Europe/Berlin, America/Sao_Paulo, Australia/Lord_Howe and Asia/Kolkata."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/old.md",
+   "line": 65,
+   "text": "Each case checks that occurrences stay exactly one interval apart across at least one spring and one autumn transition, and that the rebase job selects the series it should."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/old.md",
+   "line": 69,
+   "text": "Whether the rebase job should re-save series automatically instead of emailing organizers."
+  }
+ ],
+ "candidates": [
+  {
+   "id": "c001",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/new.md",
+   "line": 20,
+   "end_line": 20,
+   "sentence": "The zone comes from the organizer's choice in the event form rather than from a guess based on the network address of the request.",
+   "cues": [
+    "rather than"
+   ]
+  },
+  {
+   "id": "c002",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/new.md",
+   "line": 24,
+   "end_line": 24,
+   "sentence": "timestamp without zone",
+   "cues": [
+    "without"
+   ]
+  },
+  {
+   "id": "c003",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/new.md",
+   "line": 31,
+   "end_line": 31,
+   "sentence": "The gap between two occurrences is not a fixed count of hours, since a week that crosses a transition is an hour shorter or longer.",
+   "cues": [
+    "not"
+   ]
+  },
+  {
+   "id": "c004",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/new.md",
+   "line": 33,
+   "end_line": 33,
+   "sentence": "This service does not materialise occurrences ahead of time, so an edit to a series touches a single row.",
+   "cues": [
+    "not"
+   ]
+  },
+  {
+   "id": "c005",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/new.md",
+   "line": 39,
+   "end_line": 39,
+   "sentence": "When a local time occurs twice in an autumn overlap, the expander takes the earlier of the two instants.",
+   "cues": [
+    "the earlier"
+   ]
+  },
+  {
+   "id": "c006",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/new.md",
+   "line": 41,
+   "end_line": 41,
+   "sentence": "Organizers do not have to edit a series after a clock change to keep it at its usual hour.",
+   "cues": [
+    "not"
+   ]
+  },
+  {
+   "id": "c007",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/new.md",
+   "line": 43,
+   "end_line": 43,
+   "sentence": "There is no rebase job, and organizers receive no email around the spring and autumn clock changes.",
+   "cues": [
+    "no"
+   ]
+  },
+  {
+   "id": "c008",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/new.md",
+   "line": 47,
+   "end_line": 47,
+   "sentence": "Reminder jobs are written to the shared job queue rather than registered as cron entries on the worker hosts.",
+   "cues": [
+    "rather than"
+   ]
+  },
+  {
+   "id": "c009",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/new.md",
+   "line": 49,
+   "end_line": 49,
+   "sentence": "A reminder is never sent for an occurrence that has been cancelled or deleted.",
+   "cues": [
+    "never"
+   ]
+  },
+  {
+   "id": "c010",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/new.md",
+   "line": 51,
+   "end_line": 51,
+   "sentence": "When an event has no reminder setting, no notification is sent before it starts.",
+   "cues": [
+    "no"
+   ]
+  },
+  {
+   "id": "c011",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/new.md",
+   "line": 61,
+   "end_line": 61,
+   "sentence": "The service therefore does not read zone rules from the host but ships its own pinned copy of the tz database.",
+   "cues": [
+    "not"
+   ]
+  },
+  {
+   "id": "c012",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/new.md",
+   "line": 67,
+   "end_line": 67,
+   "sentence": "Create and update requests carry the start as a local date-time string without an offset, plus a zone field holding an IANA name.",
+   "cues": [
+    "without"
+   ]
+  },
+  {
+   "id": "c013",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/new.md",
+   "line": 68,
+   "end_line": 68,
+   "sentence": "The iCalendar standard allows a floating time that carries no zone at all.",
+   "cues": [
+    "no"
+   ]
+  },
+  {
+   "id": "c014",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/new.md",
+   "line": 68,
+   "end_line": 68,
+   "sentence": "The import endpoint does not accept floating times and asks the user to pick a zone instead.",
+   "cues": [
+    "not",
+    "instead"
+   ]
+  },
+  {
+   "id": "c015",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/new.md",
+   "line": 77,
+   "end_line": 77,
+   "sentence": "Whether organizers should be able to change the zone of an existing series without moving its occurrences in local time.",
+   "cues": [
+    "without"
+   ]
+  }
+ ]
+}

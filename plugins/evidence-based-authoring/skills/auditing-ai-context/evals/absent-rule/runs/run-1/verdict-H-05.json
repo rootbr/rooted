@@ -1,0 +1,49 @@
+{
+ "id": "H-05",
+ "kind": "claim",
+ "standing": "supported",
+ "answers": [
+  {
+   "rule": 1,
+   "verdict": "holds",
+   "quote": "kind: claim",
+   "missing": ""
+  },
+  {
+   "rule": 2,
+   "verdict": "holds",
+   "quote": "refuter: the share with the deleted statements stands under 0.15 above the share without them",
+   "missing": ""
+  },
+  {
+   "rule": 3,
+   "verdict": "holds",
+   "quote": "had the four cards flag 21 of 24 such sentences with the deleted statements in the inventory and 9 of 24 without them, a difference of 0.50",
+   "missing": ""
+  },
+  {
+   "rule": 4,
+   "verdict": "holds",
+   "quote": "Everything a run produced is kept under `evals/absent-rule/runs/run-1/`.",
+   "missing": ""
+  },
+  {
+   "rule": 5,
+   "verdict": "holds",
+   "quote": "the scope speaks of cards shown the deleted lines, and the run showed them to the sub-agents that opened the inventory",
+   "missing": ""
+  },
+  {
+   "rule": 6,
+   "verdict": "holds",
+   "quote": "run 1, registered in the commit before this result and drawn by that commit's hash",
+   "missing": ""
+  },
+  {
+   "rule": 7,
+   "verdict": "holds",
+   "quote": "standing: supported",
+   "missing": ""
+  }
+ ]
+}

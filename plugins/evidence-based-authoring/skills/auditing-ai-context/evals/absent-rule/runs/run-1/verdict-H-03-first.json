@@ -1,0 +1,49 @@
+{
+ "id": "H-03",
+ "kind": "claim",
+ "standing": "supported",
+ "answers": [
+  {
+   "rule": 1,
+   "verdict": "holds",
+   "quote": "on the quiet form of such sentences the trace pass removes more than the audit's cards flag as shipped · kind: claim",
+   "missing": ""
+  },
+  {
+   "rule": 2,
+   "verdict": "holds",
+   "quote": "refuter: the pass's share stands under 0.20 above the cards' share",
+   "missing": ""
+  },
+  {
+   "rule": 3,
+   "verdict": "holds",
+   "quote": "threshold: a difference of 0.20 · runs: one pass of each arm over twelve generated notes with two such sentences planted in each",
+   "missing": ""
+  },
+  {
+   "rule": 4,
+   "verdict": "holds",
+   "quote": "Everything a run produced is kept under `evals/absent-rule/runs/run-1/`.",
+   "missing": ""
+  },
+  {
+   "rule": 5,
+   "verdict": "fails",
+   "quote": "",
+   "missing": "The record says `fit: direct`, but its scope reaches beyond its bounds in three ways. First, the scope covers notes of 60 to 90 lines, while the bounds are twelve notes of 64 to 83 lines. Second, the scope allows a sentence writer of any kind (\"a writer that saw neither the scripts nor the reviewer's instructions\"), while the bounds name one writer: Claude Opus 5.5 at effort high, working from one brief whose class definitions are the ones the trace reviewer judges by. Third, the bounds say the card sub-agents of the comparison arm \"received the session's instruction files\" (the protocol says the operator's files hold style rules on denials), and the scope does not state that condition. To fix this, either narrow `scope` to the bounds (64 to 83 lines, writer Claude Opus 5.5 at effort high from the one brief, card sub-agents given the session's instruction files), or set `fit: transfer` and name these differences in `transfer`."
+  },
+  {
+   "rule": 6,
+   "verdict": "holds",
+   "quote": "The thresholds rest on two dry cases outside the draw",
+   "missing": ""
+  },
+  {
+   "rule": 7,
+   "verdict": "holds",
+   "quote": "standing: supported",
+   "missing": ""
+  }
+ ]
+}

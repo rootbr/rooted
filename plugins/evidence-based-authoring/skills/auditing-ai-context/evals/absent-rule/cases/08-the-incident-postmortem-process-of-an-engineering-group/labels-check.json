@@ -1,0 +1,16 @@
+{
+  "classes": {
+    "p01": {"class": "trace", "reason": "It denies rule A's requirement that the author book a slot at the Thursday Postmortem Review, a meeting new.md mentions nowhere else, so its reader has never been told what the slot was."},
+    "p02": {"class": "trace", "reason": "It denies rule A's in-room presentation by the author at a meeting, and new.md never tells its reader that a meeting review was ever the practice."},
+    "p03": {"class": "trace", "reason": "It sets the ten-day window against old.md's five-business-day deadline ('rather than one'), and new.md nowhere states that the deadline used to be one week."},
+    "p04": {"class": "foil", "reason": "Both documents build the timeline from the channel, paging history and deploy log, and neither presents building it from recollection, so the contrast is with an alternative neither document presents."},
+    "p05": {"class": "foil", "reason": "Old.md also files items in the regular backlog, and no separate tracker appears in either document, so the contrast is with an alternative neither document presents."},
+    "p06": {"class": "licensed", "licence": "Some organizations assign a numeric blame score to each contributing factor.", "reason": "It denies the blame score that the immediately preceding sentence of new.md, not one of the ten, has introduced to the reader."},
+    "p07": {"class": "licensed", "licence": "A common view in the group is that a postmortem with no action items is an unfinished postmortem.", "reason": "It disagrees with the view that the preceding sentence of new.md, not one of the ten and absent from old.md, has presented."},
+    "p08": {"class": "licensed", "licence": "The security team runs its own disclosure review for incidents that exposed customer data.", "reason": "It sets the postmortem process against the disclosure review that the preceding sentence of new.md has introduced, and it does not touch the meeting-based review of rule A."},
+    "p09": {"class": "plain", "reason": "It is a prohibition on what the document contains, set against no other design, and it does not contradict old.md's redaction of log data or touch the meeting review of rule A."},
+    "p10": {"class": "plain", "reason": "It states a default for when no single owning team exists, a case old.md never covers, and sets it against no other design or rule."}
+  },
+  "presents_old_rule": false,
+  "presenting_sentence": ""
+}

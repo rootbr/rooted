@@ -1,0 +1,709 @@
+{
+ "patches": [
+  {
+   "rule_id": "D-06",
+   "location": {
+    "section": "Configuration sources",
+    "field": "",
+    "line_hint": 19
+   },
+   "current": "Several tools look for a dotfile in every parent directory up to the filesystem root. Tern stops its search for the project file at the repository root and never reads a dotfile above it.",
+   "proposed": null,
+   "justification": "Other tools' parent-directory search is named only as the foil of tern's stop-at-root behaviour, not as a checkable blocking fact.",
+   "severity": "medium",
+   "needs_human": true,
+   "file": "01-configuration-loading-order-of-a-command-line-tool/new.md",
+   "group": "G10"
+  },
+  {
+   "rule_id": "D-02",
+   "location": {
+    "section": "How layers combine",
+    "field": "",
+    "line_hint": 23
+   },
+   "current": "There is no winning file any more, and every layer that exists contributes the keys it sets.",
+   "proposed": null,
+   "justification": "After stripping the 'any more' comparison, the clause 'every layer that exists contributes the keys it sets' is a self-standing present mechanism and is kept (rewrite as 'Every layer that exists contributes the keys it sets.'), while the 'no winning file' negative is dropped. (also D-06)",
+   "severity": "medium",
+   "needs_human": true,
+   "file": "01-configuration-loading-order-of-a-command-line-tool/new.md",
+   "group": "G10"
+  },
+  {
+   "rule_id": "D-06",
+   "location": {
+    "section": "Environment variables and flags",
+    "field": "",
+    "line_hint": 35
+   },
+   "current": "Some operators expect an environment variable to beat a flag, because the variable is often set by the deployment. That is not the case in tern, where a flag given on the command line always overrides the matching variable.",
+   "proposed": null,
+   "justification": "The variable-beats-flag alternative is named as an expectation to contrast against, with no environmental fact that blocks it.",
+   "severity": "medium",
+   "needs_human": true,
+   "file": "01-configuration-loading-order-of-a-command-line-tool/new.md",
+   "group": "G10"
+  },
+  {
+   "rule_id": "D-06",
+   "location": {
+    "section": "Values and types",
+    "field": "",
+    "line_hint": 43
+   },
+   "current": "Some tools combine lists by concatenating the values from every layer. Tern does not concatenate, and a list set in a higher layer replaces the lower list entirely.",
+   "proposed": null,
+   "justification": "Concatenation is named as other tools' behaviour and as the foil of tern's replace rule, with no blocking environmental fact.",
+   "severity": "medium",
+   "needs_human": true,
+   "file": "01-configuration-loading-order-of-a-command-line-tool/new.md",
+   "group": "G10"
+  },
+  {
+   "rule_id": "D-06",
+   "location": {
+    "section": "Handover",
+    "field": "",
+    "line_hint": 34
+   },
+   "current": "The note is a few lines in the incident channel, not a formal report with sign-off.",
+   "proposed": null,
+   "justification": "The formal report appears as the foil of the note's format, with no checkable environmental fact blocking it.",
+   "severity": "medium",
+   "needs_human": true,
+   "file": "02-the-on-call-rotation-of-a-platform-team/new.md",
+   "group": "G10"
+  },
+  {
+   "rule_id": "D-06",
+   "location": {
+    "section": "Handover",
+    "field": "",
+    "line_hint": 36
+   },
+   "current": "A reader might expect the outgoing primary to stay on until every open incident is resolved. Open incidents pass to the incoming primary as they stand, and the outgoing primary signs off at the end of the shift.",
+   "proposed": null,
+   "justification": "The stay-on-until-resolved alternative is named only as an expectation to contrast with the decision; keep the positive rule, drop the foil or state the blocking fact.",
+   "severity": "medium",
+   "needs_human": true,
+   "file": "02-the-on-call-rotation-of-a-platform-team/new.md",
+   "group": "G10"
+  },
+  {
+   "rule_id": "D-06",
+   "location": {
+    "section": "Swaps and absences",
+    "field": "",
+    "line_hint": 54
+   },
+   "current": "Some teams in the company let engineers swap shifts by agreeing on it in a direct message. On the platform team a swap counts only once it is recorded in the scheduling tool.",
+   "proposed": null,
+   "justification": "Other teams' direct-message swaps are the foil of the platform team's rule rather than a blocking fact about the environment.",
+   "severity": "medium",
+   "needs_human": true,
+   "file": "02-the-on-call-rotation-of-a-platform-team/new.md",
+   "group": "G10"
+  },
+  {
+   "rule_id": "D-06",
+   "location": {
+    "section": "Compensation",
+    "field": "",
+    "line_hint": 60
+   },
+   "current": "Many on-call guides recommend paying a flat stipend for every shift. We compensate each shift with half a day of time off rather than with money.",
+   "proposed": null,
+   "justification": "The stipend is named as the foil of the compensation decision with no checkable fact that blocks it.",
+   "severity": "medium",
+   "needs_human": true,
+   "file": "02-the-on-call-rotation-of-a-platform-team/new.md",
+   "group": "G10"
+  },
+  {
+   "rule_id": "D-06",
+   "location": {
+    "section": "Cache key",
+    "field": "",
+    "line_hint": 19
+   },
+   "current": "The key is derived from the request alone rather than from a hash of the rendered page body.",
+   "proposed": null,
+   "justification": "A body hash is named only as the foil of the key design, with no checkable environmental fact that blocks it; state that fact or drop the sentence.",
+   "severity": "medium",
+   "needs_human": true,
+   "file": "03-rendered-page-caching-at-a-content-delivery-edge/new.md",
+   "group": "G10"
+  },
+  {
+   "rule_id": "D-06",
+   "location": {
+    "section": "Storing event times",
+    "field": "",
+    "line_hint": 20
+   },
+   "current": "The zone comes from the organizer's choice in the event form rather than from a guess based on the network address of the request.",
+   "proposed": null,
+   "justification": "Network-address guessing is named only as the foil of the zone decision, with no environmental fact that blocks it.",
+   "severity": "medium",
+   "needs_human": true,
+   "file": "04-time-zone-handling-in-a-scheduling-service/new.md",
+   "group": "G10"
+  },
+  {
+   "rule_id": "D-06",
+   "location": {
+    "section": "Recurrence expansion",
+    "field": "",
+    "line_hint": 33
+   },
+   "current": "Some calendar products store each occurrence as a separate row as soon as a series is created. This service does not materialise occurrences ahead of time, so an edit to a series touches a single row.",
+   "proposed": null,
+   "justification": "Pre-materialised rows are named as other products' approach, the contrast the decision is defined against, not as the subject of a blocking fact.",
+   "severity": "medium",
+   "needs_human": true,
+   "file": "04-time-zone-handling-in-a-scheduling-service/new.md",
+   "group": "G10"
+  },
+  {
+   "rule_id": "D-06",
+   "location": {
+    "section": "Reminders",
+    "field": "",
+    "line_hint": 47
+   },
+   "current": "Reminder jobs are written to the shared job queue rather than registered as cron entries on the worker hosts.",
+   "proposed": null,
+   "justification": "Cron entries appear only as the foil of the queue decision; no checkable environmental fact blocks them.",
+   "severity": "medium",
+   "needs_human": true,
+   "file": "04-time-zone-handling-in-a-scheduling-service/new.md",
+   "group": "G10"
+  },
+  {
+   "rule_id": "D-06",
+   "location": {
+    "section": "Token format and lifetime",
+    "field": "",
+    "line_hint": 11
+   },
+   "current": "A request made with an access token leaves its expiry time where it was rather than pushing it forward.",
+   "proposed": null,
+   "justification": "Sliding expiry is named as the foil of the fixed-expiry decision, not as the subject of a blocking environmental fact.",
+   "severity": "medium",
+   "needs_human": true,
+   "file": "05-access-tokens-of-a-mobile-apps-backend/new.md",
+   "group": "G10"
+  },
+  {
+   "rule_id": "D-02",
+   "location": {
+    "section": "Request validation",
+    "field": "",
+    "line_hint": 17
+   },
+   "current": "The gateway no longer looks up the sessions table before it forwards a request.",
+   "proposed": null,
+   "justification": "With 'no longer' stripped, the remainder is a bare negative (the gateway does not consult a sessions table) that nobody would wonder about; residue class: negative, so delete the whole sentence rather than restating it in present tense. (also D-06)",
+   "severity": "medium",
+   "needs_human": true,
+   "meta": {
+    "residue_class": "negative",
+    "verdict": "delete"
+   },
+   "file": "05-access-tokens-of-a-mobile-apps-backend/new.md",
+   "group": "G10"
+  },
+  {
+   "rule_id": "D-02",
+   "location": {
+    "section": "Request validation",
+    "field": "",
+    "line_hint": 25
+   },
+   "current": "Services no longer wait on a round trip to the auth service before they serve a request.",
+   "proposed": null,
+   "justification": "With 'no longer' stripped, the remainder is a bare negative; the present fact (each service verifies the token locally against cached JWKS keys) is already stated in the preceding paragraph and sentence, so residue class: negative, delete whole. (also D-06)",
+   "severity": "medium",
+   "needs_human": true,
+   "meta": {
+    "residue_class": "negative",
+    "verdict": "delete"
+   },
+   "file": "05-access-tokens-of-a-mobile-apps-backend/new.md",
+   "group": "G10"
+  },
+  {
+   "rule_id": "D-06",
+   "location": {
+    "section": "Refresh",
+    "field": "",
+    "line_hint": 38
+   },
+   "current": "The app reads the expiry time from the token's claims instead of keeping a countdown timer of its own.",
+   "proposed": null,
+   "justification": "The countdown timer is named as the foil, with no environmental fact blocking it.",
+   "severity": "medium",
+   "needs_human": true,
+   "file": "05-access-tokens-of-a-mobile-apps-backend/new.md",
+   "group": "G10"
+  },
+  {
+   "rule_id": "D-06",
+   "location": {
+    "section": "Refresh",
+    "field": "",
+    "line_hint": 40
+   },
+   "current": "The OAuth specification also allows a refresh token to stay the same for its whole life. Lumen does not take that option, and each successful refresh",
+   "proposed": null,
+   "justification": "A reusable refresh token is named only as the option Lumen declined, the foil of the rotation decision.",
+   "severity": "medium",
+   "needs_human": true,
+   "file": "05-access-tokens-of-a-mobile-apps-backend/new.md",
+   "group": "G10"
+  },
+  {
+   "rule_id": "D-06",
+   "location": {
+    "section": "Storage on the device",
+    "field": "",
+    "line_hint": 56
+   },
+   "current": "Many mobile apps keep tokens in shared preferences on Android or in user defaults on iOS. The Lumen app keeps both of its tokens in the iOS Keychain and the Android Keystore, never in those plain stores.",
+   "proposed": null,
+   "justification": "Plain preference stores appear as the foil; the checkable fact that blocks them (e.g. readable by other processes or in backups) is not stated.",
+   "severity": "medium",
+   "needs_human": true,
+   "file": "05-access-tokens-of-a-mobile-apps-backend/new.md",
+   "group": "G10"
+  },
+  {
+   "rule_id": "D-06",
+   "location": {
+    "section": "Key management",
+    "field": "",
+    "line_hint": 60
+   },
+   "current": "Keys are rotated on that fixed calendar as a routine step rather than as a response to an incident.",
+   "proposed": null,
+   "justification": "Incident-driven rotation is named as the foil of the calendar decision, not as a blocked option with an environmental fact.",
+   "severity": "medium",
+   "needs_human": true,
+   "file": "05-access-tokens-of-a-mobile-apps-backend/new.md",
+   "group": "G10"
+  },
+  {
+   "rule_id": "D-06",
+   "location": {
+    "section": "What is counted",
+    "field": "",
+    "line_hint": 25
+   },
+   "current": "Some gateways charge failed requests and successful requests at different rates. Ours makes no such distinction, and a request costs one token whatever status the backend returns.",
+   "proposed": null,
+   "justification": "Other gateways' differential charging is the foil for this gateway's flat cost, with no environmental fact blocking it; keep only the flat-cost statement or name the blocking fact.",
+   "severity": "medium",
+   "needs_human": true,
+   "file": "06-rate-limiting-at-an-api-gateway/new.md",
+   "group": "G10"
+  },
+  {
+   "rule_id": "D-06",
+   "location": {
+    "section": "Responses",
+    "field": "",
+    "line_hint": 48
+   },
+   "current": "The gateway makes this decision on its own instead of forwarding the request and letting the backend judge whether it has room.",
+   "proposed": null,
+   "justification": "Backend-side judgement is named as the foil of the gateway-side decision with no checkable blocking fact; state the fact that blocks forwarding, or drop the contrast.",
+   "severity": "medium",
+   "needs_human": true,
+   "file": "06-rate-limiting-at-an-api-gateway/new.md",
+   "group": "G10"
+  },
+  {
+   "rule_id": "D-06",
+   "location": {
+    "section": "Who reviews",
+    "field": "",
+    "line_hint": 19
+   },
+   "current": "The reviewer is chosen by what the change touches, not by whose turn it is.",
+   "proposed": null,
+   "justification": "Names a rotation-based alternative only as the foil of the decision, with no checkable environmental fact blocking it; state that fact or drop the clause.",
+   "severity": "medium",
+   "needs_human": true,
+   "meta": {},
+   "file": "07-the-code-review-policy-of-a-monorepo/new.md",
+   "group": "G10"
+  },
+  {
+   "rule_id": "D-06",
+   "location": {
+    "section": "Purpose",
+    "field": "",
+    "line_hint": 9
+   },
+   "current": "Some organizations assign a numeric blame score to each contributing factor. Our template has no such score, and contributing factors are described only as conditions of the system, its tooling and its processes.",
+   "proposed": null,
+   "justification": "Blame scoring is named as the foil of the template design, not as a checkable blocking fact about the environment.",
+   "severity": "medium",
+   "needs_human": true,
+   "file": "08-the-incident-postmortem-process-of-an-engineering-group/new.md",
+   "group": "G10"
+  },
+  {
+   "rule_id": "D-01",
+   "location": {
+    "section": "Review and approval",
+    "field": "",
+    "line_hint": 37
+   },
+   "current": "Authors do not book a slot at the Thursday Postmortem Review, since approval happens entirely in the document.",
+   "proposed": null,
+   "justification": "The sentence names a Thursday review meeting that no other part of the file defines, so a reader parses it only as a correction of an earlier meeting-based process; the surviving present fact, that approval happens entirely in the document, is already stated in the preceding paragraph. (also D-06)",
+   "severity": "medium",
+   "needs_human": true,
+   "file": "08-the-incident-postmortem-process-of-an-engineering-group/new.md",
+   "group": "G10"
+  },
+  {
+   "rule_id": "D-06",
+   "location": {
+    "section": "Action items",
+    "field": "",
+    "line_hint": 56
+   },
+   "current": "Items are filed in the owning team's regular backlog instead of a separate tracker that someone would have to remember to check.",
+   "proposed": null,
+   "justification": "The separate tracker is named as the foil of the backlog choice, and the stated reason is hypothetical instead of an environmental fact about it.",
+   "severity": "medium",
+   "needs_human": true,
+   "file": "08-the-incident-postmortem-process-of-an-engineering-group/new.md",
+   "group": "G10"
+  },
+  {
+   "rule_id": "D-06",
+   "location": {
+    "section": "Action items",
+    "field": "",
+    "line_hint": 60
+   },
+   "current": "A common view in the group is that a postmortem with no action items is an unfinished postmortem. We disagree, and a postmortem that finds nothing worth changing is approved like any other one.",
+   "proposed": null,
+   "justification": "The rejected view is named only to report disagreement with it, so it is a foil, and the second clause already states the rule.",
+   "severity": "medium",
+   "needs_human": true,
+   "file": "08-the-incident-postmortem-process-of-an-engineering-group/new.md",
+   "group": "G10"
+  },
+  {
+   "rule_id": "D-02",
+   "location": {
+    "section": "Request parameters",
+    "field": "",
+    "line_hint": 13
+   },
+   "current": "A client no longer works out where the next request starts from the number of the page it is on and the size of each page.",
+   "proposed": null,
+   "justification": "Stripping \"no longer\" leaves a bare negative about an absent neighbour (page-number/offset arithmetic) that nothing in the cursor contract needs; delete the whole sentence, residue class: absent thing. (also D-06)",
+   "severity": "medium",
+   "needs_human": true,
+   "meta": {
+    "verdict": "delete",
+    "residue_class": "negative / absent neighbour"
+   },
+   "file": "09-pagination-of-a-public-rest-api/new.md",
+   "group": "G10"
+  },
+  {
+   "rule_id": "D-02",
+   "location": {
+    "section": "Client guidance",
+    "field": "",
+    "line_hint": 47
+   },
+   "current": "Jumping straight to an arbitrary point in the middle of a collection is not something clients can do any more.",
+   "proposed": null,
+   "justification": "Stripping \"any more\" leaves a self-standing present contract (the API offers no random access into a collection, only forward traversal from the first request); rewrite in present tense as that fact, e.g. \"Clients cannot jump to an arbitrary point in a collection; every traversal starts at the first item.\"",
+   "severity": "medium",
+   "needs_human": true,
+   "meta": {
+    "verdict": "rewrite",
+    "surviving_fact": "no random access; traversal is forward-only from the first request"
+   },
+   "file": "09-pagination-of-a-public-rest-api/new.md",
+   "group": "G10"
+  },
+  {
+   "rule_id": "D-06",
+   "location": {
+    "section": "Rollups",
+    "field": "",
+    "line_hint": 23
+   },
+   "current": "Each night's rollup partition is computed from the raw partition of the day before rather than fed by a separate streaming pipeline.",
+   "proposed": null,
+   "justification": "A streaming pipeline is named only as the foil (\"rather than\") of the rollup design, not as the subject of a checkable environmental fact that blocks it.",
+   "severity": "medium",
+   "needs_human": true,
+   "meta": {
+    "suggestion": "State the fact that blocks a streaming feed, if one exists (for example, that the warehouse has no streaming ingestion into rollup tables), or state only that each rollup partition is computed from the previous day's raw partition; remove the clause if no blocking fact exists."
+   },
+   "file": "10-data-retention-in-an-analytics-warehouse/new.md",
+   "group": "G10"
+  },
+  {
+   "rule_id": "D-06",
+   "location": {
+    "section": "Tooling",
+    "field": "",
+    "line_hint": 15
+   },
+   "current": "Some frameworks generate a down migration for every up migration automatically. We write no down migrations, and every correction ships as a new forward migration.",
+   "proposed": null,
+   "justification": "Names automatic down migrations only as the foil of the choice; no environmental fact blocking them is stated.",
+   "severity": "medium",
+   "needs_human": true,
+   "meta": {},
+   "file": "11-schema-migrations-of-a-relational-database/new.md",
+   "group": "G10"
+  },
+  {
+   "rule_id": "D-06",
+   "location": {
+    "section": "Writing a migration",
+    "field": "",
+    "line_hint": 23
+   },
+   "current": "Migrations are not saved up and applied together at the end of a release, since each one ships with the change that needs it.",
+   "proposed": null,
+   "justification": "Batched end-of-release migrations appear only as the negated foil; the reason given is the decision itself, not a checkable blocking fact. (also R-61)",
+   "severity": "medium",
+   "needs_human": true,
+   "meta": {},
+   "file": "11-schema-migrations-of-a-relational-database/new.md",
+   "group": "G10"
+  },
+  {
+   "rule_id": "D-06",
+   "location": {
+    "section": "Writing a migration",
+    "field": "",
+    "line_hint": 26
+   },
+   "current": "A rename is carried out as a new column filled by a backfill, rather than as a view that keeps the old name alive.",
+   "proposed": null,
+   "justification": "The view alternative is named as a foil with 'rather than'; no environmental fact blocking it is given.",
+   "severity": "medium",
+   "needs_human": true,
+   "meta": {},
+   "file": "11-schema-migrations-of-a-relational-database/new.md",
+   "group": "G10"
+  },
+  {
+   "rule_id": "D-06",
+   "location": {
+    "section": "Applying migrations",
+    "field": "",
+    "line_hint": 41
+   },
+   "current": "There is no Sunday window to book and no release DBA to page before a migration goes out.",
+   "proposed": null,
+   "justification": "Names a prior maintenance-window process only as a negated foil; it states no re-testable blocking fact, so rewrite as the blocking fact or remove.",
+   "severity": "medium",
+   "needs_human": true,
+   "meta": {},
+   "file": "11-schema-migrations-of-a-relational-database/new.md",
+   "group": "G10"
+  },
+  {
+   "rule_id": "D-06",
+   "location": {
+    "section": "Defining a flag",
+    "field": "",
+    "line_hint": 17
+   },
+   "current": "The ruleset is a plain JSON document that anyone can read in review, not a compiled artifact that needs a build to change.",
+   "proposed": null,
+   "justification": "The compiled artifact is named only as the foil of the format choice, not as the subject of a checkable blocking fact.",
+   "severity": "medium",
+   "needs_human": true,
+   "meta": {},
+   "file": "12-feature-flags-in-a-web-service/new.md",
+   "group": "G10"
+  },
+  {
+   "rule_id": "D-06",
+   "location": {
+    "section": "Evaluation",
+    "field": "",
+    "line_hint": 33
+   },
+   "current": "A flag value is worked out inside the service that uses it, not decided upstream and handed along with the request.",
+   "proposed": null,
+   "justification": "Upstream evaluation is named only as the contrast of the decision; no environmental fact blocking it is stated.",
+   "severity": "medium",
+   "needs_human": true,
+   "meta": {},
+   "file": "12-feature-flags-in-a-web-service/new.md",
+   "group": "G10"
+  },
+  {
+   "rule_id": "D-06",
+   "location": {
+    "section": "Evaluation",
+    "field": "",
+    "line_hint": 37
+   },
+   "current": "Some commercial flag services bill per evaluation and advise clients to cache each result for several hours. Our SDK keeps no evaluation results between requests, so a ruleset change reaches users on the very next refresh.",
+   "proposed": null,
+   "justification": "Commercial services appear as a comparison foil for the SDK design, not as a blocking fact about this environment.",
+   "severity": "medium",
+   "needs_human": true,
+   "meta": {},
+   "file": "12-feature-flags-in-a-web-service/new.md",
+   "group": "G10"
+  },
+  {
+   "rule_id": "D-02",
+   "location": {
+    "section": "Testing",
+    "field": "",
+    "line_hint": 56
+   },
+   "current": "No test has to build a flag snapshot header any more, since the fixture answers every question about a flag directly.",
+   "proposed": null,
+   "justification": "Stripping 'any more' leaves a bare negative (no test builds a snapshot header); the fixture's role is already stated in the preceding sentence, so delete the whole sentence (residue class: negative). (also D-06)",
+   "severity": "medium",
+   "needs_human": true,
+   "file": "12-feature-flags-in-a-web-service/new.md",
+   "group": "G10"
+  },
+  {
+   "rule_id": "D-06",
+   "location": {
+    "section": "Handover",
+    "field": "",
+    "line_hint": 38
+   },
+   "current": "Handover is a written note at the end of each shift, and nobody has to wait for a weekly meeting to learn what is open.",
+   "proposed": null,
+   "justification": "The weekly meeting is a foil that only reports a comparison; no environmental fact blocks it.",
+   "severity": "low",
+   "needs_human": true,
+   "file": "02-the-on-call-rotation-of-a-platform-team/new.md",
+   "group": "G10"
+  },
+  {
+   "rule_id": "R-61",
+   "location": {
+    "section": "Swaps and absences",
+    "field": "",
+    "line_hint": 54
+   },
+   "current": "A swap covers a single shift and never a whole pager week.",
+   "proposed": null,
+   "justification": "Edge-case prohibition (\"never\") in the body, neither safety nor data-integrity; reframe positively, e.g. \"A swap covers one shift; a whole pager week is swapped as separate recorded shifts.\"",
+   "severity": "low",
+   "needs_human": true,
+   "file": "02-the-on-call-rotation-of-a-platform-team/new.md",
+   "group": "G6"
+  },
+  {
+   "rule_id": "D-06",
+   "location": {
+    "section": "Tooling",
+    "field": "",
+    "line_hint": 64
+   },
+   "current": "Schedules live in the paging tool itself and are not copied into a spreadsheet.",
+   "proposed": null,
+   "justification": "The spreadsheet is named only as a negated alternative, with no blocking fact about the environment.",
+   "severity": "low",
+   "needs_human": true,
+   "file": "02-the-on-call-rotation-of-a-platform-team/new.md",
+   "group": "G10"
+  },
+  {
+   "rule_id": "D-06",
+   "location": {
+    "section": "Daylight-saving transitions",
+    "field": "",
+    "line_hint": 43
+   },
+   "current": "There is no rebase job, and organizers receive no email around the spring and autumn clock changes.",
+   "proposed": null,
+   "justification": "Rebase job and clock-change emails are named only as options the design lacks, with no blocking fact.",
+   "severity": "low",
+   "needs_human": true,
+   "file": "04-time-zone-handling-in-a-scheduling-service/new.md",
+   "group": "G10"
+  },
+  {
+   "rule_id": "D-06",
+   "location": {
+    "section": "API",
+    "field": "",
+    "line_hint": 68
+   },
+   "current": "The iCalendar standard allows a floating time that carries no zone at all. The import endpoint does not accept floating times and asks the user to pick a zone instead.",
+   "proposed": null,
+   "justification": "Floating times are rejected as a decision foil; the standard allowing them is not a fact that blocks them, so the blocking fact is missing.",
+   "severity": "low",
+   "needs_human": true,
+   "file": "04-time-zone-handling-in-a-scheduling-service/new.md",
+   "group": "G10"
+  },
+  {
+   "rule_id": "R-61",
+   "location": {
+    "section": "Review and approval",
+    "field": "",
+    "line_hint": 35
+   },
+   "current": "A postmortem is never reviewed in a meeting, and its author is not asked to walk a room through it.",
+   "proposed": "A postmortem is reviewed asynchronously in its own document, and the author answers reviewer comments there.",
+   "justification": "Process/style prohibition in the body, not safety or data integrity; restate as the positive practice.",
+   "severity": "low",
+   "needs_human": true,
+   "file": "08-the-incident-postmortem-process-of-an-engineering-group/new.md",
+   "group": "G6"
+  },
+  {
+   "rule_id": "D-06",
+   "location": {
+    "section": "Tooling",
+    "field": "",
+    "line_hint": 13
+   },
+   "current": "The runner learns which migrations have run from the history table, not from comparing the live schema against a model.",
+   "proposed": null,
+   "justification": "Schema-diff against a model is named only as the contrasted alternative with 'not from'; the history-table statement stands alone without it.",
+   "severity": "low",
+   "needs_human": true,
+   "meta": {},
+   "file": "11-schema-migrations-of-a-relational-database/new.md",
+   "group": "G10"
+  },
+  {
+   "rule_id": "R-61",
+   "location": {
+    "section": "Tooling",
+    "field": "",
+    "line_hint": 15
+   },
+   "current": "We write no down migrations, and every correction ships as a new forward migration.",
+   "proposed": null,
+   "justification": "Style-class negative (\"write no down migrations\") in the body; the positive half already states the practice, so lead with it: \"Every correction ships as a new forward migration.\"",
+   "severity": "low",
+   "needs_human": true,
+   "file": "11-schema-migrations-of-a-relational-database/new.md",
+   "group": "G6"
+  }
+ ],
+ "agents_run": 48,
+ "agents_returned": 48
+}

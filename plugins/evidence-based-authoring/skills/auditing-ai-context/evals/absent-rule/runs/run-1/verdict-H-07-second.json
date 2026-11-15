@@ -1,0 +1,49 @@
+{
+ "id": "H-07",
+ "kind": "claim",
+ "standing": "hypothesis",
+ "answers": [
+  {
+   "rule": 1,
+   "verdict": "holds",
+   "quote": "shown the lines a change deleted, the audit's cards flag about as few sound denials as without them · kind: claim",
+   "missing": ""
+  },
+  {
+   "rule": 2,
+   "verdict": "holds",
+   "quote": "refuter: the share with the deleted statements stands more than 0.10 above the share without them",
+   "missing": ""
+  },
+  {
+   "rule": 3,
+   "verdict": "fails",
+   "quote": "",
+   "missing": "The record's `test` names plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/protocol.md. That protocol runs the arm with the deleted lines as \"The same run with the inventory of `absent_rule_eval.py inventory --deleted`\". scripts/audit-workflow.js gives that inventory to each card sub-agent only as a path (`invPath`), so a card reader may never see the deleted statements. The record says run 1 of this same test \"could not have refuted the claim\", because 3 of the 12 readers of D-06 and none of R-61 opened the inventory. So if the claim were false, a rerun of the named test would not show it. The test must put the deleted statements in front of every card reader: either in the sub-agent's prompt, or by checking each reader's call list for the opening of the inventory, with a rule fixed in advance for a reader that did not open it. That change must be written into the named test file and committed before its run."
+  },
+  {
+   "rule": 4,
+   "verdict": "fails",
+   "quote": "",
+   "missing": "The named file holds only the procedure of run 1, which the record calls \"no test of this line\". The test the record says it waits for (\"a run that delivers the deleted statements to every card reader\") is written in no file of the repository, so no one can run it from the record. Also, the protocol's card arms run under \"the session's instruction files\". The protocol says \"The operator's files hold style rules on denials\", and the records H-05 and H-06 add that these files \"stand outside the repository\". Those rules bear directly on whether a card flags a sound denial, which is what H-07 counts. Someone repeating the test cannot reproduce that condition. The test needs those rules in the repository, or card readers started without them, stated in the named test."
+  },
+  {
+   "rule": 5,
+   "verdict": "fails",
+   "quote": "",
+   "missing": "The scope (\"English design notes of 60 to 90 lines ... sentences planted by a writer that saw neither the scripts nor the cards\") reaches beyond the bounds in the record and beyond the protocol's Bounds. The bounds in the record are twelve notes of 64 to 83 lines, written by Claude Opus 5.5 at effort high from one brief, read by card sub-agents that received the session's instruction files, with the deleted statements reaching only the 17 of 48 readers who opened the inventory. The protocol's Bounds say \"sentences planted by a model and written to the same definitions of the four classes\". The record has neither `fit: transfer` nor a `transfer` field naming these differences. It must either narrow the scope to the bounds, or add `fit: transfer` with each difference named in `transfer`: line range, writer, model and brief, the instruction files with their style rules on denials, and how the deleted statements were delivered."
+  },
+  {
+   "rule": 6,
+   "verdict": "holds",
+   "quote": "run 1, registered in the commit before this result and drawn by that commit's hash",
+   "missing": ""
+  },
+  {
+   "rule": 7,
+   "verdict": "holds",
+   "quote": "it stands as no test of this line, which waits for a run that delivers the deleted statements to every card reader",
+   "missing": ""
+  }
+ ]
+}

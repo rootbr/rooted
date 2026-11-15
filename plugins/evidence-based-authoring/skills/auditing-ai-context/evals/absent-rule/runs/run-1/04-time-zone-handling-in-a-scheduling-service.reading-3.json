@@ -1,0 +1,104 @@
+{
+ "verdicts": [
+  {
+   "id": "c001",
+   "target": "guessing the zone from the request's network address",
+   "verdict": "rewrite",
+   "reason": "No earlier sentence presents an address-based guess, so the reader is argued against an alternative nobody showed."
+  },
+  {
+   "id": "c002",
+   "target": "the column type",
+   "verdict": "plain",
+   "question": "What type is the start_local column?",
+   "reason": "A table cell naming the column type, setting it against no other design."
+  },
+  {
+   "id": "c003",
+   "target": "a gap fixed in whole hours",
+   "verdict": "rewrite",
+   "reason": "It denies the deleted rule that a series repeats at a fixed hour interval, which this document never presented."
+  },
+  {
+   "id": "c004",
+   "target": "materialising occurrences ahead of time",
+   "verdict": "licensed",
+   "quote": "Some calendar products store each occurrence as a separate row as soon as a series is created.",
+   "reason": "The preceding sentence presents the per-occurrence-row design that this one declines."
+  },
+  {
+   "id": "c005",
+   "target": "the later of the two overlap instants",
+   "verdict": "plain",
+   "question": "Which instant does the expander use when a local time occurs twice?",
+   "reason": "States the service's own rule for an overlap, as a default a reader acts on."
+  },
+  {
+   "id": "c006",
+   "target": "re-saving a series after a clock change",
+   "verdict": "rewrite",
+   "reason": "It excuses the reader from an organizer duty that only the deleted statements imposed."
+  },
+  {
+   "id": "c007",
+   "target": "the rebase job and the organizer emails",
+   "verdict": "rewrite",
+   "reason": "It denies a job and emails the document never introduced; they appear only in the deleted statements."
+  },
+  {
+   "id": "c008",
+   "target": "cron entries on worker hosts",
+   "verdict": "rewrite",
+   "reason": "Cron registration is an alternative the document never presented."
+  },
+  {
+   "id": "c009",
+   "target": "reminders for cancelled or deleted occurrences",
+   "verdict": "plain",
+   "question": "Is a reminder sent for a cancelled or deleted occurrence?",
+   "reason": "A guarantee about the service's own behaviour that sets it against no other rule."
+  },
+  {
+   "id": "c010",
+   "target": "events without a reminder setting",
+   "verdict": "plain",
+   "question": "What happens when an event has no reminder setting?",
+   "reason": "States what holds when a setting is absent, as a default."
+  },
+  {
+   "id": "c011",
+   "target": "reading zone rules from the host",
+   "verdict": "licensed",
+   "quote": "The operating system zone files on a host can lag behind those releases by months.",
+   "reason": "The earlier sentence presents host zone files and their lag, the fact that makes the pinned copy expected."
+  },
+  {
+   "id": "c012",
+   "target": "the request start format",
+   "verdict": "plain",
+   "question": "What format does the start take in create and update requests?",
+   "reason": "Specifies the request format without arguing against another format."
+  },
+  {
+   "id": "c013",
+   "target": "the iCalendar standard's floating time",
+   "verdict": "plain",
+   "question": "What does the iCalendar standard allow for a time with no zone?",
+   "reason": "Reports what a named standard allows."
+  },
+  {
+   "id": "c014",
+   "target": "accepting floating times on import",
+   "verdict": "licensed",
+   "quote": "The iCalendar standard allows a floating time that carries no zone at all.",
+   "reason": "The preceding sentence presents floating times as something imports could contain."
+  },
+  {
+   "id": "c015",
+   "target": "changing a series' zone while keeping local times",
+   "verdict": "plain",
+   "question": "Which zone-change behaviour is still undecided?",
+   "reason": "An open question stating an undecided option, speaking about no earlier state."
+  }
+ ]
+}

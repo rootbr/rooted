@@ -1,0 +1,32 @@
+## D-01:readme/new.md
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/references/rule-cards/d-01--working-file-states-the-present-design.md
+Read   tmp/absent-rule-method/readme-case/cases/readme/new.md
+Read   tmp/absent-rule-method/readme-case/cases/readme/new.md
+StructuredOutput
+
+## D-02:readme/new.md
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/references/rule-cards/d-02--rewrite-only-when-a-present-fact-survives-the-strip.md
+Read   tmp/absent-rule-method/readme-case/cases/readme/new.md
+Read   tmp/absent-rule-method/readme-case/run/inventory.md
+Read   tmp/absent-rule-method/readme-case/cases/readme/new.md
+StructuredOutput
+StructuredOutput
+
+## D-06:readme/new.md
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/references/rule-cards/d-06--alternative-appears-only-as-a-blocking-fact.md
+Read   tmp/absent-rule-method/readme-case/cases/readme/new.md
+Grep   \b(not|instead of|rather than|unlike|we switched|we chose|than)\b
+StructuredOutput
+
+## R-61:readme/new.md
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/references/rule-cards/r-61--positive-framing-in-body.md
+Read   tmp/absent-rule-method/readme-case/cases/readme/new.md
+Grep   (?i)\b(do not|don't|never|must not|shall not|avoid|refrain from|not)\b
+Grep   (?i)\b(do not|don't|never|must not|shall not|avoid|refrain from)\b
+Grep   (?i)\b(do not|don't|never|must not|shall not|avoid|refrain from)\b
+StructuredOutput
+
+## index-cards
+Bash   python3 -I -c " import glob,json,os,re d='plugins/evidence-based-authoring/skills/auditing-ai-context/references/rule-cards' out=[] def scal(v): v=v.strip() if len(v)>=2 and v[0]==v[-1] and v[0] in '\"\'': v=v[1:-1] return v for p in sorted
+Read   <outside>
+StructuredOutput

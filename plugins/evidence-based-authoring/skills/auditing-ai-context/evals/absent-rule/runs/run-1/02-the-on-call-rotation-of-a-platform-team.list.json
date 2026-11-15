@@ -1,0 +1,289 @@
+{
+ "version": 1,
+ "mode": "pair",
+ "files": [
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/02-the-on-call-rotation-of-a-platform-team/new.md",
+   "sha256": "53121d949f1140a95d69f6a3266482a322325221483982e1138a269b52612004"
+  }
+ ],
+ "deleted": [
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/02-the-on-call-rotation-of-a-platform-team/old.md",
+   "line": 18,
+   "text": "Each engineer on the rotation holds the pager for one pager week, from Monday 10:00 Berlin time to the following Monday 10:00."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/02-the-on-call-rotation-of-a-platform-team/old.md",
+   "line": 18,
+   "text": "The week holder answers every page, day and night, for the whole pager week."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/02-the-on-call-rotation-of-a-platform-team/old.md",
+   "line": 18,
+   "text": "Engineers from the Berlin and Vancouver offices share one queue, and each takes a pager week roughly once every eight weeks."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/02-the-on-call-rotation-of-a-platform-team/old.md",
+   "line": 20,
+   "text": "The week holder keeps a laptop and a charged phone within reach at all times during the pager week."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/02-the-on-call-rotation-of-a-platform-team/old.md",
+   "line": 20,
+   "text": "Travel that would leave the week holder without network access for more than an hour needs a swap."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/02-the-on-call-rotation-of-a-platform-team/old.md",
+   "line": 24,
+   "text": "While holding the pager, an engineer has three duties in this order."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/02-the-on-call-rotation-of-a-platform-team/old.md",
+   "line": 30,
+   "text": "The week holder is taken off sprint work for the pager week."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/02-the-on-call-rotation-of-a-platform-team/old.md",
+   "line": 30,
+   "text": "Planned feature work is not assigned to the week holder, so that a long night does not put a commitment at risk."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/02-the-on-call-rotation-of-a-platform-team/old.md",
+   "line": 34,
+   "text": "The pager week ends with the Monday handover, a thirty-minute call between the outgoing and the incoming week holder."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/02-the-on-call-rotation-of-a-platform-team/old.md",
+   "line": 34,
+   "text": "The outgoing week holder walks through every open incident, every silenced alert and every toil ticket that was started but not finished."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/02-the-on-call-rotation-of-a-platform-team/old.md",
+   "line": 36,
+   "text": "The incoming week holder confirms in the incident channel that the pager has changed hands."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/02-the-on-call-rotation-of-a-platform-team/old.md",
+   "line": 36,
+   "text": "Until that confirmation, the outgoing week holder still answers pages."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/02-the-on-call-rotation-of-a-platform-team/old.md",
+   "line": 40,
+   "text": "A page that the week holder does not acknowledge goes up a fixed chain."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/02-the-on-call-rotation-of-a-platform-team/old.md",
+   "line": 44,
+   "text": "1"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/02-the-on-call-rotation-of-a-platform-team/old.md",
+   "line": 44,
+   "text": "Week holder"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/02-the-on-call-rotation-of-a-platform-team/old.md",
+   "line": 44,
+   "text": "at once"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/02-the-on-call-rotation-of-a-platform-team/old.md",
+   "line": 45,
+   "text": "2"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/02-the-on-call-rotation-of-a-platform-team/old.md",
+   "line": 45,
+   "text": "Engineering manager of the platform team"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/02-the-on-call-rotation-of-a-platform-team/old.md",
+   "line": 45,
+   "text": "15 minutes"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/02-the-on-call-rotation-of-a-platform-team/old.md",
+   "line": 46,
+   "text": "3"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/02-the-on-call-rotation-of-a-platform-team/old.md",
+   "line": 46,
+   "text": "Head of infrastructure"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/02-the-on-call-rotation-of-a-platform-team/old.md",
+   "line": 46,
+   "text": "30 minutes"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/02-the-on-call-rotation-of-a-platform-team/old.md",
+   "line": 48,
+   "text": "The engineering manager is paged at step two because the rotation has no second engineer on call."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/02-the-on-call-rotation-of-a-platform-team/old.md",
+   "line": 48,
+   "text": "Anyone paged at step two or three may hand the incident back to the week holder once that person responds."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/02-the-on-call-rotation-of-a-platform-team/old.md",
+   "line": 52,
+   "text": "Engineers may swap a pager week with a colleague when they agree on it."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/02-the-on-call-rotation-of-a-platform-team/old.md",
+   "line": 52,
+   "text": "The swap is recorded in the scheduling tool before the Monday handover."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/02-the-on-call-rotation-of-a-platform-team/old.md",
+   "line": 52,
+   "text": "Sick leave during a pager week is covered by the engineering manager until a volunteer takes over the rest of the week."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/02-the-on-call-rotation-of-a-platform-team/old.md",
+   "line": 56,
+   "text": "Each pager week is compensated with two days of time off, to be taken within the following month."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/02-the-on-call-rotation-of-a-platform-team/old.md",
+   "line": 56,
+   "text": "A night page that takes more than an hour adds a further half day."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/02-the-on-call-rotation-of-a-platform-team/old.md",
+   "line": 60,
+   "text": "The paging tool holds the schedule and routes every alert to the current week holder."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/02-the-on-call-rotation-of-a-platform-team/old.md",
+   "line": 66,
+   "text": "The rotation is reviewed every quarter."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/02-the-on-call-rotation-of-a-platform-team/old.md",
+   "line": 66,
+   "text": "The review looks at the number of pages per pager week, the number of night pages and the time to acknowledge."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/02-the-on-call-rotation-of-a-platform-team/old.md",
+   "line": 66,
+   "text": "An alert that fired more than five times in a quarter without leading to action is either fixed or deleted."
+  }
+ ],
+ "candidates": [
+  {
+   "id": "c001",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/02-the-on-call-rotation-of-a-platform-team/new.md",
+   "line": 20,
+   "end_line": 20,
+   "sentence": "The primary does not have to stay reachable around the clock for several days in a row.",
+   "cues": [
+    "not"
+   ]
+  },
+  {
+   "id": "c002",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/02-the-on-call-rotation-of-a-platform-team/new.md",
+   "line": 30,
+   "end_line": 30,
+   "sentence": "A primary never deploys to production during a shift except to mitigate an incident in progress.",
+   "cues": [
+    "never"
+   ]
+  },
+  {
+   "id": "c003",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/02-the-on-call-rotation-of-a-platform-team/new.md",
+   "line": 34,
+   "end_line": 34,
+   "sentence": "The note lists every open incident, every silenced alert and every toil ticket that was started but not finished.",
+   "cues": [
+    "not"
+   ]
+  },
+  {
+   "id": "c004",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/02-the-on-call-rotation-of-a-platform-team/new.md",
+   "line": 34,
+   "end_line": 34,
+   "sentence": "The note is a few lines in the incident channel, not a formal report with sign-off.",
+   "cues": [
+    "not"
+   ]
+  },
+  {
+   "id": "c005",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/02-the-on-call-rotation-of-a-platform-team/new.md",
+   "line": 38,
+   "end_line": 38,
+   "sentence": "Handover is a written note at the end of each shift, and nobody has to wait for a weekly meeting to learn what is open.",
+   "cues": [
+    "nobody"
+   ]
+  },
+  {
+   "id": "c006",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/02-the-on-call-rotation-of-a-platform-team/new.md",
+   "line": 42,
+   "end_line": 42,
+   "sentence": "A page that the primary does not acknowledge goes up a fixed chain within the office that holds the shift.",
+   "cues": [
+    "not"
+   ]
+  },
+  {
+   "id": "c007",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/02-the-on-call-rotation-of-a-platform-team/new.md",
+   "line": 50,
+   "end_line": 50,
+   "sentence": "The paging tool never drops an unacknowledged page, and it keeps escalating until a person acknowledges it.",
+   "cues": [
+    "never"
+   ]
+  },
+  {
+   "id": "c008",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/02-the-on-call-rotation-of-a-platform-team/new.md",
+   "line": 54,
+   "end_line": 54,
+   "sentence": "A swap covers a single shift and never a whole pager week.",
+   "cues": [
+    "never"
+   ]
+  },
+  {
+   "id": "c009",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/02-the-on-call-rotation-of-a-platform-team/new.md",
+   "line": 60,
+   "end_line": 60,
+   "sentence": "We compensate each shift with half a day of time off rather than with money.",
+   "cues": [
+    "rather than"
+   ]
+  },
+  {
+   "id": "c010",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/02-the-on-call-rotation-of-a-platform-team/new.md",
+   "line": 64,
+   "end_line": 64,
+   "sentence": "Schedules live in the paging tool itself and are not copied into a spreadsheet.",
+   "cues": [
+    "not"
+   ]
+  },
+  {
+   "id": "c011",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/02-the-on-call-rotation-of-a-platform-team/new.md",
+   "line": 70,
+   "end_line": 70,
+   "sentence": "An alert that fired more than five times in a quarter without leading to action is either fixed or deleted.",
+   "cues": [
+    "without"
+   ]
+  }
+ ]
+}

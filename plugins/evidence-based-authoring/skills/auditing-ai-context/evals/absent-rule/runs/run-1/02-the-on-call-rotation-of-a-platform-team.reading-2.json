@@ -1,0 +1,76 @@
+{
+ "verdicts": [
+  {
+   "id": "c001",
+   "target": "staying reachable around the clock for several days in a row",
+   "verdict": "rewrite",
+   "reason": "It excuses the reader from the deleted week-long, day-and-night pager duty, which the document never presents."
+  },
+  {
+   "id": "c002",
+   "target": "production deploys during a shift",
+   "verdict": "plain",
+   "question": "May the primary deploy to production during a shift?",
+   "reason": "It states a prohibition on the primary with a stated exception and sets itself against no other rule."
+  },
+  {
+   "id": "c003",
+   "target": "contents of the handover note",
+   "verdict": "plain",
+   "question": "What does the handover note list?",
+   "reason": "The 'not finished' is part of the ticket description, and the sentence states what the note contains."
+  },
+  {
+   "id": "c004",
+   "target": "a formal report with sign-off",
+   "verdict": "rewrite",
+   "reason": "It sets the note against a formal sign-off report that nobody in the document proposed."
+  },
+  {
+   "id": "c005",
+   "target": "a weekly meeting for handover",
+   "verdict": "rewrite",
+   "reason": "It argues with a weekly handover meeting, the deleted Monday call, which the document never shows."
+  },
+  {
+   "id": "c006",
+   "target": "unacknowledged page",
+   "verdict": "plain",
+   "question": "What happens to a page the primary does not acknowledge?",
+   "reason": "It states the escalation condition and the chain that follows, with no other rule opposed."
+  },
+  {
+   "id": "c007",
+   "target": "dropping of unacknowledged pages",
+   "verdict": "plain",
+   "question": "Can an unacknowledged page be dropped by the paging tool?",
+   "reason": "It is a guarantee about the tool's own behaviour that a reader acts on."
+  },
+  {
+   "id": "c008",
+   "target": "swapping a whole pager week",
+   "verdict": "rewrite",
+   "reason": "It leans on a 'pager week' the document never introduces, which is the deleted week-long rotation."
+  },
+  {
+   "id": "c009",
+   "target": "paying a flat stipend for every shift",
+   "verdict": "licensed",
+   "quote": "Many on-call guides recommend paying a flat stipend for every shift.",
+   "reason": "The preceding sentence presents the stipend as a view others hold, so the contrast with money is expected."
+  },
+  {
+   "id": "c010",
+   "target": "copying schedules into a spreadsheet",
+   "verdict": "rewrite",
+   "reason": "A spreadsheet copy is an alternative nobody in the document presented."
+  },
+  {
+   "id": "c011",
+   "target": "alerts that fire without leading to action",
+   "verdict": "plain",
+   "question": "What happens to an alert that fires often and leads to no action?",
+   "reason": "It states a condition and a rule in force, with no other rule or earlier state opposed."
+  }
+ ]
+}

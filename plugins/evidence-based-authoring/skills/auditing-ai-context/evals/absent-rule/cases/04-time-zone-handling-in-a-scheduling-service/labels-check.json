@@ -1,0 +1,16 @@
+{
+  "classes": {
+    "p01": {"class": "trace", "reason": "It denies rule A's twice-yearly rebase job that emailed organizers to re-save their series, and new.md nowhere tells its reader that such a job or email existed."},
+    "p02": {"class": "trace", "reason": "It excuses the reader from rule A's requirement that organizers re-save a series at the intended local hour after a transition, which new.md never presents."},
+    "p03": {"class": "trace", "reason": "It denies rule A's repeat interval counted in whole hours (a weekly series every 168 hours), and new.md never tells its reader that the interval was once fixed in hours."},
+    "p04": {"class": "foil", "reason": "It sets the organizer's choice against a zone guessed from the request's network address, an alternative neither old.md nor new.md presents anywhere."},
+    "p05": {"class": "foil", "reason": "It sets the shared job queue against cron entries on worker hosts, which neither document mentions; old.md also enqueued reminder jobs."},
+    "p06": {"class": "licensed", "licence": "Some calendar products store each occurrence as a separate row as soon as a series is created.", "reason": "It denies materialising occurrences, which new.md itself has just presented as what some calendar products do, and old.md did not materialise either."},
+    "p07": {"class": "licensed", "licence": "The iCalendar standard allows a floating time that carries no zone at all.", "reason": "It refuses floating times, which new.md has introduced in the preceding sentence, and it touches nothing of rule A."},
+    "p08": {"class": "licensed", "licence": "The operating system zone files on a host can lag behind those releases by months.", "reason": "It denies reading zone rules from the host, whose zone files new.md has presented in the preceding sentence; old.md shipped the same pinned copy, so this is not rule A."},
+    "p09": {"class": "plain", "reason": "It states a guarantee about reminders for cancelled or deleted occurrences, sets it against no other design and touches nothing of rule A."},
+    "p10": {"class": "plain", "reason": "It states the default when a reminder setting is absent, against no other design and without touching rule A."}
+  },
+  "presents_old_rule": false,
+  "presenting_sentence": ""
+}

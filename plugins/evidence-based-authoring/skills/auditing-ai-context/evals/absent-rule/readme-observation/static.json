@@ -1,0 +1,101 @@
+{
+ "patches": [
+  {
+   "rule_id": "D-01",
+   "location": {
+    "section": "Rooted \u2014 Claude Code plugins rooted in evidence",
+    "line_hint": 7
+   },
+   "current": "Skills for the full evidence-based preparation pipeline: research any topic with source verification, map its complete question space before you start, then write AI agent context that actually works \u2014 grounded instructions and disciplined reasoning instead of vibes. [Research shows](https://arxiv.org/abs/2602.11988) LLM-generated context files do not generally improve agent task success while raising inference cost by 20\u201323% \u2014 and the repository overviews they typically contain are specifically unhelpful. Rooted admits rules by the scientific method instead: a claim rests on a test that could have refuted it, a norm is named as a norm and a decision as a decision. Software-development and code-review skills apply the same discipline to everyday coding.",
+   "proposed": null,
+   "justification": "temporal / contrast marker: 'instead of' \u2014 a candidate for review, not a finding",
+   "severity": "medium",
+   "needs_human": true,
+   "meta": {
+    "static": true
+   },
+   "file": "tmp/absent-rule-method/readme-case/cases/readme/new.md"
+  },
+  {
+   "rule_id": "D-01",
+   "location": {
+    "section": "Rooted \u2014 Claude Code plugins rooted in evidence",
+    "line_hint": 10
+   },
+   "current": "- **Lean context over static dumps.** For example, instead of an `/init`-style project-structure blob in `CLAUDE.md` (a file class shown not to improve success while raising inference cost 20\u201323%, with repository overviews specifically found unhelpful [[15]](#references)), orientation happens on demand via [`overview.sh`](overview.sh) with an explicit stop-instruction. The agent doesn't preemptively slurp the whole tree into context, so it doesn't fill its working memory with project content it doesn't need and later lose focus on the actual task.",
+   "proposed": null,
+   "justification": "temporal / contrast marker: 'instead of' \u2014 a candidate for review, not a finding",
+   "severity": "medium",
+   "needs_human": true,
+   "meta": {
+    "static": true
+   },
+   "file": "tmp/absent-rule-method/readme-case/cases/readme/new.md"
+  },
+  {
+   "rule_id": "D-05",
+   "location": {
+    "section": "Output-style and present-design research",
+    "line_hint": 178
+   },
+   "current": "61. Nogueira, Silva & Conte (2026). *One Size Fits All? An Empirical Comparison of ADR Templates regarding Comprehension, Usability, and Ease of Adoption.* [arXiv:2604.27333](https://arxiv.org/abs/2604.27333) \u2014 Five decision-record templates compared; the concise one, which carries no considered-alternatives section, wins on overall score. Undergraduate participants, a ranking with no numbers in the abstract and no causal claim about that section.",
+   "proposed": null,
+   "justification": "deliberation / search marker: 'considered', 'alternatives' \u2014 a candidate for review, not a finding",
+   "severity": "medium",
+   "needs_human": true,
+   "meta": {
+    "static": true
+   },
+   "file": "tmp/absent-rule-method/readme-case/cases/readme/new.md"
+  },
+  {
+   "rule_id": "D-01",
+   "location": {
+    "section": "Output-style and present-design research",
+    "line_hint": 179
+   },
+   "current": "62. Canaverde et al. (2026). *SEQUOR: A Multi-Turn Benchmark for Realistic Constraint Following.* [arXiv:2605.06353](https://arxiv.org/abs/2605.06353) \u2014 Constraint following drops >11% as a conversation grows, >40% under multiple simultaneous constraints, and >9% when constraints are added or replaced mid-conversation; the abstract states neither absolute-vs-relative nor a per-model breakdown.",
+   "proposed": null,
+   "justification": "temporal / contrast marker: 'replaced' \u2014 a candidate for review, not a finding",
+   "severity": "medium",
+   "needs_human": true,
+   "meta": {
+    "static": true
+   },
+   "file": "tmp/absent-rule-method/readme-case/cases/readme/new.md"
+  },
+  {
+   "rule_id": "D-01",
+   "location": {
+    "section": "Java corpus sources",
+    "line_hint": 195
+   },
+   "current": "73. Stevens, Bursztein, Karpman, Albertini & Markov (2017). *The First Collision for Full SHA-1.* [doi:10.1007/978-3-319-63688-7_19](https://doi.org/10.1007/978-3-319-63688-7_19) \u2014 SHA-1 no longer resists collisions (`JAVA-98`).",
+   "proposed": null,
+   "justification": "temporal / contrast marker: 'no longer' \u2014 a candidate for review, not a finding",
+   "severity": "medium",
+   "needs_human": true,
+   "meta": {
+    "static": true
+   },
+   "file": "tmp/absent-rule-method/readme-case/cases/readme/new.md"
+  },
+  {
+   "rule_id": "D-05",
+   "location": {
+    "section": "Handing-over-to-readers sources",
+    "line_hint": 234
+   },
+   "current": "105. MacDiarmid et al. (2025). *Natural Emergent Misalignment from Reward Hacking in Production RL.* [arXiv:2511.18397](https://arxiv.org/abs/2511.18397) \u2014 `sys.exit(0)` before the asserts and a `conftest.py` that patches pytest's reporting yield a green exit code; environments chosen for vulnerability, with the mitigations removed.",
+   "proposed": null,
+   "justification": "deliberation / search marker: 'chosen' \u2014 a candidate for review, not a finding",
+   "severity": "medium",
+   "needs_human": true,
+   "meta": {
+    "static": true
+   },
+   "file": "tmp/absent-rule-method/readme-case/cases/readme/new.md"
+  }
+ ],
+ "files_scanned": 1
+}

@@ -1,0 +1,49 @@
+{
+ "id": "H-04",
+ "kind": "claim",
+ "standing": "supported",
+ "answers": [
+  {
+   "rule": 1,
+   "verdict": "holds",
+   "quote": "leaves sound denials in place · kind: claim · standing: supported",
+   "missing": ""
+  },
+  {
+   "rule": 2,
+   "verdict": "holds",
+   "quote": "refuter: over 0.25 of those sentences end as REWRITE",
+   "missing": ""
+  },
+  {
+   "rule": 3,
+   "verdict": "holds",
+   "quote": "threshold: 0.25 · runs: one pass over twelve generated notes with five such sentences planted in each",
+   "missing": ""
+  },
+  {
+   "rule": 4,
+   "verdict": "holds",
+   "quote": "python3 -I $A score --cases $E/evals/absent-rule/cases --run $RUN --out $RUN/results.json",
+   "missing": ""
+  },
+  {
+   "rule": 5,
+   "verdict": "holds",
+   "quote": "fit: transfer · transfer: the scope takes notes of 60 to 90 lines from any writer, and the run had notes of 64 to 83 lines from one model at one effort and one brief, whose definitions of the classes and rules of form the planted sentences follow; the reviewers started without the session's instruction files, a condition the scope leaves open",
+   "missing": ""
+  },
+  {
+   "rule": 6,
+   "verdict": "holds",
+   "quote": "result: run 1, registered in the commit before this result and drawn by that commit's hash",
+   "missing": ""
+  },
+  {
+   "rule": 7,
+   "verdict": "holds",
+   "quote": "ended 1 of 60 planted sound sentences as REWRITE, 0 of 36 licensed and 1 of 24 plain",
+   "missing": ""
+  }
+ ]
+}

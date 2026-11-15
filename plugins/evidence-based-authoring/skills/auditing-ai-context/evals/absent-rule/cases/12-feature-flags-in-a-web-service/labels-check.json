@@ -1,0 +1,16 @@
+{
+  "classes": {
+    "p01": {"class": "trace", "reason": "It excuses tests from building the snapshot header that rule A's helper required (old.md: tests set the X-Flag-Snapshot header on the fake request), and new.md nowhere tells its reader that such a header ever existed."},
+    "p02": {"class": "trace", "reason": "It sets in-service evaluation against rule A, under which the edge gateway decided every flag upstream and handed the result along in the request header, and new.md never presents that gateway design."},
+    "p03": {"class": "trace", "reason": "The claim that no service waits on another component to learn a user's variant sets the present design against rule A's gateway, the upstream component that decided variants, which new.md never mentions."},
+    "p04": {"class": "foil", "reason": "It sets the JSON ruleset against a compiled artifact that needs a build, an alternative neither old.md nor new.md presents anywhere."},
+    "p05": {"class": "foil", "reason": "It sets behaviour-describing names against ticket-number names, a naming scheme neither old.md nor new.md presents anywhere."},
+    "p06": {"class": "licensed", "licence": "Some commercial flag services bill per evaluation and advise clients to cache each result for several hours.", "reason": "Keeping no evaluation results between requests contrasts with the multi-hour result caching that new.md describes in the sentence just before it."},
+    "p07": {"class": "licensed", "licence": "The payments team keeps a stricter local rule under which every flag in its services must default to off.", "reason": "It contrasts the general permission of an on default with the payments team's default-off rule, which new.md states in the sentence just before it."},
+    "p08": {"class": "licensed", "licence": "New engineers often assume that a release flag can stay in the code indefinitely as a safety switch.", "reason": "It corrects the misreading that new.md itself states in the preceding sentence, and the removal date it cites is no change from rule A."},
+    "p09": {"class": "plain", "reason": "It is a prohibition on reusing a deleted flag's name that sets the naming rule against no other design and touches nothing of rule A."},
+    "p10": {"class": "plain", "reason": "It states the default a user gets when targeting rules are absent, sets it against no other design, and touches nothing of rule A."}
+  },
+  "presents_old_rule": false,
+  "presenting_sentence": ""
+}

@@ -1,0 +1,84 @@
+{
+ "verdicts": [
+  {
+   "id": "c001",
+   "target": "a review desk sign-off",
+   "verdict": "rewrite",
+   "reason": "The document never mentions a review desk, so the sentence excuses the reader from a requirement only the deleted statements set."
+  },
+  {
+   "id": "c002",
+   "target": "reviewer chosen by whose turn it is (a rota)",
+   "verdict": "rewrite",
+   "reason": "No rota or turn-taking is presented anywhere in the document; the sentence argues with the deleted desk rota."
+  },
+  {
+   "id": "c003",
+   "target": "approvals from people outside the owning group",
+   "verdict": "plain",
+   "question": "Whose approvals count toward merging a pull request?",
+   "reason": "It states a limit on which approvals count under the document's own owner rule, without setting it against another design."
+  },
+  {
+   "id": "c004",
+   "target": "review for code style / readability",
+   "verdict": "rewrite",
+   "reason": "It denies a review scope (readability and style) that the document never presented and that the deleted statements did require."
+  },
+  {
+   "id": "c005",
+   "target": "approval as a courtesy to the author",
+   "verdict": "rewrite",
+   "reason": "It corrects a misconception nobody voiced in the document."
+  },
+  {
+   "id": "c006",
+   "target": "review blocked by the absence of one person",
+   "verdict": "plain",
+   "question": "How many engineers must an owners file list, and why?",
+   "reason": "It gives a minimum and its purpose as a condition the reader acts on, against no other rule."
+  },
+  {
+   "id": "c007",
+   "target": "package without an owners file",
+   "verdict": "plain",
+   "question": "What happens to a pull request that touches a package with no owners file?",
+   "reason": "It states what the merge bot does when the file is absent, a guarantee the reader acts on."
+  },
+  {
+   "id": "c008",
+   "target": "a green build being enough to merge",
+   "verdict": "licensed",
+   "quote": "Newcomers often expect that a green build is enough to merge.",
+   "reason": "The document itself presents the view that a green build suffices just before the sentence answers it."
+  },
+  {
+   "id": "c009",
+   "target": "pinging individual owners",
+   "verdict": "plain",
+   "question": "Whom do I ping when no owner has responded within the target?",
+   "reason": "It names the channel to use and where it is found, an instruction the reader acts on."
+  },
+  {
+   "id": "c010",
+   "target": "landing without finished checks on the exact commit",
+   "verdict": "plain",
+   "question": "Can the merge queue land a pull request whose checks have not finished?",
+   "reason": "It is a guarantee about the queue's own behaviour, set against no other design."
+  },
+  {
+   "id": "c011",
+   "target": "the security team's request applying to client libraries",
+   "verdict": "licensed",
+   "quote": "The security team has asked that every change touching authentication code be reviewed by one of its members.",
+   "reason": "The document presents the security team's request before the sentence limits its reach."
+  },
+  {
+   "id": "c012",
+   "target": "approval requirement for recent reverts",
+   "verdict": "plain",
+   "question": "Does a revert of a recent change need an approval?",
+   "reason": "It states an exception to the document's own owner-approval rule that a reader acts on, and speaks of no deleted rule."
+  }
+ ]
+}

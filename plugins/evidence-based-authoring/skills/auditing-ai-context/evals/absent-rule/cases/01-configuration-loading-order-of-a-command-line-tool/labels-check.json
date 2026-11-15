@@ -1,0 +1,16 @@
+{
+  "classes": {
+    "p01": {"class": "trace", "reason": "It denies rule A by naming its own term, the winning file, with 'any more', and new.md nowhere tells its reader what a winning file was."},
+    "p02": {"class": "trace", "reason": "It excuses the reader from rule A's requirement that a project file hold every personal setting such as the editor and colour theme, a requirement new.md never states."},
+    "p03": {"class": "trace", "reason": "It denies rule A's behaviour that a project file causes the user and system files to be ignored, which new.md never describes, so it is not a plain guarantee."},
+    "p04": {"class": "foil", "reason": "It sets layer-based precedence against precedence by file modification time, an alternative neither old.md nor new.md presents."},
+    "p05": {"class": "foil", "reason": "It sets the single merged table against a separate copy per layer, an alternative neither document presents; rule A gave plugins one winning file, not per-layer copies."},
+    "p06": {"class": "licensed", "licence": "Some tools combine lists by concatenating the values from every layer.", "reason": "It denies list concatenation, which new.md introduced to its reader in the sentence just before it."},
+    "p07": {"class": "licensed", "licence": "Several tools look for a dotfile in every parent directory up to the filesystem root.", "reason": "It contrasts tern's search with the walk to the filesystem root that new.md described in the sentence just before it."},
+    "p08": {"class": "licensed", "licence": "Some operators expect an environment variable to beat a flag, because the variable is often set by the deployment.", "reason": "It denies the expectation that a variable beats a flag, which new.md stated in the preceding sentence."},
+    "p09": {"class": "plain", "reason": "It states what happens when a layer's file is absent, a guarantee that sets the design against no other rule and touches nothing of rule A."},
+    "p10": {"class": "plain", "reason": "It states a prohibition a user relies on, that loading never writes to a configuration file, without setting it against any design or rule A."}
+  },
+  "presents_old_rule": false,
+  "presenting_sentence": ""
+}

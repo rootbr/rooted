@@ -1,0 +1,299 @@
+{
+ "version": 1,
+ "mode": "pair",
+ "files": [
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/06-rate-limiting-at-an-api-gateway/new.md",
+   "sha256": "7ed24303ac024f603c66ea7925133e42ef5d4fbebbf66c1fc928c1ba9ac20188"
+  }
+ ],
+ "deleted": [
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/06-rate-limiting-at-an-api-gateway/old.md",
+   "line": 13,
+   "text": "Each API key may send at most 600 requests in one quota window."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/06-rate-limiting-at-an-api-gateway/old.md",
+   "line": 13,
+   "text": "A quota window is one clock minute, starting at second zero of the minute in UTC."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/06-rate-limiting-at-an-api-gateway/old.md",
+   "line": 13,
+   "text": "When a new quota window begins, the counter of every key returns to zero."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/06-rate-limiting-at-an-api-gateway/old.md",
+   "line": 15,
+   "text": "The counter for each key lives in the shared Redis cluster under a name made of the API key and the start minute of the quota window."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/06-rate-limiting-at-an-api-gateway/old.md",
+   "line": 15,
+   "text": "Each counter expires two minutes after it was created, so old quota windows clean themselves up."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/06-rate-limiting-at-an-api-gateway/old.md",
+   "line": 17,
+   "text": "A request that arrives while its key's counter is below the plan's limit increments the counter and goes through."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/06-rate-limiting-at-an-api-gateway/old.md",
+   "line": 17,
+   "text": "A request that arrives once the counter has reached the limit is rejected and does not increment it."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/06-rate-limiting-at-an-api-gateway/old.md",
+   "line": 24,
+   "text": "A request counts as one, whatever status the backend returns."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/06-rate-limiting-at-an-api-gateway/old.md",
+   "line": 28,
+   "text": "Plan"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/06-rate-limiting-at-an-api-gateway/old.md",
+   "line": 28,
+   "text": "Requests per quota window"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/06-rate-limiting-at-an-api-gateway/old.md",
+   "line": 30,
+   "text": "Free"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/06-rate-limiting-at-an-api-gateway/old.md",
+   "line": 30,
+   "text": "600"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/06-rate-limiting-at-an-api-gateway/old.md",
+   "line": 31,
+   "text": "Team"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/06-rate-limiting-at-an-api-gateway/old.md",
+   "line": 31,
+   "text": "3,000"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/06-rate-limiting-at-an-api-gateway/old.md",
+   "line": 32,
+   "text": "Enterprise"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/06-rate-limiting-at-an-api-gateway/old.md",
+   "line": 32,
+   "text": "12,000"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/06-rate-limiting-at-an-api-gateway/old.md",
+   "line": 34,
+   "text": "The plan of a key is read from the account service at authentication and cached for five minutes."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/06-rate-limiting-at-an-api-gateway/old.md",
+   "line": 36,
+   "text": "A change of plan takes effect at the next quota window after the cache entry expires."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/06-rate-limiting-at-an-api-gateway/old.md",
+   "line": 40,
+   "text": "When a key has used up its quota window, the gateway answers 429 Too Many Requests until the next quota window starts."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/06-rate-limiting-at-an-api-gateway/old.md",
+   "line": 40,
+   "text": "Every response carries three headers:"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/06-rate-limiting-at-an-api-gateway/old.md",
+   "line": 42,
+   "text": "X-RateLimit-Limit, the number of requests the plan allows per quota window."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/06-rate-limiting-at-an-api-gateway/old.md",
+   "line": 43,
+   "text": "X-RateLimit-Remaining, the requests still left in the current quota window."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/06-rate-limiting-at-an-api-gateway/old.md",
+   "line": 44,
+   "text": "X-RateLimit-Reset, the Unix time at which the current quota window ends."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/06-rate-limiting-at-an-api-gateway/old.md",
+   "line": 46,
+   "text": "A rejected response also carries Retry-After, set to the seconds left until the quota window ends."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/06-rate-limiting-at-an-api-gateway/old.md",
+   "line": 50,
+   "text": "Clients should read X-RateLimit-Reset and pause until that moment once X-RateLimit-Remaining reaches zero."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/06-rate-limiting-at-an-api-gateway/old.md",
+   "line": 52,
+   "text": "Clients that run batch jobs are advised to spread their work evenly across the minute."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/06-rate-limiting-at-an-api-gateway/old.md",
+   "line": 52,
+   "text": "A batch that starts at second zero can use the whole quota window in a few seconds and then sit idle for the rest of it."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/06-rate-limiting-at-an-api-gateway/old.md",
+   "line": 58,
+   "text": "All gateway nodes must keep their clocks synchronised by NTP, because each node computes the start minute of the quota window from its own clock."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/06-rate-limiting-at-an-api-gateway/old.md",
+   "line": 60,
+   "text": "Dashboards show, per plan, the share of keys that reached their limit in each quota window."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/06-rate-limiting-at-an-api-gateway/old.md",
+   "line": 61,
+   "text": "An alert fires when more than five percent of Enterprise keys reach their limit in three quota windows in a row."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/06-rate-limiting-at-an-api-gateway/old.md",
+   "line": 65,
+   "text": "A client can send its whole allowance in the last second of one quota window and the same again in the first second of the next."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/06-rate-limiting-at-an-api-gateway/old.md",
+   "line": 65,
+   "text": "The backend can then see twice the plan's rate for a short time."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/06-rate-limiting-at-an-api-gateway/old.md",
+   "line": 67,
+   "text": "We accept this because the burst is bounded by the plan and lasts no more than two seconds."
+  }
+ ],
+ "candidates": [
+  {
+   "id": "c001",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/06-rate-limiting-at-an-api-gateway/new.md",
+   "line": 13,
+   "end_line": 13,
+   "sentence": "Tokens come back a little at a time rather than all at once at some fixed moment.",
+   "cues": [
+    "rather than"
+   ]
+  },
+  {
+   "id": "c002",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/06-rate-limiting-at-an-api-gateway/new.md",
+   "line": 15,
+   "end_line": 15,
+   "sentence": "A request that finds the bucket empty is rejected and takes nothing.",
+   "cues": [
+    "nothing"
+   ]
+  },
+  {
+   "id": "c003",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/06-rate-limiting-at-an-api-gateway/new.md",
+   "line": 17,
+   "end_line": 17,
+   "sentence": "Each entry expires once the bucket would have refilled to capacity, because a full bucket needs no stored state.",
+   "cues": [
+    "no"
+   ]
+  },
+  {
+   "id": "c004",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/06-rate-limiting-at-an-api-gateway/new.md",
+   "line": 25,
+   "end_line": 25,
+   "sentence": "Ours makes no such distinction, and a request costs one token whatever status the backend returns.",
+   "cues": [
+    "no"
+   ]
+  },
+  {
+   "id": "c005",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/06-rate-limiting-at-an-api-gateway/new.md",
+   "line": 27,
+   "end_line": 27,
+   "sentence": "This gateway does not key its buckets on the address a request comes from, because many customers send all their traffic through one corporate proxy.",
+   "cues": [
+    "not"
+   ]
+  },
+  {
+   "id": "c006",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/06-rate-limiting-at-an-api-gateway/new.md",
+   "line": 37,
+   "end_line": 37,
+   "sentence": "When the account service cannot be reached, a key gets the Free plan's capacity and refill until a lookup succeeds.",
+   "cues": [
+    "cannot"
+   ]
+  },
+  {
+   "id": "c007",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/06-rate-limiting-at-an-api-gateway/new.md",
+   "line": 39,
+   "end_line": 39,
+   "sentence": "They are a property of the account, not something a client can raise for a single request by sending a header.",
+   "cues": [
+    "not"
+   ]
+  },
+  {
+   "id": "c008",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/06-rate-limiting-at-an-api-gateway/new.md",
+   "line": 48,
+   "end_line": 48,
+   "sentence": "The gateway makes this decision on its own instead of forwarding the request and letting the backend judge whether it has room.",
+   "cues": [
+    "instead"
+   ]
+  },
+  {
+   "id": "c009",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/06-rate-limiting-at-an-api-gateway/new.md",
+   "line": 50,
+   "end_line": 50,
+   "sentence": "That reading does not hold for this gateway, where a 429 says only that the calling key has run out of tokens.",
+   "cues": [
+    "not"
+   ]
+  },
+  {
+   "id": "c010",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/06-rate-limiting-at-an-api-gateway/new.md",
+   "line": 54,
+   "end_line": 54,
+   "sentence": "There is no need to watch for the quota window to roll over before resuming.",
+   "cues": [
+    "no"
+   ]
+  },
+  {
+   "id": "c011",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/06-rate-limiting-at-an-api-gateway/new.md",
+   "line": 58,
+   "end_line": 58,
+   "sentence": "The gateway never holds a rejected request back to deliver it later on the client's behalf.",
+   "cues": [
+    "never"
+   ]
+  },
+  {
+   "id": "c012",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/06-rate-limiting-at-an-api-gateway/new.md",
+   "line": 73,
+   "end_line": 73,
+   "sentence": "A client that empties its bucket early is not shut out for the remainder of any fixed period.",
+   "cues": [
+    "not"
+   ]
+  }
+ ]
+}

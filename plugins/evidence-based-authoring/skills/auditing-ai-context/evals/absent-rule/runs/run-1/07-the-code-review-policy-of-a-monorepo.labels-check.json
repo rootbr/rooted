@@ -1,0 +1,21 @@
+{
+  "confirmed": [
+    "p01",
+    "p02",
+    "p03",
+    "p05",
+    "p06",
+    "p07",
+    "p08",
+    "p09",
+    "p10"
+  ],
+  "rejected": [
+    {
+      "id": "p04",
+      "label": "foil",
+      "checker": "trace"
+    }
+  ],
+  "presents_old_rule": false
+}

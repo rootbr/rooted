@@ -1,0 +1,77 @@
+{
+ "verdicts": [
+  {
+   "id": "c001",
+   "target": "none; states what a client sends",
+   "verdict": "plain",
+   "question": "What does a client send on the first and on later requests?",
+   "reason": "It states the request contract and sets the subject against no other rule or version."
+  },
+  {
+   "id": "c002",
+   "target": "none; the end of a traversal",
+   "verdict": "plain",
+   "question": "How does a client know a traversal has ended?",
+   "reason": "It gives a condition a client acts on, with no other design set against it."
+  },
+  {
+   "id": "c003",
+   "target": "page-number and page-size arithmetic for the next request",
+   "verdict": "rewrite",
+   "reason": "'No longer' speaks of an earlier state and argues with a page-number scheme the document never presents."
+  },
+  {
+   "id": "c004",
+   "target": "public APIs that document their cursor format for client-built cursors",
+   "verdict": "licensed",
+   "quote": "Some public APIs document their cursor format so that clients can build cursors of their own.",
+   "reason": "The preceding sentence presents the target, and it is not itself listed."
+  },
+  {
+   "id": "c005",
+   "target": "none; a guarantee on the item count",
+   "verdict": "plain",
+   "question": "Can a response hold more items than the limit it reports?",
+   "reason": "It is a guarantee about the subject that a client relies on, and it sets it against no other version."
+  },
+  {
+   "id": "c006",
+   "target": "the X-Total-Count header",
+   "verdict": "rewrite",
+   "reason": "The document never presents X-Total-Count, and the deleted statements required it, so the sentence argues with text the reader cannot see."
+  },
+  {
+   "id": "c007",
+   "target": "client-composed free-form sort expressions",
+   "verdict": "rewrite",
+   "reason": "It sets the design against an alternative that nothing earlier in the document presents."
+  },
+  {
+   "id": "c008",
+   "target": "none; handling of an unreadable cursor",
+   "verdict": "plain",
+   "question": "What happens when the cursor cannot be read?",
+   "reason": "It is a guarantee about the endpoint's own behaviour, stated next to its 400 invalid_cursor rule."
+  },
+  {
+   "id": "c009",
+   "target": "none; repeating a followed cursor",
+   "verdict": "plain",
+   "question": "What does a request that repeats an already followed cursor receive?",
+   "reason": "It states a condition and an outcome a client acts on."
+  },
+  {
+   "id": "c010",
+   "target": "earlier ability to jump to an arbitrary point (page numbers)",
+   "verdict": "rewrite",
+   "reason": "'Any more' speaks of an earlier state the reader was never shown."
+  },
+  {
+   "id": "c011",
+   "target": "none; backward scrolling",
+   "verdict": "plain",
+   "question": "Can a feed scroll backwards through the API?",
+   "reason": "It states a present limit of the subject, following the sentence that names the mobile team's request."
+  }
+ ]
+}

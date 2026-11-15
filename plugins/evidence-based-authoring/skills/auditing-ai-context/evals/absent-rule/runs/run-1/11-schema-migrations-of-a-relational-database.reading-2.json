@@ -1,0 +1,104 @@
+{
+ "verdicts": [
+  {
+   "id": "c001",
+   "target": "comparing the live schema against a model",
+   "verdict": "rewrite",
+   "reason": "The document never presents schema-against-model comparison as an option, so the sentence argues with an alternative nobody showed."
+  },
+  {
+   "id": "c002",
+   "target": "automatically generated down migrations",
+   "verdict": "licensed",
+   "quote": "Some frameworks generate a down migration for every up migration automatically.",
+   "reason": "The preceding, unlisted sentence presents down-migration generation, so the reader knows what is being declined."
+  },
+  {
+   "id": "c003",
+   "target": "contract migration timing",
+   "verdict": "plain",
+   "question": "When does the pipeline apply migrations, and when may a contract migration ship?",
+   "reason": "It states a condition the reader acts on and sets the subject against no other rule or version."
+  },
+  {
+   "id": "c004",
+   "target": "application downtime for schema changes",
+   "verdict": "rewrite",
+   "reason": "It denies the deleted downtime-banner procedure, which the document as it stands never mentions."
+  },
+  {
+   "id": "c005",
+   "target": "collecting migrations into one end-of-release file",
+   "verdict": "rewrite",
+   "reason": "It denies the deleted release-migration-file practice, which the document never presents."
+  },
+  {
+   "id": "c006",
+   "target": "allowed contents of an expand migration",
+   "verdict": "plain",
+   "question": "What may an expand migration add?",
+   "reason": "The cue 'not' is only part of the constraint name NOT VALID; the sentence lists what is permitted."
+  },
+  {
+   "id": "c007",
+   "target": "blocking index build",
+   "verdict": "plain",
+   "question": "How do our migrations build indexes?",
+   "reason": "The preceding sentence explains the blocking lock, and this one states the subject's own always/never rule without setting it against another design."
+  },
+  {
+   "id": "c008",
+   "target": "a view that keeps the old name alive",
+   "verdict": "rewrite",
+   "reason": "The view-based rename is an alternative nobody presented earlier in the document."
+  },
+  {
+   "id": "c009",
+   "target": "removal of the renamed column",
+   "verdict": "plain",
+   "question": "When and how is the old column removed after a rename?",
+   "reason": "It states a step of the document's own rename procedure; 'old' refers to the column named in the previous sentence."
+  },
+  {
+   "id": "c010",
+   "target": "belief that a default rewrites the whole table",
+   "verdict": "licensed",
+   "quote": "A common belief is that adding a column with a default value rewrites the whole table.",
+   "reason": "The previous sentence voices the belief this sentence corrects."
+  },
+  {
+   "id": "c011",
+   "target": "reviewer's safety checks",
+   "verdict": "plain",
+   "question": "What does the reviewer check in an expand and in a contract migration?",
+   "reason": "It states what the reviewer verifies, and 'currently' and 'no' set it against no other rule."
+  },
+  {
+   "id": "c012",
+   "target": "Sunday window and release DBA",
+   "verdict": "rewrite",
+   "reason": "It denies a window and a role that only the deleted statements describe, so the reader was never shown them."
+  },
+  {
+   "id": "c013",
+   "target": "rollout after a failed migration",
+   "verdict": "plain",
+   "question": "What does the pipeline do with the application rollout when a migration fails?",
+   "reason": "It is a guarantee about the subject's own behaviour and sets it against no other design."
+  },
+  {
+   "id": "c014",
+   "target": "missing migration row in history table",
+   "verdict": "plain",
+   "question": "What happens when a migration file has no matching history row while a later file does?",
+   "reason": "It states the runner's behaviour under a condition; 'no' only describes the absent row."
+  },
+  {
+   "id": "c015",
+   "target": "previous application version in tests",
+   "verdict": "plain",
+   "question": "How does the test suite show that an expand migration is safe?",
+   "reason": "It describes a present test step; 'previous version' is the running version, not an earlier state of the document."
+  }
+ ]
+}

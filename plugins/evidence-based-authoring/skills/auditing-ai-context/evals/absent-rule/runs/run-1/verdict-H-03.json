@@ -1,0 +1,49 @@
+{
+ "id": "H-03",
+ "kind": "claim",
+ "standing": "supported",
+ "answers": [
+  {
+   "rule": 1,
+   "verdict": "holds",
+   "quote": "on the quiet form of such sentences the trace pass removes more than the audit's cards flag as shipped · kind: claim",
+   "missing": ""
+  },
+  {
+   "rule": 2,
+   "verdict": "holds",
+   "quote": "refuter: the pass's share stands under 0.20 above the cards' share",
+   "missing": ""
+  },
+  {
+   "rule": 3,
+   "verdict": "holds",
+   "quote": "ended 22 of 24 such sentences as REWRITE under the pass while the four cards as shipped flagged 9 of the 24, a difference of 0.54",
+   "missing": ""
+  },
+  {
+   "rule": 4,
+   "verdict": "holds",
+   "quote": "Everything a run produced is kept under `evals/absent-rule/runs/run-1/`.",
+   "missing": ""
+  },
+  {
+   "rule": 5,
+   "verdict": "holds",
+   "quote": "fit: transfer · transfer: the scope takes notes of 60 to 90 lines from any writer, and the run had notes of 64 to 83 lines from one model at one effort and one brief",
+   "missing": ""
+  },
+  {
+   "rule": 6,
+   "verdict": "holds",
+   "quote": "result: run 1, registered in the commit before this result and drawn by that commit's hash",
+   "missing": ""
+  },
+  {
+   "rule": 7,
+   "verdict": "holds",
+   "quote": "kind: claim · standing: supported",
+   "missing": ""
+  }
+ ]
+}

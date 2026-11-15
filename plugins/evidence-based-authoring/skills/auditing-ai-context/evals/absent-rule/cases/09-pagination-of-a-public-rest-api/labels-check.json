@@ -1,0 +1,16 @@
+{
+  "classes": {
+    "p01": {"class": "trace", "reason": "It denies rule A's X-Total-Count header on every response and the progress bars sized from it, and new.md nowhere else mentions that header or says one existed."},
+    "p02": {"class": "trace", "reason": "With 'no longer' it corrects rule A's page-number pagination, where the start was computed from page_number and page_size, and new.md never tells its reader that this scheme existed."},
+    "p03": {"class": "trace", "reason": "With 'any more' it withdraws rule A's direct page addressing (numbered page links, pages fetched in parallel), which new.md never presents."},
+    "p04": {"class": "foil", "reason": "It sets the published list of sort keys against client-composed free-form sort expressions, which neither old.md (sort order passed as ordinary query parameters, keys offered by endpoint authors) nor new.md presents."},
+    "p05": {"class": "foil", "reason": "It contrasts the error with a silent fallback to the first items, a lenient behaviour that neither document describes; old.md's first-page default covers an omitted page_number, not an unreadable value."},
+    "p06": {"class": "licensed", "licence": "Some public APIs document their cursor format so that clients can build cursors of their own.", "reason": "'No such promise' denies the documented-format practice that the earlier unplanted sentence of new.md has just described."},
+    "p07": {"class": "licensed", "licence": "Several popular client libraries store the next link and follow it hours later.", "reason": "'That pattern' refers to the client-library habit that the preceding unplanted sentence of new.md describes, and the sentence sets the fifteen-minute lifetime against it."},
+    "p08": {"class": "licensed", "licence": "The mobile team has asked the SDKs to let a feed scroll backwards.", "reason": "'That request' is the backward-scrolling request that the earlier unplanted sentence of new.md states, and the sentence denies that the API can serve it."},
+    "p09": {"class": "plain", "reason": "It states the default for an absent limit parameter and sets it against no other design; it does not mention rule A's 25-item page_size default."},
+    "p10": {"class": "plain", "reason": "It is an upper-bound guarantee a client relies on, with no contrast to another design and nothing of rule A."}
+  },
+  "presents_old_rule": false,
+  "presenting_sentence": ""
+}

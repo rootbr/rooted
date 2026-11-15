@@ -1,0 +1,49 @@
+{
+ "id": "H-02",
+ "kind": "claim",
+ "standing": "supported",
+ "answers": [
+  {
+   "rule": 1,
+   "verdict": "holds",
+   "quote": "the trace pass removes the sentences that argue with a deleted rule · kind: claim",
+   "missing": ""
+  },
+  {
+   "rule": 2,
+   "verdict": "holds",
+   "quote": "refuter: under 0.80 of those sentences end as REWRITE",
+   "missing": ""
+  },
+  {
+   "rule": 3,
+   "verdict": "holds",
+   "quote": "threshold: 0.80 · runs: one pass over twelve generated notes with three such sentences planted in each",
+   "missing": ""
+  },
+  {
+   "rule": 4,
+   "verdict": "holds",
+   "quote": "Everything a run produced is kept under `evals/absent-rule/runs/run-1/`.",
+   "missing": ""
+  },
+  {
+   "rule": 5,
+   "verdict": "fails",
+   "quote": "",
+   "missing": "The scope is wider than the bounds, but the record says fit: direct. (1) Note length: the scope says 'English design notes of 60 to 90 lines', while the bounds say 'twelve notes of 64 to 83 lines'. (2) Writer: the scope allows any writer, 'sentences planted by a writer that saw neither the scripts nor the reviewer's instructions'. The bounds have notes 'written by Claude Opus 5.5 at effort high from one brief', with sentences planted 'to the brief's definitions of the classes'. (3) Reviewer context: the scope sets no condition on what the reviewers were given. The bounds have reviewers 'each started without the session's instruction files'. The record must either narrow the scope to the bounds, or set fit: transfer and name these differences in a transfer field."
+  },
+  {
+   "rule": 6,
+   "verdict": "holds",
+   "quote": "Twelve cases, written after the registering commit by writers that see neither the scripts nor the reviewer's instructions.",
+   "missing": ""
+  },
+  {
+   "rule": 7,
+   "verdict": "holds",
+   "quote": "ended 34 of 36 planted sentences that argue with the deleted rule as REWRITE, 12 of 12 that use a name of the rule and 22 of 24 in the note's ordinary words",
+   "missing": ""
+  }
+ ]
+}

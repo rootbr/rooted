@@ -1,0 +1,16 @@
+{
+  "classes": {
+    "p01": {"class": "trace", "reason": "It excuses the reader from the review desk sign-off that rule A required for every pull request, and new.md nowhere says what the review desk was."},
+    "p02": {"class": "trace", "reason": "It sets owner-based selection against the weekly rota of rule A (whose turn it is), which new.md never describes."},
+    "p03": {"class": "trace", "reason": "It denies weight to approvals from outside the owning group, exactly the counted desk approvals (two of them) that rule A relied on, and new.md never tells that such counting existed."},
+    "p04": {"class": "trace", "reason": "It mirrors rule A's 'review for correctness and readability' and corrects its second half by denying code-style review, while new.md never says reviewers once reviewed for readability."},
+    "p05": {"class": "foil", "reason": "It sets approval as a statement about merged code against approval as a courtesy to the author, a view neither old.md nor new.md presents anywhere."},
+    "p06": {"class": "licensed", "licence": "Git offers several ways to land a branch, including merge commits, squashing and rebasing.", "reason": "It contrasts squash merges with the other landing methods that the preceding sentence of new.md has already introduced."},
+    "p07": {"class": "licensed", "licence": "The security team has asked that every change touching authentication code be reviewed by one of its members.", "reason": "It limits the scope of the security team's request, which new.md stated two sentences earlier, and touches nothing of rule A."},
+    "p08": {"class": "licensed", "licence": "Newcomers often expect that a green build is enough to merge.", "reason": "It denies the newcomers' expectation that the immediately preceding sentence of new.md presents."},
+    "p09": {"class": "plain", "reason": "It states a guarantee of the merge queue, unchanged from old.md, without setting it against any other design or rule."},
+    "p10": {"class": "plain", "reason": "It states what happens when an owners file is absent, a default the user relies on, set against no other design and touching nothing of rule A."}
+  },
+  "presents_old_rule": false,
+  "presenting_sentence": ""
+}

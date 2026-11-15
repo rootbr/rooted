@@ -1,0 +1,16 @@
+{
+  "classes": {
+    "p01": {"class": "trace", "reason": "It denies the retention steward's review of the purge list that rule A required, and new.md never tells its reader that a steward or a reviewed purge ticket existed."},
+    "p02": {"class": "trace", "reason": "It denies the table owner's approval of each purge ticket that rule A required, and new.md nowhere presents an approval step."},
+    "p03": {"class": "trace", "reason": "'No longer' sets the present 180-day reach against rule A's 400-day window, in which year-over-year queries ran on raw tables, and new.md never states that earlier window."},
+    "p04": {"class": "foil", "reason": "It sets table-level expiry against analysts deciding retention per query, an alternative neither old.md nor new.md presents."},
+    "p05": {"class": "foil", "reason": "It sets the nightly rollup build against a separate streaming pipeline, which neither document mentions anywhere."},
+    "p06": {"class": "licensed", "licence": "Some warehouses copy expired partitions to cold storage before dropping them.", "reason": "It denies the cold-storage copy that new.md itself introduced in the sentence just before, and old.md has no such copy."},
+    "p07": {"class": "licensed", "licence": "The legal team holds that pseudonymized identifiers still count as personal data.", "reason": "It sets the rollups apart from the personal-data concern that new.md states in the preceding sentence, and rule A said nothing different about rollups."},
+    "p08": {"class": "licensed", "licence": "The finance schemas follow a seven-year retention rule set by the tax authority.", "reason": "'That rule' is the seven-year finance rule new.md stated just before, and the sentence contrasts product event tables with it rather than with rule A's 400 days."},
+    "p09": {"class": "plain", "reason": "It states what happens when a request lacks a user identifier, a default set against no other design, and old.md's erasure process says nothing on it."},
+    "p10": {"class": "plain", "reason": "It states a limit a user relies on, failing before any write past 180 days, without setting it against rule A's 400-day backfill window."}
+  },
+  "presents_old_rule": false,
+  "presenting_sentence": ""
+}

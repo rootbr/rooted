@@ -1,0 +1,62 @@
+{
+ "verdicts": [
+  {
+   "id": "c001",
+   "target": "the seven-year retention rule",
+   "verdict": "licensed",
+   "quote": "The finance schemas follow a seven-year retention rule set by the tax authority.",
+   "reason": "The preceding sentence presents the seven-year rule that product event tables are set apart from."
+  },
+  {
+   "id": "c002",
+   "target": "an approval step before dropping a partition",
+   "verdict": "rewrite",
+   "reason": "It excuses the reader from an approval the document never mentions; only the deleted purge-ticket approval made it expected."
+  },
+  {
+   "id": "c003",
+   "target": "analysts deciding expiry per query",
+   "verdict": "rewrite",
+   "reason": "It corrects a view of per-query expiry that the document never presents."
+  },
+  {
+   "id": "c004",
+   "target": "copying expired partitions to cold storage",
+   "verdict": "licensed",
+   "quote": "Some warehouses copy expired partitions to cold storage before dropping them.",
+   "reason": "The earlier sentence presents the cold-storage copy that this warehouse is said not to keep."
+  },
+  {
+   "id": "c005",
+   "target": "a separate streaming pipeline feeding rollups",
+   "verdict": "rewrite",
+   "reason": "It sets the nightly computation against a streaming alternative that nobody presented."
+  },
+  {
+   "id": "c006",
+   "target": "the earlier full-year reach of raw tables",
+   "verdict": "rewrite",
+   "reason": "'No longer' speaks of an earlier state the reader was never shown."
+  },
+  {
+   "id": "c007",
+   "target": "pseudonymized identifiers counting as personal data",
+   "verdict": "licensed",
+   "quote": "The legal team holds that pseudonymized identifiers still count as personal data.",
+   "reason": "The legal view is stated just before, and the sentence says rollups fall outside it."
+  },
+  {
+   "id": "c008",
+   "target": "an erasure request without a user identifier",
+   "verdict": "plain",
+   "question": "What happens to an erasure request that names no user identifier?",
+   "reason": "It states a condition and its outcome that the reader acts on, against no other rule or version."
+  },
+  {
+   "id": "c009",
+   "target": "a retention steward reviewing expired partitions",
+   "verdict": "rewrite",
+   "reason": "It denies a steward review that only the deleted statements required, and the document never introduces the role."
+  }
+ ]
+}

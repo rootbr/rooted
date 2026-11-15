@@ -1,0 +1,197 @@
+{
+ "verdicts": [
+  {
+   "id": "c001",
+   "target": "instructions resting on vibes",
+   "verdict": "rewrite",
+   "reason": "\"instead of vibes\" sets the pipeline against an ungrounded alternative the README never presents."
+  },
+  {
+   "id": "c002",
+   "target": "LLM-generated context files",
+   "verdict": "plain",
+   "question": "What does the cited study find about LLM-generated context files?",
+   "reason": "It reports what a named, linked source says."
+  },
+  {
+   "id": "c003",
+   "target": "the earlier way rules were admitted (citation tracing) and the context files just discussed",
+   "verdict": "rewrite",
+   "reason": "\"instead\" replaces a rule the reader was never shown (the deleted \"every rule traces to a paper or RFC\" line) and has no clear antecedent in the kept text."
+  },
+  {
+   "id": "c004",
+   "target": "asserted rules / the earlier 'Evidence-based, not LLM-generated' heading",
+   "verdict": "rewrite",
+   "reason": "\"not asserted\" argues with an alternative nobody presented and mirrors the deleted bullet's contrast."
+  },
+  {
+   "id": "c005",
+   "target": "origin of an idea / citation as weight",
+   "verdict": "rewrite",
+   "reason": "It dismisses citation-and-origin as support, which is the deleted rule's position, and the document has not shown the reader that view."
+  },
+  {
+   "id": "c006",
+   "target": "method as a sequence of steps or a demand for a citation",
+   "verdict": "rewrite",
+   "reason": "It denies two readings of the method that the document never presents, one of them the deleted citation requirement."
+  },
+  {
+   "id": "c007",
+   "target": "a citation as support itself",
+   "verdict": "rewrite",
+   "reason": "\"never the support itself\" corrects the deleted requirement that every rule cite a source, which the reader cannot see."
+  },
+  {
+   "id": "c008",
+   "target": "opinion as a standing",
+   "verdict": "plain",
+   "question": "What is an opinion among the standings of a claim, and does it enter the rules?",
+   "reason": "It defines one standing in the list and states a limit a reader acts on."
+  },
+  {
+   "id": "c009",
+   "target": "statement kinds passing for one another",
+   "verdict": "plain",
+   "question": "What does the rule 'Facts apart from decisions' require?",
+   "reason": "It states the rule's requirement in the rule table."
+  },
+  {
+   "id": "c010",
+   "target": "an author's name as support",
+   "verdict": "rewrite",
+   "reason": "It sets the reproducibility rule against appeal to authority, a view the document has not presented, and echoes the deleted peer-review-as-grounds line."
+  },
+  {
+   "id": "c011",
+   "target": "the name of the sixth rule",
+   "verdict": "plain",
+   "question": "What does the rule 'No fitting' require?",
+   "reason": "It is the rule's name in the table and the row states what it requires."
+  },
+  {
+   "id": "c012",
+   "target": "the requirement of a citation for every rule",
+   "verdict": "rewrite",
+   "reason": "It excuses the reader from the deleted rule that every rule must cite a source, which the document never mentions."
+  },
+  {
+   "id": "c013",
+   "target": "the test of a claim of our own",
+   "verdict": "plain",
+   "question": "How does a claim of our own get tested and recorded?",
+   "reason": "It states the procedure (hypothesis first, run with and without, result after) and sets itself against no other design."
+  },
+  {
+   "id": "c014",
+   "target": "a single criterion of what is scientific",
+   "verdict": "plain",
+   "question": "Why are the seven rules a convention and on what do they rest?",
+   "reason": "It states a limit on the rules' standing and the ground the method takes, not an earlier rule or version."
+  },
+  {
+   "id": "c015",
+   "target": "the lines not yet touched, as against changed lines",
+   "verdict": "rewrite",
+   "reason": "\"not yet touched\" speaks of the repository's transition state, a change in progress the reader was never shown."
+  },
+  {
+   "id": "c016",
+   "target": "a citation offered in place of a test; the earlier citation-only rejection rule",
+   "verdict": "rewrite",
+   "reason": "It restates the deleted \"rejected by design, not by oversight\" line against the old citation requirement, which the reader has not seen."
+  },
+  {
+   "id": "c017",
+   "target": "the listed sources as tests of the method",
+   "verdict": "plain",
+   "question": "Are the sources in this section tests of the method, and what do they provide?",
+   "reason": "It states what the section's sources are and where their passages are recorded, a limit a reader acts on."
+  },
+  {
+   "id": "c018",
+   "target": "the SEP Scientific Method entry",
+   "verdict": "plain",
+   "question": "What does this source say that the method follows?",
+   "reason": "It reports what a named source says."
+  },
+  {
+   "id": "c019",
+   "target": "the SEP Popper entry",
+   "verdict": "plain",
+   "question": "What does this source say about corroboration and verification?",
+   "reason": "It reports what a named source says."
+  },
+  {
+   "id": "c020",
+   "target": "Mayo's severity requirement",
+   "verdict": "plain",
+   "question": "What does Mayo's text say about when there is evidence for a claim?",
+   "reason": "It shows a quoted example from a named source."
+  },
+  {
+   "id": "c021",
+   "target": "the SEP Scientific Objectivity entry",
+   "verdict": "plain",
+   "question": "What does this source say about objectivity and values?",
+   "reason": "It reports what a named source says."
+  },
+  {
+   "id": "c022",
+   "target": "the SEP Hume entry",
+   "verdict": "plain",
+   "question": "What does this source say about moving from facts to evaluative conclusions?",
+   "reason": "It reports what a named source says."
+  },
+  {
+   "id": "c023",
+   "target": "the SEP induction entry",
+   "verdict": "plain",
+   "question": "What does this source say about reasoning from observed to unobserved cases?",
+   "reason": "It reports what a named source says."
+  },
+  {
+   "id": "c024",
+   "target": "the SEP underdetermination entry",
+   "verdict": "plain",
+   "question": "What does this source say about which hypothesis an experiment refutes?",
+   "reason": "It reports what a named source says."
+  },
+  {
+   "id": "c025",
+   "target": "the SEP operationalism entry",
+   "verdict": "plain",
+   "question": "What does this source say about operations and extending a concept?",
+   "reason": "It reports what a named source says."
+  },
+  {
+   "id": "c026",
+   "target": "the SEP experiment and observation entries",
+   "verdict": "plain",
+   "question": "What do these sources say about validating an experimental result?",
+   "reason": "It reports what named sources say."
+  },
+  {
+   "id": "c027",
+   "target": "the Royal Society motto",
+   "verdict": "plain",
+   "question": "What does the Royal Society's motto say?",
+   "reason": "It reports what a named source says and quotes the motto."
+  },
+  {
+   "id": "c028",
+   "target": "the encyclopedia entry on hypothesis",
+   "verdict": "plain",
+   "question": "What does this source say about a hypothesis and its testability?",
+   "reason": "It reports what a named source says."
+  },
+  {
+   "id": "c029",
+   "target": "Feynman's quoted remark",
+   "verdict": "plain",
+   "question": "What does Feynman say about who made a guess?",
+   "reason": "It shows a quoted passage from a named source."
+  }
+ ]
+}

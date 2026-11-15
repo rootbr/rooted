@@ -1,0 +1,49 @@
+{
+ "id": "H-06",
+ "kind": "claim",
+ "standing": "hypothesis",
+ "answers": [
+  {
+   "rule": 1,
+   "verdict": "holds",
+   "quote": "the trace pass removes more than the audit's cards flag when shown the deleted lines · kind: claim",
+   "missing": ""
+  },
+  {
+   "rule": 2,
+   "verdict": "holds",
+   "quote": "refuter: the pass's share stands under 0.15 above the cards' share",
+   "missing": ""
+  },
+  {
+   "rule": 3,
+   "verdict": "holds",
+   "quote": "H-06 quiet traces against the cards given the deleted lines: FAIL: quiet rewritten 22/24 = 0.92; cards given the deleted lines 21/24 = 0.88; margin 0.04 (>= 0.15)",
+   "missing": ""
+  },
+  {
+   "rule": 4,
+   "verdict": "holds",
+   "quote": "Everything a run produced is kept under `evals/absent-rule/runs/run-1/`.",
+   "missing": ""
+  },
+  {
+   "rule": 5,
+   "verdict": "fails",
+   "quote": "",
+   "missing": "The scope is wider than the bounds, and the record carries no `fit`. The scope covers notes of 60 to 90 lines from any writer that saw neither the scripts nor the reviewer's instructions, and any card sub-agents on Claude Sonnet 5.5 at effort medium. The bounds hold notes of 64 to 83 lines, written by Claude Opus 5.5 at effort high from one brief, and card sub-agents that received the session's instruction files. protocol.md says those files hold style rules on denials and favour the cards over the pass. The record should do one of two things: narrow `scope` to the bounds, or add `fit: transfer` with `transfer` naming these three differences (line range, writer, the card sub-agents' instruction files). Either way, this failed run, and a refutation if a repeat also fails, is then read as holding only under the conditions tested."
+  },
+  {
+   "rule": 6,
+   "verdict": "holds",
+   "quote": "Twelve cases, written after the registering commit by writers that see neither the scripts nor the reviewer's instructions.",
+   "missing": ""
+  },
+  {
+   "rule": 7,
+   "verdict": "holds",
+   "quote": "one failed run, which waits for its repetition",
+   "missing": ""
+  }
+ ]
+}

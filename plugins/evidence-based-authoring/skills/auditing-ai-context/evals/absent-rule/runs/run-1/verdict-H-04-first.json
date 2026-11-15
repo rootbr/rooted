@@ -1,0 +1,49 @@
+{
+ "id": "H-04",
+ "kind": "claim",
+ "standing": "supported",
+ "answers": [
+  {
+   "rule": 1,
+   "verdict": "holds",
+   "quote": "leaves sound denials in place · kind: claim",
+   "missing": ""
+  },
+  {
+   "rule": 2,
+   "verdict": "holds",
+   "quote": "refuter: over 0.25 of those sentences end as REWRITE",
+   "missing": ""
+  },
+  {
+   "rule": 3,
+   "verdict": "holds",
+   "quote": "refuter: over 0.25 of those sentences end as REWRITE · threshold: 0.25 · runs: one pass over twelve generated notes with five such sentences planted in each",
+   "missing": ""
+  },
+  {
+   "rule": 4,
+   "verdict": "holds",
+   "quote": "Everything a run produced is kept under `evals/absent-rule/runs/run-1/`. The commands, from the repository root, with `E` for the skill directory, `A` for `$E/evals/absent-rule/absent_rule_eval.py` and `RUN` for the run directory:",
+   "missing": ""
+  },
+  {
+   "rule": 5,
+   "verdict": "fails",
+   "quote": "",
+   "missing": "The scope reaches past the bounds but the record says `fit: direct`. The scope is \"English design notes of 60 to 90 lines ... with sentences planted by a writer that saw neither the scripts nor the reviewer's instructions\". The bounds are \"twelve notes of 64 to 83 lines written by Claude Opus 5.5 at effort high from one brief ... with ten sentences planted in each to the brief's definitions of the classes\". So notes of 60-63 and 84-90 lines were never tested, and neither were notes or planted sound sentences from any writer other than Claude Opus 5.5 working from the one case brief. The record needs either a scope narrowed to the bounds (64 to 83 lines, notes and sentences written by Claude Opus 5.5 at effort high from the one brief) or `fit: transfer` with a `transfer` field that names these differences in note length and writer."
+  },
+  {
+   "rule": 6,
+   "verdict": "holds",
+   "quote": "result: run 1, registered in the commit before this result and drawn by that commit's hash",
+   "missing": ""
+  },
+  {
+   "rule": 7,
+   "verdict": "holds",
+   "quote": "ended 1 of 60 planted sound sentences as REWRITE, 0 of 36 licensed and 1 of 24 plain; that one fell to two readings that returned plain with an empty target, which the check counts as rewrite",
+   "missing": ""
+  }
+ ]
+}

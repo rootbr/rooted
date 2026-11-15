@@ -1,0 +1,83 @@
+{
+ "verdicts": [
+  {
+   "id": "c001",
+   "target": "tools that look for a dotfile in every parent directory",
+   "verdict": "licensed",
+   "quote": "Several tools look for a dotfile in every parent directory up to the filesystem root.",
+   "reason": "The preceding sentence presents the upward dotfile search that tern is set against."
+  },
+  {
+   "id": "c002",
+   "target": "keys no layer sets",
+   "verdict": "plain",
+   "question": "Which value does a key get when several layers set it, or none does?",
+   "reason": "States the override rule and the default as a condition a reader acts on, setting tern against no other design."
+  },
+  {
+   "id": "c003",
+   "target": "the earlier winning-file rule",
+   "verdict": "rewrite",
+   "reason": "Speaks of an earlier state ('any more') and a winning file that this document never presents."
+  },
+  {
+   "id": "c004",
+   "target": "a missing layer file",
+   "verdict": "plain",
+   "question": "What happens when a layer's file does not exist?",
+   "reason": "A guarantee about the subject's own behaviour when a file is absent, with no other rule or version in view."
+  },
+  {
+   "id": "c005",
+   "target": "absence of a repository",
+   "verdict": "plain",
+   "question": "Which project file does tern use outside a repository?",
+   "reason": "Says what holds when the repository is absent, as a default does."
+  },
+  {
+   "id": "c006",
+   "target": "precedence by file modification time",
+   "verdict": "rewrite",
+   "reason": "Denies an alternative (ordering by modification time) that nobody presented in the document."
+  },
+  {
+   "id": "c007",
+   "target": "the expectation that an environment variable beats a flag",
+   "verdict": "licensed",
+   "quote": "Some operators expect an environment variable to beat a flag, because the variable is often set by the deployment.",
+   "reason": "The earlier sentence voices the expectation that this sentence corrects."
+  },
+  {
+   "id": "c008",
+   "target": "the requirement to repeat personal settings in a project file",
+   "verdict": "rewrite",
+   "reason": "Excuses the reader from a requirement that only the deleted text stated, and the document never presents it."
+  },
+  {
+   "id": "c009",
+   "target": "a project file hiding the user and system files",
+   "verdict": "rewrite",
+   "reason": "Denies a hiding behaviour of an earlier design that the document never presents."
+  },
+  {
+   "id": "c010",
+   "target": "tools that concatenate lists across layers",
+   "verdict": "licensed",
+   "quote": "Some tools combine lists by concatenating the values from every layer.",
+   "reason": "The earlier sentence presents concatenation, which tern is set against."
+  },
+  {
+   "id": "c011",
+   "target": "a separate copy of settings per layer for plugins",
+   "verdict": "rewrite",
+   "reason": "Sets the subject against an alternative (per-layer copies) that nobody presented."
+  },
+  {
+   "id": "c012",
+   "target": "writing to configuration files during loading",
+   "verdict": "plain",
+   "question": "Does loading modify any configuration file?",
+   "reason": "A guarantee about what the subject does not do, which a reader acts on, with no other rule or version in view."
+  }
+ ]
+}

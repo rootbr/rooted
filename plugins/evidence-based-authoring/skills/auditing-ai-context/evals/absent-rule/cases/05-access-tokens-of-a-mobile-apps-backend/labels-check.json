@@ -1,0 +1,16 @@
+{
+  "classes": {
+    "p01": {"class": "trace", "reason": "With 'no longer' it denies rule A's per-request gateway lookup of the sessions table, and new.md never tells its reader that such a lookup existed; the sessions table appears nowhere else in it."},
+    "p02": {"class": "trace", "reason": "It sets the present fixed expiry against rule A's sliding expiry, where every accepted request pushed the expiry forward by 30 days, and new.md never presents that sliding expiry."},
+    "p03": {"class": "trace", "reason": "With 'no longer' it denies rule A's per-request lookup of the auth service's token store before a request was served, and new.md never says such a lookup existed."},
+    "p04": {"class": "foil", "reason": "It sets reading the expiry from the claims against a countdown timer in the app, an alternative that neither old.md (where the app never renews) nor new.md presents."},
+    "p05": {"class": "foil", "reason": "It sets scheduled key rotation against rotation in response to an incident, which neither document presents; old.md has no signing keys at all."},
+    "p06": {"class": "licensed", "licence": "Many mobile apps keep tokens in shared preferences on Android or in user defaults on iOS.", "reason": "It contrasts Lumen's storage with the plain stores that new.md introduced in the sentence just before it."},
+    "p07": {"class": "licensed", "licence": "The OAuth specification also allows a refresh token to stay the same for its whole life.", "reason": "It declines the option that new.md presented in the sentence just before it, and the refresh token does not exist in rule A."},
+    "p08": {"class": "licensed", "licence": "The payments service keeps its own stricter rule that a card operation needs an access token issued less than five minutes ago.", "reason": "It contrasts every other service with the payments service's stricter rule, which new.md states in the sentence just before it."},
+    "p09": {"class": "plain", "reason": "It is a guarantee about what an access token never carries, and it sets the token against no other design and touches nothing of rule A, whose opaque token carried no claims."},
+    "p10": {"class": "plain", "reason": "It gives the default behaviour when the refresh endpoint is unreachable, without setting it against any other design and without touching rule A's 401 handling."}
+  },
+  "presents_old_rule": false,
+  "presenting_sentence": ""
+}

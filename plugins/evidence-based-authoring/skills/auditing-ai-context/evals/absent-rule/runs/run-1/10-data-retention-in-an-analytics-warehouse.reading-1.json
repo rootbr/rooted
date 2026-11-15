@@ -1,0 +1,62 @@
+{
+ "verdicts": [
+  {
+   "id": "c001",
+   "target": "the seven-year finance retention rule",
+   "verdict": "licensed",
+   "quote": "The finance schemas follow a seven-year retention rule set by the tax authority.",
+   "reason": "The preceding sentence of the document presents the finance rule, so the contrast with product event tables is expected."
+  },
+  {
+   "id": "c002",
+   "target": "owner or steward approval before a partition is dropped",
+   "verdict": "rewrite",
+   "reason": "The document never presents an approval step, so the sentence excuses the reader from a requirement only the deleted statements (the purge ticket approved by table owners) contained."
+  },
+  {
+   "id": "c003",
+   "target": "analysts deciding expiry per query",
+   "verdict": "rewrite",
+   "reason": "No earlier sentence presents analysts setting expiry, so the sentence corrects a misconception nobody voiced; it can state that expiry lives in the table definition without the contrast."
+  },
+  {
+   "id": "c004",
+   "target": "copying expired partitions to cold storage",
+   "verdict": "licensed",
+   "quote": "Some warehouses copy expired partitions to cold storage before dropping them.",
+   "reason": "The immediately preceding sentence presents cold-storage copying as a practice, so this sentence's denial answers it."
+  },
+  {
+   "id": "c005",
+   "target": "a separate streaming pipeline feeding rollups",
+   "verdict": "rewrite",
+   "reason": "No streaming pipeline is presented anywhere in the document, so the sentence argues with an alternative nobody introduced."
+  },
+  {
+   "id": "c006",
+   "target": "raw tables reaching back a full year",
+   "verdict": "rewrite",
+   "reason": "'No longer' speaks of an earlier state of the tables (400 days) that this document never shows its reader."
+  },
+  {
+   "id": "c007",
+   "target": "pseudonymized identifiers counting as personal data",
+   "verdict": "licensed",
+   "quote": "The legal team holds that pseudonymized identifiers still count as personal data.",
+   "reason": "The sentence directly before it states the legal view, so excluding rollups from that concern is expected, with identifier as the shared word."
+  },
+  {
+   "id": "c008",
+   "target": "an erasure request without a user identifier",
+   "verdict": "plain",
+   "question": "What happens to an erasure request that names no user identifier?",
+   "reason": "It states what the erasure job does in a stated condition, a handling a reader acts on, and sets itself against no other rule."
+  },
+  {
+   "id": "c009",
+   "target": "the retention steward's review of expired partitions",
+   "verdict": "rewrite",
+   "reason": "The retention steward and a review step appear nowhere else in the document; the sentence denies a role known only from the deleted statements."
+  }
+ ]
+}

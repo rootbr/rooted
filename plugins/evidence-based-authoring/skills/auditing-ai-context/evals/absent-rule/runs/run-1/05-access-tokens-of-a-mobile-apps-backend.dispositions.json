@@ -1,0 +1,435 @@
+{
+ "readings": 3,
+ "candidates": [
+  {
+   "id": "c001",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/05-access-tokens-of-a-mobile-apps-backend/new.md",
+   "line": 11,
+   "sentence": "A request made with an access token leaves its expiry time where it was rather than pushing it forward.",
+   "disposition": "rewrite",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c002",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/05-access-tokens-of-a-mobile-apps-backend/new.md",
+   "line": 13,
+   "sentence": "An access token never carries the user's name, email address or phone number.",
+   "disposition": "keep",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c003",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/05-access-tokens-of-a-mobile-apps-backend/new.md",
+   "line": 17,
+   "sentence": "The gateway no longer looks up the sessions table before it forwards a request.",
+   "disposition": "rewrite",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c004",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/05-access-tokens-of-a-mobile-apps-backend/new.md",
+   "line": 21,
+   "sentence": "If the signature does not verify or the token has expired, the service answers 401.",
+   "disposition": "rewrite",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "plain",
+     "outcome": "rewrite",
+     "code": "SHAPE"
+    },
+    {
+     "reading": 3,
+     "verdict": "plain",
+     "outcome": "rewrite",
+     "code": "SHAPE"
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c005",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/05-access-tokens-of-a-mobile-apps-backend/new.md",
+   "line": 25,
+   "sentence": "Services cache the published keys for one hour and fetch them again when a token names a key identifier they do not know.",
+   "disposition": "rewrite",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "plain",
+     "outcome": "rewrite",
+     "code": "SHAPE"
+    },
+    {
+     "reading": 3,
+     "verdict": "plain",
+     "outcome": "rewrite",
+     "code": "SHAPE"
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c006",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/05-access-tokens-of-a-mobile-apps-backend/new.md",
+   "line": 25,
+   "sentence": "Services no longer wait on a round trip to the auth service before they serve a request.",
+   "disposition": "rewrite",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c007",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/05-access-tokens-of-a-mobile-apps-backend/new.md",
+   "line": 38,
+   "sentence": "The app reads the expiry time from the token's claims instead of keeping a countdown timer of its own.",
+   "disposition": "rewrite",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c008",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/05-access-tokens-of-a-mobile-apps-backend/new.md",
+   "line": 40,
+   "sentence": "Lumen does not take that option, and each successful refresh returns a new refresh token and retires the one that was sent.",
+   "disposition": "keep",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "licensed",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "licensed",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "licensed",
+     "outcome": "keep",
+     "code": ""
+    }
+   ],
+   "quotes": [
+    "The OAuth specification also allows a refresh token to stay the same for its whole life."
+   ]
+  },
+  {
+   "id": "c009",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/05-access-tokens-of-a-mobile-apps-backend/new.md",
+   "line": 56,
+   "sentence": "The Lumen app keeps both of its tokens in the iOS Keychain and the Android Keystore, never in those plain stores.",
+   "disposition": "keep",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "licensed",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "licensed",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "licensed",
+     "outcome": "keep",
+     "code": ""
+    }
+   ],
+   "quotes": [
+    "Many mobile apps keep tokens in shared preferences on Android or in user defaults on iOS."
+   ]
+  },
+  {
+   "id": "c010",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/05-access-tokens-of-a-mobile-apps-backend/new.md",
+   "line": 60,
+   "sentence": "The auth service signs with one active key and publishes it together with the previous key.",
+   "disposition": "rewrite",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "plain",
+     "outcome": "rewrite",
+     "code": "SHAPE"
+    },
+    {
+     "reading": 3,
+     "verdict": "plain",
+     "outcome": "rewrite",
+     "code": "SHAPE"
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c011",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/05-access-tokens-of-a-mobile-apps-backend/new.md",
+   "line": 60,
+   "sentence": "A new key pair is generated every 90 days, and the previous key stays published for one day after the switch.",
+   "disposition": "rewrite",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "plain",
+     "outcome": "rewrite",
+     "code": "SHAPE"
+    },
+    {
+     "reading": 3,
+     "verdict": "plain",
+     "outcome": "rewrite",
+     "code": "SHAPE"
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c012",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/05-access-tokens-of-a-mobile-apps-backend/new.md",
+   "line": 60,
+   "sentence": "Keys are rotated on that fixed calendar as a routine step rather than as a response to an incident.",
+   "disposition": "rewrite",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    },
+    {
+     "reading": 3,
+     "verdict": "rewrite",
+     "outcome": "rewrite",
+     "code": ""
+    }
+   ],
+   "quotes": []
+  },
+  {
+   "id": "c013",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/05-access-tokens-of-a-mobile-apps-backend/new.md",
+   "line": 71,
+   "sentence": "If the refresh endpoint cannot be reached, the app keeps the user signed in and retries with a backoff capped at one minute.",
+   "disposition": "rewrite",
+   "outcomes": [
+    {
+     "reading": 1,
+     "verdict": "plain",
+     "outcome": "keep",
+     "code": ""
+    },
+    {
+     "reading": 2,
+     "verdict": "plain",
+     "outcome": "rewrite",
+     "code": "SHAPE"
+    },
+    {
+     "reading": 3,
+     "verdict": "plain",
+     "outcome": "rewrite",
+     "code": "SHAPE"
+    }
+   ],
+   "quotes": []
+  }
+ ],
+ "findings": [
+  {
+   "code": "SHAPE",
+   "reading": 2,
+   "id": "c004",
+   "message": "no target"
+  },
+  {
+   "code": "SHAPE",
+   "reading": 2,
+   "id": "c005",
+   "message": "no target"
+  },
+  {
+   "code": "SHAPE",
+   "reading": 2,
+   "id": "c010",
+   "message": "no target"
+  },
+  {
+   "code": "SHAPE",
+   "reading": 2,
+   "id": "c011",
+   "message": "no target"
+  },
+  {
+   "code": "SHAPE",
+   "reading": 2,
+   "id": "c013",
+   "message": "no target"
+  },
+  {
+   "code": "SHAPE",
+   "reading": 3,
+   "id": "c004",
+   "message": "no target"
+  },
+  {
+   "code": "SHAPE",
+   "reading": 3,
+   "id": "c005",
+   "message": "no target"
+  },
+  {
+   "code": "SHAPE",
+   "reading": 3,
+   "id": "c010",
+   "message": "no target"
+  },
+  {
+   "code": "SHAPE",
+   "reading": 3,
+   "id": "c011",
+   "message": "no target"
+  },
+  {
+   "code": "SHAPE",
+   "reading": 3,
+   "id": "c013",
+   "message": "no target"
+  }
+ ]
+}

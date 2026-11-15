@@ -1,0 +1,306 @@
+{
+ "version": 1,
+ "mode": "pair",
+ "files": [
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/05-access-tokens-of-a-mobile-apps-backend/new.md",
+   "sha256": "05afc6e668027eae6e0cf490474084125be014e87403a2d891046b9ab6fadd95"
+  }
+ ],
+ "deleted": [
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/05-access-tokens-of-a-mobile-apps-backend/old.md",
+   "line": 7,
+   "text": "This note describes how the Lumen app proves to the backend who the signed-in user is."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/05-access-tokens-of-a-mobile-apps-backend/old.md",
+   "line": 7,
+   "text": "It covers the format of the access token, how the gateway validates it, how sign-in and sign-out work, and what the app does when a token is refused."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/05-access-tokens-of-a-mobile-apps-backend/old.md",
+   "line": 11,
+   "text": "An access token is an opaque string of 32 random bytes, encoded in base64url, that carries no meaning of its own."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/05-access-tokens-of-a-mobile-apps-backend/old.md",
+   "line": 11,
+   "text": "The auth service stores a SHA-256 hash of each token as one row of the sessions table, together with the user identifier, the device identifier, the granted scopes and an expiry time."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/05-access-tokens-of-a-mobile-apps-backend/old.md",
+   "line": 11,
+   "text": "A token stays valid for 30 days after its last use, because every accepted request moves its expiry forward by 30 days."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/05-access-tokens-of-a-mobile-apps-backend/old.md",
+   "line": 13,
+   "text": "The app therefore never has to renew a token while the user keeps opening it at least once a month."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/05-access-tokens-of-a-mobile-apps-backend/old.md",
+   "line": 17,
+   "text": "Every request from the app reaches the API gateway first."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/05-access-tokens-of-a-mobile-apps-backend/old.md",
+   "line": 17,
+   "text": "The gateway hashes the bearer token and looks the hash up in the sessions table."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/05-access-tokens-of-a-mobile-apps-backend/old.md",
+   "line": 19,
+   "text": "If no row matches, the gateway answers 401 and the request goes no further."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/05-access-tokens-of-a-mobile-apps-backend/old.md",
+   "line": 20,
+   "text": "If the row has expired, the gateway deletes it and answers 401."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/05-access-tokens-of-a-mobile-apps-backend/old.md",
+   "line": 21,
+   "text": "If the row is valid, the gateway moves its expiry time forward and adds the user identifier and the scopes as the X-Lumen-User and X-Lumen-Scopes headers."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/05-access-tokens-of-a-mobile-apps-backend/old.md",
+   "line": 23,
+   "text": "Services behind the gateway trust these two headers and never see the token itself."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/05-access-tokens-of-a-mobile-apps-backend/old.md",
+   "line": 23,
+   "text": "Each service checks that the scopes in X-Lumen-Scopes include the scope its endpoint needs and answers 403 otherwise."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/05-access-tokens-of-a-mobile-apps-backend/old.md",
+   "line": 25,
+   "text": "The gateway keeps a 10-second in-memory cache of recent lookups, so that a burst of requests from one screen costs a single database read."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/05-access-tokens-of-a-mobile-apps-backend/old.md",
+   "line": 36,
+   "text": "The app signs in with the user's email and a one-time code, or with Sign in with Apple or Google."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/05-access-tokens-of-a-mobile-apps-backend/old.md",
+   "line": 36,
+   "text": "On success the auth service creates a token, writes its row into the sessions table and returns the token once in the response body."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/05-access-tokens-of-a-mobile-apps-backend/old.md",
+   "line": 38,
+   "text": "A user may hold up to ten sessions at once, one per device."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/05-access-tokens-of-a-mobile-apps-backend/old.md",
+   "line": 38,
+   "text": "Signing in on an eleventh device deletes the session that was used least recently."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/05-access-tokens-of-a-mobile-apps-backend/old.md",
+   "line": 42,
+   "text": "Sign-out deletes the row of the current token from the sessions table, and the token stops working as soon as the gateway cache entry expires."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/05-access-tokens-of-a-mobile-apps-backend/old.md",
+   "line": 42,
+   "text": "The account page also offers \"Sign out everywhere\", which deletes every row of the user."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/05-access-tokens-of-a-mobile-apps-backend/old.md",
+   "line": 44,
+   "text": "Support staff can end all sessions of a user from the admin console when an account is reported as compromised."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/05-access-tokens-of-a-mobile-apps-backend/old.md",
+   "line": 48,
+   "text": "The app keeps the token in the iOS Keychain or the Android Keystore."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/05-access-tokens-of-a-mobile-apps-backend/old.md",
+   "line": 48,
+   "text": "Logs, crash reports and analytics events carry a redacted placeholder wherever a token would appear."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/05-access-tokens-of-a-mobile-apps-backend/old.md",
+   "line": 54,
+   "text": "401"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/05-access-tokens-of-a-mobile-apps-backend/old.md",
+   "line": 54,
+   "text": "Deletes the stored token and shows the sign-in screen"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/05-access-tokens-of-a-mobile-apps-backend/old.md",
+   "line": 59,
+   "text": "A 401 always means the session is gone, so the app does not retry the request."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/05-access-tokens-of-a-mobile-apps-backend/old.md",
+   "line": 63,
+   "text": "The sessions table lives in the main Postgres cluster and holds about 4 million rows."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/05-access-tokens-of-a-mobile-apps-backend/old.md",
+   "line": 63,
+   "text": "A nightly job removes the rows whose expiry time has passed."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/05-access-tokens-of-a-mobile-apps-backend/old.md",
+   "line": 65,
+   "text": "Gateway latency is dominated by the lookup, which adds about 3 ms at the median and 20 ms at the 99th percentile."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/05-access-tokens-of-a-mobile-apps-backend/old.md",
+   "line": 67,
+   "text": "The identity team is paged when the lookup error rate stays above 1 percent for five minutes."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/05-access-tokens-of-a-mobile-apps-backend/old.md",
+   "line": 71,
+   "text": "The local stack starts the auth service with an empty sessions table and a seed user."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/05-access-tokens-of-a-mobile-apps-backend/old.md",
+   "line": 71,
+   "text": "Integration tests sign in through the real endpoint and reuse the returned token for the whole suite."
+  }
+ ],
+ "candidates": [
+  {
+   "id": "c001",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/05-access-tokens-of-a-mobile-apps-backend/new.md",
+   "line": 11,
+   "end_line": 11,
+   "sentence": "A request made with an access token leaves its expiry time where it was rather than pushing it forward.",
+   "cues": [
+    "rather than"
+   ]
+  },
+  {
+   "id": "c002",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/05-access-tokens-of-a-mobile-apps-backend/new.md",
+   "line": 13,
+   "end_line": 13,
+   "sentence": "An access token never carries the user's name, email address or phone number.",
+   "cues": [
+    "never"
+   ]
+  },
+  {
+   "id": "c003",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/05-access-tokens-of-a-mobile-apps-backend/new.md",
+   "line": 17,
+   "end_line": 17,
+   "sentence": "The gateway no longer looks up the sessions table before it forwards a request.",
+   "cues": [
+    "no",
+    "no longer"
+   ]
+  },
+  {
+   "id": "c004",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/05-access-tokens-of-a-mobile-apps-backend/new.md",
+   "line": 21,
+   "end_line": 21,
+   "sentence": "If the signature does not verify or the token has expired, the service answers 401.",
+   "cues": [
+    "not"
+   ]
+  },
+  {
+   "id": "c005",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/05-access-tokens-of-a-mobile-apps-backend/new.md",
+   "line": 25,
+   "end_line": 25,
+   "sentence": "Services cache the published keys for one hour and fetch them again when a token names a key identifier they do not know.",
+   "cues": [
+    "not"
+   ]
+  },
+  {
+   "id": "c006",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/05-access-tokens-of-a-mobile-apps-backend/new.md",
+   "line": 25,
+   "end_line": 25,
+   "sentence": "Services no longer wait on a round trip to the auth service before they serve a request.",
+   "cues": [
+    "no",
+    "no longer"
+   ]
+  },
+  {
+   "id": "c007",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/05-access-tokens-of-a-mobile-apps-backend/new.md",
+   "line": 38,
+   "end_line": 38,
+   "sentence": "The app reads the expiry time from the token's claims instead of keeping a countdown timer of its own.",
+   "cues": [
+    "instead"
+   ]
+  },
+  {
+   "id": "c008",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/05-access-tokens-of-a-mobile-apps-backend/new.md",
+   "line": 40,
+   "end_line": 40,
+   "sentence": "Lumen does not take that option, and each successful refresh returns a new refresh token and retires the one that was sent.",
+   "cues": [
+    "not"
+   ]
+  },
+  {
+   "id": "c009",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/05-access-tokens-of-a-mobile-apps-backend/new.md",
+   "line": 56,
+   "end_line": 56,
+   "sentence": "The Lumen app keeps both of its tokens in the iOS Keychain and the Android Keystore, never in those plain stores.",
+   "cues": [
+    "never"
+   ]
+  },
+  {
+   "id": "c010",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/05-access-tokens-of-a-mobile-apps-backend/new.md",
+   "line": 60,
+   "end_line": 60,
+   "sentence": "The auth service signs with one active key and publishes it together with the previous key.",
+   "cues": [
+    "the previous"
+   ]
+  },
+  {
+   "id": "c011",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/05-access-tokens-of-a-mobile-apps-backend/new.md",
+   "line": 60,
+   "end_line": 60,
+   "sentence": "A new key pair is generated every 90 days, and the previous key stays published for one day after the switch.",
+   "cues": [
+    "the previous"
+   ]
+  },
+  {
+   "id": "c012",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/05-access-tokens-of-a-mobile-apps-backend/new.md",
+   "line": 60,
+   "end_line": 60,
+   "sentence": "Keys are rotated on that fixed calendar as a routine step rather than as a response to an incident.",
+   "cues": [
+    "rather than"
+   ]
+  },
+  {
+   "id": "c013",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/05-access-tokens-of-a-mobile-apps-backend/new.md",
+   "line": 71,
+   "end_line": 71,
+   "sentence": "If the refresh endpoint cannot be reached, the app keeps the user signed in and retries with a backoff capped at one minute.",
+   "cues": [
+    "cannot"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,16 @@
+plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/new.md:20: REWRITE c001 [reading 1: rewrite; reading 2: rewrite; reading 3: rewrite] The zone comes from the organizer's choice in the event …
+plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/new.md:24: KEEP c002 [plain ×3]
+plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/new.md:31: REWRITE c003 [reading 1: rewrite; reading 2: rewrite; reading 3: rewrite] The gap between two occurrences is not a fixed count of …
+plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/new.md:33: KEEP c004 [licensed ×3] quote: "Some calendar products store each occurrence as a separate row as soon as a series is created."
+plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/new.md:39: KEEP c005 [plain ×3]
+plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/new.md:41: REWRITE c006 [reading 1: rewrite; reading 2: rewrite; reading 3: rewrite] Organizers do not have to edit a series after a clock …
+plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/new.md:43: REWRITE c007 [reading 1: rewrite; reading 2: rewrite; reading 3: rewrite] There is no rebase job, and organizers receive no email …
+plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/new.md:47: REWRITE c008 [reading 1: rewrite; reading 2: rewrite; reading 3: rewrite] Reminder jobs are written to the shared job queue rather …
+plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/new.md:49: KEEP c009 [plain ×3]
+plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/new.md:51: KEEP c010 [plain ×3]
+plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/new.md:61: KEEP c011 [licensed ×3] quote: "The operating system zone files on a host can lag behind those releases by months."
+plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/new.md:67: KEEP c012 [plain ×3]
+plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/new.md:68: KEEP c013 [plain ×3]
+plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/new.md:68: KEEP c014 [licensed ×3] quote: "The iCalendar standard allows a floating time that carries no zone at all."
+plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/new.md:77: KEEP c015 [plain ×3]
+15 candidates: 10 kept, 5 to rewrite; readings: 3

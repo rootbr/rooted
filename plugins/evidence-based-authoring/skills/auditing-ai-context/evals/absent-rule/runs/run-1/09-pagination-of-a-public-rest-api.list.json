@@ -1,0 +1,333 @@
+{
+ "version": 1,
+ "mode": "pair",
+ "files": [
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/09-pagination-of-a-public-rest-api/new.md",
+   "sha256": "337bff4df3bca454dd89b4ddf332051992131a6443e8e4879b9e0c7aacabcb03"
+  }
+ ],
+ "deleted": [
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/09-pagination-of-a-public-rest-api/old.md",
+   "line": 11,
+   "text": "Every list endpoint is paginated by page number."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/09-pagination-of-a-public-rest-api/old.md",
+   "line": 11,
+   "text": "A client sends `page_number`, starting at 1, and `page_size`, between 1 and 100."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/09-pagination-of-a-public-rest-api/old.md",
+   "line": 11,
+   "text": "Every response carries the `X-Total-Count` header with the number of items in the whole filtered collection."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/09-pagination-of-a-public-rest-api/old.md",
+   "line": 13,
+   "text": "A request that omits `page_size` receives 25 items, and a request that omits `page_number` receives the first page."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/09-pagination-of-a-public-rest-api/old.md",
+   "line": 13,
+   "text": "Filters and the sort order are passed as ordinary query parameters and must be repeated unchanged on every request of a traversal."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/09-pagination-of-a-public-rest-api/old.md",
+   "line": 15,
+   "text": "The server computes the offset as `(page_number - 1) * page_size` and skips that many rows of the sorted collection before reading the page."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/09-pagination-of-a-public-rest-api/old.md",
+   "line": 21,
+   "text": "`items`"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/09-pagination-of-a-public-rest-api/old.md",
+   "line": 21,
+   "text": "array"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/09-pagination-of-a-public-rest-api/old.md",
+   "line": 21,
+   "text": "The items of the requested page, in sort order"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/09-pagination-of-a-public-rest-api/old.md",
+   "line": 22,
+   "text": "`page_number`"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/09-pagination-of-a-public-rest-api/old.md",
+   "line": 22,
+   "text": "integer"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/09-pagination-of-a-public-rest-api/old.md",
+   "line": 22,
+   "text": "The page the server returned"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/09-pagination-of-a-public-rest-api/old.md",
+   "line": 23,
+   "text": "`page_size`"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/09-pagination-of-a-public-rest-api/old.md",
+   "line": 23,
+   "text": "integer"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/09-pagination-of-a-public-rest-api/old.md",
+   "line": 23,
+   "text": "The page size the server applied"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/09-pagination-of-a-public-rest-api/old.md",
+   "line": 25,
+   "text": "The `X-Total-Count` header is present on every successful response, including an empty one."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/09-pagination-of-a-public-rest-api/old.md",
+   "line": 25,
+   "text": "The `page_size` field echoes the size the server applied, which may be lower than the one requested under load."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/09-pagination-of-a-public-rest-api/old.md",
+   "line": 29,
+   "text": "Each endpoint sorts by a stable key, by default creation time followed by item id."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/09-pagination-of-a-public-rest-api/old.md",
+   "line": 29,
+   "text": "Endpoint authors may offer other sort keys, but every key must end with the item id so that the order is total."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/09-pagination-of-a-public-rest-api/old.md",
+   "line": 31,
+   "text": "An item created or deleted ahead of the current position during a traversal shifts every later item by one place."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/09-pagination-of-a-public-rest-api/old.md",
+   "line": 31,
+   "text": "A client walking the pages may therefore see an item twice or miss one."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/09-pagination-of-a-public-rest-api/old.md",
+   "line": 31,
+   "text": "Clients that need an exact copy deduplicate by item id and repeat the traversal when `X-Total-Count` changed between the first and the last page."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/09-pagination-of-a-public-rest-api/old.md",
+   "line": 35,
+   "text": "A `page_size` above 100 or below 1 receives 400 Bad Request with the error code `invalid_page_size`."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/09-pagination-of-a-public-rest-api/old.md",
+   "line": 36,
+   "text": "A `page_number` past the last page receives 200 with an empty `items` array and the usual `X-Total-Count` header."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/09-pagination-of-a-public-rest-api/old.md",
+   "line": 37,
+   "text": "A `page_number` above 1000 receives 400 with the error code `page_too_deep`, because deep pages force a long scan."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/09-pagination-of-a-public-rest-api/old.md",
+   "line": 38,
+   "text": "Filters that differ from those of the first request are not detected, and the client receives pages of a different collection."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/09-pagination-of-a-public-rest-api/old.md",
+   "line": 42,
+   "text": "Clients may fetch several pages in parallel, since each page is addressed by its number alone."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/09-pagination-of-a-public-rest-api/old.md",
+   "line": 42,
+   "text": "A user interface that offers numbered page links sends the chosen `page_number` directly."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/09-pagination-of-a-public-rest-api/old.md",
+   "line": 44,
+   "text": "Progress bars divide `X-Total-Count` by `page_size` to know how many requests a full traversal takes."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/09-pagination-of-a-public-rest-api/old.md",
+   "line": 44,
+   "text": "Clients that only need the size of a collection request one item and read the header."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/09-pagination-of-a-public-rest-api/old.md",
+   "line": 48,
+   "text": "A request for page n costs the database a scan of roughly n times the page size rows before it reaches the first returned item."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/09-pagination-of-a-public-rest-api/old.md",
+   "line": 48,
+   "text": "Computing `X-Total-Count` costs one count query per request, cached for 30 seconds per filter combination."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/09-pagination-of-a-public-rest-api/old.md",
+   "line": 50,
+   "text": "Rate limits count requests, so a client that asks for 100 items per request uses its quota most efficiently."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/09-pagination-of-a-public-rest-api/old.md",
+   "line": 50,
+   "text": "Endpoint authors keep an index that covers the default sort key and every filter they expose."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/09-pagination-of-a-public-rest-api/old.md",
+   "line": 54,
+   "text": "The official SDKs wrap traversal in an iterator that increments `page_number` until a page holds fewer items than `page_size`."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/09-pagination-of-a-public-rest-api/old.md",
+   "line": 54,
+   "text": "The iterator retries a request once on a network error and then raises."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/09-pagination-of-a-public-rest-api/old.md",
+   "line": 56,
+   "text": "The SDKs also expose a `count()` helper that requests one item and returns `X-Total-Count`."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/09-pagination-of-a-public-rest-api/old.md",
+   "line": 56,
+   "text": "The mobile SDK fetches up to four pages in parallel to fill a feed quickly."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/09-pagination-of-a-public-rest-api/old.md",
+   "line": 60,
+   "text": "Whether the depth cap should be raised for export jobs."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/09-pagination-of-a-public-rest-api/old.md",
+   "line": 60,
+   "text": "The data team has asked for 5000 pages."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/09-pagination-of-a-public-rest-api/old.md",
+   "line": 61,
+   "text": "Whether `X-Total-Count` may be approximate for collections above a million items."
+  }
+ ],
+ "candidates": [
+  {
+   "id": "c001",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/09-pagination-of-a-public-rest-api/new.md",
+   "line": 11,
+   "end_line": 11,
+   "sentence": "A client sends `limit`, between 1 and 200, and, on every request after the first, the `cursor` value taken from the `next_cursor` field of the previous response.",
+   "cues": [
+    "the previous"
+   ]
+  },
+  {
+   "id": "c002",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/09-pagination-of-a-public-rest-api/new.md",
+   "line": 11,
+   "end_line": 11,
+   "sentence": "A response without `next_cursor` is the last one of the traversal.",
+   "cues": [
+    "without"
+   ]
+  },
+  {
+   "id": "c003",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/09-pagination-of-a-public-rest-api/new.md",
+   "line": 13,
+   "end_line": 13,
+   "sentence": "A client no longer works out where the next request starts from the number of the page it is on and the size of each page.",
+   "cues": [
+    "no",
+    "no longer"
+   ]
+  },
+  {
+   "id": "c004",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/09-pagination-of-a-public-rest-api/new.md",
+   "line": 15,
+   "end_line": 15,
+   "sentence": "Our cursors carry no such promise, and their contents may change in any release without notice.",
+   "cues": [
+    "no",
+    "without"
+   ]
+  },
+  {
+   "id": "c005",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/09-pagination-of-a-public-rest-api/new.md",
+   "line": 25,
+   "end_line": 25,
+   "sentence": "The server never returns more items than the limit the response reports.",
+   "cues": [
+    "never"
+   ]
+  },
+  {
+   "id": "c006",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/09-pagination-of-a-public-rest-api/new.md",
+   "line": 25,
+   "end_line": 25,
+   "sentence": "Responses carry no X-Total-Count header, so progress bars have to be sized some other way.",
+   "cues": [
+    "no"
+   ]
+  },
+  {
+   "id": "c007",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/09-pagination-of-a-public-rest-api/new.md",
+   "line": 29,
+   "end_line": 29,
+   "sentence": "The sort key is chosen from the list the endpoint publishes, not composed by the client as a free-form expression.",
+   "cues": [
+    "not"
+   ]
+  },
+  {
+   "id": "c008",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/09-pagination-of-a-public-rest-api/new.md",
+   "line": 42,
+   "end_line": 42,
+   "sentence": "An unreadable cursor is reported as an error, never silently taken as a request for the first items.",
+   "cues": [
+    "never"
+   ]
+  },
+  {
+   "id": "c009",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/09-pagination-of-a-public-rest-api/new.md",
+   "line": 43,
+   "end_line": 43,
+   "sentence": "A request that repeats a cursor already followed receives the same items again, as long as the cursor has not expired.",
+   "cues": [
+    "not"
+   ]
+  },
+  {
+   "id": "c010",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/09-pagination-of-a-public-rest-api/new.md",
+   "line": 47,
+   "end_line": 47,
+   "sentence": "Jumping straight to an arbitrary point in the middle of a collection is not something clients can do any more.",
+   "cues": [
+    "not",
+    "any more"
+   ]
+  },
+  {
+   "id": "c011",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/09-pagination-of-a-public-rest-api/new.md",
+   "line": 61,
+   "end_line": 61,
+   "sentence": "The API cannot serve that request yet, and no response carries a cursor for the preceding items.",
+   "cues": [
+    "cannot",
+    "no"
+   ]
+  }
+ ]
+}

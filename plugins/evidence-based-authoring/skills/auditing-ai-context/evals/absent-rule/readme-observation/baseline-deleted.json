@@ -1,0 +1,67 @@
+{
+ "patches": [
+  {
+   "rule_id": "D-06",
+   "location": {
+    "section": "Rooted — Claude Code plugins rooted in evidence (intro paragraph)",
+    "field": "",
+    "line_hint": 7
+   },
+   "current": "grounded instructions and disciplined reasoning instead of vibes",
+   "proposed": null,
+   "justification": "'Vibes' is an alternative named only as the foil of the skills' approach, with no checkable environmental fact that blocks it; rewrite as the blocking fact or drop the contrast.",
+   "severity": "medium",
+   "needs_human": true,
+   "meta": {},
+   "file": "readme/new.md",
+   "group": "G10"
+  },
+  {
+   "rule_id": "R-61",
+   "location": {
+    "section": "Rooted — Claude Code plugins rooted in evidence (intro bullets)",
+    "field": "",
+    "line_hint": 10
+   },
+   "current": "The agent doesn't preemptively slurp the whole tree into context, so it doesn't fill its working memory with project content it doesn't need and later lose focus on the actual task.",
+   "proposed": null,
+   "justification": "Style-class negatives in the body ('doesn't ... slurp', 'doesn't fill'); restate as what the agent does: it reads the tree on demand and keeps its working memory on the task.",
+   "severity": "low",
+   "needs_human": true,
+   "file": "readme/new.md",
+   "group": "G6"
+  },
+  {
+   "rule_id": "D-01",
+   "location": {
+    "section": "Methodology",
+    "field": "",
+    "line_hint": 39
+   },
+   "current": "the lines not yet touched carry their sources without a record.",
+   "proposed": null,
+   "justification": "\"not yet touched\" parses only against a transitional state of the rule lines; the surviving present fact is that a rule line carries a record only if added or changed, and the rest carry their sources alone. Borderline, since it also states a standing policy.",
+   "severity": "low",
+   "needs_human": true,
+   "file": "readme/new.md",
+   "group": "G10"
+  },
+  {
+   "rule_id": "R-61",
+   "location": {
+    "section": "Skill layout",
+    "field": "",
+    "line_hint": 71
+   },
+   "current": "No run-set file names a path under `maintenance/` or `evals/`, apart from one line of `SKILL.md` that points to `maintenance/README.md`",
+   "proposed": null,
+   "justification": "Layout prohibition phrased negatively in the body; a positive form would say a run-set file references only run-set paths, with the single `SKILL.md` pointer to `maintenance/README.md`. Class (style vs integrity check) is borderline, so human review.",
+   "severity": "low",
+   "needs_human": true,
+   "file": "readme/new.md",
+   "group": "G6"
+  }
+ ],
+ "agents_run": 4,
+ "agents_returned": 4
+}

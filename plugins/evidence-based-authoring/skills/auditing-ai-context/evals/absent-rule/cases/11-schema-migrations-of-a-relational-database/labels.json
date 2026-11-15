@@ -1,0 +1,17 @@
+{
+  "topic": "schema migrations of a relational database",
+  "old_rule": "All schema changes of a release are collected into one release migration file that the release DBA applies by hand in the Sunday window while the application is stopped and a downtime banner is shown.",
+  "new_rule": "Every schema change is split into a backward-compatible expand migration and a later contract migration, which the deploy pipeline applies automatically before each rollout while the application keeps running.",
+  "planted": [
+    {"id": "p01", "class": "trace", "form": "named", "text": "There is no Sunday window to book and no release DBA to page before a migration goes out."},
+    {"id": "p02", "class": "trace", "form": "quiet", "text": "Nobody takes the application offline for a schema change, and customers keep placing orders while it is applied."},
+    {"id": "p03", "class": "trace", "form": "quiet", "text": "Migrations are not saved up and applied together at the end of a release, since each one ships with the change that needs it."},
+    {"id": "p04", "class": "foil", "text": "The runner learns which migrations have run from the history table, not from comparing the live schema against a model."},
+    {"id": "p05", "class": "foil", "text": "A rename is carried out as a new column filled by a backfill, rather than as a view that keeps the old name alive."},
+    {"id": "p06", "class": "licensed", "text": "We write no down migrations, and every correction ships as a new forward migration.", "licence": "Some frameworks generate a down migration for every up migration automatically."},
+    {"id": "p07", "class": "licensed", "text": "Our migrations never build an index in that blocking form and always use the concurrent variant instead.", "licence": "PostgreSQL takes a lock that blocks writes on a table while an index is built in the ordinary way."},
+    {"id": "p08", "class": "licensed", "text": "On PostgreSQL 11 and later that is not the case, because a constant default is kept in the catalog without touching existing rows.", "licence": "A common belief is that adding a column with a default value rewrites the whole table."},
+    {"id": "p09", "class": "plain", "text": "The pipeline never rolls out new application code after a migration has failed."},
+    {"id": "p10", "class": "plain", "text": "If a migration file has no matching row in the history table while a later file does, Flyway refuses to start and names the missing file."}
+  ]
+}

@@ -1,0 +1,83 @@
+{
+ "verdicts": [
+  {
+   "id": "c001",
+   "target": "a numeric blame score per contributing factor",
+   "verdict": "licensed",
+   "quote": "Some organizations assign a numeric blame score to each contributing factor.",
+   "reason": "The preceding sentence presents the blame score as a practice elsewhere, so the denial has a target the reader has seen."
+  },
+  {
+   "id": "c002",
+   "target": "who authors when no team owns the service",
+   "verdict": "plain",
+   "question": "Who writes the postmortem when no single team owns the affected service?",
+   "reason": "It states what holds when an owning team is absent, as a default a reader acts on."
+  },
+  {
+   "id": "c003",
+   "target": "timeline built from anyone's recollection",
+   "verdict": "rewrite",
+   "reason": "It sets the timeline against a recollection-based method that the document never presents."
+  },
+  {
+   "id": "c004",
+   "target": "review in a meeting, author walking a room through it",
+   "verdict": "rewrite",
+   "reason": "It denies a meeting-based review the document never presents; the deleted statements required that meeting."
+  },
+  {
+   "id": "c005",
+   "target": "booking a slot at the Thursday Postmortem Review",
+   "verdict": "rewrite",
+   "reason": "The Thursday review and slot booking appear nowhere else in the document, so the sentence argues with the deleted agenda process."
+  },
+  {
+   "id": "c006",
+   "target": "a reviewer who does not respond within the deadline",
+   "verdict": "plain",
+   "question": "What happens if a reviewer does not answer within three business days?",
+   "reason": "It states the consequence of a missed response within the document's own process."
+  },
+  {
+   "id": "c007",
+   "target": "the earlier one-week allowance",
+   "verdict": "rewrite",
+   "reason": "'Two full working weeks rather than one' sets the deadline against a shorter period the reader was never shown, matching the deleted five-day limit."
+  },
+  {
+   "id": "c008",
+   "target": "a postmortem not approved by the deadline",
+   "verdict": "plain",
+   "question": "What happens to a postmortem that is not approved within ten business days?",
+   "reason": "It states what follows when approval is absent, a condition a reader acts on."
+  },
+  {
+   "id": "c009",
+   "target": "a separate tracker for action items",
+   "verdict": "rewrite",
+   "reason": "It argues against an alternative tracker nobody presented in the document."
+  },
+  {
+   "id": "c010",
+   "target": "postmortem with no action items",
+   "verdict": "plain",
+   "question": "What do people in the group commonly think about a postmortem with no action items?",
+   "reason": "It reports a view held in the group and itself introduces that view."
+  },
+  {
+   "id": "c011",
+   "target": "the view that a postmortem without action items is unfinished",
+   "verdict": "licensed",
+   "quote": "A common view in the group is that a postmortem with no action items is an unfinished postmortem.",
+   "reason": "The preceding sentence presents the view the sentence disagrees with."
+  },
+  {
+   "id": "c012",
+   "target": "customer names, account identifiers or credentials in the document",
+   "verdict": "plain",
+   "question": "What must never appear in the postmortem document?",
+   "reason": "It states a prohibition on the document's own content that authors act on and sets it against no other rule."
+  }
+ ]
+}

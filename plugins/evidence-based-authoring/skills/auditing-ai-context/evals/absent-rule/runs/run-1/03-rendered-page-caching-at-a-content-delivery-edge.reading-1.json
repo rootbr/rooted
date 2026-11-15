@@ -1,0 +1,83 @@
+{
+ "verdicts": [
+  {
+   "id": "c001",
+   "target": "caching responses with a session cookie or authorisation header",
+   "verdict": "plain",
+   "question": "Does the edge ever store a response that belongs to a logged-in user?",
+   "reason": "A guarantee about what the edge stores, set against no other rule or version."
+  },
+  {
+   "id": "c002",
+   "target": "a cache key built from a hash of the rendered page body",
+   "verdict": "rewrite",
+   "reason": "The document never presents a body-hash key, so the sentence argues with an alternative nobody showed."
+  },
+  {
+   "id": "c003",
+   "target": "varying cached pages by the full cookie header",
+   "verdict": "licensed",
+   "quote": "Many sites vary cached pages by the full cookie header.",
+   "reason": "The preceding kept sentence presents the full-cookie variation as common practice."
+  },
+  {
+   "id": "c004",
+   "target": "pages becoming fresh only when a cached copy runs out (expiry-based freshness)",
+   "verdict": "rewrite",
+   "reason": "The document never mentions expiry-based refresh; the sentence leans on the deleted fixed-TTL design."
+  },
+  {
+   "id": "c005",
+   "target": "purging by URL",
+   "verdict": "licensed",
+   "quote": "The provider's documentation recommends purging by URL for small sites.",
+   "reason": "The earlier sentence presents URL purging as a recommended option."
+  },
+  {
+   "id": "c006",
+   "target": "sending purges through a shared message queue",
+   "verdict": "rewrite",
+   "reason": "No queue alternative is presented anywhere in the document, so the sentence rejects something the reader was never shown."
+  },
+  {
+   "id": "c007",
+   "target": "origin responses lacking the tag header",
+   "verdict": "plain",
+   "question": "What does the edge do with a page whose origin response has no tag header?",
+   "reason": "States what holds when the header is absent, a condition a reader acts on."
+  },
+  {
+   "id": "c008",
+   "target": "lifetimes configured at the edge",
+   "verdict": "plain",
+   "question": "Where do I change a cache lifetime, at the edge or at the origin?",
+   "reason": "Says where the document's own subject keeps its lifetimes and sets it against no other rule."
+  },
+  {
+   "id": "c009",
+   "target": "purge clearing reader browser caches",
+   "verdict": "licensed",
+   "quote": "Some editors assume that a purge clears the browser caches of readers who already loaded the page.",
+   "reason": "The earlier sentence voices the assumption that the sentence denies."
+  },
+  {
+   "id": "c010",
+   "target": "editors waiting before reloading the live page",
+   "verdict": "rewrite",
+   "reason": "Excuses the reader from a wait that the deleted statements required and the document never mentions."
+  },
+  {
+   "id": "c011",
+   "target": "a new URL appearing in the cache",
+   "verdict": "plain",
+   "question": "When does a newly published URL appear, and how are later updates handled?",
+   "reason": "Describes what happens to a new URL and to later updates in the document's own design."
+  },
+  {
+   "id": "c012",
+   "target": "the staleness window",
+   "verdict": "rewrite",
+   "reason": "The term staleness window is defined only in the deleted statements, so the sentence speaks of a concept the reader was never given."
+  }
+ ]
+}

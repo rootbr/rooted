@@ -1,0 +1,49 @@
+{
+ "id": "H-01",
+ "kind": "claim",
+ "standing": "supported",
+ "answers": [
+  {
+   "rule": 1,
+   "verdict": "holds",
+   "quote": "kind: claim",
+   "missing": ""
+  },
+  {
+   "rule": 2,
+   "verdict": "holds",
+   "quote": "refuter: under 0.90 of either class stands on the list",
+   "missing": ""
+  },
+  {
+   "rule": 3,
+   "verdict": "holds",
+   "quote": "refuter: under 0.90 of either class stands on the list · threshold: 0.90 of each class · runs: one pass over twelve generated notes with three sentences of the first class and two of the second planted in each",
+   "missing": ""
+  },
+  {
+   "rule": 4,
+   "verdict": "holds",
+   "quote": "python3 -I $E/scripts/trace_list.py --old <case>/old.md --new <case>/new.md --out $RUN/<case>.list.json",
+   "missing": ""
+  },
+  {
+   "rule": 5,
+   "verdict": "fails",
+   "quote": "",
+   "missing": "The bounds never name the version of the technique under test. The scope covers `scripts/trace_list.py` in any version, while the run used the script as the registering commit 97a86d6 holds it: the protocol says the pass was taken \"as the registering commit holds it\", and notes.md reports `git diff 97a86d6` printing nothing for that script. Since trace_list.py lists a sentence only when it carries a cue (from the fixed DENIAL_WORDS, CONTRAST_PHRASES and HISTORY_PHRASES lists), any later edit to those lists changes the measured outcome. The bounds have to say `scripts/trace_list.py` at commit 97a86d6. Then either the scope stops at that version, or `transfer` names a later version of the script as a difference."
+  },
+  {
+   "rule": 6,
+   "verdict": "holds",
+   "quote": "run 1, registered in the commit before this result and drawn by that commit's hash",
+   "missing": ""
+  },
+  {
+   "rule": 7,
+   "verdict": "holds",
+   "quote": "held 36 of 36 planted sentences that argue with the deleted rule and 23 of 23 planted contrasts on the list",
+   "missing": ""
+  }
+ ]
+}

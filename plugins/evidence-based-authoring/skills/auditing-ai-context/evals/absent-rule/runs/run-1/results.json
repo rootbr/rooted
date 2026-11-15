@@ -1,0 +1,1664 @@
+{
+  "cases": [
+    "01-configuration-loading-order-of-a-command-line-tool",
+    "02-the-on-call-rotation-of-a-platform-team",
+    "03-rendered-page-caching-at-a-content-delivery-edge",
+    "04-time-zone-handling-in-a-scheduling-service",
+    "05-access-tokens-of-a-mobile-apps-backend",
+    "06-rate-limiting-at-an-api-gateway",
+    "07-the-code-review-policy-of-a-monorepo",
+    "08-the-incident-postmortem-process-of-an-engineering-group",
+    "09-pagination-of-a-public-rest-api",
+    "10-data-retention-in-an-analytics-warehouse",
+    "11-schema-migrations-of-a-relational-database",
+    "12-feature-flags-in-a-web-service"
+  ],
+  "readings": 3,
+  "classes": {
+    "trace": {
+      "planted": 36,
+      "listed": 36,
+      "rewritten": 34,
+      "rewritten_reading_1": 34,
+      "rewritten_reading_2": 34,
+      "rewritten_reading_3": 34,
+      "flagged_shipped": 16,
+      "flagged_deleted": 32
+    },
+    "trace/named": {
+      "planted": 12,
+      "listed": 12,
+      "rewritten": 12,
+      "rewritten_reading_1": 12,
+      "rewritten_reading_2": 12,
+      "rewritten_reading_3": 12,
+      "flagged_shipped": 7,
+      "flagged_deleted": 11
+    },
+    "trace/quiet": {
+      "planted": 24,
+      "listed": 24,
+      "rewritten": 22,
+      "rewritten_reading_1": 22,
+      "rewritten_reading_2": 22,
+      "rewritten_reading_3": 22,
+      "flagged_shipped": 9,
+      "flagged_deleted": 21
+    },
+    "foil": {
+      "planted": 23,
+      "listed": 23,
+      "rewritten": 22,
+      "rewritten_reading_1": 21,
+      "rewritten_reading_2": 22,
+      "rewritten_reading_3": 22,
+      "flagged_shipped": 13,
+      "flagged_deleted": 15
+    },
+    "licensed": {
+      "planted": 36,
+      "listed": 29,
+      "rewritten": 0,
+      "rewritten_reading_1": 0,
+      "rewritten_reading_2": 0,
+      "rewritten_reading_3": 0,
+      "flagged_shipped": 15,
+      "flagged_deleted": 16
+    },
+    "plain": {
+      "planted": 24,
+      "listed": 22,
+      "rewritten": 1,
+      "rewritten_reading_1": 0,
+      "rewritten_reading_2": 1,
+      "rewritten_reading_3": 1,
+      "flagged_shipped": 0,
+      "flagged_deleted": 0
+    }
+  },
+  "other_listed": {
+    "listed": 37,
+    "rewritten": 5
+  },
+  "hypotheses": [
+    {
+      "id": "H-01",
+      "name": "list",
+      "result": "PASS",
+      "line": "H-01 list: PASS: trace listed 36/36 = 1.00 (>= 0.90); foil listed 23/23 = 1.00 (>= 0.90)"
+    },
+    {
+      "id": "H-02",
+      "name": "traces",
+      "result": "PASS",
+      "line": "H-02 traces: PASS: trace rewritten 34/36 = 0.94 (>= 0.80)"
+    },
+    {
+      "id": "H-03",
+      "name": "quiet traces against the cards as shipped",
+      "result": "PASS",
+      "line": "H-03 quiet traces against the cards as shipped: PASS: quiet rewritten 22/24 = 0.92; cards as shipped 9/24 = 0.38; margin 0.54 (>= 0.20)"
+    },
+    {
+      "id": "H-04",
+      "name": "sound sentences",
+      "result": "PASS",
+      "line": "H-04 sound sentences: PASS: licensed and plain rewritten 1/60 = 0.02 (<= 0.25)"
+    },
+    {
+      "id": "H-05",
+      "name": "deleted lines",
+      "result": "PASS",
+      "line": "H-05 deleted lines: PASS: quiet flagged by the cards given the deleted lines 21/24 = 0.88; cards as shipped 9/24 = 0.38; margin 0.50 (>= 0.15)"
+    },
+    {
+      "id": "H-06",
+      "name": "quiet traces against the cards given the deleted lines",
+      "result": "FAIL",
+      "line": "H-06 quiet traces against the cards given the deleted lines: FAIL: quiet rewritten 22/24 = 0.92; cards given the deleted lines 21/24 = 0.88; margin 0.04 (>= 0.15)"
+    },
+    {
+      "id": "H-07",
+      "name": "sound sentences under the deleted lines",
+      "result": "PASS",
+      "line": "H-07 sound sentences under the deleted lines: PASS: licensed and plain flagged by the cards given the deleted lines 16/60 = 0.27; cards as shipped 15/60 = 0.25; margin 0.02 (<= 0.10)"
+    }
+  ],
+  "sentences": [
+    {
+      "case": "01-configuration-loading-order-of-a-command-line-tool",
+      "id": "p01",
+      "class": "trace",
+      "form": "named",
+      "listed": true,
+      "rewritten": true,
+      "rewritten_readings": [
+        1,
+        2,
+        3
+      ],
+      "flagged_shipped": true,
+      "flagged_deleted": true
+    },
+    {
+      "case": "01-configuration-loading-order-of-a-command-line-tool",
+      "id": "p02",
+      "class": "trace",
+      "form": "quiet",
+      "listed": true,
+      "rewritten": true,
+      "rewritten_readings": [
+        1,
+        2,
+        3
+      ],
+      "flagged_shipped": false,
+      "flagged_deleted": true
+    },
+    {
+      "case": "01-configuration-loading-order-of-a-command-line-tool",
+      "id": "p03",
+      "class": "trace",
+      "form": "quiet",
+      "listed": true,
+      "rewritten": true,
+      "rewritten_readings": [
+        1,
+        2,
+        3
+      ],
+      "flagged_shipped": false,
+      "flagged_deleted": true
+    },
+    {
+      "case": "01-configuration-loading-order-of-a-command-line-tool",
+      "id": "p04",
+      "class": "foil",
+      "form": null,
+      "listed": true,
+      "rewritten": true,
+      "rewritten_readings": [
+        1,
+        2,
+        3
+      ],
+      "flagged_shipped": false,
+      "flagged_deleted": true
+    },
+    {
+      "case": "01-configuration-loading-order-of-a-command-line-tool",
+      "id": "p05",
+      "class": "foil",
+      "form": null,
+      "listed": true,
+      "rewritten": true,
+      "rewritten_readings": [
+        1,
+        2,
+        3
+      ],
+      "flagged_shipped": false,
+      "flagged_deleted": true
+    },
+    {
+      "case": "01-configuration-loading-order-of-a-command-line-tool",
+      "id": "p06",
+      "class": "licensed",
+      "form": null,
+      "listed": true,
+      "rewritten": false,
+      "rewritten_readings": [],
+      "flagged_shipped": true,
+      "flagged_deleted": true
+    },
+    {
+      "case": "01-configuration-loading-order-of-a-command-line-tool",
+      "id": "p07",
+      "class": "licensed",
+      "form": null,
+      "listed": true,
+      "rewritten": false,
+      "rewritten_readings": [],
+      "flagged_shipped": true,
+      "flagged_deleted": true
+    },
+    {
+      "case": "01-configuration-loading-order-of-a-command-line-tool",
+      "id": "p08",
+      "class": "licensed",
+      "form": null,
+      "listed": true,
+      "rewritten": false,
+      "rewritten_readings": [],
+      "flagged_shipped": true,
+      "flagged_deleted": true
+    },
+    {
+      "case": "01-configuration-loading-order-of-a-command-line-tool",
+      "id": "p09",
+      "class": "plain",
+      "form": null,
+      "listed": true,
+      "rewritten": false,
+      "rewritten_readings": [],
+      "flagged_shipped": false,
+      "flagged_deleted": false
+    },
+    {
+      "case": "01-configuration-loading-order-of-a-command-line-tool",
+      "id": "p10",
+      "class": "plain",
+      "form": null,
+      "listed": true,
+      "rewritten": false,
+      "rewritten_readings": [],
+      "flagged_shipped": false,
+      "flagged_deleted": false
+    },
+    {
+      "case": "02-the-on-call-rotation-of-a-platform-team",
+      "id": "p01",
+      "class": "trace",
+      "form": "named",
+      "listed": true,
+      "rewritten": true,
+      "rewritten_readings": [
+        1,
+        2,
+        3
+      ],
+      "flagged_shipped": true,
+      "flagged_deleted": true
+    },
+    {
+      "case": "02-the-on-call-rotation-of-a-platform-team",
+      "id": "p02",
+      "class": "trace",
+      "form": "quiet",
+      "listed": true,
+      "rewritten": true,
+      "rewritten_readings": [
+        1,
+        2,
+        3
+      ],
+      "flagged_shipped": false,
+      "flagged_deleted": true
+    },
+    {
+      "case": "02-the-on-call-rotation-of-a-platform-team",
+      "id": "p03",
+      "class": "trace",
+      "form": "quiet",
+      "listed": true,
+      "rewritten": true,
+      "rewritten_readings": [
+        1,
+        2,
+        3
+      ],
+      "flagged_shipped": true,
+      "flagged_deleted": true
+    },
+    {
+      "case": "02-the-on-call-rotation-of-a-platform-team",
+      "id": "p04",
+      "class": "foil",
+      "form": null,
+      "listed": true,
+      "rewritten": true,
+      "rewritten_readings": [
+        1,
+        2,
+        3
+      ],
+      "flagged_shipped": true,
+      "flagged_deleted": true
+    },
+    {
+      "case": "02-the-on-call-rotation-of-a-platform-team",
+      "id": "p05",
+      "class": "foil",
+      "form": null,
+      "listed": true,
+      "rewritten": true,
+      "rewritten_readings": [
+        1,
+        2,
+        3
+      ],
+      "flagged_shipped": true,
+      "flagged_deleted": true
+    },
+    {
+      "case": "02-the-on-call-rotation-of-a-platform-team",
+      "id": "p06",
+      "class": "licensed",
+      "form": null,
+      "listed": false,
+      "rewritten": false,
+      "rewritten_readings": [],
+      "flagged_shipped": true,
+      "flagged_deleted": true
+    },
+    {
+      "case": "02-the-on-call-rotation-of-a-platform-team",
+      "id": "p07",
+      "class": "licensed",
+      "form": null,
+      "listed": true,
+      "rewritten": false,
+      "rewritten_readings": [],
+      "flagged_shipped": true,
+      "flagged_deleted": true
+    },
+    {
+      "case": "02-the-on-call-rotation-of-a-platform-team",
+      "id": "p08",
+      "class": "licensed",
+      "form": null,
+      "listed": false,
+      "rewritten": false,
+      "rewritten_readings": [],
+      "flagged_shipped": true,
+      "flagged_deleted": false
+    },
+    {
+      "case": "02-the-on-call-rotation-of-a-platform-team",
+      "id": "p09",
+      "class": "plain",
+      "form": null,
+      "listed": true,
+      "rewritten": false,
+      "rewritten_readings": [],
+      "flagged_shipped": false,
+      "flagged_deleted": false
+    },
+    {
+      "case": "02-the-on-call-rotation-of-a-platform-team",
+      "id": "p10",
+      "class": "plain",
+      "form": null,
+      "listed": true,
+      "rewritten": false,
+      "rewritten_readings": [],
+      "flagged_shipped": false,
+      "flagged_deleted": false
+    },
+    {
+      "case": "03-rendered-page-caching-at-a-content-delivery-edge",
+      "id": "p01",
+      "class": "trace",
+      "form": "named",
+      "listed": true,
+      "rewritten": true,
+      "rewritten_readings": [
+        1,
+        2,
+        3
+      ],
+      "flagged_shipped": false,
+      "flagged_deleted": true
+    },
+    {
+      "case": "03-rendered-page-caching-at-a-content-delivery-edge",
+      "id": "p02",
+      "class": "trace",
+      "form": "quiet",
+      "listed": true,
+      "rewritten": true,
+      "rewritten_readings": [
+        1,
+        2,
+        3
+      ],
+      "flagged_shipped": false,
+      "flagged_deleted": true
+    },
+    {
+      "case": "03-rendered-page-caching-at-a-content-delivery-edge",
+      "id": "p03",
+      "class": "trace",
+      "form": "quiet",
+      "listed": true,
+      "rewritten": true,
+      "rewritten_readings": [
+        1,
+        2,
+        3
+      ],
+      "flagged_shipped": false,
+      "flagged_deleted": true
+    },
+    {
+      "case": "03-rendered-page-caching-at-a-content-delivery-edge",
+      "id": "p04",
+      "class": "foil",
+      "form": null,
+      "listed": true,
+      "rewritten": true,
+      "rewritten_readings": [
+        1,
+        2,
+        3
+      ],
+      "flagged_shipped": true,
+      "flagged_deleted": true
+    },
+    {
+      "case": "03-rendered-page-caching-at-a-content-delivery-edge",
+      "id": "p05",
+      "class": "foil",
+      "form": null,
+      "listed": true,
+      "rewritten": true,
+      "rewritten_readings": [
+        1,
+        2,
+        3
+      ],
+      "flagged_shipped": false,
+      "flagged_deleted": true
+    },
+    {
+      "case": "03-rendered-page-caching-at-a-content-delivery-edge",
+      "id": "p06",
+      "class": "licensed",
+      "form": null,
+      "listed": true,
+      "rewritten": false,
+      "rewritten_readings": [],
+      "flagged_shipped": false,
+      "flagged_deleted": true
+    },
+    {
+      "case": "03-rendered-page-caching-at-a-content-delivery-edge",
+      "id": "p07",
+      "class": "licensed",
+      "form": null,
+      "listed": true,
+      "rewritten": false,
+      "rewritten_readings": [],
+      "flagged_shipped": false,
+      "flagged_deleted": false
+    },
+    {
+      "case": "03-rendered-page-caching-at-a-content-delivery-edge",
+      "id": "p08",
+      "class": "licensed",
+      "form": null,
+      "listed": true,
+      "rewritten": false,
+      "rewritten_readings": [],
+      "flagged_shipped": false,
+      "flagged_deleted": false
+    },
+    {
+      "case": "03-rendered-page-caching-at-a-content-delivery-edge",
+      "id": "p09",
+      "class": "plain",
+      "form": null,
+      "listed": true,
+      "rewritten": false,
+      "rewritten_readings": [],
+      "flagged_shipped": false,
+      "flagged_deleted": false
+    },
+    {
+      "case": "03-rendered-page-caching-at-a-content-delivery-edge",
+      "id": "p10",
+      "class": "plain",
+      "form": null,
+      "listed": true,
+      "rewritten": false,
+      "rewritten_readings": [],
+      "flagged_shipped": false,
+      "flagged_deleted": false
+    },
+    {
+      "case": "04-time-zone-handling-in-a-scheduling-service",
+      "id": "p01",
+      "class": "trace",
+      "form": "named",
+      "listed": true,
+      "rewritten": true,
+      "rewritten_readings": [
+        1,
+        2,
+        3
+      ],
+      "flagged_shipped": true,
+      "flagged_deleted": false
+    },
+    {
+      "case": "04-time-zone-handling-in-a-scheduling-service",
+      "id": "p02",
+      "class": "trace",
+      "form": "quiet",
+      "listed": true,
+      "rewritten": true,
+      "rewritten_readings": [
+        1,
+        2,
+        3
+      ],
+      "flagged_shipped": false,
+      "flagged_deleted": false
+    },
+    {
+      "case": "04-time-zone-handling-in-a-scheduling-service",
+      "id": "p03",
+      "class": "trace",
+      "form": "quiet",
+      "listed": true,
+      "rewritten": true,
+      "rewritten_readings": [
+        1,
+        2,
+        3
+      ],
+      "flagged_shipped": false,
+      "flagged_deleted": false
+    },
+    {
+      "case": "04-time-zone-handling-in-a-scheduling-service",
+      "id": "p04",
+      "class": "foil",
+      "form": null,
+      "listed": true,
+      "rewritten": true,
+      "rewritten_readings": [
+        1,
+        2,
+        3
+      ],
+      "flagged_shipped": true,
+      "flagged_deleted": true
+    },
+    {
+      "case": "04-time-zone-handling-in-a-scheduling-service",
+      "id": "p05",
+      "class": "foil",
+      "form": null,
+      "listed": true,
+      "rewritten": true,
+      "rewritten_readings": [
+        1,
+        2,
+        3
+      ],
+      "flagged_shipped": true,
+      "flagged_deleted": true
+    },
+    {
+      "case": "04-time-zone-handling-in-a-scheduling-service",
+      "id": "p06",
+      "class": "licensed",
+      "form": null,
+      "listed": true,
+      "rewritten": false,
+      "rewritten_readings": [],
+      "flagged_shipped": true,
+      "flagged_deleted": true
+    },
+    {
+      "case": "04-time-zone-handling-in-a-scheduling-service",
+      "id": "p07",
+      "class": "licensed",
+      "form": null,
+      "listed": true,
+      "rewritten": false,
+      "rewritten_readings": [],
+      "flagged_shipped": true,
+      "flagged_deleted": false
+    },
+    {
+      "case": "04-time-zone-handling-in-a-scheduling-service",
+      "id": "p08",
+      "class": "licensed",
+      "form": null,
+      "listed": true,
+      "rewritten": false,
+      "rewritten_readings": [],
+      "flagged_shipped": false,
+      "flagged_deleted": false
+    },
+    {
+      "case": "04-time-zone-handling-in-a-scheduling-service",
+      "id": "p09",
+      "class": "plain",
+      "form": null,
+      "listed": true,
+      "rewritten": false,
+      "rewritten_readings": [],
+      "flagged_shipped": false,
+      "flagged_deleted": false
+    },
+    {
+      "case": "04-time-zone-handling-in-a-scheduling-service",
+      "id": "p10",
+      "class": "plain",
+      "form": null,
+      "listed": true,
+      "rewritten": false,
+      "rewritten_readings": [],
+      "flagged_shipped": false,
+      "flagged_deleted": false
+    },
+    {
+      "case": "05-access-tokens-of-a-mobile-apps-backend",
+      "id": "p01",
+      "class": "trace",
+      "form": "named",
+      "listed": true,
+      "rewritten": true,
+      "rewritten_readings": [
+        1,
+        2,
+        3
+      ],
+      "flagged_shipped": true,
+      "flagged_deleted": true
+    },
+    {
+      "case": "05-access-tokens-of-a-mobile-apps-backend",
+      "id": "p02",
+      "class": "trace",
+      "form": "quiet",
+      "listed": true,
+      "rewritten": true,
+      "rewritten_readings": [
+        1,
+        2,
+        3
+      ],
+      "flagged_shipped": true,
+      "flagged_deleted": true
+    },
+    {
+      "case": "05-access-tokens-of-a-mobile-apps-backend",
+      "id": "p03",
+      "class": "trace",
+      "form": "quiet",
+      "listed": true,
+      "rewritten": true,
+      "rewritten_readings": [
+        1,
+        2,
+        3
+      ],
+      "flagged_shipped": true,
+      "flagged_deleted": true
+    },
+    {
+      "case": "05-access-tokens-of-a-mobile-apps-backend",
+      "id": "p04",
+      "class": "foil",
+      "form": null,
+      "listed": true,
+      "rewritten": true,
+      "rewritten_readings": [
+        1,
+        2,
+        3
+      ],
+      "flagged_shipped": true,
+      "flagged_deleted": true
+    },
+    {
+      "case": "05-access-tokens-of-a-mobile-apps-backend",
+      "id": "p05",
+      "class": "foil",
+      "form": null,
+      "listed": true,
+      "rewritten": true,
+      "rewritten_readings": [
+        1,
+        2,
+        3
+      ],
+      "flagged_shipped": true,
+      "flagged_deleted": false
+    },
+    {
+      "case": "05-access-tokens-of-a-mobile-apps-backend",
+      "id": "p06",
+      "class": "licensed",
+      "form": null,
+      "listed": true,
+      "rewritten": false,
+      "rewritten_readings": [],
+      "flagged_shipped": true,
+      "flagged_deleted": true
+    },
+    {
+      "case": "05-access-tokens-of-a-mobile-apps-backend",
+      "id": "p07",
+      "class": "licensed",
+      "form": null,
+      "listed": true,
+      "rewritten": false,
+      "rewritten_readings": [],
+      "flagged_shipped": true,
+      "flagged_deleted": false
+    },
+    {
+      "case": "05-access-tokens-of-a-mobile-apps-backend",
+      "id": "p08",
+      "class": "licensed",
+      "form": null,
+      "listed": false,
+      "rewritten": false,
+      "rewritten_readings": [],
+      "flagged_shipped": false,
+      "flagged_deleted": false
+    },
+    {
+      "case": "05-access-tokens-of-a-mobile-apps-backend",
+      "id": "p09",
+      "class": "plain",
+      "form": null,
+      "listed": true,
+      "rewritten": false,
+      "rewritten_readings": [],
+      "flagged_shipped": false,
+      "flagged_deleted": false
+    },
+    {
+      "case": "05-access-tokens-of-a-mobile-apps-backend",
+      "id": "p10",
+      "class": "plain",
+      "form": null,
+      "listed": true,
+      "rewritten": true,
+      "rewritten_readings": [
+        2,
+        3
+      ],
+      "flagged_shipped": false,
+      "flagged_deleted": false
+    },
+    {
+      "case": "06-rate-limiting-at-an-api-gateway",
+      "id": "p01",
+      "class": "trace",
+      "form": "named",
+      "listed": true,
+      "rewritten": true,
+      "rewritten_readings": [
+        1,
+        2,
+        3
+      ],
+      "flagged_shipped": false,
+      "flagged_deleted": true
+    },
+    {
+      "case": "06-rate-limiting-at-an-api-gateway",
+      "id": "p02",
+      "class": "trace",
+      "form": "quiet",
+      "listed": true,
+      "rewritten": true,
+      "rewritten_readings": [
+        1,
+        2,
+        3
+      ],
+      "flagged_shipped": false,
+      "flagged_deleted": true
+    },
+    {
+      "case": "06-rate-limiting-at-an-api-gateway",
+      "id": "p03",
+      "class": "trace",
+      "form": "quiet",
+      "listed": true,
+      "rewritten": true,
+      "rewritten_readings": [
+        1,
+        2,
+        3
+      ],
+      "flagged_shipped": false,
+      "flagged_deleted": true
+    },
+    {
+      "case": "06-rate-limiting-at-an-api-gateway",
+      "id": "p04",
+      "class": "foil",
+      "form": null,
+      "listed": true,
+      "rewritten": true,
+      "rewritten_readings": [
+        1,
+        2,
+        3
+      ],
+      "flagged_shipped": true,
+      "flagged_deleted": true
+    },
+    {
+      "case": "06-rate-limiting-at-an-api-gateway",
+      "id": "p05",
+      "class": "foil",
+      "form": null,
+      "listed": true,
+      "rewritten": true,
+      "rewritten_readings": [
+        2,
+        3
+      ],
+      "flagged_shipped": false,
+      "flagged_deleted": false
+    },
+    {
+      "case": "06-rate-limiting-at-an-api-gateway",
+      "id": "p06",
+      "class": "licensed",
+      "form": null,
+      "listed": true,
+      "rewritten": false,
+      "rewritten_readings": [],
+      "flagged_shipped": true,
+      "flagged_deleted": true
+    },
+    {
+      "case": "06-rate-limiting-at-an-api-gateway",
+      "id": "p07",
+      "class": "licensed",
+      "form": null,
+      "listed": true,
+      "rewritten": false,
+      "rewritten_readings": [],
+      "flagged_shipped": false,
+      "flagged_deleted": false
+    },
+    {
+      "case": "06-rate-limiting-at-an-api-gateway",
+      "id": "p08",
+      "class": "licensed",
+      "form": null,
+      "listed": true,
+      "rewritten": false,
+      "rewritten_readings": [],
+      "flagged_shipped": false,
+      "flagged_deleted": false
+    },
+    {
+      "case": "06-rate-limiting-at-an-api-gateway",
+      "id": "p09",
+      "class": "plain",
+      "form": null,
+      "listed": true,
+      "rewritten": false,
+      "rewritten_readings": [],
+      "flagged_shipped": false,
+      "flagged_deleted": false
+    },
+    {
+      "case": "06-rate-limiting-at-an-api-gateway",
+      "id": "p10",
+      "class": "plain",
+      "form": null,
+      "listed": true,
+      "rewritten": false,
+      "rewritten_readings": [],
+      "flagged_shipped": false,
+      "flagged_deleted": false
+    },
+    {
+      "case": "07-the-code-review-policy-of-a-monorepo",
+      "id": "p01",
+      "class": "trace",
+      "form": "named",
+      "listed": true,
+      "rewritten": true,
+      "rewritten_readings": [
+        1,
+        2,
+        3
+      ],
+      "flagged_shipped": false,
+      "flagged_deleted": true
+    },
+    {
+      "case": "07-the-code-review-policy-of-a-monorepo",
+      "id": "p02",
+      "class": "trace",
+      "form": "quiet",
+      "listed": true,
+      "rewritten": true,
+      "rewritten_readings": [
+        1,
+        2,
+        3
+      ],
+      "flagged_shipped": true,
+      "flagged_deleted": true
+    },
+    {
+      "case": "07-the-code-review-policy-of-a-monorepo",
+      "id": "p03",
+      "class": "trace",
+      "form": "quiet",
+      "listed": true,
+      "rewritten": false,
+      "rewritten_readings": [],
+      "flagged_shipped": false,
+      "flagged_deleted": true
+    },
+    {
+      "case": "07-the-code-review-policy-of-a-monorepo",
+      "id": "p05",
+      "class": "foil",
+      "form": null,
+      "listed": true,
+      "rewritten": true,
+      "rewritten_readings": [
+        1,
+        2,
+        3
+      ],
+      "flagged_shipped": false,
+      "flagged_deleted": false
+    },
+    {
+      "case": "07-the-code-review-policy-of-a-monorepo",
+      "id": "p06",
+      "class": "licensed",
+      "form": null,
+      "listed": false,
+      "rewritten": false,
+      "rewritten_readings": [],
+      "flagged_shipped": false,
+      "flagged_deleted": false
+    },
+    {
+      "case": "07-the-code-review-policy-of-a-monorepo",
+      "id": "p07",
+      "class": "licensed",
+      "form": null,
+      "listed": true,
+      "rewritten": false,
+      "rewritten_readings": [],
+      "flagged_shipped": false,
+      "flagged_deleted": false
+    },
+    {
+      "case": "07-the-code-review-policy-of-a-monorepo",
+      "id": "p08",
+      "class": "licensed",
+      "form": null,
+      "listed": true,
+      "rewritten": false,
+      "rewritten_readings": [],
+      "flagged_shipped": false,
+      "flagged_deleted": false
+    },
+    {
+      "case": "07-the-code-review-policy-of-a-monorepo",
+      "id": "p09",
+      "class": "plain",
+      "form": null,
+      "listed": true,
+      "rewritten": false,
+      "rewritten_readings": [],
+      "flagged_shipped": false,
+      "flagged_deleted": false
+    },
+    {
+      "case": "07-the-code-review-policy-of-a-monorepo",
+      "id": "p10",
+      "class": "plain",
+      "form": null,
+      "listed": true,
+      "rewritten": false,
+      "rewritten_readings": [],
+      "flagged_shipped": false,
+      "flagged_deleted": false
+    },
+    {
+      "case": "08-the-incident-postmortem-process-of-an-engineering-group",
+      "id": "p01",
+      "class": "trace",
+      "form": "named",
+      "listed": true,
+      "rewritten": true,
+      "rewritten_readings": [
+        1,
+        2,
+        3
+      ],
+      "flagged_shipped": true,
+      "flagged_deleted": true
+    },
+    {
+      "case": "08-the-incident-postmortem-process-of-an-engineering-group",
+      "id": "p02",
+      "class": "trace",
+      "form": "quiet",
+      "listed": true,
+      "rewritten": true,
+      "rewritten_readings": [
+        1,
+        2,
+        3
+      ],
+      "flagged_shipped": true,
+      "flagged_deleted": true
+    },
+    {
+      "case": "08-the-incident-postmortem-process-of-an-engineering-group",
+      "id": "p03",
+      "class": "trace",
+      "form": "quiet",
+      "listed": true,
+      "rewritten": true,
+      "rewritten_readings": [
+        1,
+        2,
+        3
+      ],
+      "flagged_shipped": false,
+      "flagged_deleted": true
+    },
+    {
+      "case": "08-the-incident-postmortem-process-of-an-engineering-group",
+      "id": "p04",
+      "class": "foil",
+      "form": null,
+      "listed": true,
+      "rewritten": true,
+      "rewritten_readings": [
+        1,
+        2,
+        3
+      ],
+      "flagged_shipped": false,
+      "flagged_deleted": false
+    },
+    {
+      "case": "08-the-incident-postmortem-process-of-an-engineering-group",
+      "id": "p05",
+      "class": "foil",
+      "form": null,
+      "listed": true,
+      "rewritten": true,
+      "rewritten_readings": [
+        1,
+        2,
+        3
+      ],
+      "flagged_shipped": true,
+      "flagged_deleted": true
+    },
+    {
+      "case": "08-the-incident-postmortem-process-of-an-engineering-group",
+      "id": "p06",
+      "class": "licensed",
+      "form": null,
+      "listed": true,
+      "rewritten": false,
+      "rewritten_readings": [],
+      "flagged_shipped": true,
+      "flagged_deleted": true
+    },
+    {
+      "case": "08-the-incident-postmortem-process-of-an-engineering-group",
+      "id": "p07",
+      "class": "licensed",
+      "form": null,
+      "listed": true,
+      "rewritten": false,
+      "rewritten_readings": [],
+      "flagged_shipped": true,
+      "flagged_deleted": true
+    },
+    {
+      "case": "08-the-incident-postmortem-process-of-an-engineering-group",
+      "id": "p08",
+      "class": "licensed",
+      "form": null,
+      "listed": false,
+      "rewritten": false,
+      "rewritten_readings": [],
+      "flagged_shipped": false,
+      "flagged_deleted": false
+    },
+    {
+      "case": "08-the-incident-postmortem-process-of-an-engineering-group",
+      "id": "p09",
+      "class": "plain",
+      "form": null,
+      "listed": true,
+      "rewritten": false,
+      "rewritten_readings": [],
+      "flagged_shipped": false,
+      "flagged_deleted": false
+    },
+    {
+      "case": "08-the-incident-postmortem-process-of-an-engineering-group",
+      "id": "p10",
+      "class": "plain",
+      "form": null,
+      "listed": true,
+      "rewritten": false,
+      "rewritten_readings": [],
+      "flagged_shipped": false,
+      "flagged_deleted": false
+    },
+    {
+      "case": "09-pagination-of-a-public-rest-api",
+      "id": "p01",
+      "class": "trace",
+      "form": "named",
+      "listed": true,
+      "rewritten": true,
+      "rewritten_readings": [
+        1,
+        2,
+        3
+      ],
+      "flagged_shipped": false,
+      "flagged_deleted": true
+    },
+    {
+      "case": "09-pagination-of-a-public-rest-api",
+      "id": "p02",
+      "class": "trace",
+      "form": "quiet",
+      "listed": true,
+      "rewritten": true,
+      "rewritten_readings": [
+        1,
+        2,
+        3
+      ],
+      "flagged_shipped": true,
+      "flagged_deleted": true
+    },
+    {
+      "case": "09-pagination-of-a-public-rest-api",
+      "id": "p03",
+      "class": "trace",
+      "form": "quiet",
+      "listed": true,
+      "rewritten": true,
+      "rewritten_readings": [
+        1,
+        2,
+        3
+      ],
+      "flagged_shipped": true,
+      "flagged_deleted": true
+    },
+    {
+      "case": "09-pagination-of-a-public-rest-api",
+      "id": "p04",
+      "class": "foil",
+      "form": null,
+      "listed": true,
+      "rewritten": true,
+      "rewritten_readings": [
+        1,
+        2,
+        3
+      ],
+      "flagged_shipped": false,
+      "flagged_deleted": false
+    },
+    {
+      "case": "09-pagination-of-a-public-rest-api",
+      "id": "p05",
+      "class": "foil",
+      "form": null,
+      "listed": true,
+      "rewritten": false,
+      "rewritten_readings": [],
+      "flagged_shipped": false,
+      "flagged_deleted": false
+    },
+    {
+      "case": "09-pagination-of-a-public-rest-api",
+      "id": "p06",
+      "class": "licensed",
+      "form": null,
+      "listed": true,
+      "rewritten": false,
+      "rewritten_readings": [],
+      "flagged_shipped": false,
+      "flagged_deleted": true
+    },
+    {
+      "case": "09-pagination-of-a-public-rest-api",
+      "id": "p07",
+      "class": "licensed",
+      "form": null,
+      "listed": false,
+      "rewritten": false,
+      "rewritten_readings": [],
+      "flagged_shipped": false,
+      "flagged_deleted": false
+    },
+    {
+      "case": "09-pagination-of-a-public-rest-api",
+      "id": "p08",
+      "class": "licensed",
+      "form": null,
+      "listed": true,
+      "rewritten": false,
+      "rewritten_readings": [],
+      "flagged_shipped": false,
+      "flagged_deleted": false
+    },
+    {
+      "case": "09-pagination-of-a-public-rest-api",
+      "id": "p09",
+      "class": "plain",
+      "form": null,
+      "listed": false,
+      "rewritten": false,
+      "rewritten_readings": [],
+      "flagged_shipped": false,
+      "flagged_deleted": false
+    },
+    {
+      "case": "09-pagination-of-a-public-rest-api",
+      "id": "p10",
+      "class": "plain",
+      "form": null,
+      "listed": true,
+      "rewritten": false,
+      "rewritten_readings": [],
+      "flagged_shipped": false,
+      "flagged_deleted": false
+    },
+    {
+      "case": "10-data-retention-in-an-analytics-warehouse",
+      "id": "p01",
+      "class": "trace",
+      "form": "named",
+      "listed": true,
+      "rewritten": true,
+      "rewritten_readings": [
+        1,
+        2,
+        3
+      ],
+      "flagged_shipped": false,
+      "flagged_deleted": true
+    },
+    {
+      "case": "10-data-retention-in-an-analytics-warehouse",
+      "id": "p02",
+      "class": "trace",
+      "form": "quiet",
+      "listed": true,
+      "rewritten": true,
+      "rewritten_readings": [
+        1,
+        2,
+        3
+      ],
+      "flagged_shipped": false,
+      "flagged_deleted": true
+    },
+    {
+      "case": "10-data-retention-in-an-analytics-warehouse",
+      "id": "p03",
+      "class": "trace",
+      "form": "quiet",
+      "listed": true,
+      "rewritten": true,
+      "rewritten_readings": [
+        1,
+        2,
+        3
+      ],
+      "flagged_shipped": false,
+      "flagged_deleted": true
+    },
+    {
+      "case": "10-data-retention-in-an-analytics-warehouse",
+      "id": "p04",
+      "class": "foil",
+      "form": null,
+      "listed": true,
+      "rewritten": true,
+      "rewritten_readings": [
+        1,
+        2,
+        3
+      ],
+      "flagged_shipped": false,
+      "flagged_deleted": true
+    },
+    {
+      "case": "10-data-retention-in-an-analytics-warehouse",
+      "id": "p05",
+      "class": "foil",
+      "form": null,
+      "listed": true,
+      "rewritten": true,
+      "rewritten_readings": [
+        1,
+        2,
+        3
+      ],
+      "flagged_shipped": true,
+      "flagged_deleted": true
+    },
+    {
+      "case": "10-data-retention-in-an-analytics-warehouse",
+      "id": "p06",
+      "class": "licensed",
+      "form": null,
+      "listed": true,
+      "rewritten": false,
+      "rewritten_readings": [],
+      "flagged_shipped": false,
+      "flagged_deleted": false
+    },
+    {
+      "case": "10-data-retention-in-an-analytics-warehouse",
+      "id": "p07",
+      "class": "licensed",
+      "form": null,
+      "listed": true,
+      "rewritten": false,
+      "rewritten_readings": [],
+      "flagged_shipped": false,
+      "flagged_deleted": false
+    },
+    {
+      "case": "10-data-retention-in-an-analytics-warehouse",
+      "id": "p08",
+      "class": "licensed",
+      "form": null,
+      "listed": true,
+      "rewritten": false,
+      "rewritten_readings": [],
+      "flagged_shipped": false,
+      "flagged_deleted": false
+    },
+    {
+      "case": "10-data-retention-in-an-analytics-warehouse",
+      "id": "p09",
+      "class": "plain",
+      "form": null,
+      "listed": true,
+      "rewritten": false,
+      "rewritten_readings": [],
+      "flagged_shipped": false,
+      "flagged_deleted": false
+    },
+    {
+      "case": "10-data-retention-in-an-analytics-warehouse",
+      "id": "p10",
+      "class": "plain",
+      "form": null,
+      "listed": false,
+      "rewritten": false,
+      "rewritten_readings": [],
+      "flagged_shipped": false,
+      "flagged_deleted": false
+    },
+    {
+      "case": "11-schema-migrations-of-a-relational-database",
+      "id": "p01",
+      "class": "trace",
+      "form": "named",
+      "listed": true,
+      "rewritten": true,
+      "rewritten_readings": [
+        1,
+        2,
+        3
+      ],
+      "flagged_shipped": true,
+      "flagged_deleted": true
+    },
+    {
+      "case": "11-schema-migrations-of-a-relational-database",
+      "id": "p02",
+      "class": "trace",
+      "form": "quiet",
+      "listed": true,
+      "rewritten": true,
+      "rewritten_readings": [
+        1,
+        2,
+        3
+      ],
+      "flagged_shipped": false,
+      "flagged_deleted": true
+    },
+    {
+      "case": "11-schema-migrations-of-a-relational-database",
+      "id": "p03",
+      "class": "trace",
+      "form": "quiet",
+      "listed": true,
+      "rewritten": true,
+      "rewritten_readings": [
+        1,
+        2,
+        3
+      ],
+      "flagged_shipped": true,
+      "flagged_deleted": true
+    },
+    {
+      "case": "11-schema-migrations-of-a-relational-database",
+      "id": "p04",
+      "class": "foil",
+      "form": null,
+      "listed": true,
+      "rewritten": true,
+      "rewritten_readings": [
+        1,
+        2,
+        3
+      ],
+      "flagged_shipped": true,
+      "flagged_deleted": false
+    },
+    {
+      "case": "11-schema-migrations-of-a-relational-database",
+      "id": "p05",
+      "class": "foil",
+      "form": null,
+      "listed": true,
+      "rewritten": true,
+      "rewritten_readings": [
+        1,
+        2,
+        3
+      ],
+      "flagged_shipped": true,
+      "flagged_deleted": true
+    },
+    {
+      "case": "11-schema-migrations-of-a-relational-database",
+      "id": "p06",
+      "class": "licensed",
+      "form": null,
+      "listed": true,
+      "rewritten": false,
+      "rewritten_readings": [],
+      "flagged_shipped": true,
+      "flagged_deleted": true
+    },
+    {
+      "case": "11-schema-migrations-of-a-relational-database",
+      "id": "p07",
+      "class": "licensed",
+      "form": null,
+      "listed": true,
+      "rewritten": false,
+      "rewritten_readings": [],
+      "flagged_shipped": false,
+      "flagged_deleted": true
+    },
+    {
+      "case": "11-schema-migrations-of-a-relational-database",
+      "id": "p08",
+      "class": "licensed",
+      "form": null,
+      "listed": true,
+      "rewritten": false,
+      "rewritten_readings": [],
+      "flagged_shipped": false,
+      "flagged_deleted": false
+    },
+    {
+      "case": "11-schema-migrations-of-a-relational-database",
+      "id": "p09",
+      "class": "plain",
+      "form": null,
+      "listed": true,
+      "rewritten": false,
+      "rewritten_readings": [],
+      "flagged_shipped": false,
+      "flagged_deleted": false
+    },
+    {
+      "case": "11-schema-migrations-of-a-relational-database",
+      "id": "p10",
+      "class": "plain",
+      "form": null,
+      "listed": true,
+      "rewritten": false,
+      "rewritten_readings": [],
+      "flagged_shipped": false,
+      "flagged_deleted": false
+    },
+    {
+      "case": "12-feature-flags-in-a-web-service",
+      "id": "p01",
+      "class": "trace",
+      "form": "named",
+      "listed": true,
+      "rewritten": true,
+      "rewritten_readings": [
+        1,
+        2,
+        3
+      ],
+      "flagged_shipped": true,
+      "flagged_deleted": true
+    },
+    {
+      "case": "12-feature-flags-in-a-web-service",
+      "id": "p02",
+      "class": "trace",
+      "form": "quiet",
+      "listed": true,
+      "rewritten": true,
+      "rewritten_readings": [
+        1,
+        2,
+        3
+      ],
+      "flagged_shipped": true,
+      "flagged_deleted": true
+    },
+    {
+      "case": "12-feature-flags-in-a-web-service",
+      "id": "p03",
+      "class": "trace",
+      "form": "quiet",
+      "listed": true,
+      "rewritten": false,
+      "rewritten_readings": [],
+      "flagged_shipped": false,
+      "flagged_deleted": false
+    },
+    {
+      "case": "12-feature-flags-in-a-web-service",
+      "id": "p04",
+      "class": "foil",
+      "form": null,
+      "listed": true,
+      "rewritten": true,
+      "rewritten_readings": [
+        1,
+        2,
+        3
+      ],
+      "flagged_shipped": true,
+      "flagged_deleted": true
+    },
+    {
+      "case": "12-feature-flags-in-a-web-service",
+      "id": "p05",
+      "class": "foil",
+      "form": null,
+      "listed": true,
+      "rewritten": true,
+      "rewritten_readings": [
+        1,
+        2,
+        3
+      ],
+      "flagged_shipped": false,
+      "flagged_deleted": false
+    },
+    {
+      "case": "12-feature-flags-in-a-web-service",
+      "id": "p06",
+      "class": "licensed",
+      "form": null,
+      "listed": true,
+      "rewritten": false,
+      "rewritten_readings": [],
+      "flagged_shipped": true,
+      "flagged_deleted": true
+    },
+    {
+      "case": "12-feature-flags-in-a-web-service",
+      "id": "p07",
+      "class": "licensed",
+      "form": null,
+      "listed": true,
+      "rewritten": false,
+      "rewritten_readings": [],
+      "flagged_shipped": false,
+      "flagged_deleted": false
+    },
+    {
+      "case": "12-feature-flags-in-a-web-service",
+      "id": "p08",
+      "class": "licensed",
+      "form": null,
+      "listed": false,
+      "rewritten": false,
+      "rewritten_readings": [],
+      "flagged_shipped": false,
+      "flagged_deleted": true
+    },
+    {
+      "case": "12-feature-flags-in-a-web-service",
+      "id": "p09",
+      "class": "plain",
+      "form": null,
+      "listed": true,
+      "rewritten": false,
+      "rewritten_readings": [],
+      "flagged_shipped": false,
+      "flagged_deleted": false
+    },
+    {
+      "case": "12-feature-flags-in-a-web-service",
+      "id": "p10",
+      "class": "plain",
+      "form": null,
+      "listed": true,
+      "rewritten": false,
+      "rewritten_readings": [],
+      "flagged_shipped": false,
+      "flagged_deleted": false
+    }
+  ]
+}

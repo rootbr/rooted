@@ -1,0 +1,98 @@
+{
+ "verdicts": [
+  {
+   "id": "c001",
+   "target": "a compiled ruleset artifact that needs a build to change",
+   "verdict": "rewrite",
+   "reason": "The document never presents a compiled ruleset, so the sentence argues with an alternative nobody showed."
+  },
+  {
+   "id": "c002",
+   "target": "naming flags after ticket numbers",
+   "verdict": "rewrite",
+   "reason": "Nobody in the document proposes ticket-number names, so this corrects a misconception no one voiced."
+  },
+  {
+   "id": "c003",
+   "target": "reuse of a deleted flag name",
+   "verdict": "plain",
+   "question": "May I reuse the name of a flag that was deleted?",
+   "reason": "It is a prohibition on the document's own subject, set against no other rule or version."
+  },
+  {
+   "id": "c004",
+   "target": "the payments rule that every flag defaults to off",
+   "verdict": "licensed",
+   "quote": "The payments team keeps a stricter local rule under which every flag in its services must default to off.",
+   "reason": "The preceding sentence presents the default-off rule that this sentence relaxes outside payments."
+  },
+  {
+   "id": "c005",
+   "target": "upstream evaluation handed along with the request",
+   "verdict": "rewrite",
+   "reason": "No upstream evaluator appears in the document, and the deleted statements describe exactly that edge-gateway design, so the sentence argues with it."
+  },
+  {
+   "id": "c006",
+   "target": "a network hop or a wait on another component",
+   "verdict": "plain",
+   "question": "Does evaluating a flag need a network call or another component?",
+   "reason": "It states a guarantee that follows from the in-memory lookup, and a reader acts on it."
+  },
+  {
+   "id": "c007",
+   "target": "caching of evaluation results as commercial flag services advise",
+   "verdict": "licensed",
+   "quote": "Some commercial flag services bill per evaluation and advise clients to cache each result for several hours.",
+   "reason": "The preceding sentence presents the caching advice that the SDK declines."
+  },
+  {
+   "id": "c008",
+   "target": "behaviour of a flag without targeting rules",
+   "verdict": "plain",
+   "question": "What does a flag with no targeting rules return?",
+   "reason": "It states what holds when rules are absent, as a default does."
+  },
+  {
+   "id": "c009",
+   "target": "services disagreeing on a flag value after a ruleset change",
+   "verdict": "plain",
+   "question": "Can services see different values for one flag, and for how long?",
+   "reason": "It states a limit of the present design, bounded at 30 seconds, and the instances holding the earlier ruleset are part of that mechanism, not of the document's history."
+  },
+  {
+   "id": "c010",
+   "target": "a handler seeing two values of one flag",
+   "verdict": "plain",
+   "question": "How does a handler make sure it sees one value of a flag?",
+   "reason": "It gives the reader an action for the case the previous sentence describes."
+  },
+  {
+   "id": "c011",
+   "target": "the starting state of a new flag",
+   "verdict": "plain",
+   "question": "What default and targeting do I merge a new flag with?",
+   "reason": "The old behaviour is the code path being replaced, and the step is a rollout instruction for the present procedure."
+  },
+  {
+   "id": "c012",
+   "target": "the snapshot header that tests used to build",
+   "verdict": "rewrite",
+   "reason": "The document never mentions a snapshot header, and the phrase 'any more' speaks of an earlier state."
+  },
+  {
+   "id": "c013",
+   "target": "the flag store in integration tests",
+   "verdict": "plain",
+   "question": "What do integration tests start the SDK with?",
+   "reason": "The flag store is a component the document has presented, so this states how tests are set up."
+  },
+  {
+   "id": "c014",
+   "target": "the flag store being unreachable",
+   "verdict": "plain",
+   "question": "What does the SDK do when it cannot reach the flag store?",
+   "reason": "It states a failure condition and the behaviour that follows."
+  }
+ ]
+}

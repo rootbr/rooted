@@ -1,0 +1,17 @@
+{
+  "topic": "pagination of a public REST API",
+  "old_rule": "Every list endpoint is paginated by page number, the client sending page_number from 1 and page_size up to 100, and every response carries an X-Total-Count header with the size of the whole filtered collection.",
+  "new_rule": "Every list endpoint is paginated by an opaque cursor, the client sending limit up to 200 and the cursor from the previous response's next_cursor field, and a response without next_cursor is the last one.",
+  "planted": [
+    {"id": "p01", "class": "trace", "form": "named", "text": "Responses carry no X-Total-Count header, so progress bars have to be sized some other way."},
+    {"id": "p02", "class": "trace", "form": "quiet", "text": "A client no longer works out where the next request starts from the number of the page it is on and the size of each page."},
+    {"id": "p03", "class": "trace", "form": "quiet", "text": "Jumping straight to an arbitrary point in the middle of a collection is not something clients can do any more."},
+    {"id": "p04", "class": "foil", "text": "The sort key is chosen from the list the endpoint publishes, not composed by the client as a free-form expression."},
+    {"id": "p05", "class": "foil", "text": "An unreadable cursor is reported as an error, never silently taken as a request for the first items."},
+    {"id": "p06", "class": "licensed", "text": "Our cursors carry no such promise, and their contents may change in any release without notice.", "licence": "Some public APIs document their cursor format so that clients can build cursors of their own."},
+    {"id": "p07", "class": "licensed", "text": "That pattern fails against this API, since a cursor lapses fifteen minutes after it was issued.", "licence": "Several popular client libraries store the next link and follow it hours later."},
+    {"id": "p08", "class": "licensed", "text": "The API cannot serve that request yet, and no response carries a cursor for the preceding items.", "licence": "The mobile team has asked the SDKs to let a feed scroll backwards."},
+    {"id": "p09", "class": "plain", "text": "A request that omits the limit parameter receives fifty items by default."},
+    {"id": "p10", "class": "plain", "text": "The server never returns more items than the limit the response reports."}
+  ]
+}

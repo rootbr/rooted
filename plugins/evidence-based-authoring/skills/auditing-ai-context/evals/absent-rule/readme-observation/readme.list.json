@@ -1,0 +1,400 @@
+{
+ "version": 1,
+ "mode": "pair",
+ "files": [
+  {
+   "file": "tmp/absent-rule-method/readme-case/new/README.md",
+   "sha256": "a0e262dfaa2cb6732f946e6c7b8ecd323e6bcb82ba0e63cea4939bc3712b735a"
+  }
+ ],
+ "deleted": [
+  {
+   "file": "tmp/absent-rule-method/readme-case/old/README.md",
+   "line": 7,
+   "text": "Skills for the full evidence-based preparation pipeline: research any topic with source verification, map its complete question space before you start, then write AI agent context that actually works — grounded instructions and disciplined reasoning instead of vibes."
+  },
+  {
+   "file": "tmp/absent-rule-method/readme-case/old/README.md",
+   "line": 7,
+   "text": "[Research shows](https://arxiv.org/abs/2602.11988) LLM-generated context files do not generally improve agent task success while raising inference cost by 20–23% — and the repository overviews they typically contain are specifically unhelpful."
+  },
+  {
+   "file": "tmp/absent-rule-method/readme-case/old/README.md",
+   "line": 7,
+   "text": "Rooted structurally refuses them: every rule traces to a peer-reviewed paper or an RFC."
+  },
+  {
+   "file": "tmp/absent-rule-method/readme-case/old/README.md",
+   "line": 7,
+   "text": "Software-development and code-review skills apply the same discipline to everyday coding."
+  },
+  {
+   "file": "tmp/absent-rule-method/readme-case/old/README.md",
+   "line": 9,
+   "text": "**Evidence-based, not LLM-generated.**"
+  },
+  {
+   "file": "tmp/absent-rule-method/readme-case/old/README.md",
+   "line": 9,
+   "text": "Every rule traces to a peer-reviewed paper, RFC/spec, or a hands-on test — not to \"ask the model to write a skill.\""
+  },
+  {
+   "file": "tmp/absent-rule-method/readme-case/old/README.md",
+   "line": 14,
+   "text": "Every rule, checklist item, and review criterion traces to one of:"
+  },
+  {
+   "file": "tmp/absent-rule-method/readme-case/old/README.md",
+   "line": 16,
+   "text": "**Academic research** — arxiv.org, peer-reviewed papers, Google Scholar, PubMed"
+  },
+  {
+   "file": "tmp/absent-rule-method/readme-case/old/README.md",
+   "line": 17,
+   "text": "**Technical standards** — RFCs, official specifications, language/framework documentation"
+  },
+  {
+   "file": "tmp/absent-rule-method/readme-case/old/README.md",
+   "line": 18,
+   "text": "**Human-tested** — a linked hands-on test (a commit or a gist) confirmed through practice"
+  },
+  {
+   "file": "tmp/absent-rule-method/readme-case/old/README.md",
+   "line": 24,
+   "text": "Six evidence-based skills."
+  },
+  {
+   "file": "tmp/absent-rule-method/readme-case/old/README.md",
+   "line": 24,
+   "text": "Three form a preparation pipeline — research → explore → write: gather verified sources, map every angle of a topic, then produce agent instructions grounded in evidence."
+  },
+  {
+   "file": "tmp/absent-rule-method/readme-case/old/README.md",
+   "line": 24,
+   "text": "`/appraising-research` adds a critical-appraisal gate over a finished report — grading evidence quality, surfacing hidden assumptions, hunting competing hypotheses and blind spots, and mapping who benefits."
+  },
+  {
+   "file": "tmp/absent-rule-method/readme-case/old/README.md",
+   "line": 24,
+   "text": "`/reading-companion` is an active-reading companion for a book you study yourself — grounded in learning-science research."
+  },
+  {
+   "file": "tmp/absent-rule-method/readme-case/old/README.md",
+   "line": 24,
+   "text": "The last, `/handing-over-to-readers`, shapes what an agent hands to a human — a report, an explanation, a question, a client's question list — into a handover the reader checks against evidence."
+  },
+  {
+   "file": "tmp/absent-rule-method/readme-case/old/README.md",
+   "line": 68,
+   "text": "See [`CONTRIBUTING.md`](CONTRIBUTING.md)."
+  },
+  {
+   "file": "tmp/absent-rule-method/readme-case/old/README.md",
+   "line": 68,
+   "text": "Every new rule must cite a source — an arXiv ID, an RFC number, or a linked hands-on test."
+  },
+  {
+   "file": "tmp/absent-rule-method/readme-case/old/README.md",
+   "line": 68,
+   "text": "PRs without citations are rejected by design, not by oversight."
+  }
+ ],
+ "candidates": [
+  {
+   "id": "c001",
+   "file": "tmp/absent-rule-method/readme-case/new/README.md",
+   "line": 7,
+   "end_line": 7,
+   "sentence": "Skills for the full evidence-based preparation pipeline: research any topic with source verification, map its complete question space before you start, then write AI agent context that actually works — grounded instructions and disciplined reasoning instead of vibes.",
+   "cues": [
+    "instead"
+   ]
+  },
+  {
+   "id": "c002",
+   "file": "tmp/absent-rule-method/readme-case/new/README.md",
+   "line": 7,
+   "end_line": 7,
+   "sentence": "[Research shows](https://arxiv.org/abs/2602.11988) LLM-generated context files do not generally improve agent task success while raising inference cost by 20–23% — and the repository overviews they typically contain are specifically unhelpful.",
+   "cues": [
+    "not"
+   ]
+  },
+  {
+   "id": "c003",
+   "file": "tmp/absent-rule-method/readme-case/new/README.md",
+   "line": 7,
+   "end_line": 7,
+   "sentence": "Rooted admits rules by the scientific method instead: a claim rests on a test that could have refuted it, a norm is named as a norm and a decision as a decision.",
+   "cues": [
+    "instead"
+   ]
+  },
+  {
+   "id": "c004",
+   "file": "tmp/absent-rule-method/readme-case/new/README.md",
+   "line": 9,
+   "end_line": 9,
+   "sentence": "**Tested, not asserted.**",
+   "cues": [
+    "not"
+   ]
+  },
+  {
+   "id": "c005",
+   "file": "tmp/absent-rule-method/readme-case/new/README.md",
+   "line": 9,
+   "end_line": 9,
+   "sentence": "A citation is the address of such a test, and where an idea came from carries no weight.",
+   "cues": [
+    "no"
+   ]
+  },
+  {
+   "id": "c006",
+   "file": "tmp/absent-rule-method/readme-case/new/README.md",
+   "line": 14,
+   "end_line": 14,
+   "sentence": "The method here is neither a sequence of steps nor a demand for a citation: it is a way of treating statements about how the world works.",
+   "cues": [
+    "neither",
+    "nor"
+   ]
+  },
+  {
+   "id": "c007",
+   "file": "tmp/absent-rule-method/readme-case/new/README.md",
+   "line": 14,
+   "end_line": 14,
+   "sentence": "A citation is the address of someone else's test and never the support itself; a test of our own, committed to the repository, counts the same.",
+   "cues": [
+    "never"
+   ]
+  },
+  {
+   "id": "c008",
+   "file": "tmp/absent-rule-method/readme-case/new/README.md",
+   "line": 25,
+   "end_line": 25,
+   "sentence": "An *opinion* names no outcome that would refute it and stays out of the rules.",
+   "cues": [
+    "no"
+   ]
+  },
+  {
+   "id": "c009",
+   "file": "tmp/absent-rule-method/readme-case/new/README.md",
+   "line": 31,
+   "end_line": 31,
+   "sentence": "every statement names its kind, and no kind passes for another",
+   "cues": [
+    "no"
+   ]
+  },
+  {
+   "id": "c010",
+   "file": "tmp/absent-rule-method/readme-case/new/README.md",
+   "line": 34,
+   "end_line": 34,
+   "sentence": "another person can repeat the test, or open its source and find the test there; an author's name supports nothing",
+   "cues": [
+    "nothing"
+   ]
+  },
+  {
+   "id": "c011",
+   "file": "tmp/absent-rule-method/readme-case/new/README.md",
+   "line": 36,
+   "end_line": 36,
+   "sentence": "No fitting",
+   "cues": [
+    "no"
+   ]
+  },
+  {
+   "id": "c012",
+   "file": "tmp/absent-rule-method/readme-case/new/README.md",
+   "line": 39,
+   "end_line": 39,
+   "sentence": "A claim of our own needs no citation.",
+   "cues": [
+    "no"
+   ]
+  },
+  {
+   "id": "c013",
+   "file": "tmp/absent-rule-method/readme-case/new/README.md",
+   "line": 39,
+   "end_line": 39,
+   "sentence": "Its hypothesis is committed first, the test runs with the technique and without it, and the result is committed after — a script reads that order from history.",
+   "cues": [
+    "without"
+   ]
+  },
+  {
+   "id": "c014",
+   "file": "tmp/absent-rule-method/readme-case/new/README.md",
+   "line": 39,
+   "end_line": 39,
+   "sentence": "The seven rules are a convention the repository adopts: the philosophy of science offers no single criterion of what is scientific, so the method takes what its main lines agree on.",
+   "cues": [
+    "no"
+   ]
+  },
+  {
+   "id": "c015",
+   "file": "tmp/absent-rule-method/readme-case/new/README.md",
+   "line": 39,
+   "end_line": 39,
+   "sentence": "A record is required on every rule line that is added or changed; the lines not yet touched carry their sources without a record.",
+   "cues": [
+    "not",
+    "not yet",
+    "without"
+   ]
+  },
+  {
+   "id": "c016",
+   "file": "tmp/absent-rule-method/readme-case/new/README.md",
+   "line": 90,
+   "end_line": 90,
+   "sentence": "A PR that offers a citation in place of a test is returned by design, not by oversight.",
+   "cues": [
+    "in place of",
+    "not"
+   ]
+  },
+  {
+   "id": "c017",
+   "file": "tmp/absent-rule-method/readme-case/new/README.md",
+   "line": 296,
+   "end_line": 296,
+   "sentence": "They are formulations of the method, read in the philosophy of science, and none of them is offered as a test of it; the line of each rule in [`method-provenance.md`](plugins/evidence-based-authoring/skills/testing-claims/maintenance/method-provenance.md) carries the passage it follows and how the text was seen.",
+   "cues": [
+    "none"
+   ]
+  },
+  {
+   "id": "c018",
+   "file": "tmp/absent-rule-method/readme-case/new/README.md",
+   "line": 298,
+   "end_line": 298,
+   "sentence": "[plato.stanford.edu/entries/scientific-method](https://plato.stanford.edu/entries/scientific-method/) — No single universal method (§6.1); science differs from everyday knowledge by being more systematic (§7); the consequences of an error enter the choice between hypotheses (§4).",
+   "cues": [
+    "no"
+   ]
+  },
+  {
+   "id": "c019",
+   "file": "tmp/absent-rule-method/readme-case/new/README.md",
+   "line": 300,
+   "end_line": 300,
+   "sentence": "[plato.stanford.edu/entries/popper](https://plato.stanford.edu/entries/popper/) — A scientific theory prohibits outcomes; only a risky prediction corroborates; a tested theory is corroborated and never verified (§3–5).",
+   "cues": [
+    "never"
+   ]
+  },
+  {
+   "id": "c020",
+   "file": "tmp/absent-rule-method/readme-case/new/README.md",
+   "line": 302,
+   "end_line": 302,
+   "sentence": "[Cambridge University Press, excerpt](https://assets.cambridge.org/97811076/64647/excerpt/9781107664647_excerpt.pdf) — The severity requirement: \"One does not have evidence for a claim if nothing has been done to rule out ways the claim may be false.\"",
+   "cues": [
+    "not",
+    "nothing"
+   ]
+  },
+  {
+   "id": "c021",
+   "file": "tmp/absent-rule-method/readme-case/new/README.md",
+   "line": 303,
+   "end_line": 303,
+   "sentence": "[plato.stanford.edu/entries/scientific-objectivity](https://plato.stanford.edu/entries/scientific-objectivity/) — Objectivity as testing by others (§5.2); values decide how much evidence suffices and are not themselves evidence (§3).",
+   "cues": [
+    "not"
+   ]
+  },
+  {
+   "id": "c022",
+   "file": "tmp/absent-rule-method/readme-case/new/README.md",
+   "line": 304,
+   "end_line": 304,
+   "sentence": "[plato.stanford.edu/entries/hume-moral](https://plato.stanford.edu/entries/hume-moral/) — On the dominant reading, no evaluative conclusion follows from purely factual premises.",
+   "cues": [
+    "no"
+   ]
+  },
+  {
+   "id": "c023",
+   "file": "tmp/absent-rule-method/readme-case/new/README.md",
+   "line": 305,
+   "end_line": 305,
+   "sentence": "[plato.stanford.edu/entries/induction-problem](https://plato.stanford.edu/entries/induction-problem/) — The step from observed cases to unobserved ones rests on a uniformity that reason does not establish (§1–2).",
+   "cues": [
+    "not"
+   ]
+  },
+  {
+   "id": "c024",
+   "file": "tmp/absent-rule-method/readme-case/new/README.md",
+   "line": 309,
+   "end_line": 309,
+   "sentence": "[plato.stanford.edu/entries/scientific-underdetermination](https://plato.stanford.edu/entries/scientific-underdetermination/) — Duhem: an experiment tests a group of hypotheses and does not say which of them failed.",
+   "cues": [
+    "not"
+   ]
+  },
+  {
+   "id": "c025",
+   "file": "tmp/absent-rule-method/readme-case/new/README.md",
+   "line": 311,
+   "end_line": 311,
+   "sentence": "[plato.stanford.edu/entries/operationalism](https://plato.stanford.edu/entries/operationalism/) — A concept tied to the operations that measure it (§2.1); no extension of a concept without operational grounds (§3.2).",
+   "cues": [
+    "no",
+    "without"
+   ]
+  },
+  {
+   "id": "c026",
+   "file": "tmp/absent-rule-method/readme-case/new/README.md",
+   "line": 312,
+   "end_line": 312,
+   "sentence": "[plato.stanford.edu/entries/physics-experiment](https://plato.stanford.edu/entries/physics-experiment/), [plato.stanford.edu/entries/science-theory-observation](https://plato.stanford.edu/entries/science-theory-observation/) — How an experimental result is validated, with no strategy guaranteeing it; observation depends on theory and still tests it.",
+   "cues": [
+    "no"
+   ]
+  },
+  {
+   "id": "c027",
+   "file": "tmp/absent-rule-method/readme-case/new/README.md",
+   "line": 316,
+   "end_line": 316,
+   "sentence": "[royalsociety.org/about-us/who-we-are/history](https://royalsociety.org/about-us/who-we-are/history/) — The motto *Nullius in verba*, \"take nobody's word for it\": statements are verified by an appeal to facts determined by experiment.",
+   "cues": [
+    "nobody"
+   ]
+  },
+  {
+   "id": "c028",
+   "file": "tmp/absent-rule-method/readme-case/new/README.md",
+   "line": 318,
+   "end_line": 318,
+   "sentence": "[iphlib.ru](https://iphlib.ru/library/collection/newphilenc/document/HASHde83409a66a4b8acacdcde) — A hypothesis is a scientific supposition whose truth value is undetermined; testability in principle is necessary and not sufficient.",
+   "cues": [
+    "not"
+   ]
+  },
+  {
+   "id": "c029",
+   "file": "tmp/absent-rule-method/readme-case/new/README.md",
+   "line": 319,
+   "end_line": 319,
+   "sentence": "7, as quoted at [wikiquote](https://en.wikiquote.org/wiki/Richard_Feynman) — \"It does not make any difference how smart you are, who made the guess, or what his name is.",
+   "cues": [
+    "not"
+   ]
+  }
+ ]
+}

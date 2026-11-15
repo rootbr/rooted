@@ -1,0 +1,291 @@
+{
+ "version": 1,
+ "mode": "pair",
+ "files": [
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/12-feature-flags-in-a-web-service/new.md",
+   "sha256": "09334f178b49c25d845419886ae90cadff9a29aba14344d081ad367d038c3177"
+  }
+ ],
+ "deleted": [
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/12-feature-flags-in-a-web-service/old.md",
+   "line": 17,
+   "text": "Every flag is declared in the flags repository as one entry of the ruleset file."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/12-feature-flags-in-a-web-service/old.md",
+   "line": 17,
+   "text": "An entry names the flag, its kind, its owner, its default value, its variants and its targeting rules."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/12-feature-flags-in-a-web-service/old.md",
+   "line": 17,
+   "text": "A pull request to the ruleset needs approval from the flag's owner and from one platform engineer."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/12-feature-flags-in-a-web-service/old.md",
+   "line": 27,
+   "text": "Names are lowercase words joined by dots and begin with the owning area, as in checkout.express-pay."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/12-feature-flags-in-a-web-service/old.md",
+   "line": 31,
+   "text": "All flags are evaluated once per request by the edge gateway."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/12-feature-flags-in-a-web-service/old.md",
+   "line": 31,
+   "text": "The gateway writes every result into the X-Flag-Snapshot header, and downstream services read flag values from that header only."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/12-feature-flags-in-a-web-service/old.md",
+   "line": 31,
+   "text": "Services never call the flag store themselves."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/12-feature-flags-in-a-web-service/old.md",
+   "line": 33,
+   "text": "The flag store pushes a new ruleset to the gateway within a few seconds of a merge to the flags repository."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/12-feature-flags-in-a-web-service/old.md",
+   "line": 33,
+   "text": "The gateway evaluates every active flag for every request, which keeps the snapshot complete for whichever service reads it."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/12-feature-flags-in-a-web-service/old.md",
+   "line": 37,
+   "text": "Targeting rules match on the user ID, the country and the client platform."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/12-feature-flags-in-a-web-service/old.md",
+   "line": 37,
+   "text": "Percentage rollouts hash the user ID with the flag name, so a user stays in the same bucket as the percentage grows."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/12-feature-flags-in-a-web-service/old.md",
+   "line": 39,
+   "text": "Because the snapshot is computed once at the edge, every service that handles a request sees the same value for a flag, even if the ruleset changes while the request is in flight."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/12-feature-flags-in-a-web-service/old.md",
+   "line": 39,
+   "text": "A request that fans out to five services therefore never mixes two variants of one flag."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/12-feature-flags-in-a-web-service/old.md",
+   "line": 43,
+   "text": "Merge the flag with its default set to off and no targeting rules."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/12-feature-flags-in-a-web-service/old.md",
+   "line": 52,
+   "text": "Unit tests read flags through a small helper that parses the snapshot header, so a test sets the header on the fake request to choose a variant."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/12-feature-flags-in-a-web-service/old.md",
+   "line": 52,
+   "text": "Integration tests run against a gateway stub that emits a fixed snapshot."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/12-feature-flags-in-a-web-service/old.md",
+   "line": 52,
+   "text": "Every test suite covers both values of each release flag it touches."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/12-feature-flags-in-a-web-service/old.md",
+   "line": 56,
+   "text": "If the gateway cannot reach the flag store, it keeps serving the last ruleset it received and raises an alert after five minutes."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/12-feature-flags-in-a-web-service/old.md",
+   "line": 56,
+   "text": "If a request arrives at a service without a snapshot header, the helper treats every flag as its default value and logs a warning."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/12-feature-flags-in-a-web-service/old.md",
+   "line": 60,
+   "text": "A release flag must be deleted by its remove_by date."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/12-feature-flags-in-a-web-service/old.md",
+   "line": 60,
+   "text": "The weekly flag report lists flags past their date, and the owner deletes the flag and the dead code path in one pull request."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/12-feature-flags-in-a-web-service/old.md",
+   "line": 60,
+   "text": "Experiment flags are deleted within two weeks of the end of the test."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/12-feature-flags-in-a-web-service/old.md",
+   "line": 62,
+   "text": "Operational flags have no removal date and stay for as long as the feature they guard."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/12-feature-flags-in-a-web-service/old.md",
+   "line": 66,
+   "text": "The owning team answers for a flag from creation to deletion."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/12-feature-flags-in-a-web-service/old.md",
+   "line": 66,
+   "text": "When a team is dissolved, its flags pass to the team that inherits its code."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/12-feature-flags-in-a-web-service/old.md",
+   "line": 66,
+   "text": "The platform team owns the flag store, the gateway evaluation and the helper library."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/12-feature-flags-in-a-web-service/old.md",
+   "line": 71,
+   "text": "Whether the rollout log should move from the wiki into the ruleset entry."
+  }
+ ],
+ "candidates": [
+  {
+   "id": "c001",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/12-feature-flags-in-a-web-service/new.md",
+   "line": 17,
+   "end_line": 17,
+   "sentence": "The ruleset is a plain JSON document that anyone can read in review, not a compiled artifact that needs a build to change.",
+   "cues": [
+    "not"
+   ]
+  },
+  {
+   "id": "c002",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/12-feature-flags-in-a-web-service/new.md",
+   "line": 27,
+   "end_line": 27,
+   "sentence": "Flag names describe the behaviour a user sees rather than the ticket number under which the work was planned.",
+   "cues": [
+    "rather than"
+   ]
+  },
+  {
+   "id": "c003",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/12-feature-flags-in-a-web-service/new.md",
+   "line": 27,
+   "end_line": 27,
+   "sentence": "A flag name is never reused once the flag has been deleted, even years later.",
+   "cues": [
+    "never"
+   ]
+  },
+  {
+   "id": "c004",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/12-feature-flags-in-a-web-service/new.md",
+   "line": 29,
+   "end_line": 29,
+   "sentence": "Outside payments, a team may give a flag an on default when the old code path is the riskier of the two.",
+   "cues": [
+    "the old"
+   ]
+  },
+  {
+   "id": "c005",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/12-feature-flags-in-a-web-service/new.md",
+   "line": 33,
+   "end_line": 33,
+   "sentence": "A flag value is worked out inside the service that uses it, not decided upstream and handed along with the request.",
+   "cues": [
+    "not"
+   ]
+  },
+  {
+   "id": "c006",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/12-feature-flags-in-a-web-service/new.md",
+   "line": 35,
+   "end_line": 35,
+   "sentence": "Evaluating a flag therefore costs no network hop, and no service waits on another component to learn which variant a user gets.",
+   "cues": [
+    "no"
+   ]
+  },
+  {
+   "id": "c007",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/12-feature-flags-in-a-web-service/new.md",
+   "line": 37,
+   "end_line": 37,
+   "sentence": "Our SDK keeps no evaluation results between requests, so a ruleset change reaches users on the very next refresh.",
+   "cues": [
+    "no"
+   ]
+  },
+  {
+   "id": "c008",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/12-feature-flags-in-a-web-service/new.md",
+   "line": 41,
+   "end_line": 41,
+   "sentence": "A flag with no targeting rules returns its declared default to every user.",
+   "cues": [
+    "no"
+   ]
+  },
+  {
+   "id": "c009",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/12-feature-flags-in-a-web-service/new.md",
+   "line": 43,
+   "end_line": 43,
+   "sentence": "They can disagree for up to 30 seconds after a ruleset change, while some instances still hold the previous ruleset.",
+   "cues": [
+    "the previous"
+   ]
+  },
+  {
+   "id": "c010",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/12-feature-flags-in-a-web-service/new.md",
+   "line": 43,
+   "end_line": 43,
+   "sentence": "A handler that must not see two values of one flag reads it once at the start and keeps that value until it returns.",
+   "cues": [
+    "not"
+   ]
+  },
+  {
+   "id": "c011",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/12-feature-flags-in-a-web-service/new.md",
+   "line": 47,
+   "end_line": 47,
+   "sentence": "Merge the flag with its default set to the old behaviour and no targeting rules.",
+   "cues": [
+    "the old",
+    "no"
+   ]
+  },
+  {
+   "id": "c012",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/12-feature-flags-in-a-web-service/new.md",
+   "line": 56,
+   "end_line": 56,
+   "sentence": "No test has to build a flag snapshot header any more, since the fixture answers every question about a flag directly.",
+   "cues": [
+    "no",
+    "any more"
+   ]
+  },
+  {
+   "id": "c013",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/12-feature-flags-in-a-web-service/new.md",
+   "line": 56,
+   "end_line": 56,
+   "sentence": "Integration tests start the SDK with a fixed ruleset file instead of the flag store.",
+   "cues": [
+    "instead"
+   ]
+  },
+  {
+   "id": "c014",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/12-feature-flags-in-a-web-service/new.md",
+   "line": 60,
+   "end_line": 60,
+   "sentence": "If the SDK cannot reach the flag store, it keeps evaluating against the last ruleset it fetched and raises an alert after five minutes.",
+   "cues": [
+    "cannot"
+   ]
+  }
+ ]
+}

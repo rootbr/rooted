@@ -1,0 +1,20 @@
+## review:readme:r1
+Read   plugins/evidence-based-authoring/agents/trace-reviewer.md
+Read   tmp/absent-rule-method/readme-case/run/readme.list.json
+Read   tmp/absent-rule-method/readme-case/new/README.md
+Read   tmp/absent-rule-method/readme-case/new/README.md
+StructuredOutput
+
+## review:readme:r2
+Read   plugins/evidence-based-authoring/agents/trace-reviewer.md
+Read   tmp/absent-rule-method/readme-case/run/readme.list.json
+Read   tmp/absent-rule-method/readme-case/new/README.md
+Read   tmp/absent-rule-method/readme-case/new/README.md
+StructuredOutput
+
+## review:readme:r3
+Read   plugins/evidence-based-authoring/agents/trace-reviewer.md
+Read   tmp/absent-rule-method/readme-case/run/readme.list.json
+Read   tmp/absent-rule-method/readme-case/new/README.md
+Read   tmp/absent-rule-method/readme-case/new/README.md
+StructuredOutput

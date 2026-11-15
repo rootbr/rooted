@@ -1,0 +1,49 @@
+{
+ "id": "H-02",
+ "kind": "claim",
+ "standing": "supported",
+ "answers": [
+  {
+   "rule": 1,
+   "verdict": "holds",
+   "quote": "the trace pass removes the sentences that argue with a deleted rule · kind: claim",
+   "missing": ""
+  },
+  {
+   "rule": 2,
+   "verdict": "holds",
+   "quote": "refuter: under 0.80 of those sentences end as REWRITE",
+   "missing": ""
+  },
+  {
+   "rule": 3,
+   "verdict": "holds",
+   "quote": "threshold: 0.80 · runs: one pass over twelve generated notes with three such sentences planted in each",
+   "missing": ""
+  },
+  {
+   "rule": 4,
+   "verdict": "holds",
+   "quote": "python3 -I $A score --cases $E/evals/absent-rule/cases --run $RUN --out $RUN/results.json",
+   "missing": ""
+  },
+  {
+   "rule": 5,
+   "verdict": "holds",
+   "quote": "fit: transfer · transfer: the scope takes notes of 60 to 90 lines from any writer, and the run had notes of 64 to 83 lines from one model at one effort and one brief",
+   "missing": ""
+  },
+  {
+   "rule": 6,
+   "verdict": "holds",
+   "quote": "run 1, registered in the commit before this result and drawn by that commit's hash",
+   "missing": ""
+  },
+  {
+   "rule": 7,
+   "verdict": "holds",
+   "quote": "kind: claim · standing: supported",
+   "missing": ""
+  }
+ ]
+}

@@ -1,0 +1,17 @@
+{
+  "topic": "access tokens of a mobile app's backend",
+  "old_rule": "An access token is an opaque random string whose hash the gateway looks up in the sessions table on every request, and each accepted request extends its validity to 30 days from that use.",
+  "new_rule": "An access token is a signed JSON Web Token that expires 15 minutes after issue, each service verifies it locally against the auth service's published public keys, and the app renews it with a rotating refresh token.",
+  "planted": [
+    {"id": "p01", "class": "trace", "form": "named", "text": "The gateway no longer looks up the sessions table before it forwards a request."},
+    {"id": "p02", "class": "trace", "form": "quiet", "text": "A request made with an access token leaves its expiry time where it was rather than pushing it forward."},
+    {"id": "p03", "class": "trace", "form": "quiet", "text": "Services no longer wait on a round trip to the auth service before they serve a request."},
+    {"id": "p04", "class": "foil", "text": "The app reads the expiry time from the token's claims instead of keeping a countdown timer of its own."},
+    {"id": "p05", "class": "foil", "text": "Keys are rotated on that fixed calendar as a routine step rather than as a response to an incident."},
+    {"id": "p06", "class": "licensed", "text": "The Lumen app keeps both of its tokens in the iOS Keychain and the Android Keystore, never in those plain stores.", "licence": "Many mobile apps keep tokens in shared preferences on Android or in user defaults on iOS."},
+    {"id": "p07", "class": "licensed", "text": "Lumen does not take that option, and each successful refresh returns a new refresh token and retires the one that was sent.", "licence": "The OAuth specification also allows a refresh token to stay the same for its whole life."},
+    {"id": "p08", "class": "licensed", "text": "Every other service accepts any unexpired access token, however long ago it was issued.", "licence": "The payments service keeps its own stricter rule that a card operation needs an access token issued less than five minutes ago."},
+    {"id": "p09", "class": "plain", "text": "An access token never carries the user's name, email address or phone number."},
+    {"id": "p10", "class": "plain", "text": "If the refresh endpoint cannot be reached, the app keeps the user signed in and retries with a backoff capped at one minute."}
+  ]
+}

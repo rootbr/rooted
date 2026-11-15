@@ -1,0 +1,17 @@
+{
+  "topic": "data retention in an analytics warehouse",
+  "old_rule": "Every raw event table keeps 400 days of data, and once a month the retention steward opens a purge ticket listing older partitions, the table owners approve it, and the steward runs the monthly purge.",
+  "new_rule": "Every raw event table carries a 180-day partition expiry in its table definition, and a nightly expiry job drops expired partitions automatically with no approval step.",
+  "planted": [
+    {"id": "p01", "class": "trace", "form": "named", "text": "No retention steward reviews the list of expired partitions before the nightly job drops them."},
+    {"id": "p02", "class": "trace", "form": "quiet", "text": "An expired partition is dropped without anyone having to approve it first."},
+    {"id": "p03", "class": "trace", "form": "quiet", "text": "Raw tables no longer reach back a full year, so year-over-year queries against them will come back short."},
+    {"id": "p04", "class": "foil", "text": "Expiry is a property of the table itself, not something each analyst decides when writing a query."},
+    {"id": "p05", "class": "foil", "text": "Each night's rollup partition is computed from the raw partition of the day before rather than fed by a separate streaming pipeline."},
+    {"id": "p06", "class": "licensed", "text": "This warehouse keeps no such copy, so a dropped partition cannot be restored by anyone.", "licence": "Some warehouses copy expired partitions to cold storage before dropping them."},
+    {"id": "p07", "class": "licensed", "text": "The rollup tables sit outside that concern, since they hold no identifier of any kind.", "licence": "The legal team holds that pseudonymized identifiers still count as personal data."},
+    {"id": "p08", "class": "licensed", "text": "Product event tables are not bound by that rule and keep their raw rows for 180 days only.", "licence": "The finance schemas follow a seven-year retention rule set by the tax authority."},
+    {"id": "p09", "class": "plain", "text": "A request that names no user identifier is returned to the privacy team without any rows deleted."},
+    {"id": "p10", "class": "plain", "text": "A backfill that asks for dates beyond 180 days fails before it writes a single row."}
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "classes": {
+    "p01": {"class": "trace", "reason": "It sets the shift swap against swapping a whole pager week, which is rule A's unit of swap in old.md, and new.md never tells its reader what a pager week is."},
+    "p02": {"class": "trace", "reason": "It excuses the primary from rule A's requirement that the week holder answer every page day and night and stay within reach at all times for the whole pager week, a requirement new.md never states."},
+    "p03": {"class": "trace", "reason": "It sets the per-shift written note against a weekly meeting, which is rule A's thirty-minute Monday handover call, and new.md nowhere presents that weekly meeting."},
+    "p04": {"class": "foil", "reason": "It sets the note against a formal report with sign-off, which neither old.md (a handover call) nor new.md presents anywhere."},
+    "p05": {"class": "foil", "reason": "It sets the schedule's home against a spreadsheet copy, an alternative neither document presents, while old.md kept the schedule in the paging tool just the same."},
+    "p06": {"class": "licensed", "licence": "Some teams in the company let engineers swap shifts by agreeing on it in a direct message.", "reason": "It contrasts the platform team's recorded swap with the direct-message swap that new.md has just told its reader about, and old.md had the same recording rule."},
+    "p07": {"class": "licensed", "licence": "Many on-call guides recommend paying a flat stipend for every shift.", "reason": "Its 'rather than with money' answers the flat stipend that new.md presented in the sentence before, not rule A's two days off per pager week."},
+    "p08": {"class": "licensed", "licence": "A reader might expect the outgoing primary to stay on until every open incident is resolved.", "reason": "It corrects the expectation that new.md itself states in the sentence before it."},
+    "p09": {"class": "plain", "reason": "It states a guarantee of the paging tool that a user relies on and sets it against no other design or rule A."},
+    "p10": {"class": "plain", "reason": "It states a prohibition with its one exception, and old.md says nothing of deploys, so it touches nothing of rule A."}
+  },
+  "presents_old_rule": false,
+  "presenting_sentence": ""
+}

@@ -1,0 +1,83 @@
+{
+ "verdicts": [
+  {
+   "id": "c001",
+   "target": "tools that read a dotfile from every parent directory up to the filesystem root",
+   "verdict": "licensed",
+   "quote": "Several tools look for a dotfile in every parent directory up to the filesystem root.",
+   "reason": "The document presents the parent-directory dotfile search earlier in the same paragraph."
+  },
+  {
+   "id": "c002",
+   "target": "built-in default for a key no layer sets",
+   "verdict": "plain",
+   "question": "Which value does a key get when several layers set it, or when none does?",
+   "reason": "It states the merge rule and the default as a condition a reader acts on, and sets it against no other rule."
+  },
+  {
+   "id": "c003",
+   "target": "the earlier single winning file",
+   "verdict": "rewrite",
+   "reason": "It speaks of a winning file that the document never mentions and says 'any more', which refers to an earlier state."
+  },
+  {
+   "id": "c004",
+   "target": "failure when a layer's file is missing",
+   "verdict": "plain",
+   "question": "What happens when one of the layer files does not exist?",
+   "reason": "It states what holds when a file is absent, as a guarantee a reader acts on."
+  },
+  {
+   "id": "c005",
+   "target": "project layer outside a repository",
+   "verdict": "plain",
+   "question": "What is the project layer when the current directory is not in a repository?",
+   "reason": "It states what holds when the repository is absent, and compares nothing with another design."
+  },
+  {
+   "id": "c006",
+   "target": "precedence by file modification time",
+   "verdict": "rewrite",
+   "reason": "It rejects an alternative, ordering by modification time, that the document never presented."
+  },
+  {
+   "id": "c007",
+   "target": "the expectation that an environment variable beats a flag",
+   "verdict": "licensed",
+   "quote": "Some operators expect an environment variable to beat a flag, because the variable is often set by the deployment.",
+   "reason": "The preceding sentence voices exactly this expectation, so the denial has a source in the document."
+  },
+  {
+   "id": "c008",
+   "target": "the earlier requirement that a project file hold every personal setting",
+   "verdict": "rewrite",
+   "reason": "It excuses the reader from a duty the deleted text imposed, and the document never mentions that duty."
+  },
+  {
+   "id": "c009",
+   "target": "the earlier rule that a project file hides the user file",
+   "verdict": "rewrite",
+   "reason": "It denies the deleted rule that a project file makes the user file ignored, and the document never presents that rule."
+  },
+  {
+   "id": "c010",
+   "target": "tools that concatenate lists across layers",
+   "verdict": "licensed",
+   "quote": "Some tools combine lists by concatenating the values from every layer.",
+   "reason": "The preceding sentence presents list concatenation as what other tools do."
+  },
+  {
+   "id": "c011",
+   "target": "a separate copy of the settings per layer for plugins",
+   "verdict": "rewrite",
+   "reason": "It sets the merged table against a per-layer design that nobody presented."
+  },
+  {
+   "id": "c012",
+   "target": "writes to configuration files during loading",
+   "verdict": "plain",
+   "question": "Does loading modify any configuration file, for example to store defaults?",
+   "reason": "It is a guarantee about what the subject does not do, and sets it against no other rule or version."
+  }
+ ]
+}

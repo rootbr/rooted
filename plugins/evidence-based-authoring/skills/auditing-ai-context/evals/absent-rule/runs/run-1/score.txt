@@ -1,0 +1,14 @@
+trace: planted 36, listed 36, rewritten 34, rewritten_reading_1 34, rewritten_reading_2 34, rewritten_reading_3 34, flagged_shipped 16, flagged_deleted 32
+trace/named: planted 12, listed 12, rewritten 12, rewritten_reading_1 12, rewritten_reading_2 12, rewritten_reading_3 12, flagged_shipped 7, flagged_deleted 11
+trace/quiet: planted 24, listed 24, rewritten 22, rewritten_reading_1 22, rewritten_reading_2 22, rewritten_reading_3 22, flagged_shipped 9, flagged_deleted 21
+foil: planted 23, listed 23, rewritten 22, rewritten_reading_1 21, rewritten_reading_2 22, rewritten_reading_3 22, flagged_shipped 13, flagged_deleted 15
+licensed: planted 36, listed 29, rewritten 0, rewritten_reading_1 0, rewritten_reading_2 0, rewritten_reading_3 0, flagged_shipped 15, flagged_deleted 16
+plain: planted 24, listed 22, rewritten 1, rewritten_reading_1 0, rewritten_reading_2 1, rewritten_reading_3 1, flagged_shipped 0, flagged_deleted 0
+other listed sentences: 37, rewritten: 5
+H-01 list: PASS: trace listed 36/36 = 1.00 (>= 0.90); foil listed 23/23 = 1.00 (>= 0.90)
+H-02 traces: PASS: trace rewritten 34/36 = 0.94 (>= 0.80)
+H-03 quiet traces against the cards as shipped: PASS: quiet rewritten 22/24 = 0.92; cards as shipped 9/24 = 0.38; margin 0.54 (>= 0.20)
+H-04 sound sentences: PASS: licensed and plain rewritten 1/60 = 0.02 (<= 0.25)
+H-05 deleted lines: PASS: quiet flagged by the cards given the deleted lines 21/24 = 0.88; cards as shipped 9/24 = 0.38; margin 0.50 (>= 0.15)
+H-06 quiet traces against the cards given the deleted lines: FAIL: quiet rewritten 22/24 = 0.92; cards given the deleted lines 21/24 = 0.88; margin 0.04 (>= 0.15)
+H-07 sound sentences under the deleted lines: PASS: licensed and plain flagged by the cards given the deleted lines 16/60 = 0.27; cards as shipped 15/60 = 0.25; margin 0.02 (<= 0.10)

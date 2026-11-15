@@ -1,0 +1,55 @@
+{
+ "patches": [
+  {
+   "rule_id": "D-06",
+   "location": {
+    "section": "Rooted — Claude Code plugins rooted in evidence (intro bullets)",
+    "field": "",
+    "line_hint": 10
+   },
+   "current": "For example, instead of an `/init`-style project-structure blob in `CLAUDE.md` (a file class shown not to improve success while raising inference cost 20–23%, with repository overviews specifically found unhelpful [[15]](#references)), orientation happens on demand via [`overview.sh`](overview.sh) with an explicit stop-instruction.",
+   "proposed": null,
+   "justification": "The `/init`-style blob is named as the foil of the orientation decision (\"instead of\"), not as the subject of a present-tense environmental fact that blocks it; rewrite as the blocking fact (for example, what a static structure blob does to cost and success today) followed by the on-demand `overview.sh` approach, or drop the comparison.",
+   "severity": "medium",
+   "needs_human": true,
+   "file": "readme/new.md",
+   "group": "G10"
+  },
+  {
+   "rule_id": "D-01",
+   "location": {
+    "section": "Research papers",
+    "field": "",
+    "line_hint": 130
+   },
+   "current": "v5 retitle of *Configuring Agentic AI Coding Tools*",
+   "proposed": null,
+   "justification": "\"retitle of\" parses only against an earlier title of the paper; the surviving present facts are the title and the 2,853-repo sample, and the version tag plus former title can go or be moved to the provenance map.",
+   "severity": "medium",
+   "needs_human": true,
+   "meta": {},
+   "file": "readme/new.md",
+   "group": "G10"
+  },
+  {
+   "rule_id": "D-02",
+   "location": {
+    "section": "Methodology",
+    "line_hint": 39
+   },
+   "current": "A record is required on every rule line that is added or changed; the lines not yet touched carry their sources without a record.",
+   "proposed": null,
+   "justification": "\"not yet touched\" depends on a prior state; stripped of it a self-standing contract survives (a record is required on every added or changed rule line), so the verdict is rewrite in present tense, not delete.",
+   "severity": "low",
+   "needs_human": true,
+   "meta": {
+    "verdict": "rewrite",
+    "surviving_fact": "a record is required on every rule line that is added or changed; the sources of other lines stand without one"
+   },
+   "file": "readme/new.md",
+   "group": "G10"
+  }
+ ],
+ "agents_run": 4,
+ "agents_returned": 4
+}

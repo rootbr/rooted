@@ -1,0 +1,104 @@
+{
+ "verdicts": [
+  {
+   "id": "c001",
+   "target": "guessing the zone from the request's network address",
+   "verdict": "rewrite",
+   "reason": "The document never presents an address-based guess as an option, so the sentence argues with an alternative the reader was never shown."
+  },
+  {
+   "id": "c002",
+   "target": "the column type",
+   "verdict": "plain",
+   "question": "What type is the start_local column?",
+   "reason": "It is a column type in the schema table and sets nothing against any other design."
+  },
+  {
+   "id": "c003",
+   "target": "a fixed count of hours between occurrences",
+   "verdict": "rewrite",
+   "reason": "It denies the deleted whole-hours interval rule, which this document never presents."
+  },
+  {
+   "id": "c004",
+   "target": "materialising occurrences ahead of time",
+   "verdict": "licensed",
+   "quote": "Some calendar products store each occurrence as a separate row as soon as a series is created.",
+   "reason": "The preceding sentence presents per-occurrence rows as what other products do, so the reader knows the target."
+  },
+  {
+   "id": "c005",
+   "target": "the later instant in an autumn overlap",
+   "verdict": "plain",
+   "question": "Which instant does the expander use when a local time occurs twice?",
+   "reason": "It states the service's own tie-breaking rule and sets itself against no other rule."
+  },
+  {
+   "id": "c006",
+   "target": "the deleted duty to re-save a series after a clock change",
+   "verdict": "rewrite",
+   "reason": "It excuses organizers from the re-saving the deleted statements required, which this document never mentions."
+  },
+  {
+   "id": "c007",
+   "target": "the rebase job and its emails",
+   "verdict": "rewrite",
+   "reason": "It denies a job the document never introduces; the reader never saw a rebase job or its emails."
+  },
+  {
+   "id": "c008",
+   "target": "cron entries on the worker hosts",
+   "verdict": "rewrite",
+   "reason": "Cron registration is an alternative nobody presented earlier in the document."
+  },
+  {
+   "id": "c009",
+   "target": "reminders for cancelled or deleted occurrences",
+   "verdict": "plain",
+   "question": "Is a reminder sent for a cancelled or deleted occurrence?",
+   "reason": "It is a guarantee about the reminder worker that a reader acts on, setting itself against no other design."
+  },
+  {
+   "id": "c010",
+   "target": "notifications for events without a reminder",
+   "verdict": "plain",
+   "question": "What happens when an event has no reminder setting?",
+   "reason": "It states what holds when the setting is absent, right after the document says reminders are optional."
+  },
+  {
+   "id": "c011",
+   "target": "reading zone rules from the host",
+   "verdict": "licensed",
+   "quote": "The operating system zone files on a host can lag behind those releases by months.",
+   "reason": "The earlier sentence presents the host zone files and their staleness, so the reader expects the pinned copy."
+  },
+  {
+   "id": "c012",
+   "target": "the request's start format",
+   "verdict": "plain",
+   "question": "What format does the start take in create and update requests?",
+   "reason": "It specifies the request contract and sets itself against no other format."
+  },
+  {
+   "id": "c013",
+   "target": "what the iCalendar standard allows",
+   "verdict": "plain",
+   "question": "What does the iCalendar standard allow regarding zones?",
+   "reason": "It reports what a named standard permits and sets the service against nothing."
+  },
+  {
+   "id": "c014",
+   "target": "floating times",
+   "verdict": "licensed",
+   "quote": "The iCalendar standard allows a floating time that carries no zone at all.",
+   "reason": "The preceding kept sentence presents floating times, so the refusal is expected by the reader."
+  },
+  {
+   "id": "c015",
+   "target": "changing the zone of an existing series",
+   "verdict": "plain",
+   "question": "What is still undecided about changing a series' zone?",
+   "reason": "It is an open question about the document's own subject and denies or corrects no other rule or version."
+  }
+ ]
+}

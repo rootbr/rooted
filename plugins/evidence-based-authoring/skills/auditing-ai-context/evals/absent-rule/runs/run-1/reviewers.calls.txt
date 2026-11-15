@@ -1,0 +1,216 @@
+## review:01-configuration-loading-order-of-a-command-line-tool:r1
+Read   plugins/evidence-based-authoring/agents/trace-reviewer.md
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/runs/run-1/01-configuration-loading-order-of-a-command-line-tool.list.json
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/new.md
+StructuredOutput
+
+## review:01-configuration-loading-order-of-a-command-line-tool:r2
+Read   plugins/evidence-based-authoring/agents/trace-reviewer.md
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/runs/run-1/01-configuration-loading-order-of-a-command-line-tool.list.json
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/new.md
+StructuredOutput
+
+## review:01-configuration-loading-order-of-a-command-line-tool:r3
+Read   plugins/evidence-based-authoring/agents/trace-reviewer.md
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/runs/run-1/01-configuration-loading-order-of-a-command-line-tool.list.json
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/new.md
+StructuredOutput
+
+## review:02-the-on-call-rotation-of-a-platform-team:r1
+Read   plugins/evidence-based-authoring/agents/trace-reviewer.md
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/runs/run-1/02-the-on-call-rotation-of-a-platform-team.list.json
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/02-the-on-call-rotation-of-a-platform-team/new.md
+StructuredOutput
+
+## review:02-the-on-call-rotation-of-a-platform-team:r2
+Read   plugins/evidence-based-authoring/agents/trace-reviewer.md
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/runs/run-1/02-the-on-call-rotation-of-a-platform-team.list.json
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/02-the-on-call-rotation-of-a-platform-team/new.md
+StructuredOutput
+
+## review:02-the-on-call-rotation-of-a-platform-team:r3
+Read   plugins/evidence-based-authoring/agents/trace-reviewer.md
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/runs/run-1/02-the-on-call-rotation-of-a-platform-team.list.json
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/02-the-on-call-rotation-of-a-platform-team/new.md
+StructuredOutput
+
+## review:03-rendered-page-caching-at-a-content-delivery-edge:r1
+Read   plugins/evidence-based-authoring/agents/trace-reviewer.md
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/runs/run-1/03-rendered-page-caching-at-a-content-delivery-edge.list.json
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/03-rendered-page-caching-at-a-content-delivery-edge/new.md
+StructuredOutput
+
+## review:03-rendered-page-caching-at-a-content-delivery-edge:r2
+Read   plugins/evidence-based-authoring/agents/trace-reviewer.md
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/runs/run-1/03-rendered-page-caching-at-a-content-delivery-edge.list.json
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/03-rendered-page-caching-at-a-content-delivery-edge/new.md
+StructuredOutput
+
+## review:03-rendered-page-caching-at-a-content-delivery-edge:r3
+Read   plugins/evidence-based-authoring/agents/trace-reviewer.md
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/runs/run-1/03-rendered-page-caching-at-a-content-delivery-edge.list.json
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/03-rendered-page-caching-at-a-content-delivery-edge/new.md
+StructuredOutput
+
+## review:04-time-zone-handling-in-a-scheduling-service:r1
+Read   plugins/evidence-based-authoring/agents/trace-reviewer.md
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/runs/run-1/04-time-zone-handling-in-a-scheduling-service.list.json
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/new.md
+StructuredOutput
+
+## review:04-time-zone-handling-in-a-scheduling-service:r2
+Read   plugins/evidence-based-authoring/agents/trace-reviewer.md
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/runs/run-1/04-time-zone-handling-in-a-scheduling-service.list.json
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/new.md
+StructuredOutput
+
+## review:04-time-zone-handling-in-a-scheduling-service:r3
+Read   plugins/evidence-based-authoring/agents/trace-reviewer.md
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/runs/run-1/04-time-zone-handling-in-a-scheduling-service.list.json
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/new.md
+StructuredOutput
+
+## review:05-access-tokens-of-a-mobile-apps-backend:r1
+Read   plugins/evidence-based-authoring/agents/trace-reviewer.md
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/runs/run-1/05-access-tokens-of-a-mobile-apps-backend.list.json
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/05-access-tokens-of-a-mobile-apps-backend/new.md
+StructuredOutput
+
+## review:05-access-tokens-of-a-mobile-apps-backend:r2
+Read   plugins/evidence-based-authoring/agents/trace-reviewer.md
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/runs/run-1/05-access-tokens-of-a-mobile-apps-backend.list.json
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/05-access-tokens-of-a-mobile-apps-backend/new.md
+StructuredOutput
+
+## review:05-access-tokens-of-a-mobile-apps-backend:r3
+Read   plugins/evidence-based-authoring/agents/trace-reviewer.md
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/runs/run-1/05-access-tokens-of-a-mobile-apps-backend.list.json
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/05-access-tokens-of-a-mobile-apps-backend/new.md
+StructuredOutput
+
+## review:06-rate-limiting-at-an-api-gateway:r1
+Read   plugins/evidence-based-authoring/agents/trace-reviewer.md
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/runs/run-1/06-rate-limiting-at-an-api-gateway.list.json
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/06-rate-limiting-at-an-api-gateway/new.md
+StructuredOutput
+StructuredOutput
+
+## review:06-rate-limiting-at-an-api-gateway:r2
+Read   plugins/evidence-based-authoring/agents/trace-reviewer.md
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/runs/run-1/06-rate-limiting-at-an-api-gateway.list.json
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/06-rate-limiting-at-an-api-gateway/new.md
+StructuredOutput
+
+## review:06-rate-limiting-at-an-api-gateway:r3
+Read   plugins/evidence-based-authoring/agents/trace-reviewer.md
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/runs/run-1/06-rate-limiting-at-an-api-gateway.list.json
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/06-rate-limiting-at-an-api-gateway/new.md
+StructuredOutput
+
+## review:07-the-code-review-policy-of-a-monorepo:r1
+Read   plugins/evidence-based-authoring/agents/trace-reviewer.md
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/runs/run-1/07-the-code-review-policy-of-a-monorepo.list.json
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/07-the-code-review-policy-of-a-monorepo/new.md
+StructuredOutput
+
+## review:07-the-code-review-policy-of-a-monorepo:r2
+Read   plugins/evidence-based-authoring/agents/trace-reviewer.md
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/runs/run-1/07-the-code-review-policy-of-a-monorepo.list.json
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/07-the-code-review-policy-of-a-monorepo/new.md
+StructuredOutput
+
+## review:07-the-code-review-policy-of-a-monorepo:r3
+Read   plugins/evidence-based-authoring/agents/trace-reviewer.md
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/runs/run-1/07-the-code-review-policy-of-a-monorepo.list.json
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/07-the-code-review-policy-of-a-monorepo/new.md
+StructuredOutput
+
+## review:08-the-incident-postmortem-process-of-an-engineering-group:r1
+Read   plugins/evidence-based-authoring/agents/trace-reviewer.md
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/runs/run-1/08-the-incident-postmortem-process-of-an-engineering-group.list.json
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/08-the-incident-postmortem-process-of-an-engineering-group/new.md
+StructuredOutput
+
+## review:08-the-incident-postmortem-process-of-an-engineering-group:r2
+Read   plugins/evidence-based-authoring/agents/trace-reviewer.md
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/runs/run-1/08-the-incident-postmortem-process-of-an-engineering-group.list.json
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/08-the-incident-postmortem-process-of-an-engineering-group/new.md
+StructuredOutput
+
+## review:08-the-incident-postmortem-process-of-an-engineering-group:r3
+Read   plugins/evidence-based-authoring/agents/trace-reviewer.md
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/runs/run-1/08-the-incident-postmortem-process-of-an-engineering-group.list.json
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/08-the-incident-postmortem-process-of-an-engineering-group/new.md
+StructuredOutput
+
+## review:09-pagination-of-a-public-rest-api:r1
+Read   plugins/evidence-based-authoring/agents/trace-reviewer.md
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/runs/run-1/09-pagination-of-a-public-rest-api.list.json
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/09-pagination-of-a-public-rest-api/new.md
+StructuredOutput
+
+## review:09-pagination-of-a-public-rest-api:r2
+Read   plugins/evidence-based-authoring/agents/trace-reviewer.md
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/runs/run-1/09-pagination-of-a-public-rest-api.list.json
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/09-pagination-of-a-public-rest-api/new.md
+StructuredOutput
+
+## review:09-pagination-of-a-public-rest-api:r3
+Read   plugins/evidence-based-authoring/agents/trace-reviewer.md
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/runs/run-1/09-pagination-of-a-public-rest-api.list.json
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/09-pagination-of-a-public-rest-api/new.md
+StructuredOutput
+
+## review:10-data-retention-in-an-analytics-warehouse:r1
+Read   plugins/evidence-based-authoring/agents/trace-reviewer.md
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/runs/run-1/10-data-retention-in-an-analytics-warehouse.list.json
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/10-data-retention-in-an-analytics-warehouse/new.md
+StructuredOutput
+
+## review:10-data-retention-in-an-analytics-warehouse:r2
+Read   plugins/evidence-based-authoring/agents/trace-reviewer.md
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/runs/run-1/10-data-retention-in-an-analytics-warehouse.list.json
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/10-data-retention-in-an-analytics-warehouse/new.md
+StructuredOutput
+
+## review:10-data-retention-in-an-analytics-warehouse:r3
+Read   plugins/evidence-based-authoring/agents/trace-reviewer.md
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/runs/run-1/10-data-retention-in-an-analytics-warehouse.list.json
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/10-data-retention-in-an-analytics-warehouse/new.md
+StructuredOutput
+
+## review:11-schema-migrations-of-a-relational-database:r1
+Read   plugins/evidence-based-authoring/agents/trace-reviewer.md
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/runs/run-1/11-schema-migrations-of-a-relational-database.list.json
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/new.md
+StructuredOutput
+
+## review:11-schema-migrations-of-a-relational-database:r2
+Read   plugins/evidence-based-authoring/agents/trace-reviewer.md
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/runs/run-1/11-schema-migrations-of-a-relational-database.list.json
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/new.md
+StructuredOutput
+
+## review:11-schema-migrations-of-a-relational-database:r3
+Read   plugins/evidence-based-authoring/agents/trace-reviewer.md
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/runs/run-1/11-schema-migrations-of-a-relational-database.list.json
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/new.md
+StructuredOutput
+
+## review:12-feature-flags-in-a-web-service:r1
+Read   plugins/evidence-based-authoring/agents/trace-reviewer.md
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/runs/run-1/12-feature-flags-in-a-web-service.list.json
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/12-feature-flags-in-a-web-service/new.md
+StructuredOutput
+
+## review:12-feature-flags-in-a-web-service:r2
+Read   plugins/evidence-based-authoring/agents/trace-reviewer.md
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/runs/run-1/12-feature-flags-in-a-web-service.list.json
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/12-feature-flags-in-a-web-service/new.md
+StructuredOutput
+
+## review:12-feature-flags-in-a-web-service:r3
+Read   plugins/evidence-based-authoring/agents/trace-reviewer.md
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/runs/run-1/12-feature-flags-in-a-web-service.list.json
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/12-feature-flags-in-a-web-service/new.md
+StructuredOutput

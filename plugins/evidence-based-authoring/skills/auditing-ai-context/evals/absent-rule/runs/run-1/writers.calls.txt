@@ -1,0 +1,108 @@
+## write:01-configuration-loading-order-of-a-command-line-tool
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/case-brief.md
+Bash   mkdir -p "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool"
+Write  plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/old.md
+Write  plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/new.md
+Write  plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-command-line-tool/labels.json
+Bash   python3 -I plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/absent_rule_eval.py validate plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/01-configuration-loading-order-of-a-co
+StructuredOutput
+
+## write:02-the-on-call-rotation-of-a-platform-team
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/case-brief.md
+Bash   mkdir -p plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/02-the-on-call-rotation-of-a-platform-team
+Write  plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/02-the-on-call-rotation-of-a-platform-team/old.md
+Write  plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/02-the-on-call-rotation-of-a-platform-team/new.md
+Write  plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/02-the-on-call-rotation-of-a-platform-team/labels.json
+Bash   python3 -I plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/absent_rule_eval.py validate plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/02-the-on-call-rotation-of-a-platform-
+StructuredOutput
+
+## write:03-rendered-page-caching-at-a-content-delivery-edge
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/case-brief.md
+Bash   mkdir -p plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/03-rendered-page-caching-at-a-content-delivery-edge
+Write  plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/03-rendered-page-caching-at-a-content-delivery-edge/old.md
+Write  plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/03-rendered-page-caching-at-a-content-delivery-edge/new.md
+Write  plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/03-rendered-page-caching-at-a-content-delivery-edge/labels.json
+Bash   python3 -I plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/absent_rule_eval.py validate plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/03-rendered-page-caching-at-a-content-
+StructuredOutput
+
+## write:04-time-zone-handling-in-a-scheduling-service
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/case-brief.md
+Bash   mkdir -p plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service
+Write  plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/old.md
+Write  plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/new.md
+Write  plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-service/labels.json
+Bash   python3 -I plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/absent_rule_eval.py validate plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/04-time-zone-handling-in-a-scheduling-
+StructuredOutput
+
+## write:05-access-tokens-of-a-mobile-apps-backend
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/case-brief.md
+Bash   mkdir -p plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/05-access-tokens-of-a-mobile-apps-backend
+Write  plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/05-access-tokens-of-a-mobile-apps-backend/old.md
+Write  plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/05-access-tokens-of-a-mobile-apps-backend/new.md
+Write  plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/05-access-tokens-of-a-mobile-apps-backend/labels.json
+Bash   python3 -I plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/absent_rule_eval.py validate plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/05-access-tokens-of-a-mobile-apps-back
+StructuredOutput
+
+## write:06-rate-limiting-at-an-api-gateway
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/case-brief.md
+Bash   mkdir -p plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/06-rate-limiting-at-an-api-gateway
+Write  plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/06-rate-limiting-at-an-api-gateway/old.md
+Write  plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/06-rate-limiting-at-an-api-gateway/new.md
+Write  plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/06-rate-limiting-at-an-api-gateway/labels.json
+Bash   python3 -I plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/absent_rule_eval.py validate plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/06-rate-limiting-at-an-api-gateway; ec
+StructuredOutput
+
+## write:07-the-code-review-policy-of-a-monorepo
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/case-brief.md
+Bash   mkdir -p plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/07-the-code-review-policy-of-a-monorepo
+Write  plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/07-the-code-review-policy-of-a-monorepo/old.md
+Write  plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/07-the-code-review-policy-of-a-monorepo/new.md
+Write  plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/07-the-code-review-policy-of-a-monorepo/labels.json
+Bash   D=plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/07-the-code-review-policy-of-a-monorepo; wc -l $D/old.md $D/new.md; python3 -I plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-ru
+Bash   grep -n -i -E 'desk|rota|\btwo\b|duty|still|no longer' plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/07-the-code-review-policy-of-a-monorepo/new.md
+StructuredOutput
+
+## write:08-the-incident-postmortem-process-of-an-engineering-group
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/case-brief.md
+Bash   mkdir -p plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/08-the-incident-postmortem-process-of-an-engineering-group
+Write  plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/08-the-incident-postmortem-process-of-an-engineering-group/old.md
+Write  plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/08-the-incident-postmortem-process-of-an-engineering-group/new.md
+Write  plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/08-the-incident-postmortem-process-of-an-engineering-group/labels.json
+Bash   python3 -I plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/absent_rule_eval.py validate plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/08-the-incident-postmortem-process-of-
+StructuredOutput
+
+## write:09-pagination-of-a-public-rest-api
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/case-brief.md
+Bash   mkdir -p plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/09-pagination-of-a-public-rest-api
+Write  plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/09-pagination-of-a-public-rest-api/old.md
+Write  plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/09-pagination-of-a-public-rest-api/new.md
+Write  plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/09-pagination-of-a-public-rest-api/labels.json
+Bash   python3 -I plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/absent_rule_eval.py validate plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/09-pagination-of-a-public-rest-api; ec
+StructuredOutput
+
+## write:10-data-retention-in-an-analytics-warehouse
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/case-brief.md
+Bash   mkdir -p "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/10-data-retention-in-an-analytics-warehouse"
+Write  plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/10-data-retention-in-an-analytics-warehouse/old.md
+Write  plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/10-data-retention-in-an-analytics-warehouse/new.md
+Write  plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/10-data-retention-in-an-analytics-warehouse/labels.json
+Bash   python3 -I plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/absent_rule_eval.py validate plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/10-data-retention-in-an-analytics-ware
+StructuredOutput
+
+## write:11-schema-migrations-of-a-relational-database
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/case-brief.md
+Bash   mkdir -p plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database
+Write  plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/old.md
+Write  plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/new.md
+Write  plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-database/labels.json
+Bash   python3 -I plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/absent_rule_eval.py validate plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/11-schema-migrations-of-a-relational-d
+StructuredOutput
+
+## write:12-feature-flags-in-a-web-service
+Read   plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/case-brief.md
+Bash   mkdir -p plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/12-feature-flags-in-a-web-service
+Write  plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/12-feature-flags-in-a-web-service/old.md
+Write  plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/12-feature-flags-in-a-web-service/new.md
+Write  plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/12-feature-flags-in-a-web-service/labels.json
+Bash   python3 -I plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/absent_rule_eval.py validate plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/12-feature-flags-in-a-web-service; ech
+StructuredOutput

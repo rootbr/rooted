@@ -1,0 +1,17 @@
+{
+  "topic": "time-zone handling in a scheduling service",
+  "old_rule": "Every event start is stored as a UTC instant, and a recurring series repeats at a fixed interval counted in whole hours from that anchor instant, with the organizer's zone kept only as a display hint.",
+  "new_rule": "Every event start is stored as a local wall-clock date and time with an IANA zone name, and a recurring series is a rule over local dates whose occurrences are converted to UTC instants only at expansion.",
+  "planted": [
+    {"id": "p01", "class": "trace", "form": "named", "text": "There is no rebase job, and organizers receive no email around the spring and autumn clock changes."},
+    {"id": "p02", "class": "trace", "form": "quiet", "text": "Organizers do not have to edit a series after a clock change to keep it at its usual hour."},
+    {"id": "p03", "class": "trace", "form": "quiet", "text": "The gap between two occurrences is not a fixed count of hours, since a week that crosses a transition is an hour shorter or longer."},
+    {"id": "p04", "class": "foil", "text": "The zone comes from the organizer's choice in the event form rather than from a guess based on the network address of the request."},
+    {"id": "p05", "class": "foil", "text": "Reminder jobs are written to the shared job queue rather than registered as cron entries on the worker hosts."},
+    {"id": "p06", "class": "licensed", "text": "This service does not materialise occurrences ahead of time, so an edit to a series touches a single row.", "licence": "Some calendar products store each occurrence as a separate row as soon as a series is created."},
+    {"id": "p07", "class": "licensed", "text": "The import endpoint does not accept floating times and asks the user to pick a zone instead.", "licence": "The iCalendar standard allows a floating time that carries no zone at all."},
+    {"id": "p08", "class": "licensed", "text": "The service therefore does not read zone rules from the host but ships its own pinned copy of the tz database.", "licence": "The operating system zone files on a host can lag behind those releases by months."},
+    {"id": "p09", "class": "plain", "text": "A reminder is never sent for an occurrence that has been cancelled or deleted."},
+    {"id": "p10", "class": "plain", "text": "When an event has no reminder setting, no notification is sent before it starts."}
+  ]
+}

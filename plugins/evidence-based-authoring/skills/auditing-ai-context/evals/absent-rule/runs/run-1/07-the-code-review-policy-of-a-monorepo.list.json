@@ -1,0 +1,352 @@
+{
+ "version": 1,
+ "mode": "pair",
+ "files": [
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/07-the-code-review-policy-of-a-monorepo/new.md",
+   "sha256": "50bef26f6dc3541aef9b494a92a68381860297971ed43baf3e3f68478ba5e247"
+  }
+ ],
+ "deleted": [
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/07-the-code-review-policy-of-a-monorepo/old.md",
+   "line": 17,
+   "text": "Every pull request is reviewed by the review desk, a rota of four engineers that changes every Monday."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/07-the-code-review-policy-of-a-monorepo/old.md",
+   "line": 17,
+   "text": "A pull request merges once two members of the desk on duty that week have approved it."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/07-the-code-review-policy-of-a-monorepo/old.md",
+   "line": 17,
+   "text": "Package maintainers may comment, but their approval does not count toward the two."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/07-the-code-review-policy-of-a-monorepo/old.md",
+   "line": 19,
+   "text": "The rota is published in the team calendar, and each engineer serves on the desk about once a quarter."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/07-the-code-review-policy-of-a-monorepo/old.md",
+   "line": 19,
+   "text": "While on the desk, an engineer spends roughly half of each day on review and the rest on their own work."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/07-the-code-review-policy-of-a-monorepo/old.md",
+   "line": 21,
+   "text": "Desk members review for correctness and readability."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/07-the-code-review-policy-of-a-monorepo/old.md",
+   "line": 21,
+   "text": "When a change needs knowledge of a package that no desk member has, the desk may ask a maintainer of that package for an opinion before approving."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/07-the-code-review-policy-of-a-monorepo/old.md",
+   "line": 25,
+   "text": "Open the pull request as a draft until the build passes."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/07-the-code-review-policy-of-a-monorepo/old.md",
+   "line": 25,
+   "text": "When it is green, mark it ready and add the review-desk label, which posts it to the queue of the desk."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/07-the-code-review-policy-of-a-monorepo/old.md",
+   "line": 27,
+   "text": "Write a description that a desk member can follow without knowing the package."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/07-the-code-review-policy-of-a-monorepo/old.md",
+   "line": 27,
+   "text": "Say what the change does, why it is needed, and how it was tested."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/07-the-code-review-policy-of-a-monorepo/old.md",
+   "line": 27,
+   "text": "Link the ticket."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/07-the-code-review-policy-of-a-monorepo/old.md",
+   "line": 29,
+   "text": "Keep pull requests small."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/07-the-code-review-policy-of-a-monorepo/old.md",
+   "line": 29,
+   "text": "A desk member reviews changes from every corner of the repository, so a change of more than four hundred lines is usually sent back to be split."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/07-the-code-review-policy-of-a-monorepo/old.md",
+   "line": 33,
+   "text": "Size of change"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/07-the-code-review-policy-of-a-monorepo/old.md",
+   "line": 33,
+   "text": "First response from the desk"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/07-the-code-review-policy-of-a-monorepo/old.md",
+   "line": 33,
+   "text": "Expected approvals"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/07-the-code-review-policy-of-a-monorepo/old.md",
+   "line": 35,
+   "text": "Under 100 lines"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/07-the-code-review-policy-of-a-monorepo/old.md",
+   "line": 35,
+   "text": "4 working hours"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/07-the-code-review-policy-of-a-monorepo/old.md",
+   "line": 35,
+   "text": "2"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/07-the-code-review-policy-of-a-monorepo/old.md",
+   "line": 36,
+   "text": "100 to 400 lines"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/07-the-code-review-policy-of-a-monorepo/old.md",
+   "line": 36,
+   "text": "1 working day"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/07-the-code-review-policy-of-a-monorepo/old.md",
+   "line": 36,
+   "text": "2"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/07-the-code-review-policy-of-a-monorepo/old.md",
+   "line": 37,
+   "text": "Over 400 lines"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/07-the-code-review-policy-of-a-monorepo/old.md",
+   "line": 37,
+   "text": "Sent back to be split"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/07-the-code-review-policy-of-a-monorepo/old.md",
+   "line": 37,
+   "text": "2"
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/07-the-code-review-policy-of-a-monorepo/old.md",
+   "line": 39,
+   "text": "If the desk has not responded within the target, ping the desk channel rather than individual members."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/07-the-code-review-policy-of-a-monorepo/old.md",
+   "line": 41,
+   "text": "The desk lead reviews the response times at the end of each week and hands any open pull requests to the next rota with a short note."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/07-the-code-review-policy-of-a-monorepo/old.md",
+   "line": 45,
+   "text": "All changes land through the merge queue."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/07-the-code-review-policy-of-a-monorepo/old.md",
+   "line": 45,
+   "text": "The queue squashes each pull request into one commit and runs the full build again on top of the current main branch."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/07-the-code-review-policy-of-a-monorepo/old.md",
+   "line": 47,
+   "text": "The queue admits a pull request when it has two desk approvals and every required check is green."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/07-the-code-review-policy-of-a-monorepo/old.md",
+   "line": 47,
+   "text": "A new push after approval clears both approvals."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/07-the-code-review-policy-of-a-monorepo/old.md",
+   "line": 53,
+   "text": "The security team has asked that every change touching authentication code be reviewed by one of its members."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/07-the-code-review-policy-of-a-monorepo/old.md",
+   "line": 53,
+   "text": "Such pull requests carry the security label, and one of the two desk approvals must come from a security engineer on the desk that week."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/07-the-code-review-policy-of-a-monorepo/old.md",
+   "line": 55,
+   "text": "If no security engineer is on the desk, the desk lead asks the security team for a reviewer, whose approval then counts as one of the two."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/07-the-code-review-policy-of-a-monorepo/old.md",
+   "line": 59,
+   "text": "During an incident, the on-call engineer may merge a fix with one desk approval."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/07-the-code-review-policy-of-a-monorepo/old.md",
+   "line": 59,
+   "text": "The fix is reviewed again by the full desk within one working day, and any follow-up lands as a normal pull request."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/07-the-code-review-policy-of-a-monorepo/old.md",
+   "line": 61,
+   "text": "Reverts of a change merged in the last 24 hours need no approval at all."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/07-the-code-review-policy-of-a-monorepo/old.md",
+   "line": 61,
+   "text": "The author of the revert notifies the desk channel."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/07-the-code-review-policy-of-a-monorepo/old.md",
+   "line": 63,
+   "text": "Dependency updates opened by the update bot are batched once a week and reviewed by the desk as a single pull request."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/07-the-code-review-policy-of-a-monorepo/old.md",
+   "line": 67,
+   "text": "The merge bot enforces the approval count and the labels."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/07-the-code-review-policy-of-a-monorepo/old.md",
+   "line": 67,
+   "text": "Its configuration lives in the repository under the tooling package, and changes to it are reviewed like any other change."
+  },
+  {
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/07-the-code-review-policy-of-a-monorepo/old.md",
+   "line": 69,
+   "text": "The bot also posts a daily summary of the desk queue to the desk channel, listing each pull request with its age and its current approvals."
+  }
+ ],
+ "candidates": [
+  {
+   "id": "c001",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/07-the-code-review-policy-of-a-monorepo/new.md",
+   "line": 17,
+   "end_line": 17,
+   "sentence": "No review desk sign-off is needed, even for changes that span many packages.",
+   "cues": [
+    "no"
+   ]
+  },
+  {
+   "id": "c002",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/07-the-code-review-policy-of-a-monorepo/new.md",
+   "line": 19,
+   "end_line": 19,
+   "sentence": "The reviewer is chosen by what the change touches, not by whose turn it is.",
+   "cues": [
+    "not"
+   ]
+  },
+  {
+   "id": "c003",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/07-the-code-review-policy-of-a-monorepo/new.md",
+   "line": 19,
+   "end_line": 19,
+   "sentence": "Approvals from people outside the owning group carry no weight, however many of them a change collects.",
+   "cues": [
+    "no"
+   ]
+  },
+  {
+   "id": "c004",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/07-the-code-review-policy-of-a-monorepo/new.md",
+   "line": 21,
+   "end_line": 21,
+   "sentence": "Owners review for correctness and fit with the package, not for code style, which the formatter already settles.",
+   "cues": [
+    "not"
+   ]
+  },
+  {
+   "id": "c005",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/07-the-code-review-policy-of-a-monorepo/new.md",
+   "line": 21,
+   "end_line": 21,
+   "sentence": "An approval is a statement about the code as merged, not a courtesy to the author.",
+   "cues": [
+    "not"
+   ]
+  },
+  {
+   "id": "c006",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/07-the-code-review-policy-of-a-monorepo/new.md",
+   "line": 25,
+   "end_line": 25,
+   "sentence": "An owners file lists at least three engineers, so that a review is not blocked by the absence of one person.",
+   "cues": [
+    "not"
+   ]
+  },
+  {
+   "id": "c007",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/07-the-code-review-policy-of-a-monorepo/new.md",
+   "line": 27,
+   "end_line": 27,
+   "sentence": "If a package has no owners file, the merge bot refuses every pull request that touches it.",
+   "cues": [
+    "no"
+   ]
+  },
+  {
+   "id": "c008",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/07-the-code-review-policy-of-a-monorepo/new.md",
+   "line": 33,
+   "end_line": 33,
+   "sentence": "It is not, because the build checks behaviour while the owner checks whether the change belongs in the package.",
+   "cues": [
+    "not"
+   ]
+  },
+  {
+   "id": "c009",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/07-the-code-review-policy-of-a-monorepo/new.md",
+   "line": 47,
+   "end_line": 47,
+   "sentence": "If no owner has responded within the target, ping the package channel named in the owners file rather than individual owners.",
+   "cues": [
+    "no",
+    "rather than"
+   ]
+  },
+  {
+   "id": "c010",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/07-the-code-review-policy-of-a-monorepo/new.md",
+   "line": 55,
+   "end_line": 55,
+   "sentence": "The merge queue never lands a pull request whose required checks have not finished on the exact commit being merged.",
+   "cues": [
+    "never",
+    "not"
+   ]
+  },
+  {
+   "id": "c011",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/07-the-code-review-policy-of-a-monorepo/new.md",
+   "line": 61,
+   "end_line": 61,
+   "sentence": "That request does not extend to the client libraries, which call the auth service but hold no secrets.",
+   "cues": [
+    "not",
+    "no"
+   ]
+  },
+  {
+   "id": "c012",
+   "file": "plugins/evidence-based-authoring/skills/auditing-ai-context/evals/absent-rule/cases/07-the-code-review-policy-of-a-monorepo/new.md",
+   "line": 67,
+   "end_line": 67,
+   "sentence": "Reverts of a change merged in the last 24 hours need no approval at all.",
+   "cues": [
+    "no"
+   ]
+  }
+ ]
+}
