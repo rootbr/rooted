@@ -1,0 +1,120 @@
+{
+ "set-a/method.md": [
+  [
+   10,
+   "The scientific method is neither a sequence of steps nor a demand for a citation."
+  ],
+  [
+   10,
+   "supported never means proved."
+  ],
+  [
+   12,
+   "Who proposed a claim and where it came from therefore carry no weight:"
+  ],
+  [
+   12,
+   "A citation is the address of someone else's test and never the support itself."
+  ],
+  [
+   14,
+   "A rule of a skill is a prescription, and a prescription follows from a goal joined with the claim that the technique serves it, never from facts alone."
+  ],
+  [
+   16,
+   "No single criterion separates science from the rest, so the method takes what the main lines of the philosophy of science agree on and applies it to every statement alike."
+  ],
+  [
+   27,
+   "A logical inference is worth what its premises are worth and forms no kind of its own."
+  ],
+  [
+   67,
+   "The author's name and the standing of the venue support nothing."
+  ],
+  [
+   115,
+   "A claim of our own that has no citation takes the lowest branches:"
+  ]
+ ],
+ "set-a/README.md": [
+  [
+   7,
+   "research any topic with source verification, map its complete question space before you start, then write AI agent context that actually works — grounded instructions and disciplined reasoning instead of vibes."
+  ],
+  [
+   7,
+   "Rooted admits rules by the scientific method instead:"
+  ],
+  [
+   9,
+   "- **Tested, not asserted.** A rule that claims a technique works rests on a test that could have refuted it — a study opened and read, or a test of our own committed to the repository."
+  ],
+  [
+   9,
+   "A citation is the address of such a test, and where an idea came from carries no weight."
+  ],
+  [
+   14,
+   "The method here is neither a sequence of steps nor a demand for a citation:"
+  ],
+  [
+   14,
+   "A citation is the address of someone else's test and never the support itself;"
+  ],
+  [
+   34,
+   "an author's name supports nothing"
+  ],
+  [
+   39,
+   "A claim of our own needs no citation."
+  ],
+  [
+   39,
+   "the philosophy of science offers no single criterion of what is scientific, so the method takes what its main lines agree on."
+  ],
+  [
+   39,
+   "the lines not yet touched carry their sources without a record."
+  ],
+  [
+   90,
+   "A PR that offers a citation in place of a test is returned by design, not by oversight."
+  ],
+  [
+   296,
+   "They are formulations of the method, read in the philosophy of science, and none of them is offered as a test of it;"
+  ],
+  [
+   298,
+   "*Scientific Method.* [plato.stanford.edu/entries/scientific-method](https://plato.stanford.edu/entries/scientific-method/) — No single universal method (§6.1);"
+  ]
+ ],
+ "set-c/SKILL.md": [
+  [
+   22,
+   "place is neither checked nor decided on."
+  ],
+  [
+   40,
+   "they need no setup."
+  ],
+  [
+   81,
+   "text carries no file paths, section references, dates, deadlines, effort estimates or"
+  ],
+  [
+   102,
+   "A deliverable that goes out as text alone, and a sub-agent's hand-back, take no intake."
+  ],
+  [
+   114,
+   "and, only for ground none of them"
+  ],
+  [
+   227,
+   "fix the anchor or the claim, never the check."
+  ]
+ ]
+}

@@ -1,0 +1,330 @@
+{
+ "cells": [
+  {
+   "inventory": "candidates",
+   "card": "D-97",
+   "target": "set-a/README.md",
+   "flagged": [
+    {
+     "line": 7,
+     "sentence": "grounded instructions and disciplined reasoning instead of vibes",
+     "justification": "Defines the output against the denied thing 'vibes'; no sentence of the file presents vibes as an option or a view anyone holds. Rewrite as what the instructions and reasoning rest on, or drop the foil."
+    },
+    {
+     "line": 9,
+     "sentence": "**Tested, not asserted.**",
+     "justification": "The label is a 'X, not Y' foil: the denied thing is bare assertion, which no sentence of the file presents as an option or a held view. State what the rule does (a rule rests on a test) or drop the 'not asserted' half."
+    },
+    {
+     "line": 9,
+     "sentence": "A citation is the address of such a test, and where an idea came from carries no weight.",
+     "justification": "The second clause denies origin-of-idea as support; the file never presents that as an option or a view held (L301 reports a source, it does not present it). Restate by what carries weight (the test) or remove the clause."
+    },
+    {
+     "line": 14,
+     "sentence": "The method here is neither a sequence of steps nor a demand for a citation: it is a way of treating statements about how the world works.",
+     "justification": "Defines the method against two denied things, 'a sequence of steps' and 'a demand for a citation'; no sentence of the file presents either as a view or option the reader holds. Keep only the positive half (a way of treating statements about how the world works)."
+    },
+    {
+     "line": 90,
+     "sentence": "A PR that offers a citation in place of a test is returned by design, not by oversight.",
+     "justification": "The rule (a PR offering a citation in place of a test is returned) is a checkable prohibition and stays; the tail 'not by oversight' argues against a reading nobody on the page holds. Drop the tail or state the fact it stands for."
+    },
+    {
+     "line": 53,
+     "sentence": "amplifies recall, never substitutes for it",
+     "justification": "Defines the skill against 'substituting for recall', which no sentence of the file presents as an option or a view; state what the skill does to the reader's own recall, or remove the contrast."
+    }
+   ]
+  },
+  {
+   "inventory": "candidates-and-deleted-lines",
+   "card": "D-97",
+   "target": "set-a/README.md",
+   "flagged": [
+    {
+     "line": 7,
+     "sentence": "grounded instructions and disciplined reasoning instead of vibes",
+     "justification": "Defines the skills against 'vibes', a denied thing no sentence of the file presents as an option, rule or held view; state what the skills do (rules rest on opened sources and tests) or drop the foil."
+    },
+    {
+     "line": 9,
+     "sentence": "**Tested, not asserted.**",
+     "justification": "'X, not Y' label defines the principle against 'asserted' rules, which no sentence of the file presents as an option or a view held; the label should state what the rule does (a rule rests on a test that could have refuted it), which the sentence after it already says."
+    },
+    {
+     "line": 14,
+     "sentence": "The method here is neither a sequence of steps nor a demand for a citation:",
+     "justification": "Defines the method against 'a sequence of steps' and 'a demand for a citation', neither of which the file presents as an option or rule in force (the earlier citation-demand rule appears only in the deleted lines); open directly with what the method is, a way of treating statements about how the world works."
+    },
+    {
+     "line": 90,
+     "sentence": "A PR that offers a citation in place of a test is returned by design, not by oversight.",
+     "justification": "'Not by oversight' sets the policy against a reading (the return is an accident) that no sentence of the file presents; the first clause already states the rule in force, so the foil clause can go."
+    }
+   ]
+  },
+  {
+   "inventory": "deleted-lines",
+   "card": "D-06",
+   "target": "set-a/README.md",
+   "flagged": [
+    {
+     "line": 14,
+     "sentence": "The method here is neither a sequence of steps nor a demand for a citation: it is a way of treating statements about how the world works.",
+     "justification": "Defines the method against two named alternatives (steps, a citation demand) as foils; no checkable environmental fact blocks them, so state what the method is or drop the denial."
+    },
+    {
+     "line": 90,
+     "sentence": "A PR that offers a citation in place of a test is returned by design, not by oversight.",
+     "justification": "'in place of' and 'not by oversight' name the citation-only route and a rejected reading as foils of the decision; the blocking fact (what a citation does not show) is not stated."
+    },
+    {
+     "line": 9,
+     "sentence": "A citation is the address of such a test, and where an idea came from carries no weight.",
+     "justification": "'where an idea came from carries no weight' denies the origin-based alternative as a foil with no re-testable environmental fact behind it."
+    },
+    {
+     "line": 7,
+     "sentence": "Rooted admits rules by the scientific method instead:",
+     "justification": "'instead' defines the admission route against the unnamed prior route; the checkable fact (LLM-generated context files do not improve success) sits in the preceding sentence, so the foil can be dropped."
+    }
+   ]
+  },
+  {
+   "inventory": "deleted-lines",
+   "card": "D-96",
+   "target": "set-a/README.md",
+   "flagged": [
+    {
+     "line": 7,
+     "sentence": "Rooted admits rules by the scientific method instead:",
+     "justification": "\"instead\" sets the method against the denied alternative of admitting rules by citation, which no sentence of the file presents as an option or rule in force; the denied view appears only in the change's deleted lines. State what the method does (\"Rooted admits rules by the scientific method:\")."
+    },
+    {
+     "line": 7,
+     "sentence": "grounded instructions and disciplined reasoning instead of vibes",
+     "justification": "Defines the skills against \"vibes\", a thing no sentence of the file presents as an option or a held view and no fact blocks; say what the instructions and reasoning are grounded in, or drop the foil."
+    },
+    {
+     "line": 14,
+     "sentence": "The method here is neither a sequence of steps nor a demand for a citation: it is a way of treating statements about how the world works.",
+     "justification": "\"neither a sequence of steps nor a demand for a citation\" defines the method against two denied readings; the file never presents a step sequence or a citation demand as a view held, and the citation demand appears only in the deleted lines. Keep the positive clause \"a way of treating statements about how the world works\"."
+    },
+    {
+     "line": 14,
+     "sentence": "A citation is the address of someone else's test and never the support itself;",
+     "justification": "\"never the support itself\" argues against an absent view that a citation is support itself; the positive half (\"the address of someone else's test\") already states what a citation is."
+    },
+    {
+     "line": 39,
+     "sentence": "A claim of our own needs no citation.",
+     "justification": "Names the denied requirement (a citation) as a foil to our own claims, the same shape as \"a job of our own needs no ticket\"; the requirement is not presented as a rule in force for our claims anywhere in the file. State what such a claim rests on: its hypothesis committed first, then the test and the result (the next sentence already does)."
+    },
+    {
+     "line": 90,
+     "sentence": "is returned by design, not by oversight.",
+     "justification": "\"not by oversight\" denies a reading (that the return is a mistake) that no sentence of the file presents as held by anyone; the deleted lines carried the same phrase. Keep the fact that such a PR is returned."
+    }
+   ]
+  },
+  {
+   "inventory": "plain",
+   "card": "D-06",
+   "target": "set-a/README.md",
+   "flagged": [
+    {
+     "line": 14,
+     "sentence": "The method here is neither a sequence of steps nor a demand for a citation",
+     "justification": "Two alternatives (a step sequence, a citation demand) are named only as the foil the method is defined against; no environmental fact blocks them."
+    },
+    {
+     "line": 7,
+     "sentence": "grounded instructions and disciplined reasoning instead of vibes",
+     "justification": "'vibes' is an alternative named only as the foil of the approach, with no checkable blocking fact about it."
+    }
+   ]
+  },
+  {
+   "inventory": "plain",
+   "card": "D-96",
+   "target": "set-a/README.md",
+   "flagged": [
+    {
+     "line": 7,
+     "sentence": "grounded instructions and disciplined reasoning instead of vibes",
+     "justification": "Defines the skills against 'vibes', which no sentence of the file presents as an option or a view; state what the instructions and reasoning rest on, or drop the foil."
+    },
+    {
+     "line": 10,
+     "sentence": "The agent doesn't preemptively slurp the whole tree into context, so it doesn't fill its working memory with project content it doesn't need and later lose focus on the actual task.",
+     "justification": "Describes the design by what the agent does not do (slurp the whole tree, lose focus); no sentence of the file presents tree-slurping as an option, and no checkable blocking fact is given. Rewrite as what overview.sh and the stop-instruction do."
+    },
+    {
+     "line": 14,
+     "sentence": "The method here is neither a sequence of steps nor a demand for a citation: it is a way of treating statements about how the world works.",
+     "justification": "Defines the method against 'a sequence of steps' and 'a demand for a citation'; no sentence presents either as a view someone holds or a rule in force (a sequence of steps is never mentioned), so the denial argues with an absent party. State what the method is."
+    },
+    {
+     "line": 39,
+     "sentence": "A claim of our own needs no citation.",
+     "justification": "The card's own bad example ('a job of our own needs no ticket'): the subject is defined by the requirement it goes without; the file never presents a citation requirement for own claims. State what an own claim rests on (a committed test)."
+    },
+    {
+     "line": 53,
+     "sentence": "amplifies recall, never substitutes for it",
+     "justification": "'X, never Y' foil: substituting for recall is not presented anywhere in the file as an option or view; state what the skill does to the reader's recall."
+    },
+    {
+     "line": 90,
+     "sentence": "is returned by design, not by oversight",
+     "justification": "'by design, not by oversight' defines the action against a reading (oversight) that no sentence of the file presents; drop the foil and keep the present rule."
+    }
+   ]
+  },
+  {
+   "inventory": "candidates",
+   "card": "D-97",
+   "target": "set-a/method.md",
+   "flagged": [
+    {
+     "line": 10,
+     "sentence": "The scientific method is neither a sequence of steps nor a demand for a citation.",
+     "justification": "Defines the method against two denied things, 'a sequence of steps' and 'a demand for a citation'; no sentence of the file presents either as an option, a rule in force or a view someone holds (the Acceptance path is a path of statements, not a procedure the method is denied to be), so the sentence is a foil. Rewrite as what the method does (it is a way of treating statements about how the world works), or remove it."
+    }
+   ]
+  },
+  {
+   "inventory": "candidates-and-deleted-lines",
+   "card": "D-97",
+   "target": "set-a/method.md",
+   "flagged": [
+    {
+     "line": 10,
+     "sentence": "The scientific method is neither a sequence of steps nor a demand for a citation.",
+     "justification": "Defines the method against two denied things, a sequence of steps and a demand for a citation; no sentence of the file presents either as an option, rule or held view (the citation demand appears only in lines the change deleted), so it is a foil. Replace with what the method is (a way of treating statements about the world) or drop it."
+    },
+    {
+     "line": 12,
+     "sentence": "A citation is the address of someone else's test and never the support itself.",
+     "justification": "The clause 'never the support itself' denies a reading (a citation as support) that no remaining sentence of the file presents as a rule or view; the deleted Evidence-Based Rule that asserted it no longer counts. State only what a citation is and does (the address of someone else's test) or the fact that blocks the alternative."
+    }
+   ]
+  },
+  {
+   "inventory": "deleted-lines",
+   "card": "D-06",
+   "target": "set-a/method.md",
+   "flagged": [
+    {
+     "line": 10,
+     "sentence": "The scientific method is neither a sequence of steps nor a demand for a citation.",
+     "justification": "The method is defined against two named alternatives (a sequence of steps, a demand for a citation) as foils, not as subjects of a checkable environmental fact."
+    },
+    {
+     "line": 12,
+     "sentence": "A citation is the address of someone else's test and never the support itself.",
+     "justification": "Names citation-as-support only as the rejected foil via 'never the support itself'; no checkable present fact blocks it."
+    },
+    {
+     "line": 67,
+     "sentence": "The author's name and the standing of the venue support nothing.",
+     "justification": "Author and venue appear as foils of the acceptance criterion rather than as subjects of a re-testable environmental fact."
+    },
+    {
+     "line": 14,
+     "sentence": "a prescription follows from a goal joined with the claim that the technique serves it, never from facts alone.",
+     "justification": "'Facts alone' is a named alternative used as the foil of the definition of a prescription."
+    }
+   ]
+  },
+  {
+   "inventory": "deleted-lines",
+   "card": "D-96",
+   "target": "set-a/method.md",
+   "flagged": [
+    {
+     "line": 10,
+     "sentence": "The scientific method is neither a sequence of steps nor a demand for a citation.",
+     "justification": "Defines the method against two denied things, 'a sequence of steps' and 'a demand for a citation'; no sentence of the file presents either as an option, rule in force or held view (the citation-demand rule appears only in the inventory's deleted lines, which count as never presented), and neither is the subject of a checkable present fact. Rewrite as what the method does (a way of treating statements about how the world works) or drop the sentence."
+    }
+   ]
+  },
+  {
+   "inventory": "plain",
+   "card": "D-06",
+   "target": "set-a/method.md",
+   "flagged": [
+    {
+     "line": 10,
+     "sentence": "The scientific method is neither a sequence of steps nor a demand for a citation. It is a way of treating statements about how the world works.",
+     "justification": "The method is defined against two named alternatives (a sequence of steps, a demand for a citation) that appear as foils, not as subjects of a checkable blocking fact; the positive definition in the next sentence survives without them."
+    }
+   ]
+  },
+  {
+   "inventory": "plain",
+   "card": "D-96",
+   "target": "set-a/method.md",
+   "flagged": [
+    {
+     "line": 10,
+     "sentence": "The scientific method is neither a sequence of steps nor a demand for a citation.",
+     "justification": "Defines the method against two denied things, a sequence of steps and a demand for a citation; no sentence of the file presents either as an option, rule in force or held view, and neither is the subject of a checkable fact. Rewrite as what the method does (it treats statements so that an observation could refute them) or remove the sentence."
+    }
+   ]
+  },
+  {
+   "inventory": "plain",
+   "card": "D-06",
+   "target": "set-b/README.md",
+   "flagged": [
+    {
+     "line": 7,
+     "sentence": "grounded instructions and disciplined reasoning instead of vibes",
+     "justification": "\"instead of vibes\" names an alternative only as the foil of the design and no environmental fact blocks it; state what the skills do, or the checkable fact that rules out unsupported instructions, or drop the contrast."
+    },
+    {
+     "line": 10,
+     "sentence": "For example, instead of an `/init`-style project-structure blob in `CLAUDE.md` (a file class shown not to improve success while raising inference cost 20–23%, with repository overviews specifically found unhelpful [[15]](#references)), orientation happens on demand via [`overview.sh`](overview.sh) with an explicit stop-instruction.",
+     "justification": "The `/init`-style blob is named as the foil (\"instead of ...\") the decision is defined against; the blocking fact sits in a parenthesis about a file class, not as the grammatical subject. Rewrite so the fact leads, e.g. repository overviews in CLAUDE.md do not improve agent success and raise inference cost 20-23% [15], so orientation runs on demand via overview.sh with an explicit stop-instruction."
+    }
+   ]
+  },
+  {
+   "inventory": "plain",
+   "card": "D-96",
+   "target": "set-b/README.md",
+   "flagged": [
+    {
+     "line": 7,
+     "sentence": "grounded instructions and disciplined reasoning instead of vibes",
+     "justification": "Defines the skills against 'vibes', a thing no sentence of the file presents as an option, rule or held view; state what the grounded instructions do (for example, each rule cites a test or an opened source) or drop the foil."
+    },
+    {
+     "line": 96,
+     "sentence": "amplifies recall, never substitutes for it",
+     "justification": "Defines the skill against 'substituting for recall', which no sentence of the file presents as an option or held view; state what the skill does (it prompts the reader to recall and records the reader's own notes) or drop the denial."
+    }
+   ]
+  },
+  {
+   "inventory": "plain",
+   "card": "D-06",
+   "target": "set-b/method.md",
+   "flagged": []
+  },
+  {
+   "inventory": "plain",
+   "card": "D-96",
+   "target": "set-b/method.md",
+   "flagged": []
+  },
+  {
+   "inventory": "candidates",
+   "card": "D-97",
+   "target": "set-c/SKILL.md",
+   "flagged": []
+  }
+ ]
+}
