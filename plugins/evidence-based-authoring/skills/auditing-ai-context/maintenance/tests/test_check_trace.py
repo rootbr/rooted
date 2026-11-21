@@ -9,6 +9,9 @@ import unittest
 from pathlib import Path
 
 SKILL = Path(__file__).resolve().parents[2]
+REPO = SKILL.parents[3]
+RUN_1 = SKILL / "evals" / "absent-rule" / "runs" / "run-1"
+IN_REPOSITORY = (REPO / "plugins" / "evidence-based-authoring" / "skills" / SKILL.name).resolve() == SKILL and RUN_1.is_dir()
 SCRIPTS = SKILL / "scripts"
 sys.path.insert(0, str(SCRIPTS))
 import check_trace as ct  # noqa: E402
@@ -162,6 +165,14 @@ class Refusals(Fixture):
                 self.assertIn(message, found)
                 self.assertEqual(self.settled([[verdict]], verdict["id"]), [("rewrite", "QUOTE")])
 
+    def test_a_target_is_asked_of_a_licensed_verdict_alone(self):
+        no_target = plain("c002")
+        del no_target["target"]
+        self.assertEqual(self.settled([[no_target]], "c002"), [("keep", "")])
+        self.assertEqual(self.settled([[plain("c002", target=" ")]], "c002"), [("keep", "")])
+        self.assertEqual(self.settled([[dict(rewrite("c001"), target="")]], "c001"), [("rewrite", "")])
+        self.assertIn("licensed without a target", self.refusal(licensed("c001", target=" "))[1])
+
     def test_a_shared_word_has_four_letters_and_matches_by_its_ending(self):
         self.assertTrue(ct.shares_word("Every rule cites a source.", "the cited rules"))
         self.assertFalse(ct.shares_word("Every rule cites a source.", "a demand"))
@@ -226,6 +237,24 @@ class Disposition(Fixture):
             with self.subTest(payload):
                 with self.assertRaises(ct.InputError):
                     ct.reading_verdicts(payload, "reading.json")
+
+
+@unittest.skipUnless(IN_REPOSITORY, "the kept run stands in a checkout of the repository")
+class KeptRun(unittest.TestCase):
+    """The readings run 1 kept, settled again: what a change to the rules does to that run's dispositions."""
+
+    def test_run_1_settles_as_recorded_but_for_plain_verdicts_without_a_target(self):
+        changed = []
+        for list_path in sorted(RUN_1.glob("*.list.json")):
+            case = list_path.name[:-len(".list.json")]
+            listing = json.loads(list_path.read_text(encoding="utf-8"))
+            readings = [ct.reading_verdicts(json.loads((RUN_1 / f"{case}.reading-{k}.json").read_text(encoding="utf-8")),
+                                            f"{case}.reading-{k}.json") for k in (1, 2, 3)]
+            recorded = json.loads((RUN_1 / f"{case}.dispositions.json").read_text(encoding="utf-8"))["candidates"]
+            settled = {entry["id"]: entry["disposition"] for entry in ct.check(listing, readings, REPO)["candidates"]}
+            changed += [(case[:2], entry["id"], entry["disposition"], settled[entry["id"]])
+                        for entry in recorded if entry["disposition"] != settled[entry["id"]]]
+        self.assertEqual(changed, [("05", id_, "rewrite", "keep") for id_ in ("c004", "c005", "c010", "c011", "c013")])
 
 
 class CommandLine(Fixture):

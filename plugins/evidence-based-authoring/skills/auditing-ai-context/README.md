@@ -23,8 +23,8 @@ This skill's instance of the repository `README.md` §Skill layout:
 | `references/gotchas.md` | the session | when a skill misbehaves or the audit workflow fails |
 | `scripts/static-audit.py` | the session | the static pre-pass of every audit |
 | `scripts/audit-workflow.js` | the Workflow tool | every audit |
-| `scripts/trace_list.py`, `scripts/check_trace.py` | a maintainer | the test of the trace pass by `evals/absent-rule/protocol.md`: the first lists the sentences a change added with a cue of denial, contrast or history, the second settles the reviewers' verdicts on them |
-| `../../agents/trace-reviewer.md` | a reviewer sub-agent of that test | each reading of one list |
+| `scripts/trace_list.py`, `scripts/check_trace.py` | the session | the trace pass of an audit of a change that replaces a rule or a design: the first lists the sentences the change added with a cue of denial, contrast or history, the second settles the reviewers' verdicts on them |
+| `../../agents/trace-reviewer.md` | the session, as a dispatched agent | the trace pass: three readings of each listed document |
 | `maintenance/README.md` | a maintainer | before changing a card, a script, a sub-agent prompt or an eval |
 | `maintenance/rule-cards-provenance.md` | a maintainer | adding a card or re-verifying its source |
 | `maintenance/skill-provenance.md` | a maintainer | re-verifying a source behind `SKILL.md`, a gotcha or the KB card specification |

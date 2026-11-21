@@ -5,9 +5,10 @@
 
 LIST.json is the output of trace_list.py. A reading is one reviewer's verdicts on the whole list:
 {"verdicts": [...]}, or a JSON array of such objects whose verdict lists are concatenated. A
-verdict carries id, target, verdict (rewrite, licensed or plain) and reason, with quote for
-licensed and question for plain. A reading keeps a candidate only by a valid licensed or plain
-verdict, and a candidate is kept when every reading keeps it.
+verdict carries id, verdict (rewrite, licensed or plain) and reason, with target and quote for
+licensed and question for plain; a reviewer names a target on every verdict, and the check asks
+for it where it reads it. A reading keeps a candidate only by a valid licensed or plain verdict,
+and a candidate is kept when every reading keeps it.
 
 A licensed verdict is valid when its normalised quote is at least 12 characters long, occurs in
 the candidate's document, has an occurrence that ends at or before the candidate sentence starts
@@ -19,8 +20,8 @@ units joined by single spaces.
 
 Codes, each as a finding line `<CODE>: reading <n>: <id>: <message>`:
   MISSING    the reading has no verdict for the candidate; the outcome is rewrite
-  SHAPE      a verdict outside rewrite, licensed and plain, no target, or plain without a
-             question; the outcome is rewrite
+  SHAPE      a verdict outside rewrite, licensed and plain, licensed without a target, or
+             plain without a question; the outcome is rewrite
   QUOTE      licensed whose quote fails one of the four conditions; the outcome is rewrite
   DUPLICATE  a second verdict for one id in a reading; the first counts
   UNKNOWN    a verdict for an id the list does not hold; it has no effect
@@ -175,11 +176,8 @@ def quote_refusal(verdict, candidate, document, spans, rewritten):
 def settle(verdict, candidate, document, spans, rewritten):
     """(outcome, code, message) of one verdict on its candidate; the code is empty when nothing is refused."""
     kind = verdict.get("verdict")
-    target = verdict.get("target")
     if kind not in VERDICTS:
         return "rewrite", "SHAPE", f"verdict {kind!r} is outside {', '.join(VERDICTS)}"
-    if not isinstance(target, str) or not target.strip():
-        return "rewrite", "SHAPE", "no target"
     if kind == "rewrite":
         return "rewrite", "", ""
     if kind == "plain":
@@ -187,6 +185,9 @@ def settle(verdict, candidate, document, spans, rewritten):
         if not isinstance(question, str) or not question.strip():
             return "rewrite", "SHAPE", "plain without a question"
         return "keep", "", ""
+    target = verdict.get("target")
+    if not isinstance(target, str) or not target.strip():
+        return "rewrite", "SHAPE", "licensed without a target"
     refusal = quote_refusal(verdict, candidate, document, spans, rewritten)
     return ("rewrite", "QUOTE", refusal) if refusal else ("keep", "", "")
 
