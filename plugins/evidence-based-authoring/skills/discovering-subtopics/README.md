@@ -14,3 +14,5 @@ Builds a maximum-breadth question map across any topic: ten complementary method
 | `references/source-triangulation.md` | the field-intelligence agent | when it searches |
 | `maintenance/README.md` | a maintainer | when the skill is evaluated, iterated or gated before a commit; never in a run |
 | `maintenance/methodology-provenance.md` | a maintainer | adding a method or re-verifying the source behind one; never in a run |
+| `maintenance/pending-evidence.md` | a maintainer | to see which claims about a technique wait for a test and which tests were found; never in a run |
+| `maintenance/citations.json` | a maintainer | to check that the quoted words of the two files stand in their sources; never in a run |
