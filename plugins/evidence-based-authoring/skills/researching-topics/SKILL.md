@@ -124,7 +124,7 @@ When the user requests a document, or when the discovery path was taken: produce
 
 ## Gotchas
 
-G-01. AI-generated articles look authoritative but lack primary sources. Telltale signs: generic phrasing, no named author, no specific numbers or dates, no named experts quoted. Find the primary source or mark the claim low-confidence.
+G-01. AI-generated articles look authoritative but lack primary sources. Telltale signs: generic phrasing, no named author, no specific numbers or dates. Find the primary source or mark the claim low-confidence.
 G-02. Freshness matters for regulations, product prices, software APIs, and current events. Apply a date filter (past year, or last 6 months for fast-moving topics), or explicitly note when a source pre-dates the relevant change.
 G-03. Cross-language sources sometimes contradict English sources because each language community has its own commercial, regulatory, and cultural biases. Present the disagreement transparently rather than picking one side by default.
 G-04. Affiliate-driven listicles are sales content, not reviews. If every "top pick" has a tracked link and the pros / cons read interchangeably across articles, the ranking is paid placement.
