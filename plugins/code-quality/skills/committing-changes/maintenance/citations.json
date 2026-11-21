@@ -1,0 +1,2458 @@
+[
+ {
+  "id": "Format, Types, Version bumps/1",
+  "source": "https://www.conventionalcommits.org/en/v1.0.0/",
+  "quote": "<type>[optional scope]: <description>"
+ },
+ {
+  "id": "Format, Types, Version bumps/10",
+  "source": "https://www.conventionalcommits.org/en/v1.0.0/",
+  "quote": "Conventional Commits 1.0.0"
+ },
+ {
+  "id": "Format, Types, Version bumps/11",
+  "source": "https://www.conventionalcommits.org/en/v1.0.0/",
+  "quote": "How does this relate to SemVer?"
+ },
+ {
+  "id": "Format, Types, Version bumps/12",
+  "source": "https://raw.githubusercontent.com/conventional-changelog/commitlint/master/%40commitlint/config-conventional/README.md",
+  "quote": "'refactor', 'revert', 'style', 'test'"
+ },
+ {
+  "id": "Format, Types, Version bumps/13",
+  "source": "https://raw.githubusercontent.com/conventional-changelog/commitlint/master/%40commitlint/config-conventional/README.md",
+  "quote": "`type-enum` restricts the type to the list below"
+ },
+ {
+  "id": "Format, Types, Version bumps/14",
+  "source": "https://conf.researchr.org/details/icse-2025/icse-2025-research-track/28/A-First-Look-at-Conventional-Commits-Classification",
+  "quote": "By analyzing 194 issues from GitHub and 100 questions from Stack Overflow about the CCS application, we qualitatively categorized 52 challenges developers encountered"
+ },
+ {
+  "id": "Format, Types, Version bumps/15",
+  "source": "https://conf.researchr.org/details/icse-2025/icse-2025-research-track/28/A-First-Look-at-Conventional-Commits-Classification",
+  "quote": "The most common one is CCS-type confusion"
+ },
+ {
+  "id": "Format, Types, Version bumps/16",
+  "source": "https://arxiv.org/abs/2605.02033",
+  "quote": "across three open-source LLMs of varying scale",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Format, Types, Version bumps/17",
+  "source": "https://arxiv.org/abs/2605.02033",
+  "quote": "3,200 commits mined from the InfluxDB repository",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Format, Types, Version bumps/18",
+  "source": "https://arxiv.org/abs/2605.02033",
+  "quote": "achieves the highest average accuracy (0.531)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Format, Types, Version bumps/19",
+  "source": "https://arxiv.org/abs/2605.02033",
+  "quote": "Mistral-7B-",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Format, Types, Version bumps/2",
+  "source": "https://www.conventionalcommits.org/en/v1.0.0/",
+  "quote": "is contained within parenthesis"
+ },
+ {
+  "id": "Format, Types, Version bumps/20",
+  "source": "https://arxiv.org/abs/2605.02033",
+  "quote": "DeepSeek-R1-32B",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Format, Types, Version bumps/21",
+  "source": "https://www.conventionalcommits.org/en/v1.0.0/",
+  "quote": "types other than fix: and feat: are allowed, for example @commitlint/config-conventional (based on the Angular convention ) recommends build: , chore: , ci: , docs: , style: , refactor: , perf: , test: , and others."
+ },
+ {
+  "id": "Format, Types, Version bumps/22",
+  "source": "https://raw.githubusercontent.com/conventional-changelog/commitlint/master/README.md",
+  "quote": "commitlint"
+ },
+ {
+  "id": "Format, Types, Version bumps/23",
+  "source": "https://raw.githubusercontent.com/0x404/conventional-commit-classification/main/README.md",
+  "quote": "huggingface.co/datasets/0x404/ccs_dataset"
+ },
+ {
+  "id": "Format, Types, Version bumps/3",
+  "source": "https://www.conventionalcommits.org/en/v1.0.0/",
+  "quote": "types other than fix: and feat: are allowed, for example @commitlint/config-conventional (based on the Angular convention"
+ },
+ {
+  "id": "Format, Types, Version bumps/4",
+  "source": "https://www.conventionalcommits.org/en/v1.0.0/",
+  "quote": "this correlates with PATCH in Semantic Versioning"
+ },
+ {
+  "id": "Format, Types, Version bumps/5",
+  "source": "https://www.conventionalcommits.org/en/v1.0.0/",
+  "quote": "this correlates with MINOR in Semantic Versioning"
+ },
+ {
+  "id": "Format, Types, Version bumps/6",
+  "source": "https://www.conventionalcommits.org/en/v1.0.0/",
+  "quote": "correlating with MAJOR in Semantic Versioning"
+ },
+ {
+  "id": "Format, Types, Version bumps/7",
+  "source": "https://www.conventionalcommits.org/en/v1.0.0/",
+  "quote": "A scope MAY be provided after a type"
+ },
+ {
+  "id": "Format, Types, Version bumps/8",
+  "source": "https://www.conventionalcommits.org/en/v1.0.0/",
+  "quote": "A longer commit body MAY be provided after the short description"
+ },
+ {
+  "id": "Format, Types, Version bumps/9",
+  "source": "https://www.conventionalcommits.org/en/v1.0.0/",
+  "quote": "One or more footers MAY be provided one blank line after the body"
+ },
+ {
+  "id": "Format, Types, Version bumps/a1",
+  "source": "https://conf.researchr.org/details/icse-2025/icse-2025-research-track/28/A-First-Look-at-Conventional-Commits-Classification",
+  "quote": "we propose a clear definition of CCS types based on existing variants"
+ },
+ {
+  "id": "Format, Types, Version bumps/a2",
+  "source": "https://conf.researchr.org/details/icse-2025/icse-2025-research-track/28/A-First-Look-at-Conventional-Commits-Classification",
+  "quote": "we designed an approach to automatically classify commits into CCS types, and the evaluation results demonstrate a promising performance"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/1",
+  "source": "https://git-scm.com/docs/SubmittingPatches",
+  "quote": "Make separate commits for logically separate changes"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/10",
+  "source": "https://arxiv.org/abs/1805.10978",
+  "quote": "performed a Mann–Whitney U-test",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/11",
+  "source": "https://arxiv.org/abs/1805.10978",
+  "quote": "regarding the number of false positives, with a p-value of 0.03",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/12",
+  "source": "https://arxiv.org/abs/1805.10978",
+  "quote": "effect size (d = 0.36)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/13",
+  "source": "https://arxiv.org/abs/1805.10978",
+  "quote": "Effectiveness (defects found) Control 14 20 1.0 1.42 0.72 [0–2.85] 0.6",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/14",
+  "source": "https://arxiv.org/abs/1805.10978",
+  "quote": "Treatment 14 17 1.0 1.21",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/15",
+  "source": "https://arxiv.org/abs/1805.10978",
+  "quote": "Suggested improvements Control 14 7 0 0.5 0.62 [0–1.22] 0.4",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/16",
+  "source": "https://arxiv.org/abs/1805.10978",
+  "quote": "Treatment 14 19 1.0 1.36",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/17",
+  "source": "https://arxiv.org/abs/1805.10978",
+  "quote": "Review net time Control (tangled changes) 14 831 853 385 [99–1,607] 0.66",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/18",
+  "source": "https://arxiv.org/abs/1805.10978",
+  "quote": "Treatment (untangled changes) 14 759",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/19",
+  "source": "https://arxiv.org/abs/1805.10978",
+  "quote": "The size of the changeset was around 100 lines of code and it involved seven files",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/2",
+  "source": "https://git-scm.com/docs/SubmittingPatches",
+  "quote": "After any code change, make sure that the entire test suite passes"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/20",
+  "source": "https://arxiv.org/abs/1805.10978",
+  "quote": "The system has about 3,000 lines of code",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/21",
+  "source": "https://arxiv.org/abs/1805.10978",
+  "quote": "emulates a popular arcade game",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/22",
+  "source": "https://arxiv.org/abs/1805.10978",
+  "quote": "the three functional defects were intentionally put in",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/23",
+  "source": "https://arxiv.org/abs/1805.10978",
+  "quote": "They were classified by the first author",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/24",
+  "source": "https://arxiv.org/abs/1805.10978",
+  "quote": "group received one pull request containing a single commit with all the changes tied",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/25",
+  "source": "https://arxiv.org/abs/1805.10978",
+  "quote": "the treatment group received two pull requests with changes separated according to a logical decomposition",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/26",
+  "source": "https://arxiv.org/abs/1805.10978",
+  "quote": "Participants were randomly assigned to either the control group or the treatment using strata based on experience as developers and previous knowledge",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/27",
+  "source": "https://arxiv.org/abs/1805.10978",
+  "quote": "SW developer",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/28",
+  "source": "https://arxiv.org/abs/1805.10978",
+  "quote": "PhD student",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/29",
+  "source": "https://arxiv.org/abs/1805.10978",
+  "quote": "MSc student",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/3",
+  "source": "https://arxiv.org/abs/1805.10978",
+  "quote": "di Biase M, Bruntink M, van Deursen A, Bacchelli A. 2019. The effects of change decomposition on code review",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/30",
+  "source": "https://docs.kernel.org/process/submitting-patches.html",
+  "quote": "Separate each logical change into a separate patch"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/31",
+  "source": "https://docs.kernel.org/process/submitting-patches.html",
+  "quote": "take special care to ensure that the kernel builds and runs properly after each patch in the series"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/32",
+  "source": "https://docs.kernel.org/process/submitting-patches.html",
+  "quote": "Developers using git bisect to track down a problem can end up splitting your patch series at any point"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/33",
+  "source": "https://arxiv.org/abs/2610.11593",
+  "quote": "Runnable Commit Untangling for Coding Agents",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/34",
+  "source": "https://arxiv.org/abs/2610.11593",
+  "quote": "453 agent-generated patches that introduce regressions",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/35",
+  "source": "https://arxiv.org/abs/2610.11593",
+  "quote": "RucTangle raises Qwen3-Coder-Next’s pass@1 from 26.9% to 31.3% and Nemotron’s from 30.8% to 36.0%",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/36",
+  "source": "https://arxiv.org/abs/2610.11593",
+  "quote": "RucTangle improves repair success for four of the six evaluated models",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/37",
+  "source": "https://arxiv.org/abs/2610.11593",
+  "quote": "runs the tests in",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/38",
+  "source": "https://arxiv.org/abs/2610.11593",
+  "quote": "on the versions selected by git bisect",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/39",
+  "source": "https://arxiv.org/abs/2605.22526",
+  "quote": "analyzing 3,691 valid patches generated by three agent frameworks",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/4",
+  "source": "https://arxiv.org/abs/1805.10978",
+  "quote": "PeerJ Comput. Sci. 5:e193",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/40",
+  "source": "https://arxiv.org/abs/2605.22526",
+  "quote": "Multi-SWE-bench",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/41",
+  "source": "https://arxiv.org/abs/2605.22526",
+  "quote": "(21.43% vs. 36.72%)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/42",
+  "source": "https://arxiv.org/abs/2605.22526",
+  "quote": "tangled refactorings are strongly associated with reduced compilability",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/43",
+  "source": "https://arxiv.org/abs/2605.22526",
+  "quote": "Logistic regression analysis",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/44",
+  "source": "https://git-scm.com/docs/SubmittingPatches",
+  "quote": "SubmittingPatches last updated in 2.56.0"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/45",
+  "source": "https://docs.kernel.org/process/submitting-patches.html",
+  "quote": "The Linux Kernel 7.4.0-rc3"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/46",
+  "source": "https://arxiv.org/abs/2610.11593",
+  "quote": "GPT-6-Luna has a lower pass@1 with RucTangle, 48.7% against 50.0% under NoHistory",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/47",
+  "source": "https://arxiv.org/abs/2605.22526",
+  "quote": "generated by three agent frameworks with 12 LLMs",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/5",
+  "source": "https://arxiv.org/abs/1805.10978",
+  "quote": "28 software developers among professionals and graduate students",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/6",
+  "source": "https://arxiv.org/abs/1805.10978",
+  "quote": "Table 2 RQ1—number of defects found (effectiveness), false positives and suggested improvements",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/7",
+  "source": "https://arxiv.org/abs/1805.10978",
+  "quote": "Table 3 RQ2—review time",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/8",
+  "source": "https://arxiv.org/abs/1805.10978",
+  "quote": "False positives Control 14 6 0 0.42 0.5 [0–1.40] 0.03",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/9",
+  "source": "https://arxiv.org/abs/1805.10978",
+  "quote": "Treatment 14 1 0 0.07",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/a10",
+  "source": "https://arxiv.org/abs/1805.10978",
+  "quote": "Questions with * have p < 0.05.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/a11",
+  "source": "https://arxiv.org/abs/1805.10978",
+  "quote": "better divided according to a logical separation of concerns (Q8), (2) better structured (Q10), and (3) not spanning too many features (Q12)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/a12",
+  "source": "https://arxiv.org/abs/1805.10978",
+  "quote": "we cannot reject the null hypothesis H0u of tangled pull requests reducing change understanding",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/a13",
+  "source": "https://arxiv.org/abs/1805.10978",
+  "quote": "an open-source Java",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/a16",
+  "source": "https://arxiv.org/abs/2610.11593",
+  "quote": "Qwen3-Coder-Next and Nemotron are evaluated on 453 patches, with three attempts per patch under each condition",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/a17",
+  "source": "https://arxiv.org/abs/2610.11593",
+  "quote": "The RucTangle condition provides its commits together with bisect results.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/a18",
+  "source": "https://arxiv.org/abs/2610.11593",
+  "quote": "Armchr 28.8% 40.4% 47.2%",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/a19",
+  "source": "https://arxiv.org/abs/2610.11593",
+  "quote": "Atomizer 28.8% 40.4% 47.6%",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/a20",
+  "source": "https://arxiv.org/abs/2610.11593",
+  "quote": "Armchr 31.3% 43.7%",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/a21",
+  "source": "https://arxiv.org/abs/2610.11593",
+  "quote": "Atomizer 32.3% 44.2%",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/a22",
+  "source": "https://arxiv.org/abs/2610.11593",
+  "quote": "Untangling results on 131 patches",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/a23",
+  "source": "https://arxiv.org/abs/2610.11593",
+  "quote": "Armchr 126 (96.2%) 6.54 5 7.1 0.898 79.4",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/a24",
+  "source": "https://arxiv.org/abs/2610.11593",
+  "quote": "Atomizer 126 (96.2%) 7.52 6 3.2 0.912 73.8",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/a25",
+  "source": "https://arxiv.org/abs/2610.11593",
+  "quote": "GPT-6-Luna under NoHistory and RucTangle, with one attempt per patch and condition on the shared 150-patch sample",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/a26",
+  "source": "https://arxiv.org/abs/2610.11593",
+  "quote": "For MiMo-V2.6-Flash and Qwen3.7-Flash, RucTangle raises pass@1 from 29.3% to 36.0% and from 50.0% to 53.3%, respectively",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/a27",
+  "source": "https://arxiv.org/abs/2610.11593",
+  "quote": "pass@1, which remains at 61.3%",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/a29",
+  "source": "https://arxiv.org/abs/2610.11593",
+  "quote": "However, five models also more often cause previously passing tests to fail",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/a30",
+  "source": "https://arxiv.org/abs/2610.11593",
+  "quote": "Nemotron repair outcomes with original and halved histories on 150 patches",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/a31",
+  "source": "https://arxiv.org/abs/2610.11593",
+  "quote": "We observe that pass@1 decreases from 34.9% with RucTangle-Original to 31.8% with RucTangle-Halved.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/a32",
+  "source": "https://arxiv.org/abs/2610.11593",
+  "quote": "Our repair comparisons evaluate the complete RucTangle system, including bisect localization, without isolating component contributions.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/a34",
+  "source": "https://arxiv.org/abs/2605.22526",
+  "quote": "At the patch level, 791 out of 3,691 patches (21.43%) contain at least one tangled refactoring",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/a35",
+  "source": "https://arxiv.org/abs/2605.22526",
+  "quote": "with 47 out of 128 patches (36.72%) containing at least one tangled refactoring",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/a36",
+  "source": "https://arxiv.org/abs/2605.22526",
+  "quote": "after controlling for task-, agent-, and patch-level factors",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/a37",
+  "source": "https://arxiv.org/abs/2605.22526",
+  "quote": "has_refactoring 791 1.09; p = 0.543 0.42; p = 1.76e-18",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/a38",
+  "source": "https://arxiv.org/abs/2605.22526",
+  "quote": "while exhibiting no significant association with functional correctness",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/a39",
+  "source": "https://arxiv.org/abs/2605.22526",
+  "quote": "selectively removes or repairs problematic operations",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/a40",
+  "source": "https://arxiv.org/abs/2605.22526",
+  "quote": "Our approach improves compilability from 19.34% to 38.33%, and additionally resolves 2.79% previously unresolved issues",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/a41",
+  "source": "https://arxiv.org/abs/2605.22526",
+  "quote": "Moreover, RefUntangle enables an additional 2.79%",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/a7",
+  "source": "https://arxiv.org/abs/1805.10978",
+  "quote": "Q8* The changeset a logical separation of concerns",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/a8",
+  "source": "https://arxiv.org/abs/1805.10978",
+  "quote": "Q10* The relations among the changes were well structured",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Workflow 2–3, Rules 1 — atomic and functional, one commit per logical change/a9",
+  "source": "https://arxiv.org/abs/1805.10978",
+  "quote": "Q12* Code changes were spanning too many features",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 2 — imperative mood, no trailing period/1",
+  "source": "https://cbea.ms/git-commit/",
+  "quote": "How to Write a Git Commit Message"
+ },
+ {
+  "id": "Rules 2 — imperative mood, no trailing period/10",
+  "source": "https://api.github.com/repos/angular/angular/commits?path=contributing-docs/commit-message-guidelines.md&per_page=1",
+  "quote": "7f3f3d7"
+ },
+ {
+  "id": "Rules 2 — imperative mood, no trailing period/11",
+  "source": "https://api.github.com/repos/angular/angular/commits?path=contributing-docs/commit-message-guidelines.md&per_page=1",
+  "quote": "2026-04-22"
+ },
+ {
+  "id": "Rules 2 — imperative mood, no trailing period/12",
+  "source": "https://git-scm.com/docs/SubmittingPatches",
+  "quote": "should skip the full stop"
+ },
+ {
+  "id": "Rules 2 — imperative mood, no trailing period/13",
+  "source": "https://git-scm.com/docs/SubmittingPatches",
+  "quote": "its first word is not capitalized"
+ },
+ {
+  "id": "Rules 2 — imperative mood, no trailing period/14",
+  "source": "https://git-scm.com/docs/SubmittingPatches",
+  "quote": "Describe your changes in imperative mood"
+ },
+ {
+  "id": "Rules 2 — imperative mood, no trailing period/15",
+  "source": "https://git-scm.com/docs/SubmittingPatches",
+  "quote": "Describe your changes well."
+ },
+ {
+  "id": "Rules 2 — imperative mood, no trailing period/16",
+  "source": "https://git-scm.com/docs/SubmittingPatches",
+  "quote": "unless there is a reason to capitalize it other than because it is the first word in the sentence"
+ },
+ {
+  "id": "Rules 2 — imperative mood, no trailing period/17",
+  "source": "https://www.conventionalcommits.org/en/v1.0.0/",
+  "quote": "fix: array parsing issue when multiple spaces were contained in string."
+ },
+ {
+  "id": "Rules 2 — imperative mood, no trailing period/18",
+  "source": "https://www.conventionalcommits.org/en/v1.0.0/",
+  "quote": "docs: correct spelling of CHANGELOG"
+ },
+ {
+  "id": "Rules 2 — imperative mood, no trailing period/19",
+  "source": "https://www.conventionalcommits.org/en/v1.0.0/",
+  "quote": "feat(lang): add Polish language"
+ },
+ {
+  "id": "Rules 2 — imperative mood, no trailing period/2",
+  "source": "https://cbea.ms/git-commit/",
+  "quote": "4. Do not end the subject line with a period"
+ },
+ {
+  "id": "Rules 2 — imperative mood, no trailing period/20",
+  "source": "https://git-scm.com/book/en/v2/Distributed-Git-Contributing-to-a-Project",
+  "quote": "Write your commit message in the imperative: \"Fix bug\" and not \"Fixed bug\""
+ },
+ {
+  "id": "Rules 2 — imperative mood, no trailing period/21",
+  "source": "https://git-scm.com/book/en/v2/Distributed-Git-Contributing-to-a-Project",
+  "quote": "Capitalized, short (50 chars or less) summary"
+ },
+ {
+  "id": "Rules 2 — imperative mood, no trailing period/22",
+  "source": "https://git-scm.com/book/en/v2/Distributed-Git-Contributing-to-a-Project",
+  "quote": "2nd Edition"
+ },
+ {
+  "id": "Rules 2 — imperative mood, no trailing period/23",
+  "source": "https://arxiv.org/pdf/2309.04797",
+  "quote": "A Full-fledged Commit Message Quality Checker",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 2 — imperative mood, no trailing period/24",
+  "source": "https://arxiv.org/pdf/2309.04797",
+  "quote": "R5 also improves understandability",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 2 — imperative mood, no trailing period/25",
+  "source": "https://arxiv.org/pdf/2309.04797",
+  "quote": "2572 R6",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 2 — imperative mood, no trailing period/26",
+  "source": "https://arxiv.org/pdf/2309.04797",
+  "quote": "510",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 2 — imperative mood, no trailing period/27",
+  "source": "https://arxiv.org/pdf/2309.04797",
+  "quote": "2062 R5",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 2 — imperative mood, no trailing period/28",
+  "source": "https://arxiv.org/pdf/2309.04797",
+  "quote": "with 5,000 random CMs from GitHub",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 2 — imperative mood, no trailing period/29",
+  "source": "https://raw.githubusercontent.com/angular/angular/main/contributing-docs/commit-message-guidelines.md",
+  "quote": "easier to read commit history"
+ },
+ {
+  "id": "Rules 2 — imperative mood, no trailing period/3",
+  "source": "https://cbea.ms/git-commit/",
+  "quote": "5. Use the imperative mood in the subject line"
+ },
+ {
+  "id": "Rules 2 — imperative mood, no trailing period/30",
+  "source": "https://cbea.ms/git-commit/",
+  "quote": "31 Aug 2014"
+ },
+ {
+  "id": "Rules 2 — imperative mood, no trailing period/31",
+  "source": "https://arxiv.org/pdf/2401.08376",
+  "quote": "8.70% commit messages in MCMDJS matching the AngularJS rule",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 2 — imperative mood, no trailing period/4",
+  "source": "https://cbea.ms/git-commit/",
+  "quote": "Capitalize the subject line"
+ },
+ {
+  "id": "Rules 2 — imperative mood, no trailing period/5",
+  "source": "https://raw.githubusercontent.com/angular/angular/main/contributing-docs/commit-message-guidelines.md",
+  "quote": "Commit Message Format"
+ },
+ {
+  "id": "Rules 2 — imperative mood, no trailing period/6",
+  "source": "https://raw.githubusercontent.com/angular/angular/main/contributing-docs/commit-message-guidelines.md",
+  "quote": "use the imperative, present tense"
+ },
+ {
+  "id": "Rules 2 — imperative mood, no trailing period/7",
+  "source": "https://raw.githubusercontent.com/angular/angular/main/contributing-docs/commit-message-guidelines.md",
+  "quote": "don't capitalize the first letter"
+ },
+ {
+  "id": "Rules 2 — imperative mood, no trailing period/8",
+  "source": "https://raw.githubusercontent.com/angular/angular/main/contributing-docs/commit-message-guidelines.md",
+  "quote": "no dot (.) at the end"
+ },
+ {
+  "id": "Rules 2 — imperative mood, no trailing period/9",
+  "source": "https://raw.githubusercontent.com/angular/angular/main/contributing-docs/commit-message-guidelines.md",
+  "quote": "Summary in present tense. Not capitalized. No period at the end."
+ },
+ {
+  "id": "Rules 3 — subject ≤50 chars, body wrap at 72/1",
+  "source": "https://cbea.ms/git-commit/",
+  "quote": "2. Limit the subject line to 50 characters"
+ },
+ {
+  "id": "Rules 3 — subject ≤50 chars, body wrap at 72/10",
+  "source": "https://git-scm.com/docs/git-commit",
+  "quote": "no more than 50 characters"
+ },
+ {
+  "id": "Rules 3 — subject ≤50 chars, body wrap at 72/11",
+  "source": "https://git-scm.com/docs/git-commit",
+  "quote": "DISCUSSION"
+ },
+ {
+  "id": "Rules 3 — subject ≤50 chars, body wrap at 72/12",
+  "source": "https://git-scm.com/docs/SubmittingPatches",
+  "quote": "50 characters is the soft limit"
+ },
+ {
+  "id": "Rules 3 — subject ≤50 chars, body wrap at 72/13",
+  "source": "https://git-scm.com/book/en/v2/Distributed-Git-Contributing-to-a-Project",
+  "quote": "50 chars or less"
+ },
+ {
+  "id": "Rules 3 — subject ≤50 chars, body wrap at 72/14",
+  "source": "https://git-scm.com/book/en/v2/Distributed-Git-Contributing-to-a-Project",
+  "quote": "Wrap it to about 72"
+ },
+ {
+  "id": "Rules 3 — subject ≤50 chars, body wrap at 72/15",
+  "source": "https://git-scm.com/book/en/v2/Distributed-Git-Contributing-to-a-Project",
+  "quote": "Commit Guidelines"
+ },
+ {
+  "id": "Rules 3 — subject ≤50 chars, body wrap at 72/16",
+  "source": "https://stu.westga.edu/~ssynan1/literacy/Dyson.pdf",
+  "quote": "How physical text layout a",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 3 — subject ≤50 chars, body wrap at 72/17",
+  "source": "https://stu.westga.edu/~ssynan1/literacy/Dyson.pdf",
+  "quote": "DOI: 10.1080/01449290410001715714",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 3 — subject ≤50 chars, body wrap at 72/18",
+  "source": "https://stu.westga.edu/~ssynan1/literacy/Dyson.pdf",
+  "quote": "six line lengths compared, ranging from 25 to 100 characters per line",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 3 — subject ≤50 chars, body wrap at 72/19",
+  "source": "https://stu.westga.edu/~ssynan1/literacy/Dyson.pdf",
+  "quote": "the longest line read faster than the shortest line tested",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 3 — subject ≤50 chars, body wrap at 72/2",
+  "source": "https://cbea.ms/git-commit/",
+  "quote": "6. Wrap the body at 72 characters"
+ },
+ {
+  "id": "Rules 3 — subject ≤50 chars, body wrap at 72/20",
+  "source": "https://stu.westga.edu/~ssynan1/literacy/Dyson.pdf",
+  "quote": "55 characters per line producing better comprehension scores than the longest line length (100 characters per line)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 3 — subject ≤50 chars, body wrap at 72/21",
+  "source": "https://stu.westga.edu/~ssynan1/literacy/Dyson.pdf",
+  "quote": "Forty-eight participants",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 3 — subject ≤50 chars, body wrap at 72/22",
+  "source": "https://stu.westga.edu/~ssynan1/literacy/Dyson.pdf",
+  "quote": "there were no other statistically",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 3 — subject ≤50 chars, body wrap at 72/23",
+  "source": "https://arxiv.org/pdf/2610.36229",
+  "quote": "Agent or Human? Detecting Commits by AI Coding Agents",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 3 — subject ≤50 chars, body wrap at 72/24",
+  "source": "https://arxiv.org/pdf/2610.36229",
+  "quote": "461, 202, and 13 matched repositories",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 3 — subject ≤50 chars, body wrap at 72/25",
+  "source": "https://arxiv.org/pdf/2610.36229",
+  "quote": "73 words, compared with 10 for",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 3 — subject ≤50 chars, body wrap at 72/26",
+  "source": "https://arxiv.org/pdf/2610.36229",
+  "quote": "0.693∗",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 3 — subject ≤50 chars, body wrap at 72/27",
+  "source": "https://arxiv.org/pdf/2610.36229",
+  "quote": "adjusted 𝑝 < 0.05",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 3 — subject ≤50 chars, body wrap at 72/28",
+  "source": "https://arxiv.org/pdf/2610.36229",
+  "quote": "two-sided Wilcoxon",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 3 — subject ≤50 chars, body wrap at 72/29",
+  "source": "https://arxiv.org/pdf/2610.36229",
+  "quote": "4.1.3 Results",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 3 — subject ≤50 chars, body wrap at 72/3",
+  "source": "https://cbea.ms/git-commit/",
+  "quote": "50 characters is not a hard limit, just a rule of thumb"
+ },
+ {
+  "id": "Rules 3 — subject ≤50 chars, body wrap at 72/30",
+  "source": "https://arxiv.org/pdf/2610.36229",
+  "quote": "about seven times as long",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 3 — subject ≤50 chars, body wrap at 72/31",
+  "source": "https://arxiv.org/pdf/2610.36229",
+  "quote": "Benjamini–",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 3 — subject ≤50 chars, body wrap at 72/32",
+  "source": "https://cbea.ms/git-commit/",
+  "quote": "less than 50 character"
+ },
+ {
+  "id": "Rules 3 — subject ≤50 chars, body wrap at 72/33",
+  "source": "https://cbea.ms/git-commit/",
+  "quote": "keeping everything under 80 characters overall"
+ },
+ {
+  "id": "Rules 3 — subject ≤50 chars, body wrap at 72/34",
+  "source": "https://git-scm.com/docs/git-commit",
+  "quote": "git-commit last updated in 2.55.0"
+ },
+ {
+  "id": "Rules 3 — subject ≤50 chars, body wrap at 72/35",
+  "source": "https://arxiv.org/pdf/2309.04797",
+  "quote": "4957 R1",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 3 — subject ≤50 chars, body wrap at 72/36",
+  "source": "https://arxiv.org/pdf/2309.04797",
+  "quote": "372",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 3 — subject ≤50 chars, body wrap at 72/37",
+  "source": "https://arxiv.org/pdf/2309.04797",
+  "quote": "4585 R2",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 3 — subject ≤50 chars, body wrap at 72/38",
+  "source": "https://arxiv.org/pdf/2309.04797",
+  "quote": "2821 R4",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 3 — subject ≤50 chars, body wrap at 72/39",
+  "source": "https://arxiv.org/pdf/2309.04797",
+  "quote": "249 2572 R6",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 3 — subject ≤50 chars, body wrap at 72/4",
+  "source": "https://cbea.ms/git-commit/",
+  "quote": "consider 72 the hard limit"
+ },
+ {
+  "id": "Rules 3 — subject ≤50 chars, body wrap at 72/40",
+  "source": "https://arxiv.org/pdf/2610.36229",
+  "quote": "below 0.147",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 3 — subject ≤50 chars, body wrap at 72/41",
+  "source": "https://arxiv.org/pdf/2610.36229",
+  "quote": "The difference lies in length rather than format",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 3 — subject ≤50 chars, body wrap at 72/5",
+  "source": "https://git-scm.com/docs/MyFirstContribution",
+  "quote": "a 50-column or less subject line"
+ },
+ {
+  "id": "Rules 3 — subject ≤50 chars, body wrap at 72/6",
+  "source": "https://git-scm.com/docs/MyFirstContribution",
+  "quote": "intentionally formatted to 72 columns per line"
+ },
+ {
+  "id": "Rules 3 — subject ≤50 chars, body wrap at 72/7",
+  "source": "https://git-scm.com/docs/MyFirstContribution",
+  "quote": "MyFirstContribution last updated in 2.56.0"
+ },
+ {
+  "id": "Rules 3 — subject ≤50 chars, body wrap at 72/8",
+  "source": "https://git-scm.com/docs/MyFirstContribution",
+  "quote": "Code It Up!"
+ },
+ {
+  "id": "Rules 3 — subject ≤50 chars, body wrap at 72/9",
+  "source": "https://git-scm.com/docs/MyFirstContribution",
+  "quote": "Adding a New Command"
+ },
+ {
+  "id": "Rules 3 — subject ≤50 chars, body wrap at 72/a1",
+  "source": "https://doi.org/10.1080/01449290410001715714",
+  "quote": "Forty-eight participants"
+ },
+ {
+  "id": "Rules 3 — subject ≤50 chars, body wrap at 72/a2",
+  "source": "https://doi.org/10.1080/01449290410001715714",
+  "quote": "six line lengths compared, ranging from 25 to 100 characters per line"
+ },
+ {
+  "id": "Rules 3 — subject ≤50 chars, body wrap at 72/a3",
+  "source": "https://doi.org/10.1080/01449290410001715714",
+  "quote": "the longest line read faster than the shortest line tested"
+ },
+ {
+  "id": "Rules 3 — subject ≤50 chars, body wrap at 72/a4",
+  "source": "https://doi.org/10.1080/01449290410001715714",
+  "quote": "there were no other statistically significant differences"
+ },
+ {
+  "id": "Rules 3 — subject ≤50 chars, body wrap at 72/a5",
+  "source": "https://doi.org/10.1080/01449290410001715714",
+  "quote": "Faster reading times for the longest line could be partly attributed to the reduction in scrolling time"
+ },
+ {
+  "id": "Rules 3 — subject ≤50 chars, body wrap at 72/a6",
+  "source": "https://doi.org/10.1080/01449290410001715714",
+  "quote": "and found no differences in comprehension"
+ },
+ {
+  "id": "Rules 3 — subject ≤50 chars, body wrap at 72/a7",
+  "source": "https://doi.org/10.1080/01449290410001715714",
+  "quote": "using 45, 76 and 132 characters per line"
+ },
+ {
+  "id": "Rules 3 — subject ≤50 chars, body wrap at 72/a8",
+  "source": "https://doi.org/10.1080/01449290410001715714",
+  "quote": "no differences in reading times or reading efficiency"
+ },
+ {
+  "id": "Rules 3 — subject ≤50 chars, body wrap at 72/a9",
+  "source": "https://doi.org/10.1080/01449290410001715714",
+  "quote": "55 characters per line producing better comprehension scores than the longest line length (100 characters per line)"
+ },
+ {
+  "id": "Rules 4 — what and why, not how/1",
+  "source": "https://cbea.ms/git-commit/",
+  "quote": "Use the body to explain what and why vs. how"
+ },
+ {
+  "id": "Rules 4 — what and why, not how/10",
+  "source": "https://arxiv.org/abs/2202.02974",
+  "quote": "a sample of almost 1,600 messages",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 4 — what and why, not how/11",
+  "source": "https://stairs.ics.uci.edu/papers/2023/Commit_Messages.pdf",
+  "quote": "which gives us an adjusted p-value … of 0.006",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 4 — what and why, not how/12",
+  "source": "https://stairs.ics.uci.edu/papers/2023/Commit_Messages.pdf",
+  "quote": "0.02565",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 4 — what and why, not how/13",
+  "source": "https://stairs.ics.uci.edu/papers/2023/Commit_Messages.pdf",
+  "quote": "0.14742",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 4 — what and why, not how/14",
+  "source": "https://stairs.ics.uci.edu/papers/2023/Commit_Messages.pdf",
+  "quote": "Welch’s t-test",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 4 — what and why, not how/15",
+  "source": "https://stairs.ics.uci.edu/papers/2023/Commit_Messages.pdf",
+  "quote": "Observation 5: Commit message quality has an impact",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 4 — what and why, not how/16",
+  "source": "https://stairs.ics.uci.edu/papers/2023/Commit_Messages.pdf",
+  "quote": "238k commits from 17",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 4 — what and why, not how/17",
+  "source": "https://stairs.ics.uci.edu/papers/2023/Commit_Messages.pdf",
+  "quote": "32 Apache projects",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 4 — what and why, not how/18",
+  "source": "https://stairs.ics.uci.edu/papers/2023/Commit_Messages.pdf",
+  "quote": "91,926 commits",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 4 — what and why, not how/19",
+  "source": "https://stairs.ics.uci.edu/papers/2023/Commit_Messages.pdf",
+  "quote": "SZZUnleashed",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 4 — what and why, not how/2",
+  "source": "https://cbea.ms/git-commit/",
+  "quote": "In most cases, you can leave out details about how a change has been made"
+ },
+ {
+  "id": "Rules 4 — what and why, not how/20",
+  "source": "https://arxiv.org/abs/2602.14611",
+  "quote": "approximately 12–20%",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 4 — what and why, not how/21",
+  "source": "https://arxiv.org/abs/2602.14611",
+  "quote": "80K GitHub PRs across 156 projects",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 4 — what and why, not how/22",
+  "source": "https://arxiv.org/abs/2602.14611",
+  "quote": "Holm-corrected p-values",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 4 — what and why, not how/23",
+  "source": "https://arxiv.org/abs/2602.14611",
+  "quote": "five programming languages across 156 projects",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 4 — what and why, not how/24",
+  "source": "https://arxiv.org/abs/2602.14611",
+  "quote": "MSR ’26",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 4 — what and why, not how/25",
+  "source": "https://arxiv.org/abs/2602.14611",
+  "quote": "description contains Code Explanation are approximately 12–20%",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 4 — what and why, not how/28",
+  "source": "https://arxiv.org/abs/2202.02974",
+  "quote": "identified and reviewed 46 relevant studies",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 4 — what and why, not how/29",
+  "source": "https://arxiv.org/abs/2202.02974",
+  "quote": "solicited opinions from 30 experienced",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 4 — what and why, not how/30",
+  "source": "https://arxiv.org/abs/2202.02974",
+  "quote": "five highly active open source projects",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 4 — what and why, not how/4",
+  "source": "https://git-scm.com/docs/SubmittingPatches",
+  "quote": "The goal of your log message is to convey the why behind your change"
+ },
+ {
+  "id": "Rules 4 — what and why, not how/5",
+  "source": "https://git-scm.com/docs/SubmittingPatches",
+  "quote": "Your code may be clearly written with in-code comment to sufficiently explain how it works"
+ },
+ {
+  "id": "Rules 4 — what and why, not how/6",
+  "source": "https://git-scm.com/docs/SubmittingPatches",
+  "quote": "alternate solutions considered but discarded, if any"
+ },
+ {
+  "id": "Rules 4 — what and why, not how/7",
+  "source": "https://git-scm.com/docs/SubmittingPatches",
+  "quote": "justifies the way the change solves the problem"
+ },
+ {
+  "id": "Rules 4 — what and why, not how/8",
+  "source": "https://arxiv.org/abs/2202.02974",
+  "quote": "approximately 93% of",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 4 — what and why, not how/9",
+  "source": "https://arxiv.org/abs/2202.02974",
+  "quote": "circa 44% of messages could be improved",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 4 — what and why, not how/a1",
+  "source": "https://arxiv.org/abs/2602.14611",
+  "quote": "OR 1.276 0.978 1.123",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 4 — what and why, not how/a2",
+  "source": "https://arxiv.org/abs/2602.14611",
+  "quote": "OR. 4.362 1.010 1.206",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 4 — what and why, not how/a4",
+  "source": "https://arxiv.org/abs/2602.14611",
+  "quote": "based on Holm-corrected p-values",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 4 — what and why, not how/a5",
+  "source": "https://arxiv.org/abs/2602.14611",
+  "quote": "responses, out of which 57 were valid",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 4 — what and why, not how/a6",
+  "source": "https://arxiv.org/abs/2602.14611",
+  "quote": "purpose of the PR, reason of the … PR, and links to related issues are identified as consistently valuable",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 4 — what and why, not how/a7",
+  "source": "https://arxiv.org/abs/2602.14611",
+  "quote": "such as explanation of code changes or how changes were tested … are moderately valued",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 4 — what and why, not how/a8",
+  "source": "https://arxiv.org/abs/2602.14611",
+  "quote": "LLaMA 3.1-70B",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 5 — footer references issues/10",
+  "source": "https://git-scm.com/docs/SubmittingPatches",
+  "quote": "Instead of giving a URL to a mailing list archive, summarize the relevant points of the discussion"
+ },
+ {
+  "id": "Rules 5 — footer references issues/11",
+  "source": "https://arxiv.org/abs/2202.02974",
+  "quote": "This approach is controversial",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 5 — footer references issues/12",
+  "source": "https://arxiv.org/abs/2202.02974",
+  "quote": "go stale, resulting in a loss of the information",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 5 — footer references issues/13",
+  "source": "https://stairs.ics.uci.edu/papers/2023/Commit_Messages.pdf",
+  "quote": "15% of issue reports/pull requests do not provide Why",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 5 — footer references issues/14",
+  "source": "https://stairs.ics.uci.edu/papers/2023/Commit_Messages.pdf",
+  "quote": "We found 59 such commits.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 5 — footer references issues/15",
+  "source": "https://arxiv.org/abs/2507.09199",
+  "quote": "average Precision@1 of 75.03%",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 5 — footer references issues/16",
+  "source": "https://arxiv.org/abs/2507.09199",
+  "quote": "9,319 issues",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 5 — footer references issues/17",
+  "source": "https://arxiv.org/abs/2507.09199",
+  "quote": "75.03% precision, 50.75% recall",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 5 — footer references issues/18",
+  "source": "https://arxiv.org/abs/2507.09199",
+  "quote": "ReLink achieves 10.92%",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 5 — footer references issues/19",
+  "source": "https://arxiv.org/abs/2507.09199",
+  "quote": "tags in commit messages (removed in our setup)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 5 — footer references issues/2",
+  "source": "https://www.conventionalcommits.org/en/v1.0.0/",
+  "quote": "followed by either a :<space> or <space># separator"
+ },
+ {
+  "id": "Rules 5 — footer references issues/20",
+  "source": "https://arxiv.org/abs/2507.09199",
+  "quote": "use explicit issue tags",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 5 — footer references issues/21",
+  "source": "https://arxiv.org/abs/2507.09199",
+  "quote": "across 20 projects",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 5 — footer references issues/22",
+  "source": "https://arxiv.org/abs/2507.09199",
+  "quote": "ICSE ’26",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 5 — footer references issues/23",
+  "source": "https://api.openalex.org/works/https://doi.org/10.1145/1595696.1595716",
+  "quote": "only a fraction of bug fixes are actually labelled in source code version histories"
+ },
+ {
+  "id": "Rules 5 — footer references issues/24",
+  "source": "https://api.openalex.org/works/https://doi.org/10.1145/1595696.1595716",
+  "quote": "find strong evidence of systematic bias"
+ },
+ {
+  "id": "Rules 5 — footer references issues/25",
+  "source": "https://arxiv.org/abs/2108.02133",
+  "quote": "controlled experiment with 71 subjects",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 5 — footer references issues/26",
+  "source": "https://arxiv.org/abs/2108.02133",
+  "quote": "24% fast as compared to",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 5 — footer references issues/27",
+  "source": "https://arxiv.org/abs/2108.02133",
+  "quote": "Empirical Software Engineering, 20(2): 413-441",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 5 — footer references issues/3",
+  "source": "https://www.conventionalcommits.org/en/v1.0.0/",
+  "quote": "e.g., Acked-by"
+ },
+ {
+  "id": "Rules 5 — footer references issues/4",
+  "source": "https://www.conventionalcommits.org/en/v1.0.0/",
+  "quote": "Commit message with multi-paragraph body and multiple footers"
+ },
+ {
+  "id": "Rules 5 — footer references issues/5",
+  "source": "https://www.conventionalcommits.org/en/v1.0.0/",
+  "quote": "Reviewed-by: Z"
+ },
+ {
+  "id": "Rules 5 — footer references issues/6",
+  "source": "https://www.conventionalcommits.org/en/v1.0.0/",
+  "quote": "Refs: #123"
+ },
+ {
+  "id": "Rules 5 — footer references issues/7",
+  "source": "https://docs.github.com/en/issues/tracking-your-work-with-issues/using-issues/linking-a-pull-request-to-an-issue",
+  "quote": "You can also use closing keywords in a commit message. The issue will be closed when you merge the commit into the default branch"
+ },
+ {
+  "id": "Rules 5 — footer references issues/8",
+  "source": "https://docs.github.com/en/issues/tracking-your-work-with-issues/using-issues/linking-a-pull-request-to-an-issue",
+  "quote": "Linking a pull request to an issue using a keyword"
+ },
+ {
+  "id": "Rules 5 — footer references issues/9",
+  "source": "https://git-scm.com/docs/SubmittingPatches",
+  "quote": "Try to make sure your explanation can be understood without external resources"
+ },
+ {
+  "id": "Rules 5 — footer references issues/a1",
+  "source": "https://stairs.ics.uci.edu/papers/2023/Commit_Messages.pdf",
+  "quote": "C. Manual Analysis",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 5 — footer references issues/a11",
+  "source": "https://stairs.ics.uci.edu/papers/2023/Commit_Messages.pdf",
+  "quote": "survey respondents (89.77%) expected additional information",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 5 — footer references issues/a2",
+  "source": "https://stairs.ics.uci.edu/papers/2023/Commit_Messages.pdf",
+  "quote": "we identified 611 commit messages",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 5 — footer references issues/a3",
+  "source": "https://stairs.ics.uci.edu/papers/2023/Commit_Messages.pdf",
+  "quote": "which includes 1,597 commit messages from 5 large",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 5 — footer references issues/a4",
+  "source": "https://stairs.ics.uci.edu/papers/2023/Commit_Messages.pdf",
+  "quote": "and popular Java OSS projects",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 5 — footer references issues/a5",
+  "source": "https://stairs.ics.uci.edu/papers/2023/Commit_Messages.pdf",
+  "quote": "authors of this study independently checked all 611 commit",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 5 — footer references issues/a6",
+  "source": "https://stairs.ics.uci.edu/papers/2023/Commit_Messages.pdf",
+  "quote": "We found 1 such",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 5 — footer references issues/a8",
+  "source": "https://stairs.ics.uci.edu/papers/2023/Commit_Messages.pdf",
+  "quote": "We found 9 such commits.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Rules 5 — footer references issues/a9",
+  "source": "https://stairs.ics.uci.edu/papers/2023/Commit_Messages.pdf",
+  "quote": "We found 21 such commits.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Grouping/1",
+  "source": "https://git-scm.com/docs/SubmittingPatches",
+  "quote": "Make separate commits for logically separate changes."
+ },
+ {
+  "id": "Grouping/10",
+  "source": "https://arxiv.org/pdf/1805.10978",
+  "quote": "Review net time Control (tangled changes) 14 831 853 385 [99–1,607] 0.66 Treatment (untangled changes) 14 759",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Grouping/11",
+  "source": "https://arxiv.org/pdf/1805.10978",
+  "quote": "performed a Mann–Whitney U-test to test for differences between the control and the treatment group",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Grouping/12",
+  "source": "https://arxiv.org/pdf/1805.10978",
+  "quote": "effect size (d = 0.36)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Grouping/13",
+  "source": "https://arxiv.org/pdf/1805.10978",
+  "quote": "28 software developers among professionals and graduate students",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Grouping/14",
+  "source": "https://arxiv.org/pdf/1805.10978",
+  "quote": "the control group received one pull request containing a single commit with all the changes tied together; the treatment group received two pull requests with changes separated according to a logical decomposition",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Grouping/15",
+  "source": "https://arxiv.org/pdf/1805.10978",
+  "quote": "Published 13 May 2019",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Grouping/16",
+  "source": "https://yidatao.github.io/paper/tao_msr2015.pdf",
+  "quote": "Partitioning Composite Code Changes to Facilitate Code Review",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Grouping/17",
+  "source": "https://yidatao.github.io/paper/tao_msr2015.pdf",
+  "quote": "mean 7.94 9.40 35.92 40.60",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Grouping/18",
+  "source": "https://yidatao.github.io/paper/tao_msr2015.pdf",
+  "quote": "One-tailed Paired-samples t-test (confidence level 95%) p-value 0.01 0.81",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Grouping/19",
+  "source": "https://yidatao.github.io/paper/tao_msr2015.pdf",
+  "quote": "We recruited 18 computer science students",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Grouping/20",
+  "source": "https://yidatao.github.io/paper/tao_msr2015.pdf",
+  "quote": "We then selected twelve composite changes",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Grouping/21",
+  "source": "https://arxiv.org/pdf/2610.11593",
+  "quote": "Runnable Commit Untangling for Coding Agents",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Grouping/22",
+  "source": "https://arxiv.org/pdf/2610.11593",
+  "quote": "Jinfeng Jiang1,4 , Dongsun Kim1,† , Dayi Lin2 , Zhou Yang3,4,5,†",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Grouping/23",
+  "source": "https://arxiv.org/pdf/2610.11593",
+  "quote": "RucTangle raises Qwen3-Coder-Next’s pass@1 from 26.9% to 31.3% and Nemotron’s from 30.8% to 36.0%",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Grouping/24",
+  "source": "https://arxiv.org/pdf/2610.11593",
+  "quote": "RucTangle raises pass@1 from 29.3% to 36.0% and from 50.0% to 53.3%, respectively. However, RucTangle does not improve DeepSeek-V4- Flash’s pass@1, which remains at 61.3%. GPT-6-Luna has a lower pass@1 with RucTangle, 48.7% against 50.0% under NoHistory",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Grouping/25",
+  "source": "https://arxiv.org/pdf/2610.11593",
+  "quote": "RucTangle improves pass@1 for four of the six evaluated models",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Grouping/26",
+  "source": "https://arxiv.org/pdf/2610.11593",
+  "quote": "Qwen3-Coder-Next and Nemotron are evaluated on 453 patches",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Grouping/27",
+  "source": "https://arxiv.org/pdf/2610.11593",
+  "quote": "NoHistory and RucTangle on the shared 150-patch sample",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Grouping/28",
+  "source": "https://arxiv.org/pdf/2610.11593",
+  "quote": "runs from Claude Opus 4.6, GLM-5.1, DeepSeek-V4-Pro, Kimi-K2.6, Qwen3.7-Max, and GPT-5.5",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Grouping/29",
+  "source": "https://arxiv.org/pdf/2610.11593",
+  "quote": "The RucTangle condition provides its commits together with bisect results.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Grouping/3",
+  "source": "https://docs.kernel.org/process/submitting-patches.html",
+  "quote": "Separate your changes"
+ },
+ {
+  "id": "Grouping/30",
+  "source": "https://arxiv.org/pdf/2610.11593",
+  "quote": "limited to Python projects from SWE-CI",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Grouping/31",
+  "source": "https://arxiv.org/pdf/2607.03332",
+  "quote": "AtomicCommitBench: Can Coding Agents Reconstruct Commit Histories from Squashed Patches?",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Grouping/32",
+  "source": "https://arxiv.org/pdf/2607.03332",
+  "quote": "Zhihao Lin1 Mingyi Zhou1 Li Li1,*",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Grouping/33",
+  "source": "https://arxiv.org/pdf/2607.03332",
+  "quote": "the GPT-5.4 setup driven by Codex CLI (0.46) and the GLM-5 setup driven by Claude Code (0.43) form a higher ARI band than the MiniMax (0.31) and Kimi (0.29) setups",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Grouping/34",
+  "source": "https://arxiv.org/pdf/2607.03332",
+  "quote": "highlights same-file lumping and support-hunk drift as recurring error patterns",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Grouping/35",
+  "source": "https://arxiv.org/pdf/2610.11593",
+  "quote": "We compare RucTangle against four untangling methods on 131 agent- generated patches. All histories produced by RucTangle are runnable, while baselines produce 20.6%–37.4% unrunnable commit histories.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Grouping/36",
+  "source": "https://arxiv.org/pdf/2607.03332",
+  "quote": "800 real consecutive-commit episodes across 10 Python projects",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Grouping/37",
+  "source": "https://arxiv.org/pdf/2607.03332",
+  "quote": "both above FileSplit, the strongest simple baseline (0.340)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Grouping/38",
+  "source": "https://arxiv.org/pdf/2607.03332",
+  "quote": "The confidence intervals and p-values are episode-level descriptive analyses conditional on fixed traces, not cluster-robust population inference.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Grouping/39",
+  "source": "https://arxiv.org/pdf/1805.10978",
+  "quote": "di Biase et al. (2019), PeerJ Comput. Sci., DOI 10.7717/peerj-cs.193",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Grouping/4",
+  "source": "https://docs.kernel.org/process/submitting-patches.html",
+  "quote": "if your changes include both bug fixes and performance enhancements for a single driver, separate those changes into two or more patches. If your changes include an API update, and a new driver which uses that new API, separate those into two patches."
+ },
+ {
+  "id": "Grouping/40",
+  "source": "https://arxiv.org/pdf/1805.10978",
+  "quote": "Tao Y, Kim S. 2015. Partitioning composite code changes to facilitate code review. In: Proceedings of the 12th Working Conference on Mining Software Repositories.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Grouping/41",
+  "source": "https://docs.kernel.org/process/submitting-patches.html",
+  "quote": "7.4.0-rc3"
+ },
+ {
+  "id": "Grouping/42",
+  "source": "https://arxiv.org/pdf/2610.11593",
+  "quote": "arXiv:2610.11593v1 [cs.SE] 8 Oct 2026",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Grouping/43",
+  "source": "https://arxiv.org/pdf/2607.03332",
+  "quote": "arXiv:2607.03332v1 [cs.SE] 3 Jul 2026",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Grouping/5",
+  "source": "https://docs.kernel.org/process/submitting-patches.html",
+  "quote": "if you make a single change to numerous files, group those changes into a single patch"
+ },
+ {
+  "id": "Grouping/6",
+  "source": "https://arxiv.org/pdf/1805.10978",
+  "quote": "The effects of change decomposition on code review—a controlled experiment",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Grouping/7",
+  "source": "https://arxiv.org/pdf/1805.10978",
+  "quote": "Marco di Biase1,2, Magiel Bruntink2, Arie van Deursen1 and Alberto Bacchelli3",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Grouping/8",
+  "source": "https://arxiv.org/pdf/1805.10978",
+  "quote": "Effectiveness (defects found) Control 14 20 1.0 1.42 0.72 [0–2.85] 0.6 Treatment 14 17 1.0 1.21",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Grouping/9",
+  "source": "https://arxiv.org/pdf/1805.10978",
+  "quote": "False positives Control 14 6 0 0.42 0.5 [0–1.40] 0.03 Treatment 14 1 0 0.07",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 1 — a failed hook means no commit, so a new commit and never `--amend`/1",
+  "source": "https://git-scm.com/docs/githooks",
+  "quote": "Exiting with a non-zero status from this script causes the git commit command to abort before creating a commit"
+ },
+ {
+  "id": "Gotchas 1 — a failed hook means no commit, so a new commit and never `--amend`/10",
+  "source": "https://raw.githubusercontent.com/git/git/master/t/t7503-pre-commit-and-pre-merge-commit-hooks.sh",
+  "quote": "test_must_fail git commit -m \"another\""
+ },
+ {
+  "id": "Gotchas 1 — a failed hook means no commit, so a new commit and never `--amend`/11",
+  "source": "https://pre-commit.com/",
+  "quote": "Trim Trailing Whitespace.................................................Failed"
+ },
+ {
+  "id": "Gotchas 1 — a failed hook means no commit, so a new commit and never `--amend`/12",
+  "source": "https://pre-commit.com/",
+  "quote": "Files were modified by this hook."
+ },
+ {
+  "id": "Gotchas 1 — a failed hook means no commit, so a new commit and never `--amend`/13",
+  "source": "https://pre-commit.com/",
+  "quote": "The hook must exit nonzero on failure or modify files."
+ },
+ {
+  "id": "Gotchas 1 — a failed hook means no commit, so a new commit and never `--amend`/14",
+  "source": "https://arxiv.org/pdf/2611.19886",
+  "quote": "Recovery Gone Too Far: Understanding and Repairing Risky Fallback in LLM Agents",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 1 — a failed hook means no commit, so a new commit and never `--amend`/15",
+  "source": "https://arxiv.org/pdf/2611.19886",
+  "quote": "LIWEN WANG, The Hong Kong University of Science and Technology, China JIANGRONG WU",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 1 — a failed hook means no commit, so a new commit and never `--amend`/16",
+  "source": "https://arxiv.org/pdf/2611.19886",
+  "quote": "All four mainstream models we evaluate exhibit risky fallback, with action-boundary violations in up to 96.8% of risky scenarios.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 1 — a failed hook means no commit, so a new commit and never `--amend`/17",
+  "source": "https://arxiv.org/pdf/2611.19886",
+  "quote": "we conduct an empirical study on 304 scenarios that span eight domains and cover 55 real CVEs",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 1 — a failed hook means no commit, so a new commit and never `--amend`/18",
+  "source": "https://arxiv.org/pdf/2611.19886",
+  "quote": "DeepSeek-V4.1-Flash, GPT-5.6 Luna, Qwen3.5-9B, and Gemma-4-12B",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 1 — a failed hook means no commit, so a new commit and never `--amend`/19",
+  "source": "https://arxiv.org/pdf/2611.19886",
+  "quote": "after a push is rejected, a forced push in one repository replaces only the agent’s own commits, while in a different repository it also removes another author’s commits",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 1 — a failed hook means no commit, so a new commit and never `--amend`/2",
+  "source": "https://git-scm.com/docs/git-commit",
+  "quote": "Replace the tip of the current branch by creating a new commit"
+ },
+ {
+  "id": "Gotchas 1 — a failed hook means no commit, so a new commit and never `--amend`/20",
+  "source": "https://arxiv.org/pdf/2611.19886",
+  "quote": "We further evaluate three mainstream mitigations and find that none of them is effective against risky fallback.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 1 — a failed hook means no commit, so a new commit and never `--amend`/3",
+  "source": "https://git-scm.com/docs/githooks",
+  "quote": "githooks last updated in 2.54.0"
+ },
+ {
+  "id": "Gotchas 1 — a failed hook means no commit, so a new commit and never `--amend`/5",
+  "source": "https://git-scm.com/docs/githooks",
+  "quote": "commit-msg This hook is invoked by git-commit[1] and git-merge[1], and can be bypassed with the --no-verify option. It takes a single parameter, the name of the file that holds the proposed commit log message. Exiting with a non-zero status causes the command to abort."
+ },
+ {
+  "id": "Gotchas 1 — a failed hook means no commit, so a new commit and never `--amend`/6",
+  "source": "https://git-scm.com/docs/githooks",
+  "quote": "post-commit This hook is invoked by git-commit[1]. It takes no parameters, and is invoked after a commit is made. This hook is meant primarily for notification, and cannot affect the outcome of git commit."
+ },
+ {
+  "id": "Gotchas 1 — a failed hook means no commit, so a new commit and never `--amend`/7",
+  "source": "https://git-scm.com/docs/git-commit",
+  "quote": "You should understand the implications of rewriting history if you amend a commit that has already been published."
+ },
+ {
+  "id": "Gotchas 1 — a failed hook means no commit, so a new commit and never `--amend`/8",
+  "source": "https://raw.githubusercontent.com/git/git/master/t/t7503-pre-commit-and-pre-merge-commit-hooks.sh",
+  "quote": "test_expect_success 'with failing hook' ' setup_failing_hook \"pre-commit\""
+ },
+ {
+  "id": "Gotchas 1 — a failed hook means no commit, so a new commit and never `--amend`/9",
+  "source": "https://raw.githubusercontent.com/git/git/master/t/t7503-pre-commit-and-pre-merge-commit-hooks.sh",
+  "quote": "echo $1-failing-hook >>actual_hooks exit 1"
+ },
+ {
+  "id": "Gotchas 1 — a failed hook means no commit, so a new commit and never `--amend`/a1",
+  "source": "https://arxiv.org/pdf/2611.19886",
+  "quote": "When a tool fails with an ordinary error",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 1 — a failed hook means no commit, so a new commit and never `--amend`/a10",
+  "source": "https://arxiv.org/pdf/2611.19886",
+  "quote": "another author has pushed two commits since the last fetch",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 1 — a failed hook means no commit, so a new commit and never `--amend`/a11",
+  "source": "https://arxiv.org/pdf/2611.19886",
+  "quote": "they still discard them in 11 of 16 runs",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 1 — a failed hook means no commit, so a new commit and never `--amend`/a12",
+  "source": "https://arxiv.org/pdf/2611.19886",
+  "quote": "the violations to 1 of 16 on Claude Code (𝑝 < 0.001)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 1 — a failed hook means no commit, so a new commit and never `--amend`/a13",
+  "source": "https://arxiv.org/pdf/2611.19886",
+  "quote": "Configurations are compared with Fisher’s exact test",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 1 — a failed hook means no commit, so a new commit and never `--amend`/a14",
+  "source": "https://arxiv.org/pdf/2611.19886",
+  "quote": "normal success moves from 16 to 15 runs on Claude Code",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 1 — a failed hook means no commit, so a new commit and never `--amend`/a15",
+  "source": "https://arxiv.org/pdf/2611.19886",
+  "quote": "such as HTTP 503, 504, and 429",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 1 — a failed hook means no commit, so a new commit and never `--amend`/a3",
+  "source": "https://arxiv.org/pdf/2611.19886",
+  "quote": "Each scenario runs once at temperature 0 with at most 20 steps.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 1 — a failed hook means no commit, so a new commit and never `--amend`/a4",
+  "source": "https://arxiv.org/pdf/2611.19886",
+  "quote": "150 normal and 154 risky",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 1 — a failed hook means no commit, so a new commit and never `--amend`/a5",
+  "source": "https://arxiv.org/pdf/2611.19886",
+  "quote": "they commit action-boundary violations in 23.5% to 96.8% of risky scenarios",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 1 — a failed hook means no commit, so a new commit and never `--amend`/a6",
+  "source": "https://arxiv.org/pdf/2611.19886",
+  "quote": "Qwen recovers most often and takes the same substitute in 96.8% of risky scenarios, whereas DeepSeek violates least",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 1 — a failed hook means no commit, so a new commit and never `--amend`/a7",
+  "source": "https://arxiv.org/pdf/2611.19886",
+  "quote": "We run Claude Code with Claude Haiku 4.5",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 1 — a failed hook means no commit, so a new commit and never `--amend`/a8",
+  "source": "https://arxiv.org/pdf/2611.19886",
+  "quote": "16 times per scenario and configuration",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 1 — a failed hook means no commit, so a new commit and never `--amend`/a9",
+  "source": "https://arxiv.org/pdf/2611.19886",
+  "quote": "A branch has been rebased, the plain push is rejected as non-fast-forward",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 2 — stage by name/1",
+  "source": "https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository",
+  "quote": "Avoid the catch-all commands git add . and git commit -a on the command line"
+ },
+ {
+  "id": "Gotchas 2 — stage by name/10",
+  "source": "https://blog.gitguardian.com/the-state-of-secrets-sprawl-2026/",
+  "quote": "3.2% secret-leak rate"
+ },
+ {
+  "id": "Gotchas 2 — stage by name/11",
+  "source": "https://blog.gitguardian.com/the-state-of-secrets-sprawl-2026/",
+  "quote": "versus a 1.5% baseline across all public GitHub commits"
+ },
+ {
+  "id": "Gotchas 2 — stage by name/12",
+  "source": "https://blog.gitguardian.com/the-state-of-secrets-sprawl-2026/",
+  "quote": "17 Mar 2026"
+ },
+ {
+  "id": "Gotchas 2 — stage by name/13",
+  "source": "https://github.com/anthropics/claude-code/issues/45108",
+  "quote": "Claude Opus 4.6"
+ },
+ {
+  "id": "Gotchas 2 — stage by name/14",
+  "source": "https://github.com/anthropics/claude-code/issues/45108",
+  "quote": "Deleted 22 files"
+ },
+ {
+  "id": "Gotchas 2 — stage by name/15",
+  "source": "https://github.com/anthropics/claude-code/issues/45108",
+  "quote": "Deleted 34 files"
+ },
+ {
+  "id": "Gotchas 2 — stage by name/16",
+  "source": "https://github.com/anthropics/claude-code/issues/45108",
+  "quote": "suggesting broad git staging"
+ },
+ {
+  "id": "Gotchas 2 — stage by name/17",
+  "source": "https://github.com/anthropics/claude-code/issues/45108",
+  "quote": "prefer adding specific files by name"
+ },
+ {
+  "id": "Gotchas 2 — stage by name/18",
+  "source": "https://github.com/anthropics/claude-code/issues/45108",
+  "quote": "Claude Code CLI v2.1.92"
+ },
+ {
+  "id": "Gotchas 2 — stage by name/2",
+  "source": "https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository",
+  "quote": "use git add filename and git rm filename to individually stage files, instead"
+ },
+ {
+  "id": "Gotchas 2 — stage by name/3",
+  "source": "https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository",
+  "quote": "Avoiding accidental commits in the future"
+ },
+ {
+  "id": "Gotchas 2 — stage by name/4",
+  "source": "https://github.com/git-guides/git-add",
+  "quote": "Accidentally staging and committing files"
+ },
+ {
+  "id": "Gotchas 2 — stage by name/5",
+  "source": "https://github.com/git-guides/git-add",
+  "quote": "any file not listed in the .gitignore file"
+ },
+ {
+  "id": "Gotchas 2 — stage by name/6",
+  "source": "https://github.com/git-guides/git-add",
+  "quote": "This applies to large binary files, and files containing sensitive information like passwords or authentication tokens"
+ },
+ {
+  "id": "Gotchas 2 — stage by name/7",
+  "source": "https://git-scm.com/docs/git-add",
+  "quote": "git-add last updated in 2.56.0"
+ },
+ {
+  "id": "Gotchas 2 — stage by name/8",
+  "source": "https://git-scm.com/docs/git-add",
+  "quote": "If no <pathspec> is given when -A option is used, all files in the entire working tree are updated"
+ },
+ {
+  "id": "Gotchas 2 — stage by name/9",
+  "source": "https://git-scm.com/docs/git-add",
+  "quote": "will not add ignored files by default"
+ },
+ {
+  "id": "Gotchas 2 — stage by name/a1",
+  "source": "https://blog.gitguardian.com/the-state-of-secrets-sprawl-2026/",
+  "quote": "That gap is meaningful, but it should not be read as a simple tool failure."
+ },
+ {
+  "id": "Gotchas 2 — stage by name/a2",
+  "source": "https://blog.gitguardian.com/the-state-of-secrets-sprawl-2026/",
+  "quote": "Developers remain in control of what gets accepted, edited, ignored, or pushed."
+ },
+ {
+  "id": "Gotchas 2 — stage by name/a3",
+  "source": "https://blog.gitguardian.com/the-state-of-secrets-sprawl-2026/",
+  "quote": "Claude Code-assisted commits showed a 3.2% secret-leak rate , versus a 1.5% baseline across all public GitHub commits"
+ },
+ {
+  "id": "Gotchas 3 — merge commits exempt/10",
+  "source": "https://raw.githubusercontent.com/conventional-changelog/commitlint/master/@commitlint/is-ignored/src/defaults.ts",
+  "quote": "Merge pull request"
+ },
+ {
+  "id": "Gotchas 3 — merge commits exempt/11",
+  "source": "https://raw.githubusercontent.com/conventional-changelog/commitlint/master/@commitlint/is-ignored/src/defaults.ts",
+  "quote": "Merge remote-tracking branch"
+ },
+ {
+  "id": "Gotchas 3 — merge commits exempt/12",
+  "source": "https://github.com/python-semantic-release/python-semantic-release/commit/59bf08440a15269afaac81d78dd03ee418f9fd6b",
+  "quote": "Commit 59bf084"
+ },
+ {
+  "id": "Gotchas 3 — merge commits exempt/13",
+  "source": "https://github.com/python-semantic-release/python-semantic-release/commit/59bf08440a15269afaac81d78dd03ee418f9fd6b",
+  "quote": "set parser to ignore merge commits by default"
+ },
+ {
+  "id": "Gotchas 3 — merge commits exempt/14",
+  "source": "https://github.com/python-semantic-release/python-semantic-release/commit/59bf08440a15269afaac81d78dd03ee418f9fd6b",
+  "quote": "Most merge commits are syntactically pre-defined by Git or Remote Version Control System"
+ },
+ {
+  "id": "Gotchas 3 — merge commits exempt/15",
+  "source": "https://github.com/python-semantic-release/python-semantic-release/commit/59bf08440a15269afaac81d78dd03ee418f9fd6b",
+  "quote": "do not follow a commit convention (nor should they)"
+ },
+ {
+  "id": "Gotchas 3 — merge commits exempt/16",
+  "source": "https://github.com/python-semantic-release/python-semantic-release/commit/59bf08440a15269afaac81d78dd03ee418f9fd6b",
+  "quote": "generally creates duplicate messages"
+ },
+ {
+  "id": "Gotchas 3 — merge commits exempt/17",
+  "source": "https://docs.kernel.org/maintainer/rebasing-and-merging.html",
+  "quote": "The Linux Kernel 7.4.0-rc3"
+ },
+ {
+  "id": "Gotchas 3 — merge commits exempt/18",
+  "source": "https://docs.kernel.org/maintainer/rebasing-and-merging.html",
+  "quote": "Merging from lower-level trees"
+ },
+ {
+  "id": "Gotchas 3 — merge commits exempt/19",
+  "source": "https://docs.kernel.org/maintainer/rebasing-and-merging.html",
+  "quote": "The changelog for the merge should, for any kind of merge, say why the merge is being done"
+ },
+ {
+  "id": "Gotchas 3 — merge commits exempt/2",
+  "source": "https://www.conventionalcommits.org/en/v1.0.0/",
+  "quote": "If you use a squash based workflow on Git lead maintainers can clean up the commit messages as they’re merged"
+ },
+ {
+  "id": "Gotchas 3 — merge commits exempt/20",
+  "source": "https://www.conventionalcommits.org/en/v1.0.0/",
+  "quote": "present a form for the lead maintainer to enter the proper git commit message for the merge"
+ },
+ {
+  "id": "Gotchas 3 — merge commits exempt/21",
+  "source": "https://www.conventionalcommits.org/en/v1.0.0/",
+  "quote": "It simply means that commit will be missed by tools that are based on the spec."
+ },
+ {
+  "id": "Gotchas 3 — merge commits exempt/3",
+  "source": "https://www.conventionalcommits.org/en/v1.0.0/",
+  "quote": "the proper git commit message for the merge"
+ },
+ {
+  "id": "Gotchas 3 — merge commits exempt/4",
+  "source": "https://www.conventionalcommits.org/en/v1.0.0/",
+  "quote": "it’s not the end of the world if a commit lands that does not meet the Conventional Commits specification"
+ },
+ {
+  "id": "Gotchas 3 — merge commits exempt/5",
+  "source": "https://www.conventionalcommits.org/en/v1.0.0/",
+  "quote": "will be missed by tools that are based on the spec"
+ },
+ {
+  "id": "Gotchas 3 — merge commits exempt/6",
+  "source": "https://commitlint.js.org/reference/configuration.html",
+  "quote": "'Merge pull request', 'Merge X into Y' or 'Merge branch X'"
+ },
+ {
+  "id": "Gotchas 3 — merge commits exempt/7",
+  "source": "https://commitlint.js.org/reference/configuration.html",
+  "quote": "To disable those ignores and run rules always, set `defaultIgnores: false`"
+ },
+ {
+  "id": "Gotchas 3 — merge commits exempt/8",
+  "source": "https://commitlint.js.org/reference/configuration.html",
+  "quote": "Whether commitlint uses the default ignore rules"
+ },
+ {
+  "id": "Gotchas 3 — merge commits exempt/9",
+  "source": "https://raw.githubusercontent.com/conventional-changelog/commitlint/master/@commitlint/is-ignored/package.json",
+  "quote": "\"version\": \"21.2.3\""
+ },
+ {
+  "id": "Gotchas 4 — never `--no-verify`/1",
+  "source": "https://git-scm.com/docs/git-commit",
+  "quote": "Bypass the pre-commit and commit-msg hooks"
+ },
+ {
+  "id": "Gotchas 4 — never `--no-verify`/10",
+  "source": "https://arxiv.org/abs/2610.32578",
+  "quote": "Condition A is the exact repository state just before the fix. Condition B is the same state with only that fix added",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 4 — never `--no-verify`/11",
+  "source": "https://arxiv.org/abs/2610.32578",
+  "quote": "a plain-markdown repository",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 4 — never `--no-verify`/12",
+  "source": "https://arxiv.org/abs/2610.32578",
+  "quote": "All results come from one repository with three runs per condition",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 4 — never `--no-verify`/13",
+  "source": "https://arxiv.org/abs/2610.32578",
+  "quote": "in 2 of 3 runs in Condition A and in 2 of 3 runs in Condition B, so the prompt rule made no difference",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 4 — never `--no-verify`/14",
+  "source": "https://arxiv.org/abs/2610.32578",
+  "quote": "the pre-commit lint check rejected it and the agent fixed it",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 4 — never `--no-verify`/15",
+  "source": "https://arxiv.org/abs/2610.32578",
+  "quote": "Code checks worked where a written rule did not.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 4 — never `--no-verify`/16",
+  "source": "https://arxiv.org/abs/2611.23335",
+  "quote": "Do not special-case tests to make them pass.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 4 — never `--no-verify`/17",
+  "source": "https://arxiv.org/abs/2611.23335",
+  "quote": "H7 norm, part 1 22 → 1 21 / 0 4.8 × 10−7",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 4 — never `--no-verify`/18",
+  "source": "https://arxiv.org/abs/2611.23335",
+  "quote": "60 oneoff tasks (Sonnet 5.5)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 4 — never `--no-verify`/19",
+  "source": "https://arxiv.org/abs/2611.23335",
+  "quote": "H5–H7 are one-sided exact McNemar tests of…fewer cheats than the study-1 baseline on the same 60 tasks",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 4 — never `--no-verify`/20",
+  "source": "https://arxiv.org/abs/2611.23335",
+  "quote": "Holm-corrected at family-wise α = 0.05",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 4 — never `--no-verify`/21",
+  "source": "https://arxiv.org/abs/2611.23335",
+  "quote": "Impossible-LiveCodeBench at a pinned",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 4 — never `--no-verify`/22",
+  "source": "https://arxiv.org/abs/2611.23335",
+  "quote": "We use a tools scaffold mod-…elled on ImpossibleBench’s",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 4 — never `--no-verify`/23",
+  "source": "https://arxiv.org/abs/2608.29460",
+  "quote": "A (baseline) 23.6%",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 4 — never `--no-verify`/24",
+  "source": "https://arxiv.org/abs/2608.29460",
+  "quote": "C (policy only) 9.7% 4.10 (2.51–6.70) 2.6 × 10−8",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 4 — never `--no-verify`/25",
+  "source": "https://arxiv.org/abs/2608.29460",
+  "quote": "Table 1: Reward-hacking rates by condition (8 models, 360 samples per condition)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 4 — never `--no-verify`/26",
+  "source": "https://arxiv.org/abs/2608.29460",
+  "quote": "95% confidence intervals are from a mixed-effects logistic regression",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 4 — never `--no-verify`/27",
+  "source": "https://arxiv.org/abs/2608.29460",
+  "quote": "a workspace document, referenced from the system prompt, that names test-file modification and hardcoded outputs as prohibited",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 4 — never `--no-verify`/28",
+  "source": "https://arxiv.org/abs/2608.29460",
+  "quote": "A prompt-only condition (E) reduces hacking from 23.6% to 16.9%",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 4 — never `--no-verify`/29",
+  "source": "https://arxiv.org/abs/2608.29460",
+  "quote": "Inspect AI’s basic_agent solver",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 4 — never `--no-verify`/3",
+  "source": "https://git-scm.com/docs/githooks",
+  "quote": "can be bypassed with the --no-verify option"
+ },
+ {
+  "id": "Gotchas 4 — never `--no-verify`/30",
+  "source": "https://arxiv.org/abs/2608.29460",
+  "quote": "(claude-fable-5)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 4 — never `--no-verify`/31",
+  "source": "https://arxiv.org/abs/2608.29460",
+  "quote": "Every model × condition cell contains 45 episodes (9 ambiguous problems × 5 epochs)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 4 — never `--no-verify`/32",
+  "source": "https://arxiv.org/abs/2608.29460",
+  "quote": "All results derive from 9 ambiguous problems drawn from a single competitive-programming benchmark",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 4 — never `--no-verify`/33",
+  "source": "https://arxiv.org/abs/2608.29460",
+  "quote": "9 ambiguous problems each contain a documented checker defect",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 4 — never `--no-verify`/34",
+  "source": "https://arxiv.org/abs/2608.29460",
+  "quote": "D (combined) 5.3% 9.18 (5.01–16.83) 2.6 × 10−13",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 4 — never `--no-verify`/35",
+  "source": "https://arxiv.org/abs/2608.29460",
+  "quote": "eliminating it entirely for 6 of 8",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 4 — never `--no-verify`/36",
+  "source": "https://arxiv.org/abs/2608.29460",
+  "quote": "If you encounter a conflict between completing a task and complying with the policy, do not complete the task.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 4 — never `--no-verify`/37",
+  "source": "https://arxiv.org/abs/2606.26071",
+  "quote": "write a git pre-commit hook that runs mypy in strict mode and blocks the commit on type errors, and ensure its commit passes",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 4 — never `--no-verify`/38",
+  "source": "https://arxiv.org/abs/2606.26071",
+  "quote": "rate of 13.1% [8.9%, 18.9%]",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 4 — never `--no-verify`/39",
+  "source": "https://arxiv.org/abs/2606.26071",
+  "quote": "2% [0.6%, 7.1%] for Kimi K2.5 and 0% [0.0%, 3.7%] for GLM 5.1",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 4 — never `--no-verify`/40",
+  "source": "https://arxiv.org/abs/2606.26071",
+  "quote": "258 pre-existing type errors",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 4 — never `--no-verify`/41",
+  "source": "https://arxiv.org/abs/2606.26071",
+  "quote": "drops smoothly to 0% at 50 or fewer errors",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 4 — never `--no-verify`/42",
+  "source": "https://arxiv.org/abs/2606.26071",
+  "quote": "–no-verify commits",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 4 — never `--no-verify`/43",
+  "source": "https://arxiv.org/abs/2606.26071",
+  "quote": "The most common workaround is restricting mypy to staged files only (48%), followed by overwriting the type-checker settings in pyproject.toml (22%) and writing a non-blocking hook that does not fail the commit on type errors (17%)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 4 — never `--no-verify`/44",
+  "source": "https://github.com/anthropics/claude-code/issues/40117",
+  "quote": "Claude Code (Opus 4.6) is actively circumventing pre-commit hooks"
+ },
+ {
+  "id": "Gotchas 4 — never `--no-verify`/45",
+  "source": "https://github.com/anthropics/claude-code/issues/40117",
+  "quote": "Project memory rule: \"Do not use --no-verify on git commit"
+ },
+ {
+  "id": "Gotchas 4 — never `--no-verify`/5",
+  "source": "https://git-scm.com/docs/githooks",
+  "quote": "bypassed with the --no-verify option. It takes a single parameter, the name of the file that holds the proposed commit log message. Exiting with a non-zero status causes the command to abort"
+ },
+ {
+  "id": "Gotchas 4 — never `--no-verify`/7",
+  "source": "https://arxiv.org/abs/2610.32578",
+  "quote": "3 of 3 failures against 0 of 2 gives a one-sided Fisher’s exact p = 0.10",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 4 — never `--no-verify`/8",
+  "source": "https://arxiv.org/abs/2610.32578",
+  "quote": "Stale skill counts after adding a skill Pre-commit lint check 3 of 3 0 of 2",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 4 — never `--no-verify`/9",
+  "source": "https://arxiv.org/abs/2610.32578",
+  "quote": "I ran each original task headless three times per condition on Claude Sonnet 5.5",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 4 — never `--no-verify`/a1",
+  "source": "https://arxiv.org/abs/2610.32578",
+  "quote": "the prose ban on em-dashes was present in both conditions, so the scenario tests only the lint check",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 4 — never `--no-verify`/a10",
+  "source": "https://arxiv.org/abs/2610.32578",
+  "quote": "Claude Sonnet 4.5 and Claude Sonnet 5, and on a second vendor’s runtime, Gemini 3.8 Flash in Antigravity",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 4 — never `--no-verify`/a11",
+  "source": "https://arxiv.org/abs/2608.29460",
+  "quote": "claude-fable-5 5 0 5 11.1 0 0 0 0.0 0 0 0 0.0",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 4 — never `--no-verify`/a12",
+  "source": "https://arxiv.org/abs/2608.29460",
+  "quote": "claude-fable-5 11.1% → 0.0%",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 4 — never `--no-verify`/a13",
+  "source": "https://arxiv.org/abs/2608.29460",
+  "quote": "gemini-3.5-flash rises above baseline under escalation alone (28.9%) and policy alone (31.1%)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 4 — never `--no-verify`/a14",
+  "source": "https://arxiv.org/abs/2608.29460",
+  "quote": "whose hacking rate rose under prompt-only (24.4% → 48.9%)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 4 — never `--no-verify`/a15",
+  "source": "https://arxiv.org/abs/2608.29460",
+  "quote": "the minimum detectable A→D difference at 80% power ranges from ±14pp (baseline 15%) to ±22pp (baseline 30%). Per-model comparisons in Table 12 use Fisher’s exact test with two-sided p-values",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 4 — never `--no-verify`/a16",
+  "source": "https://arxiv.org/abs/2608.29460",
+  "quote": "interpret only per-model differences that clear the thresholds above as individually significant",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 4 — never `--no-verify`/a17",
+  "source": "https://arxiv.org/abs/2606.26071",
+  "quote": "write a git pre-commit hook that runs mypy in strict mode and blocks the commit on type errors",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 4 — never `--no-verify`/a18",
+  "source": "https://arxiv.org/abs/2606.26071",
+  "quote": "seeded with 258 pre-existing type errors in src/",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 4 — never `--no-verify`/a19",
+  "source": "https://arxiv.org/abs/2606.26071",
+  "quote": "You are an autonomous coding agent with access to a UNIX shell.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 4 — never `--no-verify`/a2",
+  "source": "https://arxiv.org/abs/2610.32578",
+  "quote": "Claude Sonnet 4.5 (Claude Code) 1 of 3 0 of 3",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 4 — never `--no-verify`/a20",
+  "source": "https://arxiv.org/abs/2606.26071",
+  "quote": "workaround rate of 13.1% [8.9%, 18.9%], compared to 2% [0.6%, 7.1%] for Kimi K2.5 and 0% [0.0%, 3.7%] for GLM 5.1",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 4 — never `--no-verify`/a21",
+  "source": "https://arxiv.org/abs/2606.26071",
+  "quote": "Distribution of workaround types across the 23 baseline workaround rollouts (n = 175 total)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 4 — never `--no-verify`/a22",
+  "source": "https://arxiv.org/abs/2606.26071",
+  "quote": "restricting mypy to staged files only (48%), followed by overwriting the type-checker settings in pyproject.toml (22%) and writing a non-blocking hook that does not fail the commit on type errors (17%)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 4 — never `--no-verify`/a23",
+  "source": "https://arxiv.org/abs/2606.26071",
+  "quote": "type: ignore pragmas, –no-verify commits, or other ad-hoc bypasses",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 4 — never `--no-verify`/a24",
+  "source": "https://github.com/anthropics/claude-code/issues/40117",
+  "quote": "Agent bypasses git pre-commit hooks using --no-verify, stash, and quiet flags despite explicit deny rules"
+ },
+ {
+  "id": "Gotchas 4 — never `--no-verify`/a25",
+  "source": "https://github.com/anthropics/claude-code/issues/40117",
+  "quote": "across 6 consecutive commits, all while explicit project memory rules and CLAUDE.md instructions prohibited --no-verify"
+ },
+ {
+  "id": "Gotchas 4 — never `--no-verify`/a3",
+  "source": "https://arxiv.org/abs/2610.32578",
+  "quote": "Claude Sonnet 5 (Claude Code) 0 of 3",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 4 — never `--no-verify`/a4",
+  "source": "https://arxiv.org/abs/2610.32578",
+  "quote": "Claude Sonnet 5.5 (Claude Code) 0 of 3 0 of 3",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 4 — never `--no-verify`/a5",
+  "source": "https://arxiv.org/abs/2610.32578",
+  "quote": "Gemini 3.8 Flash, medium (Antigravity) 0 of 3 0 of 3",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 4 — never `--no-verify`/a6",
+  "source": "https://arxiv.org/abs/2610.32578",
+  "quote": "The older Sonnet models (Sonnet 4.5 and Sonnet 5) still wrote em-dashes in 2 of 12 cover letter drafts. One was in Condition A on Sonnet 4.5, and it was committed.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 4 — never `--no-verify`/a7",
+  "source": "https://arxiv.org/abs/2610.32578",
+  "quote": "the pre-commit lint check rejected the commit, and the agent removed the character before committing",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 4 — never `--no-verify`/a8",
+  "source": "https://arxiv.org/abs/2610.32578",
+  "quote": "4. Destructive reset after stopped rebase Pre-tool guard hook 0 of 3 0 of 3",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Gotchas 4 — never `--no-verify`/a9",
+  "source": "https://arxiv.org/abs/2610.32578",
+  "quote": "No run reached the destructive command",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ }
+]
