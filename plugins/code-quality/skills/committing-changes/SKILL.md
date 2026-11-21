@@ -23,6 +23,8 @@ Review staged and modified files. Split into atomic commits.
 <footer>
 ```
 
+The scope, the body and the footer are optional.
+
 ## Types
 
 | Type | Purpose |
@@ -43,7 +45,7 @@ Version bumps: `feat`→MINOR, `fix`→PATCH, `!` or `BREAKING CHANGE:` footer�
 ## Rules
 
 - MUST: each commit atomic and functional (builds, tests pass)
-- MUST: imperative mood, no trailing period; lowercase subject
+- MUST: imperative mood, no trailing period; the first letter of the subject lowercase
 - SHOULD: subject ≤50 chars, body wrap at 72
 - Body explains WHAT and WHY, not HOW
 - Footer references issues: `Fixes #123`, `Refs #456`
