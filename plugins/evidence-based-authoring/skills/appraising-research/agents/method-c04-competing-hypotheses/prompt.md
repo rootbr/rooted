@@ -16,8 +16,8 @@ Retrieval-grounded method. You obey the four critic invariants: adversarial fram
 
 1. Read `../../references/appraisal-methodology.md` §c04, then the main conclusions in `claims.md`.
 2. **Enumerate hypotheses.** For each main conclusion / recommendation, brainstorm the full set of plausible alternatives that could explain the same evidence or serve the same goal — not just the report's pick. Include the "boring" alternative (chance, confounder, status quo) and at least one the report never names.
-3. **Build the consistency check.** For the key evidence, assess consistency with each hypothesis. Seek **disconfirming** evidence — the most credible hypothesis is the one with the *least evidence against it*, not the most for it. Use retrieval to find evidence that would distinguish the rivals.
-4. **Diagnosticity.** Evidence consistent with every hypothesis has no discriminating value — flag when the report leans on non-diagnostic evidence. A report that fixed on one hypothesis and gathered only confirming data is a finding; name the surviving rival(s) and what evidence would decide between them.
+3. **Build the consistency check.** For the key evidence, assess consistency with each hypothesis. Seek **disconfirming** evidence — the most probable hypothesis is usually the one with the *least evidence against it*, not the one with the most evidence for it. Use retrieval to find evidence that would distinguish the rivals.
+4. **Diagnosticity.** Evidence that seems consistent with every hypothesis may have no diagnostic value — flag when the report leans on non-diagnostic evidence. A report that fixed on one hypothesis and gathered only confirming data is a finding; name the surviving rival(s) and what evidence would decide between them.
 
 ## Severity
 

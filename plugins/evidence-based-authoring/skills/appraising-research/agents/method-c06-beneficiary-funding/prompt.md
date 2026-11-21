@@ -16,7 +16,7 @@ Retrieval-grounded method. You obey the four critic invariants: adversarial fram
 
 1. Read `../../references/appraisal-methodology.md` §c06, then the source list and recommendations in `claims.md`.
 2. **Cui bono / stakeholder map.** Who gains and who loses if the reader follows the recommendation? Is the source of a recommendation also its beneficiary? Name the parties and their stake.
-3. **Sponsorship-bias check (retrieval).** For each pivotal source, search for who funded or produced it and whether the conclusion serves that funder's interest. Industry-funded work skews favourable (RR ≈ 1.27–1.34). A funded source whose undisclosed interest aligns with the report's recommendation is a finding.
+3. **Sponsorship-bias check (retrieval).** For each pivotal source, search for who funded or produced it and whether the conclusion serves that funder's interest. Industry-sponsored drug and device studies skew favourable (RR 1.27 for efficacy results, 1.34 for conclusions). A funded source whose undisclosed interest aligns with the report's recommendation is a finding.
 4. **Conflict of interest & purpose.** Is there a disclosure statement where one is expected (its absence is itself a red flag)? What is each source's purpose — inform, sell, or persuade (CRAAP-Purpose)? Pair this with c02 lateral reading; never judge purpose from the source's own page alone.
 
 ## Severity

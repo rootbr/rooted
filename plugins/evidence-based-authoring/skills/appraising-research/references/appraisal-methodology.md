@@ -22,7 +22,7 @@ A critic that only re-reads a report and reflects on it is unreliable. The empir
 
 - **Intrinsic self-correction does not reliably improve reasoning and can degrade it.** When a model revises using only its own knowledge — no external feedback, no oracle — performance often does not improve and sometimes drops; earlier apparent gains leaked oracle information.
 - **Sycophancy.** Assistants tend to tell the user what confirms the user's stated view, and convincingly-written agreement is sometimes preferred over correctness.
-- **Self-preference.** A model rates text in its own style, or that it produced, more favourably; LLM judges also carry position and verbosity bias.
+- **Self-preference.** In some tests a model rates text it produced more favourably, and in others no such preference is found; LLM judges also carry position and verbosity bias.
 
 Therefore every agent in this skill obeys four **design invariants**, and each method prompt must restate them:
 
@@ -31,7 +31,7 @@ Therefore every agent in this skill obeys four **design invariants**, and each m
 3. **Retrieval grounding.** Methods that make factual or source claims (c02, c04, c05, c06) verify against *fresh external retrieval*, not against the report's own restatements — the RARR pattern and FActScore's atomic-fact checking against a reliable source.
 4. **No leak of the desired conclusion.** The agent is given the report's claims to test, never a signal about which answer the author or user hopes for.
 
-The rubric-driven design (each method = an explicit, externally-authored set of critical questions) follows the Constitutional AI pattern: an explicit written set of principles is what makes model self-critique steerable and reliable rather than free-floating.
+The rubric-driven design (each method = an explicit, externally-authored set of critical questions) follows the Constitutional AI pattern, which steers model self-critique by an explicit written set of principles; that such principles make the critique more reliable than free-floating reflection is a house inference.
 
 ---
 
@@ -56,13 +56,13 @@ Overlap between methods is expected and welcome — the same weakness surfaced b
 Rate *how strong* the evidence under each load-bearing claim actually is — not merely how many sources were cited.
 
 ### GRADE certainty rating
-Rate the body of evidence behind each key claim as **High / Moderate / Low / Very Low**. Randomized/experimental evidence starts High; observational starts Low. Move the rating using **five downgrade factors**: (1) risk of bias, (2) inconsistency (unexplained disagreement across sources), (3) indirectness (evidence is not about the exact population/intervention/outcome claimed), (4) imprecision (wide intervals, few observations), (5) publication/reporting bias. Three **upgrade** factors for observational evidence: large effect size, dose-response gradient, plausible confounding that would only shrink the effect.
+Rate the quality of the body of evidence behind each key claim as **High / Moderate / Low / Very Low**. Evidence from randomized trials starts High; observational starts Low. Move the rating using **five downgrade factors**: (1) risk of bias, (2) inconsistency (unexplained disagreement across sources), (3) indirectness (evidence is not about the exact population/intervention/outcome claimed), (4) imprecision (wide intervals, few observations), (5) publication/reporting bias. Three **upgrade** factors for observational evidence: large effect size, dose-response gradient, plausible confounding that would only shrink the effect.
 
 ### Hierarchy of evidence
-Locate each claim's support on the design ladder: systematic reviews > randomized trials > cohort > case-control > case series > mechanistic reasoning / expert opinion. A claim resting on the bottom rungs but stated as settled is a finding.
+Locate each claim's support on the design ladder: systematic reviews > randomized trials > cohort > case-control and case series (one rung) > mechanism-based reasoning; expert opinion goes below them as a house heuristic. A claim resting on the bottom rungs but stated as settled is a finding.
 
 ### Risk-of-bias signal
-For a single pivotal study, flag classic bias domains: for controlled trials — randomization, deviations from intended intervention, missing outcome data, outcome measurement, selective reporting (RoB 2); for non-randomized — confounding first (ROBINS-I, its seven-domain list).
+For a single pivotal study, flag classic bias domains: for randomized trials — randomization, deviations from intended intervention, missing outcome data, outcome measurement, selective reporting (RoB 2); for non-randomized — confounding first (ROBINS-I, its seven-domain list).
 
 ### Quality-of-Information Check
 Evaluate completeness, source reliability, and currency of each key report; flag items that would overturn the conclusion if they proved wrong.
@@ -76,16 +76,16 @@ Evaluate completeness, source reliability, and currency of each key report; flag
 Verify that the sources exist, say what the report claims, and are what they appear to be. **Retrieval-grounded.**
 
 ### Lateral reading
-Do not judge a source from its own page. Leave it immediately and open new tabs to see what independent sources say about the publisher, its funding, and its authors. Fact-checkers judge credibility faster and more accurately this way than experts who read vertically and are fooled by professional presentation.
+Do not judge a source from its own page. Leave it after a quick scan and open new tabs to see what independent sources say about the publisher, its funding, and its authors. In a comparison of groups, fact-checkers reached more warranted conclusions in a fraction of the time than historians and students, who read vertically and fell for official-looking logos and domain names.
 
 ### SIFT (the four moves)
-**S**top; **I**nvestigate the source; **F**ind better or other coverage; **T**race claims, quotes, statistics, and media to the original in context. A statistic that cannot be traced to a real, in-context origin is a finding.
+**S**top; **I**nvestigate the source; **F**ind better or other coverage; **T**race claims, quotes, and media back to the original context. A statistic that cannot be traced to a real, in-context origin is a finding.
 
 ### Argument-from-expert-opinion critical questions
 For every "experts say / studies show" citation, ask the six critical questions: (1) is the source credible as an expert; (2) is the expert in *this* field; (3) what exactly did the expert assert; (4) is the expert personally reliable / unbiased; (5) is the assertion consistent with other experts; (6) is it backed by evidence.
 
 ### Claim-source match
-Re-fetch the cited source and check that it actually supports the sentence that cites it — the RARR discipline of attribution. Misattribution, overstatement beyond what the source says, and dead/mismatched links are findings.
+Re-fetch the cited source and check that it actually supports the sentence that cites it — a house heuristic that borrows the attribution test RARR measures: would a reader affirm "according to this source, the sentence holds"? Attribution does not entail correctness. Misattribution, overstatement beyond what the source says, and dead/mismatched links are findings.
 
 ---
 
@@ -97,10 +97,10 @@ Make the report's unstated premises visible and testable.
 Every inference has a **warrant** — the general rule licensing the step from data to claim — normally left implicit. For each load-bearing claim, reconstruct: *what general rule would have to be true for this data to justify this conclusion?* The answer is the hidden assumption; test whether, once stated, it is contestable. An argument is only as strong as its weakest warrant.
 
 ### Key Assumptions Check
-List everything the report takes for granted (add items via Who/What/When/Where/Why/How). Sort into **supported / caveated / unsupported**; delete unsupported that do not survive. For each surviving assumption ask: *under what circumstances would this NOT hold?* Roughly one in four assumptions collapses under written scrutiny, becoming a key uncertainty.
+List everything the report takes for granted (add items via Who/What/When/Where/Why/How). Sort into **supported / caveated / unsupported**; delete unsupported that do not survive. For each surviving assumption ask: *under what circumstances would this NOT hold?* In Pherson's experience of a decade of these exercises, usually one in four key assumptions presumed true turns out on closer examination to be unfounded; he gives no count behind the figure.
 
 ### Correlation vs. causation
-Where the report asserts causation, test it against causal viewpoints — strength, consistency, **temporality** (cause precedes effect), dose-response, plausibility, coherence, experiment. A causal claim resting only on association is a finding (post hoc / cum hoc). These are heuristics, not proof; specificity and analogy are the weakest.
+Where the report asserts causation, test it against causal viewpoints — strength, consistency, **temporality** (cause precedes effect), dose-response, plausibility, coherence, experiment. A causal claim resting only on association is a finding (post hoc / cum hoc). These are heuristics, not proof; specificity is one of the weaker.
 
 ---
 
@@ -109,7 +109,7 @@ Where the report asserts causation, test it against causal viewpoints — streng
 Force equal treatment of explanations the report did not consider.
 
 ### Analysis of Competing Hypotheses (ACH)
-(1) Brainstorm *all* plausible hypotheses / recommendations that could explain the same evidence, not just the report's. (2) For each key piece of evidence, assess consistency with each hypothesis. (3) Seek **disconfirming** evidence: the most credible hypothesis is the one with the *least evidence against it*, not the most for it. (4) Judge **diagnosticity** — evidence consistent with every hypothesis has no discriminating value; evidence that fits some and not others is what matters. A report that fixed on one hypothesis and gathered only confirming data is a finding.
+(1) Brainstorm *all* plausible hypotheses / recommendations that could explain the same evidence, not just the report's. (2) For each key piece of evidence, assess consistency with each hypothesis. (3) Seek **disconfirming** evidence: the most probable hypothesis is usually the one with the *least evidence against it*, not the one with the most evidence for it. (4) Judge **diagnosticity** — evidence that seems consistent with every hypothesis may have no diagnostic value; evidence that fits some and not others is what matters. A report that fixed on one hypothesis and gathered only confirming data is a finding.
 
 ---
 
@@ -118,7 +118,7 @@ Force equal treatment of explanations the report did not consider.
 Surface failure modes and missing information the report's frame suppresses.
 
 ### Premortem
-Assume the report's recommendation has already been followed and *failed spectacularly*; list every reason for the failure — especially ones normally left unsaid. Prospective hindsight raises the ability to correctly identify reasons for a future outcome by ~30%.
+Assume the report's recommendation has already been followed and *failed spectacularly*; list every reason for the failure — especially ones normally left unsaid. Prospective hindsight raises the number of reasons people give for an event by about 30%; whether those reasons were correct was not measured.
 
 ### Devil's advocacy / red team / what-if
 Build the strongest case *against* the report's conclusion (must be a fresh viewpoint — an author cannot be their own devil's advocate). Adopt an opposing frame to counter mirror-imaging. Assume an unexpected disconfirming event has already occurred and reason backward.
@@ -139,10 +139,10 @@ Answer "who benefits?" in its formal forms. **Retrieval-grounded.**
 Enumerate who gains and who loses if the reader follows the recommendation; check whether the source of a recommendation is also its beneficiary. Stakeholder = any party who can affect or is affected by the matter.
 
 ### Sponsorship-bias check
-For each pivotal source, find who funded it and whether the conclusion serves the funder's interest. Industry-sponsored studies are significantly more likely to report favourable results (RR 1.27, 95% CI 1.17–1.37) and favourable conclusions (RR 1.34, 95% CI 1.19–1.51); restricting to low-risk-of-bias studies strengthens the association.
+For each pivotal source, find who funded it and whether the conclusion serves the funder's interest. Industry-sponsored drug and device studies are significantly more likely to report favourable efficacy results (RR 1.27, 95% CI 1.17–1.37) and favourable conclusions (RR 1.34, 95% CI 1.19–1.51), while harms results do not differ; restricting to the meta-research papers of low risk of bias strengthens the association for efficacy results, not significantly for conclusions, and reverses it for harms.
 
 ### Conflict-of-interest & purpose
-Check for a disclosure statement (its absence where expected is itself a red flag; ICMJE requires financial-tie disclosure for 36 months prior) and the source's purpose — inform, sell, or persuade (CRAAP-Purpose). Note: CRAAP inspects a source in isolation and is fooled by polish — use only alongside c02 lateral reading, never instead of it.
+Check for a disclosure statement (its absence where expected is itself a red flag; ICMJE requires financial-tie disclosure for 36 months prior) and the source's purpose — inform, teach, sell, entertain or persuade (CRAAP-Purpose). Note: CRAAP inspects a source in isolation and is fooled by polish — use only alongside c02 lateral reading, never instead of it.
 
 ---
 
@@ -151,7 +151,7 @@ Check for a disclosure statement (its absence where expected is itself a red fla
 Cross-cutting soundness check on the report's reasoning as a whole.
 
 ### Paul-Elder intellectual standards
-Apply the universal standards and their sample questions: **Accuracy** ("Is that true? How could we check?"), **Logic** ("Does the conclusion follow from the evidence? Does it hang together?"), **Relevance** ("How does this bear on the question?"), **Breadth** ("Is there another perspective?"), **Fairness** ("Are opposing views represented sympathetically, or strawmanned? Does the author have a vested interest?"). The exact count of standards varies between 8, 9 and 10 across publications.
+Apply the universal standards and their sample questions: **Accuracy** ("How could we check on that? How could we find out if that is true?"), **Logic** ("Does all this make sense together? Does what you say follow from the evidence?"), **Relevance** ("How does that bear on the question?"), **Breadth** ("Do we need to look at this from another perspective?"), **Fairness** ("Am I sympathetically representing the viewpoints of others? Do I have any vested interest in this issue?" — asked by the guide of one's own thinking; turning them on the report's author is a house adaptation). The exact count of standards varies between 8, 9 and 10 across publications.
 
 ### Fallacy sweep
 Flag the fallacies most damaging to a research report, each with its probe:
@@ -162,13 +162,13 @@ Flag the fallacies most damaging to a research report, each with its probe:
 - **Base-rate neglect** — *Is the prior probability incorporated?*
 
 ### Internal consistency
-Detect internal contradictions and check the conclusion against the report's own stated criteria (the "Checking" and "Critiquing" levels of the revised Bloom taxonomy).
+Detect internal contradictions and check the conclusion against the report's own stated criteria (the "Checking" and "Critiquing" cognitive processes under Evaluate in the revised Bloom taxonomy).
 
 ---
 
 ## Adversarial debate protocol
 
-For each finding the adjudicator marks `debate: yes` (high-severity or load-bearing and contested), run a three-role debate to resolve it against a genuinely separate context — the mechanism intrinsic self-reflection lacks. Debate improves factuality and reasoning and reduces false claims.
+For each finding the adjudicator marks `debate: yes` (high-severity or load-bearing and contested), run a three-role debate to resolve it against a genuinely separate context — the mechanism intrinsic self-reflection lacks. Debate among several model instances arguing toward a common answer improved factuality and reasoning and reduced false answers against a single agent on arithmetic, grade-school math, chess, biographies and MMLU; that a three-role debate over a finding gains likewise is a house inference.
 
 - **Defender** — argues the report's original claim stands; may use fresh retrieval to support it.
 - **Challenger** — argues the finding is real and the claim fails; may use fresh retrieval to refute.

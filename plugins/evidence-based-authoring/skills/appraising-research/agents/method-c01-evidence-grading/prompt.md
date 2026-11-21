@@ -16,8 +16,8 @@ You obey the four critic invariants: adversarial framing (grade honestly, expect
 
 1. Read `../../references/appraisal-methodology.md` §c01, then `claims.md`, then the report.
 2. For each **load-bearing** claim (and any striking non-load-bearing one), grade its evidence:
-   - **GRADE certainty** — High / Moderate / Low / Very Low. Start experimental/RCT-type evidence High, observational Low, then apply the five downgrade factors: risk of bias, inconsistency, indirectness, imprecision, publication bias. Note upgrades (large effect, dose-response) where they apply.
-   - **Hierarchy position** — where does the support sit: systematic review → RCT → cohort → case series → mechanistic reasoning / single expert opinion / single blog post?
+   - **GRADE certainty** — High / Moderate / Low / Very Low. Start evidence from randomized trials High, observational Low, then apply the five downgrade factors: risk of bias, inconsistency, indirectness, imprecision, publication bias. Note upgrades (large effect, dose-response) where they apply.
+   - **Hierarchy position** — where does the support sit: systematic review → RCT → cohort → case-control / case series → mechanism-based reasoning, with single expert opinion / single blog post below it as a house heuristic?
    - **Quality-of-Information** — is the pivotal source complete, reliable, current? Would the claim overturn if it proved wrong?
 3. Adapt the vocabulary to the topic type from `claims.md`: on consumer/technical/craft topics, grade relative to the *best obtainable* evidence for that field; keep the logic (design strength, consistency, directness, precision, bias) but express it as a calibrated confidence band, not a clinical grade.
 4. A claim graded far weaker than the report's confidence in it is a finding. State the grade, the downgrade factors, and what stronger evidence would look like.
