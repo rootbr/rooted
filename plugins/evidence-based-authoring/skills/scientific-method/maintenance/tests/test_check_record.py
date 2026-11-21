@@ -38,7 +38,12 @@ PREDICTION = (("measure", "share of runs that read the file first"), ("against",
               ("scope", "coding agents on one model"), ("refuter", "the share is under ten points higher"),
               ("threshold", "ten points"))
 OWN_RESULT = (("runs", "ten per arm"), ("test", "own evals/a.json"), ("result", "eight of ten against two of ten"),
-              ("bounds", "one model, one repository"), ("fit", "direct"))
+              ("bounds", "one model, one repository"), ("fit", "direct"), ("validity", "direct: the share"))
+EVENT_PREDICTION = (("measure", "the lock wait time in the database log during the outage"), ("against", "a lock in the database"),
+                    ("event", "the outage of 2026-10-14, incident 412"),
+                    ("refuter", "the lock wait time rises above its usual level before the queue fills"))
+LEADING_TAIL = (("test", "own evals/a.json"), ("result", "the lock wait time stayed at its usual level"),
+                ("bounds", "the database log of the outage"))
 
 
 def line(rid: str, *fields: tuple[str, str], free: str = "free text · with: a colon") -> str:
@@ -61,10 +66,15 @@ HYPOTHESIS = claim("H-1", "hypothesis", ("runs", "ten per arm"), ("test", "own e
 SUPPORTED = claim("H-1", "supported", *OWN_RESULT)
 FIRST_HAND = "external doi:10.1/x §4 first-hand"
 RELAY = "external a blog post relay"
+ABSTRACT = "external doi:10.3/z abstract"
 LAW = claim("L-1", "law", *replace(OWN_RESULT, "test", f"own evals/a.json; {FIRST_HAND}"))
 CONTESTED = claim("X-1", "contested", ("test", f"{FIRST_HAND}; external doi:10.2/y first-hand"), ("result", "one for, one against"))
 REFUTED = claim("F-1", "refuted", ("test", FIRST_HAND), ("result", "no difference in 40 runs"), ("bounds", "one model"))
 UNRECORDED = "- **U-1** · a source and its words, no record"
+EVENT_HYPOTHESIS = claim("E-1", "hypothesis", ("test", "own evals/a.json"), prediction=EVENT_PREDICTION)
+LEADING = claim("E-1", "leading", *LEADING_TAIL, prediction=EVENT_PREDICTION)
+TRIED = claim("H-2", "hypothesis", ("test", FIRST_HAND), ("result", "one run went against; it waits for its repetition"),
+              prediction=PREDICTION[:4])
 
 
 class Root(unittest.TestCase):
@@ -124,7 +134,7 @@ class Passing(Root):
         target.write_text("{}\n", encoding="utf-8")
         code, lines, err = self.run_main("--stats", str(self.root / "record-format.md"))
         self.assertEqual(code, 0, "\n".join(lines) + err)
-        self.assertIn("records by kind: claim 1, decision 0, definition 0, norm 1", lines)
+        self.assertIn("records by kind: claim 2, decision 0, definition 0, norm 1", lines)
         self.assertEqual(lines[-1], "0 error(s)")
 
     def test_the_example_hypothesis_needs_its_own_test_file(self):
@@ -183,6 +193,13 @@ class PlainCodes(Root):
         self.assertEqual(self.check_lines(relay_only), ["SUPPORT"])
         self.assertEqual(self.check_lines(replace_line(relay_only, "test", f"{RELAY}; {FIRST_HAND}")), [])
 
+    def test_a_peer_reviewed_source_read_by_its_abstract_supports(self):
+        abstract_only = claim("P-2", "supported", ("test", ABSTRACT), ("result", "r"), ("bounds", "b"), ("fit", "direct"))
+        self.assertEqual(self.check_lines(abstract_only), [])
+        self.assertEqual(self.check_lines(replace_line(LAW, "test", f"{ABSTRACT}; {RELAY}")), [])
+        self.write("rules-provenance.md", replace_line(abstract_only, "test", RELAY))
+        self.assertIn("it needs a test that is own, first-hand or abstract", self.findings()[0]["message"])
+
     def test_own(self):
         (self.root.parent / "outside.json").write_text("{}\n", encoding="utf-8")
         self.assertEqual(self.check_lines(replace_line(HYPOTHESIS, "test", "own evals/absent.json")), ["OWN"])
@@ -222,6 +239,79 @@ class PlainCodes(Root):
         self.assertEqual(self.check_lines(UNRECORDED, DEFINITION, require=True), ["NORECORD"])
 
 
+class OneEvent(Root):
+    def test_a_claim_takes_scope_or_event(self):
+        cases = {
+            "neither": (claim("E-2", "hypothesis", prediction=EVENT_PREDICTION[:2] + EVENT_PREDICTION[3:]), ["FIELD"]),
+            "both": (claim("E-3", "hypothesis", prediction=EVENT_PREDICTION + (("scope", "one model"),)), ["FIELD"]),
+            "event alone": (EVENT_HYPOTHESIS, []),
+            "scope alone": (HYPOTHESIS, []),
+        }
+        for name, (rule, expected) in cases.items():
+            with self.subTest(name):
+                self.assertEqual(self.check_lines(rule), expected)
+
+    def test_against_names_the_rivals(self):
+        for value in ("none", "None"):
+            with self.subTest(value):
+                self.assertEqual(self.check_lines(replace_line(EVENT_HYPOTHESIS, "against", value)), ["FIELD"])
+        self.assertEqual(self.check_lines(EVENT_HYPOTHESIS), [])
+
+    def test_the_standings_of_a_claim_about_one_event(self):
+        two_tests = ("test", f"{FIRST_HAND}; external doi:10.2/y first-hand")
+        for standing in ("supported", "law"):
+            with self.subTest(standing):
+                rule = claim("E-4", standing, two_tests, ("result", "r"), ("bounds", "b"), ("fit", "direct"), prediction=EVENT_PREDICTION)
+                self.assertEqual(self.check_lines(rule), ["STANDING"])
+        for standing, extra in (("hypothesis", ()), ("leading", LEADING_TAIL), ("contested", (two_tests, ("result", "r"))),
+                                ("refuted", (("test", FIRST_HAND), ("result", "r"), ("bounds", "b")))):
+            with self.subTest(standing):
+                self.assertEqual(self.check_lines(claim("E-5", standing, *extra, prediction=EVENT_PREDICTION)), [])
+
+    def test_an_own_test_adds_no_threshold_or_runs(self):
+        self.assertEqual(self.check_lines(EVENT_HYPOTHESIS, LEADING.replace("E-1", "E-6")), [])
+
+    def test_leading(self):
+        self.assertEqual(self.check_lines(LEADING), [])
+        self.assertEqual(self.check_lines(replace_line(LEADING, "test", FIRST_HAND)), [])
+        cases = {
+            "scope in place of event": (claim("E-7", "leading", *LEADING_TAIL, prediction=PREDICTION[:4]), ["FIELD"]),
+            "no result": (claim("E-8", "leading", LEADING_TAIL[0], LEADING_TAIL[2], prediction=EVENT_PREDICTION), ["FIELD"]),
+            "an abstract test alone": (replace_line(LEADING, "test", ABSTRACT), ["SUPPORT"]),
+            "a relay test alone": (replace_line(LEADING, "test", RELAY), ["SUPPORT"]),
+        }
+        for name, (rule, expected) in cases.items():
+            with self.subTest(name):
+                self.assertEqual(self.check_lines(rule), expected)
+
+
+class Validity(Root):
+    def test_a_supported_claim_or_law_on_an_own_test_says_what_checked_its_measure(self):
+        bare = tuple(field for field in OWN_RESULT if field[0] != "validity")
+        cases = {
+            "supported without validity": claim("V-1", "supported", *bare),
+            "law without validity": claim("V-2", "law", *replace(bare, "test", f"own evals/a.json; {FIRST_HAND}")),
+            "supported, unchecked": claim("V-3", "supported", *bare, ("validity", "unchecked")),
+        }
+        for name, rule in cases.items():
+            with self.subTest(name):
+                self.assertEqual(self.check_lines(rule), ["VALIDITY"])
+        for value in ("direct: the claim is about the count the measure reports",
+                      "probe: a planted defect raised the count by one", "labels: two people marked 40 runs and agreed on 38"):
+            with self.subTest(value):
+                self.assertEqual(self.check_lines(claim("V-4", "supported", *bare, ("validity", value))), [])
+        with self.subTest("a hypothesis and a claim on someone else's test may leave it out"):
+            self.assertEqual(self.check_lines(HYPOTHESIS, claim("V-5", "supported", ("test", FIRST_HAND), ("result", "r"),
+                                                                ("bounds", "b"), ("fit", "direct"), prediction=PREDICTION[:4])), [])
+
+    def test_the_four_forms(self):
+        for value in ("maybe", "direct", "direct:", "probe:  ", "labels:x", "Unchecked"):
+            with self.subTest(value):
+                self.assertEqual(self.check_lines(claim("V-6", "hypothesis", ("validity", value), prediction=PREDICTION[:4])),
+                                 ["VALIDITY"])
+        self.assertEqual(self.check_lines(claim("V-7", "hypothesis", ("validity", "unchecked"), prediction=PREDICTION[:4])), [])
+
+
 class FilesAndOutput(Root):
     def test_discovery_passes_over_the_skipped_directories(self):
         bad = line("K-1", ("kind", "opinion"))
@@ -248,7 +338,7 @@ class FilesAndOutput(Root):
         self.assertEqual(code, 0, err)
         self.assertEqual(lines, [
             "records by kind: claim 2, decision 0, definition 1, norm 1",
-            "claims by standing: contested 0, hypothesis 1, law 0, refuted 1, supported 0",
+            "claims by standing: contested 0, hypothesis 1, law 0, leading 0, refuted 1, supported 0",
             "rule lines without a record: 2",
             "0 error(s)",
         ])
@@ -428,6 +518,38 @@ class GitModes(Root):
         self.write("pending-evidence.md", REFUTED, DEFINITION)
         self.assertEqual(self.codes("--changed"), [])
 
+    def test_a_deleted_record_that_carries_a_result_is_erased(self):
+        self.write("pending-evidence.md", DEFINITION, TRIED, SUPPORTED)
+        self.commit("results")
+        self.write("pending-evidence.md", DEFINITION)
+        found = self.findings("--changed")
+        self.assertEqual([(f["line"], f["code"]) for f in found], [("4", "ERASED"), ("5", "ERASED")])
+        self.assertIn("H-2, which carries a result at HEAD, has no rule line", found[0]["message"])
+
+    def test_a_moved_directory_keeps_a_record_that_carries_a_result(self):
+        self.write("skill-a/maintenance/pending-evidence.md", SUPPORTED, REFUTED, TRIED)
+        self.commit("results")
+        self.git("mv", "skill-a", "skill-b")
+        self.assertEqual(self.codes("--staged"), [])
+        self.write("skill-b/maintenance/pending-evidence.md", SUPPORTED, REFUTED)
+        self.git("add", "-A")
+        found = self.findings("--staged")
+        self.assertEqual([(f["path"], f["line"], f["code"]) for f in found], [("skill-b/maintenance/pending-evidence.md", "5", "ERASED")])
+
+    def test_a_leading_record_after_its_committed_hypothesis_passes(self):
+        self.write("pending-evidence.md", EVENT_HYPOTHESIS)
+        self.commit("hypothesis")
+        self.write("pending-evidence.md", LEADING)
+        self.assertEqual(self.codes("--changed"), [])
+        self.write("pending-evidence.md", replace_line(LEADING, "event", "the outage of 2026-10-15"))
+        found = self.findings("--changed")
+        self.assertEqual([f["code"] for f in found], ["PREDICTION"])
+        self.assertTrue(found[0]["message"].endswith("in event"), found[0]["message"])
+
+    def test_a_leading_record_without_its_hypothesis_at_the_base_is_prediction(self):
+        self.write("pending-evidence.md", LEADING)
+        self.assertEqual(self.codes("--changed"), ["PREDICTION"])
+
     def test_a_deleted_hypothesis_line_passes(self):
         self.write("pending-evidence.md", DEFINITION, HYPOTHESIS)
         self.commit("hypothesis")
@@ -452,6 +574,68 @@ class GitModes(Root):
         self.write("new-provenance.md", "- **U-3** · words")
         self.assertEqual(self.codes("--staged"), [])
         self.assertEqual(self.codes("--changed"), ["NORECORD"])
+
+    def move_skill_a_with_its_result(self) -> None:
+        """skill-a holds a supported claim after its hypothesis, a refuted claim and an unrecorded line; git mv names it skill-b."""
+        self.write("skill-a/maintenance/pending-evidence.md", HYPOTHESIS, REFUTED)
+        self.write("skill-a/maintenance/rules-provenance.md", NORM, UNRECORDED)
+        self.commit("hypothesis")
+        self.write("skill-a/maintenance/pending-evidence.md", SUPPORTED, REFUTED)
+        self.commit("result")
+        self.git("mv", "skill-a", "skill-b")
+
+    def test_a_moved_directory_keeps_the_history_of_its_records(self):
+        self.move_skill_a_with_its_result()
+        self.assertEqual(self.codes("--staged"), [])
+        self.assertEqual(self.codes("--changed"), [])
+        self.assertEqual(self.codes("--staged", str(self.root / "skill-b" / "maintenance" / "pending-evidence.md")), [])
+
+    def test_a_moved_directory_is_compared_with_the_base_that_registered_its_hypothesis(self):
+        self.move_skill_a_with_its_result()
+        self.assertEqual(self.codes("--changed", "--base", "HEAD~1"), [])
+        self.write("skill-b/maintenance/pending-evidence.md", replace_line(SUPPORTED, "threshold", "five points"), REFUTED)
+        found = self.findings("--changed", "--base", "HEAD~1")
+        self.assertEqual([(f["path"], f["code"]) for f in found], [("skill-b/maintenance/pending-evidence.md", "PREDICTION")])
+
+    def test_a_refuted_line_dropped_in_the_move_is_erased_at_the_current_path(self):
+        self.move_skill_a_with_its_result()
+        self.write("skill-b/maintenance/pending-evidence.md", SUPPORTED)
+        self.write("skill-b/maintenance/rules-provenance.md", NORM, UNRECORDED, "- **U-2** · new words")
+        self.git("add", "-A")
+        found = self.findings("--staged")
+        self.assertEqual([(f["path"], f["line"], f["code"]) for f in found],
+                         [("skill-b/maintenance/pending-evidence.md", "4", "ERASED"),
+                          ("skill-b/maintenance/rules-provenance.md", "5", "NORECORD")])
+
+    def test_a_moved_directory_keeps_its_history_when_a_map_is_rewritten_beyond_half(self):
+        self.move_skill_a_with_its_result()
+        added = [claim(f"H-{n}", "hypothesis") for n in range(2, 9)]
+        self.write("skill-b/maintenance/pending-evidence.md", SUPPORTED, REFUTED, *added)
+        self.git("add", "-A")
+        status = self.git("diff", "--cached", "-M", "--name-status", "HEAD")
+        self.assertIn("A\tskill-b/maintenance/pending-evidence.md", status)
+        self.assertIn("\tskill-a/maintenance/rules-provenance.md\tskill-b/maintenance/rules-provenance.md", status)
+        self.assertEqual(self.codes("--staged"), [])
+        self.assertEqual(self.codes("--changed"), [])
+
+    def test_a_rewritten_map_whose_neighbours_did_not_move_starts_without_history(self):
+        self.write("skill-a/maintenance/pending-evidence.md", HYPOTHESIS)
+        self.write("skill-a/maintenance/rules-provenance.md", NORM)
+        self.commit("hypothesis")
+        added = [claim(f"H-{n}", "hypothesis") for n in range(2, 9)]
+        self.git("rm", "-q", "skill-a/maintenance/pending-evidence.md")
+        self.write("skill-b/maintenance/pending-evidence.md", SUPPORTED, *added)
+        self.git("add", "-A")
+        found = self.findings("--staged")
+        self.assertEqual([(f["path"], f["code"]) for f in found], [("skill-b/maintenance/pending-evidence.md", "PREDICTION")])
+
+    def test_a_map_copied_to_another_directory_starts_without_history(self):
+        self.write("skill-a/maintenance/pending-evidence.md", HYPOTHESIS)
+        self.commit("hypothesis")
+        self.write("skill-b/maintenance/pending-evidence.md", SUPPORTED)
+        self.git("add", "-A")
+        found = self.findings("--staged")
+        self.assertEqual([(f["path"], f["code"]) for f in found], [("skill-b/maintenance/pending-evidence.md", "PREDICTION")])
 
     def test_an_unknown_base_exits_2(self):
         code, lines, err = self.run_main("--changed", "--base", "no-such-revision")

@@ -1,6 +1,6 @@
-# testing-claims
+# scientific-method
 
-Skill for Claude Code that takes a statement on its way to becoming a rule through the scientific method and leaves a record of what the rule rests on; paths in this file are relative to this directory. The method is `references/method.md`: four kinds of statement (decision, definition, norm, claim), six standings of a claim (opinion, hypothesis, supported, law, contested, refuted), seven rules with a check question each, and one acceptance path. The support of a claim is a test that could have refuted it: someone else's, opened, or our own, committed.
+Skill for Claude Code that takes a statement on its way to becoming a rule through the scientific method and leaves a record of what the rule rests on; paths in this file are relative to this directory. The method is `references/method.md`: four kinds of statement (decision, definition, norm, claim), seven standings of a claim (opinion, hypothesis, supported, law, leading, contested, refuted), seven rules with their check questions, and one acceptance path, with a path of its own for a claim about one event. The support of a claim is a test that could have refuted it: someone else's, opened or, for a peer-reviewed source, read by its abstract; our own, committed; for a claim about one event, a trace on record that tells it from its named rivals.
 
 ## Checks
 
@@ -15,11 +15,11 @@ python3 -I scripts/check_verdict.py <verdict.json>
 
 ## A claim of our own
 
-A claim of our own enters through a test in the repository. Its hypothesis is committed first, with the measure, the comparison, the scope, the refuting outcome and the threshold; the result is committed after it. `check_record.py --staged` rejects a result whose hypothesis is absent from the base revision or stands there with a different prediction. The order is read from the ancestry of the commits, so it holds in a repository that sets its commit dates by hand.
+A claim of our own enters through a test in the repository. Its hypothesis is committed first, with the measure, the comparison, the scope, the refuting outcome and the threshold; the result is committed after it. `check_record.py --staged` rejects a result whose hypothesis is absent from the base revision or stands there with a different prediction. The order is read from the ancestry of the commits, so it holds in a repository that sets its commit dates by hand, and a map that git reports as renamed is compared with its text under the earlier name, so it holds when a skill's directory moves.
 
 ## The reader
 
-The plugin's agent `../../agents/claim-skeptic.md` reads one record without the context of the work behind it, opens the test files and the sources the record names, and answers the seven check questions as one JSON object. Its answers are a model's output, so `check_verdict.py` holds them to the shape and to the table that says which rule applies to which kind.
+The plugin's agent `../../agents/claim-skeptic.md` reads one record without the context of the work behind it, opens the test files and the sources the record names, and answers the check questions of the seven rules as one JSON object. Its answers are a model's output, so `check_verdict.py` holds them to the shape and to the table that says which rule applies to which kind.
 
 ## Layout
 

@@ -15,10 +15,10 @@ if git diff --cached --name-only | grep -q '^plugins/'; then
     fi
 fi
 
-records=$(python3 -I plugins/evidence-based-authoring/skills/testing-claims/scripts/check_record.py --root . --staged 2>&1)
+records=$(python3 -I plugins/evidence-based-authoring/skills/scientific-method/scripts/check_record.py --root . --staged 2>&1)
 case $? in
     0) ;;
-    *) printf 'pre-commit: the record check fails (references/record-format.md of the testing-claims skill names each code)\n%s\n' "$records" >&2
+    *) printf 'pre-commit: the record check fails (references/record-format.md of the scientific-method skill names each code)\n%s\n' "$records" >&2
        status=1 ;;
 esac
 

@@ -1,0 +1,26 @@
+# Maintaining scientific-method
+
+Nothing under `maintenance/` is read or executed in a run of the skill. Paths are relative to the skill directory; `../../agents/` is the plugin's agent directory.
+
+- A rule of `references/method.md` changes together with its line in `maintenance/method-provenance.md`, its question in `../../agents/claim-skeptic.md`, its row in the applicability table of `references/record-format.md` and the summary of the method in the repository's `README.md` § Methodology.
+- A field or a standing, `event`, `validity` and `leading` among them, changes together with the tables of `references/record-format.md`, the vocabularies and the per-kind requirements of `scripts/check_record.py` and the cases of `maintenance/tests/test_check_record.py`; a standing also with the vocabulary of `scripts/check_verdict.py`, its cases in `maintenance/tests/test_check_verdict.py`, the table of standings of `references/method.md` and of the repository's `README.md` § Methodology.
+- A reading of someone else's test, `first-hand`, `abstract` or `relay`, changes together with § Tests of `references/record-format.md`, `TEST` and `SUPPORT` of `scripts/check_record.py`, §3 of `SKILL.md` and question 4 of `../../agents/claim-skeptic.md`.
+- The path for a claim about one event changes together with § A claim about one event and the acceptance tree of `references/method.md`, the tree of the repository's `README.md` § Methodology, §2, §3 and §5 of `SKILL.md`, and what questions 2 to 5 of `../../agents/claim-skeptic.md` ask of a record that carries `event`.
+- The shape of the reader's verdict changes together with the JSON example of `references/record-format.md`, the section "What to return" of `../../agents/claim-skeptic.md`, `scripts/check_verdict.py` and `maintenance/tests/test_check_verdict.py`.
+- A prescription added to `SKILL.md` or `references/record-format.md` that `references/method.md` states in brief or not at all gets its `S-n` line in `maintenance/method-provenance.md`.
+- The skill's own rules pass through the skill: a new part of the method enters `maintenance/method-provenance.md` with its record, and a belief about the method that no test backs yet enters `maintenance/pending-evidence.md` as a hypothesis with its refuting outcome.
+- A test of our own about the method keeps its protocol, its script and its draw under `evals/<name>/`. Its hypothesis is committed in `maintenance/pending-evidence.md` before a run, every run stays under `evals/<name>/runs/`, and the result enters the hypothesis line in a later commit.
+- The files under `evals/kind-agreement/runs/` are records of runs and keep the paths their agents were given as written: a path they name under `skills/testing-claims/` stands for the same path under this skill's directory.
+- The unit tests run from the skill directory: `python3 -m unittest discover -s maintenance/tests -p 'test_*.py'`. They build their files under temporary directories and create their own git repositories there.
+- `python3 -I scripts/check_record.py --root <repository> maintenance/method-provenance.md maintenance/pending-evidence.md --require` passes before a commit that touches either file.
+
+## Layout
+
+- `maintenance/method-provenance.md` — one line per part of the method, keyed `M-n`, and per prescription of `SKILL.md` or `references/record-format.md` that the method states in brief or not at all, keyed `S-n`: the texts or rules the formulation follows, how each text was seen, and the record.
+- `maintenance/pending-evidence.md` — the hypotheses about the method, keyed `H-n`, each with its measure and refuting outcome.
+- `maintenance/method-citations.json` — the quoted words of `maintenance/method-provenance.md` and of the README's list of texts, one entry per quote with its source; a line of the map that changes its quote changes its entry.
+- `maintenance/scripts/check_quotes.py` — says for each entry of a citations file whether the quoted words stand in its source; its docstring gives the file's shape, the statuses and what it reads and writes. It opens the cited URLs over the network.
+- `maintenance/scripts/apply_records.py` — carries the records and hypothesis lines of workers' result files into a provenance map and its list of hypotheses, and writes their corrections and notes into a report; with `--replace` the results also take the place of the records, the free text of rule lines and the hypothesis lines they name. Its docstring gives the result file's shape, the outcome codes and what it reads and writes. A second run of the same results changes nothing.
+- `maintenance/tests/` — `test_check_record.py`, `test_check_verdict.py`, `test_kind_agreement.py`, `test_check_quotes.py` and `test_apply_records.py`.
+
+Who reads or runs every other file of the skill, and when: `README.md` § Layout.

@@ -58,6 +58,11 @@ class Valid(unittest.TestCase):
             with self.subTest(name):
                 self.assertEqual(cv.check(obj), [])
 
+    def test_leading_takes_every_rule_as_a_claim_past_hypothesis(self):
+        self.assertEqual(cv.check(verdict(standing="leading")), [])
+        obj = verdict(standing="leading", answers=[answer(r) if r != 3 else not_applicable(3) for r in cv.RULES])
+        self.assertEqual(codes(obj), ["APPLY"])
+
     def test_hypothesis_rules_3_to_6_take_any_verdict(self):
         obj = hypothesis({3: answer(3), 4: answer(4, "fails", quote="", missing="the test command"), 5: not_applicable(5)})
         self.assertEqual(cv.check(obj), [("FAILS", "rule 4 fails: the test command")])

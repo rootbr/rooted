@@ -4,9 +4,9 @@ Rooted is a Claude Code plugin marketplace rooted in evidence. Contributions are
 
 ## The rule
 
-Every rule, checklist item, or review criterion — whether newly added **or edited** — says what it rests on, and a claim rests on a test that could have refuted it. The method is [`references/method.md`](plugins/evidence-based-authoring/skills/testing-claims/references/method.md) of the `/testing-claims` skill; in short, a statement is one of four kinds:
+Every rule, checklist item, or review criterion — whether newly added **or edited** — says what it rests on, and a claim rests on a test that could have refuted it. The method is [`references/method.md`](plugins/evidence-based-authoring/skills/scientific-method/references/method.md) of the `/scientific-method` skill; in short, a statement is one of four kinds:
 
-- **A claim** — "this technique works better" — names its measure, what it is compared with, the conditions it is made for, and the outcome that would refute it. It carries a test: a study you opened, with its comparison, measure, sample and result in view, or a test of your own in the repository.
+- **A claim** — "this technique works better" — names its measure, what it is compared with, the conditions it is made for, and the outcome that would refute it. It carries a test: a study you opened, with its comparison, measure, sample and result in view — for a peer-reviewed study its abstract suffices, and the record says so — or a test of your own in the repository. A claim about one event — what caused one failure — names instead its rival explanations and the trace that tells them apart.
 - **A norm** — a standard, a specification, official documentation, a tool's rule — is cited by issuer, version and place. It shows that a practice is accepted; whether the practice works better is a separate claim.
 - **A decision** — a goal, a priority, a matter of taste — is recorded under its owner, with what it is for.
 - **A definition** is recorded with its term.
@@ -21,7 +21,7 @@ A rule of your own enters on a test of your own:
 
 1. Commit the hypothesis: the measure, the comparison, the scope, the refuting outcome, the threshold and the number of runs.
 2. Run the same work with the technique and without it, and keep every run.
-3. Commit the result with the conditions it was obtained under.
+3. Commit the result with the conditions it was obtained under and what checked the measure; a comparison of shares names its test and its p-value or interval.
 
 `check_record.py --staged` reads the order from history and rejects a result whose hypothesis was not committed before it.
 

@@ -22,12 +22,18 @@ no record.
 An id is unique per directory: the checked files that lie in one directory form one group, and
 every comparison of ids below stays inside a group.
 
-Plain mode applies KIND, FIELD, STANDING, TEST, SUPPORT, OWN, FIT and DUP to every rule line that
-carries a record. A claim takes every field of the claim row and of the standing table, whatever
-its standing; a hypothesis, a supported claim and a law whose `test` holds an `own` test also
-require `threshold` and `runs`. DUP reports a recorded line whose id stands on another rule line
-of the same directory. The words `proved` and `proven` count in `standing` and `result` as whole
-words, in any case. A rule line without a record is counted; under --require it is NORECORD.
+Plain mode applies KIND, FIELD, STANDING, TEST, SUPPORT, VALIDITY, OWN, FIT and DUP to every rule
+line that carries a record. A claim takes every field of the claim row and of the standing table,
+whatever its standing, and exactly one of `scope` and `event`; a hypothesis, a supported claim and
+a law whose `test` holds an `own` test also require `threshold` and `runs`, except beside `event`.
+A claim that carries `event` is a claim about one event: its `against` is never `none` (FIELD)
+and its standing is hypothesis, leading, contested or refuted (STANDING). SUPPORT accepts an
+`own`, `first-hand` or `abstract` test under supported and law, and an `own` or `first-hand` test
+under leading. VALIDITY reports a `validity` outside its four forms, and a supported claim or a
+law whose `test` holds an `own` test with a `validity` absent or `unchecked`. DUP reports a
+recorded line whose id stands on another rule line of the same directory. The words `proved` and
+`proven` count in `standing` and `result` as whole words, in any case. A rule line without a
+record is counted; under --require it is NORECORD.
 
 The comparing modes set a current state against a base state:
   --changed [--base REV]  the working tree against the same paths at REV, HEAD by default
@@ -39,19 +45,27 @@ state (the working tree under --changed, the index under --staged) or from the b
 empty there; a FILE named on the command line must exist in the working tree. A rule line is
 changed when its id stands on no rule line of its directory's base state or its text differs
 from every base line of that id there. A changed line without a record is NORECORD, and every
-recorded line still passes the plain-mode codes. The base state of PREDICTION and ERASED is the
-union of the records of the checked files of one directory at the base, so an id may move from
-that directory's list of hypotheses to its provenance map:
-  PREDICTION  compares measure, against, scope, refuter and threshold after collapsing runs of
-              white space; a field absent on both sides is equal; one equal base record of the
-              id in the same directory suffices
-  ERASED      a base record with the standing refuted or contested whose id stands on no rule
-              line of its directory's current state; reported at the base path and base line
+recorded line still passes the plain-mode codes. A map that git reports as renamed since the
+base (`git diff -M`: the earlier name is gone and the text is alike by half or more) has, as its
+base state, its text under the earlier name, so a directory that moves keeps the history of its
+records; the earlier name is not checked as a deleted map. A map git no longer pairs, its text
+having changed by more than half, is paired through its directory: when the files beside it
+were renamed from one earlier directory, its base is the map of the same name there, gone from
+the current state. The base state of PREDICTION and
+ERASED is the union of the records of the checked files of one directory at the base, so an id
+may move from that directory's list of hypotheses to its provenance map:
+  PREDICTION  compares measure, against, scope, event, refuter and threshold after collapsing
+              runs of white space; a field absent on both sides is equal; one equal base record
+              of the id in the same directory suffices
+  ERASED      a base record with the standing refuted or contested, or with a `result` whatever
+              its standing, whose id stands on no rule line of its directory's current state;
+              reported at the base path and base line, and for a renamed map at its current path
+              and base line
 
 Output on stdout: one line per finding, `<path>:<line>: <CODE>: <message>`, ordered by path and
 line; with --stats then three lines
     records by kind: claim <n>, decision <n>, definition <n>, norm <n>
-    claims by standing: contested <n>, hypothesis <n>, law <n>, refuted <n>, supported <n>
+    claims by standing: contested <n>, hypothesis <n>, law <n>, leading <n>, refuted <n>, supported <n>
     rule lines without a record: <n>
 (a value outside the vocabulary is counted after these); and the last line `<n> error(s)`.
 Every finding is an error.
@@ -61,8 +75,8 @@ a directory, or a failed git command (outside a repository, an unknown REV), wit
 on stderr. --stats changes no exit status.
 
 Privileges: reads the checked files and, in the comparing modes only, runs `git show`,
-`git ls-tree` and `git rev-parse` in the root; writes nothing, opens no network connection, uses
-the standard library alone.
+`git ls-tree`, `git diff` and `git rev-parse` in the root; writes nothing, opens no network
+connection, uses the standard library alone.
 """
 from __future__ import annotations
 
@@ -84,31 +98,48 @@ MAP_PATTERNS = ("*provenance*.md", "pending-evidence*.md")
 SKIPPED_DIRS = frozenset({".git", "tmp", "trash", "node_modules", "worktrees", "__pycache__"})
 SKIPPED_DIR_SUFFIX = "-workspace"
 
+OWN = "own"
+FIRST_HAND = "first-hand"
+ABSTRACT = "abstract"
+RELAY = "relay"
+OWN_TEST = re.compile(r"own (?P<path>\S(?:.*\S)?)")
+EXTERNAL_TEST = re.compile(r"external (?P<locator>\S(?:.*\S)?) (?P<reading>first-hand|abstract|relay)")
+
 KINDS = ("claim", "decision", "definition", "norm")
-STANDINGS = ("contested", "hypothesis", "law", "refuted", "supported")
+STANDINGS = ("contested", "hypothesis", "law", "leading", "refuted", "supported")
 REQUIRED = {
     "decision": ("owner", "goal"),
     "definition": ("term",),
     "norm": ("issuer", "version", "locator"),
-    "claim": ("standing", "measure", "against", "scope", "refuter"),
+    "claim": ("standing", "measure", "against", "refuter"),
 }
 OPTIONAL = {
     "decision": ("hypothesis",),
     "definition": (),
     "norm": (),
-    "claim": ("threshold", "runs", "test", "transfer"),
+    "claim": ("scope", "event", "threshold", "runs", "test", "transfer", "validity"),
 }
 ADDED_BY_STANDING = {
     "hypothesis": (),
     "supported": ("test", "result", "bounds", "fit"),
     "law": ("test", "result", "bounds", "fit"),
+    "leading": ("event", "test", "result", "bounds"),
     "contested": ("test", "result"),
     "refuted": ("test", "result", "bounds"),
 }
+SCOPE, EVENT = "scope", "event"
+EVENT_STANDINGS = ("hypothesis", "leading", "contested", "refuted")
 ADDED_BY_OWN_TEST = ("threshold", "runs")
 OWN_TEST_ADDS_TO = ("hypothesis", "supported", "law")
 TWO_TESTS = ("law", "contested")
-SUPPORTING = ("supported", "law")
+SUPPORTING_READINGS = {
+    "supported": (OWN, FIRST_HAND, ABSTRACT),
+    "law": (OWN, FIRST_HAND, ABSTRACT),
+    "leading": (OWN, FIRST_HAND),
+}
+VALIDATED = ("supported", "law")
+VALIDITY_FORM = re.compile(r"(?:direct|probe|labels): \S.*|unchecked")
+UNCHECKED = "unchecked"
 TAKEN = {
     kind: frozenset({"kind", *REQUIRED[kind], *OPTIONAL[kind]}
                     | ({f for added in ADDED_BY_STANDING.values() for f in added} if kind == "claim" else set()))
@@ -117,14 +148,8 @@ TAKEN = {
 KNOWN_KEYS = frozenset().union(*TAKEN.values())
 FITS = ("direct", "transfer")
 PROVED = re.compile(r"\b(?:proved|proven)\b", re.IGNORECASE)
-PREDICTION_FIELDS = ("measure", "against", "scope", "refuter", "threshold")
+PREDICTION_FIELDS = ("measure", "against", "scope", "event", "refuter", "threshold")
 ERASABLE = ("refuted", "contested")
-
-OWN = "own"
-FIRST_HAND = "first-hand"
-RELAY = "relay"
-OWN_TEST = re.compile(r"own (?P<path>\S(?:.*\S)?)")
-EXTERNAL_TEST = re.compile(r"external (?P<locator>\S(?:.*\S)?) (?P<reading>first-hand|relay)")
 
 
 class InputError(Exception):
@@ -198,7 +223,7 @@ def parse_rule_lines(path: str, text: str) -> list[RuleLine]:
 
 
 def parse_tests(value: str) -> list[tuple[str | None, str]]:
-    """Each test of a `test` value as (form, argument); the form is None for a test outside the three forms."""
+    """Each test of a `test` value as (form, argument); the form is None for a test outside the four forms."""
     if not value:
         return []
     tests = []
@@ -213,6 +238,10 @@ def parse_tests(value: str) -> list[tuple[str | None, str]]:
         else:
             tests.append((None, item))
     return tests
+
+
+def alternatives(items: tuple[str, ...]) -> str:
+    return items[0] if len(items) == 1 else f"{', '.join(items[:-1])} or {items[-1]}"
 
 
 def own_path_exists(root: Path, path: str) -> bool:
@@ -236,6 +265,8 @@ def check_record(rule: RuleLine, root: Path) -> list[Finding]:
     standing = fields.get("standing", "")
     tests = parse_tests(fields.get("test", ""))
     is_claim = kind == "claim"
+    about_event = is_claim and EVENT in fields
+    has_own_test = any(form == OWN for form, _ in tests)
 
     if not kind:
         add("KIND", "kind has no value")
@@ -248,25 +279,40 @@ def check_record(rule: RuleLine, root: Path) -> list[Finding]:
         required = {key: f"kind {kind}" for key in REQUIRED[kind]}
         if is_claim:
             required |= {key: f"standing {standing}" for key in ADDED_BY_STANDING.get(standing, ())}
-            if standing in OWN_TEST_ADDS_TO and any(form == OWN for form, _ in tests):
+            if standing in OWN_TEST_ADDS_TO and has_own_test and not about_event:
                 required |= {key: f"standing {standing} with an own test" for key in ADDED_BY_OWN_TEST}
         for key, reason in required.items():
             if key not in fields:
                 add("FIELD", f"{key} is required for {reason}")
+        if is_claim and SCOPE not in fields and EVENT not in fields:
+            add("FIELD", "scope is required for kind claim, or event for a claim about one event")
+        if is_claim and SCOPE in fields and EVENT in fields:
+            add("FIELD", "scope and event exclude each other; a claim about one event takes event in place of scope")
+        if about_event and fields.get("against", "").lower() == "none":
+            add("FIELD", "against: none beside event; a claim about one event names its rivals in against")
 
     if standing and standing not in STANDINGS:
         add("STANDING", f"standing {standing!r} is outside {', '.join(STANDINGS)}")
+    elif about_event and standing and standing not in EVENT_STANDINGS:
+        add("STANDING", f"standing {standing} beside event; a claim about one event stands at {alternatives(EVENT_STANDINGS)}")
     if PROVED.search(fields.get("result", "")):
         add("STANDING", "result says proved or proven; a test supports a claim and never proves it")
 
     for form, argument in tests:
         if form is None:
-            add("TEST", f"test {argument!r} is not `own <path>`, `external <locator> first-hand` or `external <locator> relay`")
+            add("TEST", f"test {argument!r} is not `own <path>` or `external <locator> <reading>` with the reading first-hand, abstract or relay")
     if is_claim and standing in TWO_TESTS and tests and len(tests) < 2:
         add("TEST", f"standing {standing} takes two tests or more; the record names {len(tests)}")
-    readable = [form for form, _ in tests if form is not None]
-    if is_claim and standing in SUPPORTING and readable and not any(form in (OWN, FIRST_HAND) for form in readable):
-        add("SUPPORT", f"standing {standing} rests on relay tests alone; it needs an own or first-hand test")
+    readings = tuple(sorted({form for form, _ in tests if form is not None}))
+    accepted = SUPPORTING_READINGS.get(standing, ()) if is_claim else ()
+    if accepted and readings and not set(readings) & set(accepted):
+        add("SUPPORT", f"standing {standing} rests on {alternatives(readings)} tests alone; it needs a test that is {alternatives(accepted)}")
+
+    validity = fields.get("validity")
+    if is_claim and validity and not VALIDITY_FORM.fullmatch(validity):
+        add("VALIDITY", f"validity {validity!r} is not `direct: <why>`, `probe: <what moved>`, `labels: <who, how many, agreement>` or `unchecked`")
+    if is_claim and standing in VALIDATED and has_own_test and validity in (None, UNCHECKED):
+        add("VALIDITY", f"standing {standing} on an own test needs a validity that says what checked the measure")
     for form, argument in tests:
         if form == OWN and not own_path_exists(root, argument):
             add("OWN", f"own test {argument} does not exist under the root")
@@ -327,14 +373,20 @@ def predictions(current: list[RuleLine], base: list[RuleLine], base_name: str) -
 
 
 def erasures(current: list[RuleLine], base: list[RuleLine], base_name: str) -> list[Finding]:
-    """ERASED at the base position of each refuted or contested record whose id is gone from its directory."""
+    """ERASED at the base position of each record that reports a test, refuted, contested or with a result, whose id is gone from its directory."""
     present = {rule.key for rule in current}
     found = []
     for rule in base:
-        standing = rule.record.fields.get("standing") if rule.record else None
-        if standing in ERASABLE and rule.key not in present:
-            found.append(Finding(rule.path, rule.line, "ERASED",
-                                 f"{rule.id}, {standing} at {base_name}, has no rule line; the record of a test that went against stays"))
+        if not rule.record or rule.key in present:
+            continue
+        standing = rule.record.fields.get("standing")
+        if standing in ERASABLE:
+            message = f"{rule.id}, {standing} at {base_name}, has no rule line; the record of a test that went against stays"
+        elif "result" in rule.record.fields:
+            message = f"{rule.id}, which carries a result at {base_name}, has no rule line; the record of a run stays"
+        else:
+            continue
+        found.append(Finding(rule.path, rule.line, "ERASED", message))
     return found
 
 
@@ -398,6 +450,57 @@ def base_maps(root: Path, base_name: str) -> list[str]:
     return found
 
 
+def renamed_files(root: Path, mode: str, base_name: str) -> list[tuple[str, str]]:
+    """Every file git reports as renamed since the base: (path at the base, current path), root-relative."""
+    args = ("diff", "--relative", "--name-status", "-z", "-M", "--diff-filter=R",
+            *(("--cached",) if mode == "staged" else ()), base_name)
+    run = git(root, *args)
+    if run.returncode != 0:
+        raise git_failure(args, run)
+    # -z gives one rename as three fields: the status with its similarity score, the earlier path, the current path.
+    fields = run.stdout.decode("utf-8", "surrogateescape").split("\0")
+    return list(zip(fields[1::3], fields[2::3]))
+
+
+def moved_directories(renames: list[tuple[str, str]]) -> set[tuple[str, str]]:
+    """The directories that moved, read off the renamed files: (directory at the base, current directory).
+
+    The two paths of a rename share their last components; what stands before that tail on each
+    side is a directory that moved. A file whose own name changed, or one that left or entered the
+    root, names no moved directory.
+    """
+    found = set()
+    for earlier, now in renames:
+        a, b = earlier.split("/"), now.split("/")
+        tail = 0
+        while tail < min(len(a), len(b)) and a[-1 - tail] == b[-1 - tail]:
+            tail += 1
+        if 0 < tail < min(len(a), len(b)):
+            found.add(("/".join(a[:-tail]), "/".join(b[:-tail])))
+    return found
+
+
+def moved_maps(root: Path, mode: str, base_name: str, current: set[str], at_base: set[str]) -> dict[str, str]:
+    """Each moved map's root-relative current path to its path at the base.
+
+    current: the maps of the current state; at_base: the maps of the base revision. A map git
+    reports as renamed is paired by git. A map git no longer pairs, its text having changed by
+    more than half, is paired through its directory: when the files beside it were renamed from
+    one earlier directory, its base is the map of the same name there, gone from the current state.
+    """
+    renames = renamed_files(root, mode, base_name)
+    moved = {now: earlier for earlier, now in renames if is_map(posixpath.basename(now))}
+    directories = moved_directories(renames)
+    taken = set(moved.values())
+    for now in sorted(current - set(moved) - at_base):
+        earlier = {old + now[len(new):] for old, new in directories if now.startswith(new + "/")}
+        earlier = {path for path in earlier if path in at_base and path not in current and path not in taken}
+        if len(earlier) == 1:
+            moved[now] = earlier.pop()
+            taken.add(moved[now])
+    return moved
+
+
 def relative(root: Path, path: Path) -> str:
     return Path(os.path.relpath(path, root)).as_posix()
 
@@ -456,9 +559,13 @@ def load(root: Path, paths: list[Path], mode: str, base_name: str,
         raise git_failure(args, run)
     if not git_has(root, f"{base_name}^{{commit}}"):
         raise InputError(f"{base_name} is not a revision of the repository at {root}")
+    known = {relative(root, path) for path in paths}
+    at_base = base_maps(root, base_name)
+    moved = moved_maps(root, mode, base_name, known, set(at_base))
     if discovered:
-        known = {relative(root, path) for path in paths}
-        paths = paths + [root / rel for rel in base_maps(root, base_name) if rel not in known]
+        # The earlier name of a renamed map answers through its current name, not as a deleted map.
+        answered = known | {earlier for now, earlier in moved.items() if now in known}
+        paths = paths + [root / rel for rel in at_base if rel not in answered]
         paths.sort(key=lambda path: relative(root, path))
     current: list[RuleLine] = []
     base: list[RuleLine] = []
@@ -471,7 +578,8 @@ def load(root: Path, paths: list[Path], mode: str, base_name: str,
         else:
             text = read_file(path)
         current += parse_rule_lines(rel, text)
-        spec = f"{base_name}:./{rel}"
+        spec = f"{base_name}:./{moved.get(rel, rel)}"
+        # Base lines take the current path, so a record keeps its key when its directory moves.
         base += parse_rule_lines(rel, git_text(root, spec) if git_has(root, spec) else "")
     return current, base
 

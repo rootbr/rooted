@@ -3,9 +3,9 @@
 
     check_verdict.py VERDICT.json        (- reads standard input)
 
-The reader answers the seven check questions of references/method.md about one record and
-returns one JSON object. references/record-format.md § The reader's verdict states the object,
-the table of where each rule applies and what this script rejects:
+The reader answers the check questions of the seven rules of references/method.md about one
+record and returns one JSON object. references/record-format.md § The reader's verdict states the
+object, the table of where each rule applies and what this script rejects:
 
     {"id": "H-03", "kind": "claim", "standing": "hypothesis",
      "answers": [{"rule": 1, "verdict": "holds", "quote": "...", "missing": ""}, ...]}
@@ -38,7 +38,7 @@ from collections import Counter
 from pathlib import Path
 
 KINDS = ("claim", "decision", "definition", "norm")
-STANDINGS = ("contested", "hypothesis", "law", "refuted", "supported")
+STANDINGS = ("contested", "hypothesis", "law", "leading", "refuted", "supported")
 VERDICTS = ("holds", "fails", "not-applicable")
 RULES = tuple(range(1, 8))
 APPLIES = "applies"

@@ -38,6 +38,7 @@ A norm shows that a practice is accepted; whether the practice works better is a
 | hypothesis | the refuting outcome is named, and the claim awaits its test | the list of hypotheses |
 | supported | it passed a test that could have refuted it | a rule, with the bounds of its test |
 | law | independent tests under varied conditions support it | a rule with wide bounds |
+| leading | for a claim about one event: a trace on record tells it from every named rival | a record that holds for that event and against those rivals |
 | contested | the tests disagree and no tested condition separates them | the list of hypotheses, both sides recorded |
 | refuted | a repeatable test within the same bounds went against it | withdrawn; the record stays |
 
@@ -49,8 +50,8 @@ A fact is the material of a test: an observation anyone can repeat or open. The 
 |--|--|--|--|
 | 1. Facts apart from decisions | every statement names its kind and is presented as that kind: a taste as a decision, a norm as accepted practice, a tested claim as a finding | Is this about the world, about our choice, about a name, or about what a document prescribes? | Hume, Popper |
 | 2. Refutability | a claim names what is compared with what, by which measure and under which conditions, and the outcome that would refute it | Which result would make us give it up? | Popper |
-| 3. Severity of the test | a test supports a claim when it could have come out against it: the same work done with the technique and without it, and enough repetitions to tell the effect from chance, their number fixed before the test | Had the claim been false, would the test have shown it? | Popper, Mayo |
-| 4. Reproducibility | another person can repeat the test: a test of our own runs by a command from the repository, and a published one is opened and its comparison, measure, sample and result are found in it | Would another person, following the record, see the same? | Popper, the Royal Society |
+| 3. Severity of the test | a test supports a claim when it could have come out against it: the same work done with the technique and without it, and enough repetitions to tell the effect from chance, their number fixed before the test; a comparison of shares names its test and its p-value or interval, and the record says what checked that the measure follows what the claim is about | Had the claim been false, would the test have shown it? Does the measure move when what the claim is about changes? | Popper, Mayo |
+| 4. Reproducibility | another person can repeat the test: a test of our own runs by a command from the repository, and a published one is opened and its comparison, measure, sample and result are found in it; a source that passed peer review is read by its abstract, and the record says so | Would another person, following the record, see the same? | Popper, the Royal Society |
 | 5. Bounds of transfer | a supported claim holds for the conditions of its test; beyond them it is a hypothesis again, and applying it there is a decision marked as a transfer | Does the place where the rule is applied match the place where it was tested? | Hume, Deaton and Cartwright |
 | 6. No fitting | the prediction, the measure and the threshold are recorded before the test; the record holds every run, the failed ones included; a condition added to save a refuted claim is a new hypothesis | What was recorded before the result was seen? | Popper, Lakatos, Kerr |
 | 7. Revision | a standing follows the tests in both directions, and a test that went against a rule stays on record | What changes in the record if a new test goes the other way? | Popper, Duhem |
@@ -60,32 +61,43 @@ A fact is the material of a test: an observation anyone can repeat or open. The 
 Every new statement takes one path.
 
 ```
-a new statement
-└── which kind is it?
-    ├── decision ────► enters under its owner's name
-    ├── definition ──► enters as an agreement
-    ├── norm ────────► enters as a norm
-    └── claim about the world
-        └── are the measure, the comparison, the conditions and the refuting outcome named?
+a new statement: which kind is it?
+├── decision ────► enters under its owner's name
+├── definition ──► enters as an agreement
+├── norm ────────► enters as a norm
+└── claim about the world
+    ├── about what happens whenever the conditions hold
+    │   └── are the measure, the comparison, the conditions and the refuting outcome named?
+    │       ├── no ───► opinion: stays out
+    │       └── yes ──► hypothesis
+    │           └── is there a test that could have refuted it, ours or someone else's?
+    │               ├── no ─────────────────────────► waits in the list of hypotheses
+    │               ├── yes, it held ───────────────► enters as a rule with the bounds of its test
+    │               ├── yes, it failed once ────────► waits, the failure recorded
+    │               ├── yes, the tests disagree ────► contested: waits, both sides recorded
+    │               └── yes, it failed repeatably ──► refuted: the record stays
+    └── about one event
+        └── are the rivals, the trace that tells them apart and the refuting outcome named?
             ├── no ───► opinion: stays out
             └── yes ──► hypothesis
-                └── is there a test that could have refuted it, ours or someone else's?
-                    ├── no ─────────────────────────► waits in the list of hypotheses
-                    ├── yes, it held ───────────────► enters as a rule with the bounds of its test
-                    ├── yes, it failed once ────────► waits, the failure recorded
-                    ├── yes, the tests disagree ────► contested: waits, both sides recorded
-                    └── yes, it failed repeatably ──► refuted: the record stays
+                └── is the trace on record, where another person can open it?
+                    ├── no ─────────────────────────────► waits in the list of hypotheses
+                    ├── yes, only the claim fits it ────► leading: holds for that event
+                    ├── yes, a rival fits it as well ───► waits, the trace recorded
+                    └── yes, it goes against the claim ─► refuted: the record stays
 ```
 
-A claim tested in this repository takes the lowest branches. Its hypothesis is committed first, with its measure, its refuting outcome and its threshold. The test runs the same work with the technique and without it, and the result is committed after. The repository's pre-commit hook runs the record check on the content of each commit. The check passes when every rule line the commit adds or changes in a provenance map or a list of hypotheses carries a record, and when a result follows a hypothesis that already stands in the commit history.
+A claim about one event — what caused one failure, what one change did — cannot be tested by doing the work with the technique and without it, so it takes a path of its own. It names its rival explanations and the trace that tells them apart, and a trace on record that tells it from every named rival gives it the standing `leading` for that event; a script that reproduces the event returns it to a test of one run.
 
-The full method, with a bad and a good example for each rule, is [`references/method.md`](plugins/evidence-based-authoring/skills/testing-claims/references/method.md). The [`/testing-claims`](plugins/evidence-based-authoring/skills/testing-claims/SKILL.md) skill carries the procedure, the fields of a record and the checks.
+A claim tested in this repository passes through a test of our own. Its hypothesis is committed first, with its measure, its refuting outcome and its threshold. The test runs the same work with the technique and without it, and the result is committed after. The repository's pre-commit hook runs the record check on the content of each commit. The check passes when every rule line the commit adds or changes in a provenance map or a list of hypotheses carries a record, and when a result follows a hypothesis that already stands in the commit history.
+
+The full method, with a bad and a good example for each rule, is [`references/method.md`](plugins/evidence-based-authoring/skills/scientific-method/references/method.md). The [`/scientific-method`](plugins/evidence-based-authoring/skills/scientific-method/SKILL.md) skill carries the procedure, the fields of a record and the checks.
 
 ## Plugins
 
 ### evidence-based-authoring
 
-Seven evidence-based skills. Three form a preparation pipeline — research → explore → write: gather verified sources, map every angle of a topic, then produce agent instructions grounded in evidence. `/appraising-research` adds a critical-appraisal gate over a finished report — grading evidence quality, surfacing hidden assumptions, hunting competing hypotheses and blind spots, and mapping who benefits. `/reading-companion` is an active-reading companion for a book you study yourself — grounded in learning-science research. `/handing-over-to-readers` shapes what an agent hands to a human — a report, an explanation, a question, a client's question list — into a handover the reader checks against evidence. `/testing-claims` is the repository's own method made a skill: it takes a statement on its way to becoming a rule through the scientific method and leaves a record of what the rule rests on.
+Seven evidence-based skills. Three form a preparation pipeline — research → explore → write: gather verified sources, map every angle of a topic, then produce agent instructions grounded in evidence. `/appraising-research` adds a critical-appraisal gate over a finished report — grading evidence quality, surfacing hidden assumptions, hunting competing hypotheses and blind spots, and mapping who benefits. `/reading-companion` is an active-reading companion for a book you study yourself — grounded in learning-science research. `/handing-over-to-readers` shapes what an agent hands to a human — a report, an explanation, a question, a client's question list — into a handover the reader checks against evidence. `/scientific-method` is the repository's own method made a skill: it takes a statement on its way to becoming a rule through the scientific method and leaves a record of what the rule rests on.
 
 | Skill | Description |
 |--|--|
@@ -95,7 +107,7 @@ Seven evidence-based skills. Three form a preparation pipeline — research → 
 | `/auditing-ai-context` | Audit the prose an agent reads and the prose an agent writes: CLAUDE.md, SKILL.md, prompts and KB cards; design docs and the comments attached to code; a drafted answer against the house output-style rules. Purges superseded-design traces after a rework; its trace pass lists the sentences a change added that may argue with the text it deleted, has three independent readers judge each, and keeps a sentence only on a ground a script finds in the document |
 | `/reading-companion` | Active-reading companion for a book you study yourself — classify it, scaffold a per-book workspace, then explain intent, translate fragments, walk proofs, and capture your own notes; amplifies recall, never substitutes for it |
 | `/handing-over-to-readers` | Shape a report, an explanation, a question or a client's question list so the reader understands, checks and decides — a report told as a story written for the ear, with an opening that gives the whole matter, one picture per part and the decision last, closed by a list of `path:line` anchors and checks with exit codes; sent as text and, where a figure or a choice needs it, as a page with voice that lights what is spoken and takes the reader's answer; an explanation of a mechanism for a team as such a page, with each reader's question answered in its first table; filtered questions as decision cards, reversible decisions taken by default — with a plugin hook that blocks an `AskUserQuestion` outside the card form |
-| `/testing-claims` | Take a statement on its way to becoming a rule through the scientific method: name its kind (decision, definition, norm, claim), state a claim with its measure, comparison, conditions and refuting outcome, find or run the test that could have refuted it, and write a record with the result, the bounds and the standing; a claim of our own enters through a test in the repository, its hypothesis committed before its result — one script checks the record and reads that order from history, a read-only reader answers the seven check questions, and a second script checks the reader's verdict |
+| `/scientific-method` | Take a statement on its way to becoming a rule through the scientific method: name its kind (decision, definition, norm, claim), state a claim with its measure, comparison, conditions and refuting outcome, find or run the test that could have refuted it, and write a record with the result, the bounds and the standing; a claim about one event is weighed against its named rival explanations by a trace on record; a claim of our own enters through a test in the repository, its hypothesis committed before its result — one script checks the record and reads that order from history, a read-only reader answers the check questions of the seven rules, and a second script checks the reader's verdict |
 
 ### code-quality
 
@@ -336,7 +348,7 @@ Sources behind the `/software-craft` craft cards. Every card rests on an openabl
 
 ### Scientific method sources
 
-The texts the [Methodology](#methodology) follows. Each is a formulation of the method, read in the philosophy of science; the line of each rule in [`method-provenance.md`](plugins/evidence-based-authoring/skills/testing-claims/maintenance/method-provenance.md) carries the passage the rule follows and how the text was seen. The method is a convention the repository adopts, and what would count as a test of it stands in the skill's [list of hypotheses](plugins/evidence-based-authoring/skills/testing-claims/maintenance/pending-evidence.md). A thinker named with an encyclopedia entry is reported as that entry reports him.
+The texts the [Methodology](#methodology) follows. Each is a formulation of the method, read in the philosophy of science; the line of each rule in [`method-provenance.md`](plugins/evidence-based-authoring/skills/scientific-method/maintenance/method-provenance.md) carries the passage the rule follows and how the text was seen. The method is a convention the repository adopts, and what would count as a test of it stands in the skill's [list of hypotheses](plugins/evidence-based-authoring/skills/scientific-method/maintenance/pending-evidence.md). A thinker named with an encyclopedia entry is reported as that entry reports him.
 
 - Stanford Encyclopedia of Philosophy. *Scientific Method.* [plato.stanford.edu/entries/scientific-method](https://plato.stanford.edu/entries/scientific-method/) — No single universal method (§6.1); science differs from everyday knowledge by being more systematic (§7); the consequences of an error enter the choice between hypotheses (§4).
 - Stanford Encyclopedia of Philosophy. *Science and Pseudo-Science.* [plato.stanford.edu/entries/pseudo-science](https://plato.stanford.edu/entries/pseudo-science/) — Popper's falsifiability and its critics (§4); philosophers agree on particular cases and disagree on the general criterion (§8).
@@ -359,7 +371,7 @@ The texts the [Methodology](#methodology) follows. Each is a formulation of the 
 - The Royal Society. *History of the Royal Society.* [royalsociety.org/about-us/who-we-are/history](https://royalsociety.org/about-us/who-we-are/history/) — The motto *Nullius in verba*, "take nobody's word for it": statements are verified by an appeal to facts determined by experiment.
 - National Academy of Sciences (1998). *Teaching About Evolution and the Nature of Science*, definitions as reproduced by [Weber State University](https://physics.weber.edu/carroll/honors/scidefs.htm) — Fact, hypothesis and law: a hypothesis is "a tentative statement about the natural world leading to deductions that can be tested".
 - Mill (1843). *A System of Logic, Ratiocinative and Inductive*, Book III, ch. XIV, §4. [7th edition (1868), vol. II, Digital Library of Liberty & Power](http://davidmhart.com/liberty/EnglishClassicalLiberals/MilJS/1868-SystemLogic/Mill_SystemLogic2.html) — A hypothesis is a supposition made "either without actual evidence, or on evidence avowedly insufficient"; a genuinely scientific one must "be of such a nature as to be either proved or disproved by comparison with observed facts".
-- Feynman (1965). *The Character of Physical Law*, ch. 7, as quoted at [wikiquote](https://en.wikiquote.org/wiki/Richard_Feynman) — "It does not make any difference how smart you are, who made the guess, or what his name is. If it disagrees with experiment it is wrong."
+- Feynman (1965). *The Character of Physical Law*, ch. 7, as quoted at [wikiquote](https://en.wikiquote.org/wiki/Richard_Feynman) — "It does not make any difference how smart you are, who made the guess, or what his name is – if it disagrees with experiment it is wrong."
 
 ## License
 

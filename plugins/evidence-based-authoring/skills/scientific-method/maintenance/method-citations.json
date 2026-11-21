@@ -1,0 +1,354 @@
+[
+ {
+  "id": "M-0/1",
+  "source": "https://plato.stanford.edu/entries/scientific-method/",
+  "quote": "the legend of a single, universal scientific method"
+ },
+ {
+  "id": "M-0/2",
+  "source": "https://plato.stanford.edu/entries/scientific-method/",
+  "quote": "scientific knowledge differs from other kinds of knowledge, especially everyday knowledge, primarily by being more systematic"
+ },
+ {
+  "id": "M-0/3",
+  "source": "https://plato.stanford.edu/entries/pseudo-science/",
+  "quote": "almost complete disagreement on the general criteria"
+ },
+ {
+  "id": "M-0/4",
+  "source": "https://plato.stanford.edu/entries/pseudo-science/",
+  "quote": "virtual unanimity"
+ },
+ {
+  "id": "M-0/5",
+  "source": "https://earthweb.ess.washington.edu/roe/Knowability_590/Week1/Popper.doc",
+  "quote": "Methodological rules are here regarded as conventions",
+  "note": "a Word document: convert it to text (textutil -convert txt, or antiword) and give the text file's path as the source"
+ },
+ {
+  "id": "M-0/6",
+  "source": "https://earthweb.ess.washington.edu/roe/Knowability_590/Week1/Popper.doc",
+  "quote": "They might be described as the rules of the game of empirical science",
+  "note": "a Word document: convert it to text (textutil -convert txt, or antiword) and give the text file's path as the source"
+ },
+ {
+  "id": "M-1/1",
+  "source": "https://plato.stanford.edu/entries/hume-moral/",
+  "quote": "no ethical or indeed evaluative conclusion whatsoever may be validly inferred from any set of purely factual premises"
+ },
+ {
+  "id": "M-1/2",
+  "source": "https://plato.stanford.edu/entries/popper/",
+  "quote": "unscientific theories may be enlightening"
+ },
+ {
+  "id": "M-1/3",
+  "source": "https://plato.stanford.edu/entries/scientific-objectivity/",
+  "quote": "what should count as a sufficient reason"
+ },
+ {
+  "id": "M-2/1",
+  "source": "https://plato.stanford.edu/entries/pseudo-science/",
+  "quote": "capable of conflicting with possible, or conceivable observations"
+ },
+ {
+  "id": "M-2/2",
+  "source": "https://plato.stanford.edu/entries/popper/",
+  "quote": "Every genuine scientific theory then, in Popper's view, is prohibitive"
+ },
+ {
+  "id": "M-2/3",
+  "source": "https://plato.stanford.edu/entries/operationalism/",
+  "quote": "we mean by any concept nothing more than a set of operations"
+ },
+ {
+  "id": "M-2/4",
+  "source": "https://physics.weber.edu/carroll/honors/scidefs.htm",
+  "quote": "A tentative statement about the natural world leading to deductions that can be tested"
+ },
+ {
+  "id": "M-3/1",
+  "source": "https://plato.stanford.edu/entries/popper/",
+  "quote": "only if it is the positive result of a genuinely “risky” prediction, which might conceivably have been false"
+ },
+ {
+  "id": "M-3/2",
+  "source": "https://assets.cambridge.org/97811076/64647/excerpt/9781107664647_excerpt.pdf",
+  "quote": "One does not have evidence for a claim if nothing has been done to rule out ways the claim may be false.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "M-3/3",
+  "source": "https://plato.stanford.edu/entries/scientific-method/",
+  "quote": "the consequence of error also had to play a role when deciding between hypotheses"
+ },
+ {
+  "id": "M-3/4",
+  "source": "https://plato.stanford.edu/entries/physics-experiment/",
+  "quote": "do not, however, guarantee that the results are correct"
+ },
+ {
+  "id": "M-4/1",
+  "source": "https://earthweb.ess.washington.edu/roe/Knowability_590/Week1/Popper.doc",
+  "quote": "non-reproducible single occurrences are of no significance to science",
+  "note": "a Word document: convert it to text (textutil -convert txt, or antiword) and give the text file's path as the source"
+ },
+ {
+  "id": "M-4/2",
+  "source": "https://earthweb.ess.washington.edu/roe/Knowability_590/Week1/Popper.doc",
+  "quote": "only such statements may be introduced into science as are intersubjectively testable",
+  "note": "a Word document: convert it to text (textutil -convert txt, or antiword) and give the text file's path as the source"
+ },
+ {
+  "id": "M-4/3",
+  "source": "https://plato.stanford.edu/entries/scientific-objectivity/",
+  "quote": "the objectivity of scientific statements lies in the fact that they can be inter-subjectively tested"
+ },
+ {
+  "id": "M-4/4",
+  "source": "https://plato.stanford.edu/entries/scientific-objectivity/",
+  "quote": "Objectivity means knowledge that does not depend too much on the particular individuals who author it"
+ },
+ {
+  "id": "M-4/5",
+  "source": "https://royalsociety.org/about-us/who-we-are/history/",
+  "quote": "take nobody's word for it"
+ },
+ {
+  "id": "M-4/6",
+  "source": "https://royalsociety.org/about-us/who-we-are/history/",
+  "quote": "withstand the domination of authority"
+ },
+ {
+  "id": "M-4/7",
+  "source": "https://plato.stanford.edu/entries/scientific-knowledge-social/",
+  "quote": "all must take one anothers' results on trust"
+ },
+ {
+  "id": "M-5/1",
+  "source": "https://plato.stanford.edu/entries/induction-problem/",
+  "quote": "it implies no contradiction that the course of nature may change"
+ },
+ {
+  "id": "M-5/2",
+  "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6019115/",
+  "quote": "the truth we are referring to is the truth in the trial sample only"
+ },
+ {
+  "id": "M-5/3",
+  "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6019115/",
+  "quote": "justification is required to extend the results to other groups"
+ },
+ {
+  "id": "M-5/4",
+  "source": "https://plato.stanford.edu/entries/operationalism/",
+  "quote": "not to make conceptual extensions without operational grounds"
+ },
+ {
+  "id": "M-6/1",
+  "source": "https://plato.stanford.edu/entries/popper/",
+  "quote": "by the addition of ad hoc hypotheses which made it compatible with the facts"
+ },
+ {
+  "id": "M-6/2",
+  "source": "https://earthweb.ess.washington.edu/roe/Knowability_590/Week1/Popper.doc",
+  "quote": "must be designed in such a way that they do not protect any statement in science against falsification",
+  "note": "a Word document: convert it to text (textutil -convert txt, or antiword) and give the text file's path as the source"
+ },
+ {
+  "id": "M-6/3",
+  "source": "https://plato.stanford.edu/entries/lakatos/",
+  "quote": "all cooked up after the event to protect Marxian theory from the facts"
+ },
+ {
+  "id": "M-6/4",
+  "source": "https://plato.stanford.edu/entries/scientific-reproducibility/",
+  "quote": "presenting ad hoc and/or unexpected findings as though they had been predicted all along"
+ },
+ {
+  "id": "M-6/5",
+  "source": "https://plato.stanford.edu/entries/scientific-reproducibility/",
+  "quote": "distinguish prediction from postdiction"
+ },
+ {
+  "id": "M-6/6",
+  "source": "https://assets.cambridge.org/97811076/64647/excerpt/9781107664647_excerpt.pdf",
+  "quote": "presenting only a selected subset of the data available",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "M-7/1",
+  "source": "https://plato.stanford.edu/entries/popper/",
+  "quote": "all knowledge is provisional, conjectural, hypothetical"
+ },
+ {
+  "id": "M-7/2",
+  "source": "https://plato.stanford.edu/entries/popper/",
+  "quote": "corroborated (but never verified)"
+ },
+ {
+  "id": "M-7/3",
+  "source": "https://earthweb.ess.washington.edu/roe/Knowability_590/Week1/Popper.doc",
+  "quote": "we shall take it as falsified only if we discover a reproducible effect which refutes the theory",
+  "note": "a Word document: convert it to text (textutil -convert txt, or antiword) and give the text file's path as the source"
+ },
+ {
+  "id": "M-7/4",
+  "source": "https://plato.stanford.edu/entries/scientific-underdetermination/",
+  "quote": "does not designate which one should be changed"
+ },
+ {
+  "id": "M-7/5",
+  "source": "https://plato.stanford.edu/entries/lakatos/",
+  "quote": "all theories, in this sense, are born refuted and die refuted"
+ },
+ {
+  "id": "M-7/6",
+  "source": "https://davidhume.org/texts/e/10",
+  "quote": "A wise man, therefore, proportions his belief to the evidence."
+ },
+ {
+  "id": "M-K/1",
+  "source": "https://plato.stanford.edu/entries/naturalism/",
+  "quote": "philosophical issues are rarely resolved by new observational data"
+ },
+ {
+  "id": "M-K/2",
+  "source": "https://en.wikisource.org/wiki/The_Problems_of_Philosophy/Chapter_15",
+  "quote": "as soon as definite knowledge concerning any subject becomes possible, this subject ceases to be called philosophy"
+ },
+ {
+  "id": "M-S/1",
+  "source": "https://physics.weber.edu/carroll/honors/scidefs.htm",
+  "quote": "In science, an observation that has been repeatedly confirmed and for all practical purposes is accepted as \"true.\""
+ },
+ {
+  "id": "M-S/2",
+  "source": "https://physics.weber.edu/carroll/honors/scidefs.htm",
+  "quote": "A descriptive generalization about how some aspect of the natural world behaves under stated circumstances."
+ },
+ {
+  "id": "M-S/3",
+  "source": "http://davidmhart.com/liberty/EnglishClassicalLiberals/MilJS/1868-SystemLogic/Mill_SystemLogic2.html",
+  "quote": "An hypothesis is any supposition which we make (either without actual evidence, or on evidence avowedly insufficient)"
+ },
+ {
+  "id": "M-A/1",
+  "source": "https://earthweb.ess.washington.edu/roe/Knowability_590/Week1/Popper.doc",
+  "quote": "how it happens that a new idea occurs to a man... it is irrelevant to the logical analysis of scientific knowledge",
+  "note": "a Word document: convert it to text (textutil -convert txt, or antiword) and give the text file's path as the source"
+ },
+ {
+  "id": "M-A/2",
+  "source": "https://en.wikiquote.org/wiki/Richard_Feynman",
+  "quote": "It does not make any difference how smart you are, who made the guess, or what his name is"
+ },
+ {
+  "id": "M-A/3",
+  "source": "https://plato.stanford.edu/entries/scientific-method/",
+  "quote": "without first limiting the possible outcomes"
+ },
+ {
+  "id": "M-E/1",
+  "source": "https://joelvelasco.net/teaching/5330/cleland02-methodological_differences.pdf",
+  "quote": "A smoking gun is a trace (or subcollection of traces) that (so-to-speak) cinches the case for a particular causal story.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "M-E/2",
+  "source": "https://joelvelasco.net/teaching/5330/cleland02-methodological_differences.pdf",
+  "quote": "it is always possible that future observations or theoretical developments will depose a smoking gun",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "M-E/3",
+  "source": "https://plato.stanford.edu/entries/abduction/",
+  "quote": "Abduction is also said to be the predominant mode of reasoning in medical diagnosis: physicians tend to go for the hypothesis that best explains the patient’s symptoms"
+ },
+ {
+  "id": "M-E/4",
+  "source": "https://plato.stanford.edu/entries/abduction/",
+  "quote": "it will not be a sound rule of inference in the strict logical sense"
+ },
+ {
+  "id": "M-E/5",
+  "source": "https://www.cia.gov/resources/csi/static/Pyschology-of-Intelligence-Analysis.pdf",
+  "quote": "In the absence of a complete set of alternative hypotheses, it is not possible to evaluate the “diagnosticity” of evidence.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "M-E/6",
+  "source": "https://sre.google/sre-book/effective-troubleshooting/",
+  "quote": "we can think of the troubleshooting process as an application of the hypothetico-deductive method"
+ },
+ {
+  "id": "M-E/7",
+  "source": "https://sre.google/sre-book/effective-troubleshooting/",
+  "quote": "Stopping the bleeding should be your first priority"
+ },
+ {
+  "id": "M-E/8",
+  "source": "https://sre.google/sre-book/effective-troubleshooting/",
+  "quote": "Take clear notes of what ideas you had, which tests you ran, and the results you saw."
+ },
+ {
+  "id": "M-E/9",
+  "source": "https://sre.google/sre-book/effective-troubleshooting/",
+  "quote": "splits the system in half and examines the communication paths between components on one side and the other"
+ },
+ {
+  "id": "M-E/10",
+  "source": "https://www.debuggingbook.org/html/DeltaDebugger.html",
+  "quote": "provided that the underlying test case is deterministic and runs quickly enough to warrant a number of experiments"
+ },
+ {
+  "id": "M-E/11",
+  "source": "https://joelvelasco.net/teaching/5330/turner%2005%20-%20local%20underdetermination%20in%20historical%20science.pdf",
+  "quote": "there is at least one interesting sense in which historical science is epistemically inferior to experimental science, after all, because local underdetermination problems are more widespread in historical than in experimental science",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "S-7/1",
+  "source": "https://plato.stanford.edu/entries/measurement-science/",
+  "quote": "A good fit between item responses and a statistical model does not yet determine what the questionnaire is measuring."
+ },
+ {
+  "id": "S-7/2",
+  "source": "https://arxiv.org/pdf/2511.04703",
+  "quote": "Construct validity evaluates whether an empirical test measures the phenomenon it intends to measure",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "S-7/3",
+  "source": "https://arxiv.org/pdf/2511.04703",
+  "quote": "53.4% of articles presented evidence for the construct validity of their benchmark",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "S-8/1",
+  "source": "https://www.bipm.org/documents/20126/2071204/JCGM_100_2008_E.pdf",
+  "quote": "it is obligatory that some quantitative indication of the quality of the result be given so that those who use it can assess its reliability.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "S-8/2",
+  "source": "https://www.amstat.org/asa/files/pdfs/P-ValueStatement.pdf",
+  "quote": "A p-value, or statistical significance, does not measure the size of an effect or the importance of a result.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "README/1",
+  "source": "http://davidmhart.com/liberty/EnglishClassicalLiberals/MilJS/1868-SystemLogic/Mill_SystemLogic2.html",
+  "quote": "be of such a nature as to be either proved or disproved by comparison with observed facts"
+ },
+ {
+  "id": "README/3",
+  "source": "https://royalsociety.org/about-us/who-we-are/history/",
+  "quote": "Nullius in verba"
+ },
+ {
+  "id": "README/2",
+  "source": "https://en.wikiquote.org/wiki/Richard_Feynman",
+  "quote": "It does not make any difference how smart you are, who made the guess, or what his name is – if it disagrees with experiment it is wrong."
+ }
+]
