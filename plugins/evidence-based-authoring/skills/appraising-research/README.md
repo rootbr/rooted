@@ -14,3 +14,5 @@ Critically appraises a finished research report or analytical document: seven in
 | `references/checkpointing-protocol.md` | the session | on start and on resume |
 | `maintenance/README.md` | a maintainer | when the skill is evaluated, iterated or gated before a commit; never in a run |
 | `maintenance/appraisal-methodology-provenance.md` | a maintainer | adding a method or re-verifying the source behind a methodology claim; never in a run |
+| `maintenance/pending-evidence.md` | a maintainer | to see which claims about a rule or a technique wait for a test and which tests were found; never in a run |
+| `maintenance/citations.json` | a maintainer | to check that the quoted words of the two files stand in their sources; never in a run |
