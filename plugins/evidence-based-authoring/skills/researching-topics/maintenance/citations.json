@@ -1,0 +1,3901 @@
+[
+ {
+  "id": "SKILL.md § Persona/1",
+  "source": "https://arxiv.org/pdf/2104.07567",
+  "quote": "BART-Large - 81.8% 85.5% 34.1% 68.2%",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Persona/2",
+  "source": "https://arxiv.org/pdf/2104.07567",
+  "quote": "FiD-RAG 5 docs 90.1% 78.0% 96.1% 7.9%",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Persona/3",
+  "source": "https://arxiv.org/pdf/2104.07567",
+  "quote": "RAG-Token 25 docs 87.0% 81.9% 88.7% 21.5%",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Persona/4",
+  "source": "https://arxiv.org/pdf/2104.07567",
+  "quote": "We conduct annotations of ... 100 model responses",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Persona/5",
+  "source": "https://arxiv.org/pdf/2104.07567",
+  "quote": "Expert annotators were sourced from ... within the lab conducting the study",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Persona/6",
+  "source": "https://arxiv.org/abs/2211.17257",
+  "quote": "We find that 25% of questions contain false presuppositions"
+ },
+ {
+  "id": "SKILL.md § Persona/7",
+  "source": "https://arxiv.org/abs/2608.06539",
+  "quote": "methods that perform better on FPQs tend to perform worse on TPQs"
+ },
+ {
+  "id": "SKILL.md § Phase 1/1",
+  "source": "https://www.ala.org/acrl/standards/ilframework",
+  "quote": "determine the initial scope of the task and types of sources that could address their information needs"
+ },
+ {
+  "id": "SKILL.md § Phase 1/2",
+  "source": "https://www.ala.org/acrl/standards/ilframework",
+  "quote": "match information needs to appropriate search tools and information producers"
+ },
+ {
+  "id": "SKILL.md § Phase 1/3",
+  "source": "https://www.ala.org/acrl/standards/ilframework",
+  "quote": "are evaluated based on the information need and the context in which the information will be used"
+ },
+ {
+  "id": "SKILL.md § Phase 1/4",
+  "source": "https://www.ala.org/acrl/standards/ilframework",
+  "quote": "Adopted by the ACRL Board of Directors, January 11, 2016. Revisions approved by the ACRL Board of Directors, September 2, 2026."
+ },
+ {
+  "id": "SKILL.md § Phase 1/5",
+  "source": "https://api.semanticscholar.org/graph/v1/paper/DOI:10.1145/860435.860449?fields=title,abstract,venue,year,authors,externalIds",
+  "quote": "\"DOI\": \"10.1145/860435.860449\""
+ },
+ {
+  "id": "SKILL.md § Phase 1/6",
+  "source": "https://api.semanticscholar.org/graph/v1/paper/DOI:10.1145/860435.860449?fields=title,abstract,venue,year,authors,externalIds",
+  "quote": "\"year\": 2003"
+ },
+ {
+  "id": "SKILL.md § Phase 2/1",
+  "source": "https://arxiv.org/pdf/2403.14403",
+  "quote": "Adaptive-RAG (Ours) 37.17 46.94 42.10 2.17 3.60 38.90 48.62 43.77 1.35 2.00 37.97 50.91 48.97 1.03 1.46",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 2/10",
+  "source": "https://arxiv.org/pdf/2402.14207",
+  "quote": "denotes significant differences (p < 0.05) from a paired t-test between STORM and the best baseline, i.e., oRAG",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 2/11",
+  "source": "https://arxiv.org/pdf/2402.14207",
+  "quote": "Coverage 3.58 57.5% 4.00 67.5% 0.084",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 2/12",
+  "source": "https://arxiv.org/pdf/2402.14207",
+  "quote": "Table 6: Human evaluation results on 20 pairs of articles",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 2/13",
+  "source": "https://arxiv.org/pdf/2402.14207",
+  "quote": "paired t-test and report the p-value",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 2/14",
+  "source": "https://arxiv.org/pdf/2402.14207",
+  "quote": "grounded on the You.com search API",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 2/15",
+  "source": "https://arxiv.org/pdf/1907.06554",
+  "quote": "OriginalQuery 0.2715 0.1842",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 2/16",
+  "source": "https://arxiv.org/pdf/1907.06554",
+  "quote": "NeuQS 0.3625* 0.2664*",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 2/17",
+  "source": "https://arxiv.org/pdf/1907.06554",
+  "quote": "BestQuestion 0.4673 0.3815",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 2/18",
+  "source": "https://arxiv.org/pdf/1907.06554",
+  "quote": "using the two-tailed paired t-test with Bonferroni correction at a ... 99.9% confidence interval (p < 0.001)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 2/19",
+  "source": "https://arxiv.org/pdf/1907.06554",
+  "quote": "TREC Web Track 2009-2012",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 2/2",
+  "source": "https://arxiv.org/pdf/2403.14403",
+  "quote": "Complex Multi-step Approach 39.00 48.85 43.70 4.69 8.81 40.13 50.09 45.20 2.13 3.80 38.13 50.87 49.70 2.81 3.33",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 2/20",
+  "source": "https://arxiv.org/pdf/2510.24668",
+  "quote": "Claude-Sonnet-4 2.85 87.12 7.25 81.70 15.71 65.84 59.07 26.31",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 2/21",
+  "source": "https://arxiv.org/pdf/2510.24668",
+  "quote": "GPT-5 7.62 76.26 9.52 79.14 25.24 57.77 67.88 21.36",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 2/22",
+  "source": "https://arxiv.org/pdf/2510.24668",
+  "quote": "210 expert-curated questions across 9 domains",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 2/23",
+  "source": "https://arxiv.org/pdf/2510.24668",
+  "quote": "Evaluation of 17 models reveals",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 2/24",
+  "source": "https://arxiv.org/abs/2610.39413",
+  "quote": "Across three DRAs we evaluated, underspecification substantially reduces how well DRA's answers fulfill users' information needs"
+ },
+ {
+  "id": "SKILL.md § Phase 2/3",
+  "source": "https://arxiv.org/pdf/2403.14403",
+  "quote": "Single-step Approach 34.83 44.31 38.87 1.00 1.00 37.87 47.63 41.90 1.00 1.00 34.73 46.99 45.27 1.00 1.00",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 2/4",
+  "source": "https://arxiv.org/pdf/2403.14403",
+  "quote": "FLAN-T5-XL (3B) FLAN-T5-XXL (11B) GPT-3.5 (Turbo)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 2/5",
+  "source": "https://arxiv.org/pdf/2402.14207",
+  "quote": "STORM 86.26† 40.52†",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 2/6",
+  "source": "https://arxiv.org/pdf/2402.14207",
+  "quote": "RAG/oRAG 73.59 33.85",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 2/7",
+  "source": "https://arxiv.org/pdf/2402.14207",
+  "quote": "notes significant differences (p < 0.05) from a paired ... t-test between STORM and baselines",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 2/8",
+  "source": "https://arxiv.org/pdf/2402.14207",
+  "quote": "STORM 45.82 16.70 14.10† 3.99† 4.82 4.45† 4.88†",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 2/9",
+  "source": "https://arxiv.org/pdf/2402.14207",
+  "quote": "oRAG 44.26 16.51 12.57 3.90 4.79 4.09 4.70",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 3 languages/1",
+  "source": "https://arxiv.org/pdf/2410.01171",
+  "quote": "Command-R (64.2 → 78.7)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 3 languages/10",
+  "source": "https://arxiv.org/pdf/2604.20531",
+  "quote": "EU 55.2 60.8 71.2 65.6 75.2 77.6 68.8 73.6 65.6 68.18 (6.78)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 3 languages/11",
+  "source": "https://arxiv.org/pdf/2604.20531",
+  "quote": "KK 50.4 60.8 68.0 65.6 73.6 74.4 67.2 72.8 69.6 66.93 (7.12)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 3 languages/12",
+  "source": "https://arxiv.org/pdf/2604.20531",
+  "quote": "ES 61.6 73.6 75.2 78.4 84 80.0 80.8 82.4 79.2 77.24 (6.32)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 3 languages/13",
+  "source": "https://arxiv.org/pdf/2604.20531",
+  "quote": "ES 64.0 74.4 72.8 75.2 78.4 79.2 79.2 80.0 77.6 75.64 (4.73)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 3 languages/14",
+  "source": "https://arxiv.org/pdf/2604.20531",
+  "quote": "chi-square tests of independence on model",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 3 languages/15",
+  "source": "https://arxiv.org/pdf/2604.20531",
+  "quote": "tween the baseline (without retrieval) and each re",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 3 languages/16",
+  "source": "https://arxiv.org/pdf/2604.20531",
+  "quote": "8B 8B 12B 14B 27B 27B 32B 70B 72B",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 3 languages/17",
+  "source": "https://arxiv.org/abs/2604.20531",
+  "quote": "high-resource (English, Spanish, French, Italian) and low-resource (Basque, Kazakh) languages"
+ },
+ {
+  "id": "SKILL.md § Phase 3 languages/18",
+  "source": "https://arxiv.org/abs/2603.14782",
+  "quote": "Our experiments show that LLMs fail to answer questions about information only in local editions of Wikipedia. Providing context from lead sections substantially improves performance"
+ },
+ {
+  "id": "SKILL.md § Phase 3 languages/19",
+  "source": "https://arxiv.org/abs/2603.14782",
+  "quote": "accepted at LREC 2026"
+ },
+ {
+  "id": "SKILL.md § Phase 3 languages/2",
+  "source": "https://arxiv.org/pdf/2410.01171",
+  "quote": "Command-R (64.2 → 74.3)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 3 languages/20",
+  "source": "https://www.cochrane.org/authors/handbooks-and-manuals/handbook/current/chapter-04",
+  "quote": "excluding studies published in languages other than English does not change the conclusions of most systematic reviews (Morrison et al 2012"
+ },
+ {
+  "id": "SKILL.md § Phase 3 languages/21",
+  "source": "https://www.cochrane.org/authors/handbooks-and-manuals/handbook/current/chapter-04",
+  "quote": "have been observed for complementary and alternative medicine (Moher et al 2003, Pham et al 2005, Wu et al 2013), psychiatry, rheumatology and orthopaedics"
+ },
+ {
+  "id": "SKILL.md § Phase 3 languages/22",
+  "source": "https://www.cochrane.org/authors/handbooks-and-manuals/handbook/current/chapter-04",
+  "quote": "Cochrane author teams should plan at the protocol stage not to restrict the search by language"
+ },
+ {
+  "id": "SKILL.md § Phase 3 languages/23",
+  "source": "https://www.cochrane.org/authors/handbooks-and-manuals/handbook/current/chapter-04",
+  "quote": "Cochrane Handbook for Systematic Reviews of Interventions version 6.5.1"
+ },
+ {
+  "id": "SKILL.md § Phase 3 languages/3",
+  "source": "https://arxiv.org/pdf/2410.01171",
+  "quote": "(28.7 → 12.2, 5.9)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 3 languages/4",
+  "source": "https://arxiv.org/pdf/2410.01171",
+  "quote": "score for each bar is the average over 10 runs, and is ... shown with its 95% confidence interval",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 3 languages/5",
+  "source": "https://arxiv.org/abs/2410.01171",
+  "quote": "across 49 languages"
+ },
+ {
+  "id": "SKILL.md § Phase 3 languages/6",
+  "source": "https://arxiv.org/pdf/2604.20531",
+  "quote": "EU 62.4 71.2 75.2 80.0 75.2 80.8 76.8 80.8 81.6 76.00 (5.81)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 3 languages/7",
+  "source": "https://arxiv.org/pdf/2604.20531",
+  "quote": "KK 67.2 75.2 70.4 75.2 75.2 78.4 75.2 81.6 83.2 75.73 (4.71)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 3 languages/8",
+  "source": "https://arxiv.org/pdf/2604.20531",
+  "quote": "EU 47.2 52.0 61.6 56.8 63.2 69.6 62.4 68.0 59.2 60.0 (6.78)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 3 languages/9",
+  "source": "https://arxiv.org/pdf/2604.20531",
+  "quote": "KK 48.0 32.0 50.4 35.2 59.2 61.6 35.2 70.4 41.6 40.36 (17.38)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 3 phrasing/1",
+  "source": "https://www.cochrane.org/authors/handbooks-and-manuals/handbook/current/chapter-04",
+  "quote": "Searches for Cochrane reviews should use an appropriate combination of these two approaches, i.e. text words and controlled vocabulary"
+ },
+ {
+  "id": "SKILL.md § Phase 3 phrasing/10",
+  "source": "https://arxiv.org/pdf/2609.05637",
+  "quote": "S1 (Parent) 87.70 ±0.08 84.21 ±0.08 91.49 ±0.09 97.13 ±0.11",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 3 phrasing/11",
+  "source": "https://arxiv.org/pdf/2609.05637",
+  "quote": "S3 (Synonym) 86.14 ±0.08∗∗∗ 80.29 ±0.10∗∗∗ 88.62 ±0.16∗∗∗ 97.40 ±0.18",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 3 phrasing/12",
+  "source": "https://arxiv.org/pdf/2609.05637",
+  "quote": "bootstrap): ∗ p<0.05, ∗∗ p<0.01, ∗∗∗ p<0.001",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 3 phrasing/2",
+  "source": "https://www.cochrane.org/authors/handbooks-and-manuals/handbook/current/chapter-04",
+  "quote": "C33: Developing search strategies for bibliographic databases (Mandatory)"
+ },
+ {
+  "id": "SKILL.md § Phase 3 phrasing/4",
+  "source": "https://www.cochrane.org/authors/handbooks-and-manuals/handbook/current/chapter-04",
+  "quote": "[last updated March 2025]"
+ },
+ {
+  "id": "SKILL.md § Phase 3 phrasing/5",
+  "source": "https://arxiv.org/pdf/2609.01645",
+  "quote": "We author 25 information needs",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 3 phrasing/6",
+  "source": "https://arxiv.org/pdf/2609.01645",
+  "quote": "BM25 formal 84.0 100.0 100.0 0.913",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 3 phrasing/7",
+  "source": "https://arxiv.org/pdf/2609.01645",
+  "quote": "plain 16.0 32.0 44.0 0.295",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 3 phrasing/8",
+  "source": "https://arxiv.org/pdf/2609.05637",
+  "quote": "S1 (Parent) 34.33 ±0.39 31.99 ±0.36 34.05 ±0.39 39.22 ±0.49",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 3 phrasing/9",
+  "source": "https://arxiv.org/pdf/2609.05637",
+  "quote": "S3 (Synonym) 37.21 ±0.67∗ 30.97 ±0.73 32.18 ±0.83 42.91 ±1.07∗∗",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 consumer/1",
+  "source": "https://developers.google.com/search/docs/specialty/ecommerce/write-high-quality-reviews",
+  "quote": "Provide evidence such as visuals, audio, or other links of your own experience with what you are reviewing"
+ },
+ {
+  "id": "SKILL.md § Phase 4 consumer/10",
+  "source": "https://downloads.webis.de/publications/papers/bevendorff_2024a.pdf",
+  "quote": "7,392 product review queries",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 consumer/11",
+  "source": "https://downloads.webis.de/publications/papers/bevendorff_2024a.pdf",
+  "quote": "higher-ranked pages are on average more optimized, more monetized with affiliate marketing, and they show signs of lower text quality",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 consumer/12",
+  "source": "https://arxiv.org/pdf/2606.13610",
+  "quote": "editorial … first, commercial next, UGC last",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 consumer/13",
+  "source": "https://arxiv.org/pdf/2606.13610",
+  "quote": "Across 1,350 paired cells on the six open-weights",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 consumer/14",
+  "source": "https://arxiv.org/pdf/2606.13610",
+  "quote": "50.4% to 42.1% pooled (−8.4 pp, exact McNemar … p < 10−9",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 consumer/15",
+  "source": "https://arxiv.org/pdf/2606.13610",
+  "quote": "Rank 1 is UGC in over",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 consumer/16",
+  "source": "https://arxiv.org/pdf/2606.13610",
+  "quote": "UGC is … thus the cheapest surface on which to place",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 consumer/17",
+  "source": "https://www.colorado.edu/business/sites/default/files/attached-files/jcr_2016_de_langhe_fernbach_lichtenstein.pdf",
+  "quote": "1272 products across 120 vertically differentiated product categories",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 consumer/18",
+  "source": "https://www.colorado.edu/business/sites/default/files/attached-files/jcr_2016_de_langhe_fernbach_lichtenstein.pdf",
+  "quote": "The average correlation is 0.18, and … 34% of correlations are negative",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 consumer/19",
+  "source": "https://www.colorado.edu/business/sites/default/files/attached-files/jcr_2016_de_langhe_fernbach_lichtenstein.pdf",
+  "quote": "DOI: 10.1093/jcr/ucv047",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 consumer/2",
+  "source": "https://developers.google.com/search/docs/specialty/ecommerce/write-high-quality-reviews",
+  "quote": "include why you consider it the best, with first-hand supporting evidence"
+ },
+ {
+  "id": "SKILL.md § Phase 4 consumer/20",
+  "source": "https://www.nber.org/system/files/working_papers/w18340/w18340.pdf",
+  "quote": "a consumer can only post a review of a hotel on Expedia if she actually booked at least one night",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 consumer/21",
+  "source": "https://www.nber.org/system/files/working_papers/w18340/w18340.pdf",
+  "quote": "2931 hotels matched between TripAdvisor, Expedia",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 consumer/22",
+  "source": "https://www.nber.org/system/files/working_papers/w18340/w18340.pdf",
+  "quote": "hotels with a nearby neighbor have more one- and two-star (negative) reviews on TripAdvisor relative to Expedia",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 consumer/23",
+  "source": "https://www.colorado.edu/business/sites/default/files/attached-files/jcr_2016_de_langhe_fernbach_lichtenstein.pdf",
+  "quote": "only a 57% chance that the product with the higher",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 consumer/24",
+  "source": "https://arxiv.org/pdf/2606.13610",
+  "quote": "across 225 real products in 15 categories",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 consumer/25",
+  "source": "https://arxiv.org/pdf/2606.13610",
+  "quote": "The main evaluation is Chinese",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 consumer/3",
+  "source": "https://developers.google.com/search/docs/specialty/ecommerce/write-high-quality-reviews",
+  "quote": "beyond what the manufacturer says"
+ },
+ {
+  "id": "SKILL.md § Phase 4 consumer/4",
+  "source": "https://developers.google.com/search/docs/specialty/ecommerce/write-high-quality-reviews",
+  "quote": "Last updated 2025-12-10 UTC"
+ },
+ {
+  "id": "SKILL.md § Phase 4 consumer/5",
+  "source": "https://developers.google.com/search/docs/specialty/ecommerce/write-high-quality-reviews",
+  "quote": "Reviews often use affiliate links"
+ },
+ {
+  "id": "SKILL.md § Phase 4 consumer/6",
+  "source": "https://developers.google.com/search/docs/essentials/spam-policies",
+  "quote": "Thin affiliation is the practice of publishing content with product affiliate links where the product descriptions and reviews are copied directly from the original merchant without any original content or added value"
+ },
+ {
+  "id": "SKILL.md § Phase 4 consumer/7",
+  "source": "https://developers.google.com/search/docs/essentials/spam-policies",
+  "quote": "Scaled content abuse is when many pages are generated for the primary purpose of manipulating search rankings and not helping users"
+ },
+ {
+  "id": "SKILL.md § Phase 4 consumer/8",
+  "source": "https://developers.google.com/search/docs/essentials/spam-policies",
+  "quote": "Sites that violate our policies may rank lower in results or not appear in results at all"
+ },
+ {
+  "id": "SKILL.md § Phase 4 consumer/9",
+  "source": "https://developers.google.com/search/docs/essentials/spam-policies",
+  "quote": "Last updated 2026-08-28 UTC"
+ },
+ {
+  "id": "SKILL.md § Phase 4 factual/1",
+  "source": "https://en.wikipedia.org/w/index.php?title=Wikipedia:Reliable_sources&oldid=1385652516",
+  "quote": "academic and peer-reviewed publications, scholarly monographs, and textbooks are usually the most reliable sources"
+ },
+ {
+  "id": "SKILL.md § Phase 4 factual/10",
+  "source": "https://arxiv.org/pdf/2603.25092",
+  "quote": "10 web documents and their source URLs",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 factual/11",
+  "source": "https://arxiv.org/pdf/2603.25092",
+  "quote": "retrieved via Bing search",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 factual/12",
+  "source": "https://arxiv.org/pdf/2603.25092",
+  "quote": "w/o Filter: 53.33",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 factual/13",
+  "source": "https://arxiv.org/pdf/2603.25092",
+  "quote": "48.33      51.67        66.67",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 factual/14",
+  "source": "https://arxiv.org/pdf/2603.25092",
+  "quote": "51.67      58.33        69.16",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 factual/15",
+  "source": "https://arxiv.org/pdf/2603.25092",
+  "quote": "tering largely improves answer accuracy",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 factual/16",
+  "source": "https://arxiv.org/pdf/2607.22584",
+  "quote": "improves Precision@5 … from 0.48 to 0.72",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 factual/17",
+  "source": "https://arxiv.org/pdf/2607.22584",
+  "quote": "120-document health-",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 factual/18",
+  "source": "https://arxiv.org/pdf/2607.22584",
+  "quote": "Ten evaluation queries were constructed",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 factual/19",
+  "source": "https://arxiv.org/pdf/2607.22584",
+  "quote": "No formal significance testing",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 factual/2",
+  "source": "https://en.wikipedia.org/w/index.php?title=Wikipedia:Reliable_sources&oldid=1385652516",
+  "quote": "such as introductory-level university textbooks, almanacs, and encyclopedias, may be cited"
+ },
+ {
+  "id": "SKILL.md § Phase 4 factual/20",
+  "source": "https://arxiv.org/pdf/2607.22584",
+  "quote": "peer_reviewed               0.95",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 factual/21",
+  "source": "https://arxiv.org/pdf/2607.22584",
+  "quote": "ai_generated                0.30",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 factual/22",
+  "source": "https://arxiv.org/pdf/2607.05217",
+  "quote": "Five domain experts produced 551 evaluations of 449 AI-generated",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 factual/23",
+  "source": "https://arxiv.org/pdf/2607.05217",
+  "quote": "(35%,",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 factual/24",
+  "source": "https://arxiv.org/pdf/2607.05217",
+  "quote": "65 of 187)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 factual/25",
+  "source": "https://arxiv.org/pdf/2607.05217",
+  "quote": "factual accuracy (80.7% versus 71.0%;",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 factual/26",
+  "source": "https://arxiv.org/pdf/2607.05217",
+  "quote": "𝑝 = 0.010",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 factual/27",
+  "source": "https://arxiv.org/pdf/2607.05217",
+  "quote": "no longer differ on factual accuracy (89% versus",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 factual/28",
+  "source": "https://arxiv.org/pdf/2607.05217",
+  "quote": "85%), appropriate scope, or freedom from hallucinations (all 𝑝 > 0.05)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 factual/29",
+  "source": "https://arxiv.org/pdf/2607.05217",
+  "quote": "chi-squared test, or Fisher’s exact test",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 factual/3",
+  "source": "https://en.wikipedia.org/w/index.php?title=Wikipedia:Reliable_sources&oldid=1385652516",
+  "quote": "Websites whose content is largely user-generated are generally unacceptable as sources"
+ },
+ {
+  "id": "SKILL.md § Phase 4 factual/30",
+  "source": "https://arxiv.org/pdf/2607.05217",
+  "quote": "prompt, 21% of the 1,183 citations landed on a listed domain; with the list removed, 12%",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 factual/31",
+  "source": "https://arxiv.org/pdf/2607.05217",
+  "quote": "Gemini 3 Pro through the same API route",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 factual/32",
+  "source": "https://arxiv.org/pdf/2610.39339",
+  "quote": "2,973 cited",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 factual/33",
+  "source": "https://arxiv.org/pdf/2610.39339",
+  "quote": "Spearman 𝜌 with HONcode total                                .10 [.06, .13]",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 factual/34",
+  "source": "https://arxiv.org/pdf/2610.39339",
+  "quote": "Spearman 𝜌 with JAMA total                                   − .05",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 factual/35",
+  "source": "https://arxiv.org/pdf/2610.39339",
+  "quote": "3,611 benchmark",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 factual/36",
+  "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4720952/",
+  "quote": "A total of 25 health discussion threads were selected across 3 websites (Reddit, Mumsnet, and Patient)"
+ },
+ {
+  "id": "SKILL.md § Phase 4 factual/37",
+  "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4720952/",
+  "quote": "more likely than not (by a factor of 4:1) to contain information of high or reasonably high quality"
+ },
+ {
+  "id": "SKILL.md § Phase 4 factual/38",
+  "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4720952/",
+  "quote": "10.2196/jmir.5051"
+ },
+ {
+  "id": "SKILL.md § Phase 4 factual/39",
+  "source": "https://en.wikipedia.org/w/index.php?title=Wikipedia:Reliable_sources&oldid=1385652516",
+  "quote": "WP:RSLLM"
+ },
+ {
+  "id": "SKILL.md § Phase 4 factual/4",
+  "source": "https://en.wikipedia.org/w/index.php?title=Wikipedia:Reliable_sources&oldid=1385652516",
+  "quote": "Internet forums"
+ },
+ {
+  "id": "SKILL.md § Phase 4 factual/5",
+  "source": "https://en.wikipedia.org/w/index.php?title=Wikipedia:Reliable_sources&oldid=1385652516",
+  "quote": "Content produced by LLMs, such as AI chatbots … is generally unreliable"
+ },
+ {
+  "id": "SKILL.md § Phase 4 factual/6",
+  "source": "https://en.wikipedia.org/w/index.php?title=Wikipedia:Reliable_sources&oldid=1385652516",
+  "quote": "last edited on 14 November 2026"
+ },
+ {
+  "id": "SKILL.md § Phase 4 factual/7",
+  "source": "https://en.wikipedia.org/w/index.php?title=Wikipedia:Reliable_sources&oldid=1385652516",
+  "quote": "oldid=1385652516"
+ },
+ {
+  "id": "SKILL.md § Phase 4 factual/8",
+  "source": "https://en.wikipedia.org/w/index.php?title=Wikipedia:Reliable_sources&oldid=1385652516",
+  "quote": "These materials are seldom reliable sources"
+ },
+ {
+  "id": "SKILL.md § Phase 4 factual/9",
+  "source": "https://arxiv.org/pdf/2603.25092",
+  "quote": "comprises 120 … yes/no questions",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 technical/1",
+  "source": "https://arxiv.org/pdf/2406.14497",
+  "quote": "Table 7: Comparing five retrieval sources on HumanEval and ODEX, using StarCoder2 (top) and GPT-4o (bottom).",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 technical/10",
+  "source": "https://www.ieee-security.org/TC/SP2016/papers/0824a289.pdf",
+  "quote": "free -1.054 0.349 0.613 0.085",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 technical/11",
+  "source": "https://www.ieee-security.org/TC/SP2016/papers/0824a289.pdf",
+  "quote": "official -1.535 0.215 0.634 0.015*",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 technical/12",
+  "source": "https://www.ieee-security.org/TC/SP2016/papers/0824a289.pdf",
+  "quote": "condition, only 51.4% (18/35) of functional solutions were ... (27/37) for book, and 85.7% (18/21) for official",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 technical/13",
+  "source": "https://www.ieee-security.org/TC/SP2016/papers/0824a289.pdf",
+  "quote": "official 2.218 9.184 0.796 0.005*",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 technical/14",
+  "source": "https://arxiv.org/pdf/2604.09515",
+  "quote": "the executable rate from 42.55% to 66.36%",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 technical/15",
+  "source": "https://arxiv.org/pdf/2604.09515",
+  "quote": "benchmark of 270 ... real-world updates from eight Python libraries. We evaluate four ... LLM families of 11 models",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 technical/16",
+  "source": "https://arxiv.org/pdf/2308.02312",
+  "quote": "among the 517 ChatGPT answers we labeled, ... 52% of them contain incorrect information",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 technical/17",
+  "source": "https://arxiv.org/pdf/1903.12282",
+  "quote": "More than half of the obsolete answers (58.4%) were probably already obsolete when they were first posted",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 technical/18",
+  "source": "https://arxiv.org/pdf/1903.12282",
+  "quote": "only a small proportion (20.5%) of such answers are ever updated",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 technical/19",
+  "source": "https://en.wikipedia.org/wiki/Wikipedia:Reliable_sources",
+  "quote": "Websites whose content is largely user-generated are generally unacceptable as sources."
+ },
+ {
+  "id": "SKILL.md § Phase 4 technical/2",
+  "source": "https://arxiv.org/pdf/2406.14497",
+  "quote": "Method Baseline Program Tutorial Docs SO GitHub All",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 technical/20",
+  "source": "https://en.wikipedia.org/wiki/Wikipedia:Reliable_sources",
+  "quote": "Content produced by LLMs, such as AI chatbots ... is generally unreliable"
+ },
+ {
+  "id": "SKILL.md § Phase 4 technical/21",
+  "source": "https://en.wikipedia.org/wiki/Wikipedia:Reliable_sources",
+  "quote": "Internet forums"
+ },
+ {
+  "id": "SKILL.md § Phase 4 technical/22",
+  "source": "https://en.wikipedia.org/wiki/Wikipedia:Reliable_sources",
+  "quote": "This page was last edited on 14 November 2026"
+ },
+ {
+  "id": "SKILL.md § Phase 4 technical/23",
+  "source": "https://en.wikipedia.org/wiki/Wikipedia:Reliable_sources",
+  "quote": "Sources produced by machine learning"
+ },
+ {
+  "id": "SKILL.md § Phase 4 technical/24",
+  "source": "https://en.wikipedia.org/wiki/Wikipedia:Reliable_sources",
+  "quote": "title=Wikipedia:Reliable_sources&oldid=1385652516"
+ },
+ {
+  "id": "SKILL.md § Phase 4 technical/3",
+  "source": "https://arxiv.org/pdf/2406.14497",
+  "quote": "GPT-4o 75.6 94.5 90.2 90.9 91.5 84.8 95.1",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 technical/4",
+  "source": "https://arxiv.org/pdf/2406.14497",
+  "quote": "GPT-4o 44.6 49.2 44.2 47.6 40.3 39.4 39.6",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 technical/5",
+  "source": "https://arxiv.org/pdf/2406.14497",
+  "quote": "Claude-3-haiku 48.5 42.6 39.2 44.6 33.7 40.5 35.1",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 technical/6",
+  "source": "https://arxiv.org/pdf/2406.14497",
+  "quote": "ple websites including GeeksforGeeks, W3Schools, ... tutorialspoint, and Towards Data Science",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 technical/7",
+  "source": "https://www.ieee-security.org/TC/SP2016/papers/0824a289.pdf",
+  "quote": "conducted a lab study with 54 Android developers (students and",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 technical/8",
+  "source": "https://www.ieee-security.org/TC/SP2016/papers/0824a289.pdf",
+  "quote": "DOI 10.1109/SP.2016.25",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 technical/9",
+  "source": "https://www.ieee-security.org/TC/SP2016/papers/0824a289.pdf",
+  "quote": "participants solved 67.3% (35/52) of tasks correctly, compared ... to 66.1% (37/56) for book, 51.8% (29/56) for free, and 40.4% ... (21) for official",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 local/1",
+  "source": "https://arxiv.org/pdf/2607.05217",
+  "quote": "prompt, 21% of the 1,183 citations landed on a listed domain; with the list removed, 12% ... of 1,330 did (Figure 7A)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 local/10",
+  "source": "https://arxiv.org/pdf/2609.08094",
+  "quote": "between 2.3% and 4.8% of each model's failed ... questions persist even when the gold source page",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 local/11",
+  "source": "https://arxiv.org/pdf/2609.08094",
+  "quote": "with meanAHR values of 0.69 to 0.71 and a bot- ... tom tier with values of 0.63 to 0.65",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 local/12",
+  "source": "https://arxiv.org/pdf/2609.08094",
+  "quote": "Gemini 3.1 Pro, ... the strongest model by accuracy (Table 2), sits ... in the lower meanAHR tier",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 local/13",
+  "source": "https://arxiv.org/pdf/2609.08094",
+  "quote": "together account for an average of 72.1% of fail-",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 local/14",
+  "source": "https://arxiv.org/pdf/2609.08094",
+  "quote": "for 34.5% of failures and retrieval failure for 37.6%",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 local/15",
+  "source": "https://arxiv.org/pdf/2609.08094",
+  "quote": "ranges from 13.5% to ≥99% and generally increases toward municipal questions",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 local/16",
+  "source": "https://arxiv.org/pdf/2609.08094",
+  "quote": "Claude Sonnet 4.6 63.05",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 local/17",
+  "source": "https://arxiv.org/pdf/2609.08094",
+  "quote": "We evaluate ten frontier LLMs selected to reflect",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 local/18",
+  "source": "https://www.governmentnews.com.au/ai-tools-give-unreliable-government-advice/",
+  "quote": "Answers that referenced official sources were far more likely to be reliable (29.0 per cent) than those citing no official source (2.3 per cent)."
+ },
+ {
+  "id": "SKILL.md § Phase 4 local/19",
+  "source": "https://www.governmentnews.com.au/ai-tools-give-unreliable-government-advice/",
+  "quote": "asked 102 questions on topics such as tax, welfare, biosecurity, and citizenship"
+ },
+ {
+  "id": "SKILL.md § Phase 4 local/2",
+  "source": "https://arxiv.org/pdf/2607.05217",
+  "quote": "the production setup (Gemini 3 Pro through the same API route and web-search plugin",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 local/20",
+  "source": "https://www.governmentnews.com.au/ai-tools-give-unreliable-government-advice/",
+  "quote": "In several cases we found official pages that contradicted each other, or that still described programs and rules that had since ended."
+ },
+ {
+  "id": "SKILL.md § Phase 4 local/21",
+  "source": "https://www.governmentnews.com.au/ai-tools-give-unreliable-government-advice/",
+  "quote": "November 19, 2026"
+ },
+ {
+  "id": "SKILL.md § Phase 4 local/22",
+  "source": "https://en.wikipedia.org/wiki/Wikipedia:Reliable_sources",
+  "quote": "personal and group blogs (excluding newspaper and magazine blogs ), Internet forums"
+ },
+ {
+  "id": "SKILL.md § Phase 4 local/23",
+  "source": "https://arxiv.org/pdf/2609.08094",
+  "quote": "Claude Haiku 4.5 45.45",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 local/3",
+  "source": "https://arxiv.org/pdf/2607.05217",
+  "quote": "Prefer them over blogs, opinion columns, social media, aggregators, or",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 local/4",
+  "source": "https://arxiv.org/pdf/2607.05217",
+  "quote": "of its sources (65 of 187 reviewed web answers); for RAG the figure was 6% (16 of 262)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 local/5",
+  "source": "https://arxiv.org/pdf/2607.05217",
+  "quote": "are not a like-for-like comparison with RAG",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 local/6",
+  "source": "https://arxiv.org/pdf/2607.05217",
+  "quote": "(91.5% versus 48.5%; p < 0.001; Figure 4A)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 local/8",
+  "source": "https://arxiv.org/pdf/2607.05217",
+  "quote": "Each of the 287 study questions was answered twice more by",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 local/9",
+  "source": "https://arxiv.org/pdf/2607.05217",
+  "quote": "The instruction thus doubles compliance, but roughly four in",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 5 cross-reference/1",
+  "source": "https://arxiv.org/abs/2608.05302",
+  "quote": "MECV (ours) < 0.01 82 75",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 5 cross-reference/10",
+  "source": "https://pure.mpg.de/rest/items/item_3708092_3/component/file_3724409/content (doi:10.1177/09567976261453813)",
+  "quote": "differences between the intervention and control groups were no longer statistically distinguishable"
+ },
+ {
+  "id": "SKILL.md § Phase 5 cross-reference/11",
+  "source": "https://www.bbc.co.uk/editorialguidelines/guidelines/accuracy/guidelines",
+  "quote": "Where this is not possible, talk to first-hand sources and, where practicable, corroborate evidence."
+ },
+ {
+  "id": "SKILL.md § Phase 5 cross-reference/12",
+  "source": "https://www.bbc.co.uk/editorialguidelines/guidelines/accuracy/guidelines",
+  "quote": "Content producers should be reluctant to rely on a single source."
+ },
+ {
+  "id": "SKILL.md § Phase 5 cross-reference/14",
+  "source": "https://en.wikipedia.org/wiki/Wikipedia:Neutral_point_of_view",
+  "quote": "Indicate the relative prominence of opposing views."
+ },
+ {
+  "id": "SKILL.md § Phase 5 cross-reference/15",
+  "source": "https://doi.org/10.1037/xap0000073",
+  "quote": "the primary effect"
+ },
+ {
+  "id": "SKILL.md § Phase 5 cross-reference/16",
+  "source": "https://doi.org/10.1037/xap0000073",
+  "quote": "balance was to reduce perceived consensus among experts on the"
+ },
+ {
+  "id": "SKILL.md § Phase 5 cross-reference/2",
+  "source": "https://arxiv.org/abs/2608.05302",
+  "quote": "No correction 0.00 81 74",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 5 cross-reference/3",
+  "source": "https://arxiv.org/abs/2608.05302",
+  "quote": "RARR + Bing† 0.14 60 69",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 5 cross-reference/4",
+  "source": "https://arxiv.org/abs/2608.05302",
+  "quote": "Table 2: Main results on SummEdits-news (n = 100)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 5 cross-reference/5",
+  "source": "https://arxiv.org/abs/2608.05302",
+  "quote": "† Numbers ... quoted from [25]",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 5 cross-reference/6",
+  "source": "https://arxiv.org/pdf/2602.18693",
+  "quote": "Llama 70B 0.430 0.597 0.550 0.610",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 5 cross-reference/7",
+  "source": "https://arxiv.org/pdf/2602.18693",
+  "quote": "Llama 405B: 0.320 vs. 0.256/0.203/0.415",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 5 cross-reference/8",
+  "source": "https://pure.mpg.de/rest/items/item_3708092_3/component/file_3724409/content (doi:10.1177/09567976261453813)",
+  "quote": "b = 0.014, 90% CI = ... [0.002, 0.027]"
+ },
+ {
+  "id": "SKILL.md § Phase 5 cross-reference/9",
+  "source": "https://pure.mpg.de/rest/items/item_3708092_3/component/file_3724409/content (doi:10.1177/09567976261453813)",
+  "quote": "among adults in Germany (N = 2,666)"
+ },
+ {
+  "id": "SKILL.md § Phase 5 confidence/1",
+  "source": "https://arxiv.org/abs/2401.13835v2",
+  "quote": "human confidence: experiment 1a, default explanations .264 .220 .589",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 5 confidence/10",
+  "source": "https://arxiv.org/abs/2401.13835v2",
+  "quote": "The parameters θ1 and θ2 were chosen to optimize a combination of the ECE and AUC score",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 5 confidence/11",
+  "source": "https://arxiv.org/abs/2401.13835v2",
+  "quote": "the ECE values were computed at the group level",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 5 confidence/12",
+  "source": "https://arxiv.org/pdf/2605.28571",
+  "quote": "Baseline (0.657), UQ-Token (0.648), UQ-Relation (0.646),and UQ-Output (0.617)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 5 confidence/13",
+  "source": "https://arxiv.org/pdf/2605.28571",
+  "quote": "we did not observe significant differences across conditions in task accuracy",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 5 confidence/14",
+  "source": "https://arxiv.org/pdf/2605.28571",
+  "quote": "between-subjects study (N=192)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 5 confidence/15",
+  "source": "https://arxiv.org/pdf/2605.28571",
+  "quote": "gpt-4o-mini",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 5 confidence/16",
+  "source": "https://arxiv.org/abs/2405.00623v2",
+  "quote": "Correct is significantly higher in Uncertain1st (72.8%) than Con-",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 5 confidence/17",
+  "source": "https://arxiv.org/abs/2405.00623v2",
+  "quote": "(92.2% to 89.2% for Uncertain1st",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 5 confidence/18",
+  "source": "https://arxiv.org/abs/2405.00623v2",
+  "quote": "(43.6% to 52.0% for",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 5 confidence/19",
+  "source": "https://arxiv.org/abs/2405.00623v2",
+  "quote": "pre-registered, human-subject experiment (N=404)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 5 confidence/2",
+  "source": "https://arxiv.org/abs/2401.13835v2",
+  "quote": "human confidence: experiment 2a, modified explanations .150 .107 .694",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 5 confidence/20",
+  "source": "https://arxiv.org/abs/2405.00623v2",
+  "quote": "expresses uncertainty in its answers for half the questions",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 5 confidence/21",
+  "source": "https://www.ipcc.ch/site/assets/uploads/2017/08/AR5_Uncertainty_Guidance_Note.pdf",
+  "quote": "Confidence in the validity of a finding, based on the type, amount, quality, and consistency of",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 5 confidence/22",
+  "source": "https://www.ipcc.ch/site/assets/uploads/2017/08/AR5_Uncertainty_Guidance_Note.pdf",
+  "quote": "describe findings for which evidence and understanding ... are overwhelming as statements of fact without using ... uncertainty qualifiers",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 5 confidence/23",
+  "source": "https://www.ipcc.ch/site/assets/uploads/2017/08/AR5_Uncertainty_Guidance_Note.pdf",
+  "quote": "Be aware of a tendency for a group to converge on an ... expressed view and become overconfident in it",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 5 confidence/3",
+  "source": "https://arxiv.org/abs/2401.13835v2",
+  "quote": "human confidence: experiment 1b, default explanations .291 .229 .602",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 5 confidence/4",
+  "source": "https://arxiv.org/abs/2401.13835v2",
+  "quote": "human confidence: experiment 2b, modified explanations .225 .168 .652",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 5 confidence/5",
+  "source": "https://arxiv.org/abs/2401.13835v2",
+  "quote": "human confidence: experiment 1c, default explanations .165 .084 .593",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 5 confidence/6",
+  "source": "https://arxiv.org/abs/2401.13835v2",
+  "quote": "human confidence: experiment 2c, modified explanations .111 .008 .689",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 5 confidence/7",
+  "source": "https://arxiv.org/abs/2401.13835v2",
+  "quote": "(BF > 100, BF = 6.48, and BF > 100 for Experiments 2a, 2b, and 2c, respectively)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 5 confidence/8",
+  "source": "https://arxiv.org/abs/2401.13835v2",
+  "quote": "We report Bayes factors for Bayesian t-tests",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 5 confidence/9",
+  "source": "https://arxiv.org/abs/2401.13835v2",
+  "quote": "We simulated the effect of aligning the explanation style to model confidence by a simple decision rule",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 5 presenting/1",
+  "source": "https://doi.org/10.1037/xap0000073",
+  "quote": "leaving 393 participants in the final sample"
+ },
+ {
+  "id": "SKILL.md § Phase 5 presenting/10",
+  "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7528676/",
+  "quote": "attitude: F (1, 382) = 7.52, p = .006"
+ },
+ {
+  "id": "SKILL.md § Phase 5 presenting/11",
+  "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7528676/",
+  "quote": "A total of N = 887 individuals"
+ },
+ {
+  "id": "SKILL.md § Phase 5 presenting/12",
+  "source": "https://arxiv.org/abs/2511.09667",
+  "quote": "(N=304)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 5 presenting/13",
+  "source": "https://arxiv.org/abs/2511.09667",
+  "quote": "𝛽 = .87, 𝑆𝐸 = .18",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 5 presenting/14",
+  "source": "https://arxiv.org/abs/2511.09667",
+  "quote": "In the fact-checking task, the AI always provided",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 5 presenting/15",
+  "source": "https://arxiv.org/abs/2610.17703",
+  "quote": "human study (n = 300)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 5 presenting/16",
+  "source": "https://arxiv.org/abs/2610.17703",
+  "quote": "+0.17 -0.04 -0.24 -0.57 +0.63 -0.13 -0.35 -0.51 +0.35 -0.51 -0.16 -0.45",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 5 presenting/17",
+  "source": "https://arxiv.org/abs/2610.17703",
+  "quote": "[-0.07, +0.39] [-0.38, +0.30] [-0.55, +0.05] [-0.90, -0.21] [+0.37, +0.90] [-0.37, +0.14] [-0.69, +0.00] [-0.90, -0.12] [-0.02, +0.65] [-0.93, -0.10] [-0.56, +0.25] [-0.95, +0.04]",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 5 presenting/18",
+  "source": "https://arxiv.org/abs/2610.17703",
+  "quote": "the explicit refutation condition reliably changes",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 5 presenting/19",
+  "source": "https://api.crossref.org/works/10.1177/1077699018792272",
+  "quote": "Participants spent less time reading stories with an inverted pyramid structure yet recalled these stories better than stories in a narrative structure"
+ },
+ {
+  "id": "SKILL.md § Phase 5 presenting/2",
+  "source": "https://doi.org/10.1037/xap0000073",
+  "quote": "389) ⫽ 11.01, p ⫽ .001"
+ },
+ {
+  "id": "SKILL.md § Phase 5 presenting/20",
+  "source": "https://doi.org/10.1080/23808985.1999.11678963",
+  "quote": "107 distinguishable persuasion effect sizes"
+ },
+ {
+  "id": "SKILL.md § Phase 5 presenting/21",
+  "source": "https://doi.org/10.1080/23808985.1999.11678963",
+  "quote": "20,111 respondents"
+ },
+ {
+  "id": "SKILL.md § Phase 5 presenting/22",
+  "source": "https://doi.org/10.1080/23808985.1999.11678963",
+  "quote": "(mean r = .077)"
+ },
+ {
+  "id": "SKILL.md § Phase 5 presenting/23",
+  "source": "https://doi.org/10.1080/23808985.1999.11678963",
+  "quote": "(mean r = -.049)"
+ },
+ {
+  "id": "SKILL.md § Phase 5 presenting/24",
+  "source": "https://en.wikipedia.org/wiki/Wikipedia:Neutral_point_of_view",
+  "quote": "in proportion to the prominence of each viewpoint in those sources"
+ },
+ {
+  "id": "SKILL.md § Phase 5 presenting/25",
+  "source": "https://arxiv.org/abs/2610.17703",
+  "quote": "95% confidence intervals",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 5 presenting/26",
+  "source": "https://arxiv.org/abs/2610.17703",
+  "quote": "across seven LMs",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 5 presenting/27",
+  "source": "https://arxiv.org/abs/2610.17703",
+  "quote": "one of four ex-",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 5 presenting/28",
+  "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7528676/",
+  "quote": "In three pre-registered laboratory experiments"
+ },
+ {
+  "id": "SKILL.md § Phase 5 presenting/29",
+  "source": "https://doi.org/10.1037/xap0000073",
+  "quote": "one of four issue statements"
+ },
+ {
+  "id": "SKILL.md § Phase 5 presenting/3",
+  "source": "https://doi.org/10.1037/xap0000073",
+  "quote": "M ⫽ 3.25"
+ },
+ {
+  "id": "SKILL.md § Phase 5 presenting/30",
+  "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7528676/",
+  "quote": "F (1, 388) = 1.11, p = .293"
+ },
+ {
+  "id": "SKILL.md § Phase 5 presenting/31",
+  "source": "https://en.wikipedia.org/wiki/Wikipedia:Neutral_point_of_view",
+  "quote": "This page was last edited on 20 November 2026"
+ },
+ {
+  "id": "SKILL.md § Phase 5 presenting/4",
+  "source": "https://doi.org/10.1037/xap0000073",
+  "quote": "M ⫽ 2.87"
+ },
+ {
+  "id": "SKILL.md § Phase 5 presenting/5",
+  "source": "https://doi.org/10.1037/xap0000073",
+  "quote": "F(1, 186) ⫽ 8.50, p ⫽ .004"
+ },
+ {
+  "id": "SKILL.md § Phase 5 presenting/6",
+  "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7528676/",
+  "quote": "outnumbered the deniers (5:1) or were equal in number (3:3)"
+ },
+ {
+  "id": "SKILL.md § Phase 5 presenting/7",
+  "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7528676/",
+  "quote": "F (1, 97) = 0.11, p = .737"
+ },
+ {
+  "id": "SKILL.md § Phase 5 presenting/8",
+  "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7528676/",
+  "quote": "F (1, 382) = 0.27, p = .605"
+ },
+ {
+  "id": "SKILL.md § Phase 5 presenting/9",
+  "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7528676/",
+  "quote": "F (1, 388) = 2.10, p = .148"
+ },
+ {
+  "id": "SKILL.md § Phase 6 direct/1",
+  "source": "https://www.eia.gov/eiawritingstyleguide.pdf",
+  "quote": "Start with your main message so your readers can quickly get the most important information",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 6 direct/10",
+  "source": "https://pdfs.semanticscholar.org/f2eb/ad1fa4020d0647314314457ec2c003516087.pdf",
+  "quote": "(F(1,50)=1.32, p=.26",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 6 direct/11",
+  "source": "https://pdfs.semanticscholar.org/f2eb/ad1fa4020d0647314314457ec2c003516087.pdf",
+  "quote": "Inv. .57 .25 .20 pyramid Chronology .54",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 6 direct/12",
+  "source": "https://pdfs.semanticscholar.org/f2eb/ad1fa4020d0647314314457ec2c003516087.pdf",
+  "quote": "(F(1,49)=3.20, p=.08",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 6 direct/13",
+  "source": "https://pdfs.semanticscholar.org/f2eb/ad1fa4020d0647314314457ec2c003516087.pdf",
+  "quote": "Inv. .66 .13 .45",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 6 direct/14",
+  "source": "https://pdfs.semanticscholar.org/f2eb/ad1fa4020d0647314314457ec2c003516087.pdf",
+  "quote": "Chronology .64 .11 .45",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 6 direct/15",
+  "source": "https://pdfs.semanticscholar.org/f2eb/ad1fa4020d0647314314457ec2c003516087.pdf",
+  "quote": "DECEMBER 2008",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 6 direct/2",
+  "source": "https://www.eia.gov/eiawritingstyleguide.pdf",
+  "quote": "in order of importance, from the highest level to supporting details",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 6 direct/3",
+  "source": "https://www.eia.gov/eiawritingstyleguide.pdf",
+  "quote": "December 2020",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 6 direct/4",
+  "source": "https://writingcenter.unc.edu/tips-and-tools/literature-reviews/",
+  "quote": "is usually organized around ideas, not the sources themselves as an annotated bibliography would be organized"
+ },
+ {
+  "id": "SKILL.md § Phase 6 direct/5",
+  "source": "https://writingcenter.unc.edu/tips-and-tools/literature-reviews/",
+  "quote": "© 2026 The Writing Center"
+ },
+ {
+  "id": "SKILL.md § Phase 6 direct/7",
+  "source": "https://pdfs.semanticscholar.org/f2eb/ad1fa4020d0647314314457ec2c003516087.pdf",
+  "quote": "Fifty-eight participants",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 6 direct/8",
+  "source": "https://pdfs.semanticscholar.org/f2eb/ad1fa4020d0647314314457ec2c003516087.pdf",
+  "quote": "(F(1,50)=.01, p=.94",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 6 direct/9",
+  "source": "https://pdfs.semanticscholar.org/f2eb/ad1fa4020d0647314314457ec2c003516087.pdf",
+  "quote": "Inv. .82 .17 .07 pyramid Chronology .81",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 6 discovery/1",
+  "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8005924/",
+  "quote": "For each synthesis, briefly summarise the characteristics and risk of bias among contributing studies"
+ },
+ {
+  "id": "SKILL.md § Phase 6 discovery/10",
+  "source": "https://publikationen.bibliothek.kit.edu/1000164494/151691045",
+  "quote": "t(49) = 3.58, p < .001"
+ },
+ {
+  "id": "SKILL.md § Phase 6 discovery/11",
+  "source": "https://publikationen.bibliothek.kit.edu/1000164494/151691045",
+  "quote": "The headings group scored higher (M = 1.54, SD = 0.77)"
+ },
+ {
+  "id": "SKILL.md § Phase 6 discovery/12",
+  "source": "https://publikationen.bibliothek.kit.edu/1000164494/151691045",
+  "quote": "than the plain-text group (M = 0.82, SD = 0.66)"
+ },
+ {
+  "id": "SKILL.md § Phase 6 discovery/13",
+  "source": "https://publikationen.bibliothek.kit.edu/1000164494/151691045",
+  "quote": "group (M = 1.50, SD = 0.60), t(49) = 1.86, p = .069"
+ },
+ {
+  "id": "SKILL.md § Phase 6 discovery/14",
+  "source": "https://publikationen.bibliothek.kit.edu/1000164494/151691045",
+  "quote": "between the headings group (M = 1.82, SD = 0.62)"
+ },
+ {
+  "id": "SKILL.md § Phase 6 discovery/15",
+  "source": "https://publikationen.bibliothek.kit.edu/1000164494/151691045",
+  "quote": "(e.g., headings or summaries) on learners' retention performance"
+ },
+ {
+  "id": "SKILL.md § Phase 6 discovery/16",
+  "source": "https://publikationen.bibliothek.kit.edu/1000164494/151691045",
+  "quote": "(Hedges's g = 0.71; Schneider et al., 2018)"
+ },
+ {
+  "id": "SKILL.md § Phase 6 discovery/2",
+  "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8005924/",
+  "quote": "present for each the summary estimate and its precision"
+ },
+ {
+  "id": "SKILL.md § Phase 6 discovery/3",
+  "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8005924/",
+  "quote": "23d Discuss implications of the results for practice, policy, and future research"
+ },
+ {
+  "id": "SKILL.md § Phase 6 discovery/4",
+  "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8005924/",
+  "quote": "BMJ . 2021 Mar 29;372:n71"
+ },
+ {
+  "id": "SKILL.md § Phase 6 discovery/5",
+  "source": "https://www.cochrane.org/authors/handbooks-and-manuals/handbook/current/chapter-15",
+  "quote": "Following the Discussion, the Authors’ conclusions section is divided into two standard subsections: ‘Implications for practice’ and ‘Implications for research’"
+ },
+ {
+  "id": "SKILL.md § Phase 6 discovery/6",
+  "source": "https://www.cochrane.org/authors/handbooks-and-manuals/handbook/current/chapter-15",
+  "quote": "section should comment on the need for further research"
+ },
+ {
+  "id": "SKILL.md § Phase 6 discovery/7",
+  "source": "https://www.cochrane.org/authors/handbooks-and-manuals/handbook/current/chapter-15",
+  "quote": "[last updated November 2026]"
+ },
+ {
+  "id": "SKILL.md § Phase 6 discovery/8",
+  "source": "https://www.cochrane.org/authors/handbooks-and-manuals/handbook/current/chapter-15",
+  "quote": "Cochrane Handbook for Systematic Reviews of Interventions version 6.5.1"
+ },
+ {
+  "id": "SKILL.md § Phase 6 discovery/9",
+  "source": "https://publikationen.bibliothek.kit.edu/1000164494/151691045",
+  "quote": "experiment with 51 university students"
+ },
+ {
+  "id": "SKILL.md § Phase 7/1",
+  "source": "https://arxiv.org/abs/2603.12123v2",
+  "quote": "30 artifacts (code, … technical documents, presentation scripts) … with 150 injected errors",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 7/10",
+  "source": "https://arxiv.org/abs/2603.12123v2",
+  "quote": "There is a language confound.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 7/11",
+  "source": "https://arxiv.org/abs/2603.12123v2",
+  "quote": "We injected exactly 5 errors into each",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 7/12",
+  "source": "https://arxiv.org/abs/2603.12123v2",
+  "quote": "Each condition was applied to all 30 ar … tifacts across 3 runs",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 7/13",
+  "source": "https://arxiv.org/abs/2603.12123v2",
+  "quote": "structured records transcribed … by the host session",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 7/14",
+  "source": "https://arxiv.org/abs/2610.01471v2",
+  "quote": "is 28.6% versus 27.1% (a comparison that changes",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 7/15",
+  "source": "https://arxiv.org/abs/2610.01471v2",
+  "quote": "difference (unadjusted p = 0.26; Table 2)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 7/16",
+  "source": "https://arxiv.org/abs/2610.01471v2",
+  "quote": "model F1 for the two lower tiers (+2.2 and +3.0pp) … but not the top tier (−0.2pp; untested point",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 7/17",
+  "source": "https://arxiv.org/abs/2610.01471v2",
+  "quote": "GPT-5.4 (top-tier)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 7/18",
+  "source": "https://arxiv.org/abs/2610.01471v2",
+  "quote": "Gemini 2.5 Pro (capable)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 7/19",
+  "source": "https://arxiv.org/abs/2610.01471v2",
+  "quote": "Gemini 2.5 Flash (lightweight)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 7/2",
+  "source": "https://arxiv.org/abs/2603.12123v2",
+  "quote": "All reviews used Claude Opus 4.6",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 7/20",
+  "source": "https://arxiv.org/abs/2610.01471v2",
+  "quote": "one CCR plus one cross-model review … (56.7% vs. 42.7%; Holm-adjusted p = … .006), but not significantly more than two re",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 7/21",
+  "source": "https://arxiv.org/abs/2611.05662v1",
+  "quote": "Opus-4.7 AJ-Postgres 82 61 29 48%",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 7/22",
+  "source": "https://arxiv.org/abs/2611.05662v1",
+  "quote": "AJ-Search 156 113 41 36%",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 7/23",
+  "source": "https://arxiv.org/abs/2611.05662v1",
+  "quote": "SWE-Bench-Verified 500 395 146 37%",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 7/24",
+  "source": "https://arxiv.org/abs/2611.05662v1",
+  "quote": "AJ-Search 156 110 30 27%",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 7/25",
+  "source": "https://arxiv.org/abs/2611.05662v1",
+  "quote": "SWE-Bench-Verified 500 393 10 3%",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 7/26",
+  "source": "https://arxiv.org/abs/2611.05662v1",
+  "quote": "Grounding does not immunize the judge … across four judges and five datasets",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 7/27",
+  "source": "https://arxiv.org/abs/2611.05662v1",
+  "quote": "A domain expert has already reviewed this trajectory in",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 7/28",
+  "source": "https://arxiv.org/abs/2611.05662v1",
+  "quote": "Judges: Sonnet-4.6 (Anthropic, 2026b), Opus",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 7/29",
+  "source": "https://arxiv.org/abs/2611.05662v1",
+  "quote": "judges (Sonnet-4.6, Opus-4.7, Qwen3-235B, GPT",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 7/3",
+  "source": "https://arxiv.org/abs/2603.12123v2",
+  "quote": "claude-opus-4-6) via the Claude Code Agent",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 7/30",
+  "source": "https://arxiv.org/abs/2611.05662v1",
+  "quote": "overturns up to 40% of a tool-using",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 7/31",
+  "source": "https://arxiv.org/abs/2507.02778v3",
+  "quote": "Testing 14 open-source non-reasoning models reveals a 64.5%",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 7/32",
+  "source": "https://arxiv.org/abs/2507.02778v3",
+  "quote": "Sonnet 4: 41.4% blind spot in Table 7",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 7/33",
+  "source": "https://arxiv.org/abs/2507.02778v3",
+  "quote": "We report 95% confidence intervals estimated via ±1.96 ×",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 7/34",
+  "source": "https://arxiv.org/abs/2507.02778v3",
+  "quote": "We identify a statistically significant Self-Correction Blind … Spot across most models",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 7/35",
+  "source": "https://arxiv.org/abs/2507.02778v3",
+  "quote": "Published as a conference paper at COLM 2026",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 7/36",
+  "source": "https://arxiv.org/abs/2507.02778v3",
+  "quote": "claude-3-5-haiku-20241022",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 7/37",
+  "source": "https://arxiv.org/abs/2606.05976v2",
+  "quote": "Claude Sonnet 4 math +40.0∗∗∗ +40.0∗∗∗ +36.7∗∗∗ +40.0∗∗∗ 53.3%",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 7/38",
+  "source": "https://arxiv.org/abs/2606.05976v2",
+  "quote": "(two-sided paired bootstrap)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 7/39",
+  "source": "https://arxiv.org/abs/2606.05976v2",
+  "quote": "Model and domain (n = 30)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 7/4",
+  "source": "https://arxiv.org/abs/2603.12123v2",
+  "quote": "CCR 4.5 1.4 3.1 3.6 31.5 27.1 28.6",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 7/40",
+  "source": "https://arxiv.org/abs/2606.05976v2",
+  "quote": "23 to 93 percentage points, significant in 10 … of 12 experimental settings",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 7/41",
+  "source": "https://arxiv.org/abs/2606.05976v2",
+  "quote": "nine models and three domains",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 7/42",
+  "source": "https://arxiv.org/abs/2606.05976v2",
+  "quote": "∗ p < 0.05, ∗∗ p < 0.01, ∗∗∗ p < 0.001",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 7/43",
+  "source": "https://arxiv.org/abs/2310.13548v4",
+  "quote": "Mean and standard error across domains shown.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 7/44",
+  "source": "https://arxiv.org/abs/2310.13548v4",
+  "quote": "we find AI assistants provide more positive feedback about arguments",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 7/45",
+  "source": "https://arxiv.org/abs/2310.13548v4",
+  "quote": "if the user states they dislike the text, the assistant tailors its feedback to be more negative",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 7/46",
+  "source": "https://arxiv.org/abs/2310.13548v4",
+  "quote": "Claude 1.3 Claude 2 GPT-3.5 GPT-4 LLaMA 2",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 7/47",
+  "source": "https://arxiv.org/abs/2310.13548v4",
+  "quote": "We then use GPT-4 to evaluate whether the free-form response is more",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 7/48",
+  "source": "https://arxiv.org/abs/2310.13548v4",
+  "quote": "Published as a conference paper at ICLR 2024",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 7/49",
+  "source": "https://arxiv.org/abs/2310.13548v4",
+  "quote": "(i) math solutions from MATH",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 7/5",
+  "source": "https://arxiv.org/abs/2603.12123v2",
+  "quote": "of a single same-session review (SR, 27.1%;",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 7/50",
+  "source": "https://code.claude.com/docs/en/best-practices",
+  "quote": "A fresh reviewer does help, because it hasn’t seen your reasoning, which is a different thing from delegating."
+ },
+ {
+  "id": "SKILL.md § Phase 7/51",
+  "source": "https://code.claude.com/docs/en/best-practices",
+  "quote": "Getting a reviewer that hasn’t seen how the code was written"
+ },
+ {
+  "id": "SKILL.md § Phase 7/52",
+  "source": "https://code.claude.com/docs/en/best-practices",
+  "quote": "A second session is also the easiest independent reviewer you can get."
+ },
+ {
+  "id": "SKILL.md § Phase 7/53",
+  "source": "https://code.claude.com/docs/en/best-practices",
+  "quote": "A reviewer that’s asked to find problems will always find"
+ },
+ {
+  "id": "SKILL.md § Phase 7/54",
+  "source": "https://arxiv.org/abs/2611.05662v1",
+  "quote": "GPT-OSS-120B",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 7/55",
+  "source": "https://arxiv.org/abs/2606.05976v2",
+  "quote": "GPT-4o math",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 7/56",
+  "source": "https://arxiv.org/abs/2507.02778v3",
+  "quote": "(Claude 3.5 … Haiku: 52.5%, Sonnet 4: 41.4%",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 7/57",
+  "source": "https://arxiv.org/abs/2310.13548v4",
+  "quote": "(ii) model-generated arguments; and (iii) model-generated poems",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 7/58",
+  "source": "https://arxiv.org/abs/2603.12123v2",
+  "quote": "Statistical comparisons (paired t-test,",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 7/59",
+  "source": "https://arxiv.org/abs/2610.01471v2",
+  "quote": "author preprints that have not been peer reviewed",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 7/6",
+  "source": "https://arxiv.org/abs/2603.12123v2",
+  "quote": "Wilcoxon signed-rank tests … Holm-adjusted over three comparisons): SR2 … p=0.004, SA p=0.057, SR p=0.26",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 7/60",
+  "source": "https://code.claude.com/docs/en/best-practices",
+  "quote": "Know what subagents cost"
+ },
+ {
+  "id": "SKILL.md § Phase 7/61",
+  "source": "https://code.claude.com/docs/en/best-practices",
+  "quote": "What you can stop doing"
+ },
+ {
+  "id": "SKILL.md § Phase 7/7",
+  "source": "https://arxiv.org/abs/2603.12123v2",
+  "quote": "SR vs CCR −2.849 0.008 0.52",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 7/8",
+  "source": "https://arxiv.org/abs/2603.12123v2",
+  "quote": "SR2 5.5 1.1 4.4 3.9 21.0 22.7 21.7",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 7/9",
+  "source": "https://arxiv.org/abs/2603.12123v2",
+  "quote": "subagent review (SA, 23.8%; p=0.057)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Output/1",
+  "source": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool",
+  "quote": "Citations are always enabled for web search"
+ },
+ {
+  "id": "SKILL.md § Output/10",
+  "source": "https://arxiv.org/pdf/2501.01303",
+  "quote": "we conducted Welch’s ANOVA",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Output/11",
+  "source": "https://arxiv.org/pdf/2501.01303",
+  "quote": "tests indicated that both the one citation and … five citation conditions were rated significantly higher on",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Output/12",
+  "source": "https://arxiv.org/pdf/2501.01303",
+  "quote": "a significant increase in trust when citations were present, a result that held true even when the citations were random",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Output/13",
+  "source": "https://arxiv.org/pdf/2501.01303",
+  "quote": "also found a significant decrease in trust when participants",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Output/14",
+  "source": "https://arxiv.org/pdf/2512.12207",
+  "quote": "user experiment with 394 participants",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Output/15",
+  "source": "https://arxiv.org/pdf/2512.12207",
+  "quote": "source badges appear inline within the text as clickable links",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Output/16",
+  "source": "https://arxiv.org/pdf/2512.12207",
+  "quote": "Collapsible 0.28 1.31 -1.09",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Output/17",
+  "source": "https://arxiv.org/pdf/2512.12207",
+  "quote": "Hover 0.49 1.01 -0.86",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Output/18",
+  "source": "https://arxiv.org/pdf/2512.12207",
+  "quote": "Collapsible (β = −2.45, p < 0.01), Hover (β = −2.84,",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Output/19",
+  "source": "https://arxiv.org/pdf/2512.12207",
+  "quote": "Interest in the topic was significantly lower across multiple UI",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Output/2",
+  "source": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool",
+  "quote": "url : The URL of the cited source title : The title of the cited source"
+ },
+ {
+  "id": "SKILL.md § Output/3",
+  "source": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool",
+  "quote": "When displaying API outputs directly to end users, citations must be included to the original source"
+ },
+ {
+  "id": "SKILL.md § Output/4",
+  "source": "https://en.wikipedia.org/wiki/Wikipedia:Verifiability",
+  "quote": "must include an inline citation to a reliable source that directly supports"
+ },
+ {
+  "id": "SKILL.md § Output/5",
+  "source": "https://en.wikipedia.org/wiki/Wikipedia:Verifiability",
+  "quote": "oldid=1386008258"
+ },
+ {
+  "id": "SKILL.md § Output/6",
+  "source": "https://en.wikipedia.org/wiki/Wikipedia:Verifiability",
+  "quote": "This page was last edited on 16 November 2026"
+ },
+ {
+  "id": "SKILL.md § Output/7",
+  "source": "https://arxiv.org/pdf/2501.01303",
+  "quote": "The study had 303 total",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Output/8",
+  "source": "https://arxiv.org/pdf/2501.01303",
+  "quote": "saw zero (N=108), one (N=96), or five (N=101) citations",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Output/9",
+  "source": "https://arxiv.org/pdf/2501.01303",
+  "quote": "(F (2, 3037) = 10.23, p < .001)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-01/1",
+  "source": "https://arxiv.org/abs/2501.15654v2",
+  "quote": "Avg. TPR 56.7 92.7",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-01/10",
+  "source": "https://arxiv.org/pdf/2406.12128",
+  "quote": "their content was factually incorrect",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-01/11",
+  "source": "https://arxiv.org/pdf/2609.15369",
+  "quote": "tects AI posts from its 176 structural features",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-01/12",
+  "source": "https://arxiv.org/pdf/2609.15369",
+  "quote": "alone at 97.0 macro-F1 on held-out companies",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-01/13",
+  "source": "https://arxiv.org/pdf/2609.15369",
+  "quote": "more references to specific dates",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-01/14",
+  "source": "https://arxiv.org/pdf/2609.15369",
+  "quote": "2,250 pre-ChatGPT human blog posts from 268",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-01/15",
+  "source": "https://arxiv.org/pdf/2609.15369",
+  "quote": "against 11,250 AI mirrors",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-01/16",
+  "source": "https://www.newsguardtech.com/special-reports/newsbots-ai-generated-news-websites-proliferating",
+  "quote": "Many of the AI-generated articles identified by NewsGuard are credited to “Admin” and “Editor,” or have no bylines at all."
+ },
+ {
+  "id": "G-01/17",
+  "source": "https://www.newsguardtech.com/special-reports/newsbots-ai-generated-news-websites-proliferating",
+  "quote": "All 49 sites identified by NewsGuard had published at least one article containing error messages"
+ },
+ {
+  "id": "G-01/18",
+  "source": "https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing",
+  "quote": "This page is not an encyclopedia article or a Wikipedia policy , as it has not been reviewed by the community"
+ },
+ {
+  "id": "G-01/19",
+  "source": "https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing",
+  "quote": "a smoothing over of specific facts into generic statements"
+ },
+ {
+  "id": "G-01/2",
+  "source": "https://arxiv.org/abs/2501.15654v2",
+  "quote": "Avg. FPR 51.7 4.0",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-01/3",
+  "source": "https://arxiv.org/abs/2501.15654v2",
+  "quote": "VOCABULARY 53.1%",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-01/4",
+  "source": "https://arxiv.org/abs/2501.15654v2",
+  "quote": "35.9%",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-01/5",
+  "source": "https://arxiv.org/abs/2501.15654v2",
+  "quote": "names\", while in fact, 63.3% of GPT-4 O and 70% of",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-01/6",
+  "source": "https://arxiv.org/abs/2501.15654v2",
+  "quote": "C LAUDE -3.5-S ONNET articles include either the name",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-01/7",
+  "source": "https://arxiv.org/abs/2501.15654v2",
+  "quote": "Emily or Sarah",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-01/8",
+  "source": "https://arxiv.org/pdf/2406.12128",
+  "quote": "Llama 65B finetuned 64.2",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-01/9",
+  "source": "https://arxiv.org/pdf/2406.12128",
+  "quote": "46/100 examples had no obvious issues with lan-",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-02/1",
+  "source": "https://arxiv.org/pdf/2609.31342",
+  "quote": "reaches the model. Each retrieval set contains one up-to-date ... and two outdated documents",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-02/10",
+  "source": "https://arxiv.org/pdf/2609.31342",
+  "quote": "We construct a benchmark of 317 verified knowledge reversals",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-02/11",
+  "source": "https://arxiv.org/pdf/2609.31342",
+  "quote": "across medicine, law, software, and platform policy",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-02/12",
+  "source": "https://arxiv.org/pdf/2605.23497",
+  "quote": "In total, we evaluated 115 Post-Cutoff Questions.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-02/13",
+  "source": "https://arxiv.org/pdf/2605.23497",
+  "quote": "Using Welch two-sample t-tests [15] on the post-cutoff summary",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-02/14",
+  "source": "https://arxiv.org/pdf/2605.23497",
+  "quote": "between each RAG method and web ... search (p < 0.05) for both models",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-02/15",
+  "source": "https://arxiv.org/pdf/2605.23497",
+  "quote": "Claude Sonnet 3.7 Post-Cutoff 24.35 0.00 0.00 5.22 22 83.48 49.57 47.83 71.30 2 86.96 51.30 49.57 70.43 0 63.48",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-02/16",
+  "source": "https://arxiv.org/pdf/2605.23497",
+  "quote": "ChatGPT-5.1 Post-Cutoff",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-02/17",
+  "source": "https://arxiv.org/pdf/2605.23497",
+  "quote": "Removing the ... temporal filter reduced the system to a standard RAG pipeline, ... which caused a substantial drop in accuracy.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-02/18",
+  "source": "https://arxiv.org/pdf/2605.23497",
+  "quote": "cant performance divergences (p < 0.05) are observed exclusively ... in the Web condition, where recent questions score approximately ... 0.20-0.24 points higher",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-02/19",
+  "source": "https://arxiv.org/pdf/2605.23497",
+  "quote": "an \"as-of\" date from the query and strictly filtering the retrieval",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-02/2",
+  "source": "https://arxiv.org/pdf/2609.31342",
+  "quote": "medicine with Qwen-7B and GPT-4o. With correct dates,",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-02/20",
+  "source": "https://arxiv.org/pdf/2605.23497",
+  "quote": "ICAIL 2026, June 08-12, Singapore",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-02/21",
+  "source": "https://arxiv.org/pdf/2310.03214",
+  "quote": "GPT-4 w/ SNIPPETS ONLY & SEARCH ORDER UTD 74.0",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-02/22",
+  "source": "https://arxiv.org/pdf/2310.03214",
+  "quote": "GPT-4 w/ SNIPPETS ONLY & TIME ORDER UTD 74.8",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-02/23",
+  "source": "https://arxiv.org/pdf/2310.03214",
+  "quote": "GPT-4 w/ SNIPPETS ONLY & RANDOM ORDER UTD 72.4",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-02/24",
+  "source": "https://arxiv.org/pdf/2310.03214",
+  "quote": "GPT-4 + F RESH P ROMPT UTD 75.6",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-02/25",
+  "source": "https://arxiv.org/pdf/2310.03214",
+  "quote": "(500 total examples)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-02/26",
+  "source": "https://arxiv.org/pdf/2310.03214",
+  "quote": "uses 10 retrieved evidences for each question and 5 demonstrations",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-02/27",
+  "source": "https://arxiv.org/pdf/2310.03214",
+  "quote": "Models benchmarked on the same date of April 26, 2023.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-02/29",
+  "source": "https://www.cochrane.org/authors/handbooks-and-manuals/handbook/current/chapter-04",
+  "quote": "Date limits may be used to focus searches (Cooper et al 2018c) as long as the restriction is reported and justified"
+ },
+ {
+  "id": "G-02/3",
+  "source": "https://arxiv.org/pdf/2609.31342",
+  "quote": "re-ranking lowers poisoning in all four cells by 4.6 to 10.0 ... percentage points; three exact paired tests reach p < 0.05.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-02/30",
+  "source": "https://www.cochrane.org/authors/handbooks-and-manuals/handbook/current/chapter-04",
+  "quote": "the application of arbitrary date limits is not recommended for Cochrane systematic reviews of interventions"
+ },
+ {
+  "id": "G-02/31",
+  "source": "https://www.cochrane.org/authors/handbooks-and-manuals/handbook/current/chapter-04",
+  "quote": "C35: Restricting database searches (Mandatory)"
+ },
+ {
+  "id": "G-02/32",
+  "source": "https://www.cochrane.org/authors/handbooks-and-manuals/handbook/current/chapter-04",
+  "quote": "version 6.5.1"
+ },
+ {
+  "id": "G-02/33",
+  "source": "https://arxiv.org/pdf/2605.23497",
+  "quote": "of 312 expert-validated, time-sensitive German statutory QA pairs",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-02/34",
+  "source": "https://arxiv.org/pdf/2310.03214",
+  "quote": "We scrape the results from G OOGLE S EARCH using S ERPA PI",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-02/35",
+  "source": "https://arxiv.org/pdf/2605.23497",
+  "quote": "ChatGPT-5.2, Claude Opus 4.5, and DeepSeek V3.2",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-02/4",
+  "source": "https://arxiv.org/pdf/2609.31342",
+  "quote": "With dates absent, three cells improve by 1.0 to 4.0 points,",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-02/5",
+  "source": "https://arxiv.org/pdf/2609.31342",
+  "quote": "none significantly, and one worsens by 1.1 points (Table 14).",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-02/6",
+  "source": "https://arxiv.org/pdf/2609.31342",
+  "quote": "Under incorrect dates, up-to-date-document ... selection falls to zero in every domain",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-02/7",
+  "source": "https://arxiv.org/pdf/2609.31342",
+  "quote": "Qwen-72B .12 [.04, .22] 1.00 [1.00, 1.00] 1.00 [1.00, 1.00]",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-02/8",
+  "source": "https://arxiv.org/pdf/2609.31342",
+  "quote": "Llama-70B .14 [.06, .24] .94 [.86, 1.00] 1.00 [1.00, 1.00]",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-02/9",
+  "source": "https://arxiv.org/pdf/2609.31342",
+  "quote": "Table 7: Applicability gaps on 50 verified transitions under neutral instructions. Brackets give item-clustered bootstrap 95%",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-03/1",
+  "source": "https://en.wikipedia.org/wiki/Wikipedia:Neutral_point_of_view",
+  "quote": "If different reliable sources make conflicting assertions about a matter, treat these assertions as opinions rather than facts"
+ },
+ {
+  "id": "G-03/2",
+  "source": "https://en.wikipedia.org/wiki/Wikipedia:Neutral_point_of_view",
+  "quote": "representing fairly, proportionately, and, as far as possible, without editorial bias, all the significant views that have been published by reliable sources on a topic"
+ },
+ {
+  "id": "G-03/3",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Wikipedia:Neutral_point_of_view&rvprop=ids%7Ctimestamp&format=json",
+  "quote": "\"revid\":1386821137"
+ },
+ {
+  "id": "G-03/4",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Wikipedia:Neutral_point_of_view&rvprop=ids%7Ctimestamp&format=json",
+  "quote": "\"timestamp\":\"2026-11-20T20:29:20Z\""
+ },
+ {
+  "id": "G-03/5",
+  "source": "https://arxiv.org/abs/2610.00606",
+  "quote": "Under conflicting accounts, however, model responses strongly align with the document in the query language"
+ },
+ {
+  "id": "G-03/6",
+  "source": "https://arxiv.org/abs/2410.12311",
+  "quote": "as much as 25% of unambiguous, open domain questions can lead to conflicting contexts when retrieved using Google Search"
+ },
+ {
+  "id": "G-04/1",
+  "source": "https://www.ecfr.gov/api/renderer/v1/content/enhanced/current/title-16?part=255",
+  "quote": "Regardless of whether the website makes express claims of objectivity or independence, such paid-for rankings are deceptive"
+ },
+ {
+  "id": "G-04/10",
+  "source": "https://www.bundeskartellamt.de/SharedDocs/Publikation/EN/Diskussions_Hintergrundpapiere/2018/SU_comparison_websites.pdf?__blob=publicationFile&v=4",
+  "quote": "nearly 40 websites"
+ },
+ {
+  "id": "G-04/11",
+  "source": "https://www.bundeskartellamt.de/SharedDocs/Publikation/EN/Diskussions_Hintergrundpapiere/2018/SU_comparison_websites.pdf?__blob=publicationFile&v=4",
+  "quote": "Date: April 2019"
+ },
+ {
+  "id": "G-04/12",
+  "source": "https://downloads.webis.de/publications/papers/bevendorff_2024a.pdf",
+  "quote": "pages are on average simpler and use more repetitive vocabulary",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-04/13",
+  "source": "https://downloads.webis.de/publications/papers/bevendorff_2024a.pdf",
+  "quote": "TTR: r = .59, p = .006",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-04/15",
+  "source": "https://downloads.webis.de/publications/papers/bevendorff_2024a.pdf",
+  "quote": "August 24th, 2022",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-04/16",
+  "source": "https://downloads.webis.de/publications/papers/bevendorff_2024a.pdf",
+  "quote": "September 19th, 2023",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-04/17",
+  "source": "https://downloads.webis.de/publications/papers/bevendorff_2024a.pdf",
+  "quote": "Startpage (Google), Bing, and DuckDuckGo",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-04/18",
+  "source": "https://downloads.webis.de/publications/papers/bevendorff_2024a.pdf",
+  "quote": "more monetized with affiliate marketing",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-04/19",
+  "source": "https://arxiv.org/pdf/2606.28356",
+  "quote": "Independent buyer guide 80.7 (±1.8)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-04/2",
+  "source": "https://www.ecfr.gov/api/renderer/v1/content/enhanced/current/title-16?part=255",
+  "quote": "If, however, the review website does not take payments for higher rankings, but receives payments from some of the headphone manufacturers, such as for affiliate link referrals, it should clearly and conspicuously disclose that it receives such payments"
+ },
+ {
+  "id": "G-04/20",
+  "source": "https://arxiv.org/pdf/2606.28356",
+  "quote": "Independent buyer guide 77.6 (±1.9)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-04/21",
+  "source": "https://arxiv.org/pdf/2606.28356",
+  "quote": "Independent buyer guide 92.6 (±1.2)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-04/22",
+  "source": "https://arxiv.org/pdf/2606.28356",
+  "quote": "Truthful-rewrite control   3.4 (±0.8)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-04/23",
+  "source": "https://arxiv.org/pdf/2606.28356",
+  "quote": "Truthful-rewrite control  12.7 (±1.5)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-04/24",
+  "source": "https://arxiv.org/pdf/2606.28356",
+  "quote": "600 recommendation cases",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-04/25",
+  "source": "https://arxiv.org/pdf/2606.28356",
+  "quote": "get promotion by up to 39.2 pp",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-04/26",
+  "source": "https://arxiv.org/pdf/2606.28356",
+  "quote": "Styles a seller page as a buyer guide",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-04/27",
+  "source": "https://arxiv.org/pdf/2606.28356",
+  "quote": "Gemma 4 31B IT",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-04/28",
+  "source": "https://arxiv.org/pdf/2606.28356",
+  "quote": "Qwen3.6-27B",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-04/29",
+  "source": "https://arxiv.org/pdf/2606.28356",
+  "quote": "Devstral Small 2 24B Instruct",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-04/3",
+  "source": "https://www.ecfr.gov/api/renderer/v1/content/enhanced/current/title-16?part=255",
+  "quote": "88 FR 48102"
+ },
+ {
+  "id": "G-04/4",
+  "source": "https://www.ecfr.gov/api/renderer/v1/content/enhanced/current/title-16?part=255",
+  "quote": "§ 255.4 Endorsements by organizations"
+ },
+ {
+  "id": "G-04/5",
+  "source": "https://www.ecfr.gov/api/renderer/v1/content/enhanced/current/title-16?part=255",
+  "quote": "Example 11. A coffee lover creates a blog that reviews coffee makers"
+ },
+ {
+  "id": "G-04/6",
+  "source": "https://www.ecfr.gov/api/renderer/v1/content/enhanced/current/title-16?part=255",
+  "quote": "the reviews should clearly and conspicuously disclose the compensation"
+ },
+ {
+  "id": "G-04/8",
+  "source": "https://www.bundeskartellamt.de/SharedDocs/Publikation/EN/Diskussions_Hintergrundpapiere/2018/SU_comparison_websites.pdf?__blob=publicationFile&v=4",
+  "quote": "a direct influence of the amount of commission paid on the … ranking of the result was only found in the hotel sector"
+ },
+ {
+  "id": "G-04/9",
+  "source": "https://www.bundeskartellamt.de/SharedDocs/Publikation/EN/Diskussions_Hintergrundpapiere/2018/SU_comparison_websites.pdf?__blob=publicationFile&v=4",
+  "quote": "flights, hotels, insurance, loans, telecommunications and energy"
+ },
+ {
+  "id": "G-05/1",
+  "source": "https://arxiv.org/abs/2610.06192",
+  "quote": "From ConflictingQA [58] we build 500 items",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-05/10",
+  "source": "https://arxiv.org/abs/2610.06192",
+  "quote": "Tests are Wilcoxon signed-rank tests on ... with Holm ... correction [28] within families fixed before data collection. Every ... pre-specified contrast behind the claims below is significant at the ... 5% level after correction",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-05/11",
+  "source": "https://arxiv.org/abs/2610.06192",
+  "quote": "T2-F3 are confirmatory ... T2-F1 to F3 ... declaration effect for all four",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-05/12",
+  "source": "https://arxiv.org/abs/2610.06192",
+  "quote": "We query GPT-6 Luna, GPT-6.1 Sol, Gemini ... 3.8 Flash and DeepSeek V4.1 Flash",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-05/13",
+  "source": "https://arxiv.org/abs/2611.09203",
+  "quote": "three identical reprints instead of one report raised the lies accepted by Llama 3.2 from 0.06 to 0.71 and by phi4 from 0.21 to 0.90",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-05/14",
+  "source": "https://arxiv.org/abs/2611.09203",
+  "quote": "Tests are exact McNemar tests on the same 80 claims, Holm-adjusted over all 112",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-05/15",
+  "source": "https://arxiv.org/abs/2611.09203",
+  "quote": "adjusted p < 10−13 ) and phi4 (0.21 to 0.90; 55 and 0; p < 10−14 )",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-05/16",
+  "source": "https://arxiv.org/abs/2611.09203",
+  "quote": "For Gemini Flash (0.93 to 1.00, a ceiling) and Gemini Pro (0.64 to 0.76; 22 and 12) the rise is not significant.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-05/17",
+  "source": "https://arxiv.org/abs/2611.09203",
+  "quote": "showing the judge one report per detected copy chain cut the copied lies accepted by 0.10-0.24 across four judges, at a mean cost of at most 4.2 points of accepted truths",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-05/18",
+  "source": "https://arxiv.org/abs/2611.09203",
+  "quote": "95% t-intervals over three seeds",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-05/19",
+  "source": "https://arxiv.org/abs/2611.09203",
+  "quote": "Llama 3.2 −0.22 [−0.27, −0.17]",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-05/2",
+  "source": "https://arxiv.org/abs/2610.06192",
+  "quote": "a declaration that copies are not independent sources",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-05/20",
+  "source": "https://arxiv.org/abs/2611.09203",
+  "quote": "phi4 −0.24 [−0.27, −0.22]",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-05/21",
+  "source": "https://arxiv.org/abs/2611.09203",
+  "quote": "Gemini Flash −0.10 [−0.13, −0.07]",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-05/22",
+  "source": "https://arxiv.org/abs/2611.09203",
+  "quote": "Gemini Pro −0.16 [−0.23, −0.09]",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-05/23",
+  "source": "https://arxiv.org/abs/2611.09203",
+  "quote": "Every report 1.00 1.00 1.00 1.00",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-05/24",
+  "source": "https://arxiv.org/abs/2611.09203",
+  "quote": "2 chains 0.50 0.57 1.00 1.00",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-05/25",
+  "source": "https://arxiv.org/abs/2611.09203",
+  "quote": "Counting reports or chains without a judge is unreliable",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-05/26",
+  "source": "https://arxiv.org/abs/2611.09203",
+  "quote": "Four judges: Llama-3.2-3B-Instruct and phi4 (14B), as 4-bit Ollama builds, and Gemini 2.5 Flash and 2.5 Pro",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-05/27",
+  "source": "https://arxiv.org/abs/2611.09203",
+  "quote": "Qwen2.5-1.5B-Instruct with one LoRA adapter",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-05/28",
+  "source": "https://arxiv.org/abs/2611.09203",
+  "quote": "Text similarity links none of the copies reworded by three LLMs",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-05/29",
+  "source": "https://arxiv.org/abs/2611.09203",
+  "quote": "but recognises only 17% of natural same-source derivatives",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-05/3",
+  "source": "https://arxiv.org/abs/2610.06192",
+  "quote": "𝜌, duplicate 0.30 0.14 0.16 0.32",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-05/30",
+  "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13407448/",
+  "quote": "doi: 10.3758/s13421-025-01831-9"
+ },
+ {
+  "id": "G-05/31",
+  "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13407448/",
+  "quote": "This left a final sample of 507 participants for analysis"
+ },
+ {
+  "id": "G-05/32",
+  "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13407448/",
+  "quote": "β Independent - β Dependent > 0 6.11 [2.44, 9.73] 362.64"
+ },
+ {
+  "id": "G-05/33",
+  "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13407448/",
+  "quote": "Dependent ( β =20.08, 95% CrI [17.48, 22.66])"
+ },
+ {
+  "id": "G-05/34",
+  "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13407448/",
+  "quote": "from 0 (strongly disagree) to 100 (strongly agree)"
+ },
+ {
+  "id": "G-05/35",
+  "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13407448/",
+  "quote": "we fit a Bayesian linear model"
+ },
+ {
+  "id": "G-05/36",
+  "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13407448/",
+  "quote": "Independent consensus was more persuasive than dependent consensus."
+ },
+ {
+  "id": "G-05/37",
+  "source": "https://en.wikipedia.org/w/index.php?title=Wikipedia:Reliable_sources&oldid=1385652516",
+  "quote": "Multiple sources should not be asserted for any wire service article. Such sources are essentially a single source."
+ },
+ {
+  "id": "G-05/38",
+  "source": "https://en.wikipedia.org/w/index.php?title=Wikipedia:Reliable_sources&oldid=1385652516",
+  "quote": "requires reliable sourcing that directly says that all or most scientists or scholars hold that view"
+ },
+ {
+  "id": "G-05/39",
+  "source": "https://en.wikipedia.org/w/index.php?title=Wikipedia:Reliable_sources&oldid=1385652516",
+  "quote": "It cannot support a claim that \"there is an academic consensus\" , because the source does not directly say anything about an academic consensus."
+ },
+ {
+  "id": "G-05/4",
+  "source": "https://arxiv.org/abs/2610.06192",
+  "quote": "𝜌, republished 0.45 0.26 0.31 0.49",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-05/40",
+  "source": "https://en.wikipedia.org/w/index.php?title=Wikipedia:Verifiability&oldid=1386008258",
+  "quote": "Do not use websites mirroring Wikipedia content or publications relying on material from Wikipedia as sources."
+ },
+ {
+  "id": "G-05/41",
+  "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13407448/",
+  "quote": "recruited through Prolific Academic"
+ },
+ {
+  "id": "G-05/42",
+  "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13407448/",
+  "quote": "self-declared native English speakers"
+ },
+ {
+  "id": "G-05/43",
+  "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13407448/",
+  "quote": "Mem Cognit . 2026 Jan 21;54(5):1667–1687"
+ },
+ {
+  "id": "G-05/44",
+  "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13407448/",
+  "quote": "imagine an upcoming election in an unfamiliar foreign democratic country"
+ },
+ {
+  "id": "G-05/45",
+  "source": "https://arxiv.org/abs/2611.09203",
+  "quote": "claims about invented people, invented outlets",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-05/46",
+  "source": "https://arxiv.org/abs/2611.09203",
+  "quote": "n = 80 per cell",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-05/47",
+  "source": "https://arxiv.org/abs/2610.06192",
+  "quote": "logs, extracting the distinct readings first and answering from that ... list brings one-observer logs to 0.95 to 0.99 readings, with no early ... commitment in any of the 2,000 one-observer logs per model",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-05/48",
+  "source": "https://arxiv.org/abs/2610.06192",
+  "quote": "The declaration, which there states that agents without sen- ... sors can only repeat readings, brings them to 1.02 to 1.19",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-05/5",
+  "source": "https://arxiv.org/abs/2610.06192",
+  "quote": "𝜌, summary 0.64 0.40 0.50 0.71",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-05/6",
+  "source": "https://arxiv.org/abs/2610.06192",
+  "quote": "𝜌, duplicate 0.10 0.07 0.10 0.18",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-05/7",
+  "source": "https://arxiv.org/abs/2610.06192",
+  "quote": "𝜌, republished 0.22 0.09 0.13 0.30",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-05/8",
+  "source": "https://arxiv.org/abs/2610.06192",
+  "quote": "𝜌, summary 0.37 0.19 0.25 0.47",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-05/9",
+  "source": "https://arxiv.org/abs/2610.06192",
+  "quote": "documents the declaration lowers the shift that distinct documents ... cause by 0.04 to 0.12 log-odds",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-06/1",
+  "source": "https://arxiv.org/abs/2611.05572",
+  "quote": "mean reduction of 14.6 points",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-06/10",
+  "source": "https://arxiv.org/abs/2611.05572",
+  "quote": "The final analytic sample was N = 903",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-06/11",
+  "source": "https://arxiv.org/abs/2611.05572",
+  "quote": "The final analytic sample was N = 1,290",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-06/12",
+  "source": "https://arxiv.org/abs/2611.05572",
+  "quote": "GPT-4 (Study 1) or GPT-5.2 (Study 2)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-06/13",
+  "source": "https://arxiv.org/abs/2611.05572",
+  "quote": "rating the focal statement at or above the scale midpoint",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-06/19",
+  "source": "https://arxiv.org/abs/2610.17703",
+  "quote": "English · 100 participants",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-06/2",
+  "source": "https://arxiv.org/abs/2611.05572",
+  "quote": "1.4-point mean reduction",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-06/20",
+  "source": "https://doi.org/10.1038/s41562-023-01623-8",
+  "quote": "205 effect sizes (that is, k, obtained from 74 reports;"
+ },
+ {
+  "id": "G-06/21",
+  "source": "https://doi.org/10.1038/s41562-023-01623-8",
+  "quote": "N = 60,861"
+ },
+ {
+  "id": "G-06/22",
+  "source": "https://doi.org/10.1038/s41562-023-01623-8",
+  "quote": "(d = 0.19, P = 0.131, 95% CI −0.06 to 0.43)"
+ },
+ {
+  "id": "G-06/23",
+  "source": "https://doi.org/10.1038/s41562-023-01623-8",
+  "quote": "(b(60) = 0.64, P = 0.020"
+ },
+ {
+  "id": "G-06/24",
+  "source": "https://arxiv.org/abs/2605.03050",
+  "quote": "(26–42%) of false presuppositions",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-06/25",
+  "source": "https://arxiv.org/abs/2608.06539",
+  "quote": "Web 93.7 (281/300) 76.3 (229/300)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-06/26",
+  "source": "https://arxiv.org/abs/2608.06539",
+  "quote": "racy is below 50% for Cancer-Myth-TPQ",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-06/27",
+  "source": "https://arxiv.org/abs/2608.06539",
+  "quote": "tend to perform worse on TPQs",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-06/3",
+  "source": "https://arxiv.org/abs/2611.05572",
+  "quote": "on a 0–100 scale",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-06/4",
+  "source": "https://arxiv.org/abs/2611.05572",
+  "quote": "dppc = 0.88, 95% CI [0.69, 1.07], p < .001",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-06/5",
+  "source": "https://arxiv.org/abs/2611.05572",
+  "quote": "23.1% (75 of 324) ended below it, compared with 1.5% (3 of 197) in Control (Fisher's exact p < .001",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-06/6",
+  "source": "https://arxiv.org/abs/2611.05572",
+  "quote": "Single Message vs. Control dppc = 0.69, 95% CI [0.53, 0.87], p <",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-06/7",
+  "source": "https://arxiv.org/abs/2611.05572",
+  "quote": "was only 3.81 points",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-06/8",
+  "source": "https://arxiv.org/abs/2611.05572",
+  "quote": "−7.17, 95% CrI [−11.39, −2.83]",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-06/9",
+  "source": "https://arxiv.org/abs/2611.05572",
+  "quote": "(BF10 = 11.43)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-07/1",
+  "source": "https://arxiv.org/pdf/2609.01645",
+  "quote": "of the 14 discordant pairs (one ... register succeeds, the other fails), all 14 favor the formal ... register and none favor the plain register (exact two-sided ... sign test p ≈ 1.2×10−4",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-07/10",
+  "source": "https://arxiv.org/pdf/2609.05637",
+  "quote": "S1 (Parent) 79.48 ±0.03 59.27 ±0.02 60.58 ±0.02 93.67 ±0.03",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-07/11",
+  "source": "https://arxiv.org/pdf/2609.05637",
+  "quote": "S3 (Synonym) 81.65 ±0.04∗∗∗ 67.27 ±0.02∗∗∗ 71.28 ±0.01∗∗∗ 95.47 ±0.03∗∗∗",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-07/15",
+  "source": "https://arxiv.org/pdf/2609.05637",
+  "quote": "GPT-4.1 (temp. 0.7) for all LLM generation",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-07/16",
+  "source": "https://arxiv.org/pdf/2609.05637",
+  "quote": "Three seeds (42, 123, 2024)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-07/17",
+  "source": "https://arxiv.org/pdf/2609.05637",
+  "quote": "synthetic enterprise documents with 470 questions",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-07/18",
+  "source": "https://arxiv.org/abs/2609.37911",
+  "quote": "All twelve method-collection comparisons improve aggregate nDCG@10, with best relative gains of 4.81%, 8.92%, and 9.47%. Eleven remain significant after Holm correction."
+ },
+ {
+  "id": "G-07/19",
+  "source": "https://arxiv.org/pdf/2609.37911",
+  "quote": "two-sided test from 100,000 paired sign randomizations",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-07/2",
+  "source": "https://arxiv.org/pdf/2609.01645",
+  "quote": "all 25 formal queries retrieve a gold ... passage in the top five, while only 11 of 25 plain queries",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-07/3",
+  "source": "https://arxiv.org/pdf/2609.01645",
+  "quote": "We assemble 51 passages, each stating a single",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-07/5",
+  "source": "https://arxiv.org/pdf/2609.01645",
+  "quote": "Recall@5 is 96–100%",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-07/6",
+  "source": "https://arxiv.org/pdf/2609.01645",
+  "quote": "Recall@5 falls to 36–44%",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-07/7",
+  "source": "https://arxiv.org/pdf/2609.01645",
+  "quote": "The bridge lifts plain-query Recall@5 from 44% to 80%",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-08/1",
+  "source": "https://arxiv.org/pdf/2608.02751",
+  "quote": "every visit or fetch has a 12,000-token ceiling",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-08/10",
+  "source": "https://arxiv.org/pdf/2608.02751",
+  "quote": "We use exact McNemar tests for binary outcomes",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-08/11",
+  "source": "https://arxiv.org/pdf/2608.02751",
+  "quote": "All BCP-S cells and the two Wikipedia Search–Visit baselines have recovery overlays. The Wikipedia Sieve arms and other Search–Fetch conditions do not.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-08/12",
+  "source": "https://arxiv.org/pdf/2608.02751",
+  "quote": "Search–AutoRead retains an agent loop but returns full webpage text with each search result",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-08/13",
+  "source": "https://arxiv.org/pdf/2608.02751",
+  "quote": "Iterative Search–AutoRead BM25 42.4𝑏 72k𝑎𝑏 36.8𝑎𝑏 20.9𝑎𝑏 108k𝑎𝑏 78.3𝑎𝑏 13.6𝑎𝑏 142k𝑎𝑏 85.4𝑎𝑏",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-08/14",
+  "source": "https://arxiv.org/pdf/2608.02751",
+  "quote": "The primary agent is Tongyi-DeepResearch-30B-A3B",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-08/15",
+  "source": "https://claude.com/blog/improved-web-search-with-dynamic-filtering",
+  "quote": "We evaluated web search on Sonnet 4.6 and Opus 4.6 with and without dynamic filtering and no other tools enabled."
+ },
+ {
+  "id": "G-08/16",
+  "source": "https://claude.com/blog/improved-web-search-with-dynamic-filtering",
+  "quote": "bringing Sonnet 4.6 from 33.3% to 46.6% and Opus 4.6 from 45.3% to 61.6%"
+ },
+ {
+  "id": "G-08/17",
+  "source": "https://claude.com/blog/improved-web-search-with-dynamic-filtering",
+  "quote": "Dynamic filtering improved Claude’s F1 score from 52.6% to 59.4% for Sonnet 4.6 and from 69.8% to 77.3% for Opus 4.6."
+ },
+ {
+  "id": "G-08/18",
+  "source": "https://claude.com/blog/improved-web-search-with-dynamic-filtering",
+  "quote": "dynamic filtering improved performance by an average of 11% while using 24% fewer input tokens"
+ },
+ {
+  "id": "G-08/19",
+  "source": "https://claude.com/blog/improved-web-search-with-dynamic-filtering",
+  "quote": "Instead of reasoning over full HTML files, Claude can dynamically filter the search results before loading them into context"
+ },
+ {
+  "id": "G-08/2",
+  "source": "https://arxiv.org/pdf/2608.02751",
+  "quote": "Search–Fetch retains iterative, unfiltered search but replaces whole-webpage visits with section fetches",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-08/20",
+  "source": "https://trychroma.com/research/context-rot",
+  "quote": "These prompts average out to ~113k tokens"
+ },
+ {
+  "id": "G-08/21",
+  "source": "https://trychroma.com/research/context-rot",
+  "quote": "Focused prompts average to ~300 tokens"
+ },
+ {
+  "id": "G-08/22",
+  "source": "https://trychroma.com/research/context-rot",
+  "quote": "Across all models, we see significantly higher performance on focused prompts compared to full prompts."
+ },
+ {
+  "id": "G-08/23",
+  "source": "https://trychroma.com/research/context-rot",
+  "quote": "The Claude models exhibit the most pronounced gap between focused and full prompt performance."
+ },
+ {
+  "id": "G-08/24",
+  "source": "https://trychroma.com/research/context-rot",
+  "quote": "derived from the originally labeled dataset and manual adjustments"
+ },
+ {
+  "id": "G-08/25",
+  "source": "https://trychroma.com/research/context-rot",
+  "quote": "306 total prompts"
+ },
+ {
+  "id": "G-08/26",
+  "source": "https://trychroma.com/research/context-rot",
+  "quote": "The trend of stronger performance on focused prompts holds across the GPT, Gemini, and Qwen model families as well."
+ },
+ {
+  "id": "G-08/27",
+  "source": "https://arxiv.org/pdf/2611.07859",
+  "quote": "Coarse retrieval only 62.61",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-08/28",
+  "source": "https://arxiv.org/pdf/2611.07859",
+  "quote": "Coarse-to-fine search tool only 70.84",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-08/29",
+  "source": "https://arxiv.org/pdf/2611.07859",
+  "quote": "Table 2: Component analysis on BrowseComp-Plus ... with Tongyi-DeepResearch-30B-A3B",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-08/3",
+  "source": "https://arxiv.org/pdf/2608.02751",
+  "quote": "Iterative Search–Visit (whole-webpage visits) BM25 43.7𝑏 20k𝑏 15.9𝑏 26.1𝑏 43k𝑏 28.7𝑏 34.7 68k𝑏 64.1",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-08/30",
+  "source": "https://arxiv.org/pdf/2407.16833",
+  "quote": "LC surpasses RAG by 7.6% ... for Gemini-1.5-Pro, 13.1% for GPT-4O, and 3.6% ... for GPT-3.5-Turbo",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-08/31",
+  "source": "https://arxiv.org/pdf/2407.16833",
+  "quote": "the predictions from LC and RAG are identical for ... over 60% of queries",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-08/32",
+  "source": "https://arxiv.org/pdf/2608.02097",
+  "quote": "F T E is the most accurate profile at every backbone, at 44.5, 52.5, and 70.5",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-08/33",
+  "source": "https://arxiv.org/pdf/2608.02097",
+  "quote": "V ISIT-S NIPPET 30.5 ... V ISIT-S NIPPET 43.5 ... V ISIT-S NIPPET 63.5",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-08/34",
+  "source": "https://arxiv.org/pdf/2608.02097",
+  "quote": "Each cell is run three times, and we report the best of the three runs",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-08/35",
+  "source": "https://arxiv.org/pdf/2608.02097",
+  "quote": "a goal-conditioned chunk versus an evidence summary",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-08/36",
+  "source": "https://arxiv.org/pdf/2608.02097",
+  "quote": "by +2.0 to +4.5 pp on BrowseComp",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-08/37",
+  "source": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-fetch-tool",
+  "quote": "Claude can write and run code to filter fetched content before it reaches the context window, keeping only relevant information and discarding the rest."
+ },
+ {
+  "id": "G-08/38",
+  "source": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-fetch-tool",
+  "quote": "allow Claude to cite specific passages from fetched documents"
+ },
+ {
+  "id": "G-08/39",
+  "source": "https://www.anthropic.com/research/effective-context-engineering-for-ai-agents",
+  "quote": "maintain lightweight identifiers (file paths, stored queries, web links, etc.) and use these references to dynamically load data into context at runtime using tools"
+ },
+ {
+  "id": "G-08/4",
+  "source": "https://arxiv.org/pdf/2608.02751",
+  "quote": "Dense 43.0𝑏 21k𝑎𝑏 25.9𝑎𝑏 25.5𝑏 42k𝑏 47.6𝑎𝑏 36.5 58k𝑎𝑏 65.7",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-08/40",
+  "source": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
+  "quote": "When working with large documents or data-rich inputs (20k+ tokens)"
+ },
+ {
+  "id": "G-08/41",
+  "source": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
+  "quote": "Place your long documents and inputs near the top of your prompt"
+ },
+ {
+  "id": "G-08/42",
+  "source": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
+  "quote": "ask Claude to quote relevant parts of the documents first before carrying out its task"
+ },
+ {
+  "id": "G-08/5",
+  "source": "https://arxiv.org/pdf/2608.02751",
+  "quote": "BM25+Dense 40.2𝑎𝑏 21k𝑎𝑏 35.4𝑎𝑏 21.8𝑎𝑏 39k𝑎𝑏 56.3𝑎𝑏 33.7 53k𝑎𝑏 68.5𝑏",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-08/6",
+  "source": "https://arxiv.org/pdf/2608.02751",
+  "quote": "Iterative Search–Fetch (section fetching) BM25 41.0𝑎𝑏 13k𝑎𝑏 31.1𝑎𝑏 24.5𝑏 22k𝑎𝑏 50.3𝑎𝑏 30.6𝑏 40k𝑎𝑏 76.6𝑎𝑏",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-08/7",
+  "source": "https://arxiv.org/pdf/2608.02751",
+  "quote": "Dense 40.7𝑎𝑏 14k𝑎 33.2𝑎𝑏 23.4𝑎𝑏 23k𝑎𝑏 53.9𝑎𝑏 30.1𝑏 37k𝑎𝑏 78.6𝑎𝑏",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-08/8",
+  "source": "https://arxiv.org/pdf/2608.02751",
+  "quote": "BM25+Dense 40.5𝑎𝑏 14k𝑎 32.6𝑎𝑏 24.6𝑏 23k𝑎𝑏 53.0𝑎𝑏 34.9 35k𝑎𝑏 73.6𝑎𝑏",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-08/9",
+  "source": "https://arxiv.org/pdf/2608.02751",
+  "quote": "Superscripts 𝑎 and 𝑏 denote significance versus BM25 Search–Visit and the default Sieve, respectively, after Bonferroni correction.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-09/4",
+  "source": "https://arxiv.org/pdf/2601.05503",
+  "quote": "then peaks around 7 searches and plateaus",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-09/5",
+  "source": "https://arxiv.org/pdf/2601.05503",
+  "quote": "dramatically reaches 38.9k TPC – over 221×",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-09/6",
+  "source": "https://arxiv.org/pdf/2601.05503",
+  "quote": "The Deep Research configuration, for example, reaches the highest answer accuracy but requires",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-09/7",
+  "source": "https://arxiv.org/pdf/2601.05503",
+  "quote": "(GPT-4o-mini), Reason (o4-mini)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-09/8",
+  "source": "https://arxiv.org/abs/2609.05637",
+  "quote": "It captures about half of the enterprise full-merge gain (+4.3 HIT@10) while paying rewriting cost on <40% of queries"
+ },
+ {
+  "id": "G-09/9",
+  "source": "https://arxiv.org/abs/2609.05637",
+  "quote": "A downstream answer-quality evaluation confirms the router improves F1 by +1.92 (p<0.01) at roughly 40% of the expansion cost"
+ },
+ {
+  "id": "G-10/10",
+  "source": "https://arxiv.org/abs/2507.00355",
+  "quote": "showing gains in retrieval (MRR@10: +36.7%) and answer accuracy (F1: +11.6%) over standard RAG baselines"
+ },
+ {
+  "id": "G-10/11",
+  "source": "https://arxiv.org/abs/2507.00355",
+  "quote": "Accepted to ACL SRW 2025"
+ },
+ {
+  "id": "G-10/12",
+  "source": "https://arxiv.org/pdf/2405.00623",
+  "quote": "Correct (%) 63.9% (8.6) 72.8% (7.4) 67.9% (8.1) 74.2% (7.1)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-10/13",
+  "source": "https://arxiv.org/pdf/2405.00623",
+  "quote": "Control <∗∗ Uncertain1st",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-10/14",
+  "source": "https://arxiv.org/pdf/2405.00623",
+  "quote": "marked as ∗ (p < 0.05) or ∗∗ (p < 0.01)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-10/15",
+  "source": "https://arxiv.org/pdf/2405.00623",
+  "quote": "human-subject experiment (N=404)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-10/16",
+  "source": "https://arxiv.org/pdf/2405.00623",
+  "quote": "DV ∼ Condition + (1|participant) + (1|question)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-10/2",
+  "source": "https://arxiv.org/pdf/2402.14207",
+  "quote": "RAG 28.52 13.18 7.57 3.14 4.22 3.05 4.08",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-10/3",
+  "source": "https://arxiv.org/pdf/2402.14207",
+  "quote": "searches additional information with section titles to generate the article section by section",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-10/4",
+  "source": "https://arxiv.org/pdf/2402.14207",
+  "quote": "For final article generation, we only report the ... results using gpt-4",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-10/5",
+  "source": "https://arxiv.org/pdf/2210.03350",
+  "quote": "Direct prompting 17.6 25.4 5.6",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-10/6",
+  "source": "https://arxiv.org/pdf/2210.03350",
+  "quote": "Self-ask 57.6 30.0 13.8",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-10/7",
+  "source": "https://arxiv.org/pdf/2210.03350",
+  "quote": "Self-ask + Search 60.0 40.1 15.2",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-10/8",
+  "source": "https://arxiv.org/pdf/2210.03350",
+  "quote": "125 questions, Bamboogle",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-10/9",
+  "source": "https://arxiv.org/pdf/2210.03350",
+  "quote": "Table 1: Davinci-002 accuracy (%) on Bamboogle",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 consumer/a1",
+  "source": "https://arxiv.org/pdf/2606.13610",
+  "quote": "re-ranking flips 219 fooled cells to resisted and … 106 resisted cells to fooled (exact McNemar p = … 3.5 × 10−10 )",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 consumer/a2",
+  "source": "https://arxiv.org/pdf/2606.13610",
+  "quote": "This is the same primacy effect measured in … §4, working in both directions.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 consumer/a3",
+  "source": "https://arxiv.org/pdf/2606.13610",
+  "quote": "All three attacks operate on the top-3 retrieved",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 consumer/a4",
+  "source": "https://arxiv.org/pdf/2606.13610",
+  "quote": "staffed media, vertical press, brand- … official sites.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 consumer/a5",
+  "source": "https://arxiv.org/pdf/2606.13610",
+  "quote": "Anyone may post: forums, … blog platforms, self-publish portals, aggregator … and ranking sites.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 consumer/a7",
+  "source": "https://arxiv.org/pdf/2606.13610",
+  "quote": "only their position … in the prompt differs",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 consumer/a9",
+  "source": "https://doi.org/10.1093/jcr/ucv047",
+  "quote": "Consumer Reports scores were significantly and positively"
+ },
+ {
+  "id": "SKILL.md § Phase 4 consumer/a10",
+  "source": "https://doi.org/10.1093/jcr/ucv047",
+  "quote": "related to average user ratings, but the effect was quite"
+ },
+ {
+  "id": "SKILL.md § Phase 4 consumer/a11",
+  "source": "https://doi.org/10.1093/jcr/ucv047",
+  "quote": "95% CI, 0.10–0.22"
+ },
+ {
+  "id": "SKILL.md § Phase 4 consumer/a12",
+  "source": "https://doi.org/10.1093/jcr/ucv047",
+  "quote": "such that average user ratings with higher SEs"
+ },
+ {
+  "id": "SKILL.md § Phase 4 consumer/a13",
+  "source": "https://doi.org/10.1093/jcr/ucv047",
+  "quote": "We standardized all pre-"
+ },
+ {
+  "id": "SKILL.md § Phase 4 consumer/a14",
+  "source": "https://doi.org/10.1093/jcr/ucv047",
+  "quote": "1272 products across 120 vertically differentiated product categories"
+ },
+ {
+  "id": "SKILL.md § Phase 4 consumer/a15",
+  "source": "https://doi.org/10.1093/jcr/ucv047",
+  "quote": "(ConsumerReports.org) in February 2012"
+ },
+ {
+  "id": "SKILL.md § Phase 4 technical/a1",
+  "source": "https://arxiv.org/pdf/2406.14497",
+  "quote": "Claude-3-sonnet 41.0 37.6 35.3 38.0 34.2",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 technical/a2",
+  "source": "https://arxiv.org/pdf/2406.14497",
+  "quote": "Gemini-1.5-flash 50.6 48.3 46.7 46.2 41.9",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 technical/a3",
+  "source": "https://arxiv.org/pdf/2406.14497",
+  "quote": "Gemini-1.5-pro 57.2 54.4 45.6 51.0 46.5",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 technical/a4",
+  "source": "https://arxiv.org/pdf/2406.14497",
+  "quote": "Claude-3-haiku 48.5 42.6 39.2 44.6 33.7",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 technical/a5",
+  "source": "https://arxiv.org/pdf/2406.14497",
+  "quote": "GPT-4o 44.6 49.2 44.2 47.6 40.3",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 technical/a6",
+  "source": "https://arxiv.org/pdf/2406.14497",
+  "quote": "many retrieved posts and tutorials are about the",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 technical/a7",
+  "source": "https://arxiv.org/pdf/2406.14497",
+  "quote": "hence could hint or disclose the answer",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 technical/a8",
+  "source": "https://arxiv.org/pdf/2406.14497",
+  "quote": "raw HTML pages obtained from ClueWeb22",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "SKILL.md § Phase 4 technical/a9",
+  "source": "https://doi.org/10.1109/SP.2016.25",
+  "quote": "Each participant was assigned the same four tasks, but"
+ },
+ {
+  "id": "SKILL.md § Phase 4 technical/a10",
+  "source": "https://doi.org/10.1109/SP.2016.25",
+  "quote": "graded as secure, compared to 65.5% (19/29) for free, 73.0%"
+ },
+ {
+  "id": "SKILL.md § Phase 5 cross-reference/a1",
+  "source": "https://doi.org/10.1037/xap0000073",
+  "quote": "An example comment from one expert who agreed with … the statement and one who disagreed with the statement will be … shown."
+ },
+ {
+  "id": "SKILL.md § Phase 5 cross-reference/a2",
+  "source": "https://doi.org/10.1037/xap0000073",
+  "quote": "The table showed the percentage of experts … who agreed, were uncertain, or who disagreed with the statement."
+ },
+ {
+  "id": "SKILL.md § Phase 5 cross-reference/a3",
+  "source": "https://doi.org/10.1037/xap0000073",
+  "quote": "Participants (N ⫽ 402) were recruited from Amazon Mechanical … Turk, subject to the condition that they be U.S. residents"
+ },
+ {
+  "id": "SKILL.md § Phase 5 cross-reference/a4",
+  "source": "https://doi.org/10.1037/xap0000073",
+  "quote": "leaving 393 participants in the final sample."
+ },
+ {
+  "id": "SKILL.md § Phase 5 cross-reference/a5",
+  "source": "https://doi.org/10.1037/xap0000073",
+  "quote": "The condition by consensus interaction was … statistically significant for the combined agreement measure, F(1, … 389) ⫽ 11.01, p ⫽ .001"
+ },
+ {
+  "id": "SKILL.md § Phase 5 cross-reference/a6",
+  "source": "https://doi.org/10.1037/xap0000073",
+  "quote": "Means on the combined agreement measures are … displayed by condition in Figure 4."
+ },
+ {
+  "id": "SKILL.md § Phase 5 cross-reference/a7",
+  "source": "https://doi.org/10.1037/xap0000073",
+  "quote": "the primary effect of … balance was to reduce perceived consensus among experts on the … high consensus issues."
+ },
+ {
+  "id": "G-01/a1",
+  "source": "https://arxiv.org/abs/2501.15654",
+  "quote": "Each experiment consists of 60 ar- … ticles, 30 human-written and 30 LLM-generated.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-01/a2",
+  "source": "https://arxiv.org/abs/2501.15654",
+  "quote": "Experiment 1: What kinds of … LLM: GPT-4 O (2024-08-06)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-01/a3",
+  "source": "https://arxiv.org/abs/2501.15654",
+  "quote": "Avg. TPR 56.7 92.7",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-01/a4",
+  "source": "https://arxiv.org/abs/2501.15654",
+  "quote": "Avg. FPR 51.7 4.0",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-01/a5",
+  "source": "https://arxiv.org/abs/2501.15654",
+  "quote": "The average FPR for this popu- … lation of annotators was 3.3%",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-01/a6",
+  "source": "https://arxiv.org/abs/2501.15654",
+  "quote": "erage TPR of 56.7% and FPR of 52.5% (Table 1)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-01/a7",
+  "source": "https://arxiv.org/abs/2501.15654",
+  "quote": "jority (53.1%) of all explanations, while sentence … structure (35.9%)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-01/a8",
+  "source": "https://arxiv.org/abs/2501.15654",
+  "quote": "the frequency of explanations that mention that category (regardless of correctness)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-01/a9",
+  "source": "https://arxiv.org/abs/2501.15654",
+  "quote": "NAMES & TI- 11.7%",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-01/a10",
+  "source": "https://arxiv.org/abs/2501.15654",
+  "quote": "FACTUALITY 7.2%",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-01/a11",
+  "source": "https://arxiv.org/abs/2501.15654",
+  "quote": "Human writing in the domain of non-fiction is factually accurate and contains many specific factual claims.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-01/a12",
+  "source": "https://arxiv.org/abs/2501.15654",
+  "quote": "63.3% of GPT-4 O and 70% of … C LAUDE -3.5-S ONNET articles include either the name … Emily or Sarah.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-01/a13",
+  "source": "https://arxiv.org/abs/2501.15654",
+  "quote": "LLMs frequently generate the same names regardless of … the prompt",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-01/a14",
+  "source": "https://arxiv.org/abs/2501.15654",
+  "quote": "Generating paired AI articles: For each human- … written article, we generate a corresponding AI … article by prompting an LLM with its title, subti- … tle, desired length, and publication source.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-02/a1",
+  "source": "https://arxiv.org/pdf/2605.23497",
+  "quote": "The recency split uses a fixed ... midpoint at 2014-10-30",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-02/a2",
+  "source": "https://arxiv.org/pdf/2605.23497",
+  "quote": "are observed exclusively ... in the Web condition, where recent questions score approximately ... 0.20–0.24 points higher",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-02/a3",
+  "source": "https://arxiv.org/pdf/2605.23497",
+  "quote": "p=0.473 p=0.319 p=0.319 p=0.013 p=0.275 p=0.753 p=0.564 p=0.052 p=0.456 p=0.789 p=0.288 p=0.034",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-02/a4",
+  "source": "https://arxiv.org/pdf/2605.23497",
+  "quote": "p=0.561 p=0.235 p=0.211 p=0.226 ... p=0.464 p=0.287 p=0.123 p=0.015 p=0.593 p=0.725 p=0.829 p=0.657",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-02/a5",
+  "source": "https://arxiv.org/pdf/2605.23497",
+  "quote": "Interval 1 (n=61) vs Interval 2 (n=52)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-02/a6",
+  "source": "https://arxiv.org/pdf/2605.23497",
+  "quote": "1 (n=47) vs Interval 2 (n=37)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-02/a7",
+  "source": "https://arxiv.org/pdf/2605.23497",
+  "quote": "Pre-Amendment Single (n = 113), Multi (n = 84).",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-02/a8",
+  "source": "https://arxiv.org/pdf/2605.23497",
+  "quote": "conducted a ablation on a subset of our questions",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-05/a1",
+  "source": "https://arxiv.org/abs/2611.09203",
+  "quote": "We use the recall measured in Section 3: 0.92 for lightly edited copies and 0.00 for reworded ones",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-05/a2",
+  "source": "https://arxiv.org/abs/2611.09203",
+  "quote": "accept after two chains as the detector sees them (2 chains)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-05/a4",
+  "source": "https://arxiv.org/abs/2611.09203",
+  "quote": "close to the chance that the detector misses at least one of ten copies",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-05/a5",
+  "source": "https://arxiv.org/abs/2611.09203",
+  "quote": "collusion (two distinct sources that coordinate on the same false claim without copying each other)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-05/a6",
+  "source": "https://arxiv.org/abs/2611.09203",
+  "quote": "All results are conditional on this stream construction, the detector error model and the student setup.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-05/a7",
+  "source": "https://arxiv.org/abs/2611.09203",
+  "quote": "The stream is simulated: the detectors are not run on generated text",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-05/a8",
+  "source": "https://arxiv.org/abs/2611.09203",
+  "quote": "Reports arrive over 30 days in time order.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-05/a9",
+  "source": "https://arxiv.org/abs/2611.09203",
+  "quote": "Three seeds (10-12)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-06/a1",
+  "source": "https://arxiv.org/abs/2608.06539",
+  "quote": "Table 1: Fact-checking accuracy on CancerMyth.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-06/a2",
+  "source": "https://arxiv.org/abs/2608.06539",
+  "quote": "All 61 (61/100) 37.1 (43/116)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-06/a3",
+  "source": "https://arxiv.org/abs/2608.06539",
+  "quote": "All 100 (100/100) 6.9 (8/116)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-06/a4",
+  "source": "https://arxiv.org/abs/2608.06539",
+  "quote": "Top-4 94 (94/100) 42.2 (49/116)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-08/a1",
+  "source": "https://arxiv.org/abs/2608.02751",
+  "quote": "Superscripts 𝑎 and 𝑏 denote significance versus BM25 Search–Visit and the default Sieve, respectively, after Bonferroni correction.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-08/a2",
+  "source": "https://arxiv.org/abs/2608.02751",
+  "quote": "We use exact McNemar tests for binary outcomes and paired 𝑡-tests for tokens and calls, two-sided at 𝛼=0.05, with Bonferroni correction.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-08/a3",
+  "source": "https://arxiv.org/abs/2608.02751",
+  "quote": "BM25 43.7𝑏 20k𝑏 15.9𝑏 26.1𝑏 43k𝑏 28.7𝑏 34.7 68k𝑏 64.1",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-08/a4",
+  "source": "https://arxiv.org/abs/2608.02751",
+  "quote": "Dense 43.0𝑏 21k𝑎𝑏 25.9𝑎𝑏 25.5𝑏 42k𝑏 47.6𝑎𝑏 36.5 58k𝑎𝑏 65.7",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-08/a5",
+  "source": "https://arxiv.org/abs/2608.02751",
+  "quote": "BM25+Dense 40.2𝑎𝑏 21k𝑎𝑏 35.4𝑎𝑏 21.8𝑎𝑏 39k𝑎𝑏 56.3𝑎𝑏 33.7 53k𝑎𝑏 68.5𝑏",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-08/a6",
+  "source": "https://arxiv.org/abs/2608.02751",
+  "quote": "BM25 41.0𝑎𝑏 13k𝑎𝑏 31.1𝑎𝑏 24.5𝑏 22k𝑎𝑏 50.3𝑎𝑏 30.6𝑏 40k𝑎𝑏 76.6𝑎𝑏",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-08/a7",
+  "source": "https://arxiv.org/abs/2608.02751",
+  "quote": "Dense 40.7𝑎𝑏 14k𝑎 33.2𝑎𝑏 23.4𝑎𝑏 23k𝑎𝑏 53.9𝑎𝑏 30.1𝑏 37k𝑎𝑏 78.6𝑎𝑏",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-08/a8",
+  "source": "https://arxiv.org/abs/2608.02751",
+  "quote": "BM25+Dense 40.5𝑎𝑏 14k𝑎 32.6𝑎𝑏 24.6𝑏 23k𝑎𝑏 53.0𝑎𝑏 34.9 35k𝑎𝑏 73.6𝑎𝑏",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-08/a9",
+  "source": "https://arxiv.org/abs/2608.02751",
+  "quote": "All BCP-S cells and the two Wikipedia Search–Visit baselines have recovery overlays. The Wikipedia Sieve arms and other Search–Fetch conditions do not.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-08/a10",
+  "source": "https://arxiv.org/abs/2407.16833",
+  "quote": "1-1 LC 49.70",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-08/a11",
+  "source": "https://arxiv.org/abs/2407.16833",
+  "quote": "1-2 RAG 37.33",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-08/a12",
+  "source": "https://arxiv.org/abs/2407.16833",
+  "quote": "2-1 LC 48.67",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-08/a13",
+  "source": "https://arxiv.org/abs/2407.16833",
+  "quote": "2-2 RAG 32.60",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-08/a14",
+  "source": "https://arxiv.org/abs/2407.16833",
+  "quote": "3-1 LC 32.07 23.34 42.96 49.19 45.33 41.04 17.92 19.61 14.73 34.50",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-08/a15",
+  "source": "https://arxiv.org/abs/2407.16833",
+  "quote": "3-2 RAG 30.33 18.22 38.15 49.21 37.84 35.16 16.41 18.94 15.39 43.67",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-08/a16",
+  "source": "https://arxiv.org/abs/2407.16833",
+  "quote": "On average, LC surpasses RAG by 7.6% for Gemini-1.5-Pro, 13.1% for GPT-4O, and 3.6%",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-08/a17",
+  "source": "https://arxiv.org/abs/2407.16833",
+  "quote": "where RAG achieves higher performance … than LC for GPT-3.5-Turbo",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-08/a18",
+  "source": "https://arxiv.org/abs/2407.16833",
+  "quote": "(147k words on av- … erage) compared with the limited context window … (16k) of GPT-3.5-Turbo",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-08/a19",
+  "source": "https://arxiv.org/abs/2407.16833",
+  "quote": "the performance grad- … ually improves to approach LC",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-08/a20",
+  "source": "https://arxiv.org/abs/2407.16833",
+  "quote": "when k is larger than 50, … all three methods get similar performance.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-08/a21",
+  "source": "https://arxiv.org/abs/2407.16833",
+  "quote": "we divide long contexts into … chunks of 300 words, and select the top k chunks … (default k = 5) based on the cosine similarity",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-08/a22",
+  "source": "https://arxiv.org/abs/2608.02097",
+  "quote": "we randomly … sample 200 of them, held fixed across every profile and backbone",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-08/a23",
+  "source": "https://arxiv.org/abs/2608.02097",
+  "quote": "On BrowseComp it falls below the transient O PEN +F IND at both backbones, 39.5 against 42.0 and 45.5 against 50.5",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-08/a24",
+  "source": "https://arxiv.org/abs/2608.02097",
+  "quote": "retention does not stand on its own: it pays only when the retained pages can be addressed together",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-08/a25",
+  "source": "https://arxiv.org/abs/2608.02097",
+  "quote": "Confining grep to a single already-fetched page",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "G-08/a26",
+  "source": "https://arxiv.org/abs/2608.02097",
+  "quote": "all released on the next open",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ }
+]
