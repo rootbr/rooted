@@ -82,7 +82,7 @@ Turn the topic upside down to reach questions forward thinking never visits.
 Flip the framing: instead of *how does this work?* ask *under what conditions does it break, become false, or produce the opposite?*
 
 ### Pre-mortem
-Assume the plan / understanding / investigation has already failed; reconstruct the questions that were never asked and would have surfaced the failure. Prospective hindsight is reported to lift risk-forecast accuracy by 30 %.
+Assume the plan / understanding / investigation has already failed; reconstruct the questions that were never asked and would have surfaced the failure. Prospective hindsight is reported to raise the number of reasons people give for a future outcome by about 30 %.
 
 ### Reverse brainstorming
 Instead of *how do we understand / solve this?* ask *how would we guarantee maximum misunderstanding or failure?* Invert the anti-answers into questions.

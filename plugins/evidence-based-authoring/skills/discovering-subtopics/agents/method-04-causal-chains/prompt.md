@@ -86,6 +86,6 @@ G-02. Systems thinking applied to non-system topics may come up empty for some e
 
 G-03. TRIZ contradictions must name **both** sides — "security is hard" is not a contradiction; "improving security reduces usability" is.
 
-G-04. Meadows' leverage-points list is 12 items long in its original form (parameters → buffers → structure → delays → feedback-loop gain → information flows → rules → self-organization → goals → paradigm → transcending paradigm → intent). In this agent use a subset (parameters, delays, feedback-loop gain, rules, goals, paradigm) unless the topic clearly invites all 12. Attempting all 12 on a topic with weak system dynamics produces padding.
+G-04. Meadows' leverage-points list is 12 items long in its revised form (parameters → buffers → stock-and-flow structure → delays → negative feedback loops → positive feedback loops → information flows → rules → self-organization → goals → paradigm → transcending paradigms). In this agent use a subset (parameters, delays, feedback loops, rules, goals, paradigm) unless the topic clearly invites all 12. Attempting all 12 on a topic with weak system dynamics produces padding.
 
 G-05. Completion marker rules — see [../../references/checkpointing-protocol.md](../../references/checkpointing-protocol.md).

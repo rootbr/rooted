@@ -25,7 +25,7 @@ Break the topic into independent dimensions and enumerate possible states within
 ## Method
 
 ### Starbursting (5W1H)
-Six question vectors. Produce 3–5 questions per vector. Tag: `[5W1H:Who]`, `[5W1H:What]`, `[5W1H:Where]`, `[5W1H:When]`, `[5W1H:Why]`, `[5W1H:How]`.
+Six question vectors. Produce 3–5 questions per vector, and under the `quick` budget at least one per vector. Tag: `[5W1H:Who]`, `[5W1H:What]`, `[5W1H:Where]`, `[5W1H:When]`, `[5W1H:Why]`, `[5W1H:How]`.
 
 ### Morphological analysis (Zwicky)
 Identify 4–6 logically independent dimensions. List 3–5 values per dimension. Walk the matrix; produce one question per **non-obvious** cell (skip trivial combinations). Prefer combinations the canonical overview of the topic would not naturally address.
