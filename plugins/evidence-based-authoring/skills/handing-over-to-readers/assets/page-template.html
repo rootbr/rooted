@@ -1,8 +1,9 @@
 <title><!--TITLE--></title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <style>
-/* Layout: one column; a sticky player over one article. The article is the body the builder joins in;
-   its words come from the body and from DATA.strings, never from this file. */
+/* Layout: one column of one article; on an explanation the map of the page stands at its left, and the code or the
+   source behind a reference opens in a panel at its right. The article is the body the builder joins in; its words
+   come from the body and from DATA.strings, never from this file. */
 :root {
   --bg: #f6f7f9;
   --surface: #ffffff;
@@ -23,6 +24,8 @@
   --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
   --col: 76ch;
   --gutter: 20px;
+  --map-w: 264px;        /* the map of the page */
+  --ref-w: 380px;        /* the panel of a reference */
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
@@ -57,29 +60,23 @@ code { font-family: var(--font-mono); font-size: 0.86em; background: var(--tint)
 .muted { color: var(--muted); font-size: 14.5px; }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
-/* the player */
-.player {
-  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--surface); border: 1px solid var(--line);
-  border-radius: 10px; padding: 10px 14px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center;
-  box-shadow: 0 6px 14px -10px var(--ink);
-}
-.player audio { flex: 1 1 260px; max-width: 420px; height: 36px; }
-.now { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-size: 14px; }
-.now strong { font-weight: 600; min-width: 9.5em; }
-.chapters { display: flex; flex-wrap: wrap; gap: 8px; }
 .linkbtn { font: inherit; font-size: 13.5px; font-weight: 600; color: var(--accent); background: none; border: 1px solid var(--line); border-radius: 8px; padding: 5px 11px; cursor: pointer; font-variant-numeric: tabular-nums; }
 .linkbtn:disabled { opacity: 0.5; cursor: default; }
 .no-audio { color: var(--muted); font-size: 14px; }
-/* past six parts the part buttons open from one control, as a list over the page under the player */
-.parts-toggle { display: inline-flex; align-items: center; gap: 8px; }
-.parts-toggle::after { content: ""; width: 6px; height: 6px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: translateY(-2px) rotate(45deg); }
-.parts-toggle[aria-expanded="true"]::after { transform: translateY(2px) rotate(-135deg); }
-.player.many-parts .chapters {
-  position: absolute; top: calc(100% + 6px); right: 0; z-index: 6; flex-direction: column; flex-wrap: nowrap; gap: 4px;
-  width: max-content; max-width: min(520px, 100%); max-height: 60vh; overflow-y: auto; background: var(--surface);
-  border: 1px solid var(--line); border-radius: 10px; padding: 8px; box-shadow: 0 10px 24px -12px var(--ink);
+
+/* the voice by part: a button at the end of each part's heading. Its words stand in data-label and show through
+   ::after, so they never enter the heading's text, a selection of it or a comment's quote; its glyph is drawn here. */
+.part-voice {
+  display: inline-flex; align-items: center; gap: 7px; margin-left: 12px; vertical-align: 0.2em; font-family: var(--font-text);
+  font-size: 13px; font-weight: 600; line-height: 1.3; color: var(--accent); background: var(--surface); border: 1px solid var(--line);
+  border-radius: 999px; padding: 3px 11px 3px 9px; cursor: pointer; user-select: none; -webkit-user-select: none; white-space: nowrap;
 }
-.player.many-parts .chapters .linkbtn { text-align: left; border-color: transparent; }
+.part-voice::before { content: ""; width: 0; height: 0; border-left: 8px solid currentColor; border-top: 5px solid transparent; border-bottom: 5px solid transparent; }
+.part-voice.is-playing::before { width: 8px; height: 10px; border: 0; border-left: 3px solid currentColor; border-right: 3px solid currentColor; }
+.part-voice::after { content: attr(data-label); }
+.part-voice.is-next { color: var(--bg); background: var(--accent); border-color: var(--accent); }
+.part-line { display: flex; }
+.part-line .part-voice { margin-left: 0; }
 
 /* the article */
 .sheet {
@@ -200,17 +197,17 @@ details.q > .answer { max-width: var(--col); }
 .marks button[aria-pressed="true"] { background: var(--accent-soft); border-color: var(--accent); font-weight: 600; }
 .return-to { display: flex; flex-wrap: wrap; gap: 8px 10px; align-items: center; max-width: var(--col); }
 
-/* the pause beside the spoken sentence: a round button in the article's left padding, its glyph drawn here */
+/* the tools of a selection: two buttons above the selected text's first line, at its end, or under its last line */
 main, .sheet { position: relative; }
-.hint { flex-basis: 100%; font-size: 13px; color: var(--muted); }
-.side-tools { position: absolute; left: 2px; display: flex; flex-direction: column; gap: 4px; z-index: 2; }
-.round { width: 24px; height: 24px; border-radius: 50%; border: 1px solid var(--line); background: var(--surface); padding: 0; cursor: pointer; display: grid; place-items: center; }
-.round::before { content: ""; width: 8px; height: 10px; border-left: 3px solid var(--accent); border-right: 3px solid var(--accent); }
-.round.is-paused::before { width: 0; height: 0; border-left: 9px solid var(--accent); border-right: 0; border-top: 6px solid transparent; border-bottom: 6px solid transparent; margin-left: 2px; }
-.round.note::before { width: 10px; height: 10px; border: 0; margin: 0;
-  background: linear-gradient(var(--accent), var(--accent)) center / 100% 2px no-repeat, linear-gradient(var(--accent), var(--accent)) center / 2px 100% no-repeat; }
-.sheet.with-voice .s { cursor: pointer; }
-.sheet.with-voice .decision .s { cursor: auto; }
+.sel-tools {
+  position: absolute; z-index: 7; display: flex; align-items: center; gap: 4px; background: var(--surface); border: 1px solid var(--line);
+  border-radius: 8px; padding: 3px; box-shadow: 0 6px 16px -10px var(--ink); font-size: 13.5px;
+}
+.sel-tools button { font: inherit; font-weight: 600; color: var(--accent); background: none; border: 0; border-radius: 6px; padding: 4px 10px; cursor: pointer; }
+.sel-tools button:hover { background: var(--accent-soft); }
+.sel-tools button:disabled { opacity: 0.5; cursor: default; background: none; }
+.sel-said { color: var(--muted); font-size: 13px; padding-right: 6px; }
+.sel-said:empty { display: none; }
 
 /* a comment on a piece of the text: the window under the piece, the piece marked, the list before the answer bar */
 .note-pop { position: absolute; z-index: 7; background: var(--surface); border: 1.5px solid var(--accent); border-radius: 10px; padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; box-shadow: 0 10px 24px -12px var(--ink); font-size: 14.5px; }
@@ -223,18 +220,79 @@ main, .sheet { position: relative; }
 ::highlight(note-draft) { background-color: var(--accent-soft); }
 .s.noted { text-decoration: underline; text-decoration-color: var(--accent); }
 
+/* the gist of a part: the few sentences to keep, set apart by a rule at their side on a tinted ground */
+.gist { max-width: var(--col); display: flex; flex-direction: column; gap: 8px; border-left: 4px solid var(--accent); background: var(--accent-soft); border-radius: 0 8px 8px 0; padding: 12px 16px; }
+.sheet .gist ul, .sheet .gist ol { gap: 4px; }
+/* a worked case, one block a step: side by side where they fit, stacked in a narrow window */
+.steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; }
+.step { display: flex; flex-direction: column; gap: 6px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); padding: 12px 14px; }
+/* the method that carries out a line of the pseudocode, at the right edge of the line */
+figure.pseudo pre .by { float: right; margin-left: 3ch; color: var(--muted); }
+
+/* the map of the page: beside the text from 840 px, pushing it; over the text below that; its toggle at the top left */
+.has-map { scroll-padding-top: 64px; }
+.has-map body { padding-top: 64px; }
+.map-beside body { padding-left: calc(var(--map-w) + max(var(--gutter), env(safe-area-inset-left, 0px))); }
+.map-toggle {
+  position: fixed; top: max(10px, env(safe-area-inset-top, 0px)); left: max(10px, env(safe-area-inset-left, 0px)); z-index: 9;
+  display: inline-flex; align-items: center; gap: 8px; font: inherit; font-size: 13.5px; font-weight: 600; color: var(--accent);
+  background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 6px 12px; cursor: pointer; box-shadow: 0 4px 12px -8px var(--ink);
+}
+.map-toggle::before { content: ""; width: 14px; height: 10px; border-top: 2px solid currentColor; border-bottom: 2px solid currentColor;
+  background: linear-gradient(currentColor, currentColor) center / 100% 2px no-repeat; }
+.page-map {
+  position: fixed; top: 0; bottom: 0; left: 0; z-index: 8; width: var(--map-w); overflow-y: auto; overscroll-behavior: contain;
+  background: var(--surface); border-right: 1px solid var(--line); padding: 60px 10px 24px 12px; font-size: 14px; line-height: 1.4;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.page-map:not([hidden]) { animation: map-in 0.18s ease-out; }
+@keyframes map-in { from { transform: translateX(-100%); } to { transform: none; } }
+.map-filter { display: flex; flex-direction: column; gap: 4px; font-size: 13px; color: var(--muted); }
+.map-filter input { font: inherit; font-size: 14px; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 6px 9px; }
+.map-parts, .map-entries { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; }
+.map-entries { padding: 2px 0 6px 26px; }
+.map-head { display: flex; align-items: flex-start; gap: 2px; }
+.map-disclose { flex: none; width: 24px; height: 28px; border: 0; background: none; color: var(--muted); cursor: pointer; display: grid; place-items: center; padding: 0; }
+.map-disclose::before { content: ""; width: 6px; height: 6px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(-45deg); }
+.map-disclose[aria-expanded="true"]::before { transform: rotate(45deg); }
+.map-disclose.is-empty { visibility: hidden; }
+.map-part, .map-entries a { display: block; width: 100%; text-align: left; font: inherit; color: var(--ink); background: none; border: 0; border-radius: 6px; padding: 4px 8px; cursor: pointer; text-decoration: none; }
+.map-part { font-weight: 600; }
+.map-part:hover, .map-entries a:hover { background: var(--tint); }
+.map-kind { display: block; font-size: 12px; color: var(--muted); }
+.page-map [aria-current="location"] { background: var(--accent-soft); box-shadow: inset 3px 0 0 var(--accent); }
+@media (max-width: 839.98px) {
+  .page-map { width: min(300px, 86vw); box-shadow: 0 10px 30px -12px var(--ink); }
+}
+
+/* references in place: a name of the code or of a source previews what it names and opens it in a panel */
+.ref { text-decoration: underline dotted; text-decoration-color: var(--accent); text-underline-offset: 3px; cursor: pointer; }
+.ref-pop {
+  position: absolute; z-index: 7; max-width: min(560px, calc(100% - 16px)); background: var(--surface); border: 1px solid var(--line);
+  border-radius: 8px; padding: 10px 12px; box-shadow: 0 10px 24px -12px var(--ink); font-size: 13.5px; display: flex; flex-direction: column; gap: 6px;
+}
+.ref-pop pre, .ref-panel pre { margin: 0; overflow-x: auto; background: var(--tint); border-radius: 6px; padding: 8px 10px; font-family: var(--font-mono); font-size: 12.5px; line-height: 1.5; white-space: pre; font-variant-ligatures: none; }
+.ref-panel {
+  position: fixed; top: 0; right: 0; bottom: 0; z-index: 8; width: var(--ref-w); overflow-y: auto; overscroll-behavior: contain;
+  background: var(--surface); border-left: 1px solid var(--line); padding: 16px 18px 24px; display: flex; flex-direction: column; gap: 10px; font-size: 14.5px;
+}
+.ref-panel h2 { font-size: 17px; }
+.ref-panel h2:focus { outline: none; }
+.ref-panel .ref-close { align-self: flex-end; }
+.ref-beside body { padding-right: calc(var(--ref-w) + max(var(--gutter), env(safe-area-inset-right, 0px))); }
+html:not(.ref-beside) .ref-panel { box-shadow: 0 10px 30px -12px var(--ink); }
+@media (max-width: 839.98px) {
+  .ref-panel { width: min(420px, 92vw); }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { transition: none !important; scroll-behavior: auto !important; }
+  *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
 }
 </style>
 
 <main>
-  <div class="player" id="player">
-    <audio id="voice" controls preload="metadata"></audio>
-    <p class="no-audio" id="no-audio" data-string="noAudio" hidden></p>
-    <div class="now" id="now"><span class="muted" data-string="now"></span> <strong id="now-part" data-string="notPlaying"></strong> <button type="button" class="linkbtn" id="now-jump" data-string="jump" disabled></button></div>
-    <div class="chapters" id="parts"></div>
-  </div>
+  <audio id="voice" preload="metadata" hidden></audio>
+  <p class="no-audio" id="no-audio" data-string="noAudio" hidden></p>
   <article class="sheet" id="article">
 <!--BODY-->
   </article>
@@ -246,16 +304,25 @@ main, .sheet { position: relative; }
   "use strict";
   var DATA = JSON.parse(document.getElementById("page-data").textContent);
   var S = DATA.strings, ID = DATA.id, CUES = DATA.cues, PARTS = DATA.parts;
-  var OPEN_PARTS = 6;  /* the most parts whose buttons stand open in the player */
-  var article = document.getElementById("article");
+  var LEAD = 0.08;     /* seconds: a cue counts as spoken this long before its start, as the voice reaches it between frames */
+  var BEFORE = 0.05;   /* seconds: a jump to a sentence lands this long before its start, so its first sound is heard whole */
+  var article = document.getElementById("article"), main = document.querySelector("main");
   var calm = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  /* From this width the map and the panel of a reference stand beside the text and push it; below it they lie over it. */
+  var WIDE = window.matchMedia ? window.matchMedia("(min-width: 840px)") : null;
   function $(id) { return document.getElementById(id); }
   function el(tag, cls, text) { var e = document.createElement(tag); if (cls) { e.className = cls; } if (text != null) { e.textContent = text; } return e; }
   function all(root, selector) { return Array.prototype.slice.call(root.querySelectorAll(selector)); }
-  function mmss(s) { s = Math.round(s); return Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0"); }
   function ids(e) { return (e.getAttribute("data-lit") || "").split(/\s+/).filter(Boolean); }
   function scrollTo(e) { e.scrollIntoView({ block: "center", behavior: calm ? "auto" : "smooth" }); }
+  function wide() { return !!WIDE && WIDE.matches; }
+  function topLevel(e) { while (e && e.parentElement !== article) { e = e.parentElement; } return e; }
   all(document, "[data-string]").forEach(function (e) { e.textContent = S[e.getAttribute("data-string")] || ""; });
+
+  /* Where part n stands: its h2; for an opening, which has none, the body's h1; else the top-level element that holds the
+     part's first sentence. */
+  function partHeading(n) { return article.querySelector('h2[data-lit~="' + PARTS[n].cue + '"]') || (n === 0 ? article.querySelector("h1") : null); }
+  function partStart(n) { return partHeading(n) || topLevel(article.querySelector('[data-lit~="' + PARTS[n].cue + '"]')); }
 
   /* ---------- the voice: the sentence and the elements that name it are lit while it is spoken ---------- */
   var voice = $("voice"), partOf = {}, LIT = all(article, "[data-lit]").map(function (e) { return { e: e, ids: ids(e) }; });
@@ -264,7 +331,7 @@ main, .sheet { position: relative; }
   var played = false, litId = null, frame = 0;
   function cueAt(t) {
     var current = null;
-    for (var i = 0; i < CUES.length; i++) { if (t >= CUES[i].start - 0.08) { current = CUES[i]; } else { break; } }
+    for (var i = 0; i < CUES.length; i++) { if (t >= CUES[i].start - LEAD) { current = CUES[i]; } else { break; } }
     return current;
   }
   function light() {
@@ -273,71 +340,85 @@ main, .sheet { position: relative; }
     if (id === litId) { return; }
     litId = id;
     LIT.forEach(function (x) { x.e.classList.toggle("lit", id !== null && x.ids.indexOf(id) >= 0); });
-    var part = cue ? partOf[cue.paragraph] : null;
-    $("now-part").textContent = !part ? S.notPlaying
-      : part.paragraph > 1 ? S.part + " " + part.paragraph + "/" + PARTS.length + ": " + part.title : part.title;
-    $("now-jump").disabled = !cue;
-    placeSide();
   }
-  /* The place of the spoken sentence: its own span, else the first element its id lights. */
-  function spoken() { return article.querySelector(".s.lit") || article.querySelector(".lit"); }
-  function follow() { light(); frame = voice.paused ? 0 : requestAnimationFrame(follow); }
+  function follow() { light(); stopAtPartEnd(); frame = voice.paused ? 0 : requestAnimationFrame(follow); }
   ["play", "pause", "seeked", "ended", "timeupdate"].forEach(function (name) {
     voice.addEventListener(name, function () {
-      if (name === "play") { played = true; }
+      if (name === "play") { startPart(); }
+      if (name === "ended") { speaking = -1; waiting = -1; }
       light();
+      if (name === "timeupdate") { stopAtPartEnd(); }
+      paintParts();
       if (name === "play" && !frame) { frame = requestAnimationFrame(follow); }
     });
   });
-  $("now-jump").addEventListener("click", function () {
-    var target = spoken();
-    if (target) { scrollTo(target); }
-  });
-  var partList = $("parts"), partsToggle = null;
-  /* The part list of a page with more than OPEN_PARTS parts opens and closes under its control. A list that closes with
-     the focus inside hands the focus to its control, so the keyboard does not land on a hidden button. */
-  function openParts() {
-    partList.hidden = false;
-    partsToggle.setAttribute("aria-expanded", "true");
+
+  /* ---------- the voice by part: the button at a part's heading speaks that part, and the voice stops at its end ---------- */
+  /* speaking: the index of the part the voice is in, running or paused by the reader; -1 before the first start and after
+     a stop. waiting: the index of the part after a stop at a part's end, its button marked as the way on; -1 otherwise.
+     stopAt: the time at which the part being spoken ends. */
+  var speaking = -1, waiting = -1, stopAt = Infinity, partButtons = [];
+  function partIndexAt(t) {
+    var found = 0;
+    for (var i = 0; i < PARTS.length; i++) { if (t >= PARTS[i].start - LEAD) { found = i; } else { break; } }
+    return found;
   }
-  function closeParts() {
-    if (!partsToggle) { return; }
-    var focusInside = partList.contains(document.activeElement);
-    partList.hidden = true;
-    partsToggle.setAttribute("aria-expanded", "false");
-    if (focusInside) { partsToggle.focus(); }
+  function endOf(n) { return n + 1 < PARTS.length ? PARTS[n + 1].start : (isFinite(voice.duration) ? voice.duration : Infinity); }
+  /* Every way of starting the voice passes through its play event, so the stop is set here, from the time it starts at. */
+  function startPart() {
+    played = true;
+    speaking = partIndexAt(voice.currentTime);
+    waiting = -1;
+    stopAt = endOf(speaking);
   }
-  PARTS.forEach(function (part) {
-    var b = el("button", "linkbtn", mmss(part.start) + "  " + part.title);
-    b.type = "button";
-    b.addEventListener("click", function () {
-      closeParts();
-      voice.currentTime = Math.max(0, part.start - 0.05);
-      var started = voice.play();
-      if (started && started.catch) { started.catch(function () { /* the reader starts it from the controls */ }); }
+  function stopAtPartEnd() {
+    if (voice.paused || speaking < 0 || voice.currentTime < stopAt) { return; }
+    var at = stopAt, next = speaking + 1 < PARTS.length ? speaking + 1 : -1;
+    speaking = -1;
+    waiting = next;
+    voice.pause();
+    if (isFinite(at)) { voice.currentTime = at; }
+    paintParts();
+  }
+  function paintParts() {
+    partButtons.forEach(function (b, n) {
+      var label = n === speaking ? (voice.paused ? S.resume : S.pause) : n === waiting ? S.playNext : S.playPart;
+      b.setAttribute("data-label", label);
+      b.setAttribute("aria-label", label + ": " + PARTS[n].title);
+      b.classList.toggle("is-playing", n === speaking && !voice.paused);
+      b.classList.toggle("is-next", n === waiting);
     });
-    partList.appendChild(b);
-  });
+  }
+  function playVoice() {
+    var started = voice.play();
+    if (started && started.catch) { started.catch(function () { /* a refused start leaves the voice paused: the reader presses again */ }); }
+  }
+  function toggleVoice() { if (voice.paused) { playVoice(); } else { voice.pause(); } }
+  function pressPart(n) {
+    if (n === speaking) { toggleVoice(); return; }
+    voice.currentTime = Math.max(0, PARTS[n].start - BEFORE);
+    playVoice();
+  }
+  /* Each part's button stands at the end of its heading; an opening without an h1 takes a line of its own before it. */
+  function addPartButton(n) {
+    var b = el("button", "part-voice"), heading = partHeading(n);
+    b.type = "button";
+    b.addEventListener("click", function () { pressPart(n); });
+    if (heading) {
+      heading.appendChild(b);
+    } else {
+      var line = el("div", "part-line");
+      line.appendChild(b);
+      article.insertBefore(line, partStart(n));
+    }
+    partButtons.push(b);
+  }
   if (DATA.voice) {
     voice.src = DATA.voice;
+    PARTS.forEach(function (part, n) { addPartButton(n); });
+    paintParts();
   } else {
-    voice.hidden = true; $("now").hidden = true; partList.hidden = true; $("no-audio").hidden = false;
-  }
-  /* Past OPEN_PARTS parts the buttons would fill the top of the page: they open from one control placed before them. */
-  if (DATA.voice && PARTS.length > OPEN_PARTS) {
-    partsToggle = el("button", "linkbtn parts-toggle", S.parts);
-    partsToggle.type = "button";
-    partsToggle.setAttribute("aria-controls", partList.id);
-    partList.insertAdjacentElement("beforebegin", partsToggle);
-    $("player").classList.add("many-parts");
-    closeParts();
-    partsToggle.addEventListener("click", function () { if (partList.hidden) { openParts(); } else { closeParts(); } });
-    document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape" && !e.defaultPrevented && !partList.hidden) { closeParts(); }
-    });
-    document.addEventListener("click", function (e) {
-      if (!partList.hidden && !partList.contains(e.target) && !partsToggle.contains(e.target)) { closeParts(); }
-    });
+    $("no-audio").hidden = false;
   }
 
   /* ---------- switches: a .seg[data-switch] group toggles the class "safe" on its target ---------- */
@@ -515,7 +596,7 @@ main, .sheet { position: relative; }
     paint();
   }
 
-  /* A click that ends a selection of text in an option starts a comment; only its button picks it then. */
+  /* A click that ends a selection of text in an option leaves the pick as it is; only the option's button picks it then. */
   function selecting() { var selection = window.getSelection(); return !!selection && !selection.isCollapsed; }
   DECISIONS.forEach(function (d) {
     d.options.forEach(function (o) {
@@ -543,15 +624,28 @@ main, .sheet { position: relative; }
     });
   });
 
-  function selectShown() {
+  /* The page writes to the clipboard only here, at a button the reader pressed. Resolves to whether the text was copied:
+     by the clipboard API, else by `fallback`, which copies a selection with document.execCommand and returns whether it did. */
+  function toClipboard(text, fallback) {
     try {
-      var range = document.createRange();
-      range.selectNodeContents(shown);
+      return navigator.clipboard && navigator.clipboard.writeText
+        ? navigator.clipboard.writeText(text).then(function () { return true; }, fallback)
+        : Promise.resolve(fallback());
+    } catch (e) { return Promise.resolve(fallback()); }
+  }
+  /* Selects the range and copies the selection; false when the browser refuses. */
+  function copyRange(range) {
+    try {
       var selection = window.getSelection();
       selection.removeAllRanges();
       selection.addRange(range);
       return document.execCommand("copy");
     } catch (e) { return false; }
+  }
+  function selectShown() {
+    var range = document.createRange();
+    range.selectNodeContents(shown);
+    return copyRange(range);
   }
   copyBtn.addEventListener("click", function () {
     var text = compose();
@@ -559,60 +653,19 @@ main, .sheet { position: relative; }
     var kept = keep();
     shown.textContent = text;
     shown.hidden = false;
-    var copied;
-    try {
-      copied = navigator.clipboard && navigator.clipboard.writeText
-        ? navigator.clipboard.writeText(text).then(function () { return true; }, selectShown)
-        : Promise.resolve(selectShown());
-    } catch (e) { copied = Promise.resolve(selectShown()); }
+    var copied = toClipboard(text, selectShown);
     Promise.all([copied, kept]).then(function (r) {
       var tail = r[1] ? " " + S.saved : "";
       if (r[0]) { say(S.copied + tail); } else { say(S.copyFailed + tail, true); }
     });
   });
 
-  /* ---------- the pause: a click on the story's text, Space, or the round button beside the spoken sentence; only with audio ---------- */
-  var main = document.querySelector("main"), side = null, sidePause = null, sideNote = null;
-  function playVoice() {
-    var started = voice.play();
-    if (started && started.catch) { started.catch(function () { /* the reader starts it from the controls */ }); }
-  }
-  function toggleVoice() { if (voice.paused) { playVoice(); } else { voice.pause(); } }
-  /* Keeps the side group on the first line of the spoken sentence, its pause glyph and label on the voice's state. */
-  function placeSide() {
-    if (!side) { return; }
-    var target = spoken(), label = voice.paused ? S.resume : S.pause;
-    sidePause.classList.toggle("is-paused", voice.paused);
-    sidePause.title = label;
-    sidePause.setAttribute("aria-label", label);
-    side.hidden = !target;
-    if (!target) { return; }
-    var line = target.getClientRects()[0] || target.getBoundingClientRect(), box = article.getBoundingClientRect();
-    side.style.top = Math.round(line.top - box.top + (line.height - sidePause.offsetHeight) / 2) + "px";
-  }
-  $("player").appendChild(el("p", "hint", DATA.voice ? [S.hintPause, S.hintNote, S.hintNoteSpoken].join(" ") : S.hintNote));
+  /* a words field takes the reader's dictation: the voice stops while he speaks into it */
   if (DATA.voice) {
-    article.classList.add("with-voice");
-    side = el("div", "side-tools");
-    sidePause = el("button", "round");
-    sideNote = el("button", "round note");
-    sidePause.type = sideNote.type = "button";
-    sideNote.title = S.noteSpoken;
-    sideNote.setAttribute("aria-label", S.noteSpoken);
-    side.appendChild(sidePause);
-    side.appendChild(sideNote);
-    side.hidden = true;
-    article.appendChild(side);
-    sidePause.addEventListener("click", toggleVoice);
-    sideNote.addEventListener("click", function () { noteOnSpoken(); });
-    ["play", "pause", "ended"].forEach(function (name) { voice.addEventListener(name, placeSide); });
-    window.addEventListener("resize", placeSide);
-    if (window.ResizeObserver) { new ResizeObserver(placeSide).observe(article); }
-    /* a words field takes the reader's dictation: the voice stops while he speaks into it */
     FIELDS.forEach(function (f) { f.area.addEventListener("focus", function () { if (!voice.paused) { voice.pause(); } }); });
   }
 
-  /* ---------- a comment on a piece of the text: select it, or press C or the plus for the spoken sentence ---------- */
+  /* ---------- a comment on a piece of the text: the reader selects it and presses the comment button beside it ---------- */
   var BLOCK = "p, li, td, th, h1, h2, h3, h4, figcaption, figure pre";
   var BLOCKS = all(article, BLOCK).filter(function (b) { return !b.closest(".part-words, .answer-bar, .look, .notes, .return-to"); });
   var RANGES = [], draft = null, canMark = !!(window.CSS && CSS.highlights && window.Highlight);
@@ -732,6 +785,7 @@ main, .sheet { position: relative; }
   }
   /* Opens the window under the piece with the cursor in its field; a voice it interrupts stops and remembers its sentence. */
   function openPop(d, range) {
+    hideTools();
     draft = d;
     d.wasPlaying = !!DATA.voice && !voice.paused;
     d.cue = played ? cueAt(voice.currentTime) : null;
@@ -796,28 +850,86 @@ main, .sheet { position: relative; }
     if (!quote) { return; }
     openPop({ note: null, anchor: a, quote: quote, part: partTitle(r.startContainer) }, r);
   }
-  function noteFromSelection() {
-    var selection = window.getSelection();
-    if (draft || !selection || selection.isCollapsed || !selection.rangeCount) { return; }
-    var range = selection.getRangeAt(0);
-    if (!article.contains(range.commonAncestorContainer)) { return; }
-    startNote(range);
-  }
-  function noteOnSpoken() {
-    var target = spoken();
-    if (draft || !target) { return; }
-    var range = document.createRange();
-    range.selectNodeContents(target);
-    startNote(range);
-  }
-  article.addEventListener("mouseup", function () { setTimeout(noteFromSelection, 0); });
-  article.addEventListener("touchend", function () { setTimeout(noteFromSelection, 300); });
   popSave.addEventListener("click", saveNote);
   popCancel.addEventListener("click", closePop);
   popDelete.addEventListener("click", function () { popArea.value = ""; saveNote(); });
   pop.addEventListener("keydown", function (e) {
     if (e.key === "Escape") { e.preventDefault(); closePop(); }
     else if (e.target === popArea && e.key === "Enter" && !e.shiftKey && !e.isComposing) { e.preventDefault(); saveNote(); }
+  });
+
+  /* ---------- the tools of a selection: selecting does nothing by itself; two buttons beside the selected text copy it
+     or open the comment window on it ---------- */
+  var TOUCH_SETTLE = 300;  /* ms: a touch selection is read after its handles settle */
+  var TOOLS_GAP = 6;       /* px between the toolbar and the selected text */
+  var CONTROLS = "button, textarea, input, select, label, .part-words, .answer-bar, .notes, .return-to, .marks, .part-line";
+  var tools = el("div", "sel-tools"), toolsCopy = el("button", "", S.copySelection), toolsNote = el("button", "", S.comment);
+  var toolsSaid = el("span", "sel-said"), toolsRange = null;
+  tools.setAttribute("role", "toolbar");
+  tools.setAttribute("aria-label", S.selectionTools);
+  toolsSaid.setAttribute("aria-live", "polite");
+  toolsCopy.type = toolsNote.type = "button";
+  tools.appendChild(toolsCopy);
+  tools.appendChild(toolsNote);
+  tools.appendChild(toolsSaid);
+  tools.hidden = true;
+  main.appendChild(tools);
+  function inControl(node) {
+    var e = node && (node.nodeType === 1 ? node : node.parentElement);
+    return !!(e && e.closest(CONTROLS));
+  }
+  /* The reader's selection when it is a piece of the article's text, outside the page's own controls; else null. */
+  function selectedText() {
+    var selection = window.getSelection();
+    if (!selection || selection.isCollapsed || !selection.rangeCount) { return null; }
+    var range = selection.getRangeAt(0);
+    if (!article.contains(range.commonAncestorContainer) || inControl(range.startContainer) || inControl(range.endContainer)) { return null; }
+    return range;
+  }
+  function hideTools() { tools.hidden = true; toolsRange = null; }
+  /* Above the first line of the selection, at that line's end; under its last line when the window has no room above. The
+     toolbar stays outside the band from the selection's top to its bottom, so it never covers the selected text. */
+  function placeTools(range) {
+    var rects = Array.prototype.filter.call(range.getClientRects(), function (r) { return r.width > 0 && r.height > 0; });
+    if (!rects.length) { rects = [range.getBoundingClientRect()]; }
+    var top = Infinity, bottom = -Infinity, end = -Infinity;
+    rects.forEach(function (r) { top = Math.min(top, r.top); bottom = Math.max(bottom, r.bottom); });
+    rects.forEach(function (r) { if (r.top < top + 2) { end = Math.max(end, r.right); } });
+    var box = main.getBoundingClientRect(), width = tools.offsetWidth, height = tools.offsetHeight;
+    var y = top - height - TOOLS_GAP >= 0 ? top - height - TOOLS_GAP : bottom + TOOLS_GAP;
+    tools.style.left = Math.round(Math.max(8, Math.min(end - box.left - width, box.width - width - 8))) + "px";
+    tools.style.top = Math.round(y - box.top) + "px";
+  }
+  function showTools() {
+    var range = draft ? null : selectedText();
+    if (!range) { hideTools(); return; }
+    toolsRange = range.cloneRange();
+    toolsNote.disabled = !anchorOf(range);
+    toolsSaid.textContent = "";
+    tools.hidden = false;
+    placeTools(range);
+  }
+  tools.addEventListener("mousedown", function (e) { e.preventDefault(); /* the selection stays while a button is pressed */ });
+  document.addEventListener("mouseup", function (e) { if (!tools.contains(e.target)) { setTimeout(showTools, 0); } });
+  document.addEventListener("touchend", function (e) { if (!tools.contains(e.target)) { setTimeout(showTools, TOUCH_SETTLE); } });
+  document.addEventListener("keyup", function (e) {
+    if (e.key === "Escape" || tools.contains(e.target) || (e.target.closest && e.target.closest("textarea, input"))) { return; }
+    showTools();
+  });
+  document.addEventListener("selectionchange", function () { if (!tools.hidden && !selectedText()) { hideTools(); } });
+  window.addEventListener("resize", function () { if (toolsRange) { placeTools(toolsRange); } });
+  toolsNote.addEventListener("click", function () {
+    var range = toolsRange;
+    hideTools();
+    if (range) { startNote(range); }
+  });
+  toolsCopy.addEventListener("click", function () {
+    var range = toolsRange, selection = window.getSelection();
+    var text = selection && !selection.isCollapsed ? selection.toString() : range ? range.toString() : "";
+    if (!text) { return; }
+    toClipboard(text, function () { return !!range && copyRange(range); }).then(function (copied) {
+      toolsSaid.textContent = copied ? S.copiedSelection : S.copySelectionFailed;
+    });
   });
 
   /* ---------- a question after a part: the answer opens at the reader's click, he marks for himself whether he had it ---------- */
@@ -888,21 +1000,367 @@ main, .sheet { position: relative; }
     drawReturns();
   }
 
-  /* ---------- the reader's hand on the story: a click reopens a comment or toggles the voice, Space and C act on the voice ---------- */
-  var STORY = ".s, h1, h2, h3, h4, p, li, figcaption";
-  var NOT_STORY = "a, button, textarea, input, select, summary, label, audio, .decision, .look, .part-words, .answer-bar, .notes, .return-to, .side-tools";
-  var OWN_WORK = ".quiz";  /* the reader's own work on a question: a click there reopens a comment and leaves the voice as it is */
+  /* Runs `change`, which moves the text sideways, and scrolls so that `anchor`, else the first block of the article whose
+     bottom is below the top of the window, keeps its distance from the top of the window. */
+  var PLACE_BLOCKS = "h1, h2, h3, h4, p, li, pre, tr, figcaption, .option, .part-words";
+  function firstBlockInView() {
+    var blocks = all(article, PLACE_BLOCKS);
+    for (var i = 0; i < blocks.length; i++) {
+      var box = blocks[i].getBoundingClientRect();
+      if (box.height > 0 && box.bottom > 0) { return blocks[i]; }
+    }
+    return null;
+  }
+  function keepPlace(change, anchor) {
+    var block = anchor || firstBlockInView(), before = block ? block.getBoundingClientRect().top : 0;
+    change();
+    if (block) { window.scrollBy(0, block.getBoundingClientRect().top - before); }
+  }
+  function onWidthChange(listener) {
+    if (!WIDE) { return; }
+    if (WIDE.addEventListener) { WIDE.addEventListener("change", listener); } else { WIDE.addListener(listener); }
+  }
+
+  /* ---------- the map of the page: on an explanation, every part with its figures and named passages, kept in view ---------- */
+  /* The panel lists one group per part: the part's title, a button to its start, and a disclosure of its entries, every
+     figure and every other element with data-nav from the part's start to the next, in page order. The entry the reader
+     is at carries aria-current, and its group is shown; a group the page opened so closes when he leaves the part. From 840
+     px the panel stands beside the text, open unless he closed it, his choice kept under ID + ":map"; below, it lies over
+     the text, starts closed, and closes after a jump, on Escape and on a click outside it. `onLayout` runs after the
+     panel opened or closed. */
+  function makeMap(onLayout) {
+    var MAP_KEY = ID + ":map";  /* ":" stands in no page id, so no page's answer is kept under this key */
+    var FILTER_FROM = 20;       /* a map of more entries than this takes a filter field */
+    var NAME_CLIP = 60;         /* characters of a question that name it on the map when it has no data-nav */
+    var root = document.documentElement, toggle = el("button", "map-toggle"), panel = el("nav", "page-map"), list = el("ol", "map-parts");
+    var groups = [], items = [], current = null, query = "", pending = false, made = 0, choice = readChoice();
+    function readChoice() { try { return localStorage.getItem(MAP_KEY); } catch (e) { return null; /* blocked storage: the default for the width */ } }
+    function keepChoice(open) {
+      choice = open ? "open" : "closed";
+      try { localStorage.setItem(MAP_KEY, choice); } catch (e) { /* blocked storage: the choice lives for the visit */ }
+    }
+    function kindOf(e) {
+      if (e.tagName.toLowerCase() !== "figure") { return S.kindText; }
+      if (e.classList.contains("pseudo")) { return S.kindPseudo; }
+      if (e.classList.contains("quiz")) { return S.kindQuestion; }
+      return e.querySelector("table") ? S.kindTable : S.kindFigure;
+    }
+    function nameOf(e) {
+      var named = clean(e.getAttribute("data-nav") || ""), said = e.querySelector("summary") || e.querySelector("figcaption");
+      return named || (said ? clip(clean(said.textContent), NAME_CLIP) : "");
+    }
+    function freshId() {
+      var id;
+      do { made += 1; id = "map-" + made; } while ($(id));
+      return id;
+    }
+    function isOpen() { return toggle.getAttribute("aria-expanded") === "true"; }
+    function layout(open) {
+      panel.hidden = !open;
+      root.classList.toggle("map-beside", open && wide());
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      toggle.textContent = open ? S.mapClose : S.mapOpen;
+    }
+    /* In the wide layout the panel moves the text, and the block the reader is at keeps its place on the screen. */
+    function setOpen(open, focusToggle) {
+      if (wide()) { keepPlace(function () { layout(open); }); } else { layout(open); }
+      onLayout();
+      if (!open && focusToggle) { toggle.focus({ preventScroll: true }); }
+    }
+    function fit() { layout(wide() && choice !== "closed"); onLayout(); }
+    function jump(target) {
+      if (!target) { return; }
+      target.scrollIntoView({ block: "start", behavior: calm ? "auto" : "smooth" });
+      if (!wide()) { setOpen(false, true); }
+    }
+    function paint() {
+      groups.forEach(function (g) {
+        var kept = 0;
+        g.entries.forEach(function (x) {
+          var keep = !query || x.text.indexOf(query) >= 0;
+          x.li.hidden = !keep;
+          kept += keep ? 1 : 0;
+        });
+        var expanded = g.entries.length > 0 && (query ? kept > 0 : g.open);
+        g.li.hidden = !!query && !kept;
+        g.list.hidden = !expanded;
+        g.disclose.setAttribute("aria-expanded", expanded ? "true" : "false");
+      });
+    }
+    /* The current place: the last entry or part start whose top lies above a third of the window. */
+    function markCurrent() {
+      pending = false;
+      var line = window.innerHeight / 3, found = null;
+      items.forEach(function (x) {
+        if (x.target.getClientRects().length && x.target.getBoundingClientRect().top < line) { found = x; }
+      });
+      if (found === current) { return; }
+      var left = current ? current.group : null, entered = found ? found.group : null;
+      if (current) { current.link.removeAttribute("aria-current"); }
+      current = found;
+      if (found) { found.link.setAttribute("aria-current", "location"); }
+      if (left && left !== entered && left.openedByPage) { left.open = false; left.openedByPage = false; }
+      if (entered && entered !== left && !entered.open) { entered.open = true; entered.openedByPage = true; }
+      paint();
+    }
+
+    panel.id = "page-map";
+    panel.setAttribute("aria-label", S.map);
+    toggle.type = "button";
+    toggle.setAttribute("aria-controls", panel.id);
+    PARTS.forEach(function (part, n) {
+      var li = el("li", "map-group"), head = el("div", "map-head"), disclose = el("button", "map-disclose"), title = el("button", "map-part", part.title);
+      var entries = el("ul", "map-entries");
+      var g = { li: li, list: entries, disclose: disclose, start: partStart(n), entries: [], open: false, openedByPage: false };
+      entries.id = "map-part-" + part.paragraph;
+      disclose.type = title.type = "button";
+      disclose.setAttribute("aria-controls", entries.id);
+      disclose.setAttribute("aria-label", part.title);
+      disclose.addEventListener("click", function () { g.open = !g.open; g.openedByPage = false; paint(); });
+      title.addEventListener("click", function () { jump(g.start); });
+      head.appendChild(disclose);
+      head.appendChild(title);
+      li.appendChild(head);
+      li.appendChild(entries);
+      list.appendChild(li);
+      g.self = { link: title, target: g.start, group: g };
+      groups.push(g);
+    });
+    all(article, "figure, [data-nav]").forEach(function (e) {
+      if (e.closest(".look")) { return; }
+      var g = groups[0], name = nameOf(e), kind = kindOf(e);
+      groups.forEach(function (x) {
+        if (x.start && (x.start === e || (x.start.compareDocumentPosition(e) & Node.DOCUMENT_POSITION_FOLLOWING))) { g = x; }
+      });
+      if (!e.id) { e.id = freshId(); }
+      if (e.matches("figure[data-nav]:not([aria-label]):not([aria-labelledby])")) { e.setAttribute("aria-label", name); }
+      var li = el("li"), a = el("a");
+      a.href = "#" + e.id;
+      a.appendChild(el("span", "map-kind", kind));
+      a.appendChild(document.createTextNode(name));
+      a.addEventListener("click", function (ev) { ev.preventDefault(); jump(e); });
+      li.appendChild(a);
+      g.list.appendChild(li);
+      g.entries.push({ link: a, target: e, group: g, li: li, text: (name + " " + kind).toLowerCase() });
+    });
+    var entryCount = 0;
+    groups.forEach(function (g) {
+      if (g.start) { items.push(g.self); }
+      Array.prototype.push.apply(items, g.entries);
+      entryCount += g.entries.length;
+      g.disclose.classList.toggle("is-empty", !g.entries.length);
+    });
+    if (entryCount > FILTER_FROM) {
+      var filter = el("label", "map-filter", S.mapFilter), field = el("input");
+      field.type = "search";
+      filter.appendChild(field);
+      panel.appendChild(filter);
+      field.addEventListener("input", function () { query = field.value.trim().toLowerCase(); paint(); });
+    }
+    panel.appendChild(list);
+    main.parentNode.insertBefore(toggle, main);
+    main.parentNode.insertBefore(panel, main);
+    root.classList.add("has-map");
+    toggle.addEventListener("click", function () {
+      var open = !isOpen();
+      if (wide()) { keepChoice(open); }
+      setOpen(open, false);
+    });
+    document.addEventListener("click", function (e) {
+      if (isOpen() && !wide() && !panel.contains(e.target) && !toggle.contains(e.target)) { setOpen(false, true); }
+    });
+    window.addEventListener("scroll", function () {
+      if (!pending) { pending = true; requestAnimationFrame(markCurrent); }
+    }, { passive: true });
+    window.addEventListener("resize", function () { if (!pending) { pending = true; requestAnimationFrame(markCurrent); } });
+    onWidthChange(fit);
+    fit();
+    markCurrent();
+    paint();
+    /* Escape closes the panel where it lies over the text; true when it did. */
+    return { escape: function () { if (!isOpen() || wide()) { return false; } setOpen(false, true); return true; } };
+  }
+
+  /* ---------- references in place: a name of the code or of a source shows what it names and opens it in a panel ---------- */
+  /* An element with data-ref whose key DATA.refs holds becomes a control. Pointing at it, where the device can hover, and
+     moving the keyboard focus to it show a preview beside it: for code its path:line and the first lines of the excerpt,
+     for a source its title and note. Clicking it, Enter or Space open the panel at the right with the whole excerpt and
+     the links; the panel takes the focus and hands it back on closing. The panel stands beside the text and pushes it
+     while the text column keeps TEXT_MIN px next to the open map and the panel; otherwise it lies over the text. */
+  function makeRefs() {
+    var REFS = DATA.refs || {};
+    var PREVIEW_LINES = 10;  /* lines of a code excerpt the preview shows */
+    var HIDE_DELAY = 300;    /* ms the preview stays after the pointer leaves both it and its element */
+    var TEXT_MIN = 480;      /* px the text column keeps beside an open panel; a narrower column takes the panel over it */
+    var canHover = !!window.matchMedia && window.matchMedia("(any-hover: hover)").matches;
+    var root = document.documentElement, preview = el("div", "ref-pop"), panel = el("aside", "ref-panel");
+    var previewOwner = null, owner = null, hideTimer = 0, handingBack = false;
+    function entryOf(e) {
+      var key = (e.getAttribute("data-ref") || "").trim();
+      return Object.prototype.hasOwnProperty.call(REFS, key) ? REFS[key] : null;
+    }
+    var REFERENCES = all(article, "[data-ref]").filter(entryOf);
+    if (!REFERENCES.length) { return { escape: function () { return false; }, fit: function () {} }; }
+    /* The lines of an excerpt as "Where to look" shows them: numbered, the anchored line marked. */
+    function codeLines(lines) {
+      var pre = el("pre", "src"), width = String(lines[lines.length - 1][0]).length;
+      lines.forEach(function (line, i) {
+        var row = line[2] ? el("span", "hit") : document.createDocumentFragment();
+        row.appendChild(el("span", "ln", String(line[0]).padStart(width, " ")));
+        row.appendChild(document.createTextNode("  " + line[1]));
+        pre.appendChild(row);
+        if (i < lines.length - 1) { pre.appendChild(document.createTextNode("\n")); }
+      });
+      return pre;
+    }
+    function place(entry) { var p = el("p", "muted"); p.appendChild(el("code", "", entry.path + ":" + entry.line)); return p; }
+    function link(href, text, newTab) {
+      var p = el("p"), a = el("a", "", text);
+      a.href = href;
+      if (newTab) { a.target = "_blank"; a.rel = "noopener noreferrer"; }
+      p.appendChild(a);
+      return p;
+    }
+    /* Whether the panel can stand beside the text: in a wide window, the body's content box, less the panel, keeps
+       TEXT_MIN px. The body's left padding holds the map when it stands open beside the text. */
+    function besideFits() {
+      if (!wide()) { return false; }
+      var style = window.getComputedStyle(document.body), width = parseFloat(window.getComputedStyle(root).getPropertyValue("--ref-w")) || 0;
+      var right = parseFloat(style.paddingRight) - (root.classList.contains("ref-beside") ? width : 0);
+      return document.body.clientWidth - parseFloat(style.paddingLeft) - right - width >= TEXT_MIN;
+    }
+    /* Puts an open panel beside the text or over it, as the width left to the text allows. */
+    function fit() {
+      if (!owner) { return; }
+      var beside = besideFits();
+      if (beside !== root.classList.contains("ref-beside")) { keepPlace(function () { root.classList.toggle("ref-beside", beside); }, owner); }
+    }
+    function hidePreview() {
+      clearTimeout(hideTimer);
+      if (previewOwner) { previewOwner.removeAttribute("aria-describedby"); }
+      previewOwner = null;
+      preview.hidden = true;
+    }
+    function hideLater() { clearTimeout(hideTimer); hideTimer = setTimeout(hidePreview, HIDE_DELAY); }
+    /* Under the element, or over it when the window has no room below. */
+    function placePreview(e) {
+      preview.style.left = preview.style.top = "0px";
+      var r = e.getBoundingClientRect(), box = main.getBoundingClientRect(), width = preview.offsetWidth, height = preview.offsetHeight;
+      var below = r.bottom + TOOLS_GAP + height <= window.innerHeight || r.top - TOOLS_GAP - height < 0;
+      preview.style.left = Math.round(Math.max(8, Math.min(r.left - box.left, box.width - width - 8))) + "px";
+      preview.style.top = Math.round((below ? r.bottom + TOOLS_GAP : r.top - TOOLS_GAP - height) - box.top) + "px";
+    }
+    function showPreview(e) {
+      clearTimeout(hideTimer);
+      if (previewOwner === e) { return; }
+      hidePreview();
+      var entry = entryOf(e);
+      preview.textContent = "";
+      if (entry.kind === "code") {
+        preview.appendChild(place(entry));
+        preview.appendChild(codeLines(entry.excerpt.slice(0, PREVIEW_LINES)));
+      } else {
+        preview.appendChild(el("strong", "", entry.title));
+        if (entry.note) { preview.appendChild(el("p", "", entry.note)); }
+      }
+      preview.hidden = false;
+      previewOwner = e;
+      e.setAttribute("aria-describedby", preview.id);
+      placePreview(e);
+    }
+    function openPanel(e) {
+      var entry = entryOf(e), close = el("button", "linkbtn ref-close", S.refClose), heading = el("h2", "", clean(e.textContent));
+      if (owner && owner !== e) { owner.setAttribute("aria-expanded", "false"); }
+      hidePreview();
+      close.type = "button";
+      close.addEventListener("click", function () { closePanel(); });
+      heading.tabIndex = -1;
+      panel.textContent = "";
+      panel.appendChild(close);
+      panel.appendChild(heading);
+      if (entry.kind === "code") {
+        panel.appendChild(place(entry));
+        panel.appendChild(codeLines(entry.excerpt));
+        if (entry.editor) { panel.appendChild(link(entry.editor, S.refEditor, false)); }
+      } else {
+        panel.appendChild(el("p", "", entry.title));
+        if (entry.note) { panel.appendChild(el("p", "muted", entry.note)); }
+        panel.appendChild(link(entry.href, S.refSource, true));
+      }
+      owner = e;
+      e.setAttribute("aria-expanded", "true");
+      keepPlace(function () { panel.hidden = false; root.classList.toggle("ref-beside", besideFits()); }, e);
+      heading.focus({ preventScroll: true });
+    }
+    /* Closes the panel and hands the focus back to its reference, without a preview; false when no panel is open. */
+    function closePanel() {
+      if (!owner) { return false; }
+      var e = owner;
+      owner = null;
+      e.setAttribute("aria-expanded", "false");
+      keepPlace(function () { panel.hidden = true; root.classList.remove("ref-beside"); }, e);
+      handingBack = true;
+      e.focus({ preventScroll: true });
+      handingBack = false;
+      return true;
+    }
+    preview.id = "ref-pop";
+    preview.setAttribute("role", "tooltip");
+    preview.hidden = true;
+    main.appendChild(preview);
+    panel.id = "ref-panel";
+    panel.setAttribute("aria-label", S.refPanel);
+    panel.hidden = true;
+    main.parentNode.insertBefore(panel, main.nextSibling);
+    REFERENCES.forEach(function (e) {
+      e.classList.add("ref");
+      e.tabIndex = 0;
+      e.setAttribute("role", "button");
+      e.setAttribute("aria-expanded", "false");
+      e.setAttribute("aria-controls", panel.id);
+      if (canHover) {
+        e.addEventListener("mouseenter", function () { showPreview(e); });
+        e.addEventListener("mouseleave", hideLater);
+      }
+      e.addEventListener("focus", function () { if (!handingBack) { showPreview(e); } });
+      e.addEventListener("blur", function () { if (previewOwner === e) { hidePreview(); } });
+      e.addEventListener("click", function (ev) { ev.preventDefault(); openPanel(e); });
+      e.addEventListener("keydown", function (ev) {
+        if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); openPanel(e); }
+      });
+    });
+    preview.addEventListener("mouseenter", function () { clearTimeout(hideTimer); });
+    preview.addEventListener("mouseleave", hideLater);
+    window.addEventListener("resize", fit);
+    /* Escape hides a preview and leaves the focus where it is; else it closes the panel. True when it did either. */
+    return { escape: function () { if (!preview.hidden) { hidePreview(); return true; } return closePanel(); }, fit: fit };
+  }
+  var references = makeRefs();
+  var pageMap = DATA.map ? makeMap(references.fit) : null;
+
+  /* ---------- the reader's hand on the story: a click on a commented piece reopens its comment, Space pauses and resumes ---------- */
+  var NOT_STORY = "a, button, textarea, input, select, summary, label, audio, [role=button], .decision, .look, .part-words, .answer-bar, .notes, .return-to";
   article.addEventListener("click", function (e) {
     if (draft || !e.target.closest || e.target.closest(NOT_STORY) || selecting()) { return; }
     var hit = noteAt(e.clientX, e.clientY);
-    if (hit) { editNote(hit); return; }
-    if (DATA.voice && e.target.closest(STORY) && !e.target.closest(OWN_WORK)) { toggleVoice(); }
+    if (hit) { editNote(hit); }
   });
+  /* Space is the browser's until the reader has started the voice once; from then on it pauses and resumes the voice. */
   document.addEventListener("keydown", function (e) {
-    if (!DATA.voice || draft || e.metaKey || e.ctrlKey || e.altKey || e.isComposing || e.repeat) { return; }
-    if (e.target && e.target.closest && e.target.closest("a, button, textarea, input, select, summary, audio, [contenteditable]")) { return; }
-    if (e.code === "Space") { e.preventDefault(); toggleVoice(); }
-    else if (e.code === "KeyC") { e.preventDefault(); noteOnSpoken(); }
+    if (e.code !== "Space" || !DATA.voice || !played || draft || e.defaultPrevented) { return; }
+    if (e.metaKey || e.ctrlKey || e.altKey || e.isComposing || e.repeat) { return; }
+    if (e.target && e.target.closest && e.target.closest("a, button, textarea, input, select, summary, audio, [contenteditable], [role=button]")) { return; }
+    e.preventDefault();
+    toggleVoice();
+  });
+  /* One Escape does one thing: the preview or the panel of a reference, then the tools of a selection, then a map that
+     lies over the text. The comment window takes its own Escape first. */
+  document.addEventListener("keydown", function (e) {
+    if (e.key !== "Escape" || e.defaultPrevented) { return; }
+    var acted = references.escape();
+    if (!acted && !tools.hidden) { hideTools(); acted = true; }
+    if (!acted && pageMap) { acted = pageMap.escape(); }
+    if (acted) { e.preventDefault(); }
   });
 
   restore(answer);

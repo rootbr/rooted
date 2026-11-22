@@ -30648,5 +30648,1359 @@
   "source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=TITLE:%22Political%20extremism%20is%20supported%20by%20an%20illusion%20of%20understanding%22&resultType=core&format=json",
   "quote": "they did not occur when people were instead asked to enumerate reasons for their policy preferences",
   "note": "a JSON record: the quote stands in a string of the record, read with its markup tags as spaces"
+ },
+ {
+  "id": "Explaining: the terms are collected before the first sentence as a list of the readers' own words, and a script holds the page to the list/1",
+  "source": "https://www.asd-ste100.org/assets/files/ASD-STE100_ISSUE9.pdf",
+  "quote": "When you select a technical noun, do not use a different technical noun in other parts of your text to refer to the same item.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Explaining: the terms are collected before the first sentence as a list of the readers' own words, and a script holds the page to the list/2",
+  "source": "https://www.asd-ste100.org/assets/files/ASD-STE100_ISSUE9.pdf",
+  "quote": "If your company, industry, or subject field, has an approved technical noun for a system, component, part, or process, use that technical noun.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Explaining: the terms are collected before the first sentence as a list of the readers' own words, and a script holds the page to the list/3",
+  "source": "https://learn.microsoft.com/en-us/style-guide/word-choice/use-simple-words-concise-sentences",
+  "quote": "Use one term consistently to represent one concept."
+ },
+ {
+  "id": "Explaining: the terms are collected before the first sentence as a list of the readers' own words, and a script holds the page to the list/4",
+  "source": "https://developers.google.com/style/translation",
+  "quote": "If you use different names for the same thing, translators might think you're referring to different concepts, and thus might use different translations."
+ },
+ {
+  "id": "Explaining: the terms are collected before the first sentence as a list of the readers' own words, and a script holds the page to the list/5",
+  "source": "https://www.cs.loyola.edu/~binkley/papers/icpc06-name.pdf",
+  "quote": "The results show that full word identifiers lead to the best comprehension; however, in many cases, there is no statistical difference between full words and abbreviations.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Explaining: the terms are collected before the first sentence as a list of the readers' own words, and a script holds the page to the list/6",
+  "source": "https://brains-on-code.github.io/shorter-identifier-names.pdf",
+  "quote": "We found that words lead to, on average, 19% faster comprehension speed compared to letters and abbreviations, but we did not find a significant difference in speed between letters and abbreviations.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Explaining: the terms are collected before the first sentence as a list of the readers' own words, and a script holds the page to the list/7",
+  "source": "https://par.nsf.gov/servlets/purl/10135165",
+  "quote": "Results show that the existence of lexical inconsistencies in the source code significantly increases the cognitive load experienced by participants",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Explaining: the terms are collected before the first sentence as a list of the readers' own words, and a script holds the page to the list/8",
+  "source": "https://developers.google.com/style/code-in-text",
+  "quote": "Don't inflect the name of a code element, such as to make it plural or possessive."
+ },
+ {
+  "id": "Explaining: the terms are collected before the first sentence as a list of the readers' own words, and a script holds the page to the list/9",
+  "source": "https://docs.vale.sh/keys/vocabularies.md",
+  "quote": "Entries in `reject.txt` are automatically added to an existence rule (`Vale.Avoid`) that will flag all occurrences as errors."
+ },
+ {
+  "id": "Explaining: the terms are collected before the first sentence as a list of the readers' own words, and a script holds the page to the list/10",
+  "source": "https://docs.vale.sh/checks/substitution.md",
+  "quote": "A sequence of `observed: expected` pairs."
+ },
+ {
+  "id": "Explaining: the terms are collected before the first sentence as a list of the readers' own words, and a script holds the page to the list/11",
+  "source": "https://aclanthology.org/www.mt-archive.info/10/Doherty-2012.pdf",
+  "quote": "The research finds that the use of CL input results in significantly higher scores for items recalled by participants, and for several of the eye tracking metrics: fixation count, fixation length, and regressions.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Explaining: the terms are collected before the first sentence as a list of the readers' own words, and a script holds the page to the list/12",
+  "source": "https://pg.ucsd.edu/publications/non-native-english-speakers-learning-programming_CHI-2018.pdf",
+  "quote": "I felt translated Korean version of all the explanations were more confusing since syntax is in English anyway.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Explaining: the terms are collected before the first sentence as a list of the readers' own words, and a script holds the page to the list/13",
+  "source": "https://mako.cc/academic/dasgupta_hill-learning_code_localization-L@S2017.pdf",
+  "quote": "novice users who code with their programming language keywords and environment localized into their home countries’ primary language demonstrate new programming concepts at a faster rate than users from the same countries whose interface is in English.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Explaining: the terms are collected before the first sentence as a list of the readers' own words, and a script holds the page to the list/14",
+  "source": "https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-EN.pdf",
+  "quote": "Prefix symbols can neither stand alone nor be attached to the number 1, the symbol for the unit one.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Explaining: the terms are collected before the first sentence as a list of the readers' own words, and a script holds the page to the list/15",
+  "source": "https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-EN.pdf",
+  "quote": "If this is done, the definitions of such terms and the conventions for their use must be clearly documented.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Explaining: the terms are collected before the first sentence as a list of the readers' own words, and a script holds the page to the list/16",
+  "source": "https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-EN.pdf",
+  "quote": "The SI prefixes refer strictly to powers of 10. They should not be used to indicate powers of 2 (for example, one kilobit represents 1000 bits and not 1024 bits).",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Explaining: the terms are collected before the first sentence as a list of the readers' own words, and a script holds the page to the list/17",
+  "source": "https://developers.google.com/style/units-of-measure",
+  "quote": "it might be appropriate to indicate thousands of something by following a number with a lowercase"
+ },
+ {
+  "id": "Explaining: the terms are collected before the first sentence as a list of the readers' own words, and a script holds the page to the list/18",
+  "source": "https://arxiv.org/abs/2310.01905",
+  "quote": "More empirical evaluations and open discussions on challenges are needed."
+ },
+ {
+  "id": "Explaining: a counted enumeration stands as a list, and the gist of a part may stand in one marked block/1",
+  "source": "https://www.nngroup.com/articles/concise-scannable-and-objective-how-to-write-for-the-web/",
+  "quote": "This version used bulleted lists, boldface text to highlight keywords, photo captions, shorter sections of text, and more headings."
+ },
+ {
+  "id": "Explaining: a counted enumeration stands as a list, and the gist of a part may stand in one marked block/2",
+  "source": "https://research-portal.uu.nl/en/publications/how-bulleted-lists-and-enumerations-in-formatted-paragraphs-affec/",
+  "quote": "This positive effect is mitigated if the components are heterogeneous. In two studies, bulleted lists have a negative effect on the recall of content presented in the surrounding text."
+ },
+ {
+  "id": "Explaining: a counted enumeration stands as a list, and the gist of a part may stand in one marked block/3",
+  "source": "https://ris.utwente.nl/ws/files/5538163/Karreman07paragraphs.pdf",
+  "quote": "answered on average more questions about the content of the Web site correctly than those who used the P-Web site. This difference is nearly statistically significant (t = 1.83; df = 345; p = 0.07).",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Explaining: a counted enumeration stands as a list, and the gist of a part may stand in one marked block/4",
+  "source": "https://api.openalex.org/works/doi:10.1080/036107398244238",
+  "quote": "List instructions were better understood and recalled than paragraphs, and reduced age differences in answer time and span differences in accuracy. Headers reduced paragraph comprehension for participants with lower levels of working memory capacity"
+ },
+ {
+  "id": "Explaining: a counted enumeration stands as a list, and the gist of a part may stand in one marked block/5",
+  "source": "https://www.lyngolab.com/bulleted-lists-memory.html",
+  "quote": "Those who saw the items presented as a bulleted list remembered 33.4% more items (average = 1.98) than the in-paragraph control condition (average = 1.48), (p < 0.001)."
+ },
+ {
+  "id": "Explaining: a counted enumeration stands as a list, and the gist of a part may stand in one marked block/6",
+  "source": "https://writing.engr.psu.edu/ae_comprehension.pdf",
+  "quote": "Total scores were used as the dependent variable in an independent samples t-test, which revealed significant differences in favor of the group of students who experienced the assertion–evidence presentation, t(93.43) = 3.67, p < 0.001, Cohen’s d = 0.81.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Explaining: a counted enumeration stands as a list, and the gist of a part may stand in one marked block/7",
+  "source": "https://scholars.uky.edu/en/publications/text-signaling-devices-and-their-effects-on-reading-and-memory-pr/",
+  "quote": "Virtually all types of signals produce better memory for information they cue in a text, whereas memory for unsignaled information often is unaffected."
+ },
+ {
+  "id": "Explaining: a counted enumeration stands as a list, and the gist of a part may stand in one marked block/8",
+  "source": "https://eric.ed.gov/?id=EJ502398",
+  "quote": "Findings demonstrated that effects of typographical cues on memory were mediated by effects on attention during reading. Typographical cues appeared to increase attention only to the signaled content, resulting in better memory."
+ },
+ {
+  "id": "Explaining: a counted enumeration stands as a list, and the gist of a part may stand in one marked block/9",
+  "source": "https://eric.ed.gov/?id=EJ339569",
+  "quote": "Results demonstrated that number signals directed attention to the sentences they marked, led to better encoding of target information, and influenced the process recall."
+ },
+ {
+  "id": "Explaining: a counted enumeration stands as a list, and the gist of a part may stand in one marked block/10",
+  "source": "https://eric.ed.gov/?id=EJ1269127",
+  "quote": "Results indicated that signaling is associated with increased learning outcomes (d = 0.38, p < 0.01), with effect sizes varying from small to large."
+ },
+ {
+  "id": "Explaining: a counted enumeration stands as a list, and the gist of a part may stand in one marked block/11",
+  "source": "https://eric.ed.gov/?id=EJ1178409",
+  "quote": "low-prior-knowledge learners learned better with the extended version compared with the basic version, whereas adding multimedia integration signals was detrimental for learning outcomes of high-prior-knowledge learners."
+ },
+ {
+  "id": "Explaining: a counted enumeration stands as a list, and the gist of a part may stand in one marked block/12",
+  "source": "https://eric.ed.gov/?id=EJ1155946",
+  "quote": "Proficient readers apparently selectively process and store central information regardless of what is highlighted in the text."
+ },
+ {
+  "id": "Explaining: a counted enumeration stands as a list, and the gist of a part may stand in one marked block/13",
+  "source": "https://eric.ed.gov/?id=EJ547175",
+  "quote": "in the first experiment preexisting inappropriate highlighting interfered with performance on a reading test; in the second experiment, advance warning on the negative effects of preexisting highlighting did not eliminate the effect."
+ },
+ {
+  "id": "Explaining: a counted enumeration stands as a list, and the gist of a part may stand in one marked block/14",
+  "source": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=19650523&rettype=abstract&retmode=text",
+  "quote": "Comprehension scores and metacognitive accuracy were impaired by inappropriate highlighting."
+ },
+ {
+  "id": "Explaining: a counted enumeration stands as a list, and the gist of a part may stand in one marked block/15",
+  "source": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=24203592&rettype=abstract&retmode=text",
+  "quote": "If all but one item of a list are similar on some dimension, memory for the different item will be enhanced."
+ },
+ {
+  "id": "Explaining: a counted enumeration stands as a list, and the gist of a part may stand in one marked block/16",
+  "source": "https://developers.google.com/style/notices",
+  "quote": "Don't use too many notices. When you use multiple notices on a page, they begin to lose their visual distinctiveness."
+ },
+ {
+  "id": "Explaining: a counted enumeration stands as a list, and the gist of a part may stand in one marked block/17",
+  "source": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.145",
+  "quote": "Caution signs shall be used only to warn against potential hazards or to caution against unsafe practices."
+ },
+ {
+  "id": "Explaining: a counted enumeration stands as a list, and the gist of a part may stand in one marked block/18",
+  "source": "https://eric.ed.gov/?id=EJ735631",
+  "quote": "Results showed that spoken organizational lecture cues boosted the number of noted organizational points and details by 39 and 35%, respectively."
+ },
+ {
+  "id": "Explaining: a counted enumeration stands as a list, and the gist of a part may stand in one marked block/19",
+  "source": "https://nschwartz.yourweb.csuchico.edu/Mayer%20Multimedia%20Learning%202002.pdf",
+  "quote": "students who received a signaled presentation on how airplanes achieve lift performed better on a transfer test than did students who received a nonsignaled version (Mautone and Mayer, 2001, experiment 3). The effect size was 0.74.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Explaining: a counted enumeration stands as a list, and the gist of a part may stand in one marked block/20",
+  "source": "https://www.w3.org/TR/speech-synthesis11/",
+  "quote": "The emphasis element requests that the contained text be spoken with emphasis (also referred to as prominence or stress). The synthesis processor determines how to render emphasis since the nature of emphasis differs between languages, dialects or even voices."
+ },
+ {
+  "id": "Explaining: a counted enumeration stands as a list, and the gist of a part may stand in one marked block/21",
+  "source": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=18354973&rettype=abstract&retmode=text",
+  "quote": "Users of the broad-structure IVR performed better and were more satisfied than users of the deep-structure IVR. Furthermore, this effect was more pronounced for those with low working memory capacity."
+ },
+ {
+  "id": "Explaining: a counted enumeration stands as a list, and the gist of a part may stand in one marked block/22",
+  "source": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=11515286&rettype=abstract&retmode=text",
+  "quote": "A single, central capacity limit averaging about four chunks is implicated along with other, noncapacity-limited sources."
+ },
+ {
+  "id": "Explaining: a counted enumeration stands as a list, and the gist of a part may stand in one marked block/23",
+  "source": "https://html.spec.whatwg.org/multipage/grouping-content.html",
+  "quote": "The ol element represents a list of items, where the items have been intentionally ordered, such that changing the order would change the meaning of the document."
+ },
+ {
+  "id": "Explaining: a counted enumeration stands as a list, and the gist of a part may stand in one marked block/24",
+  "source": "https://developers.google.com/style/lists",
+  "quote": "A set of introductory terms or phrases, each followed by a description, definition, or explanation. Use this type of list if you want to highlight and explain several concepts or save space."
+ },
+ {
+  "id": "Explaining: a counted enumeration stands as a list, and the gist of a part may stand in one marked block/25",
+  "source": "https://raw.githubusercontent.com/GSA/plainlanguage.gov/main/_pages/guidelines/organize/use-lists.md",
+  "quote": "You can overuse lists. Remember to use them to highlight important information, not to overemphasize trivial matters."
+ },
+ {
+  "id": "Explaining: a counted enumeration stands as a list, and the gist of a part may stand in one marked block/26",
+  "source": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=10953824&rettype=abstract&retmode=text",
+  "quote": "parallelism of conjuncts facilitates processing regardless of whether it is parallelism in the category of the conjuncts (a property which the grammar might regulate) or parallelism in the internal structure of the conjuncts"
+ },
+ {
+  "id": "Explaining: a counted enumeration stands as a list, and the gist of a part may stand in one marked block/27",
+  "source": "https://www.w3.org/TR/WCAG22/",
+  "quote": "Color is not used as the only visual means of conveying information, indicating an action, prompting a response, or distinguishing a visual element."
+ },
+ {
+  "id": "Explaining: a counted enumeration stands as a list, and the gist of a part may stand in one marked block/28",
+  "source": "https://eric.ed.gov/?id=EJ466316",
+  "quote": "Two experiments involving 285 college students investigated effects of signaling devices (headings, overviews, and summaries) on text memory. Signals produced recalls better organized by text topics."
+ },
+ {
+  "id": "Explaining: a term returns with what it is, and a numbered thing is pointed at after it is shown/1",
+  "source": "https://arxiv.org/pdf/2009.14237",
+  "quote": "we can interpret the result as ScholarPhi is associated with tasks completed in 45.4 fewer seconds in Time than Basic, on average.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Explaining: a term returns with what it is, and a numbered thing is pointed at after it is shown/2",
+  "source": "https://arxiv.org/pdf/2009.14237",
+  "quote": "No statistically significant differences were observed in the number of participants who answered questions correctly among the three interfaces.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Explaining: a term returns with what it is, and a numbered thing is pointed at after it is shown/3",
+  "source": "https://arxiv.org/pdf/2009.14237",
+  "quote": "The priming glossary was the least-used feature during the unstructured reading task. A few readers (6 of 27) were observed consulting the priming glossary for a nontrivial amount of time",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Explaining: a term returns with what it is, and a numbered thing is pointed at after it is shown/4",
+  "source": "https://arxiv.org/pdf/2009.14237",
+  "quote": "A related principle is eliminating redundant definitions. If a reader selected a nonce word within a passage where it was being defined, they did not wish to see a tooltip containing the definition sentence they were already reading",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Explaining: a term returns with what it is, and a numbered thing is pointed at after it is shown/5",
+  "source": "https://eric.ed.gov/?id=EJ1251024",
+  "quote": "Multiple-choice glosses were the most effective, and in-text glosses and glossaries were the least effective gloss types."
+ },
+ {
+  "id": "Explaining: a term returns with what it is, and a numbered thing is pointed at after it is shown/6",
+  "source": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=2137863&rettype=abstract&retmode=text",
+  "quote": "late antecedents are reinstated more quickly than early antecedents and elaborated antecedents are reinstated more quickly than nonelaborated antecedents."
+ },
+ {
+  "id": "Explaining: a term returns with what it is, and a numbered thing is pointed at after it is shown/7",
+  "source": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=2942624&rettype=abstract&retmode=text",
+  "quote": "Subjects were faster to respond to the item when the last line contained an anaphoric reference to it than when the last line referred to a different item from the text."
+ },
+ {
+  "id": "Explaining: a term returns with what it is, and a numbered thing is pointed at after it is shown/8",
+  "source": "https://asu.elsevierpure.com/en/publications/are-good-texts-always-better-interactions-of-text-coherence-backg/",
+  "quote": "We found that readers who know little about the domain of the text benefit from a coherent text, whereas high-knowledge readers benefit from a minimally coherent text."
+ },
+ {
+  "id": "Explaining: a term returns with what it is, and a numbered thing is pointed at after it is shown/9",
+  "source": "https://eric.ed.gov/?id=EJ772185",
+  "quote": "The results indicated that the benefit of low-cohesion text was restricted to less skilled, high-knowledge readers, whereas skilled comprehenders with high knowledge benefited from a high-cohesion text."
+ },
+ {
+  "id": "Explaining: a term returns with what it is, and a numbered thing is pointed at after it is shown/10",
+  "source": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=12240927&rettype=abstract&retmode=text",
+  "quote": "Students in the pre-training group performed better than did students in other groups on tests of transfer (in all 3 experiments) and retention (in Experiments 1 and 2)."
+ },
+ {
+  "id": "Explaining: a term returns with what it is, and a numbered thing is pointed at after it is shown/11",
+  "source": "https://www.uky.edu/~gmswan3/544/9_ways_to_reduce_CL.pdf",
+  "quote": "students who learned from integrated presentations (consisting of animation with integrated on-screen text) performed better on a problem-solving transfer test than did students who learned from separated presentations",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Explaining: a term returns with what it is, and a numbered thing is pointed at after it is shown/12",
+  "source": "https://dspace.library.uu.nl/server/api/core/bitstreams/773543c2-c1b6-4e43-8dbc-ab3ae8bec8df/content",
+  "quote": "ANOVA showed a main effect for timing of supportive information: presentation during practice led to more efficient learning than presentation before practice.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Explaining: a term returns with what it is, and a numbered thing is pointed at after it is shown/13",
+  "source": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=12549589&rettype=abstract&retmode=text",
+  "quote": "Experiments 1 and 2 showed that disruption occurred when a preferred assignment was inconsistent with gender information."
+ },
+ {
+  "id": "Explaining: a term returns with what it is, and a numbered thing is pointed at after it is shown/14",
+  "source": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=2796738&rettype=abstract&retmode=text",
+  "quote": "Thus, concepts introduced with the indefinite this were more accessible; therefore, the indefinite this appears to operate cataphorically to improve referential access."
+ },
+ {
+  "id": "Explaining: a term returns with what it is, and a numbered thing is pointed at after it is shown/15",
+  "source": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15573552&rettype=abstract&retmode=text",
+  "quote": "a concurrent presentation of identical auditory and visual technical text (without the presence of diagrams) was significantly less efficient in comparison with an auditory-only text."
+ },
+ {
+  "id": "Explaining: a term returns with what it is, and a numbered thing is pointed at after it is shown/16",
+  "source": "https://www.w3.org/WAI/WCAG22/Understanding/unusual-words.html",
+  "quote": "G101: Providing the definition of a word or phrase used in an unusual or restricted way for the first occurrence of the word or phrase in a web page using one of the following techniques:"
+ },
+ {
+  "id": "Explaining: a term returns with what it is, and a numbered thing is pointed at after it is shown/17",
+  "source": "https://developers.google.com/style/jargon",
+  "quote": "Are you using the term throughout your document? If so, briefly describe the term in parentheses on first reference, or link to a trusted definition."
+ },
+ {
+  "id": "Explaining: a term returns with what it is, and a numbered thing is pointed at after it is shown/18",
+  "source": "https://developers.google.com/style/abbreviations",
+  "quote": "For all subsequent mentions of the abbreviation, use the abbreviation by itself."
+ },
+ {
+  "id": "Explaining: a term returns with what it is, and a numbered thing is pointed at after it is shown/19",
+  "source": "https://html.spec.whatwg.org/multipage/grouping-content.html#the-figure-element",
+  "quote": "If a figure element is referenced by its relative position, e.g., \"in the photograph above\" or \"as the next figure shows\", then moving the figure would disrupt"
+ },
+ {
+  "id": "Explaining: the terms of a compound condition are joined by written connectives/1",
+  "source": "https://files.eric.ed.gov/fulltext/ED213027.pdf",
+  "quote": "We attributed this result to the potential ambiguity of \"ors\" expressed implicitly in commas.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Explaining: the terms of a compound condition are joined by written connectives/2",
+  "source": "https://eric.ed.gov/?id=ED213027",
+  "quote": "Results showed that conditional instructions were easier to follow when presented as algorithms than as prose when subjects were prepared to follow algorithms by practice with feedback."
+ },
+ {
+  "id": "Explaining: the terms of a compound condition are joined by written connectives/3",
+  "source": "https://eric.ed.gov/?id=ED213027",
+  "quote": "the difficulty with the first exposure to the instruction drastically reversed the algorithm advantage in both speed and accuracy"
+ },
+ {
+  "id": "Explaining: the terms of a compound condition are joined by written connectives/4",
+  "source": "https://cs.uwaterloo.ca/~dberry/handbook/ambiguityHandbook.pdf",
+  "quote": "The problem can be fixed by writing what is meant, i.e., either ... or for the exclusive OR and either ... or ... or both for the inclusive OR.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Explaining: the terms of a compound condition are joined by written connectives/5",
+  "source": "https://cs.uwaterloo.ca/~dberry/handbook/ambiguityHandbook.pdf",
+  "quote": "The usual approach to make the writer’s intent clear is to use physical structure or enumeration to indicate precedence.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Explaining: the terms of a compound condition are joined by written connectives/6",
+  "source": "https://cs.uwaterloo.ca/~dberry/handbook/ambiguityHandbook.pdf",
+  "quote": "A well-placed comma disambiguates a sentence like this one.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Explaining: the terms of a compound condition are joined by written connectives/7",
+  "source": "https://www.nasa.gov/reference/system-engineering-handbook-appendix/",
+  "quote": "Is the requirement free from indefinite pronouns (this, these) and ambiguous terms (e.g., “as appropriate,” “etc.,” “and/or,” “but not limited to”)?"
+ },
+ {
+  "id": "Explaining: an exchange and a rule in words get one worked case, a derivation its labelled steps, an outcome its step, and each input its case/1",
+  "source": "https://eric.ed.gov/?id=EJ1364058",
+  "quote": "Using robust variance estimation (RVE) to account for clustered effect sizes, the average effect size of worked examples on mathematics performance outcomes was medium with g = 0.48 and p = 0.01."
+ },
+ {
+  "id": "Explaining: an exchange and a rule in words get one worked case, a derivation its labelled steps, an outcome its step, and each input its case/2",
+  "source": "https://eric.ed.gov/?id=EJ640537",
+  "quote": "With more experience in the domain, worked examples became redundant and problem solving proved superior."
+ },
+ {
+  "id": "Explaining: an exchange and a rule in words get one worked case, a derivation its labelled steps, an outcome its step, and each input its case/3",
+  "source": "https://mrbartonmaths.com/resourcesnew/8.%20Research/Explicit%20Instruction/The%20Expertise%20Reversal%20Effect.pdf",
+  "quote": "In all of the experiments described here, inexperienced learners benefitted most from an instructional procedure that placed a heavy emphasis on guidance.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Explaining: an exchange and a rule in words get one worked case, a derivation its labelled steps, an outcome its step, and each input its case/4",
+  "source": "https://www.pedocs.de/volltexte/2026/34113/pdf/Learn_and_Instr_2025_Tetzlaff_u.a._A_cornerstone_of_adaptivity.pdf",
+  "quote": "Low prior knowledge learners learn better from high-assistance instruction (d = 0.505). High prior knowledge learners learn better from low-assistance instruction (d = − 0.428).",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Explaining: an exchange and a rule in words get one worked case, a derivation its labelled steps, an outcome its step, and each input its case/5",
+  "source": "https://eric.ed.gov/?id=EJ1036777",
+  "quote": "Specifically, we recommend beginning with concrete materials and then explicitly and gradually fading to the more abstract."
+ },
+ {
+  "id": "Explaining: an exchange and a rule in words get one worked case, a derivation its labelled steps, an outcome its step, and each input its case/6",
+  "source": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=32588486&rettype=abstract&retmode=text",
+  "quote": "A key finding from this study is that participants who trained with improved concrete examples performed as well as, or better than, participants who trained with abstract examples."
+ },
+ {
+  "id": "Explaining: an exchange and a rule in words get one worked case, a derivation its labelled steps, an outcome its step, and each input its case/7",
+  "source": "https://mrbartonmaths.com/resourcesnew/8.%20Research/Problem%20Solving/The%20Subgoal%20Learning%20Model.pdf",
+  "quote": "Across 4 experiments it was found that a label for a group of steps in examples helped participants form subgoals as assessed by measures such as problem-solving performance and talk aloud protocols.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Explaining: an exchange and a rule in words get one worked case, a derivation its labelled steps, an outcome its step, and each input its case/8",
+  "source": "https://eric.ed.gov/?id=EJ1253101",
+  "quote": "Learning subgoals consistently improved performance on quizzes, which were formative and given within a week of learning a new procedure, but not on exams, which were summative."
+ },
+ {
+  "id": "Explaining: an exchange and a rule in words get one worked case, a derivation its labelled steps, an outcome its step, and each input its case/9",
+  "source": "https://api.semanticscholar.org/graph/v1/paper/DOI:10.1145/3159450.3159527?fields=title,year,authors,abstract,venue",
+  "quote": "Students using this strategy scored on average 15% higher than students in the control group for the tracing problems used the study (p<0.05)."
+ },
+ {
+  "id": "Explaining: an exchange and a rule in words get one worked case, a derivation its labelled steps, an outcome its step, and each input its case/10",
+  "source": "https://eric.ed.gov/?id=EJ520492",
+  "quote": "Found that text coherence improved readers' comprehension, but also that giving readers with sufficient background knowledge an incoherent text that forced them to infer unstated relations engaged them in compensatory processing, allowing deeper text understanding"
+ },
+ {
+  "id": "Explaining: an exchange and a rule in words get one worked case, a derivation its labelled steps, an outcome its step, and each input its case/11",
+  "source": "https://api.openalex.org/works/doi:10.1037/0022-0663.83.3.329",
+  "quote": "Kintsch's (Kintsch & van Dijk, 1978; Miller & Kintsch, 1980) reading comprehension model was used to identify locations where inferences were called for in a 1000-word expository text."
+ },
+ {
+  "id": "Explaining: an exchange and a rule in words get one worked case, a derivation its labelled steps, an outcome its step, and each input its case/12",
+  "source": "https://eric.ed.gov/?id=EJ1000186",
+  "quote": "Random effects analyses of the 336 tests revealed that case comparison activities commonly led to greater learning outcomes than other forms of case study including sequential, single case, and nonanalogous, as well as traditional instruction and control (d = 0.50)"
+ },
+ {
+  "id": "Explaining: an exchange and a rule in words get one worked case, a derivation its labelled steps, an outcome its step, and each input its case/13",
+  "source": "https://gwern.net/doc/psychology/1983-gick.pdf",
+  "quote": "Furthermore, the verbal statements and diagrams that had failed to facilitate transfer from one analog proved highly beneficial when paired with two.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Explaining: an exchange and a rule in words get one worked case, a derivation its labelled steps, an outcome its step, and each input its case/14",
+  "source": "https://assess.ucr.edu/sites/default/files/2019-02/atkinsonderryrenklwortham_2000.pdf",
+  "quote": "First, transfer is enhanced when there are at least two examples presented for each type of problem taught.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Explaining: an exchange and a rule in words get one worked case, a derivation its labelled steps, an outcome its step, and each input its case/15",
+  "source": "https://aaalab.stanford.edu/papers/time_for_telling.pdf",
+  "quote": "Generating the distinctions between contrasting cases and then reading a text or hearing a lecture led to more accurate predictions than the control treatments",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Explaining: an exchange and a rule in words get one worked case, a derivation its labelled steps, an outcome its step, and each input its case/16",
+  "source": "https://arxiv.org/pdf/1706.07269v3",
+  "quote": "That is, people do not ask why event P happened, but rather why event P happened instead of some event Q.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Explaining: an exchange and a rule in words get one worked case, a derivation its labelled steps, an outcome its step, and each input its case/17",
+  "source": "https://arxiv.org/pdf/1807.03341v2",
+  "quote": "Moreover, this practice misleads readers to believe that all of the proposed changes are necessary.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Explaining: an exchange and a rule in words get one worked case, a derivation its labelled steps, an outcome its step, and each input its case/18",
+  "source": "https://arxiv.org/abs/1901.08644",
+  "quote": "Furthermore, some of these representations are redundant, awarding the network a certain robustness to structural damages."
+ },
+ {
+  "id": "Explaining: a picture stands at the first use of what it shows, a label on its thing, one numbering across figure, pseudocode and sentences, and a path as a still line/1",
+  "source": "https://eric.ed.gov/?id=EJ747512",
+  "quote": "The analyses indicate that, for complex learning materials in particular, increasing either the spatial or temporal contiguity of related elements of information can lead to substantial learning gains."
+ },
+ {
+  "id": "Explaining: a picture stands at the first use of what it shows, a label on its thing, one numbering across figure, pseudocode and sentences, and a path as a still line/2",
+  "source": "https://eric.ed.gov/?id=EJ1186641",
+  "quote": "A random effects meta-analysis of 58 independent comparisons (n = 2426) produced an overall effect size of g = 0.63 (p < 0.001)."
+ },
+ {
+  "id": "Explaining: a picture stands at the first use of what it shows, a label on its thing, one numbering across figure, pseudocode and sentences, and a path as a still line/3",
+  "source": "https://eric.ed.gov/?id=EJ1500453",
+  "quote": "Temporal gaps, even -2 s had a significant negative effect on recall and comprehension."
+ },
+ {
+  "id": "Explaining: a picture stands at the first use of what it shows, a label on its thing, one numbering across figure, pseudocode and sentences, and a path as a still line/4",
+  "source": "https://eric.ed.gov/?id=EJ1329871",
+  "quote": "Results revealed that participants in the CPK group had higher post-test performance and learning efficiency than participants in the CPW and SP conditions."
+ },
+ {
+  "id": "Explaining: a picture stands at the first use of what it shows, a label on its thing, one numbering across figure, pseudocode and sentences, and a path as a still line/5",
+  "source": "https://eric.ed.gov/?id=EJ880290",
+  "quote": "In Experiment 2, a reverse effect occurred when the same material was presented to a group of Shakespearean experts."
+ },
+ {
+  "id": "Explaining: a picture stands at the first use of what it shows, a label on its thing, one numbering across figure, pseudocode and sentences, and a path as a still line/6",
+  "source": "https://eric.ed.gov/?id=EJ986386",
+  "quote": "This meta-analysis reveals a significant seductive detail effect with small to medium (retention performance) and medium (transfer performance) effects."
+ },
+ {
+  "id": "Explaining: a picture stands at the first use of what it shows, a label on its thing, one numbering across figure, pseudocode and sentences, and a path as a still line/7",
+  "source": "https://eric.ed.gov/?id=EJ1263249",
+  "quote": "Findings show that including seductive details in learning material can hinder learning."
+ },
+ {
+  "id": "Explaining: a picture stands at the first use of what it shows, a label on its thing, one numbering across figure, pseudocode and sentences, and a path as a still line/8",
+  "source": "https://sites.stat.columbia.edu/gelman/communication/Bateman2010.pdf",
+  "quote": "We found that people’s accuracy in describing the embellished charts was no worse than for plain charts, and that their recall after a two-to-three-week gap was significantly better.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Explaining: a picture stands at the first use of what it shows, a label on its thing, one numbering across figure, pseudocode and sentences, and a path as a still line/9",
+  "source": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=21678020&rettype=abstract&retmode=text",
+  "quote": "The results indicated that data-legend compatibility reduced the time needed to understand graphs, as well as the time needed to retrieve relevant graph information from memory."
+ },
+ {
+  "id": "Explaining: a picture stands at the first use of what it shows, a label on its thing, one numbering across figure, pseudocode and sentences, and a path as a still line/10",
+  "source": "https://www.uni-wuerzburg.de/fileadmin/06020330/Methoden/Publikationen/Effects_of_spatial..._APP.pdf",
+  "quote": "However, in complex or dense graphs, direct labeling easily results in visual cluttering of textual elements and, thus, cannot be considered a panacea.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Explaining: a picture stands at the first use of what it shows, a label on its thing, one numbering across figure, pseudocode and sentences, and a path as a still line/11",
+  "source": "https://eric.ed.gov/?id=EJ747083",
+  "quote": "In Experiment 1, people described diagrams with or without arrows, interpreting diagrams without arrows as conveying structural information and diagrams with arrows as conveying functional information."
+ },
+ {
+  "id": "Explaining: a picture stands at the first use of what it shows, a label on its thing, one numbering across figure, pseudocode and sentences, and a path as a still line/12",
+  "source": "https://eric.ed.gov/?id=EJ780451",
+  "quote": "The mean weighted effect size on learning outcome is d = 0.37 (95% CI 0.25-0.49)."
+ },
+ {
+  "id": "Explaining: a picture stands at the first use of what it shows, a label on its thing, one numbering across figure, pseudocode and sentences, and a path as a still line/13",
+  "source": "https://archive-ouverte.unige.ch/unige:92234",
+  "quote": "An overall positive effect of animation over static graphics was found, with a Hedges’s g effect size of 0.226"
+ },
+ {
+  "id": "Explaining: a picture stands at the first use of what it shows, a label on its thing, one numbering across figure, pseudocode and sentences, and a path as a still line/14",
+  "source": "https://access.archive-ouverte.unige.ch/access/metadata/75bf6876-cb91-4e2c-8ac6-9d0767449449/download",
+  "quote": "In the present meta-analysis, only the animated visualizations coded as iconic produced a small and positive animation effect.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Explaining: a picture stands at the first use of what it shows, a label on its thing, one numbering across figure, pseudocode and sentences, and a path as a still line/15",
+  "source": "https://hci.stanford.edu/courses/cs448b/papers/Tversky_AnimationFacilitate_IJHCS02.pdf",
+  "quote": "Animations are often too complex or too fast to be accurately perceived.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Explaining: a picture stands at the first use of what it shows, a label on its thing, one numbering across figure, pseudocode and sentences, and a path as a still line/16",
+  "source": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=12930472&rettype=abstract&retmode=text",
+  "quote": "There was no advantage for moving letters among static ones, but there was an advantage for objects that had recently started to move despite the fact that the motion was uninformative."
+ },
+ {
+  "id": "Explaining: a picture stands at the first use of what it shows, a label on its thing, one numbering across figure, pseudocode and sentences, and a path as a still line/17",
+  "source": "https://www.w3.org/TR/WCAG22/#pause-stop-hide",
+  "quote": "For any moving, blinking or scrolling information that (1) starts automatically, (2) lasts more than five seconds, and (3) is presented in parallel with other content, there is a mechanism for the user to pause"
+ },
+ {
+  "id": "Explaining: a picture stands at the first use of what it shows, a label on its thing, one numbering across figure, pseudocode and sentences, and a path as a still line/18",
+  "source": "https://www.w3.org/WAI/WCAG22/Understanding/pause-stop-hide.html",
+  "quote": "Some people with cognitive disabilities and attention deficits are distracted by continuous movement."
+ },
+ {
+  "id": "Explaining: a picture stands at the first use of what it shows, a label on its thing, one numbering across figure, pseudocode and sentences, and a path as a still line/19",
+  "source": "https://www.w3.org/TR/mediaqueries-5/",
+  "quote": "Indicates that user has notified the system that they prefer an interface that removes or replaces the types of motion-based animation that either trigger discomfort for those with vestibular motion sensitivity, or distraction for those with attention deficits."
+ },
+ {
+  "id": "Explaining: a picture stands at the first use of what it shows, a label on its thing, one numbering across figure, pseudocode and sentences, and a path as a still line/20",
+  "source": "https://www.w3.org/WAI/WCAG22/Understanding/animation-from-interactions.html",
+  "quote": "Motion animation triggered by interaction can be disabled, unless the animation is essential to the functionality or the information being conveyed."
+ },
+ {
+  "id": "Explaining: a picture stands at the first use of what it shows, a label on its thing, one numbering across figure, pseudocode and sentences, and a path as a still line/21",
+  "source": "https://eric.ed.gov/?id=EJ842989",
+  "quote": "Enhancement of learning by color coding was due to efficiency of locating corresponding information between illustration and text."
+ },
+ {
+  "id": "Explaining: a picture stands at the first use of what it shows, a label on its thing, one numbering across figure, pseudocode and sentences, and a path as a still line/22",
+  "source": "https://eric.ed.gov/?id=EJ1178409",
+  "quote": "Results of a contrast analysis revealed that low-prior-knowledge learners learned better with the extended version compared with the basic version, whereas adding multimedia integration signals was detrimental for learning outcomes of high-prior-knowledge learners."
+ },
+ {
+  "id": "Explaining: a picture stands at the first use of what it shows, a label on its thing, one numbering across figure, pseudocode and sentences, and a path as a still line/23",
+  "source": "https://eric.ed.gov/?id=EJ737858",
+  "quote": "Unfortunately, many studies have shown this promise is not always achieved."
+ },
+ {
+  "id": "Explaining: a picture stands at the first use of what it shows, a label on its thing, one numbering across figure, pseudocode and sentences, and a path as a still line/24",
+  "source": "https://eric.ed.gov/?id=EJ672419",
+  "quote": "Results for 3 groups of college students (n=87) show that directive help is effective for recall performance because of its summarizing and repeating function."
+ },
+ {
+  "id": "Explaining: a picture stands at the first use of what it shows, a label on its thing, one numbering across figure, pseudocode and sentences, and a path as a still line/25",
+  "source": "https://arxiv.org/abs/2101.08235",
+  "quote": "when the caption describes a low-prominence chart feature, readers rely on the chart and report a higher-prominence feature as the takeaway."
+ },
+ {
+  "id": "Explaining: a picture stands at the first use of what it shows, a label on its thing, one numbering across figure, pseudocode and sentences, and a path as a still line/26",
+  "source": "https://arxiv.org/abs/2205.01263",
+  "quote": "We also find that many readers will tend to recall y-axis numerical values when a caption is present."
+ },
+ {
+  "id": "Explaining: a picture stands at the first use of what it shows, a label on its thing, one numbering across figure, pseudocode and sentences, and a path as a still line/27",
+  "source": "https://html.spec.whatwg.org/multipage/grouping-content.html#the-figure-element",
+  "quote": "If a figure element is referenced by its relative position, e.g., \"in the photograph above\" or \"as the next figure shows\", then moving the figure would disrupt"
+ },
+ {
+  "id": "Explainer: a later part holds what can be understood apart, what a line needs stands at the line, a fact stands in one place, and the page says nothing about how to read it/1",
+  "source": "https://eric.ed.gov/?id=EJ233231",
+  "quote": "Advance organizers were shown to have a small facilitative effect."
+ },
+ {
+  "id": "Explainer: a later part holds what can be understood apart, what a line needs stands at the line, a fact stands in one place, and the page says nothing about how to read it/2",
+  "source": "https://eric.ed.gov/?id=ED171803",
+  "quote": "For subjects of high ability, the average effect size exceeds that for low ability subjects."
+ },
+ {
+  "id": "Explainer: a later part holds what can be understood apart, what a line needs stands at the line, a fact stands in one place, and the page says nothing about how to read it/3",
+  "source": "https://eric.ed.gov/?id=ED220476",
+  "quote": "lack of special facilitation for low ability, or low knowledge learners; and lower ES's for older learners"
+ },
+ {
+  "id": "Explainer: a later part holds what can be understood apart, what a line needs stands at the line, a fact stands in one place, and the page says nothing about how to read it/4",
+  "source": "https://api.openalex.org/works/doi:10.1037/0022-0663.85.2.281",
+  "quote": "Subjects remembered more topics but recalled less about each accessed topic if the text they read contained signals than if it did not"
+ },
+ {
+  "id": "Explainer: a later part holds what can be understood apart, what a line needs stands at the line, a fact stands in one place, and the page says nothing about how to read it/5",
+  "source": "https://api.openalex.org/works/doi:10.1037/0033-2909.132.3.354",
+  "quote": "Analyses suggest that ISI and retention interval operate jointly to affect final-test retention; specifically, the ISI producing maximal retention increased as retention interval increased."
+ },
+ {
+  "id": "Explainer: a later part holds what can be understood apart, what a line needs stands at the line, a fact stands in one place, and the page says nothing about how to read it/6",
+  "source": "https://api.openalex.org/works/doi:10.1037/0022-0663.97.1.70",
+  "quote": "On an immediate test, performance was greater after massed versus single reading, whereas performance for distributed rereading was not significantly greater than after single reading."
+ },
+ {
+  "id": "Explainer: a later part holds what can be understood apart, what a line needs stands at the line, a fact stands in one place, and the page says nothing about how to read it/7",
+  "source": "https://api.openalex.org/works/doi:10.1207/s1532690xci0804_2",
+  "quote": "The results suggest that integrated instructions were no better than split-source information in such areas."
+ },
+ {
+  "id": "Explainer: a later part holds what can be understood apart, what a line needs stands at the line, a fact stands in one place, and the page says nothing about how to read it/8",
+  "source": "https://api.openalex.org/works/doi:10.1207/s1532690xci0804_2",
+  "quote": "Experiments 3, 4, and 5 indicate that the introduction of seemingly useful but nonessential explanatory material (e.g., a commentary on a diagram) could have deleterious effects even when presented in integrated format."
+ },
+ {
+  "id": "Explainer: a later part holds what can be understood apart, what a line needs stands at the line, a fact stands in one place, and the page says nothing about how to read it/9",
+  "source": "https://api.openalex.org/works/doi:10.1111/j.2044-8279.1992.tb01017.x",
+  "quote": "Experiment 2 showed that students in an integrated group spent less time processing instructions yet still outperformed students in a conventional group on test questions."
+ },
+ {
+  "id": "Explainer: a later part holds what can be understood apart, what a line needs stands at the line, a fact stands in one place, and the page says nothing about how to read it/10",
+  "source": "https://eric.ed.gov/?id=EJ747512",
+  "quote": "The analyses indicate that, for complex learning materials in particular, increasing either the spatial or temporal contiguity of related elements of information can lead to substantial learning gains."
+ },
+ {
+  "id": "Explainer: a later part holds what can be understood apart, what a line needs stands at the line, a fact stands in one place, and the page says nothing about how to read it/11",
+  "source": "https://eric.ed.gov/?id=EJ1186641",
+  "quote": "A random effects meta-analysis of 58 independent comparisons (n = 2426) produced an overall effect size of g = 0.63 (p < 0.001)."
+ },
+ {
+  "id": "Explainer: a later part holds what can be understood apart, what a line needs stands at the line, a fact stands in one place, and the page says nothing about how to read it/12",
+  "source": "https://api.openalex.org/works/doi:10.1518/001872098779480587",
+  "quote": "The results of three experiments indicated that as level of expertise increased, the best instructional designs changed from ones in which diagrams and text were physically integrated to ones in which the text was eliminated."
+ },
+ {
+  "id": "Explainer: a later part holds what can be understood apart, what a line needs stands at the line, a fact stands in one place, and the page says nothing about how to read it/13",
+  "source": "https://api.openalex.org/works/doi:10.1207/S15326985EP3801_4",
+  "quote": "Instructional techniques that are highly effective with inexperienced learners can lose their effectiveness and even have negative consequences when used with more experienced learners."
+ },
+ {
+  "id": "Explainer: a later part holds what can be understood apart, what a line needs stands at the line, a fact stands in one place, and the page says nothing about how to read it/14",
+  "source": "https://api.openalex.org/works/doi:10.1037/0022-0663.92.1.126",
+  "quote": "The results were the reverse of those of Experiment 1: The diagram-only group outperformed the audio-text group."
+ },
+ {
+  "id": "Explainer: a later part holds what can be understood apart, what a line needs stands at the line, a fact stands in one place, and the page says nothing about how to read it/15",
+  "source": "https://api.openalex.org/works/doi:10.1207/s1532690xci1401_1",
+  "quote": "We found that readers who know little about the domain of the text benefit from a coherent text, whereas high-knowledge readers benefit from a minimally coherent text."
+ },
+ {
+  "id": "Explainer: a later part holds what can be understood apart, what a line needs stands at the line, a fact stands in one place, and the page says nothing about how to read it/16",
+  "source": "https://eric.ed.gov/?id=EJ772185",
+  "quote": "The results indicated that the benefit of low-cohesion text was restricted to less skilled, high-knowledge readers, whereas skilled comprehenders with high knowledge benefited from a high-cohesion text."
+ },
+ {
+  "id": "Explainer: a later part holds what can be understood apart, what a line needs stands at the line, a fact stands in one place, and the page says nothing about how to read it/17",
+  "source": "https://eric.ed.gov/?id=EJ1007931",
+  "quote": "Consistent with the redundancy principle and the dual-channel theory of multimedia learning, both experiments demonstrated impairment for on-screen text identical to the narration."
+ },
+ {
+  "id": "Explainer: a later part holds what can be understood apart, what a line needs stands at the line, a fact stands in one place, and the page says nothing about how to read it/18",
+  "source": "https://eric.ed.gov/?id=EJ1217373",
+  "quote": "Moderation analyses indicate that learners with high prior knowledge benefitted more from segmenting instructional material than learners with no or low prior knowledge in terms of retention performance."
+ },
+ {
+  "id": "Explainer: a later part holds what can be understood apart, what a line needs stands at the line, a fact stands in one place, and the page says nothing about how to read it/19",
+  "source": "https://api.openalex.org/works/doi:10.1037/0022-0663.93.2.390",
+  "quote": "performed better on transfer but not retention tests compared with learners who received the same 2 presentations in the reverse order (whole-part presentation)"
+ },
+ {
+  "id": "Explainer: a later part holds what can be understood apart, what a line needs stands at the line, a fact stands in one place, and the page says nothing about how to read it/20",
+  "source": "https://files.eric.ed.gov/fulltext/ED491708.pdf",
+  "quote": "the mean effect for tests of the “slash the verbiage” principle was large (d = 0.89)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Explainer: a later part holds what can be understood apart, what a line needs stands at the line, a fact stands in one place, and the page says nothing about how to read it/21",
+  "source": "https://research.utwente.nl/en/publications/f811580e-953a-4312-a1ee-9916b3f98e05",
+  "quote": "The results closely resembled those of the original study: minimalist users learned faster and better."
+ },
+ {
+  "id": "Explainer: a later part holds what can be understood apart, what a line needs stands at the line, a fact stands in one place, and the page says nothing about how to read it/22",
+  "source": "https://api.openalex.org/works/doi:10.1207/s15327051hci0302_2",
+  "quote": "In two experiments, the Minimal Manual was shown to afford more efficient learning progress than an otherwise comparable, commercially developed self-instruction manual"
+ },
+ {
+  "id": "Explainer: a later part holds what can be understood apart, what a line needs stands at the line, a fact stands in one place, and the page says nothing about how to read it/23",
+  "source": "https://api.openalex.org/works/doi:10.1093/poq/nfp031",
+  "quote": "As expected, the longer the stated length, the fewer respondents started and completed the questionnaire."
+ },
+ {
+  "id": "Explainer: a later part holds what can be understood apart, what a line needs stands at the line, a fact stands in one place, and the page says nothing about how to read it/24",
+  "source": "https://api.openalex.org/works/doi:10.1177/0894439313497468",
+  "quote": "Our results show that, overall, using a constant progress indicator does not significantly help reduce drop-offs"
+ },
+ {
+  "id": "Explainer: a later part holds what can be understood apart, what a line needs stands at the line, a fact stands in one place, and the page says nothing about how to read it/25",
+  "source": "https://developers.google.com/style/procedures",
+  "quote": "Don't simply repeat the heading: if the heading explains what the procedure is, and no additional context is needed, then don't include an introductory statement."
+ },
+ {
+  "id": "Explainer: a later part holds what can be understood apart, what a line needs stands at the line, a fact stands in one place, and the page says nothing about how to read it/26",
+  "source": "https://developers.google.com/style/procedures",
+  "quote": "Avoid repeating procedures. Instead, reference those procedures and link to them."
+ },
+ {
+  "id": "Explainer: a later part holds what can be understood apart, what a line needs stands at the line, a fact stands in one place, and the page says nothing about how to read it/27",
+  "source": "https://docs.gitlab.com/development/documentation/styleguide/",
+  "quote": "This policy: Prevents information silos and makes it easier to find information about GitLab products. Does not mean that content cannot be duplicated in multiple places in the documentation."
+ },
+ {
+  "id": "Explainer: a later part holds what can be understood apart, what a line needs stands at the line, a fact stands in one place, and the page says nothing about how to read it/28",
+  "source": "https://docs.oasis-open.org/dita/dita/v1.3/os/part3-all-inclusive/archSpec/base/conref.html",
+  "quote": "The DITA conref attributes provide mechanisms for reusing content."
+ },
+ {
+  "id": "Explainer: a later part holds what can be understood apart, what a line needs stands at the line, a fact stands in one place, and the page says nothing about how to read it/29",
+  "source": "https://arxiv.org/pdf/2212.01479v1",
+  "quote": "found that 28.9% of the most popular projects on GitHub currently contain at least one outdated reference, with 82.3% of the projects being outdated at least once during the project’s history",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Explainer: a later part holds what can be understood apart, what a line needs stands at the line, a fact stands in one place, and the page says nothing about how to read it/30",
+  "source": "https://api.openalex.org/works/doi:10.1109/ICPC.2019.00019",
+  "quote": "Our analysis discloses the extent to which different types of code changes (e.g., change of selection statements) trigger updates to the related comments"
+ },
+ {
+  "id": "Explainer: the table of questions after the first part with each question and its place, a part per named questions, reference tables without voice/1",
+  "source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:12240927%20AND%20SRC:MED&resultType=core&format=json",
+  "quote": "The pre-training described or depicted the possible states of each part.",
+  "note": "a JSON record: the quote stands in a string of the record, read with its markup tags as spaces"
+ },
+ {
+  "id": "Explainer: the table of questions after the first part with each question and its place, a part per named questions, reference tables without voice/2",
+  "source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:12240927%20AND%20SRC:MED&resultType=core&format=json",
+  "quote": "Students in the pre-training group performed better than did students in other groups on tests of transfer",
+  "note": "a JSON record: the quote stands in a string of the record, read with its markup tags as spaces"
+ },
+ {
+  "id": "Explainer: the table of questions after the first part with each question and its place, a part per named questions, reference tables without voice/3",
+  "source": "https://eric.ed.gov/?id=EJ918738",
+  "quote": "Seventy-eight undergraduate EFL learners read and summarized seven texts and completed a vocabulary assessment."
+ },
+ {
+  "id": "Explainer: the table of questions after the first part with each question and its place, a part per named questions, reference tables without voice/4",
+  "source": "https://eric.ed.gov/?id=EJ918738",
+  "quote": "The best performance was observed in the condition where glosses were placed after the glossed word."
+ },
+ {
+  "id": "Explainer: the table of questions after the first part with each question and its place, a part per named questions, reference tables without voice/5",
+  "source": "https://eric.ed.gov/?id=EJ918738",
+  "quote": "reading passages with hypermedia annotations significantly benefits passage comprehension and vocabulary"
+ },
+ {
+  "id": "Explainer: the table of questions after the first part with each question and its place, a part per named questions, reference tables without voice/6",
+  "source": "https://eric.ed.gov/?id=EJ1117822",
+  "quote": "39 Persian-speaking L2 learners of English were divided into two experimental conditions"
+ },
+ {
+  "id": "Explainer: the table of questions after the first part with each question and its place, a part per named questions, reference tables without voice/7",
+  "source": "https://eric.ed.gov/?id=EJ1117822",
+  "quote": "experienced lower levels of cognitive load due to the elimination of split-attention"
+ },
+ {
+  "id": "Explainer: the table of questions after the first part with each question and its place, a part per named questions, reference tables without voice/8",
+  "source": "https://eric.ed.gov/?id=EJ1117822",
+  "quote": "performed better on the reading comprehension measures"
+ },
+ {
+  "id": "Explainer: the table of questions after the first part with each question and its place, a part per named questions, reference tables without voice/9",
+  "source": "https://eric.ed.gov/?id=EJ1317918",
+  "quote": "pop-up window versus separate window"
+ },
+ {
+  "id": "Explainer: the table of questions after the first part with each question and its place, a part per named questions, reference tables without voice/10",
+  "source": "https://eric.ed.gov/?id=EJ1317918",
+  "quote": "the effect of gloss location was less clear-cut"
+ },
+ {
+  "id": "Explainer: the table of questions after the first part with each question and its place, a part per named questions, reference tables without voice/11",
+  "source": "https://eric.ed.gov/?id=EJ1135302",
+  "quote": "Teaching of word meanings supported comprehension of text containing the target words in almost all cases"
+ },
+ {
+  "id": "Explainer: the table of questions after the first part with each question and its place, a part per named questions, reference tables without voice/12",
+  "source": "https://eric.ed.gov/?id=EJ1135302",
+  "quote": "Analyses of 36 studies that met criteria"
+ },
+ {
+  "id": "Explainer: the table of questions after the first part with each question and its place, a part per named questions, reference tables without voice/13",
+  "source": "https://eric.ed.gov/?id=EJ1135302",
+  "quote": "very limited evidence that direct teaching of word meanings"
+ },
+ {
+  "id": "Explainer: the table of questions after the first part with each question and its place, a part per named questions, reference tables without voice/14",
+  "source": "https://research.utwente.nl/en/publications/f811580e-953a-4312-a1ee-9916b3f98e05",
+  "quote": "Sixty-four first-year Dutch university students were randomly assigned"
+ },
+ {
+  "id": "Explainer: the table of questions after the first part with each question and its place, a part per named questions, reference tables without voice/15",
+  "source": "https://research.utwente.nl/en/publications/f811580e-953a-4312-a1ee-9916b3f98e05",
+  "quote": "The results closely resembled those of the original study: minimalist users learned faster and better."
+ },
+ {
+  "id": "Explainer: the table of questions after the first part with each question and its place, a part per named questions, reference tables without voice/16",
+  "source": "https://arxiv.org/pdf/2009.14237",
+  "quote": "The priming glossary was the least-used feature during the unstructured reading task. A few readers (6 of 27) were observed consulting the priming glossary for a nontrivial amount of time",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Explainer: the table of questions after the first part with each question and its place, a part per named questions, reference tables without voice/17",
+  "source": "https://eric.ed.gov/?id=EJ1251024",
+  "quote": "Multiple-choice glosses were the most effective, and in-text glosses and glossaries were the least effective gloss types."
+ },
+ {
+  "id": "Explainer: the table of questions after the first part with each question and its place, a part per named questions, reference tables without voice/18",
+  "source": "https://files.eric.ed.gov/fulltext/ED491708.pdf",
+  "quote": "the mean effect for tests of the “slash the verbiage” principle was large (d = 0.89)",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Explainer: the table of questions after the first part with each question and its place, a part per named questions, reference tables without voice/19",
+  "source": "https://api.openalex.org/works/doi:10.1207/s15327051hci0302_2",
+  "quote": "In two experiments, the Minimal Manual was shown to afford more efficient learning progress than an otherwise comparable, commercially developed self-instruction manual"
+ },
+ {
+  "id": "Explainer: the table of questions after the first part with each question and its place, a part per named questions, reference tables without voice/20",
+  "source": "https://api.openalex.org/works/doi:10.1093/poq/nfp031",
+  "quote": "As expected, the longer the stated length, the fewer respondents started and completed the questionnaire."
+ },
+ {
+  "id": "Explainer: the table of questions after the first part with each question and its place, a part per named questions, reference tables without voice/21",
+  "source": "https://api.openalex.org/works/doi:10.1177/0894439313497468",
+  "quote": "Our results show that, overall, using a constant progress indicator does not significantly help reduce drop-offs"
+ },
+ {
+  "id": "Explainer: the table of questions after the first part with each question and its place, a part per named questions, reference tables without voice/22",
+  "source": "https://developers.google.com/style/procedures",
+  "quote": "Avoid repeating procedures. Instead, reference those procedures and link to them."
+ },
+ {
+  "id": "Explainer: the table of questions after the first part with each question and its place, a part per named questions, reference tables without voice/23",
+  "source": "https://arxiv.org/pdf/2212.01479v1",
+  "quote": "found that 28.9% of the most popular projects on GitHub currently contain at least one outdated reference, with 82.3% of the projects being outdated at least once during the project’s history",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Explainer: a claim about code opens its code where it stands, each line of the pseudocode names its method, and the builder resolves every reference/1",
+  "source": "https://arxiv.org/pdf/2009.14237v3",
+  "quote": "A usability study with 27 researchers showed that when using ScholarPhi versus a standard PDF reader, they could answer questions that required an understanding of nonce words in less time, viewing less of the paper.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Explainer: a claim about code opens its code where it stands, each line of the pseudocode names its method, and the builder resolves every reference/2",
+  "source": "https://arxiv.org/pdf/2009.14237",
+  "quote": "we can interpret the result as ScholarPhi is associated with tasks completed in 45.4 fewer seconds in Time than Basic, on average.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Explainer: a claim about code opens its code where it stands, each line of the pseudocode names its method, and the builder resolves every reference/3",
+  "source": "https://arxiv.org/pdf/2009.14237",
+  "quote": "No statistically significant differences were observed in the number of participants who answered questions correctly among the three interfaces.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Explainer: a claim about code opens its code where it stands, each line of the pseudocode names its method, and the builder resolves every reference/4",
+  "source": "https://arxiv.org/pdf/2009.14237",
+  "quote": "The priming glossary was the least-used feature during the unstructured reading task. A few readers (6 of 27) were observed consulting the priming glossary for a nontrivial amount of time",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Explainer: a claim about code opens its code where it stands, each line of the pseudocode names its method, and the builder resolves every reference/5",
+  "source": "https://andrewhead.info/assets/pdf/augmenting-scientific-papers.pdf",
+  "quote": "using the list of usages as a “guide” to support a non-linear, curiosity-driven reading, and skimming a section by jumping from one equation diagram to the next.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Explainer: a claim about code opens its code where it stands, each line of the pseudocode names its method, and the builder resolves every reference/6",
+  "source": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0210900",
+  "quote": "Although the participants could not click and navigate the hyperlinks, this experiment at least shows that having hyperlinks shown as salient blue text does not negatively impact on reading behaving."
+ },
+ {
+  "id": "Explainer: a claim about code opens its code where it stands, each line of the pseudocode names its method, and the builder resolves every reference/7",
+  "source": "https://link.springer.com/article/10.1007/s10648-018-9435-9",
+  "quote": "A random effects meta-analysis of 58 independent comparisons (n = 2426) produced an overall effect size of g = 0.63 (p < 0.001)."
+ },
+ {
+  "id": "Explainer: a claim about code opens its code where it stands, each line of the pseudocode names its method, and the builder resolves every reference/8",
+  "source": "https://api.openalex.org/works/doi:10.1207/s15326985ep3801_4",
+  "quote": "Instructional techniques that are highly effective with inexperienced learners can lose their effectiveness and even have negative consequences when used with more experienced learners."
+ },
+ {
+  "id": "Explainer: a claim about code opens its code where it stands, each line of the pseudocode names its method, and the builder resolves every reference/9",
+  "source": "https://www.mediawiki.org/wiki/Page_Previews/2017-18_A/B_Tests",
+  "quote": "-5% on enwiki, -3% on dewiki in the second A/B test (December-February)"
+ },
+ {
+  "id": "Explainer: a claim about code opens its code where it stands, each line of the pseudocode names its method, and the builder resolves every reference/10",
+  "source": "https://www.mediawiki.org/wiki/Page_Previews/2017-18_A/B_Tests",
+  "quote": "+21% on enwiki, +21% on dewiki in the second A/B test (December-February)"
+ },
+ {
+  "id": "Explainer: a claim about code opens its code where it stands, each line of the pseudocode names its method, and the builder resolves every reference/11",
+  "source": "https://api.openalex.org/works/doi:10.1109/TSE.2006.116",
+  "quote": "These issues caused developers to spend, on average, 35 percent of their time performing the mechanics of navigation within and between source files."
+ },
+ {
+  "id": "Explainer: a claim about code opens its code where it stands, each line of the pseudocode names its method, and the builder resolves every reference/12",
+  "source": "https://api.openalex.org/works/doi:10.1145/1753326.1753706",
+  "quote": "the results of a quantitative study which indicates Code Bubbles significantly improved code understanding time, while reducing navigation interactions over a widely-used IDE, for two controlled tasks."
+ },
+ {
+  "id": "Explainer: a claim about code opens its code where it stands, each line of the pseudocode names its method, and the builder resolves every reference/13",
+  "source": "https://link.springer.com/article/10.1007/s10664-014-9314-z",
+  "quote": "subjects with traceability performed on average 24 % faster on a given task and created on average 50 % more correct solutions"
+ },
+ {
+  "id": "Explainer: a claim about code opens its code where it stands, each line of the pseudocode names its method, and the builder resolves every reference/14",
+  "source": "https://arxiv.org/abs/2504.19225",
+  "quote": "Annotating source code with algorithm labels significantly improves program comprehension (p=0.040), with a median improvement of 6 points (~23%), but does not affect completion times (p=0.991)."
+ },
+ {
+  "id": "Explainer: a claim about code opens its code where it stands, each line of the pseudocode names its method, and the builder resolves every reference/15",
+  "source": "https://arxiv.org/pdf/2212.01479",
+  "quote": "found that 28.9% of the most popular projects on GitHub currently contain at least one outdated reference, with 82.3% of the projects being outdated at least once during the project’s history.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Explainer: a claim about code opens its code where it stands, each line of the pseudocode names its method, and the builder resolves every reference/16",
+  "source": "https://arxiv.org/abs/1901.07440",
+  "quote": "Almost 10% of the links included in source code comments are dead."
+ },
+ {
+  "id": "Explainer: a claim about code opens its code where it stands, each line of the pseudocode names its method, and the builder resolves every reference/17",
+  "source": "https://hci.stanford.edu/publications/2018/text-table-ref/paper.pdf",
+  "quote": "participants match sentence text to table cells 26.4% more accurately and spend 22.9% less time than when using the baseline interface.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Explainer: a claim about code opens its code where it stands, each line of the pseudocode names its method, and the builder resolves every reference/18",
+  "source": "https://www.sphinx-doc.org/en/master/usage/configuration.html",
+  "quote": "In nitpicky mode, Sphinx will warn about all references where the target cannot be found. This is recommended for new projects as it ensures that all references are to valid targets."
+ },
+ {
+  "id": "Explainer: a claim about code opens its code where it stands, each line of the pseudocode names its method, and the builder resolves every reference/19",
+  "source": "https://www.sphinx-doc.org/en/master/man/sphinx-build.html",
+  "quote": "Turn warnings into errors. This means that sphinx-build exits with exit status 1 if any warnings are generated during the build."
+ },
+ {
+  "id": "Explainer: a claim about code opens its code where it stands, each line of the pseudocode names its method, and the builder resolves every reference/20",
+  "source": "https://doc.rust-lang.org/rustdoc/lints.html",
+  "quote": "This lint detects when an intra-doc link fails to be resolved."
+ },
+ {
+  "id": "Explainer: a claim about code opens its code where it stands, each line of the pseudocode names its method, and the builder resolves every reference/21",
+  "source": "https://docs.oracle.com/en/java/javase/21/docs/specs/man/javadoc.html",
+  "quote": "Checks for issues relating to the references to Java API elements from documentation comment tags. For example, the reference in @see or {@link ...} cannot be found, or a bad name is given for @param or @throws."
+ },
+ {
+  "id": "Explainer: a claim about code opens its code where it stands, each line of the pseudocode names its method, and the builder resolves every reference/22",
+  "source": "https://code.visualstudio.com/docs/configure/command-line",
+  "quote": "vscode://file/{full path to file}:line:column"
+ },
+ {
+  "id": "Explainer: a claim about code opens its code where it stands, each line of the pseudocode names its method, and the builder resolves every reference/23",
+  "source": "https://youtrack.jetbrains.com/api/issues/TBX-3965?fields=summary,description,comments(text,created,author(fullName))",
+  "quote": "The `jetbrains://` is still under active development. As soon as there is a stable release supporting all these links we will provide documentation on how to use them."
+ },
+ {
+  "id": "Explainer: a claim about code opens its code where it stands, each line of the pseudocode names its method, and the builder resolves every reference/24",
+  "source": "https://html.spec.whatwg.org/multipage/browsing-the-web.html",
+  "quote": "In particular, if hasTransientActivation is false, then the user agent should not invoke the external software package without prior user confirmation."
+ },
+ {
+  "id": "Page: content shown on hover or focus opens on focus as on hover, stays under the pointer and closes on Escape/1",
+  "source": "https://www.w3.org/TR/WCAG22/",
+  "quote": "If pointer hover can trigger the additional content, then the pointer can be moved over the additional content without the additional content disappearing;"
+ },
+ {
+  "id": "Page: content shown on hover or focus opens on focus as on hover, stays under the pointer and closes on Escape/2",
+  "source": "https://www.w3.org/TR/WCAG21/",
+  "quote": "Hoverable If pointer hover can trigger the additional content, then the pointer can be moved over the additional content without the additional content disappearing;"
+ },
+ {
+  "id": "Page: content shown on hover or focus opens on focus as on hover, stays under the pointer and closes on Escape/3",
+  "source": "https://www.w3.org/TR/WCAG21/",
+  "quote": "All functionality of the content is operable through a keyboard interface without requiring specific timings for individual keystrokes"
+ },
+ {
+  "id": "Page: content shown on hover or focus opens on focus as on hover, stays under the pointer and closes on Escape/4",
+  "source": "https://html.spec.whatwg.org/multipage/dom.html#the-title-attribute",
+  "quote": "Relying on the title attribute is currently discouraged as many user agents do not expose the attribute in an accessible manner as required by this specification"
+ },
+ {
+  "id": "Page: content shown on hover or focus opens on focus as on hover, stays under the pointer and closes on Escape/5",
+  "source": "https://www.w3.org/TR/mediaqueries-4/",
+  "quote": "Authors should therefore be careful not to assume that the :hover pseudo-class will never match on a device where hover: none is true, but they should design layouts that do not depend on hovering to be fully usable."
+ },
+ {
+  "id": "Page: content shown on hover or focus opens on focus as on hover, stays under the pointer and closes on Escape/6",
+  "source": "https://www.w3.org/TR/mediaqueries-4/",
+  "quote": "The any-pointer and any-hover media features are identical to the pointer and hover media features, but they correspond to the union of capabilities of all the pointing devices available to the user."
+ },
+ {
+  "id": "Page: content shown on hover or focus opens on focus as on hover, stays under the pointer and closes on Escape/7",
+  "source": "https://www.w3.org/WAI/WCAG22/Understanding/content-on-hover-or-focus.html",
+  "quote": "Content which can be triggered via pointer hover should also be able to be triggered by keyboard focus."
+ },
+ {
+  "id": "Page: content shown on hover or focus opens on focus as on hover, stays under the pointer and closes on Escape/8",
+  "source": "https://www.w3.org/WAI/WCAG22/Understanding/content-on-hover-or-focus.html",
+  "quote": "it's important to provide a way for users to dismiss any additional content without the need to move their mouse or keyboard focus, such as pressing the Esc key."
+ },
+ {
+  "id": "Media: the voice by part, the pause a button and the Space key, the tools of a selection/1",
+  "source": "https://maria-wirzberger.de/wp-content/uploads/2019/01/Rey2019_Article_AMeta-analysisOfTheSegmentingE.pdf",
+  "quote": "By contrast, a learner-paced segmentation only fostered a significant increase in transfer performance.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Media: the voice by part, the pause a button and the Space key, the tools of a selection/2",
+  "source": "https://www.runi.ac.il/media/j2jbwbjw/learnercontrolcognitiveloadandinstructional.pdf",
+  "quote": "In the stop-play group, 11 out of 18 students did not use the ‘stop’ and ‘play’ buttons at all",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Media: the voice by part, the pause a button and the Space key, the tools of a selection/3",
+  "source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=TITLE:%22motion%20onset%20captures%20attention%22&resultType=core&format=json",
+  "quote": "There was no advantage for moving letters among static ones, but there was an advantage for objects that had recently started to move despite the fact that the motion was uninformative."
+ },
+ {
+  "id": "Media: the voice by part, the pause a button and the Space key, the tools of a selection/4",
+  "source": "https://developer.apple.com/tutorials/data/design/human-interface-guidelines/edit-menus.json",
+  "quote": "Depending on available space, the default menu position is above or below the insertion point or selection."
+ },
+ {
+  "id": "Media: the voice by part, the pause a button and the Space key, the tools of a selection/5",
+  "source": "https://m1.material.io/patterns/selection.html",
+  "quote": "Actions related to the text appear in a dropdown menu positioned immediately above, but not overlapping, the selection."
+ },
+ {
+  "id": "Media: the voice by part, the pause a button and the Space key, the tools of a selection/6",
+  "source": "https://web.hypothes.is/help/annotation-basics-in-the-hypothesis-lms-app/",
+  "quote": "Select any text in the reading, and a small menu called the Adder pops up with two buttons: Annotate and Highlight."
+ },
+ {
+  "id": "Media: the voice by part, the pause a button and the Space key, the tools of a selection/7",
+  "source": "https://www.w3.org/WAI/WCAG22/Understanding/on-input.html",
+  "quote": "A change of content is not always a change of context."
+ },
+ {
+  "id": "Media: the voice by part, the pause a button and the Space key, the tools of a selection/8",
+  "source": "https://wiki.freedesktop.org/Specifications/ClipboardsWiki/",
+  "quote": "selecting but with no explicit copy should only set PRIMARY, never CLIPBOARD"
+ },
+ {
+  "id": "Media: the voice by part, the pause a button and the Space key, the tools of a selection/9",
+  "source": "https://www.w3.org/TR/clipboard-apis/",
+  "quote": "Let hasGesture be true if the relevant global object of this has transient activation, false otherwise."
+ },
+ {
+  "id": "Media: the voice by part, the pause a button and the Space key, the tools of a selection/10",
+  "source": "https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API",
+  "quote": "Writing requires either the clipboard-write permission or transient activation."
+ },
+ {
+  "id": "Media: the voice by part, the pause a button and the Space key, the tools of a selection/11",
+  "source": "https://www.w3.org/WAI/WCAG22/Understanding/pointer-cancellation.html",
+  "quote": "The intent of this success criterion is to make it easier for users to prevent accidental or erroneous pointer input."
+ },
+ {
+  "id": "Media: the voice by part, the pause a button and the Space key, the tools of a selection/12",
+  "source": "https://www.w3.org/WAI/ARIA/apg/patterns/button/",
+  "quote": "Space: Activates the button."
+ },
+ {
+  "id": "Media: the voice by part, the pause a button and the Space key, the tools of a selection/13",
+  "source": "https://support.google.com/youtube/answer/7631406?hl=en",
+  "quote": "Play/Pause when the seek bar is selected. Activate a button if a button has focus."
+ },
+ {
+  "id": "Media: the voice by part, the pause a button and the Space key, the tools of a selection/14",
+  "source": "https://www.w3.org/WAI/WCAG22/Understanding/character-key-shortcuts.html",
+  "quote": "What matters is that a shortcut relies on a printable character (letters, punctuation, numbers, symbol characters)"
+ },
+ {
+  "id": "Media: the voice by part, the pause a button and the Space key, the tools of a selection/15",
+  "source": "https://www.nngroup.com/articles/ten-usability-heuristics/",
+  "quote": "Users often perform actions by mistake."
+ },
+ {
+  "id": "Media: the voice by part, the pause a button and the Space key, the tools of a selection/16",
+  "source": "https://www.w3.org/WAI/WCAG22/Understanding/pause-stop-hide.html",
+  "quote": "to avoid distracting users during their interaction with a web page."
+ },
+ {
+  "id": "H-Media-the-page-lights-what-is-spoken-and-the-reader-moves/1",
+  "source": "https://www.atia.org/wp-content/uploads/2020/06/ATOB-V14-A2-Keelor_etal.pdf",
+  "quote": "The mean of the comprehension scores was identical in each of the TTS conditions.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "H-Media-the-page-lights-what-is-spoken-and-the-reader-moves/2",
+  "source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:37119436%20AND%20SRC:MED&resultType=core&format=json",
+  "quote": "No other significant differences were found across conditions including between the presentational features of TTS, specifically TTS with no highlighting and TTS with highlighting conditions."
+ },
+ {
+  "id": "Page: the clipboard is written only at a command of the reader/1",
+  "source": "https://wiki.freedesktop.org/Specifications/ClipboardsWiki/",
+  "quote": "selecting but with no explicit copy should only set PRIMARY, never CLIPBOARD"
+ },
+ {
+  "id": "Page: the clipboard is written only at a command of the reader/2",
+  "source": "https://www.w3.org/TR/clipboard-apis/",
+  "quote": "Let hasGesture be true if the relevant global object of this has transient activation, false otherwise."
+ },
+ {
+  "id": "Page: the clipboard is written only at a command of the reader/3",
+  "source": "https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API",
+  "quote": "Writing requires either the clipboard-write permission or transient activation."
+ },
+ {
+  "id": "Media: a map of the page lists every part with its figures and stands open beside the text in a wide window/1",
+  "source": "https://www.nngroup.com/articles/hamburger-menus/",
+  "quote": "On desktop, people used the hidden menus in only 27% of the cases, while they used visible or combo navigation almost twice as much: in 48% and 50% of the cases, respectively."
+ },
+ {
+  "id": "Media: a map of the page lists every part with its figures and stands open beside the text in a wide window/2",
+  "source": "https://www.nngroup.com/articles/hamburger-menus/",
+  "quote": "On the desktop, people were at least 39% slower when the navigation was hidden (compared with the visible or combo conditions)."
+ },
+ {
+  "id": "Media: a map of the page lists every part with its figures and stands open beside the text in a wide window/3",
+  "source": "https://api.openalex.org/works?search=Learning+from+electronic+texts+effects+of+interactive+overviews+for+information+access",
+  "quote": "Both overviews produced better memory for text topics and better breadth of recall compared with traditional text."
+ },
+ {
+  "id": "Media: a map of the page lists every part with its figures and stands open beside the text in a wide window/4",
+  "source": "https://api.openalex.org/works/doi:10.1111/bjet.13164",
+  "quote": "Results showed that tables of contents boosted topic recall, and interactivity allowed learners to perform more relevant reviewing behaviours."
+ },
+ {
+  "id": "Media: a map of the page lists every part with its figures and stands open beside the text in a wide window/5",
+  "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7126386/",
+  "quote": "For the low prior knowledge learners, the results showed that the hierarchical structure supported better free recall performance and reduced feelings of disorientation."
+ },
+ {
+  "id": "Media: a map of the page lists every part with its figures and stands open beside the text in a wide window/6",
+  "source": "https://illinoislawreview.org/wp-content/uploads/2024/07/Benoliel.pdf",
+  "quote": "The study found that the comprehension of the article was 10% higher among participants who read a version of the article that included a graphically distinct table of contents.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Media: a map of the page lists every part with its figures and stands open beside the text in a wide window/7",
+  "source": "https://www.nngroup.com/articles/table-of-contents/",
+  "quote": "However, visibility is often a concern. In testing, many users failed to notice the sticky table of contents in these implementations."
+ },
+ {
+  "id": "Media: a map of the page lists every part with its figures and stands open beside the text in a wide window/8",
+  "source": "https://www.nngroup.com/articles/in-page-links-content-navigation/",
+  "quote": "We observed that users tended to skip in-page links in their initial exploration and clicked on in-page navigation links when they had a specific information need."
+ },
+ {
+  "id": "Media: a map of the page lists every part with its figures and stands open beside the text in a wide window/9",
+  "source": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0189753",
+  "quote": "The Abstract was seen as the most important section by undergraduates, whereas the Figures and Tables were ranked as most important to postgraduate researchers."
+ },
+ {
+  "id": "Media: a map of the page lists every part with its figures and stands open beside the text in a wide window/10",
+  "source": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0297034",
+  "quote": "Only 15 people read the results section second, regardless of whether it was the results-text or results-figures & tables."
+ },
+ {
+  "id": "Media: a map of the page lists every part with its figures and stands open beside the text in a wide window/11",
+  "source": "https://hci.stanford.edu/publications/2018/text-table-ref/paper.pdf",
+  "quote": "participants match sentence text to table cells 26.4% more accurately and spend 22.9% less time than when using the baseline interface.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Media: a map of the page lists every part with its figures and stands open beside the text in a wide window/12",
+  "source": "https://arxiv.org/pdf/2105.00076v1",
+  "quote": "This last change was made in response to P1’s feedback that navigating away to figures caused him to lose his reading location.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Media: a map of the page lists every part with its figures and stands open beside the text in a wide window/13",
+  "source": "https://andrewhead.info/assets/pdf/augmenting-scientific-papers.pdf",
+  "quote": "using the list of usages as a “guide” to support a non-linear, curiosity-driven reading, and skimming a section by jumping from one equation diagram to the next.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Media: a map of the page lists every part with its figures and stands open beside the text in a wide window/14",
+  "source": "https://api.openalex.org/works/doi:10.1145/937549.937551",
+  "quote": "A second experiment utilizing novel e-commerce sites and allowing for more control of factors found to be important in the first study found that browsing behavior was influenced by both the breadth and information scent of the menus."
+ },
+ {
+  "id": "Media: a map of the page lists every part with its figures and stands open beside the text in a wide window/15",
+  "source": "https://discovery.ucl.ac.uk/id/eprint/1431982/1/Brumby_model_of_visual_search_and_selection.pdf",
+  "quote": "search time to the same target position increases as the number of items in the menu increase.",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Media: a map of the page lists every part with its figures and stands open beside the text in a wide window/16",
+  "source": "https://www.uv.es/lasalgon/papers/2012_JECR.pdf",
+  "quote": "while students with low sustained-attention abilities scored higher on questions demanding the integration of information in the hypertext version",
+  "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "Media: a map of the page lists every part with its figures and stands open beside the text in a wide window/17",
+  "source": "https://www.nngroup.com/articles/hamburger-menus/",
+  "quote": "On mobile, patterns are starting to form, but on desktop there is a lot of variability and inconsistency in the placement and the labeling of hidden navigation."
+ },
+ {
+  "id": "Media: a map of the page lists every part with its figures and stands open beside the text in a wide window/18",
+  "source": "https://www.nngroup.com/articles/table-of-contents/",
+  "quote": "To increase the usability and benefit of a sticky table of contents, consider highlighting the current section in the table of contents to show users where they are in the article as they scroll down."
+ },
+ {
+  "id": "Media: a map of the page lists every part with its figures and stands open beside the text in a wide window/19",
+  "source": "https://developer.apple.com/tutorials/data/design/human-interface-guidelines/sidebars.json",
+  "quote": "Avoid hiding the sidebar by default to ensure that it remains discoverable."
+ },
+ {
+  "id": "Media: a map of the page lists every part with its figures and stands open beside the text in a wide window/20",
+  "source": "https://developer.apple.com/tutorials/data/design/human-interface-guidelines/sidebars.json",
+  "quote": "If you need to include two levels of hierarchy in a sidebar, use succinct, descriptive labels to title each group."
+ },
+ {
+  "id": "Media: a map of the page lists every part with its figures and stands open beside the text in a wide window/21",
+  "source": "https://raw.githubusercontent.com/material-components/material-components-android/master/docs/components/NavigationDrawer.md",
+  "quote": "block interaction with the rest of an app’s content with a scrim. They are elevated above most of the app’s UI and don’t affect the screen’s layout grid."
+ },
+ {
+  "id": "Media: a map of the page lists every part with its figures and stands open beside the text in a wide window/22",
+  "source": "https://raw.githubusercontent.com/material-components/material-components-android/master/docs/components/NavigationDrawer.md",
+  "quote": "The navigation drawer is being deprecated in the Material 3 expressive update."
+ },
+ {
+  "id": "Media: a map of the page lists every part with its figures and stands open beside the text in a wide window/23",
+  "source": "https://raw.githubusercontent.com/material-components/material-components-android/master/docs/components/TopAppBar.md",
+  "quote": "Leading button"
+ },
+ {
+  "id": "Media: a map of the page lists every part with its figures and stands open beside the text in a wide window/24",
+  "source": "https://developer.android.com/develop/ui/compose/layouts/adaptive/use-window-size-classes",
+  "quote": "Available width is usually more important than available height due to the ubiquity of vertical scrolling, so the width window size class is likely more relevant to your app's UI."
+ },
+ {
+  "id": "Media: a map of the page lists every part with its figures and stands open beside the text in a wide window/25",
+  "source": "https://drafts.csswg.org/css-scroll-anchoring/",
+  "quote": "Scroll anchoring attempts to keep the user’s view of the document stable across layout changes."
+ },
+ {
+  "id": "Media: a map of the page lists every part with its figures and stands open beside the text in a wide window/26",
+  "source": "https://drafts.csswg.org/css-scroll-anchoring/",
+  "quote": "Any change to the computed value of any of the following properties, on any element in the path from the anchor node to the scrollable element (or document), inclusive of both:"
+ },
+ {
+  "id": "Media: a map of the page lists every part with its figures and stands open beside the text in a wide window/27",
+  "source": "https://raw.githubusercontent.com/mdn/browser-compat-data/main/css/properties/overflow-anchor.json",
+  "quote": "\"version_added\": \"27\""
+ },
+ {
+  "id": "Media: a map of the page lists every part with its figures and stands open beside the text in a wide window/28",
+  "source": "https://web.dev/articles/cls",
+  "quote": "Layout shifts that occur within 500 milliseconds of user input will have the hadRecentInput flag set, so they can be excluded from calculations."
+ },
+ {
+  "id": "Media: a map of the page lists every part with its figures and stands open beside the text in a wide window/29",
+  "source": "https://www.w3.org/TR/WCAG22/",
+  "quote": "Content can be presented without loss of information or functionality, and without requiring scrolling in two dimensions for:"
+ },
+ {
+  "id": "Media: a map of the page lists every part with its figures and stands open beside the text in a wide window/30",
+  "source": "https://www.w3.org/TR/WCAG22/",
+  "quote": "Headings and labels describe topic or purpose."
+ },
+ {
+  "id": "Media: a map of the page lists every part with its figures and stands open beside the text in a wide window/31",
+  "source": "https://www.w3.org/TR/WCAG22/",
+  "quote": "When a user interface component receives keyboard focus, the component is not entirely hidden due to author-created content."
+ },
+ {
+  "id": "Media: a map of the page lists every part with its figures and stands open beside the text in a wide window/32",
+  "source": "https://www.w3.org/TR/WCAG22/",
+  "quote": "More than one way is available to locate a web page within a set of web pages except where the web page is the result of, or a step in, a process."
+ },
+ {
+  "id": "Media: a map of the page lists every part with its figures and stands open beside the text in a wide window/33",
+  "source": "https://www.w3.org/TR/wai-aria-1.2/",
+  "quote": "Authors SHOULD only mark one element in a set of elements as current with aria-current."
+ },
+ {
+  "id": "Media: a map of the page lists every part with its figures and stands open beside the text in a wide window/34",
+  "source": "https://www.w3.org/WAI/ARIA/apg/practices/landmark-regions/",
+  "quote": "If a page includes more than one navigation landmark, each should have a unique label (see Step 3 above)."
+ },
+ {
+  "id": "Media: a map of the page lists every part with its figures and stands open beside the text in a wide window/35",
+  "source": "https://www.w3.org/TR/html-aam-1.0/",
+  "quote": "A figcaption provides additional information related to its parent figure element. A figcaption does not take part in the accessible name or accessible description computation, unless explicitly referenced by an author."
+ },
+ {
+  "id": "Media: a map of the page lists every part with its figures and stands open beside the text in a wide window/36",
+  "source": "https://www.nngroup.com/articles/in-page-links/",
+  "quote": "If the list of in-page links will stay in place as users scrolls, it should show users’ current location."
  }
 ]

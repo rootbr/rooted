@@ -3,6 +3,7 @@
 
     build_page.py --body BODY.html [--out PAGE.html] [--story-out STORY.txt] [--text-out TEXT.md]
                   [--cues CUES.json] [--voice URL] [--report REPORT.md | --look LOOK.json] [--root DIR]
+                  [--terms TERMS.json] [--refs REFS.json] [--editor-url URL]
                   [--title TITLE] [--id ID] [--strings FILE] [--template FILE] [--standalone]
                   [--explanation]
 
@@ -22,17 +23,25 @@ Its contract:
       letters, digits, "_" or "-".
   data-lit="@name ..."  on any element: the page lights it while one of the named sentences is
       spoken.
+  data-nav="NAME"  on a figure or any other element: the short name under which the map of an
+      explanation's page lists it.
+  data-ref="KEY"  on any element outside a data-say element: names the entry KEY of the file of
+      references; the page shows what the entry names in place (see --refs).
   <section class="decision" data-decision="KEY" data-title="TITLE">  holds two or more
       <div class="option" data-option="NAME">, at most one of them with data-mine="1" (the
       author's choice). The page adds the pick controls, the words fields and the copy bar.
   Figures: inline SVG of class "fig" or HTML inside <figure>, in the template's classes.
   The figures of an explanation: <figure class="pseudo"> holds the rule of the mechanism as
-      pseudocode in a <pre>, one line a step; a line may be a <span data-lit="@name"> and may hold
-      a link to the part that unfolds it. <figure class="questions"> holds the table of the
-      readers' questions, <figure class="terms"> the table of terms, <figure class="quiz"> a
-      question with its hidden answer, <figure class="factor"> a table that runs one factor
-      without it and with it, its cells class="good" or class="bad". A class attribute may list
-      several classes.
+      pseudocode in a <pre>, one line a step; a line may be a <span data-lit="@name">, may hold
+      a link to the part that unfolds it, and may end in an element of class "by" that names the
+      method carrying the line out. <figure class="questions"> holds the table of the readers'
+      questions, <figure class="quiz"> a question with its hidden answer, <figure class="factor">
+      a table that runs one factor without it and with it, its cells class="good" or class="bad".
+      A class attribute may list several classes. A figure of class terms, the table of terms,
+      is an ordinary figure: it makes no body an explanation and may stand anywhere.
+  Blocks: <div class="gist"> holds the gist of a part, the few sentences to keep, as paragraphs
+      or a list, set apart by a rule at its side; <div class="steps"> holds <div class="step">
+      blocks that stand side by side and stack in a narrow window.
   An internal link href="#ID" names an id of the body, or look-heading on a page with a
       "Where to look" section.
 
@@ -42,9 +51,9 @@ builder takes its sentence_spans and paragraphs from beside this script. The tex
 ends a sentence, so no sentence runs from one holder into the next.
 
 A body is an explanation when --explanation is given or when it holds a figure whose classes
-include pseudo, questions, terms or quiz; any other body is built as a report's. The first part of
-an explanation runs from its first data-part heading to the next one or to the end of the body,
-and gives the mechanism whole.
+include pseudo, questions or quiz; any other body is built as a report's. The first part of an
+explanation runs from its first data-part heading to the next one or to the end of the body, and
+gives the mechanism whole.
 
 The builder refuses a body, one line per violation on stderr as BODY:LINE: MESSAGE, when it gives
 data-say a value or names a sentence by number in data-lit (the form of sentence numbers written
@@ -57,13 +66,18 @@ the page does not have; has a decision with fewer than two options, more than on
 no data-decision or data-title, or a data-decision used twice; or carries a <script> element or
 an on... handler attribute. It refuses an explanation, besides, whose first part holds no figure
 of class pseudo with a <pre> of two or more non-empty lines (at the first part's heading, at line 1
-in a body without a data-part heading), or whose figure of class questions or terms opens before
-the second data-part heading, anywhere in a body with one part or none (at that figure): the table
-of questions follows the first part, and the table of terms closes the page.
+in a body without a data-part heading); whose figure of class questions opens before the second
+data-part heading, anywhere in a body with one part or none (at that figure): the table of
+questions follows the first part; or whose figure, unless of class quiz, has no data-nav or an
+empty one (at that figure). With --terms it refuses each barred word the body's text holds (see
+--terms). On a run that writes the page or reads --refs it refuses each data-ref whose KEY the
+file of references lacks, and so every data-ref of a page built without --refs.
 
 It warns, as BODY:LINE: warning: MESSAGE and without changing the exit code, about a spoken
 sentence a voice may misread: one that starts with a lowercase letter, ends in a number before
-its period, holds a decimal fraction, or holds a number with an ordinary space inside.
+its period, holds a decimal fraction, or holds a number with an ordinary space inside. It warns,
+as REFS.json: warning: entry "KEY" is not used, about an entry of the file of references that no
+data-ref names, on a built page and after the refusals of a refused one.
 
 --story-out writes the story: one paragraph per part, an empty line between, the text
 voice_cues.py reads. It needs no cues.
@@ -74,16 +88,63 @@ with the same text; else the body is refused at the first sentence that differs,
 again. The page takes the times from the cues and the text from the body. Without --cues the page
 is silent: every sentence's cue starts and ends at 0, and --voice is absent or empty.
 
-The page lets the reader comment on any piece of the article's text: he selects it, or, on a page
-with --voice, presses C or the plus beside the spoken sentence. The copied answer and the stored
-one carry the comments after the decisions and the parts. On a page with --voice a click on the
-text, the Space key or the button beside the spoken sentence pauses and resumes the voice; a
-comment pauses it and, when it was playing, resumes it from the start of that sentence; a words
-field pauses it when the cursor enters.
+--terms TERMS.json is the list of terms: a JSON list of objects {"term": TEXT, "is": TEXT,
+"code": TEXT, "not": [WORD, ...]}, "term" required. The builder searches the words the reader
+sees or hears: the text of the body's elements outside a script, and the values of data-part,
+data-voice, data-nav, alt, title and aria-label, each at the line where the attribute stands;
+sentence marks are left out. A WORD of "not" found there as a whole word, in any case and with
+any white space between the words of a phrase, refuses the body at its line as BODY:LINE:
+"FOUND" stands for "TERM": write the term. A WORD that ends in "*" stands for every word that
+starts with the text before it. Every occurrence of any term is passed over first, so a barred
+word inside a term is no violation. "is" and "code" hold the term's meaning and its name in the code; the
+builder reads them as texts. A file that is no JSON, names a key twice in one object, is no list
+of objects, or holds an entry with a key outside these four, without a non-empty "term", or with
+a "not" that is no list of words is unreadable input.
 
-The player's parts: one per part of the story, starting at its sentence P.1, titled by the text of
+--refs REFS.json is the file of references: a JSON object keyed by the KEYs data-ref uses, each
+value a code entry {"path": FILE, "fragment": TEXT, "lines": N} or a source entry {"title":
+TEXT, "note": TEXT, "href": URL}, "lines" and "note" optional. A code entry is anchored as a look
+fragment item is, at the one line of FILE under --root that holds TEXT, and the page keeps the
+lines from three above that line to N below it, N 12 by default and from 1 to 60; an entry that
+does not resolve so refuses the body as REFS.json: entry "KEY": MESSAGE, naming the lines found.
+A source entry's "href" is an http: or https: address. Only the entries the body names are
+resolved and reach the page. A file that is no JSON object, names a key twice in one object, or
+holds a value that is neither kind of entry as written here is unreadable input.
+
+--editor-url URL is a link template holding {path} and {line}, such as vscode://file{path}:{line}:
+each code entry on the page then carries the link with its file's absolute path, percent-encoded,
+and its line. It needs --standalone, --refs and --root, as the link carries a path of this machine.
+
+The page's parts: one per part of the story, starting at its sentence P.1, titled by the text of
 its data-part heading, the opening by the string "opening"; a heading without text gives "part"
 and the part's number.
+
+The page with --voice has a button at the end of each part's heading, the opening's in the h1, or
+on a line of its own before an opening without one. The button speaks its part and the voice stops
+where the next part starts, whose button then offers the next part. The button of the part being
+spoken pauses and resumes it; another part's button moves the voice to that part. Once the reader
+has started the voice, the Space key pauses and resumes it; before that, Space is the browser's.
+A click on the text leaves the voice as it is. A page without --voice says that it has no audio.
+
+Selecting text does nothing by itself: beside a selection in the article the page shows two
+buttons, one copying the selected text and one opening a comment window on it, and a click on a
+commented piece opens its comment again. The copied answer and the stored one carry the comments
+after the decisions and the parts. A comment pauses a running voice and, when it was running,
+resumes it from the start of that sentence; a words field pauses it when the cursor enters.
+
+The page of an explanation carries a map: one group per part, listing the part's figures and its
+other elements with data-nav by kind and name, a question without data-nav by its text; the
+reader's place on the page is marked on it. From 840 pixels wide the map stands beside the text,
+open unless the reader closed it; below that it lies over the text and opens at a button.
+
+An element with data-ref whose entry reached the page shows a preview of it when focused, or
+pointed at on a device that can point, and opens it in a panel on a click, Enter or Space: a
+code entry's excerpt with its anchored line marked and, with --editor-url, the link into the
+editor; a source entry's title, note and link. The panel stands at the right beside the text, and
+pushes it, while the text column keeps at least 480 pixels next to the open map and the panel; in
+a narrower window, and below 840 pixels, it lies over the text. The page settles this when the
+panel opens, when the map opens or closes, and when the window is resized, and the reference the
+reader opened keeps its place on the screen when the text moves.
 
 "Where to look" is a section after the body, from one of two sources; with neither the page has
 none. --report REPORT.md: the list under the heading that check_report.py's LOOK_HEADING matches,
@@ -108,21 +169,27 @@ data-voice values) stays out.
 
 Strings: every word the page shows comes from one dictionary with English defaults (STRINGS).
 --strings FILE overrides keys; without it, $XDG_CONFIG_HOME/handing-over-to-readers/page-strings.json
-is read when it exists ($HOME/.config when the variable is unset or empty).
+is read when it exists ($HOME/.config when the variable is unset or empty). A key of
+RETIRED_STRINGS in that file is dropped with the line FILE: warning: key "KEY" is retired and
+ignored; any other key outside STRINGS makes the file unreadable input.
 
 The template's <!--TITLE--> takes the title (--title, else the body's first h1, else the id),
 <!--BODY--> the expanded body and the "Where to look" section, and /*DATA*/ one JSON object:
-{"cues", "parts", "strings", "voice", "id"}, every "<" in it written as \\u003c. The output starts
-with <title> and carries no html, head or body tag; --standalone wraps it in a complete document.
+{"cues", "parts", "strings", "voice", "id", "map", "refs"}, "map" true on an explanation and
+"refs" the page data of each entry the body names, by KEY: {"kind": "code", "path", "line",
+"excerpt": [[NUMBER, TEXT, ANCHORED], ...], "editor"?} or {"kind": "source", "title", "note",
+"href"}. Every "<" in it is written as \\u003c. The output starts with <title> and carries no
+html, head or body tag; --standalone wraps it in a complete document.
 
 Reads the files named on the command line, voice_cues.py beside this script, check_report.py
 beside it with --report, the two configuration files named above when they exist, and the files
-under --root the look list anchors; writes the files of --out, --story-out and --text-out and,
-with the usage journal of feedback.py turned on, one line of counts to that journal on exit 0 or
-1: built or refused, the numbers of sentences, parts, decisions, look items and violations.
-Exit: 0 written; 1 the body breaks its contract, the cues are not the story's, or a look item
-does not resolve; 2 unreadable input, template or strings, options that do not go together, or
-an output that cannot be written.
+under --root that the look list and the code entries anchor; writes the files of --out,
+--story-out and --text-out and, with the usage journal of feedback.py turned on, one line of
+counts to that journal on exit 0 or 1: built or refused, the numbers of sentences, parts,
+decisions, look items and violations.
+Exit: 0 written; 1 the body breaks its contract or the list of terms, the cues are not the
+story's, or a look item or a code entry does not resolve; 2 unreadable input, template, strings,
+terms or references, options that do not go together, or an output that cannot be written.
 """
 from __future__ import annotations
 
@@ -139,13 +206,10 @@ from dataclasses import dataclass, field
 from html.parser import HTMLParser
 from pathlib import Path
 from types import ModuleType
-from typing import Callable, Mapping, final
-from urllib.parse import unquote
+from typing import Callable, Collection, Mapping, final
+from urllib.parse import quote, unquote, urlsplit
 
 STRINGS = {
-    "now": "now:",
-    "notPlaying": "not playing",
-    "jump": "Go to the spoken place",
     "opening": "Opening",
     "part": "Part",
     "noAudio": "This page has no audio: read it as a document.",
@@ -161,12 +225,15 @@ STRINGS = {
     "copied": "Copied: paste it into the chat.",
     "copyFailed": "The page could not copy: the answer is shown below, copy it yourself.",
     "saved": "The answer is saved on the page.",
-    "hintPause": "Pause: click the text, press Space, or use the button beside the spoken sentence.",
-    "hintNote": "Comment: select a piece of text.",
-    "hintNoteSpoken": "Press C to comment on the spoken sentence.",
+    "playPart": "Play this part",
+    "playNext": "Play the next part",
     "pause": "Pause",
     "resume": "Resume",
-    "noteSpoken": "Comment on the spoken sentence",
+    "selectionTools": "The selected text",
+    "copySelection": "Copy",
+    "copiedSelection": "Copied.",
+    "copySelectionFailed": "The page could not copy: use the copy command of the browser.",
+    "comment": "Comment",
     "noteField": "Your comment on this piece of text, typed or dictated",
     "noteSave": "Save",
     "noteCancel": "Cancel",
@@ -176,11 +243,26 @@ STRINGS = {
     "noteEdit": "Edit",
     "noteLine": "On the text “{quote}” ({part}): {text}",
     "look": "Where to look",
-    "parts": "Parts",
     "knew": "I had it",
     "missed": "I did not",
     "returnTo": "Worth returning to:",
+    "map": "Map of the page",
+    "mapOpen": "Show the map",
+    "mapClose": "Hide the map",
+    "mapFilter": "Find on the map",
+    "kindFigure": "figure",
+    "kindTable": "table",
+    "kindPseudo": "pseudocode",
+    "kindQuestion": "question",
+    "kindText": "text",
+    "refPanel": "The code or the source behind the text",
+    "refClose": "Close",
+    "refEditor": "Open in the editor",
+    "refSource": "Open the source",
 }
+# Retired keys: words the page does not show that a user's strings file may hold. Each is dropped with a warning and the
+# file builds; any other key outside STRINGS makes the file unreadable input.
+RETIRED_STRINGS = frozenset(("now", "notPlaying", "jump", "hintPause", "hintNote", "hintNoteSpoken", "noteSpoken", "parts"))
 HERE = Path(__file__).resolve().parent
 STRINGS_FILE = Path("handing-over-to-readers") / "page-strings.json"
 LEXICON_FILE = Path("handing-over-to-readers") / "lexicon.json"
@@ -201,11 +283,11 @@ LOOK_TARGET = "look-heading"
 EXCERPT = 60  # characters of a sentence a message quotes
 
 # An explanation
-PSEUDO, QUESTIONS, TERMS, QUIZ = "pseudo", "questions", "terms", "quiz"
-EXPLANATION_FIGURES = frozenset((PSEUDO, QUESTIONS, TERMS, QUIZ))  # a figure of one of these classes makes the body an explanation
-AFTER_FIRST_PART = (QUESTIONS, TERMS)  # the figures that open after the first part of an explanation
+PSEUDO, QUESTIONS, QUIZ = "pseudo", "questions", "quiz"
+EXPLANATION_FIGURES = frozenset((PSEUDO, QUESTIONS, QUIZ))  # a figure of one of these classes makes the body an explanation
 PSEUDO_LINES = 2  # the fewest non-empty lines of the pseudocode
 FIRST_PART = "the first part of an explanation gives the mechanism whole, with its rule as pseudocode, one line a step"
+NAV = "data-nav"  # the short name of a figure or a passage on the map of the page
 
 # Text a voice misreads
 LOWERCASE_START = re.compile(r"[\W_]*([^\W\d_])")
@@ -221,6 +303,21 @@ CODE_SPAN = re.compile(r"(?<!`)(`+)(?!`)(.+?)(?<!`)\1(?!`)")
 ANCHOR = re.compile(r"^(?P<path>[^\s`:*?\"<>|]+?):(?P<line>\d+)(?:-(?P<end>\d+))?$")
 CONTEXT_LINES = 3
 LINES_NAMED = 8  # a fragment found on more lines is reported by its first lines
+
+# The list of terms
+TERM_KEYS = ("term", "is", "code", "not")
+WORD_STAR = "*"  # a barred word that ends in it stands for every word that starts with the text before it
+MARK = re.compile(r"\[@[^\]]*\]")  # a sentence mark, wherever it stands: neither shown nor spoken
+# The attributes whose values the reader hears or sees, searched for barred words beside the body's text
+WORD_ATTRIBUTES = frozenset((PART, VOICE, NAV, "alt", "title", "aria-label"))
+
+# References
+REF = "data-ref"
+CODE_KEYS, CODE_REQUIRED = frozenset(("path", "fragment", "lines")), frozenset(("path", "fragment"))
+SOURCE_KEYS, SOURCE_REQUIRED = frozenset(("title", "note", "href")), frozenset(("title", "href"))
+REF_LINES = 12  # lines of a code entry's excerpt below its line, by default
+REF_LINES_MOST = 60
+WEB_SCHEMES = frozenset(("http", "https"))
 
 # The page's text
 HEADING_MARKS = {"h1": "# ", "h2": "## ", "h3": "### ", "h4": "### "}
@@ -297,9 +394,10 @@ class Heading:
 
 @dataclass
 class Figure:
-    """A <figure> of the body with the tokens of its class attribute, and the number of non-empty lines of each <pre>
-    it holds."""
+    """A <figure> of the body with the tokens of its class attribute, its data-nav name, and the number of non-empty
+    lines of each <pre> it holds."""
     classes: frozenset[str]
+    nav: str  # the data-nav value with its white space collapsed; "" without one
     line: int
     start: int  # offset of its "<" in the body
     depth: int
@@ -321,9 +419,9 @@ class Pre:
 @final  # its constructor runs the parser, which calls the handlers below
 class BodyScan(HTMLParser):
     """Reads a body once and records, in document order, the elements that hold spoken text or carry data-lit; its
-    decisions, its figures, its first h1, its ids and internal links; whether it is an explanation; and the violations
-    its markup shows by itself: a data-say element left open or holding an element, a script element, a handler
-    attribute. `explanation` declares the body an explanation, as --explanation does."""
+    decisions, its figures, its first h1, its ids, internal links and data-ref keys; whether it is an explanation; and
+    the violations its markup shows by itself: a data-say element left open or holding an element, a script element, a
+    handler attribute. `explanation` declares the body an explanation, as --explanation does."""
 
     def __init__(self, body: str, *, explanation: bool = False):
         super().__init__(convert_charrefs=True)
@@ -341,6 +439,7 @@ class BodyScan(HTMLParser):
         self.h1: str | None = None
         self.ids: set[str] = set()
         self.links: list[tuple[str, int]] = []
+        self.refs: list[tuple[str, int]] = []  # (data-ref key, line) in document order
         self.violations: list[tuple[int, str]] = []
         self.feed(body)
         self.close()
@@ -386,8 +485,11 @@ class BodyScan(HTMLParser):
             self._decisions[-1].options += 1
             self._decisions[-1].mine += values.get("data-mine") == "1"
         figure = None
+        if values.get(REF) is not None:
+            self.refs.append((values[REF].strip(), line))
         if tag == "figure":
-            figure = Figure(frozenset((values.get("class") or "").split()), line, self._offset(), len(self._stack) + 1)
+            figure = Figure(frozenset((values.get("class") or "").split()), " ".join((values.get(NAV) or "").split()), line, self._offset(),
+                            len(self._stack) + 1)
             self.figures.append(figure)
         says = element is not None and element.kind == SAY
         if closes_itself or tag in VOID_TAGS:
@@ -632,8 +734,8 @@ def decision_violations(decisions: list[Decision]) -> list[tuple[int, str]]:
 
 
 def explanation_violations(scan: BodyScan) -> list[tuple[int, str]]:
-    """What breaks the order of an explanation, as (body line, message): a first part without its pseudocode, and each
-    table of questions or of terms that opens before the first part ends."""
+    """What breaks an explanation, as (body line, message): a first part without its pseudocode, each table of questions
+    that opens before the first part ends, and each figure other than a question without a name for the map."""
     found = []
     parts = [element for element in scan.elements if element.tag == "h2" and PART in element.holders]
     end = parts[1].start if len(parts) > 1 else math.inf  # the offset at which the first part ends
@@ -644,10 +746,10 @@ def explanation_violations(scan: BodyScan) -> list[tuple[int, str]]:
         found.append((parts[0].line, 'no <figure class="pseudo"> holding a <pre> of two or more lines stands in the first part: '
                                      + FIRST_PART))
     for figure in scan.figures:
-        table = next((name for name in AFTER_FIRST_PART if name in figure.classes), None)
-        if table is not None and figure.start < end:
-            found.append((figure.line, f'<figure class="{table}"> opens before the first part ends: '
-                                       "the table of questions follows the first part, and the table of terms closes the page"))
+        if QUESTIONS in figure.classes and figure.start < end:
+            found.append((figure.line, f'<figure class="{QUESTIONS}"> opens before the first part ends: the table of questions follows the first part'))
+        if QUIZ not in figure.classes and not figure.nav:
+            found.append((figure.line, "<figure> has no data-nav: give the figure a short name for the map of the page"))
     return found
 
 
@@ -999,6 +1101,208 @@ def look_section(look: Look) -> str:
             f'<ul class="look-list">\n' + "\n".join(entries) + "\n</ul>\n</section>")
 
 
+def read_json(path: Path, what: str) -> object:
+    """The JSON value of the file; InputError when it cannot be read, is no JSON, or an object in it names a key twice."""
+    text = read_text(path, what)
+    try:
+        return json.loads(text, object_pairs_hook=unique_keys)
+    except ValueError as e:  # json.JSONDecodeError and the repeated key of unique_keys
+        raise InputError(f"cannot read the {what} {path}: {e}") from e
+
+
+def unique_keys(pairs: list[tuple[str, object]]) -> dict[str, object]:
+    """A JSON object's pairs as a dict; ValueError naming a key that appears twice, which json.loads would keep once."""
+    seen: dict[str, object] = {}
+    for key, value in pairs:
+        if key in seen:
+            raise ValueError(f'the key "{key}" appears twice in one object')
+        seen[key] = value
+    return seen
+
+
+# The list of terms
+
+
+@dataclass(frozen=True)
+class Term:
+    """A line of the list of terms: the term as written and the words the text must not use for it."""
+    term: str
+    barred: tuple[str, ...]
+
+
+def read_terms(path: Path) -> list[Term]:
+    """The list of terms: a JSON list of objects {"term", "is", "code", "not"}, "term" a non-empty text, "is" and "code"
+    texts, "not" a list of words, each holding text before a closing WORD_STAR; InputError naming the entry otherwise."""
+    entries = read_json(path, "list of terms")
+    if not isinstance(entries, list) or not all(isinstance(entry, dict) for entry in entries):
+        raise InputError(f"the list of terms {path} is not a JSON list of objects")
+    terms = []
+    for index, entry in enumerate(entries, 1):
+        unknown = sorted(set(entry) - set(TERM_KEYS))
+        if unknown:
+            raise InputError(f"the list of terms {path}: entry {index} holds unknown key(s) {', '.join(unknown)}; known: {', '.join(TERM_KEYS)}")
+        if not (isinstance(entry.get("term"), str) and entry["term"].strip()):
+            raise InputError(f'the list of terms {path}: entry {index} has no non-empty "term"')
+        for key in ("is", "code"):
+            if key in entry and not isinstance(entry[key], str):
+                raise InputError(f'the list of terms {path}: the "{key}" of entry {index} is not a text')
+        barred = entry.get("not", [])
+        if not isinstance(barred, list) or not all(isinstance(word, str) and word.removesuffix(WORD_STAR).strip() for word in barred):
+            raise InputError(f'the list of terms {path}: the "not" of entry {index} is not a list of words, '
+                             f'each with text before a closing "{WORD_STAR}"')
+        terms.append(Term(" ".join(entry["term"].split()), tuple(" ".join(word.split()) for word in barred)))
+    return terms
+
+
+def phrase_pattern(text: str, *, prefix: bool = False) -> str:
+    """A regular expression for the words of `text` as whole words, any white space between them; with `prefix`, its
+    last word may run on."""
+    words = r"\s+".join(re.escape(word) for word in text.split())
+    return rf"(?<!\w){words}" + (r"\w*" if prefix else r"(?!\w)")
+
+
+def barred_pattern(word: str) -> re.Pattern[str]:
+    """A barred word as a case-insensitive pattern: a whole word, or every word that starts with it when it ends in WORD_STAR."""
+    starred = word.endswith(WORD_STAR)
+    return re.compile(phrase_pattern(word.removesuffix(WORD_STAR), prefix=starred), re.IGNORECASE)
+
+
+@final  # its constructor runs the parser, which calls the handlers below
+class BodyText(HTMLParser):
+    """Reads a body's own text as (line, text) pieces in document order: each text node outside a <script>, and the value
+    of each attribute of WORD_ATTRIBUTES at the line where the attribute stands."""
+
+    def __init__(self, body: str):
+        super().__init__(convert_charrefs=True)
+        self.pieces: list[tuple[int, str]] = []
+        self._in_script = 0
+        self.feed(body)
+        self.close()
+
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        if tag == "script":
+            self._in_script += 1
+        line, raw = self.getpos()[0], (self.get_starttag_text() or "").lower()
+        for name, value in attrs:
+            if name in WORD_ATTRIBUTES and value:
+                at = re.search(rf"(?<=\s){re.escape(name)}\s*=", raw)  # the attribute itself, not data-title for title
+                self.pieces.append((line + raw.count("\n", 0, at.start() if at else 0), value))
+
+    def handle_startendtag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        self.handle_starttag(tag, attrs)
+        if tag == "script":
+            self._in_script -= 1
+
+    def handle_endtag(self, tag: str) -> None:
+        if tag == "script" and self._in_script:
+            self._in_script -= 1
+
+    def handle_data(self, data: str) -> None:
+        if not self._in_script:
+            self.pieces.append((self.getpos()[0], data))
+
+
+def blank(match: re.Match[str]) -> str:
+    """The matched text with every character but a line break made a space, so offsets and line numbers stay."""
+    return re.sub(r"[^\n]", " ", match.group())
+
+
+def term_violations(body: str, terms: list[Term]) -> list[tuple[int, str]]:
+    """Each barred word the body's own text holds, as (body line, message). The text is read as BodyText reads it, its
+    sentence marks and every occurrence of every term masked first, so a barred word inside a term is passed."""
+    if not terms:
+        return []
+    longest_first = sorted((term.term for term in terms), key=len, reverse=True)
+    masks = re.compile("|".join(phrase_pattern(text) for text in longest_first), re.IGNORECASE)
+    barred = [(term, barred_pattern(word)) for term in terms for word in term.barred]
+    found = []
+    for line, text in BodyText(body).pieces:
+        masked = masks.sub(blank, MARK.sub(blank, text))
+        for term, pattern in barred:
+            for hit in pattern.finditer(masked):
+                found.append((line + masked.count("\n", 0, hit.start()),
+                              f'"{" ".join(hit.group().split())}" stands for "{term.term}": write the term'))
+    return found
+
+
+# References
+
+
+def ref_entry_problem(entry: object) -> str | None:
+    """What makes a value of the file of references neither a code entry {"path", "fragment", "lines"} nor a source
+    entry {"title", "note", "href"}, as the rest of a message after the entry's key; None for a usable entry."""
+    keys = set(entry) if isinstance(entry, dict) else None
+    if keys is not None and CODE_REQUIRED <= keys <= CODE_KEYS:
+        if not all(isinstance(entry[key], str) and entry[key].strip() for key in CODE_REQUIRED):
+            return 'has a "path" or a "fragment" that is not a non-empty text'
+        lines = entry.get("lines", REF_LINES)
+        if isinstance(lines, bool) or not isinstance(lines, int) or not 1 <= lines <= REF_LINES_MOST:
+            return f'has "lines" {lines!r}, not an integer from 1 to {REF_LINES_MOST}'
+        return None
+    if keys is not None and SOURCE_REQUIRED <= keys <= SOURCE_KEYS:
+        if not (isinstance(entry["title"], str) and entry["title"].strip()) or not isinstance(entry.get("note", ""), str):
+            return 'has a "title" that is not a non-empty text or a "note" that is not a text'
+        href = entry["href"] if isinstance(entry["href"], str) else ""
+        parts = urlsplit(href)
+        if parts.scheme.lower() not in WEB_SCHEMES or not parts.netloc:
+            return f'has "href" {entry["href"]!r}, not an http: or https: address'
+        return None
+    return 'is neither a code entry {"path", "fragment", "lines"} nor a source entry {"title", "note", "href"}'
+
+
+def read_refs(path: Path) -> dict[str, dict]:
+    """The file of references: a JSON object keyed by name, each value a code entry or a source entry; InputError naming
+    the key of an entry that is neither."""
+    entries = read_json(path, "references")
+    if not isinstance(entries, dict):
+        raise InputError(f"the references {path} are not a JSON object")
+    for key, entry in entries.items():
+        problem = ref_entry_problem(entry)
+        if problem is not None:
+            raise InputError(f'the references {path}: entry "{key}" {problem}')
+    return entries
+
+
+def unknown_refs(named: list[tuple[str, int]], entries: Mapping[str, dict]) -> list[tuple[int, str]]:
+    """Each data-ref of the body, as (key, line), whose key `entries` lacks, as (body line, message)."""
+    return [(line, f'data-ref="{key}" names no entry of the references') for key, line in named if key not in entries]
+
+
+def editor_link(template: str, path: Path, line: int) -> str:
+    """The editor URL template with {path} filled by the file's absolute path, percent-encoded, and {line} by the line."""
+    return template.replace("{path}", quote(path.resolve().as_posix())).replace("{line}", str(line))
+
+
+def resolve_refs(entries: Mapping[str, dict], used: Collection[str], root: Path | None,
+                 editor_url: str | None) -> tuple[dict[str, dict], list[str]]:
+    """The page data of each entry whose key is in `used`, and one message per code entry among them that does not
+    resolve. A code entry is anchored at the one line of its file under `root` that holds its fragment, as a look item
+    is, and keeps the lines from CONTEXT_LINES above that line to its "lines" below, each as [number, text, anchored];
+    with `editor_url` it carries the link into the editor. A source entry passes as it is, its note "" when it has none."""
+    refs: dict[str, dict] = {}
+    misses = []
+    for key, entry in entries.items():
+        if key not in used:
+            continue
+        if "href" in entry:
+            refs[key] = {"kind": "source", "title": entry["title"], "note": entry.get("note", ""), "href": entry["href"]}
+            continue
+        if root is None:
+            misses.append(f'entry "{key}": a code entry needs --root')
+            continue
+        try:
+            lines, number = locate(entry["path"], entry["fragment"], root)
+        except LookMiss as miss:
+            misses.append(f'entry "{key}": {miss}')
+            continue
+        last = min(len(lines), number + entry.get("lines", REF_LINES))
+        shown = [[n, lines[n - 1], n == number] for n in range(max(1, number - CONTEXT_LINES), last + 1)]
+        refs[key] = {"kind": "code", "path": entry["path"], "line": number, "excerpt": shown}
+        if editor_url is not None:
+            refs[key]["editor"] = editor_link(editor_url, root / entry["path"], number)
+    return refs, misses
+
+
 # The page's text
 
 
@@ -1158,7 +1462,8 @@ def config_dir(environ: Mapping[str, str]) -> Path:
 
 
 def load_strings(path: Path | None, config: Path) -> dict[str, str]:
-    """STRINGS overridden by the given file, or by the configuration file in `config` when it exists."""
+    """STRINGS overridden by the given file, or by the configuration file in `config` when it exists. A key of
+    RETIRED_STRINGS in the file is dropped with one warning line on stderr; any other unknown key is an InputError."""
     if path is None:
         path = config / STRINGS_FILE
         if not path.is_file():
@@ -1169,6 +1474,9 @@ def load_strings(path: Path | None, config: Path) -> dict[str, str]:
         raise InputError(f"cannot read the strings {path}: {e}") from e
     if not isinstance(overrides, dict):
         raise InputError(f"the strings {path} are not a JSON object")
+    for key in sorted(RETIRED_STRINGS.intersection(overrides)):
+        print(f'{path}: warning: key "{key}" is retired and ignored', file=sys.stderr)
+        del overrides[key]
     unknown = sorted(set(overrides) - set(STRINGS))
     if unknown:
         raise InputError(f"the strings {path} hold unknown key(s) {', '.join(unknown)}; known: {', '.join(STRINGS)}")
@@ -1214,6 +1522,8 @@ class Inputs:
     template: str | None  # None when the run writes no page
     cues: list[dict] | None  # None for a silent page
     look: Look | None  # None for a page without "Where to look"
+    terms: list[Term] = field(default_factory=list)  # empty without --terms
+    refs: dict[str, dict] | None = None  # the entries of --refs; None without it
 
 
 def parse_args(argv: list[str] | None) -> argparse.Namespace:
@@ -1223,19 +1533,23 @@ def parse_args(argv: list[str] | None) -> argparse.Namespace:
     parser.add_argument("--story-out", type=Path, help="the story the voice reads, one paragraph per part")
     parser.add_argument("--text-out", type=Path, help="the page's visible text")
     parser.add_argument("--cues", type=Path, help="the cues voice_cues.py wrote from the story; without them the page is silent")
-    parser.add_argument("--voice", default="", help="address of the audio; empty: the page has no player and no pause, comments come by selection only")
+    parser.add_argument("--voice", default="", help="address of the audio; empty: a silent page without the buttons that play its parts")
     parser.add_argument("--report", type=Path, help="the report whose \"Where to look\" list the page shows")
     parser.add_argument("--look", type=Path, help="a JSON list of look items the page shows as \"Where to look\"")
-    parser.add_argument("--root", type=Path, help="directory the look items' files resolve under")
+    parser.add_argument("--root", type=Path, help="directory the files of the look items and of the code references resolve under")
+    parser.add_argument("--terms", type=Path, help="a JSON list of terms with the words the text must not use for each")
+    parser.add_argument("--refs", type=Path, help="a JSON object of references, keyed by the names the body's data-ref attributes use")
+    parser.add_argument("--editor-url", help="a URL template with {path} and {line} that opens a code reference in the editor; "
+                                             "with --standalone, --refs and --root only")
     parser.add_argument("--title")
     parser.add_argument("--id", default="report", help="name under which the page keeps the reader's answer")
     parser.add_argument("--strings", type=Path)
     parser.add_argument("--template", type=Path, default=TEMPLATE)
     parser.add_argument("--standalone", action="store_true", help="write a complete HTML document")
     parser.add_argument("--explanation", action="store_true",
-                        help="check the body as an explanation, which a figure of class pseudo, questions, terms or quiz also "
-                             "makes it: its first part must hold the rule as pseudocode in <figure class=\"pseudo\">, and a table "
-                             "of questions or of terms must open after the first part")
+                        help="check the body as an explanation, which a figure of class pseudo, questions or quiz also makes "
+                             "it: its first part must hold the rule as pseudocode in <figure class=\"pseudo\">, a table of "
+                             "questions must open after the first part, and every figure but a question needs a data-nav name")
     return parser.parse_args(argv)
 
 
@@ -1251,6 +1565,11 @@ def check_options(args: argparse.Namespace) -> None:
         raise InputError(f"--id {args.id!r}: use letters, digits, '.', '_' and '-'")
     if args.root is not None and not args.root.is_dir():
         raise InputError(f"--root {args.root} is not a directory")
+    if args.editor_url is not None:
+        if not args.standalone or args.refs is None or args.root is None:
+            raise InputError("--editor-url needs --standalone, --refs and --root: the link carries a path of this machine")
+        if "{path}" not in args.editor_url:
+            raise InputError(f"--editor-url {args.editor_url!r} holds no {{path}}")
 
 
 def read_look_section(args: argparse.Namespace, config: Path, strings: Mapping[str, str]) -> Look | None:
@@ -1276,11 +1595,23 @@ def read_inputs(args: argparse.Namespace, environ: Mapping[str, str]) -> Inputs:
                 raise InputError(f"the template {args.template} holds {marker} {template.count(marker)} times, not once")
     cues = read_cues(args.cues) if args.cues is not None else None
     body = read_text(args.body, "body")
-    return Inputs(body, load_splitter(), strings, template, cues, read_look_section(args, config, strings))
+    terms = read_terms(args.terms) if args.terms is not None else []
+    refs = read_refs(args.refs) if args.refs is not None else None
+    return Inputs(body, load_splitter(), strings, template, cues, read_look_section(args, config, strings), terms, refs)
 
 
-def render(args: argparse.Namespace, inputs: Inputs, scan: BodyScan, story: Story) -> list[tuple[Path, str]]:
-    """Each output file the run writes, with its text."""
+def body_violations(args: argparse.Namespace, inputs: Inputs, scan: BodyScan) -> list[tuple[int, str]]:
+    """Every violation of the body, sorted by line: its contract, the barred words of the list of terms and, on a run that
+    writes the page or reads --refs, each data-ref that names no entry of the references."""
+    targets = {LOOK_TARGET} if inputs.look is not None or args.out is None else set()
+    found = validate(scan, inputs.splitter, targets) + term_violations(inputs.body, inputs.terms)
+    if args.out is not None or inputs.refs is not None:
+        found += unknown_refs(scan.refs, inputs.refs or {})
+    return sorted(found)
+
+
+def render(args: argparse.Namespace, inputs: Inputs, scan: BodyScan, story: Story, refs: dict[str, dict]) -> list[tuple[Path, str]]:
+    """Each output file the run writes, with its text; `refs` is the page data of the references the body names."""
     outputs = []
     if args.story_out is not None:
         outputs.append((args.story_out, "\n\n".join(story.paragraphs()) + "\n"))
@@ -1289,7 +1620,8 @@ def render(args: argparse.Namespace, inputs: Inputs, scan: BodyScan, story: Stor
         outputs.append((args.text_out, page_text(article, inputs.look)))
     if args.out is not None:
         cues = page_cues(story, inputs.cues)
-        data = {"cues": cues, "parts": derive_parts(story, cues, inputs.strings), "strings": inputs.strings, "voice": args.voice, "id": args.id}
+        data = {"cues": cues, "parts": derive_parts(story, cues, inputs.strings), "strings": inputs.strings, "voice": args.voice, "id": args.id,
+                "map": scan.is_explanation, "refs": refs}
         page = fill(inputs.template, args.title or scan.h1 or args.id, article + (look_section(inputs.look) if inputs.look else ""), data)
         outputs.append((args.out, standalone(page) if args.standalone else page))
     return outputs
@@ -1303,22 +1635,26 @@ def main(argv: list[str] | None = None, environ: Mapping[str, str] | None = None
         print(f"build_page: {e}", file=sys.stderr)
         return 2
     scan = BodyScan(inputs.body, explanation=args.explanation)
-    targets = {LOOK_TARGET} if inputs.look is not None or args.out is None else set()
-    found = validate(scan, inputs.splitter, targets)
+    found = body_violations(args, inputs, scan)
     story = None if found else Story(scan, inputs.splitter)
     if story is not None and inputs.cues is not None:
         found = check_cues(inputs.cues, story)
+    used = {key for key, _ in scan.refs}
+    refs, ref_misses = resolve_refs(inputs.refs or {}, used, args.root, args.editor_url)
     look_count = len(inputs.look.items) + len(inputs.look.misses) if inputs.look else 0
     refusals = [f"{args.body}:{line}: {message}" if line else f"{args.body}: {message}" for line, message in found]
     refusals += [f"{args.look}: {miss}" for miss in inputs.look.misses] if inputs.look else []
+    refusals += [f"{args.refs}: {miss}" for miss in ref_misses]
+    unused = [f'{args.refs}: warning: entry "{key}" is not used' for key in inputs.refs or {} if key not in used]
     if refusals:
-        print("\n".join(refusals), file=sys.stderr)
+        print("\n".join(refusals + unused), file=sys.stderr)
         journal("page", outcome="refused", sentences=sentence_count(scan, inputs.splitter), decisions=len(scan.decisions),
                 look=look_count, violations=len(refusals))
         return 1
-    for line, message in lint(story):
-        print(f"{args.body}:{line}: warning: {message}", file=sys.stderr)
-    outputs = render(args, inputs, scan, story)
+    warnings = unused + [f"{args.body}:{line}: warning: {message}" for line, message in lint(story)]
+    if warnings:
+        print("\n".join(warnings), file=sys.stderr)
+    outputs = render(args, inputs, scan, story, refs)
     for path, text in outputs:
         try:
             path.write_text(text, encoding="utf-8")

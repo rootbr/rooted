@@ -11,6 +11,7 @@ import tempfile
 import unittest
 from pathlib import Path
 from unittest import mock
+from urllib.parse import quote
 
 SKILL = Path(__file__).resolve().parents[2]
 SCRIPT = SKILL / "scripts/build_page.py"
@@ -99,6 +100,10 @@ class Build(unittest.TestCase):
         code, _, err = self.run_main(argv + list(args))
         out = self.dir / "page.html"
         return code, err, out.read_text(encoding="utf-8") if out.exists() else None
+
+    def relative(self, err):
+        """The lines of stderr, each without the directory of this test's files."""
+        return [line.replace(f"{self.dir}{os.sep}", "", 1) for line in err.splitlines()]
 
     def data(self, page):
         block = re.search(r'<script type="application/json" id="page-data">(.*?)</script>', page, re.S)
@@ -322,20 +327,25 @@ class Explanation(Build):
     FIRST_PART = "the first part of an explanation gives the mechanism whole, with its rule as pseudocode, one line a step"
     NO_PSEUDOCODE = f'no <figure class="pseudo"> holding a <pre> of two or more lines stands in the first part: {FIRST_PART}'
     NO_PART = f'the body has no <h2 data-part>, so the explanation has no first part to hold <figure class="pseudo">: {FIRST_PART}'
-    EARLY = "opens before the first part ends: the table of questions follows the first part, and the table of terms closes the page"
+    EARLY = '<figure class="questions"> opens before the first part ends: the table of questions follows the first part'
+    NO_NAV = "<figure> has no data-nav: give the figure a short name for the map of the page"
     HEADING = 'data-part="The whole mechanism."'  # the heading of the fixture's first part
-    QUESTIONS, TERMS = '<figure class="questions">', '<figure class="terms">'
+    QUESTIONS = '<figure class="questions"'  # the start tag of the fixture's table of questions, up to its data-nav
 
     def refusals(self, body, *args):
         """The lines of a refused build, each without the directory of the body."""
         code, err, page = self.build(body, cues=None, report=None, args=args)
         self.assertEqual((1, None), (code, page), err)
-        return [line.replace(f"{self.dir}{os.sep}", "", 1) for line in err.splitlines()]
+        return self.relative(err)
 
     def assertBuilt(self, body, *args):
         code, err, page = self.build(body, cues=None, report=None, args=args)
         self.assertEqual((0, ""), (code, err))
         return page
+
+    def first_part_only(self):
+        """The fixture's opening and first part, its link to a later part made text."""
+        return EXPLANATION[:EXPLANATION.index('<h2 id="h-questions"')].replace('<a href="#h-miss">render and store</a>', "render and store")
 
     def test_a_report_body_is_built_as_before(self):
         self.assertBuilt(BODY + '<figure class="factor"><figcaption>A factor table marks no explanation.</figcaption></figure>\n')
@@ -344,20 +354,30 @@ class Explanation(Build):
         self.assertEqual([f"body.html:2: {self.NO_PSEUDOCODE}"], self.refusals(BODY, "--explanation"))
 
     def test_each_marking_class_makes_a_body_an_explanation(self):
-        for kind in ("pseudo", "questions", "terms", "quiz"):
+        for kind in ("pseudo", "questions", "quiz"):
             with self.subTest(kind):
-                lines = self.refusals(BODY + f'<figure class="{kind}"><figcaption>A block.</figcaption></figure>\n')
+                lines = self.refusals(BODY + f'<figure class="{kind}" data-nav="A block"><figcaption>A block.</figcaption></figure>\n')
                 self.assertEqual(f"body.html:2: {self.NO_PSEUDOCODE}", lines[0])
+
+    def test_a_table_of_terms_makes_no_explanation_and_stands_anywhere(self):
+        terms = figure_of(EXPLANATION, "terms")
+        page = self.assertBuilt(BODY + terms)
+        self.assertFalse(self.data(page)["map"])
+        self.assertBuilt(EXPLANATION.replace(terms, "").replace('<h2 id="h-whole"', terms + '<h2 id="h-whole"'))
 
     def test_a_conforming_explanation_is_built_with_or_without_the_option(self):
         page = self.assertBuilt(EXPLANATION)
-        self.assertIn('<figure class="pseudo">\n  <pre><span data-lit="2.2">on upload(picture): picture.version += 1</span>', page)
+        self.assertIn('<figure class="pseudo" data-nav="The rule of the cache">\n  <pre><span data-lit="2.2">on upload(picture): picture.version += 1</span>', page)
         self.assertEqual(["Opening", "The whole mechanism", "Your questions", "A miss"], [part["title"] for part in self.data(page)["parts"]])
         self.assertBuilt(EXPLANATION, "--explanation")
 
+    def test_the_data_of_an_explanation_asks_for_the_map_and_a_reports_does_not(self):
+        self.assertTrue(self.data(self.assertBuilt(EXPLANATION))["map"])
+        self.assertTrue(self.data(self.assertBuilt(self.first_part_only(), "--explanation"))["map"])
+        self.assertFalse(self.data(self.assertBuilt(BODY))["map"])
+
     def test_the_opening_and_the_first_part_alone_are_built(self):
-        first = EXPLANATION[:EXPLANATION.index('<h2 id="h-questions"')].replace('<a href="#h-miss">render and store</a>', "render and store")
-        self.assertBuilt(first, "--explanation")
+        self.assertBuilt(self.first_part_only(), "--explanation")
 
     def test_a_pre_of_one_line_is_refused_at_the_heading_of_the_first_part(self):
         for case, pre in (("one line", "<pre>on upload(picture): picture.version += 1</pre>"),
@@ -375,41 +395,272 @@ class Explanation(Build):
                  "nowhere": without}
         for case, body in cases.items():
             with self.subTest(case):
+                self.assertEqual(case != "nowhere", pseudo in body)
                 self.assertEqual([f"body.html:{line_of(body, self.HEADING)}: {self.NO_PSEUDOCODE}"], self.refusals(body))
 
     def test_a_table_of_questions_inside_the_first_part_is_refused_at_its_line(self):
         questions = figure_of(EXPLANATION, "questions")
         body = EXPLANATION.replace(questions, "").replace('<h2 id="h-questions"', questions + '<h2 id="h-questions"')
-        self.assertEqual([f"body.html:{line_of(body, self.QUESTIONS)}: {self.QUESTIONS} {self.EARLY}"], self.refusals(body))
+        self.assertEqual([f"body.html:{line_of(body, self.QUESTIONS)}: {self.EARLY}"], self.refusals(body))
 
-    def test_a_table_of_terms_in_the_opening_is_refused_at_its_line(self):
-        terms = figure_of(EXPLANATION, "terms")
-        body = EXPLANATION.replace(terms, "").replace('<h2 id="h-whole"', terms + '<h2 id="h-whole"')
-        self.assertEqual([f"body.html:{line_of(body, self.TERMS)}: {self.TERMS} {self.EARLY}"], self.refusals(body))
-
-    def test_in_a_body_of_one_part_a_table_anywhere_is_refused(self):
-        first = EXPLANATION[:EXPLANATION.index('<h2 id="h-questions"')].replace('<a href="#h-miss">render and store</a>', "render and store")
-        body = first + figure_of(EXPLANATION, "terms")
-        self.assertEqual([f"body.html:{line_of(body, self.TERMS)}: {self.TERMS} {self.EARLY}"], self.refusals(body))
+    def test_in_a_body_of_one_part_a_table_of_questions_anywhere_is_refused(self):
+        questions = figure_of(EXPLANATION, "questions").replace('<a href="#h-miss">A miss</a>', "A miss")
+        body = self.first_part_only() + questions
+        self.assertEqual([f"body.html:{line_of(body, self.QUESTIONS)}: {self.EARLY}"], self.refusals(body))
 
     def test_a_body_without_a_part_is_refused_at_line_1(self):
-        body = '<p data-say>The cache keeps thumbnails.</p>\n<figure class="pseudo"><pre>key = id + version\nserve cache[key]</pre></figure>\n'
+        body = ('<p data-say>The cache keeps thumbnails.</p>\n'
+                '<figure class="pseudo" data-nav="The rule"><pre>key = id + version\nserve cache[key]</pre></figure>\n')
         self.assertEqual([f"body.html:1: {self.NO_PART}"], self.refusals(body))
 
     def test_a_class_list_is_matched_by_token(self):
-        self.assertBuilt(EXPLANATION.replace('<figure class="pseudo">', '<figure class="wide pseudo">'))
+        marked = EXPLANATION.replace('<figure class="pseudo"', '<figure class="wide pseudo"')
+        self.assertNotEqual(EXPLANATION, marked)
+        self.assertBuilt(marked)
         self.assertBuilt(BODY + '<figure class="pseudocode quizzes"><figcaption>Neither token marks an explanation.</figcaption></figure>\n')
 
     def test_a_table_of_questions_among_other_classes_is_refused_inside_the_first_part(self):
         questions = figure_of(EXPLANATION, "questions")
         early = EXPLANATION.replace(questions, "").replace('<h2 id="h-questions"', questions.replace('class="questions"', 'class="compact questions"')
                                                            + '<h2 id="h-questions"')
-        self.assertEqual([f"body.html:{line_of(early, 'compact questions')}: {self.QUESTIONS} {self.EARLY}"], self.refusals(early))
+        self.assertEqual([f"body.html:{line_of(early, 'compact questions')}: {self.EARLY}"], self.refusals(early))
+
+    def test_a_figure_without_a_name_for_the_map_is_refused_at_its_line(self):
+        cases = {"no data-nav": ' data-nav="The key without and with the version"',
+                 "an empty data-nav": ' data-nav="  "'}
+        for case, nameless in cases.items():
+            with self.subTest(case):
+                body = EXPLANATION.replace(' data-nav="The key without and with the version"', "" if case == "no data-nav" else nameless)
+                self.assertNotEqual(EXPLANATION, body)
+                line = line_of(body, '<figure class="factor wide"')
+                self.assertEqual([f"body.html:{line}: {self.NO_NAV}"], self.refusals(body))
+
+    def test_a_figure_of_any_class_needs_its_name_and_a_question_needs_none(self):
+        plain = '<figure aria-labelledby="h-miss"><figcaption>A miss in pictures.</figcaption></figure>\n'
+        body = EXPLANATION.replace('<figure class="quiz">', plain + '<figure class="quiz">')
+        self.assertEqual([f"body.html:{line_of(body, plain.strip())}: {self.NO_NAV}"], self.refusals(body))
+        self.assertIn('<figure class="quiz">', EXPLANATION)
+        self.assertBuilt(EXPLANATION)
+
+    def test_a_report_needs_no_name_for_its_figures(self):
+        self.assertBuilt(BODY + '<figure><figcaption>A figure of a report.</figcaption></figure>\n')
 
     def test_the_refusals_stand_among_the_other_violations_sorted_by_line(self):
-        lines = self.refusals(BODY + '<figure class="questions"><script></script></figure>\n')
-        self.assertEqual([f"body.html:2: {self.NO_PSEUDOCODE}", f"body.html:4: {self.QUESTIONS} {self.EARLY}",
+        lines = self.refusals(BODY + '<figure class="questions" data-nav="Questions"><script></script></figure>\n')
+        self.assertEqual([f"body.html:2: {self.NO_PSEUDOCODE}", f"body.html:4: {self.EARLY}",
                           "body.html:4: a <script> element: the body carries no script, the page's script is the template's"], lines)
+
+
+class Terms(Build):
+    """The list of terms: each barred word in the body's own text refuses the body at its line."""
+    VERSION = {"term": "version", "is": "the count of a picture's uploads", "code": "picture.version", "not": ["generation", "revision*"]}
+    CACHE = {"term": "thumbnail cache", "not": ["cache", "thumbnail store"]}
+
+    def build_with(self, body, terms, *, cues=None, report=None, args=()):
+        """(exit code, stderr lines without the directory, page or None) of a build with the list of terms."""
+        path = self.dir / "terms.json"
+        path.write_text(terms if isinstance(terms, str) else json.dumps(terms), encoding="utf-8")
+        code, err, page = self.build(body, cues=cues, report=report, args=["--terms", str(path), *args])
+        return code, self.relative(err), page
+
+    def stands_for(self, found, term):
+        return f'"{found}" stands for "{term}": write the term'
+
+    def test_a_barred_word_is_refused_at_its_line_in_any_case(self):
+        body = BODY + "<p>The picture keeps its generation.</p>\n<p>Generation grows by one.</p>\n"
+        code, lines, page = self.build_with(body, [self.VERSION], cues=CUES)
+        self.assertEqual((1, None), (code, page))
+        self.assertEqual([f"body.html:4: {self.stands_for('generation', 'version')}", f"body.html:5: {self.stands_for('Generation', 'version')}"],
+                         lines)
+
+    def test_a_barred_word_inside_its_own_term_is_passed(self):
+        body = "<p>The thumbnail cache keeps one picture per upload.</p>\n<p>The Thumbnail  Cache answers, and the cache misses.</p>\n"
+        code, lines, _ = self.build_with(body, [self.CACHE])
+        self.assertEqual((1, [f"body.html:2: {self.stands_for('cache', 'thumbnail cache')}"]), (code, lines))
+
+    def test_a_barred_phrase_is_found_across_a_line_break_at_its_first_line(self):
+        body = "<p>The thumbnail\n  store keeps one picture.</p>\n"
+        code, lines, _ = self.build_with(body, [self.CACHE])
+        self.assertEqual((1, [f"body.html:1: {self.stands_for('thumbnail store', 'thumbnail cache')}"]), (code, lines))
+
+    def test_a_starred_entry_matches_every_word_that_starts_with_it_and_no_other(self):
+        body = "<p>Two revisions of the picture.</p>\n<p>One revision.</p>\n<p>A prevision and a version stay.</p>\n"
+        code, lines, _ = self.build_with(body, [self.VERSION])
+        self.assertEqual((1, [f"body.html:1: {self.stands_for('revisions', 'version')}", f"body.html:2: {self.stands_for('revision', 'version')}"]),
+                         (code, lines))
+
+    def test_a_barred_word_in_a_spoken_attribute_is_refused_at_the_attributes_line(self):
+        body = (BODY.replace('data-part="How it broke."', 'data-part="How the generation broke."')
+                + '<figure class="x"\n  data-voice="The figure shows the revisions."><figcaption>Keys</figcaption></figure>\n')
+        code, lines, _ = self.build_with(body, [self.VERSION])
+        self.assertEqual((1, [f"body.html:2: {self.stands_for('generation', 'version')}", f"body.html:5: {self.stands_for('revisions', 'version')}"]),
+                         (code, lines))
+
+    def test_a_barred_word_in_an_attribute_the_reader_sees_or_hears_is_refused_at_its_line(self):
+        body = (BODY + '<figure data-nav="The generation of a key"><img src="key.png" alt="two revisions"\n'
+                '  data-title="A generation" title="One generation"><figcaption>Keys</figcaption></figure>\n'
+                '<p aria-label="The generation">Keys.</p>\n')
+        code, lines, _ = self.build_with(body, [self.VERSION])
+        self.assertEqual((1, [f"body.html:4: {self.stands_for('generation', 'version')}", f"body.html:4: {self.stands_for('revisions', 'version')}",
+                              f"body.html:5: {self.stands_for('generation', 'version')}", f"body.html:6: {self.stands_for('generation', 'version')}"]),
+                         (code, lines))
+
+    def test_a_sentence_mark_is_not_searched(self):
+        body = BODY.replace("Now it", "[@generation] Now it")
+        code, lines, _ = self.build_with(body, [self.VERSION])
+        self.assertEqual((0, []), (code, lines))
+
+    def test_the_look_section_is_not_searched(self):
+        lifetime = {"term": "lifetime", "not": ["lives", "tests"]}
+        self.assertIn("how long an entry lives", REPORT.read_text(encoding="utf-8"))
+        code, lines, page = self.build_with(BODY, [lifetime], cues=CUES, report=REPORT)
+        self.assertEqual((0, []), (code, lines))
+        self.assertIn("how long an entry lives", page)
+
+    def test_an_empty_list_passes_every_body(self):
+        self.assertEqual((0, []), self.build_with(BODY, [])[:2])
+
+    def test_an_unusable_list_exits_2_naming_the_entry(self):
+        cases = {"no JSON": ("[{", "cannot read the list of terms"),
+                 "no list": ('{"term": "version"}', "is not a JSON list of objects"),
+                 "an entry without a term": ('[{"not": ["generation"]}]', 'entry 1 has no non-empty "term"'),
+                 "an empty term": ('[{"term": "  "}]', 'entry 1 has no non-empty "term"'),
+                 "a word list that is a text": ('[{"term": "version"}, {"term": "key", "not": "slot"}]', 'the "not" of entry 2'),
+                 "a star alone": ('[{"term": "version", "not": ["*"]}]', 'the "not" of entry 1'),
+                 "an unknown key": ('[{"term": "version", "nto": []}]', "entry 1 holds unknown key(s) nto"),
+                 "a key twice": ('[{"term": "version", "term": "key"}]', 'the key "term" appears twice'),
+                 "an explanation that is not a text": ('[{"term": "version", "is": 1}]', 'the "is" of entry 1 is not a text')}
+        for case, (text, message) in cases.items():
+            with self.subTest(case):
+                code, lines, page = self.build_with(BODY, text)
+                self.assertEqual((2, None), (code, page))
+                self.assertIn(message, "\n".join(lines))
+                self.assertIn("terms.json", "\n".join(lines))
+
+
+class References(Build):
+    """The file of references: each data-ref of the body names an entry, resolved into the page's data."""
+    KEY_VALUE = {"path": "src/cache/ThumbKey.java", "fragment": 'return "thumb:"'}
+    SOURCE = {"title": "Generation numbers in cache keys", "href": "https://example.org/cache-keys"}
+    BODY = BODY + '<p>The key is built in <code data-ref="key-value">ThumbKey.value</code>.</p>\n'  # the data-ref stands on line 4
+    ROOT = FIXTURES / "repo"
+    JAVA = (ROOT / "src/cache/ThumbKey.java").read_text(encoding="utf-8").splitlines()
+
+    def build_with(self, refs, *, body=None, args=("--root", str(ROOT))):
+        """(exit code, stderr lines without the directory, page or None) of a build with the file of references."""
+        path = self.dir / "refs.json"
+        path.write_text(refs if isinstance(refs, str) else json.dumps(refs), encoding="utf-8")
+        code, err, page = self.build(self.BODY if body is None else body, cues=None, report=None, args=["--refs", str(path), *args])
+        return code, self.relative(err), page
+
+    def excerpt(self, first, last, anchored):
+        return [[n, self.JAVA[n - 1], n == anchored] for n in range(first, last + 1)]
+
+    def test_a_code_entry_resolves_to_its_line_and_twelve_lines_below_in_the_page_data(self):
+        code, lines, page = self.build_with({"key-value": self.KEY_VALUE})
+        self.assertEqual((0, []), (code, lines))
+        self.assertEqual({"key-value": {"kind": "code", "path": "src/cache/ThumbKey.java", "line": 23, "excerpt": self.excerpt(20, 35, 23)}},
+                         self.data(page)["refs"])
+        self.assertEqual(35, len(self.JAVA))  # the file ends at line 35, so the twelve lines below stop there
+        self.assertIn('<code data-ref="key-value">ThumbKey.value</code>', page)
+
+    def test_lines_bounds_the_excerpt_below_the_line(self):
+        code, _, page = self.build_with({"key-value": dict(self.KEY_VALUE, lines=2)})
+        self.assertEqual(0, code)
+        self.assertEqual(self.excerpt(20, 25, 23), self.data(page)["refs"]["key-value"]["excerpt"])
+
+    def test_lines_outside_one_to_sixty_is_unreadable_input(self):
+        for lines in (0, 61, 2.5, True, "12"):
+            with self.subTest(lines=lines):
+                code, err, page = self.build_with({"key-value": dict(self.KEY_VALUE, lines=lines)})
+                self.assertEqual((2, None), (code, page))
+                self.assertIn('entry "key-value" has "lines"', "\n".join(err))
+
+    def test_a_key_the_file_lacks_is_refused_at_its_line(self):
+        body = self.BODY.replace("key-value", "key-text") + '<p><span data-ref="generation">A generation number</span>.</p>\n'
+        code, lines, page = self.build_with({"generation": self.SOURCE}, body=body)
+        self.assertEqual((1, None, ['body.html:4: data-ref="key-text" names no entry of the references']), (code, page, lines))
+
+    def test_a_data_ref_on_a_page_built_without_references_is_refused(self):
+        code, err, page = self.build(self.BODY, cues=None, report=None)
+        self.assertEqual((1, None), (code, page))
+        self.assertEqual(['body.html:4: data-ref="key-value" names no entry of the references'], self.relative(err))
+
+    def test_an_entry_whose_file_is_missing_is_refused_naming_it(self):
+        code, lines, page = self.build_with({"key-value": dict(self.KEY_VALUE, path="src/cache/Gone.java")})
+        self.assertEqual((1, None, ['refs.json: entry "key-value": src/cache/Gone.java is no file under --root']), (code, page, lines))
+
+    def test_a_fragment_on_two_lines_is_refused_naming_the_lines(self):
+        code, lines, page = self.build_with({"key-value": dict(self.KEY_VALUE, fragment="pictureId;")})
+        self.assertEqual((1, None), (code, page))
+        self.assertEqual(['refs.json: entry "key-value": \'pictureId;\' stands on lines 10, 14, 19 of src/cache/ThumbKey.java: '
+                          'lengthen it so it names one line'], lines)
+
+    def test_a_code_entry_without_root_is_refused(self):
+        code, lines, page = self.build_with({"key-value": self.KEY_VALUE}, args=())
+        self.assertEqual((1, None, ['refs.json: entry "key-value": a code entry needs --root']), (code, page, lines))
+
+    def test_an_unused_entry_warns_is_not_resolved_and_the_page_builds(self):
+        code, lines, page = self.build_with({"key-value": self.KEY_VALUE, "gone": dict(self.KEY_VALUE, path="src/cache/Gone.java")})
+        self.assertEqual((0, ['refs.json: warning: entry "gone" is not used']), (code, lines))
+        self.assertEqual(["key-value"], list(self.data(page)["refs"]))
+
+    def test_an_unused_entry_is_named_after_the_refusals_of_a_refused_body(self):
+        code, lines, _ = self.build_with({"gone": self.SOURCE}, body=self.BODY.replace("key-value", "key-text"))
+        self.assertEqual((1, ['body.html:4: data-ref="key-text" names no entry of the references', 'refs.json: warning: entry "gone" is not used']),
+                         (code, lines))
+
+    def test_a_source_entry_passes_through_with_an_empty_note_when_it_has_none(self):
+        noted = dict(self.SOURCE, note="A key that carries the version never meets an older entry.")
+        body = self.BODY.replace("key-value", "generation") + '<p><span data-ref="noted">The same idea</span>.</p>\n'
+        code, lines, page = self.build_with({"generation": self.SOURCE, "noted": noted}, body=body)
+        self.assertEqual((0, []), (code, lines))
+        self.assertEqual({"generation": dict(self.SOURCE, kind="source", note=""), "noted": dict(noted, kind="source")}, self.data(page)["refs"])
+
+    def test_an_unusable_file_exits_2_naming_the_entry(self):
+        cases = {"no JSON": ("{", "cannot read the references"),
+                 "a list": ("[]", "are not a JSON object"),
+                 "a key twice": ('{"key-value": {}, "key-value": {}}', 'the key "key-value" appears twice'),
+                 "neither kind": (json.dumps({"key-value": {"path": "src/cache/ThumbKey.java"}}), 'entry "key-value" is neither a code entry'),
+                 "both kinds": (json.dumps({"key-value": dict(self.KEY_VALUE, **self.SOURCE)}), 'entry "key-value" is neither a code entry'),
+                 "an empty fragment": (json.dumps({"key-value": dict(self.KEY_VALUE, fragment=" ")}), 'entry "key-value" has a "path" or a "fragment"'),
+                 "a script address": (json.dumps({"key-value": dict(self.SOURCE, href="javascript:alert(1)")}), "not an http: or https: address"),
+                 "a file address": (json.dumps({"key-value": dict(self.SOURCE, href="file:///etc/hosts")}), "not an http: or https: address"),
+                 "a note that is no text": (json.dumps({"key-value": dict(self.SOURCE, note=1)}), 'a "note" that is not a text')}
+        for case, (text, message) in cases.items():
+            with self.subTest(case):
+                code, lines, page = self.build_with(text)
+                self.assertEqual((2, None), (code, page))
+                self.assertIn(message, "\n".join(lines))
+
+    def test_editor_url_fills_the_absolute_path_and_the_line(self):
+        code, lines, page = self.build_with({"key-value": self.KEY_VALUE},
+                                            args=("--root", str(self.ROOT), "--standalone", "--editor-url", "vscode://file{path}:{line}"))
+        self.assertEqual((0, []), (code, lines))
+        target = (self.ROOT / "src/cache/ThumbKey.java").resolve().as_posix()
+        self.assertEqual(f"vscode://file{quote(target)}:23", self.data(page)["refs"]["key-value"]["editor"])
+
+    def test_a_source_entry_takes_no_editor_link(self):
+        body = self.BODY.replace("key-value", "generation")
+        code, _, page = self.build_with({"generation": self.SOURCE}, body=body,
+                                        args=("--root", str(self.ROOT), "--standalone", "--editor-url", "vscode://file{path}:{line}"))
+        self.assertEqual(0, code)
+        self.assertNotIn("editor", self.data(page)["refs"]["generation"])
+
+    def test_editor_url_is_refused_without_standalone_refs_or_root_or_without_its_path(self):
+        url = ("--editor-url", "vscode://file{path}:{line}")
+        root = ("--root", str(self.ROOT))
+        for case, args in {"no --standalone": (*root, *url), "no --root": ("--standalone", *url)}.items():
+            with self.subTest(case):
+                code, lines, page = self.build_with({"key-value": self.KEY_VALUE}, args=args)
+                self.assertEqual((2, None), (code, page))
+                self.assertIn("--editor-url needs --standalone, --refs and --root", "\n".join(lines))
+        code, err, _ = self.build(self.BODY, cues=None, report=None, args=["--standalone", *root, *url])
+        self.assertEqual(2, code)
+        self.assertIn("--editor-url needs --standalone, --refs and --root", err)
+        code, lines, _ = self.build_with({"key-value": self.KEY_VALUE}, args=(*root, "--standalone", "--editor-url", "vscode://file"))
+        self.assertEqual(2, code)
+        self.assertIn("holds no {path}", "\n".join(lines))
 
 
 class Story(Build):
@@ -778,12 +1029,15 @@ class Strings(Build):
                          (self.strings(page)["partWords"], self.strings(page)["write"]))
 
     PAUSE_AND_NOTES = {
-        "hintPause": "Pause: click the text, press Space, or use the button beside the spoken sentence.",
-        "hintNote": "Comment: select a piece of text.",
-        "hintNoteSpoken": "Press C to comment on the spoken sentence.",
+        "playPart": "Play this part",
+        "playNext": "Play the next part",
         "pause": "Pause",
         "resume": "Resume",
-        "noteSpoken": "Comment on the spoken sentence",
+        "selectionTools": "The selected text",
+        "copySelection": "Copy",
+        "copiedSelection": "Copied.",
+        "copySelectionFailed": "The page could not copy: use the copy command of the browser.",
+        "comment": "Comment",
         "noteField": "Your comment on this piece of text, typed or dictated",
         "noteSave": "Save",
         "noteCancel": "Cancel",
@@ -794,34 +1048,71 @@ class Strings(Build):
         "noteLine": "On the text “{quote}” ({part}): {text}",
     }
 
-    def test_the_pause_and_comment_strings_have_english_defaults(self):
+    def test_the_voice_selection_and_comment_strings_have_english_defaults(self):
         code, err, page = self.build()
         self.assertEqual(0, code, err)
         strings = self.strings(page)
         self.assertEqual(self.PAUSE_AND_NOTES, {key: strings[key] for key in self.PAUSE_AND_NOTES})
 
-    def test_the_pause_and_comment_strings_are_overridden_from_a_file(self):
-        overrides = {"pause": "Anhalten", "resume": "Weiter", "noteLine": "Zum Text „{quote}“ ({part}): {text}"}
+    def test_the_voice_selection_and_comment_strings_are_overridden_from_a_file(self):
+        overrides = {"playPart": "Diesen Teil abspielen", "pause": "Anhalten", "resume": "Weiter", "comment": "Kommentieren",
+                     "noteLine": "Zum Text „{quote}“ ({part}): {text}"}
         (self.dir / "strings.json").write_text(json.dumps(overrides), encoding="utf-8")
         code, err, page = self.build(args=["--strings", str(self.dir / "strings.json")])
         self.assertEqual(0, code, err)
         self.assertEqual(overrides, {key: self.strings(page)[key] for key in overrides})
         self.assertEqual(self.PAUSE_AND_NOTES["noteSave"], self.strings(page)["noteSave"])
 
-    PARTS_AND_QUESTIONS = {"parts": "Parts", "knew": "I had it", "missed": "I did not", "returnTo": "Worth returning to:"}
+    QUESTIONS = {"knew": "I had it", "missed": "I did not", "returnTo": "Worth returning to:"}
 
-    def test_the_part_list_and_question_strings_have_english_defaults(self):
+    def test_the_question_strings_have_english_defaults(self):
         code, err, page = self.build()
         self.assertEqual(0, code, err)
         strings = self.strings(page)
-        self.assertEqual(self.PARTS_AND_QUESTIONS, {key: strings[key] for key in self.PARTS_AND_QUESTIONS})
+        self.assertEqual(self.QUESTIONS, {key: strings[key] for key in self.QUESTIONS})
 
-    def test_the_part_list_and_question_strings_are_overridden_from_a_file(self):
-        overrides = {"parts": "Части", "knew": "Я знал", "missed": "Я не знал", "returnTo": "Стоит вернуться:"}
+    def test_the_question_strings_are_overridden_from_a_file(self):
+        overrides = {"knew": "Я знал", "missed": "Я не знал", "returnTo": "Стоит вернуться:"}
         (self.dir / "strings.json").write_text(json.dumps(overrides), encoding="utf-8")
         code, err, page = self.build(args=["--strings", str(self.dir / "strings.json")])
         self.assertEqual(0, code, err)
         self.assertEqual(overrides, {key: self.strings(page)[key] for key in overrides})
+
+    MAP_AND_REFERENCES = {
+        "map": "Map of the page",
+        "mapOpen": "Show the map",
+        "mapClose": "Hide the map",
+        "mapFilter": "Find on the map",
+        "kindFigure": "figure",
+        "kindTable": "table",
+        "kindPseudo": "pseudocode",
+        "kindQuestion": "question",
+        "kindText": "text",
+        "refPanel": "The code or the source behind the text",
+        "refClose": "Close",
+        "refEditor": "Open in the editor",
+        "refSource": "Open the source",
+    }
+
+    def test_the_map_and_reference_strings_have_english_defaults(self):
+        code, err, page = self.build()
+        self.assertEqual(0, code, err)
+        strings = self.strings(page)
+        self.assertEqual(self.MAP_AND_REFERENCES, {key: strings[key] for key in self.MAP_AND_REFERENCES})
+
+    def test_a_retired_key_warns_and_is_dropped_and_the_page_builds(self):
+        path = self.dir / "strings.json"
+        path.write_text(json.dumps({"now": "now:", "parts": "Parts", "copy": "Copy all"}), encoding="utf-8")
+        code, err, page = self.build(args=["--strings", str(path)])
+        self.assertEqual(0, code, err)
+        self.assertEqual([f'{path}: warning: key "now" is retired and ignored', f'{path}: warning: key "parts" is retired and ignored'],
+                         err.splitlines())
+        self.assertEqual("Copy all", self.strings(page)["copy"])
+        self.assertEqual(set(), {"now", "parts"} & set(self.strings(page)))
+
+    def test_every_retired_key_is_out_of_the_strings(self):
+        self.assertEqual({"now", "notPlaying", "jump", "hintPause", "hintNote", "hintNoteSpoken", "noteSpoken", "parts"}, set(bp.RETIRED_STRINGS))
+        self.assertEqual(set(), bp.RETIRED_STRINGS & set(bp.STRINGS))
 
     def test_the_look_string_has_an_english_default(self):
         self.assertEqual("Where to look", bp.STRINGS["look"])
@@ -834,28 +1125,28 @@ class Strings(Build):
         self.assertEqual(bp.STRINGS["choose"], self.strings(page)["choose"])
 
     def test_the_config_file_is_read_without_the_option(self):
-        (self.config / "handing-over-to-readers/page-strings.json").write_text(json.dumps({"now": "сейчас:"}), encoding="utf-8")
+        (self.config / "handing-over-to-readers/page-strings.json").write_text(json.dumps({"copy": "Скопировать"}), encoding="utf-8")
         code, err, page = self.build()
         self.assertEqual(0, code, err)
-        self.assertEqual("сейчас:", self.strings(page)["now"])
+        self.assertEqual("Скопировать", self.strings(page)["copy"])
 
     def test_home_config_is_used_when_xdg_is_empty(self):
         self.environ["XDG_CONFIG_HOME"] = ""
         (self.dir / ".config/handing-over-to-readers").mkdir(parents=True)
-        (self.dir / ".config/handing-over-to-readers/page-strings.json").write_text(json.dumps({"now": "jetzt:"}), encoding="utf-8")
+        (self.dir / ".config/handing-over-to-readers/page-strings.json").write_text(json.dumps({"copy": "Kopieren"}), encoding="utf-8")
         code, err, page = self.build()
         self.assertEqual(0, code, err)
-        self.assertEqual("jetzt:", self.strings(page)["now"])
+        self.assertEqual("Kopieren", self.strings(page)["copy"])
 
     def test_the_option_wins_over_the_config_file(self):
-        (self.config / "handing-over-to-readers/page-strings.json").write_text(json.dumps({"now": "config"}), encoding="utf-8")
-        (self.dir / "strings.json").write_text(json.dumps({"now": "option"}), encoding="utf-8")
+        (self.config / "handing-over-to-readers/page-strings.json").write_text(json.dumps({"copy": "config"}), encoding="utf-8")
+        (self.dir / "strings.json").write_text(json.dumps({"copy": "option"}), encoding="utf-8")
         code, err, page = self.build(args=["--strings", str(self.dir / "strings.json")])
         self.assertEqual(0, code, err)
-        self.assertEqual("option", self.strings(page)["now"])
+        self.assertEqual("option", self.strings(page)["copy"])
 
-    def test_an_unknown_key_is_exit_2(self):
-        (self.dir / "strings.json").write_text(json.dumps({"copyy": "Copy"}), encoding="utf-8")
+    def test_an_unknown_key_is_exit_2_beside_a_retired_one(self):
+        (self.dir / "strings.json").write_text(json.dumps({"copyy": "Copy", "jump": "Jump"}), encoding="utf-8")
         code, err, page = self.build(args=["--strings", str(self.dir / "strings.json")])
         self.assertEqual(2, code)
         self.assertIn("copyy", err)
@@ -890,11 +1181,12 @@ class Output(Build):
         self.assertIn('id="page-data"', body)
         self.assertTrue(page.rstrip().endswith("</body>\n</html>"))
 
-    def test_the_data_holds_cues_parts_strings_voice_and_id(self):
+    def test_the_data_holds_cues_parts_strings_voice_id_map_and_refs(self):
         code, err, page = self.build(args=["--voice", "story.wav", "--id", "thumbs"])
         self.assertEqual(0, code, err)
         data = self.data(page)
-        self.assertEqual(["cues", "id", "parts", "strings", "voice"], sorted(data))
+        self.assertEqual(["cues", "id", "map", "parts", "refs", "strings", "voice"], sorted(data))
+        self.assertEqual((False, {}), (data["map"], data["refs"]))
         self.assertEqual(("story.wav", "thumbs", CUES), (data["voice"], data["id"], data["cues"]))
 
     def test_the_defaults_are_no_voice_and_the_id_report(self):
@@ -948,8 +1240,12 @@ class TheTemplate(unittest.TestCase):
         named = set(re.findall(r'data-string="(\w+)"', self.TEXT)) | set(re.findall(r"\bS\.(\w+)", self.TEXT)) | self.BUILDER_STRINGS
         self.assertEqual(set(), set(bp.STRINGS) - named)
 
-    def test_the_now_line_names_a_part_after_the_opening_by_its_number_and_the_count(self):
-        self.assertRegex(self.TEXT, r'part\.paragraph > 1 \? S\.part \+ " " \+ part\.paragraph \+ "/" \+ PARTS\.length \+ ": " \+ part\.title')
+    def test_a_part_button_is_named_by_its_label_and_the_parts_title(self):
+        self.assertIn('b.setAttribute("aria-label", label + ": " + PARTS[n].title);', self.TEXT)
+
+    def test_the_template_has_no_part_list_no_side_group_and_no_key_c(self):
+        for gone in ("side-tools", "parts-toggle", "noteOnSpoken", "KeyC"):
+            self.assertNotIn(gone, self.TEXT)
 
     def test_the_reason_of_a_decision_is_styled_outside_its_options(self):
         self.assertIn(".decision .why {", self.TEXT)
@@ -969,8 +1265,8 @@ class TheTemplate(unittest.TestCase):
         self.assertRegex(self.TEXT, r"\.sheet :is\([^)]*\bspan\b[^)]*\)\.lit \{ background: var\(--lit\);")
         self.assertIn("figure td.good { color: var(--keep); } figure td.bad { color: var(--drop); }", self.TEXT)
 
-    def test_the_template_labels_the_part_list_control_the_marks_and_the_return_list_from_the_strings(self):
-        for key in ("parts", "knew", "missed", "returnTo"):
+    def test_the_template_labels_the_marks_the_return_list_the_map_and_the_references_from_the_strings(self):
+        for key in ("knew", "missed", "returnTo", "map", "mapOpen", "mapClose", "refPanel", "refClose", "refEditor", "refSource"):
             self.assertRegex(self.TEXT, rf"\bS\.{key}\b")
 
     def test_the_answer_bar_has_a_class_of_its_own_beside_the_answer_of_a_question(self):

@@ -1,0 +1,8 @@
+{
+  "key-value": {"path": "src/cache/ThumbKey.java", "fragment": "return \"thumb:\""},
+  "generation": {
+    "title": "Generation numbers in cache keys",
+    "note": "A key that carries the version of its picture never meets an entry written for an older version.",
+    "href": "https://example.org/cache-keys#generation"
+  }
+}

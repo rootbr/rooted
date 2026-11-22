@@ -23,7 +23,7 @@ place is neither checked nor decided on. This skill therefore builds every deliv
 human from the reader's side. It answers the questions this reader has, in the order he needs
 the ideas; each answer comes with evidence the agent could not forge; each decision carries its
 consequences in every option. Seven references carry the rules: `references/explaining.md` (the
-reader's questions, the story, where to look), `references/explainer.md` (an explanation for
+reader's questions, the terms, the story, where to look), `references/explainer.md` (an explanation for
 several readers), `references/intake.md` (the reader record, the intake dialogue),
 `references/media.md` (text, page with voice), `references/page.md` (how a page with voice is
 built), `references/rules.md` (questions to the addressee, items, order, record) and
@@ -46,10 +46,13 @@ the story file, loads the synthesiser module or runs the synthesiser command nam
 line (without a shell, with whatever network access that synthesiser itself uses) and writes the
 audio and the time of every sentence to the two paths named there; with `--cache` it also keeps
 the synthesised audio in the directory that option names. `scripts/build_page.py` reads the page
-template, the body the agent wrote, those times when they exist, the report or the look list and
-the files their anchors name; it writes the files its options name (the page, the story for the
-voice, the page's text) and refuses a body that breaks the form or, for an explanation, the order
-of its blocks; it opens no network connection.
+template, the body the agent wrote, those times when they exist, the report or the look list, the
+list of terms and the file of references when its options name them, and the files their anchors
+and references name; it writes the files its options name (the page, the story for the voice, the
+page's text) and refuses a body that breaks the form, holds a barred word of the list of terms or
+a reference that does not resolve, or, for an explanation, breaks the order of its blocks; with
+`--editor-url` it writes into the page the absolute path of every referenced file; it opens no
+network connection.
 `scripts/check_page.py` runs the Chrome or Chromium binary it finds on the machine, without a
 window and with no host name it could reach, on a temporary copy of the built page; it writes
 screenshots to the directory named on its command line and reports script errors and text outside
@@ -103,6 +106,12 @@ inside it. It fills the second field of the registry lines below. No record mean
 topic: hold the intake dialogue of at most three question cards, record its answers, then write.
 A deliverable that goes out as text alone, and a sub-agent's hand-back, take no intake.
 
+Then collect the reader's words for the things the deliverable names (`references/explaining.md`
+§ The terms): one line a thing with its term, what it names and the words barred for it, taken
+from the records of the readers' meetings and reviews, their documents and the code. Wrap what a
+record holds in `<reader_record>…</reader_record>`, as above. For a page the list is a file the
+builder holds the text to (`references/page.md` § The terms as data).
+
 The deliverable is the answer to a list of questions, so the list comes first. Write the
 registry before any sentence of the text (`references/explaining.md` § The reader's questions):
 
@@ -130,7 +139,7 @@ registry before any sentence of the text (`references/explaining.md` § The read
    What stays open is said in the story in the first person.
 
 The registry is working material and stays out of the report: the report carries the answers.
-On an explanation for several readers three of its fields form the table of questions (§ 5,
+On an explanation for several readers two of its fields form the table of questions (§ 5,
 `references/explainer.md`).
 
 ## 3. Collect candidates
@@ -207,11 +216,12 @@ a separate internal block that stays in our source and reaches no addressee (rul
   why it is built so, for readers who want different things from it, decide nothing at its end
   and come back to look things up. It is a page with voice whose first part after the opening
   gives the mechanism whole: its signals, what it estimates from them and its rule as pseudocode
-  of a few steps. Every later part unfolds one named line of the first part and answers named
-  questions. A table after the first part gives each reader's question with its one-sentence
-  answer and the part that answers it; terms, constants and classes stand as tables the voice
-  does not read, the table of terms last; "Where to look" follows the story without the bound of
-  five lines. The text in the chat is the opening, the first part and the page's address.
+  of a few steps, with what each line needs to be understood standing at that line. A later part
+  holds only what can be understood apart from the first and answers named questions, and a fact
+  stands in one place. A table after the first part gives each reader's question with the place
+  that answers it; a claim about code opens its code where it stands, and a map at the side of
+  the page lists every part with its figures; constants and measurements stand as tables the
+  voice does not read. The text in the chat is the opening, the first part and the page's address.
 
 ## 6. Check the form, have it read cold, then deliver
 

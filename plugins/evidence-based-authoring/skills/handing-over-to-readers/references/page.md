@@ -2,7 +2,7 @@
 
 A page with voice is built from one body once that form is chosen (`references/media.md`). The body holds every spoken sentence in its place, so nothing is written twice: the builder numbers the sentences, writes the story the voice reads and checks the voice's timings against the body. For a report the body's sentences are the story of the text form, and its figures are that story's pictures. What each of the three scripts below reads, runs and writes is declared in `SKILL.md`, in its paragraph on the scripts.
 
-Contents: [Steps](#steps) · [The body](#the-body) · [Figures from ready parts](#figures-from-ready-parts) · [A decision](#a-decision) · [The blocks of an explanation](#the-blocks-of-an-explanation) · [Where to look as data](#where-to-look-as-data) · [Before delivery](#before-delivery)
+Contents: [Steps](#steps) · [The body](#the-body) · [Figures from ready parts](#figures-from-ready-parts) · [A decision](#a-decision) · [The blocks of an explanation](#the-blocks-of-an-explanation) · [Where to look as data](#where-to-look-as-data) · [The terms as data](#the-terms-as-data) · [References as data](#references-as-data) · [Before delivery](#before-delivery)
 
 ## Steps
 
@@ -20,7 +20,7 @@ Contents: [Steps](#steps) · [The body](#the-body) · [Figures from ready parts]
    - a decimal fraction;
    - a number with an ordinary space inside.
 
-   Fix the body, never the check. For an explanation add `--explanation` to this build and to the build of step 4: the builder then checks the order of the explanation's blocks (§ The blocks of an explanation).
+   Fix the body, never the check. For an explanation add `--explanation` to this build and to the build of step 4: the builder then checks the order of the explanation's blocks (§ The blocks of an explanation). With `--terms terms.json` on both builds it holds the text to the list of terms (§ The terms as data).
 3. **Voice it.** One of:
 
    ```bash
@@ -33,11 +33,11 @@ Contents: [Steps](#steps) · [The body](#the-body) · [Figures from ready parts]
 
    ```bash
    python3 <skill-dir>/scripts/build_page.py --body body.html --cues cues.json --report report.md \
-     --root <repo> --title "<what the page is about>" --id <short-name> --voice <audio address> \
-     --text-out page-text.md --out page.html
+     --root <repo> --terms terms.json --refs refs.json --title "<what the page is about>" \
+     --id <short-name> --voice <audio address> --text-out page-text.md --out page.html
    ```
 
-   The builder takes the times from the cues and the text from the body, and refuses cues that are not this body's: voice the story again after an edit. It appends "Where to look" with the lines around every anchor: from the report's closing list (`--report`), or from a look list (`--look`, § Where to look as data) when the page has no report. The title is `--title`, else the body's first `h1`. `--text-out` writes the page's visible text for the cold read (`SKILL.md` § 6). The words the page itself shows (the player, the pick and copy controls) are English; `--strings <file>`, or `$XDG_CONFIG_HOME/handing-over-to-readers/page-strings.json`, gives them in the reader's language, as the lexicon file `$XDG_CONFIG_HOME/handing-over-to-readers/lexicon.json` gives the report's closing heading.
+   The builder takes the times from the cues and the text from the body, and refuses cues that are not this body's: voice the story again after an edit. It appends "Where to look" with the lines around every anchor: from the report's closing list (`--report`), or from a look list (`--look`, § Where to look as data) when the page has no report. The title is `--title`, else the body's first `h1`. `--refs` gives the references the body names (§ References as data). `--text-out` writes the page's visible text for the cold read (`SKILL.md` § 6). The words the page itself shows (the part buttons, the pick and copy controls, the map) are English; `--strings <file>`, or `$XDG_CONFIG_HOME/handing-over-to-readers/page-strings.json`, gives them in the reader's language, as the lexicon file `$XDG_CONFIG_HOME/handing-over-to-readers/lexicon.json` gives the report's closing heading.
 5. **Check the page in a browser.**
 
    ```bash
@@ -72,7 +72,21 @@ The body is the article: HTML without scripts and without colours of its own.
 - **A spoken sentence shown by a picture**: `data-voice` on the element that shows what the sentences say, holding those sentences: an option of a decision, a group of a figure. The voice says them at that place, and the element is lit meanwhile.
 - **A name for a sentence**: the mark `[@name]` before a sentence, in the text of a `data-say` element or in a `data-part` or `data-voice` value. `data-lit="@name"` on a box of a figure or a row of a table lights it while that sentence is spoken; an element may list several names. A name stays with its sentence when another is inserted before it.
 - **The order of speech is the order of the body.** The builder numbers the sentences `part.sentence` by it.
-- **What the voice does not say** may stand on the page only inside a figure, its caption or an option of a decision: a label, a scale, a note on what was computed, an option's heading with its gains and costs, a formula, pseudocode, a table of terms or constants, a question with its hidden answer.
+- **A counted enumeration** is a `ul` whose items carry `data-say`, under a spoken sentence that gives their count; an `ol` where the order carries meaning or a sentence refers to an item by its number (`references/explaining.md` § The story).
+
+  ```html
+  <p data-say>The cache keeps three things for a picture.</p>
+  <ul>
+    <li data-say>The key: the picture's number and its version.</li>
+    <li data-say>The thumbnail: the picture at a width of 200 pixels.</li>
+    <li data-say>The expiry: one day after the entry was written.</li>
+  </ul>
+  ```
+
+- **The gist of a part** stands in `<div class="gist">`, as spoken paragraphs or a list; the page sets it apart by a rule at its side and a tinted ground. One a part at most.
+- **What the voice does not say** may stand on the page only inside a figure, its caption or an option of a decision: a label, a scale, a note on what was computed, an option's heading with its gains and costs, a formula, pseudocode, a table of constants or measurements, the blocks of a worked case, a question with its hidden answer.
+- **A name for the map**: `data-nav="NAME"` on a figure, or on any other element worth an entry, is the short name under which the map of an explanation lists it. The name says what the thing is about, in two to five of the reader's words; the first sentence of a caption seldom does.
+- **A reference**: `data-ref="KEY"` on an element outside a `data-say` element names an entry of the file of references; the page opens the entry in place (§ References as data).
 - **A link inside the page** names an `id` of the body; the builder refuses a link to an id the page does not have.
 
 ## Figures from ready parts
@@ -88,7 +102,8 @@ A figure is the part's picture (`references/explaining.md` § The pictures), dra
 | `rect.codebg` with `text.mono` lines and `rect.hl` | a window of code with the lines that matter framed | the sentence about that code |
 | `text` with `.dim`, `.bad`, `.good`, `.small`, `.lane`, `.mono` | a label, a failure, a success, a small label, a lane's name, a literal | the sentence that says it |
 | `<figure class="twocol">` with `li.plus`, `li.minus` | what is there and what is missing | the sentence about each item |
-| an HTML table inside `<figure>` | before and after, the differing cell in its own row; the stages of a run, one row a stage; causes against signs; terms, constants, the readers' questions | the sentence about each row |
+| an HTML table inside `<figure>` | before and after, the differing cell in its own row; the stages of a run, one row a stage; causes against signs; constants, measurements, the readers' questions | the sentence about each row |
+| `<div class="steps">` of `div.step` blocks inside `<figure>` | a worked case of an exchange or a derivation, a block a step with its numbers; the blocks stand side by side and stack in a narrow window | the sentence about each step |
 | a `<pre>` inside `<figure>` | a formula beside the sentence that says what it is for, or the rule of a mechanism as pseudocode in `<figure class="pseudo">` (§ The blocks of an explanation) | the sentence about each line |
 | `rect.attempt` and `rect.pause` on one row, a `rect.box` under them for each name | a measured quantity split into its parts to one scale, and each name of its family as a span over the parts it takes in | the sentence that brings in each part and each name |
 | `<figure class="factor">` with an HTML table | one factor in a small model, laid out as § The blocks of an explanation says | the sentence about each step |
@@ -110,6 +125,8 @@ Group the shapes and the label of one thing in a `<g data-lit="…">`, so they l
 - A figure states one thing, in the palette of the page; green and red appear only where they carry a verdict.
 - Sizes are computed: one scale for every span of a time line, text of 14 px that fits its box with room on both sides.
 - The opening has no figure.
+- Nothing in a figure moves by itself: a path through a mechanism is a still line with its arrowheads.
+- A figure of an explanation carries its name for the map of the page (§ The blocks of an explanation).
 - A mechanism that switches states is drawn as one `rect.box` a state and one `line.arr` a switch, the condition of the switch as a label on its arrow.
 - **A switch** belongs to a figure that shows how options differ on one input. The group names what changes in the reader's words; the elements of one behaviour carry `only-now`, of the other `only-safe`; an option that is not built says so on the figure.
 
@@ -147,24 +164,24 @@ Group the shapes and the label of one thing in a `<g data-lit="…">`, so they l
 - `data-option` is the option in the words the copied answer will carry; `data-title` names the decision there.
 - The author's choice carries `data-mine="1"`; his reason follows the options as `p.why`, where the voice says it after both options, so the reason is readable without the sound.
 - Several decisions are several sections, each with a heading of its own lit by the sentence that names it; the question that closes the story stands after the last. A decision that rests on one part may stand inside that part; the control that copies the answer follows the last field of the page.
-- The page adds the pick controls, the field for the reader's words under each decision and under each part without one, the pause beside the spoken sentence, the window for a comment on a piece of the text and the control that copies the answer; the body writes none of them.
+- The page adds the pick controls, the field for the reader's words under each decision and under each part without one, the button at each part's heading that speaks the part, the two buttons beside a selection, the window for a comment on a piece of the text, the map of an explanation and the control that copies the answer; the body writes none of them.
 
 ## The blocks of an explanation
 
-An explanation for several readers (`references/explainer.md`) adds five kinds of block, each inside a `figure` whose class names it, none of them spoken. The builder reads the classes: a body that holds one of them, or is built with `--explanation`, is checked as an explanation.
+An explanation for several readers (`references/explainer.md`) adds four kinds of block, each inside a `figure` whose class names it, none of them spoken. The builder reads the classes: a body that holds a figure of class `pseudo`, `questions` or `quiz`, or is built with `--explanation`, is checked as an explanation.
 
 ```html
 <h2 id="h-whole" data-part="The mechanism as a whole.">The whole mechanism</h2>
 <p data-say>[@count] Every upload of a picture is counted. [@key] The cache key joins the picture's number and that count. [@read] A reader asks by the newest key, so an old entry is never read again.</p>
-<figure class="pseudo">
-  <pre><span data-lit="@count">1  version = uploads of this picture so far      <a href="#h-version">the version</a></span>
-<span data-lit="@key">2  key = picture number + ":v" + version         <a href="#h-key">the key</a></span>
-<span data-lit="@read">3  on a read: take the entry under the newest key</span></pre>
-  <figcaption>The rule in three steps. A line leads to the part that unfolds it.</figcaption>
+<figure class="pseudo" data-nav="The rule in three steps">
+  <pre><span data-lit="@count">1  version = uploads of this picture so far      <i class="by"><code data-ref="count">Uploads#count</code></i></span>
+<span data-lit="@key">2  <a href="#h-key">key</a> = picture number + ":v" + version         <i class="by"><code data-ref="key">ThumbKey#of</code></i></span>
+<span data-lit="@read">3  on a read: take the entry under the newest key  <i class="by"><code data-ref="read">ThumbCache#read</code></i></span></pre>
+  <figcaption>The rule in three steps. The name of a line leads to the part that unfolds it; at the right stands the method that carries the line out.</figcaption>
 </figure>
 
-<h2 id="h-version" data-part="Now the version.">The version</h2>
-<figure class="factor">
+<h2 id="h-key" data-part="Now the key: the second line of the rule.">The key (line 2)</h2>
+<figure class="factor" data-nav="The key with the version and without it">
   <div class="figscroll"><table>
     <thead><tr><th>Step</th><th>The key without the version</th><th>The key with it</th></tr></thead>
     <tbody>
@@ -176,14 +193,13 @@ An explanation for several readers (`references/explainer.md`) adds five kinds o
   <figcaption>One factor, the version in the key. Everything else is the same in both runs.</figcaption>
 </figure>
 
-<figure class="questions">
+<figure class="questions" data-nav="The readers' questions">
   <div class="figscroll"><table>
-    <thead><tr><th>Question</th><th>Answer</th><th>Part</th></tr></thead>
+    <thead><tr><th>Question</th><th>Where it is answered</th></tr></thead>
     <tbody>
-      <tr><td>Why did a re-uploaded picture show its old thumbnail?</td><td>The cache key was the picture's number alone.</td><td><a href="#h-key">The key</a></td></tr>
+      <tr><td>Why did a re-uploaded picture show its old thumbnail?</td><td><a href="#h-key">The key (line 2)</a></td></tr>
     </tbody>
   </table></div>
-  <figcaption>Five minutes: the opening and the first part. Twenty: the parts on the version and on the key. An hour: every part with its question.</figcaption>
 </figure>
 
 <figure class="quiz">
@@ -192,23 +208,14 @@ An explanation for several readers (`references/explainer.md`) adds five kinds o
     <p class="answer">Under the key with version three, because the version grows with every upload. Nobody reads the second entry again: it stays until it expires, up to a day.</p>
   </details>
 </figure>
-
-<figure class="terms">
-  <div class="figscroll"><table>
-    <thead><tr><th>On the page</th><th>In the code</th><th>In the literature</th></tr></thead>
-    <tbody>
-      <tr><td>the version</td><td><code>uploadCount</code></td><td>a cache-busting version</td></tr>
-    </tbody>
-  </table></div>
-</figure>
 ```
 
-- **The pseudocode** stands in `figure.pseudo` as a `pre` of a few lines, one line a step. A line wrapped in a `span` with `data-lit` lights on its sentence; a link at its end leads to the part that unfolds the line. A reader comments on a piece of a line as on any piece of the text. A formula takes the same `pre` in a plain `figure`.
+- **The pseudocode** stands in `figure.pseudo` as a `pre` of a few lines, one line a step, numbered where the text or a figure refers to a line by its number. A line wrapped in a `span` with `data-lit` lights on its sentence; a link on the name of the line leads to the part that unfolds it; an element of class `by` at the end of the line names the method that carries the line out, and the page sets it at the right edge. A reader comments on a piece of a line as on any piece of the text. A formula takes the same `pre` in a plain `figure`.
 - **One factor** stands in `figure.factor` as a table: a row a step, the starting conditions with their numbers in the first row, one column for the run without the factor and one for the run with it; `td.bad` marks the step where the run without it fails, `td.good` the same step with it.
-- **The table of questions** stands in `figure.questions` after the first part: each reader's question, its answer in one sentence and a link to the part that answers it; the routes by time stand in its caption.
+- **The table of questions** stands in `figure.questions` after the first part: each reader's question and a link to the place that answers it.
 - **A question** stands in `figure.quiz` as a `details.q`: the `summary` is the question, `p.answer` the hidden answer with its cause and its number. The page adds under an opened answer the two marks the reader sets for himself and, after the last part, the list of parts worth returning to; it shows no count and keeps the marks in the reader's browser alone.
-- **The table of terms** stands in `figure.terms` after the last part, with three columns: the word on the page, the name in the code, the name in the literature.
-- **The order is checked.** The builder refuses an explanation whose first part holds no `figure.pseudo` with a `pre` of two lines or more, and one whose `figure.questions` or `figure.terms` opens before the first part ends. The first part runs from the first heading with `data-part` to the second.
+- **Every figure has a name for the map**: `data-nav` on each `figure` of an explanation but a `figure.quiz`, which the map lists by its question (§ The body).
+- **The order and the names are checked.** The builder refuses an explanation whose first part holds no `figure.pseudo` with a `pre` of two lines or more, one whose `figure.questions` opens before the first part ends, and one with a figure, other than a `figure.quiz`, that has no `data-nav`. The first part runs from the first heading with `data-part` to the second.
 
 ## Where to look as data
 
@@ -226,6 +233,47 @@ python3 <skill-dir>/scripts/build_page.py --body body.html --cues cues.json --lo
 ```
 
 The builder finds the line that holds the fragment and writes the anchor with it. It refuses a fragment that stands on no line or on more than one: lengthen the fragment until it names one line. An item without a path is shown as text: a check with its count and exit code.
+
+## The terms as data
+
+The list of terms (`references/explaining.md` § The terms) is a file the builder holds the text to:
+
+```json
+[
+  {"term": "version", "is": "the count of uploads of one picture", "code": "Uploads#count", "not": ["revision", "generation*"]},
+  {"term": "200k requests a second", "is": "a count written with a multiplier on the number", "not": ["200 kRPS"]}
+]
+```
+
+```bash
+python3 <skill-dir>/scripts/build_page.py --body body.html --terms terms.json --story-out story.txt --out draft.html --standalone
+```
+
+- `term` is the word as the text writes it; `is` and `code` say what it names and its name in the code; `not` lists the words barred for it.
+- The builder searches the words the reader sees or hears: the text of the body's elements, and the values of `data-part`, `data-voice`, `data-nav`, `alt`, `title` and `aria-label`. A barred word found as a whole word, in any case, refuses the body at its line and names the term to write. A word of `not` that ends in `*` stands for every word that starts with the text before the star, which covers the endings of an inflected language.
+- An occurrence of a term is passed over first, so a barred word that is part of another term is no violation: with the term "cache key" in the list, a bare "key" may be barred.
+- The excerpts under "Where to look" and of the references are code and are never searched.
+
+## References as data
+
+A claim about code opens its code where it stands (`references/explainer.md` § Where to look). The body names an entry with `data-ref` on an element outside the spoken text, in a table, a caption or a line of pseudocode, and a file gives the entries:
+
+```json
+{
+  "key": {"path": "src/cache/ThumbKey.java", "fragment": "static String of(", "lines": 8},
+  "busting": {"title": "Cache busting", "note": "the literature's name for a version in the key", "href": "https://example.org/cache-busting"}
+}
+```
+
+```bash
+python3 <skill-dir>/scripts/build_page.py --body body.html --cues cues.json --refs refs.json --root <repo> --out page.html
+```
+
+- **A code entry** is anchored in the file under `--root` as a fragment item of the look list is (§ Where to look as data). The page keeps the lines from three above that line to `lines` below it, 12 unless the entry says otherwise and 60 at most.
+- **A source entry** names a paper or a document: its title, a note on what it calls the thing, and its address.
+- **On the page** an element with `data-ref` shows a preview of its entry when the keyboard focus reaches it or, on a device that can point, when the pointer rests on it: the lines with the anchored one marked, or the title and the note. The preview stays while the pointer is on it and closes on Escape. A click, Enter or Space opens the entry in a panel: the whole excerpt, or the note with the link to the source. The panel stands at the right beside the text while the text keeps a column of at least 480 pixels, and lies over the text in a narrower window.
+- **A `data-ref` whose key the file lacks is refused**, and so is every `data-ref` of a page built without `--refs`; an entry no element names is reported as unused and changes nothing.
+- **A link into an editor**: `--editor-url 'vscode://file{path}:{line}'` adds to each code entry a link built from that template, with the file's absolute path and its line. The builder takes the option only with `--standalone`: the link carries a path of the author's machine and opens only there, and a page shown inside another site's frame may refuse it. The form with `vscode://file` is the one its vendor documents; another editor's form goes into the template the same way.
 
 ## Before delivery
 

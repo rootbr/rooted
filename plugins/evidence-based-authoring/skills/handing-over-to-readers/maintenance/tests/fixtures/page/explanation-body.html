@@ -7,7 +7,7 @@
 <p data-say>[@upload] Every upload raises the picture's version by one.
   [@key] The key joins the picture's number and its version.
   [@serve] A request is served from the cache under that key, and a miss renders the thumbnail and stores it there.</p>
-<figure class="pseudo">
+<figure class="pseudo" data-nav="The rule of the cache">
   <pre><span data-lit="@upload">on upload(picture): picture.version += 1</span>
 <span data-lit="@key">key(picture) = "thumb:" + picture.id + ":v" + picture.version</span>
 <span data-lit="@serve">on request(picture): cache[key(picture)] or <a href="#h-miss">render and store</a></span></pre>
@@ -16,7 +16,7 @@
 
 <h2 id="h-questions" data-part="Your questions.">Your questions</h2>
 <p data-say>The table gives each question its answer in one sentence and the part that answers it.</p>
-<figure class="questions">
+<figure class="questions" data-nav="Your questions and their parts">
   <div class="figscroll">
     <table>
       <thead><tr><th>Question</th><th>Answer</th><th>Part</th></tr></thead>
@@ -32,7 +32,7 @@
 <h2 id="h-miss" data-part="A miss.">A miss</h2>
 <p data-say>[@without] Without the version, a re-uploaded picture meets its old thumbnail.
   [@with] With the version, its first request misses and renders a fresh one.</p>
-<figure class="factor wide">
+<figure class="factor wide" data-nav="The key without and with the version">
   <div class="figscroll">
     <table>
       <thead><tr><th>picture 42, uploaded twice</th><th data-lit="@without">without the version</th><th data-lit="@with">with the version</th></tr></thead>
@@ -50,7 +50,7 @@
     <p class="answer">The key with version three, because every upload raises the version by one.</p>
   </details>
 </figure>
-<figure class="terms">
+<figure class="terms" data-nav="Terms of the cache">
   <div class="figscroll">
     <table>
       <thead><tr><th>On the page</th><th>In the code</th><th>In the literature</th></tr></thead>
