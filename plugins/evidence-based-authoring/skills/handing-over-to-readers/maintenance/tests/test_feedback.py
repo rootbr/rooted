@@ -181,7 +181,7 @@ class Workspace(unittest.TestCase):
             self.records("ledger", "find", "--question", "Which log format does the exporter write?"),
             self.records("ledger", "note", "a-0002", "--scope", "the exporter"),
             self.records("ledger", "supersede", "a-0001", "--by", "a-0002"),
-            self.run_script("records.py", "ledger", "capture", "--hook", stdin=json.dumps({"tool_input": {"questions": [GOOD]}, "tool_response": {}}).encode("utf-8")),
+            self.run_script("records.py", "ledger", "capture", "--hook", stdin=json.dumps({"tool_input": {"questions": [GOOD]}, "tool_response": {"answers": {GOOD["question"]: "Keep 250 ms"}}}).encode("utf-8")),
             self.run_script("check_cold_read.py", "--report", str(w / "cold-report.md"), "--questions", str(w / "cold-questions.json"), "--answers", str(w / "cold-answers.json")),
             self.run_script("build_page.py", "--body", str(w / "body.html"), "--cues", str(w / "cues.json"), "--report", str(FIXTURES / "report.md"), "--out", str(w / "page.html")),
             self.run_script("voice_cues.py", "--tts-command", self.tts(), str(w / "story.txt"), str(w / "out.wav"), str(w / "out.json")),
@@ -397,7 +397,8 @@ class ScriptEvents(Workspace):
         ])
 
     def test_answer(self):
-        payload = {"tool_input": {"questions": [GOOD, dict(GOOD, question="Which log format does the exporter write?")]}, "tool_response": {}}
+        payload = {"tool_input": {"questions": [GOOD, dict(GOOD, question="Which log format does the exporter write?")]},
+                   "tool_response": {"answers": {GOOD["question"]: "Keep 250 ms", "Which log format does the exporter write?": "JSON"}}}
         self.run_script("records.py", "ledger", "capture", "--hook", stdin=json.dumps(payload).encode("utf-8"))
         self.assertEqual(self.events(), [{"event": "answer", "count": 2}])
 

@@ -50,8 +50,11 @@ Sentences. A text is split at white space that follows . ! ? … or ;. A sentenc
 six units is dropped; a text all of whose sentences are dropped is one sentence, the whole text.
 
 Score. The largest value, over every pair of a query sentence and a record sentence, of the size
-of the multiset intersection of their units divided by the unit count of the smaller of the two:
-between 0 and 1, and 1 for a record whose text equals the query. Sentence against sentence,
+of the multiset intersection of their units divided by the geometric mean of their two unit
+counts: between 0 and 1, and 1 for a record whose text equals the query. The geometric mean
+weighs the length of both sentences, so a short sentence does not match a long one on a few
+shared trigrams (five shared units of nine against forty score 0.26), while a short question
+still matches the card sentence that holds it, which is not much longer. Sentence against sentence,
 because a question card carries the card form's own sentences (the fact, what the answer changes,
 why it is asked) before its question: a whole-text share of a long card in a short record stays
 low however close the question is, and two whole cards share the form's wording however
@@ -60,7 +63,7 @@ project's ledger holds few records: in a small store the rarity of a unit says l
 words a store lacks would get the highest weight and swamp the words it shares. A query without
 a unit is unusable input.
 
-Records at or above the floor (default 0.40) are printed best first, at most five, one line
+Records at or above the floor (default 0.37) are printed best first, at most five, one line
 each:
     <id> · <date> · <score> · <topic or question> -> <holds and lacks, or answer> · basis: <basis>
 --json prints the same records as a JSON list, each with its "score".
@@ -70,19 +73,23 @@ named fields of one ledger record; supersede marks a ledger record superseded by
 prints every record, one line each, newest first.
 
 capture --hook is the PostToolUse hook on AskUserQuestion. It reads the hook payload on stdin
-and appends one ledger record of kind "answer" for every question of tool_input.questions: the
-answer is the chosen label from tool_response.answers when that maps the question's text to it,
-otherwise the whole tool_response as compact JSON cut at 2,000 characters. It then prints a
-PostToolUse hookSpecificOutput whose additionalContext names the new ids and asks for each
-answer's scope and what would overturn it. It always exits 0: an unreadable payload or an
-unwritable ledger is one line on stderr and nothing on stdout.
+and appends one ledger record of kind "answer" for every question of tool_input.questions that
+tool_response.answers maps to a non-empty answer: a text stripped of white space, or a list of
+non-empty texts joined with ", ". A question without an answer, as in a dialog closed without a
+choice, gets no record, and one line on stderr names the numbers of those questions. When it
+appended records it prints a PostToolUse hookSpecificOutput whose additionalContext names the new
+ids and asks for each answer's scope and what would overturn it; when it appended none it leaves
+the ledger file as it was, creating none, and prints nothing on stdout. It always exits 0: an
+unreadable payload or an unreadable or unwritable ledger is one line on stderr and nothing on
+stdout.
 
 Exit: 0 done (find: a record printed); 1 find printed none; 2 unusable input or an unreadable
 or unwritable store. The script reads and writes only the stores named above, runs git only to
 ask whether a reader file is ignored, opens no network connection and uses the Python standard
 library alone. With the usage journal of feedback.py turned on, every command but show that did
 its work adds to it one line of counts: what find found, the number of items and the words of use, depth and turns of
-a reader record, the kind of a ledger record, the number of answers capture recorded.
+a reader record, the kind of a ledger record, the number of answers capture recorded; a capture
+that recorded none adds no line.
 """
 from __future__ import annotations
 
@@ -90,6 +97,7 @@ import argparse
 import contextlib
 import datetime
 import json
+import math
 import os
 import re
 import subprocess
@@ -101,9 +109,8 @@ from pathlib import Path
 from typing import Callable, Mapping
 
 STORE_DIR = "handing-over-to-readers"
-DEFAULT_FLOOR = 0.40
+DEFAULT_FLOOR = 0.37
 MAX_FOUND = 5
-CAPTURE_ANSWER_LIMIT = 2000
 CAPTURE_BASIS = "the reader's answer on a card"
 RUN = re.compile(r"[^\W_]+")
 TRIGRAM_RUN = 3
@@ -314,9 +321,9 @@ def sentences(text: str) -> list[Counter]:
 
 
 def overlap(a: Counter, b: Counter) -> float:
-    """The multiset intersection of a and b divided by the unit count of the smaller; 0 when either is empty."""
-    smaller = min(sum(a.values()), sum(b.values()))
-    return sum((a & b).values()) / smaller if smaller else 0.0
+    """The multiset intersection of a and b divided by the geometric mean of their unit counts; 0 when either is empty."""
+    product = sum(a.values()) * sum(b.values())
+    return sum((a & b).values()) / math.sqrt(product) if product else 0.0
 
 
 def score(query_sentences: list[Counter], texts: list[str]) -> float:
@@ -456,19 +463,30 @@ def ledger_supersede(path: Path, args: argparse.Namespace) -> int:
 # The PostToolUse hook
 
 
-def captured_answer(question: str, response: object) -> str:
-    """The chosen label when the response maps the question to it, else the response itself as compact JSON."""
-    answers = response.get("answers") if isinstance(response, dict) else None
-    if isinstance(answers, dict) and question in answers:
-        chosen = answers[question]
-        if isinstance(chosen, list):
-            return ", ".join(str(x) for x in chosen)
-        return str(chosen)
-    return json.dumps(response, ensure_ascii=False, separators=(",", ":"))[:CAPTURE_ANSWER_LIMIT]
+def captured_answer(question: str, response: object) -> str | None:
+    """The reader's chosen text for question, or None when the response maps it to no non-empty answer.
+
+    The answer is response["answers"][question]: a string stripped of white space, or a list of
+    non-empty strings joined with ", ". An empty or white-space string, an empty list, a list with
+    an empty item or a value of another type gives None, and so does a response that is no mapping
+    or whose "answers" is no mapping.
+    """
+    answers = response.get("answers") if isinstance(response, Mapping) else None
+    chosen = answers.get(question) if isinstance(answers, Mapping) else None
+    if isinstance(chosen, str):
+        return chosen.strip() or None
+    if isinstance(chosen, list) and chosen:
+        items = [x.strip() if isinstance(x, str) else "" for x in chosen]
+        return ", ".join(items) if all(items) else None
+    return None
 
 
 def capture(stdin_text: str, path: Path) -> int:
-    """Record every answer of an AskUserQuestion call; a failure is one stderr line, never an exit code."""
+    """Record every answered question of an AskUserQuestion call; a failure is one stderr line, never an exit code.
+
+    A question without an answer gets no record and is named on stderr; a call that answers none
+    leaves the ledger file as it was and prints nothing on stdout.
+    """
     try:
         payload = json.loads(stdin_text)
         if not isinstance(payload, dict):
@@ -482,14 +500,25 @@ def capture(stdin_text: str, path: Path) -> int:
         return 0
     response = payload.get("tool_response")
     texts = [q["question"].strip() for q in questions if isinstance(q, dict) and isinstance(q.get("question"), str) and q["question"].strip()]
-    if not texts:
+    answered: list[tuple[str, str]] = []
+    unanswered: list[str] = []
+    for number, text in enumerate(texts, 1):
+        answer = captured_answer(text, response)
+        if answer is None:
+            unanswered.append(str(number))
+        else:
+            answered.append((text, answer))
+    if unanswered:
+        noun = "question" if len(unanswered) == 1 else "questions"
+        print(f"records.py capture: no answer in tool_response, so no record, for {noun} {', '.join(unanswered)} of {len(texts)}", file=sys.stderr)
+    if not answered:
         return 0
     try:
         records = read_records(path)
         new = []
-        for text in texts:
+        for text, answer in answered:
             record = {"id": next_id(LEDGER, records), "date": today(), "kind": "answer", "question": text,
-                      "answer": captured_answer(text, response), "basis": CAPTURE_BASIS, "status": "active"}
+                      "answer": answer, "basis": CAPTURE_BASIS, "status": "active"}
             records.append(record)
             new.append(record["id"])
         write_records(path, records)

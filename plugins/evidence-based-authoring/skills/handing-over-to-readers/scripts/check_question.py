@@ -35,7 +35,9 @@ answers that may cover it. It needs the payload's session_id and the project's l
 records.py beside this script resolves the ledger file and matches each question of the card,
 its whole text, as `records.py ledger find` does. The match goes sentence against sentence: the
 best overlap of the units of a sentence of the card with those of a sentence of a record's
-question, divided by the unit count of the smaller sentence. A card carries the card form's own
+question, divided by the geometric mean of the two sentences' unit counts, kept when it reaches
+the default floor of records.py. A short sentence of the card thus does not match a long
+sentence of a record on a few shared trigrams. A card carries the card form's own
 sentences (the fact, what the answer changes, why it is asked) before its question, so a
 whole-text share of a long card in a short record stays low however close the question is, and
 two whole cards share the form's wording however unrelated they are. The ids of the records

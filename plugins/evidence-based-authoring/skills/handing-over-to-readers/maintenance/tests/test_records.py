@@ -4,6 +4,7 @@ from __future__ import annotations
 import contextlib
 import io
 import json
+import math
 import os
 import shutil
 import subprocess
@@ -194,11 +195,26 @@ class Matching(unittest.TestCase):
         with self.assertRaises(records.StoreError):
             records.find(records.LEDGER, "ms or ok?", [{"id": "a-0001", "question": "ms or ok?"}])
 
-    def test_the_overlap_divides_by_the_smaller_sentence(self):
-        three = records.Counter(records.units("250 400 timeout"))
-        self.assertEqual(records.overlap(three, records.Counter(records.units("250"))), 1.0)
-        self.assertEqual(records.overlap(three, records.Counter(records.units("250 300"))), 0.5)
-        self.assertEqual(records.overlap(three, records.Counter()), 0.0)
+    def test_the_overlap_divides_by_the_geometric_mean_of_the_two_unit_counts(self):
+        """Four units and nine sharing two: the smaller count gives 1/2, the larger 2/9, the geometric mean 6 gives 1/3."""
+        four = records.Counter(records.units("250 400 300 500"))
+        nine = records.Counter(records.units("250 400 600 700 800 900 100 110 120"))
+        self.assertEqual((sum(four.values()), sum(nine.values()), sum((four & nine).values())), (4, 9, 2))
+        self.assertAlmostEqual(records.overlap(four, nine), 2 / 6)
+        self.assertAlmostEqual(records.overlap(nine, four), 2 / 6)
+        self.assertAlmostEqual(records.overlap(four, four), 1.0)
+        self.assertEqual(records.overlap(four, records.Counter()), 0.0)
+        self.assertEqual(records.overlap(records.Counter(), records.Counter()), 0.0)
+
+    def test_a_short_sentence_sharing_a_few_units_with_a_long_one_stays_below_the_floor(self):
+        """Nine units sharing five with a record sentence of forty: 5/sqrt(9*40) is 0.26."""
+        query, question = "Deploy tonight?", "Should the billing service wait tonight for the schema migrations to finish?"
+        short, long_one = records.Counter(records.units(query)), records.Counter(records.units(question))
+        self.assertEqual((sum(short.values()), sum(long_one.values()), sum((short & long_one).values())), (9, 40, 5))
+        self.assertEqual(records.sentences(question), [long_one])
+        self.assertEqual(records.find(records.LEDGER, query, [{"id": "a-0001", "question": question}]), [])
+        [(score, _)] = records.find(records.LEDGER, query, [{"id": "a-0001", "question": question}], floor=0)
+        self.assertAlmostEqual(score, 5 / math.sqrt(9 * 40))
 
     def test_sentences_shorter_than_six_units_are_dropped_unless_all_are(self):
         long_one = "The acknowledgement timeout is 250 ms."
@@ -212,9 +228,10 @@ class Matching(unittest.TestCase):
         self.assertEqual(records.find(records.LEDGER, "Keep the acknowledgement timeout for the dispatch router", [record]), [])
 
     def test_a_reader_record_is_matched_by_each_item_on_its_own(self):
+        """The query's eight units all lie in the lacks item of thirteen units, which no other text of the record dilutes."""
         record = {"id": "r-0001", "topic": "TCP congestion control", "holds": ["slow start"], "lacks": ["pacing of bursts in the sender"]}
         [(score, _)] = records.find(records.READER, "pacing of bursts", [record])
-        self.assertEqual(score, 1.0)
+        self.assertAlmostEqual(score, 8 / math.sqrt(8 * 13))
 
 
 # The pairs a hand run of the gate scored: each query against a ledger record whose question is the second text.
@@ -275,13 +292,12 @@ UNRELATED = [
      "The acknowledgement timeout is 250 ms and the worker p99 is 180 ms. The answer changes the retry limit and its test; after rollout the decision is irreversible. Keep 250 ms?"),
     ("Новая библиотека пишет время в UTC, а оповещение эксплуатации ждёт старый вид. Ответ решает, ставим ли мы настройку или ждём эксплуатацию; молчащее оповещение стоит дорого. Оставить старый вид времени или просить эксплуатацию поменять шаблон?",
      "Тест коллеги ждёт подтверждения 400 мс, а код ждёт 250. Ответ меняет лимит повторов и его тест; после выкатки это необратимо. Сколько ждать подтверждения в проде — 250 мс или 400?"),
-]
-KNOWN_FALSE_MATCHES = [
     ("Should production use the new library version or wait?",
      "Which acknowledgement timeout should production have, 250 or 400 milliseconds?"),
     ("После переезда код перестаёт читать старую таблицу лимитов, но в ней осталась история. Удаление таблицы необратимо, и только ты знаешь, нужна ли история. Удалить старую таблицу или оставить?",
      "Тест коллеги ждёт подтверждения 400 мс, а код ждёт 250. Ответ меняет лимит повторов и его тест; после выкатки это необратимо. Сколько ждать подтверждения в проде — 250 мс или 400?"),
 ]
+MARGIN_HUNDREDTHS = 3
 
 
 class RepeatsAndUnrelated(unittest.TestCase):
@@ -301,12 +317,13 @@ class RepeatsAndUnrelated(unittest.TestCase):
             with self.subTest(query=query, record=record_question):
                 self.assertLess(self.score(query, record_question), records.DEFAULT_FLOOR)
 
-    def test_the_known_false_matches_score_between_the_floor_and_one_half(self):
-        """Shared trigrams carry these unrelated questions over the floor; they stay below one half."""
-        for query, record_question in KNOWN_FALSE_MATCHES:
-            with self.subTest(query=query, record=record_question):
-                self.assertGreaterEqual(self.score(query, record_question), records.DEFAULT_FLOOR)
-                self.assertLess(self.score(query, record_question), 0.50)
+    def test_the_floor_keeps_its_margin_to_the_lowest_repeat_and_the_highest_unrelated_pair(self):
+        """At least three hundredths on each side, with every score taken in whole hundredths, the precision find prints."""
+        floor = round(records.DEFAULT_FLOOR * 100)
+        lowest_repeat = min(round(self.score(q, r) * 100) for q, r in REPEATS)
+        highest_unrelated = max(round(self.score(q, r) * 100) for q, r in UNRELATED)
+        self.assertGreaterEqual(lowest_repeat - floor, MARGIN_HUNDREDTHS, f"lowest repeat {lowest_repeat}/100, floor {floor}/100")
+        self.assertGreaterEqual(floor - highest_unrelated, MARGIN_HUNDREDTHS, f"highest unrelated {highest_unrelated}/100, floor {floor}/100")
 
 
 class AtomicWrite(InProcess):
@@ -477,14 +494,62 @@ class Capture(unittest.TestCase):
         self.assertIn("ledger note <id>", output["additionalContext"])
         self.assertIn("--overturns", output["additionalContext"])
 
-    def test_a_response_of_another_shape_is_recorded_whole_and_cut_at_2000_characters(self):
-        done = self.capture(self.payload({"result": "Keep 250 ms"}))
-        self.assertEqual(done.returncode, 0, done.stderr)
-        self.assertEqual(self.stored()[0]["answer"], '{"result":"Keep 250 ms"}')
-        long = "x" * 5000
-        self.capture(self.payload(long))
-        self.assertEqual(self.stored()[-1]["answer"], json.dumps(long)[:2000])
-        self.assertEqual(len(self.stored()[-1]["answer"]), 2000)
+    def assert_records_nothing(self, response):
+        """The call exits 0, prints nothing on stdout, names both questions on one stderr line and creates no ledger file."""
+        done = self.capture(self.payload(response))
+        self.assertEqual((done.returncode, done.stdout), (0, ""))
+        self.assertEqual(len(done.stderr.splitlines()), 1, done.stderr)
+        self.assertIn("questions 1, 2 of 2", done.stderr)
+        self.assertFalse(self.ledger.exists())
+
+    def test_an_empty_answers_records_nothing(self):
+        """A dialog closed without a choice."""
+        self.assert_records_nothing({"questions": self.QUESTIONS, "answers": {}})
+
+    def test_answers_without_the_question_record_nothing(self):
+        self.assert_records_nothing({"answers": {"Which colour should the dashboard header be?": "Blue"}})
+
+    def test_an_empty_or_white_space_answer_records_nothing(self):
+        for chosen in ("", "  \n", [], ["Three", " "], None, 3):
+            with self.subTest(chosen=chosen):
+                self.assert_records_nothing({"answers": {TIMEOUT_Q: chosen, RETRY_Q: chosen}})
+
+    def test_a_response_that_is_no_mapping_records_nothing(self):
+        for response in ("Keep 250 ms", ["Keep 250 ms"], None, {"result": "Keep 250 ms"}, {"answers": ["Keep 250 ms"]}):
+            with self.subTest(response=response):
+                self.assert_records_nothing(response)
+
+    def test_of_two_questions_only_the_answered_one_is_recorded(self):
+        done = self.capture(self.payload({"answers": {TIMEOUT_Q: " Keep 250 ms "}}))
+        self.assertEqual(done.returncode, 0)
+        self.assertEqual(len(done.stderr.splitlines()), 1, done.stderr)
+        self.assertIn("question 2 of 2", done.stderr)
+        [record] = self.stored()
+        self.assertEqual((record["id"], record["question"], record["answer"]), ("a-0001", TIMEOUT_Q, "Keep 250 ms"))
+        context = json.loads(done.stdout)["hookSpecificOutput"]["additionalContext"]
+        self.assertIn(" as a-0001. ", context)
+        self.assertNotIn("a-0002", context)
+
+    def test_the_chosen_text_is_stripped_and_a_list_is_joined(self):
+        self.assertEqual(records.captured_answer(RETRY_Q, {"answers": {RETRY_Q: ["Three", " Five "]}}), "Three, Five")
+        self.assertEqual(records.captured_answer(RETRY_Q, {"answers": {RETRY_Q: "\tThree "}}), "Three")
+        self.assertIsNone(records.captured_answer(RETRY_Q, {"answers": {TIMEOUT_Q: "Keep 250 ms"}}))
+
+    def test_a_call_that_records_nothing_adds_no_journal_line(self):
+        """In process, with the journal replaced: a call that records one answer journals it, one that records none does not."""
+        answered = json.dumps(self.payload({"answers": {TIMEOUT_Q: "Keep 250 ms"}}))
+        unanswered = json.dumps(self.payload({"answers": {}}))
+        with mock.patch.object(records, "journal", autospec=True) as journal, \
+                contextlib.redirect_stdout(io.StringIO()) as out, contextlib.redirect_stderr(io.StringIO()):
+            self.assertEqual(records.capture(unanswered, self.ledger), 0)
+            self.assertEqual((journal.call_count, out.getvalue()), (0, ""))
+            self.assertFalse(self.ledger.exists())
+            self.assertEqual(records.capture(answered, self.ledger), 0)
+        journal.assert_called_once_with("answer", count=1)
+        before = (self.ledger.read_bytes(), self.ledger.stat().st_ino)
+        with mock.patch.object(records, "journal", autospec=True) as journal, contextlib.redirect_stderr(io.StringIO()):
+            self.assertEqual(records.capture(unanswered, self.ledger), 0)
+        self.assertEqual((journal.call_count, (self.ledger.read_bytes(), self.ledger.stat().st_ino)), (0, before))
 
     def test_an_unreadable_payload_is_one_stderr_line_and_exit_0(self):
         done = self.capture("not json")
@@ -499,7 +564,7 @@ class Capture(unittest.TestCase):
         self.ledger.write_text("", encoding="utf-8")
         self.ledger.parent.chmod(0o500)
         try:
-            done = self.capture(self.payload({"answers": {}}))
+            done = self.capture(self.payload({"answers": {TIMEOUT_Q: "Keep 250 ms", RETRY_Q: "Three"}}))
         finally:
             self.ledger.parent.chmod(0o700)
         self.assertEqual((done.returncode, done.stdout), (0, ""))
@@ -511,7 +576,7 @@ class Capture(unittest.TestCase):
         blocker = self.dir / "blocker"
         blocker.write_text("a file where a directory must be", encoding="utf-8")
         env = dict(self.env, HANDOVER_LEDGER_FILE=str(blocker / "ledger.jsonl"))
-        done = self.capture(self.payload({"answers": {}}), env=env)
+        done = self.capture(self.payload({"answers": {TIMEOUT_Q: "Keep 250 ms", RETRY_Q: "Three"}}), env=env)
         self.assertEqual((done.returncode, done.stdout), (0, ""))
         self.assertEqual(len(done.stderr.splitlines()), 1)
         self.assertIn("cannot read", done.stderr)
