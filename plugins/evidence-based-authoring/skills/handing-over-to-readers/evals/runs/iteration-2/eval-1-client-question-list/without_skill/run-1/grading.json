@@ -8,7 +8,7 @@
     {
       "text": "every list item of questions.md ends with exactly one question mark",
       "passed": false,
-      "evidence": "10 items; all end with one '?': False"
+      "evidence": "3 items; all end with one '?': False"
     },
     {
       "text": "the time-zone question is absent from questions.md (the sample file answers it)",
@@ -27,8 +27,8 @@
     },
     {
       "text": "the second channel (or second line) appears in exactly one item of questions.md",
-      "passed": false,
-      "evidence": "2 item(s) mention the channel"
+      "passed": true,
+      "evidence": "1 item(s) mention the channel"
     },
     {
       "text": "the field-name choice (ts) is not asked as a question (told as a fact is fine) and is recorded in internal.md",
@@ -42,9 +42,9 @@
     }
   ],
   "summary": {
-    "passed": 5,
-    "failed": 3,
+    "passed": 6,
+    "failed": 2,
     "total": 8,
-    "pass_rate": 0.62
+    "pass_rate": 0.75
   }
 }

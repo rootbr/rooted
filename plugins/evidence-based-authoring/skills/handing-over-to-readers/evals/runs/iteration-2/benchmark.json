@@ -77,9 +77,9 @@
    "configuration": "without_skill",
    "run_number": 1,
    "result": {
-    "pass_rate": 0.62,
-    "passed": 5,
-    "failed": 3,
+    "pass_rate": 0.75,
+    "passed": 6,
+    "failed": 2,
     "total": 8,
     "time_seconds": 41.6,
     "tokens": 45627
@@ -93,7 +93,7 @@
     {
      "text": "every list item of questions.md ends with exactly one question mark",
      "passed": false,
-     "evidence": "10 items; all end with one '?': False"
+     "evidence": "3 items; all end with one '?': False"
     },
     {
      "text": "the time-zone question is absent from questions.md (the sample file answers it)",
@@ -112,8 +112,8 @@
     },
     {
      "text": "the second channel (or second line) appears in exactly one item of questions.md",
-     "passed": false,
-     "evidence": "2 item(s) mention the channel"
+     "passed": true,
+     "evidence": "1 item(s) mention the channel"
     },
     {
      "text": "the field-name choice (ts) is not asked as a question (told as a fact is fine) and is recorded in internal.md",
@@ -752,10 +752,10 @@
   },
   "without_skill": {
    "pass_rate": {
-    "mean": 0.41,
-    "stddev": 0.19,
-    "min": 0.2222222222222222,
-    "max": 0.6666666666666666
+    "mean": 0.43,
+    "stddev": 0.22,
+    "min": 0.22,
+    "max": 0.75
    },
    "time_seconds": {
     "mean": 28.92,
@@ -771,7 +771,7 @@
    }
   },
   "delta": {
-   "pass_rate": "+0.59",
+   "pass_rate": "+0.57",
    "time_seconds": "+52.2",
    "tokens": "+19934"
   }
@@ -781,6 +781,7 @@
   "Both configurations ran on the same worker agent type, whose own definition still carries the report shape of version 5.0.0 (a first page of labelled lines). The baseline is therefore the earlier habit of this environment, not an agent without guidance.",
   "The runs came in two batches on one day: all six evals, then evals 1, 2 and 6 once more after their fixtures were rewritten. The outputs kept for those three are of the second batch.",
   "Seven checks of grade.py tested a wording instead of the expectation and were corrected after a first grading. From the first batch: the client list's 'second channel' written as 'second line'; a count of passing tests that stands beside the exit code of the run; the performance run named without the tool's name; the config location told as a decision in plain words; anchors read from the directory above the fixtures. From the second batch: the second channel written as 'second link'; the performance run told as 'nobody measured whether it slows the path'. Before the corrections the skill's outputs failed six expectations in the first batch and two in the second, for those reasons alone.",
-  "One run per configuration: the standard deviations are across the six evals, not across repeated runs."
+  "One run per configuration: the standard deviations are across the six evals, not across repeated runs.",
+  "An eighth check of grade.py was corrected on 2026-11-22, after the run was read: an option bullet of a client's list is read as part of the item above it. Eval 1 without the skill passes the expectation on the second channel, 6 of 8, where the first grading counted its option B as a second item."
  ]
 }

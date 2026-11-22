@@ -33,13 +33,30 @@ def items_of(text):
     return cr.list_items(text.splitlines())
 
 
+# An option of a client's question, written as a bullet of its own: "- A. Keep one connection".
+OPTION_BULLET = re.compile(r"^(?:\*\*)?[A-Za-z][.)](?:\*\*)?\s")
+
+
+def client_items(text):
+    """The items of a client's list outside the internal block, each option bullet read as part of the item above it."""
+    items = []
+    for x in items_of(text):
+        if x.section == "internal":
+            continue
+        if items and OPTION_BULLET.match(x.text):
+            items[-1].text += " " + x.text
+        else:
+            items.append(x)
+    return items
+
+
 def grade_client(out: Path):
     q = out / "questions.md"
     i = out / "internal.md"
     qt = q.read_text(encoding="utf-8") if q.exists() else ""
     it = i.read_text(encoding="utf-8") if i.exists() else ""
     rc, last = run_check(["--profile", "client", str(q)]) if q.exists() else (2, "questions.md missing")
-    items = [x for x in items_of(qt) if x.section != "internal"]
+    items = client_items(qt)
     ends_ok = bool(items) and all(cr.strip_code(x.text).count("?") == 1 and cr.QUESTION_TAIL.sub("", cr.strip_code(x.text)).endswith("?") for x in items)
     body = qt.lower()
     def absent(pattern): return re.search(pattern, body, re.IGNORECASE) is None
