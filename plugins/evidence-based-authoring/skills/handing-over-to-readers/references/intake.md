@@ -6,16 +6,16 @@ A long explanation fits its reader only when the author holds valid information 
 
 - **One private file a person, outside every project** (`scripts/records.py reader`). The script refuses a file that a repository would track. The record is never copied into a project file, the project's ledger of answers or a deliverable for another addressee.
 - **What a record holds**: a topic, what the reader holds about it, what he lacks, what he does with a result (`decide`, `defend`, `build`, `know`), the depth he wants (`mechanism`: the whole thing step by step; `change`: what changed and what is his to decide), the basis and the date.
-- **Per topic.** Knowledge is recorded for a topic, never as one level for a person: outside their own field, experts differed from laymen by under a tenth of a standard deviation.
+- **Per topic.** Knowledge is recorded for a topic, never as one level for a person: outside their own field, experts searched the web like laymen, their differences generally under a tenth of a standard deviation.
   - bad: "reader: senior engineer, expert"
   - good: "topic: HTTP caching; holds: cache keys, expiry times; lacks: purge requests"
-- **Dated.** Within three months a third to a half of non-experts had taken up a field's vocabulary. A record is read with its date, and an old one is confirmed by one question before a long deliverable rests on it.
+- **Dated.** Over five or more weeks of search logs, 31 to 49 % of non-experts used a field's vocabulary in a growing share of their queries. A record is read with its date, and an old one is confirmed by one question before a long deliverable rests on it.
 - **Knowledge and use, no style.** Matching a presentation to the form a person says he prefers found no support in adequate tests; the record keeps what he knows and what he will do with the result.
 
 ## When the reader is unknown
 
 - **The detector is the record.** Before a deliverable that takes the page form, that is, a report with a mechanism a figure shows or a decision among options, or an explanation for several readers (`references/media.md`), run `records.py reader find --topic "<the topic in the reader's words>"`. What the session's instructions say about its reader counts before the file. A record answers; no record (exit 1) means the reader is unknown for this topic, and the intake dialogue follows.
-- **No inference from the wording, no self-rating.** An agent that inferred expertise from one request was right about one time in five, and a pasted jargon-heavy request fakes expertise; a person's own rating of his ability tracks his real ability at about r = .29. Tutors who judged without asking detected none of their students' false beliefs.
+- **No inference from the wording, no self-rating.** An agent that inferred expertise from one request was right about one time in five, and a pasted jargon-heavy request fakes expertise; a person's own rating of his ability tracks his real ability at about r = .29. Tutors free to ask in a tutoring dialogue still detected none of their students' false beliefs.
 - **A deliverable that goes out as text alone, and a sub-agent's hand-back, take no intake.** There the text is written for a professional reader and explains in full, in parts he can skip: withholding help from a novice cost more (d = 0.505) than redundant help cost an expert (d = −0.428), and an answer pitched below the reader's level went with lower satisfaction on complex tasks.
 
 ## The intake dialogue
