@@ -234,6 +234,71 @@ class Matching(unittest.TestCase):
         self.assertAlmostEqual(score, 8 / math.sqrt(8 * 13))
 
 
+FORM_SENTENCE = "Only you know whether the operations team can take a change this week."
+SHORT_ENDED_CARD = ("The acknowledgement timeout is 250 ms and the worker p99 is 180 ms. The answer changes the retry limit and its test; "
+                    "after rollout the decision is irreversible. Keep 250 ms?")
+
+
+class QuestionMatching(unittest.TestCase):
+    """The ledger store matches a card through its question, and two texts without one whole; the reader store keeps every pair of sentences."""
+
+    def ledger_score(self, query, record_question):
+        [(score, _)] = records.find(records.LEDGER, query, [{"id": "a-0001", "question": record_question}], floor=0)
+        return score
+
+    def test_the_question_of_a_text_is_its_last_sentence(self):
+        long_last = "Keep the acknowledgement timeout at 250 ms?"
+        self.assertEqual(records.question(RETRY_Q), records.Counter(records.units(RETRY_Q)))
+        self.assertEqual(records.question(f"The acknowledgement timeout is 250 ms. {long_last}"), records.Counter(records.units(long_last)))
+
+    def test_a_last_sentence_under_the_minimum_after_other_sentences_is_no_question(self):
+        self.assertIsNone(records.question(SHORT_ENDED_CARD))
+
+    def test_a_last_sentence_of_exactly_the_minimum_is_a_question(self):
+        """The question "Retry stays?" gives six units (ret, etr, try, sta, tay, ays), and "Retry now 2?" gives five."""
+        fact = "The retry limit is three attempts."
+        six = records.Counter(records.units("Retry stays?"))
+        self.assertEqual(sum(six.values()), records.MIN_SENTENCE_UNITS)
+        self.assertEqual(records.question(f"{fact} Retry stays?"), six)
+        self.assertIsNone(records.question(f"{fact} Retry now 2?"))
+
+    def test_a_text_whose_only_sentence_is_under_the_minimum_is_its_own_question(self):
+        self.assertEqual(records.question(" Keep 250 ms? "), records.Counter(records.units("Keep 250 ms?")))
+
+    def test_two_cards_sharing_a_form_sentence_meet_only_under_the_reader_score(self):
+        """The cards differ in fact and question and share one sentence of the form word for word."""
+        timeout = f"The acknowledgement timeout is 250 ms and the worker p99 is 180 ms. {FORM_SENTENCE} Should the acknowledgement timeout stay at 250 ms?"
+        export = f"The exporter writes plain text and the new parser reads JSON lines. {FORM_SENTENCE} Which log format should the exporter write from now on?"
+        self.assertEqual(records.find(records.LEDGER, timeout, [{"id": "a-0001", "question": export}]), [])
+        self.assertEqual(records.find(records.LEDGER, export, [{"id": "a-0001", "question": timeout}]), [])
+        [(score, _)] = records.find(records.READER, timeout, [{"id": "r-0001", "topic": export}])
+        self.assertGreaterEqual(score, records.DEFAULT_FLOOR)
+
+    def test_a_short_record_question_and_a_full_card_that_rewords_it_find_each_other(self):
+        card = ("The client retries a failed payment call three times, and the payments team's test counts the attempts. "
+                "Raising the limit changes that test; only you know whether the team accepts it. Do we keep the retry limit at three attempts?")
+        self.assertGreaterEqual(self.ledger_score(card, RETRY_Q), records.DEFAULT_FLOOR)
+        self.assertGreaterEqual(self.ledger_score(RETRY_Q, card), records.DEFAULT_FLOOR)
+
+    def test_a_card_ending_in_a_short_question_is_found_by_its_fact_against_a_record_that_is_one_question(self):
+        self.assertGreaterEqual(self.ledger_score(SHORT_ENDED_CARD, "Which acknowledgement timeout do we keep in production?"), records.DEFAULT_FLOOR)
+
+    def test_a_card_ending_in_a_short_question_is_found_by_its_repeat_word_for_word(self):
+        """Neither side has a question, so the two whole texts are the one pair."""
+        [(score, record)] = records.find(records.LEDGER, SHORT_ENDED_CARD, [{"id": "a-0001", "question": SHORT_ENDED_CARD}])
+        self.assertEqual((record["id"], score), ("a-0001", 1.0))
+
+    def test_two_short_question_cards_sharing_a_form_sentence_reach_the_floor_when_scored_whole(self):
+        """What the whole-text pair does: a fact sentence, the shared form sentence and a short question each, the form about half
+        of each card's units (28, 32, 3 and 31, 32, 4), score 0.57, and the record on another matter is found."""
+        timeout = f"The acknowledgement timeout is 250 ms and the worker p99 is 180 ms. {FORM_SENTENCE} Keep 250 ms?"
+        export = f"The exporter writes plain text and the new parser reads JSON lines. {FORM_SENTENCE} Keep JSON?"
+        self.assertEqual([len(records.units(s)) for s in records.SENTENCE_BREAK.split(timeout)], [28, 32, 3])
+        self.assertEqual([len(records.units(s)) for s in records.SENTENCE_BREAK.split(export)], [31, 32, 4])
+        [(score, _)] = records.find(records.LEDGER, timeout, [{"id": "a-0001", "question": export}])
+        self.assertAlmostEqual(score, 0.57, places=2)
+
+
 # The pairs a hand run of the gate scored: each query against a ledger record whose question is the second text.
 REPEATS = [
     ("What wait for an acknowledgement do we ship: 250 ms or 400 ms?",
@@ -254,8 +319,6 @@ REPEATS = [
      "Which acknowledgement timeout should production have, 250 or 400 milliseconds?"),
     ("Тест коллеги ждёт подтверждения 400 мс, а код ждёт 250. Ответ меняет лимит повторов и его тест; после выкатки это необратимо. Сколько ждать подтверждения в проде — 250 мс или 400?",
      "Какой таймаут подтверждения ставим в прод: 250 или 400 миллисекунд?"),
-    ("A colleague's test expects the router to wait 400 ms for an acknowledgement and the code waits 250. The answer decides which of the two changes; a rollout is undone only by another rollout. Which wait goes to production, 400 or 250?",
-     "The acknowledgement timeout is 250 ms and the worker p99 is 180 ms. The answer changes the retry limit and its test; after rollout the decision is irreversible. Keep 250 ms?"),
     ("Which acknowledgement timeout do we keep in production?",
      "The acknowledgement timeout is 250 ms and the worker p99 is 180 ms. The answer changes the retry limit and its test; after rollout the decision is irreversible. Keep 250 ms?"),
     ("Какой таймаут подтверждения оставляем?",
@@ -297,6 +360,11 @@ UNRELATED = [
     ("После переезда код перестаёт читать старую таблицу лимитов, но в ней осталась история. Удаление таблицы необратимо, и только ты знаешь, нужна ли история. Удалить старую таблицу или оставить?",
      "Тест коллеги ждёт подтверждения 400 мс, а код ждёт 250. Ответ меняет лимит повторов и его тест; после выкатки это необратимо. Сколько ждать подтверждения в проде — 250 мс или 400?"),
 ]
+# Repeats the question rule does not find: the record has no question to match by, and the query's question shares little with the record's sentences.
+MISSED_REPEATS = [
+    ("A colleague's test expects the router to wait 400 ms for an acknowledgement and the code waits 250. The answer decides which of the two changes; a rollout is undone only by another rollout. Which wait goes to production, 400 or 250?",
+     SHORT_ENDED_CARD),
+]
 MARGIN_HUNDREDTHS = 3
 
 
@@ -315,6 +383,13 @@ class RepeatsAndUnrelated(unittest.TestCase):
     def test_every_unrelated_question_stays_below_the_floor(self):
         for query, record_question in UNRELATED:
             with self.subTest(query=query, record=record_question):
+                self.assertLess(self.score(query, record_question), records.DEFAULT_FLOOR)
+
+    def test_a_missed_repeat_stays_below_the_floor(self):
+        """The record card ends in "Keep 250 ms?", under the minimum, so only the query's question pairs with the record's sentences, and those share little with it."""
+        for query, record_question in MISSED_REPEATS:
+            with self.subTest(query=query, record=record_question):
+                self.assertIsNone(records.question(record_question))
                 self.assertLess(self.score(query, record_question), records.DEFAULT_FLOOR)
 
     def test_the_floor_keeps_its_margin_to_the_lowest_repeat_and_the_highest_unrelated_pair(self):

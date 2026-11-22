@@ -35,10 +35,10 @@ record:
      "status": "active|superseded", "superseded_by": "a-0007"}
 scope, overturns and superseded_by are optional.
 
-find matches the query against each record sentence by sentence. A ledger record is matched by
-its question alone (its answer and scope are printed, not matched); a reader record by its topic
-and by every item of holds and lacks, each a text of its own. Superseded ledger records are left
-out.
+find scores the query against each record and keeps the records whose score reaches the floor. A
+ledger record is matched by its question alone (its answer and scope are printed, not matched); a
+reader record by its topic and by every item of holds and lacks, each a text of its own.
+Superseded ledger records are left out.
 
 Units. A text is lower-cased and cut into maximal runs of letters and digits of any script; a
 run of digits is one unit, a run of three or more characters that is not all digits gives its
@@ -48,20 +48,32 @@ still share most of its units with the record.
 
 Sentences. A text is split at white space that follows . ! ? … or ;. A sentence of fewer than
 six units is dropped; a text all of whose sentences are dropped is one sentence, the whole text.
+The question of a text is its last sentence. A text of one sentence is its own question; a last
+sentence of fewer than six units after other sentences ("Keep 250 ms?" after its fact) is no
+question to match by.
 
-Score. The largest value, over every pair of a query sentence and a record sentence, of the size
-of the multiset intersection of their units divided by the geometric mean of their two unit
-counts: between 0 and 1, and 1 for a record whose text equals the query. The geometric mean
-weighs the length of both sentences, so a short sentence does not match a long one on a few
-shared trigrams (five shared units of nine against forty score 0.26), while a short question
-still matches the card sentence that holds it, which is not much longer. Sentence against sentence,
-because a question card carries the card form's own sentences (the fact, what the answer changes,
-why it is asked) before its question: a whole-text share of a long card in a short record stays
-low however close the question is, and two whole cards share the form's wording however
-unrelated their matters are. A unit is not weighted by its rarity among the records, because a
-project's ledger holds few records: in a small store the rarity of a unit says little, and the
-words a store lacks would get the highest weight and swamp the words it shares. A query without
-a unit is unusable input.
+Score. Two sentences match by the size of the multiset intersection of their units divided by
+the geometric mean of their two unit counts: between 0 and 1, and 1 for two equal sentences. The
+geometric mean weighs the length of both sentences, so a short sentence does not match a long one
+on a few shared trigrams (five shared units of nine against forty score 0.26), while a short
+question still matches the card sentence that holds it, which is not much longer. A record's
+score is the best match over its pairs of sentences, and the two stores pair them differently.
+A ledger record pairs the question of the query with every sentence of its question text, and
+every sentence of the query with the question of that text; a side with no question to match by
+gives no pair of its own. When neither side has one, the two whole texts are the one pair, so a
+card repeated word for word scores 1; whole texts and not their sentences, because a form
+sentence two unrelated cards share matches in full as a pair of sentences and only as a part of
+each whole card. A question card, as the capture hook records it whole, carries the card form's
+own sentences (the fact, what the answer changes, why it is asked) before its question: those
+sentences repeat from card to card, so two cards on unrelated matters would meet through them,
+while the question is a card's own.
+Sentence against sentence still lets a short question match the card sentence that holds it,
+where a whole-text share of a long card stays low however close the question is. A reader
+record pairs every sentence of the query with every sentence of each of its texts, a topic and
+single items, none of them a card. A unit is not weighted by its rarity among the records,
+because a project's ledger holds few records: in a small store the rarity of a unit says little,
+and the words a store lacks would get the highest weight and swamp the words it shares. A query
+without a unit is unusable input.
 
 Records at or above the floor (default 0.37) are printed best first, at most five, one line
 each:
@@ -136,6 +148,7 @@ class Store:
 
     prefix: str
     texts: Callable[[dict], list[str]]
+    score: Callable[[str, list[str]], float]
     head: Callable[[dict], str]
     body: Callable[[dict], str]
     tags: Callable[[dict], list[str]]
@@ -150,9 +163,11 @@ def _reader_body(record: dict) -> str:
     return "; ".join(parts) or "-"
 
 
+# The score lambdas look up the scoring functions of § Matching, below, when they run.
 READER = Store(
     prefix="r",
     texts=lambda r: [str(r.get("topic", ""))] + [str(x) for x in r.get("holds") or []] + [str(x) for x in r.get("lacks") or []],
+    score=lambda query, texts: sentence_score(query, texts),
     head=lambda r: one_line(r.get("topic", "")),
     body=_reader_body,
     tags=lambda r: [],
@@ -161,6 +176,7 @@ READER = Store(
 LEDGER = Store(
     prefix="a",
     texts=lambda r: [str(r.get("question", ""))],
+    score=lambda query, texts: question_score(query, texts),
     head=lambda r: one_line(r.get("question", "")),
     body=lambda r: one_line(r.get("answer", "")),
     tags=lambda r: [str(r.get("kind", "")), str(r.get("status", "active"))],
@@ -320,15 +336,46 @@ def sentences(text: str) -> list[Counter]:
     return kept or [Counter(units(text))]
 
 
+def question(text: str) -> Counter | None:
+    """The units of the last sentence of text; None when it has fewer than MIN_SENTENCE_UNITS units after other sentences.
+
+    A text of one sentence is its own question, however few units it has.
+    """
+    parts = SENTENCE_BREAK.split(text.strip())
+    last = Counter(units(parts[-1]))
+    return last if len(parts) == 1 or sum(last.values()) >= MIN_SENTENCE_UNITS else None
+
+
 def overlap(a: Counter, b: Counter) -> float:
     """The multiset intersection of a and b divided by the geometric mean of their unit counts; 0 when either is empty."""
     product = sum(a.values()) * sum(b.values())
     return sum((a & b).values()) / math.sqrt(product) if product else 0.0
 
 
-def score(query_sentences: list[Counter], texts: list[str]) -> float:
-    """The best overlap of a query sentence with a sentence of any of the record's texts."""
+def sentence_score(query: str, texts: list[str]) -> float:
+    """The best overlap of a sentence of the query with a sentence of any of the texts."""
+    query_sentences = sentences(query)
     return max((overlap(q, t) for text in texts for t in sentences(text) for q in query_sentences), default=0.0)
+
+
+def question_score(query: str, texts: list[str]) -> float:
+    """The best overlap of the query's question with a sentence of a text, or of a sentence of the query with a text's question.
+
+    A side without a question to match by gives no pair of its own. When neither the query nor a
+    text has one, the two whole texts are the one pair.
+    """
+    query_question = question(query)
+    query_sentences = sentences(query)
+    pairs: list[tuple[Counter, Counter]] = []
+    for text in texts:
+        text_question = question(text)
+        if query_question is None and text_question is None:
+            pairs.append((Counter(units(query)), Counter(units(text))))
+        if query_question is not None:
+            pairs.extend((query_question, t) for t in sentences(text))
+        if text_question is not None:
+            pairs.extend((q, text_question) for q in query_sentences)
+    return max((overlap(a, b) for a, b in pairs), default=0.0)
 
 
 def find(store: Store, query: str, records: list[dict], floor: float = DEFAULT_FLOOR) -> list[tuple[float, dict]]:
@@ -338,8 +385,7 @@ def find(store: Store, query: str, records: list[dict], floor: float = DEFAULT_F
     """
     if not units(query):
         raise StoreError(f"the query {query!r} holds no run of digits and no word of three or more letters")
-    query_sentences = sentences(query)
-    ranked = [(score(query_sentences, store.texts(r)), r) for r in records if store.is_live(r)]
+    ranked = [(store.score(query, store.texts(r)), r) for r in records if store.is_live(r)]
     ranked = [(s, r) for s, r in ranked if s >= floor]
     ranked.sort(key=lambda pair: -pair[0])
     return ranked[:MAX_FOUND]

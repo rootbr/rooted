@@ -33,14 +33,17 @@ on the English words.
 The gate, with --hook only, runs on a card that passed the form check and looks for earlier
 answers that may cover it. It needs the payload's session_id and the project's ledger of answers;
 records.py beside this script resolves the ledger file and matches each question of the card,
-its whole text, as `records.py ledger find` does. The match goes sentence against sentence: the
-best overlap of the units of a sentence of the card with those of a sentence of a record's
-question, divided by the geometric mean of the two sentences' unit counts, kept when it reaches
-the default floor of records.py. A short sentence of the card thus does not match a long
-sentence of a record on a few shared trigrams. A card carries the card form's own
-sentences (the fact, what the answer changes, why it is asked) before its question, so a
-whole-text share of a long card in a short record stays low however close the question is, and
-two whole cards share the form's wording however unrelated they are. The ids of the records
+its whole text, as `records.py ledger find` does. The match goes through the questions: the
+question of the card, its last sentence, against every sentence of a record's question text, and
+every sentence of the card against the question of that text, each pair scored by the shared
+units of its two sentences divided by the geometric mean of their unit counts, and a record kept
+when its best pair reaches the default floor of records.py. A last sentence of fewer than six
+units after other sentences, as "Keep 250 ms?" after its fact, is no question and gives no pair
+of its own; when neither the card nor the record's text has a question, the two whole texts are
+the one pair, so a card repeated word for word is found. A card carries the card form's own
+sentences (the fact, what the answer changes, why it is asked) before its question; those
+sentences repeat from card to card, so two cards on unrelated matters would meet through them,
+while the question is a card's own. The ids of the records
 already shown in a session stand in $XDG_STATE_HOME/handing-over-to-readers/gate/<session_id>.json
 ($HOME/.local/state when the variable is unset or empty). When a record found for the card is not
 among them, the gate adds every record found for the card to that file, prints GATE_GUIDANCE and
