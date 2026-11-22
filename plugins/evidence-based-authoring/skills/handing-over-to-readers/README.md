@@ -84,7 +84,8 @@ This skill's instance of the repository `README.md` §Skill layout:
 | `assets/page-body-example.html` | the session | writing the body of a page, as a worked example |
 | `maintenance/README.md` | a maintainer | before changing a rule, a check, the card form, the template or the page tooling |
 | `maintenance/rules-provenance.md` | a maintainer | adding a rule or re-verifying its source |
-| `maintenance/pending-evidence.md` | a maintainer | admitting a held-back rule or clause |
+| `maintenance/pending-evidence.md` | a maintainer | to see which claims behind a rule or clause wait for a test and which tests were found, or admitting a held-back rule or clause |
+| `maintenance/citations.json` | a maintainer | to check that the quoted words of the two files stand in their sources |
 | `maintenance/tests/`, `maintenance/tests/fixtures/` | a maintainer | after any script or template change |
 | `evals/evals.json`, `evals/fixtures/` | a maintainer | re-running the evals |
 | `evals/grade.py` | a maintainer | grading a run |
