@@ -1,0 +1,50 @@
+{
+  "answers": [
+    {
+      "question": "What is the mechanism for?",
+      "found": "yes",
+      "answer": "It sets the order in which the client repeats a quote request to the price service when no answer comes in time, asking again a little later each time and giving up after a fixed number of tries.",
+      "quotes": [
+        "The client asks the price service for a quote and sometimes gets no answer in time.",
+        "It then asks again, a little later each time, and gives up after a fixed number of tries.",
+        "This page explains the order of those tries."
+      ],
+      "missing": ""
+    },
+    {
+      "question": "What does it take in, and what does it keep?",
+      "found": "yes",
+      "answer": "It takes in one signal, whether an answer came within two seconds of a try, and keeps two numbers for one request: the tries made so far and the pause before the next try.",
+      "quotes": [
+        "The mechanism keeps two numbers for one request: the tries made so far and the pause before the next try.",
+        "It takes in one signal, whether an answer came within two seconds of a try."
+      ],
+      "missing": ""
+    },
+    {
+      "question": "By which steps does it reach its result?",
+      "found": "yes",
+      "answer": "The client sends the request and counts the try; an answer within two seconds ends the work with that answer; otherwise it waits for the pause, which starts at 200 milliseconds; after each wait the pause doubles up to two seconds at most; after the fourth try without an answer it reports a failure to its caller, and otherwise goes back to sending.",
+      "quotes": [
+        "The client sends the request and counts the try.",
+        "An answer within two seconds ends the work with that answer.",
+        "Without an answer the client waits for the pause, which starts at 200 milliseconds.",
+        "After each wait the pause doubles, up to two seconds at most.",
+        "After the fourth try without an answer the client reports a failure to its caller.",
+        "if tries == 4:             report failure; else go to the first line"
+      ],
+      "missing": ""
+    },
+    {
+      "question": "What does a reader see when it works, on the example the text gives?",
+      "found": "yes",
+      "answer": "In the text's example, with no answer at all, the client makes four tries with waits of 200, 400 and 800 milliseconds between them, and after the fourth try without an answer it reports a failure to its caller.",
+      "quotes": [
+        "With no answer at all the client waits 200, 400 and 800 milliseconds between its four tries.",
+        "After the fourth try without an answer the client reports a failure to its caller."
+      ],
+      "missing": ""
+    }
+  ],
+  "unexplained": []
+}

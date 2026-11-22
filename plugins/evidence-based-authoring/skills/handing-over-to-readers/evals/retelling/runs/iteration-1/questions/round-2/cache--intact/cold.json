@@ -1,0 +1,49 @@
+{
+  "answers": [
+    {
+      "question": "What is the mechanism for?",
+      "found": "yes",
+      "answer": "It stores and finds drawn thumbnails in a cache, since drawing one takes about a second, so that a picture uploaded again never shows its old thumbnail.",
+      "quotes": [
+        "Drawing one takes about a second, so the gallery keeps drawn thumbnails in a cache.",
+        "This page explains how a thumbnail is stored and found, so that a picture uploaded again never shows its old thumbnail."
+      ],
+      "missing": ""
+    },
+    {
+      "question": "What does it take in, and what does it keep?",
+      "found": "yes",
+      "answer": "It takes in two events, an upload of a picture and a request for its thumbnail, and keeps one number per picture, the count of its uploads called the version, along with drawn thumbnails in the cache.",
+      "quotes": [
+        "The mechanism keeps one number for every picture, the count of its uploads, called the version.",
+        "It takes in two events: an upload of a picture and a request for its thumbnail.",
+        "Drawing one takes about a second, so the gallery keeps drawn thumbnails in a cache."
+      ],
+      "missing": ""
+    },
+    {
+      "question": "By which steps does it reach its result?",
+      "found": "yes",
+      "answer": "Each upload raises the picture's version by one; the cache key joins the picture's number and its version; a request asks the cache for the entry under the newest key; if there is none, the gallery draws the thumbnail and stores it under that key; an entry leaves the cache one day after it was stored.",
+      "quotes": [
+        "Every upload of a picture raises its version by one.",
+        "The cache key joins the picture's number and its version.",
+        "A request asks the cache for the entry under the newest key.",
+        "When the cache has no entry under that key, the gallery draws the thumbnail and stores it under the key.",
+        "An entry leaves the cache one day after it was stored."
+      ],
+      "missing": ""
+    },
+    {
+      "question": "What does a reader see when it works, on the example the text gives?",
+      "found": "partly",
+      "answer": "The text says only in general that after a second upload the key changes, so the old entry is never read again and leaves after its day, and that a picture uploaded again never shows its old thumbnail.",
+      "quotes": [
+        "After a second upload the key changes, so the old entry is never read again and leaves after its day.",
+        "This page explains how a thumbnail is stored and found, so that a picture uploaded again never shows its old thumbnail."
+      ],
+      "missing": "A worked example with a concrete picture number and versions, the keys before and after the second upload, and what the gallery shows on each request (the old entry, a newly drawn thumbnail, the drawing delay)."
+    }
+  ],
+  "unexplained": []
+}

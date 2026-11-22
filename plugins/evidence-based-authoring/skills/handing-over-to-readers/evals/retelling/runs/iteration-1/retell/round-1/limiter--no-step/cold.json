@@ -1,0 +1,81 @@
+{
+  "answers": [
+    {
+      "question": "What is the mechanism for?",
+      "found": "yes",
+      "answer": "It lets each client send a burst of requests and then holds the client to a steady rate.",
+      "quotes": [
+        "The gateway lets each client send a burst of requests and then holds it to a steady rate."
+      ],
+      "missing": ""
+    },
+    {
+      "question": "What does it take in, and what does it keep?",
+      "found": "yes",
+      "answer": "It takes in a request from the client with the time it arrived, and keeps for every client its tokens and the time of its last request.",
+      "quotes": [
+        "The mechanism keeps two numbers for every client: its tokens and the time of its last request.",
+        "It takes in one event, a request from the client, with the time it arrived."
+      ],
+      "missing": ""
+    },
+    {
+      "question": "By which steps does it reach its result?",
+      "found": "partly",
+      "answer": "On a request it adds ten tokens per second since the last request, passes the request on and takes one token when it has at least one, otherwise refuses and tells the client how long to wait, and in both cases records this request's time as the last; the text says the mechanism has five steps but gives these four.",
+      "quotes": [
+        "The mechanism is five steps and two numbers it keeps.",
+        "On a request the gateway adds ten tokens for every second since the client's last request.",
+        "With at least one token the gateway takes one and passes the request on.",
+        "With less than one token it refuses the request and tells the client how long to wait for the next token.",
+        "In both cases it notes the time of this request as the client's last."
+      ],
+      "missing": "The fifth step the text announces, which would explain how a minute of silence yields one hundred requests rather than the six hundred tokens the stated steps would add."
+    },
+    {
+      "question": "What does a reader see when it works, on the example the text gives?",
+      "found": "yes",
+      "answer": "A client silent for a minute can send one hundred requests at once and then ten a second.",
+      "quotes": [
+        "A client that was silent for a minute can send one hundred requests at once and ten a second after that."
+      ],
+      "missing": ""
+    }
+  ],
+  "unexplained": [],
+  "retelling": [
+    {
+      "step": "When a request arrives, the gateway adds to the client's tokens ten for every second since the client's last request.",
+      "quotes": [
+        "On a request the gateway adds ten tokens for every second since the client's last request.",
+        "tokens = tokens + 10 × (now − last)"
+      ]
+    },
+    {
+      "step": "If the client then has at least one token, the gateway takes one token away and passes the request on.",
+      "quotes": [
+        "With at least one token the gateway takes one and passes the request on.",
+        "if tokens ≥ 1:   tokens = tokens − 1; pass the request on"
+      ]
+    },
+    {
+      "step": "If the client has less than one token, the gateway refuses the request and replies with the wait until the next token, (1 − tokens) / 10 seconds.",
+      "quotes": [
+        "With less than one token it refuses the request and tells the client how long to wait for the next token.",
+        "else:            refuse; reply \"wait (1 − tokens) / 10 seconds\""
+      ]
+    },
+    {
+      "step": "In either case the gateway records the time of this request as the client's last request time.",
+      "quotes": [
+        "In both cases it notes the time of this request as the client's last.",
+        "last = now"
+      ]
+    }
+  ],
+  "gaps": [
+    "The text says the mechanism is five steps, but only four are given, so one step is missing between or around them.",
+    "By the given steps a minute of silence adds six hundred tokens, yet the example says the client can send one hundred requests at once; no step says what holds the tokens to one hundred.",
+    "The first step takes the client's tokens and last request time, but the text does not say what they are for a client that has made no request before."
+  ]
+}

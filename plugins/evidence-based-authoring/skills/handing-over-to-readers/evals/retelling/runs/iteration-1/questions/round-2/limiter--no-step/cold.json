@@ -1,0 +1,46 @@
+{
+  "answers": [
+    {
+      "question": "What is the mechanism for?",
+      "found": "yes",
+      "answer": "It lets each client send a burst of requests and then holds the client to a steady rate.",
+      "quotes": [
+        "The gateway lets each client send a burst of requests and then holds it to a steady rate."
+      ],
+      "missing": ""
+    },
+    {
+      "question": "What does it take in, and what does it keep?",
+      "found": "yes",
+      "answer": "It takes in a request from the client with the time it arrived, and keeps two numbers per client: its tokens and the time of its last request.",
+      "quotes": [
+        "The mechanism keeps two numbers for every client: its tokens and the time of its last request.",
+        "It takes in one event, a request from the client, with the time it arrived."
+      ],
+      "missing": ""
+    },
+    {
+      "question": "By which steps does it reach its result?",
+      "found": "partly",
+      "answer": "On a request it adds ten tokens per second since the client's last request, takes one token and passes the request on when there is at least one, otherwise refuses and tells the client how long to wait for the next token, and in both cases notes this request's time as the client's last; the text says the mechanism is five steps but gives these four.",
+      "quotes": [
+        "The mechanism is five steps and two numbers it keeps.",
+        "On a request the gateway adds ten tokens for every second since the client's last request.",
+        "With at least one token the gateway takes one and passes the request on.",
+        "With less than one token it refuses the request and tells the client how long to wait for the next token.",
+        "In both cases it notes the time of this request as the client's last."
+      ],
+      "missing": "The fifth step the text announces; by the steps given, a minute of silence adds 600 tokens, so the text would have to say what keeps the count at one hundred, as its example states."
+    },
+    {
+      "question": "What does a reader see when it works, on the example the text gives?",
+      "found": "yes",
+      "answer": "A client silent for a minute can send one hundred requests at once and then ten a second.",
+      "quotes": [
+        "A client that was silent for a minute can send one hundred requests at once and ten a second after that."
+      ],
+      "missing": ""
+    }
+  ],
+  "unexplained": []
+}

@@ -1,0 +1,52 @@
+{
+  "answers": [
+    {
+      "question": "What is the mechanism for?",
+      "found": "yes",
+      "answer": "It lets each client of the gateway send a burst of requests and then holds the client to a steady rate, by keeping a count of tokens per client that requests spend and time restores.",
+      "quotes": [
+        "The gateway lets each client send a burst of requests and then holds it to a steady rate.",
+        "It does this with a count of tokens for every client: a request spends one token, and tokens come back with time."
+      ],
+      "missing": ""
+    },
+    {
+      "question": "What does it take in, and what does it keep?",
+      "found": "yes",
+      "answer": "It takes in one event, a request from the client with the time it arrived, and keeps two numbers per client: its tokens and the time of its last request.",
+      "quotes": [
+        "The mechanism keeps two numbers for every client: its tokens and the time of its last request.",
+        "It takes in one event, a request from the client, with the time it arrived."
+      ],
+      "missing": ""
+    },
+    {
+      "question": "By which steps does it reach its result?",
+      "found": "yes",
+      "answer": "On a request it adds ten tokens per second since the client's last request, caps the count at one hundred, then with at least one token takes one and passes the request on, or with less than one refuses it and tells the client how long to wait for the next token, and in both cases records this request's time as the client's last.",
+      "quotes": [
+        "On a request the gateway adds ten tokens for every second since the client's last request.",
+        "The count never goes above one hundred tokens.",
+        "With at least one token the gateway takes one and passes the request on.",
+        "With less than one token it refuses the request and tells the client how long to wait for the next token.",
+        "In both cases it notes the time of this request as the client's last.",
+        "tokens = tokens + 10 × (now − last)",
+        "tokens = min(tokens, 100)",
+        "if tokens ≥ 1:   tokens = tokens − 1; pass the request on",
+        "else:            refuse; reply \"wait (1 − tokens) / 10 seconds\"",
+        "last = now"
+      ],
+      "missing": ""
+    },
+    {
+      "question": "What does a reader see when it works, on the example the text gives?",
+      "found": "yes",
+      "answer": "A client that was silent for a minute can send one hundred requests at once and then ten a second.",
+      "quotes": [
+        "A client that was silent for a minute can send one hundred requests at once and ten a second after that."
+      ],
+      "missing": ""
+    }
+  ],
+  "unexplained": []
+}

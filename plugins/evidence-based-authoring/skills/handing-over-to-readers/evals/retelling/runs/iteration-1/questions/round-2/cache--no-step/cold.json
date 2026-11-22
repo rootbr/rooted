@@ -1,0 +1,53 @@
+{
+  "answers": [
+    {
+      "question": "What is the mechanism for?",
+      "found": "yes",
+      "answer": "It stores drawn thumbnails in a cache and finds them so that a picture uploaded again never shows its old thumbnail.",
+      "quotes": [
+        "Drawing one takes about a second, so the gallery keeps drawn thumbnails in a cache.",
+        "This page explains how a thumbnail is stored and found, so that a picture uploaded again never shows its old thumbnail."
+      ],
+      "missing": ""
+    },
+    {
+      "question": "What does it take in, and what does it keep?",
+      "found": "yes",
+      "answer": "It takes in two events, an upload of a picture and a request for its thumbnail, and keeps one number per picture, the count of its uploads called the version, beside the cache of drawn thumbnails.",
+      "quotes": [
+        "The mechanism keeps one number for every picture, the count of its uploads, called the version.",
+        "It takes in two events: an upload of a picture and a request for its thumbnail.",
+        "Drawing one takes about a second, so the gallery keeps drawn thumbnails in a cache."
+      ],
+      "missing": ""
+    },
+    {
+      "question": "By which steps does it reach its result?",
+      "found": "partly",
+      "answer": "An upload raises the picture's version by one, the cache key joins the picture's number and its version, a request asks the cache for the entry under the newest key, and an entry leaves the cache one day after it was stored; the text announces five steps but gives these four.",
+      "quotes": [
+        "The mechanism is five steps and one counter.",
+        "Every upload of a picture raises its version by one.",
+        "The cache key joins the picture's number and its version.",
+        "A request asks the cache for the entry under the newest key.",
+        "An entry leaves the cache one day after it was stored.",
+        "on upload(picture):   picture.version = picture.version + 1",
+        "key(picture)        = picture.number + \":v\" + picture.version",
+        "on request(picture):  entry = cache.get(key(picture))",
+        "every entry:          leaves the cache one day after cache.put"
+      ],
+      "missing": "The fifth step the text announces: what happens when the cache holds no entry under the newest key, that is, how a thumbnail gets drawn and stored in the cache (the cache.put the last line refers to) and what the request returns then."
+    },
+    {
+      "question": "What does a reader see when it works, on the example the text gives?",
+      "found": "partly",
+      "answer": "After a second upload of a picture the key changes, so the old thumbnail entry is never read again and leaves the cache after its day, and the picture does not show its old thumbnail.",
+      "quotes": [
+        "After a second upload the key changes, so the old entry is never read again and leaves after its day.",
+        "This page explains how a thumbnail is stored and found, so that a picture uploaded again never shows its old thumbnail."
+      ],
+      "missing": "What the gallery shows instead after the second upload: that a new thumbnail is drawn for the new version and stored under the new key, and when it appears."
+    }
+  ],
+  "unexplained": []
+}

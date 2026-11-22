@@ -1,0 +1,52 @@
+{
+  "answers": [
+    {
+      "question": "What is the mechanism for?",
+      "found": "yes",
+      "answer": "It keeps the service's single, ever-growing log file from filling the disk by closing the file from time to time, putting it aside under a dated name and starting a new one.",
+      "quotes": [
+        "The service writes its log into one file, and a file that only grows fills the disk.",
+        "So the service closes the file from time to time, puts it aside under a dated name and starts a new one."
+      ],
+      "missing": ""
+    },
+    {
+      "question": "What does it take in, and what does it keep?",
+      "found": "yes",
+      "answer": "It takes in one event, a line to be written, and keeps the size of the current file and the time that file was opened.",
+      "quotes": [
+        "The mechanism keeps the size of the current file and the time it was opened.",
+        "It takes in one event, a line to be written."
+      ],
+      "missing": ""
+    },
+    {
+      "question": "By which steps does it reach its result?",
+      "found": "partly",
+      "answer": "Before each line it checks the current file against 100 megabytes and one day; under both limits it writes the line to the current file, and over either it closes the file, renames it with the date and time of closing, opens a new file and writes the line there.",
+      "quotes": [
+        "Before each line the service checks the current file against two limits, 100 megabytes and one day.",
+        "Under both limits it writes the line into the current file.",
+        "Over either limit it closes the file and renames it with the date and time of closing.",
+        "It then opens a new file and writes the line there."
+      ],
+      "missing": "The text announces five steps and says it explains what happens to the files put aside, but the steps it gives stop at opening a new file; the step that decides what is done with the files put aside, so that only seven of them remain, is not given."
+    },
+    {
+      "question": "What does a reader see when it works, on the example the text gives?",
+      "found": "partly",
+      "answer": "The text gives no worked example; it says only that put-aside files are renamed log.<date-time> and that the logs never take more than about 800 megabytes, seven files put aside and the current one.",
+      "quotes": [
+        "if over:      close the file; rename it to log.<date-time>",
+        "So the logs never take more than about 800 megabytes: seven files put aside and the current one."
+      ],
+      "missing": "An example run through the mechanism: a concrete sequence of lines, sizes or times, and the files a reader would find on disk after the file is rotated."
+    }
+  ],
+  "unexplained": [
+    {
+      "term": "the seven files put aside",
+      "quote": "So the logs never take more than about 800 megabytes: seven files put aside and the current one."
+    }
+  ]
+}

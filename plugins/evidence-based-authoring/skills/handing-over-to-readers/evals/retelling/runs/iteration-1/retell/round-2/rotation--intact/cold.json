@@ -1,0 +1,86 @@
+{
+  "answers": [
+    {
+      "question": "What is the mechanism for?",
+      "found": "yes",
+      "answer": "It keeps the service's single growing log file from filling the disk by periodically closing it, setting it aside under a dated name and starting a new one.",
+      "quotes": [
+        "The service writes its log into one file, and a file that only grows fills the disk.",
+        "So the service closes the file from time to time, puts it aside under a dated name and starts a new one."
+      ],
+      "missing": ""
+    },
+    {
+      "question": "What does it take in, and what does it keep?",
+      "found": "yes",
+      "answer": "It takes in one event, a line to be written, and keeps the size of the current file and the time that file was opened.",
+      "quotes": [
+        "The mechanism keeps the size of the current file and the time it was opened.",
+        "It takes in one event, a line to be written."
+      ],
+      "missing": ""
+    },
+    {
+      "question": "By which steps does it reach its result?",
+      "found": "yes",
+      "answer": "Before each line it checks the current file against 100 megabytes and one day; under both it writes the line to the current file; over either it closes the file and renames it with the closing date and time, opens a new file and writes the line there, and then deletes the oldest dated files until seven are left.",
+      "quotes": [
+        "Before each line the service checks the current file against two limits, 100 megabytes and one day.",
+        "Under both limits it writes the line into the current file.",
+        "Over either limit it closes the file and renames it with the date and time of closing.",
+        "It then opens a new file and writes the line there.",
+        "After a rename it deletes the oldest dated files until seven are left."
+      ],
+      "missing": ""
+    },
+    {
+      "question": "What does a reader see when it works, on the example the text gives?",
+      "found": "partly",
+      "answer": "The text says the closed files appear renamed as log.<date-time>, at most seven of them are kept beside the current file, and the logs never take more than about 800 megabytes.",
+      "quotes": [
+        "close the file; rename it to log.<date-time>",
+        "So the logs never take more than about 800 megabytes: seven files put aside and the current one."
+      ],
+      "missing": "A worked example run through the steps: a concrete file with its size and age, the line that crosses a limit, and the file names and count a reader would see before and after."
+    }
+  ],
+  "unexplained": [],
+  "retelling": [
+    {
+      "step": "When a line comes in to be written, the service checks the current file's size against 100 megabytes and its age against one day.",
+      "quotes": [
+        "Before each line the service checks the current file against two limits, 100 megabytes and one day.",
+        "on a line:    over = size > 100 MB or age > 1 day"
+      ]
+    },
+    {
+      "step": "If the file is under both limits, the line is written into the current file.",
+      "quotes": [
+        "Under both limits it writes the line into the current file.",
+        "if not over:  write the line to the current file"
+      ]
+    },
+    {
+      "step": "If the file is over either limit, the service closes it and renames it with the date and time of closing, as log.<date-time>.",
+      "quotes": [
+        "Over either limit it closes the file and renames it with the date and time of closing.",
+        "if over:      close the file; rename it to log.<date-time>"
+      ]
+    },
+    {
+      "step": "The service then opens a new file and writes the line into it.",
+      "quotes": [
+        "It then opens a new file and writes the line there.",
+        "open a new file; write the line to it"
+      ]
+    },
+    {
+      "step": "After the rename, the service deletes the oldest dated files until seven remain.",
+      "quotes": [
+        "After a rename it deletes the oldest dated files until seven are left.",
+        "delete the oldest log.<date-time> files until 7 remain"
+      ]
+    }
+  ],
+  "gaps": []
+}

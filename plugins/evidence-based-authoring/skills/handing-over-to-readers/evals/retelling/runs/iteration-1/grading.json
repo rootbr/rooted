@@ -1,0 +1,877 @@
+{
+  "runs": [
+    {
+      "run": "retell/round-1/cache--intact",
+      "arm": "retell",
+      "round": 1,
+      "case": "cache",
+      "kind": "intact",
+      "variant": null,
+      "removed": null,
+      "exit": 1,
+      "outcome": "clean",
+      "signal": null,
+      "detail": "",
+      "signals": {},
+      "gaps": []
+    },
+    {
+      "run": "retell/round-1/cache--no-step",
+      "arm": "retell",
+      "round": 1,
+      "case": "cache",
+      "kind": "planted",
+      "variant": "no-step",
+      "removed": "step 4: on a miss the gallery draws the thumbnail and stores it under the key",
+      "exit": 1,
+      "outcome": "caught",
+      "signal": "steps",
+      "detail": "4 of 4 steps stand, 5 expected",
+      "signals": {
+        "steps": "4 of 4 steps stand, 5 expected"
+      },
+      "gaps": [
+        "No step puts an entry into the cache: the expiry step counts from cache.put, but nothing says when or by whom a thumbnail is drawn and stored under a key.",
+        "After an upload the request asks for the entry under a new key that no step has filled, and the text does not say what the request returns or does when the cache has no entry under that key.",
+        "The text announces five steps but gives four, so one step between the request and the expiry is missing."
+      ]
+    },
+    {
+      "run": "retell/round-1/retry--intact",
+      "arm": "retell",
+      "round": 1,
+      "case": "retry",
+      "kind": "intact",
+      "variant": null,
+      "removed": null,
+      "exit": 0,
+      "outcome": "clean",
+      "signal": null,
+      "detail": "",
+      "signals": {},
+      "gaps": []
+    },
+    {
+      "run": "retell/round-1/retry--no-step",
+      "arm": "retell",
+      "round": 1,
+      "case": "retry",
+      "kind": "planted",
+      "variant": "no-step",
+      "removed": "step 4: after each wait the pause doubles, up to two seconds",
+      "exit": 1,
+      "outcome": "caught",
+      "signal": "steps",
+      "detail": "4 of 4 steps stand, 5 expected",
+      "signals": {
+        "steps": "4 of 4 steps stand, 5 expected"
+      },
+      "gaps": [
+        "Between waiting for the pause and the next try, no step says how the pause changes: it starts at 200 milliseconds, the example gives waits of 400 and 800 milliseconds, but no sentence or line makes the pause grow.",
+        "The text says the mechanism is five steps, and only four are given.",
+        "The pseudocode waits for the pause before checking whether four tries were made, so it waits after the fourth try too, while the example names only three waits (200, 400 and 800 milliseconds) between four tries."
+      ]
+    },
+    {
+      "run": "retell/round-1/limiter--intact",
+      "arm": "retell",
+      "round": 1,
+      "case": "limiter",
+      "kind": "intact",
+      "variant": null,
+      "removed": null,
+      "exit": 0,
+      "outcome": "clean",
+      "signal": null,
+      "detail": "",
+      "signals": {},
+      "gaps": []
+    },
+    {
+      "run": "retell/round-1/limiter--no-step",
+      "arm": "retell",
+      "round": 1,
+      "case": "limiter",
+      "kind": "planted",
+      "variant": "no-step",
+      "removed": "step 2: the count never goes above one hundred tokens",
+      "exit": 1,
+      "outcome": "caught",
+      "signal": "steps",
+      "detail": "4 of 4 steps stand, 5 expected",
+      "signals": {
+        "steps": "4 of 4 steps stand, 5 expected"
+      },
+      "gaps": [
+        "The text says the mechanism is five steps, but only four are given, so one step is missing between or around them.",
+        "By the given steps a minute of silence adds six hundred tokens, yet the example says the client can send one hundred requests at once; no step says what holds the tokens to one hundred.",
+        "The first step takes the client's tokens and last request time, but the text does not say what they are for a client that has made no request before."
+      ]
+    },
+    {
+      "run": "retell/round-1/rotation--intact",
+      "arm": "retell",
+      "round": 1,
+      "case": "rotation",
+      "kind": "intact",
+      "variant": null,
+      "removed": null,
+      "exit": 1,
+      "outcome": "clean",
+      "signal": null,
+      "detail": "",
+      "signals": {},
+      "gaps": []
+    },
+    {
+      "run": "retell/round-1/rotation--no-step",
+      "arm": "retell",
+      "round": 1,
+      "case": "rotation",
+      "kind": "planted",
+      "variant": "no-step",
+      "removed": "step 5: after a rename the oldest dated files are deleted until seven are left",
+      "exit": 1,
+      "outcome": "caught",
+      "signal": "steps",
+      "detail": "4 of 4 steps stand, 5 expected",
+      "signals": {
+        "steps": "4 of 4 steps stand, 5 expected"
+      },
+      "gaps": [
+        "The renamed files are a result no later step takes up: the text promises to say what happens to the files put aside and states that only seven are kept, but no step removes or limits them, so the announced fifth step is absent."
+      ]
+    },
+    {
+      "run": "retell/round-2/cache--intact",
+      "arm": "retell",
+      "round": 2,
+      "case": "cache",
+      "kind": "intact",
+      "variant": null,
+      "removed": null,
+      "exit": 1,
+      "outcome": "clean",
+      "signal": null,
+      "detail": "",
+      "signals": {},
+      "gaps": []
+    },
+    {
+      "run": "retell/round-2/cache--no-step",
+      "arm": "retell",
+      "round": 2,
+      "case": "cache",
+      "kind": "planted",
+      "variant": "no-step",
+      "removed": "step 4: on a miss the gallery draws the thumbnail and stores it under the key",
+      "exit": 1,
+      "outcome": "caught",
+      "signal": "steps",
+      "detail": "4 of 4 steps stand, 5 expected",
+      "signals": {
+        "steps": "4 of 4 steps stand, 5 expected"
+      },
+      "gaps": [
+        "Between the request and the expiry no step stores an entry: the text does not say what happens when the cache has no entry under the newest key, nor how a thumbnail is drawn and put into the cache, which the expiry step (one day after cache.put) takes for granted.",
+        "The text announces five steps and gives four, so one step is missing from the sequence."
+      ]
+    },
+    {
+      "run": "retell/round-2/retry--intact",
+      "arm": "retell",
+      "round": 2,
+      "case": "retry",
+      "kind": "intact",
+      "variant": null,
+      "removed": null,
+      "exit": 0,
+      "outcome": "clean",
+      "signal": null,
+      "detail": "",
+      "signals": {},
+      "gaps": []
+    },
+    {
+      "run": "retell/round-2/retry--no-step",
+      "arm": "retell",
+      "round": 2,
+      "case": "retry",
+      "kind": "planted",
+      "variant": "no-step",
+      "removed": "step 4: after each wait the pause doubles, up to two seconds",
+      "exit": 1,
+      "outcome": "caught",
+      "signal": "steps",
+      "detail": "4 of 4 steps stand, 5 expected",
+      "signals": {
+        "steps": "4 of 4 steps stand, 5 expected"
+      },
+      "gaps": [
+        "Between waiting for the pause and the next try, no step changes the pause, yet the later wait is longer (200, 400, 800 milliseconds in the example): the text would have to say when and by what rule the pause grows.",
+        "The text says the mechanism is five steps while it gives four, so one step is not stated."
+      ]
+    },
+    {
+      "run": "retell/round-2/limiter--intact",
+      "arm": "retell",
+      "round": 2,
+      "case": "limiter",
+      "kind": "intact",
+      "variant": null,
+      "removed": null,
+      "exit": 0,
+      "outcome": "clean",
+      "signal": null,
+      "detail": "",
+      "signals": {},
+      "gaps": [
+        "The text does not say what a client's tokens and last-request time are before its first request, which the first step takes."
+      ]
+    },
+    {
+      "run": "retell/round-2/limiter--no-step",
+      "arm": "retell",
+      "round": 2,
+      "case": "limiter",
+      "kind": "planted",
+      "variant": "no-step",
+      "removed": "step 2: the count never goes above one hundred tokens",
+      "exit": 1,
+      "outcome": "caught",
+      "signal": "steps",
+      "detail": "4 of 4 steps stand, 5 expected",
+      "signals": {
+        "steps": "4 of 4 steps stand, 5 expected"
+      },
+      "gaps": [
+        "The text announces five steps but gives four, and nothing in them limits the tokens: by the steps given a minute of silence adds 600 tokens, so the example of one hundred requests at once does not follow from any step.",
+        "The first step takes the client's tokens and last request time, but the text does not say what they are for a client's first request."
+      ]
+    },
+    {
+      "run": "retell/round-2/rotation--intact",
+      "arm": "retell",
+      "round": 2,
+      "case": "rotation",
+      "kind": "intact",
+      "variant": null,
+      "removed": null,
+      "exit": 1,
+      "outcome": "clean",
+      "signal": null,
+      "detail": "",
+      "signals": {},
+      "gaps": []
+    },
+    {
+      "run": "retell/round-2/rotation--no-step",
+      "arm": "retell",
+      "round": 2,
+      "case": "rotation",
+      "kind": "planted",
+      "variant": "no-step",
+      "removed": "step 5: after a rename the oldest dated files are deleted until seven are left",
+      "exit": 1,
+      "outcome": "caught",
+      "signal": "steps",
+      "detail": "4 of 4 steps stand, 5 expected",
+      "signals": {
+        "steps": "4 of 4 steps stand, 5 expected"
+      },
+      "gaps": [
+        "No step does anything with the renamed files after they are put aside, yet the result says only seven are kept: the text would have to say which step removes or limits the older put-aside files.",
+        "The text says the mechanism is five steps and that it explains what happens to the files put aside, but the steps given are four and none of them handles the files put aside."
+      ]
+    },
+    {
+      "run": "retell/round-3/cache--intact",
+      "arm": "retell",
+      "round": 3,
+      "case": "cache",
+      "kind": "intact",
+      "variant": null,
+      "removed": null,
+      "exit": 1,
+      "outcome": "clean",
+      "signal": null,
+      "detail": "",
+      "signals": {},
+      "gaps": []
+    },
+    {
+      "run": "retell/round-3/cache--no-step",
+      "arm": "retell",
+      "round": 3,
+      "case": "cache",
+      "kind": "planted",
+      "variant": "no-step",
+      "removed": "step 4: on a miss the gallery draws the thumbnail and stores it under the key",
+      "exit": 1,
+      "outcome": "caught",
+      "signal": "steps",
+      "detail": "4 of 4 steps stand, 5 expected",
+      "signals": {
+        "steps": "4 of 4 steps stand, 5 expected"
+      },
+      "gaps": [
+        "Between the request and the expiry, no step says what happens when the cache holds no entry under the newest key, as after an upload: nothing says a thumbnail is drawn and stored with cache.put, though the expiry step counts from cache.put and the text announces five steps while giving four."
+      ]
+    },
+    {
+      "run": "retell/round-3/retry--intact",
+      "arm": "retell",
+      "round": 3,
+      "case": "retry",
+      "kind": "intact",
+      "variant": null,
+      "removed": null,
+      "exit": 0,
+      "outcome": "clean",
+      "signal": null,
+      "detail": "",
+      "signals": {},
+      "gaps": []
+    },
+    {
+      "run": "retell/round-3/retry--no-step",
+      "arm": "retell",
+      "round": 3,
+      "case": "retry",
+      "kind": "planted",
+      "variant": "no-step",
+      "removed": "step 4: after each wait the pause doubles, up to two seconds",
+      "exit": 1,
+      "outcome": "caught",
+      "signal": "steps",
+      "detail": "4 of 4 steps stand, 5 expected",
+      "signals": {
+        "steps": "4 of 4 steps stand, 5 expected"
+      },
+      "gaps": [
+        "Between waiting for the pause and the next send, no step changes the pause, yet the example waits 200, 400 and then 800 milliseconds; the text would have to say how and when the pause grows (the text announces five steps and gives four).",
+        "The pseudocode waits after every unanswered try, the fourth included, before checking the count, while the example gives only three waits between four tries; the text would have to say whether the client waits after the fourth try before reporting the failure."
+      ]
+    },
+    {
+      "run": "retell/round-3/limiter--intact",
+      "arm": "retell",
+      "round": 3,
+      "case": "limiter",
+      "kind": "intact",
+      "variant": null,
+      "removed": null,
+      "exit": 0,
+      "outcome": "clean",
+      "signal": null,
+      "detail": "",
+      "signals": {},
+      "gaps": [
+        "The text does not say what the tokens and the last-request time are for a client's first request, which the first step needs."
+      ]
+    },
+    {
+      "run": "retell/round-3/limiter--no-step",
+      "arm": "retell",
+      "round": 3,
+      "case": "limiter",
+      "kind": "planted",
+      "variant": "no-step",
+      "removed": "step 2: the count never goes above one hundred tokens",
+      "exit": 1,
+      "outcome": "caught",
+      "signal": "steps",
+      "detail": "4 of 4 steps stand, 5 expected",
+      "signals": {
+        "steps": "4 of 4 steps stand, 5 expected"
+      },
+      "gaps": [
+        "The text says the mechanism is five steps, but it gives four; one step is missing between the ones given.",
+        "By the first step a client silent for a minute gains six hundred tokens, while the example says it can send one hundred at once; no step says what holds the tokens to one hundred."
+      ]
+    },
+    {
+      "run": "retell/round-3/rotation--intact",
+      "arm": "retell",
+      "round": 3,
+      "case": "rotation",
+      "kind": "intact",
+      "variant": null,
+      "removed": null,
+      "exit": 1,
+      "outcome": "clean",
+      "signal": null,
+      "detail": "",
+      "signals": {},
+      "gaps": []
+    },
+    {
+      "run": "retell/round-3/rotation--no-step",
+      "arm": "retell",
+      "round": 3,
+      "case": "rotation",
+      "kind": "planted",
+      "variant": "no-step",
+      "removed": "step 5: after a rename the oldest dated files are deleted until seven are left",
+      "exit": 1,
+      "outcome": "caught",
+      "signal": "steps",
+      "detail": "4 of 4 steps stand, 5 expected",
+      "signals": {
+        "steps": "4 of 4 steps stand, 5 expected"
+      },
+      "gaps": [
+        "The text says the mechanism is five steps but gives four, and its promise to explain what happens to the files put aside is not kept.",
+        "The renamed files are taken up by no later step, while the closing sentence says only seven files are put aside and the total stays near 800 megabytes; the text would have to say which step removes or limits the files beyond seven."
+      ]
+    },
+    {
+      "run": "questions/round-1/cache--intact",
+      "arm": "questions",
+      "round": 1,
+      "case": "cache",
+      "kind": "intact",
+      "variant": null,
+      "removed": null,
+      "exit": 1,
+      "outcome": "false alarm",
+      "signal": null,
+      "detail": "question 4: partly",
+      "signals": {
+        "question 4": "partly"
+      },
+      "gaps": []
+    },
+    {
+      "run": "questions/round-1/cache--no-step",
+      "arm": "questions",
+      "round": 1,
+      "case": "cache",
+      "kind": "planted",
+      "variant": "no-step",
+      "removed": "step 4: on a miss the gallery draws the thumbnail and stores it under the key",
+      "exit": 1,
+      "outcome": "caught",
+      "signal": "question 3",
+      "detail": "partly",
+      "signals": {
+        "question 3": "partly",
+        "question 4": "partly"
+      },
+      "gaps": []
+    },
+    {
+      "run": "questions/round-1/retry--intact",
+      "arm": "questions",
+      "round": 1,
+      "case": "retry",
+      "kind": "intact",
+      "variant": null,
+      "removed": null,
+      "exit": 0,
+      "outcome": "clean",
+      "signal": null,
+      "detail": "",
+      "signals": {},
+      "gaps": []
+    },
+    {
+      "run": "questions/round-1/retry--no-step",
+      "arm": "questions",
+      "round": 1,
+      "case": "retry",
+      "kind": "planted",
+      "variant": "no-step",
+      "removed": "step 4: after each wait the pause doubles, up to two seconds",
+      "exit": 1,
+      "outcome": "caught",
+      "signal": "question 3",
+      "detail": "partly",
+      "signals": {
+        "question 3": "partly"
+      },
+      "gaps": []
+    },
+    {
+      "run": "questions/round-1/limiter--intact",
+      "arm": "questions",
+      "round": 1,
+      "case": "limiter",
+      "kind": "intact",
+      "variant": null,
+      "removed": null,
+      "exit": 0,
+      "outcome": "clean",
+      "signal": null,
+      "detail": "",
+      "signals": {},
+      "gaps": []
+    },
+    {
+      "run": "questions/round-1/limiter--no-step",
+      "arm": "questions",
+      "round": 1,
+      "case": "limiter",
+      "kind": "planted",
+      "variant": "no-step",
+      "removed": "step 2: the count never goes above one hundred tokens",
+      "exit": 1,
+      "outcome": "caught",
+      "signal": "question 3",
+      "detail": "partly",
+      "signals": {
+        "question 3": "partly"
+      },
+      "gaps": []
+    },
+    {
+      "run": "questions/round-1/rotation--intact",
+      "arm": "questions",
+      "round": 1,
+      "case": "rotation",
+      "kind": "intact",
+      "variant": null,
+      "removed": null,
+      "exit": 1,
+      "outcome": "false alarm",
+      "signal": null,
+      "detail": "question 4: partly",
+      "signals": {
+        "question 4": "partly"
+      },
+      "gaps": []
+    },
+    {
+      "run": "questions/round-1/rotation--no-step",
+      "arm": "questions",
+      "round": 1,
+      "case": "rotation",
+      "kind": "planted",
+      "variant": "no-step",
+      "removed": "step 5: after a rename the oldest dated files are deleted until seven are left",
+      "exit": 1,
+      "outcome": "caught",
+      "signal": "question 3",
+      "detail": "partly",
+      "signals": {
+        "question 3": "partly",
+        "question 4": "partly"
+      },
+      "gaps": []
+    },
+    {
+      "run": "questions/round-2/cache--intact",
+      "arm": "questions",
+      "round": 2,
+      "case": "cache",
+      "kind": "intact",
+      "variant": null,
+      "removed": null,
+      "exit": 1,
+      "outcome": "false alarm",
+      "signal": null,
+      "detail": "question 4: partly",
+      "signals": {
+        "question 4": "partly"
+      },
+      "gaps": []
+    },
+    {
+      "run": "questions/round-2/cache--no-step",
+      "arm": "questions",
+      "round": 2,
+      "case": "cache",
+      "kind": "planted",
+      "variant": "no-step",
+      "removed": "step 4: on a miss the gallery draws the thumbnail and stores it under the key",
+      "exit": 1,
+      "outcome": "caught",
+      "signal": "question 3",
+      "detail": "partly",
+      "signals": {
+        "question 3": "partly",
+        "question 4": "partly"
+      },
+      "gaps": []
+    },
+    {
+      "run": "questions/round-2/retry--intact",
+      "arm": "questions",
+      "round": 2,
+      "case": "retry",
+      "kind": "intact",
+      "variant": null,
+      "removed": null,
+      "exit": 0,
+      "outcome": "clean",
+      "signal": null,
+      "detail": "",
+      "signals": {},
+      "gaps": []
+    },
+    {
+      "run": "questions/round-2/retry--no-step",
+      "arm": "questions",
+      "round": 2,
+      "case": "retry",
+      "kind": "planted",
+      "variant": "no-step",
+      "removed": "step 4: after each wait the pause doubles, up to two seconds",
+      "exit": 1,
+      "outcome": "caught",
+      "signal": "question 3",
+      "detail": "partly",
+      "signals": {
+        "question 3": "partly"
+      },
+      "gaps": []
+    },
+    {
+      "run": "questions/round-2/limiter--intact",
+      "arm": "questions",
+      "round": 2,
+      "case": "limiter",
+      "kind": "intact",
+      "variant": null,
+      "removed": null,
+      "exit": 0,
+      "outcome": "clean",
+      "signal": null,
+      "detail": "",
+      "signals": {},
+      "gaps": []
+    },
+    {
+      "run": "questions/round-2/limiter--no-step",
+      "arm": "questions",
+      "round": 2,
+      "case": "limiter",
+      "kind": "planted",
+      "variant": "no-step",
+      "removed": "step 2: the count never goes above one hundred tokens",
+      "exit": 1,
+      "outcome": "caught",
+      "signal": "question 3",
+      "detail": "partly",
+      "signals": {
+        "question 3": "partly"
+      },
+      "gaps": []
+    },
+    {
+      "run": "questions/round-2/rotation--intact",
+      "arm": "questions",
+      "round": 2,
+      "case": "rotation",
+      "kind": "intact",
+      "variant": null,
+      "removed": null,
+      "exit": 1,
+      "outcome": "false alarm",
+      "signal": null,
+      "detail": "question 4: partly",
+      "signals": {
+        "question 4": "partly"
+      },
+      "gaps": []
+    },
+    {
+      "run": "questions/round-2/rotation--no-step",
+      "arm": "questions",
+      "round": 2,
+      "case": "rotation",
+      "kind": "planted",
+      "variant": "no-step",
+      "removed": "step 5: after a rename the oldest dated files are deleted until seven are left",
+      "exit": 1,
+      "outcome": "caught",
+      "signal": "question 3",
+      "detail": "partly",
+      "signals": {
+        "question 3": "partly",
+        "question 4": "partly"
+      },
+      "gaps": []
+    },
+    {
+      "run": "questions/round-3/cache--intact",
+      "arm": "questions",
+      "round": 3,
+      "case": "cache",
+      "kind": "intact",
+      "variant": null,
+      "removed": null,
+      "exit": 1,
+      "outcome": "false alarm",
+      "signal": null,
+      "detail": "question 4: partly",
+      "signals": {
+        "question 4": "partly"
+      },
+      "gaps": []
+    },
+    {
+      "run": "questions/round-3/cache--no-step",
+      "arm": "questions",
+      "round": 3,
+      "case": "cache",
+      "kind": "planted",
+      "variant": "no-step",
+      "removed": "step 4: on a miss the gallery draws the thumbnail and stores it under the key",
+      "exit": 1,
+      "outcome": "caught",
+      "signal": "question 3",
+      "detail": "partly",
+      "signals": {
+        "question 3": "partly",
+        "question 4": "partly"
+      },
+      "gaps": []
+    },
+    {
+      "run": "questions/round-3/retry--intact",
+      "arm": "questions",
+      "round": 3,
+      "case": "retry",
+      "kind": "intact",
+      "variant": null,
+      "removed": null,
+      "exit": 0,
+      "outcome": "clean",
+      "signal": null,
+      "detail": "",
+      "signals": {},
+      "gaps": []
+    },
+    {
+      "run": "questions/round-3/retry--no-step",
+      "arm": "questions",
+      "round": 3,
+      "case": "retry",
+      "kind": "planted",
+      "variant": "no-step",
+      "removed": "step 4: after each wait the pause doubles, up to two seconds",
+      "exit": 1,
+      "outcome": "caught",
+      "signal": "question 3",
+      "detail": "partly",
+      "signals": {
+        "question 3": "partly"
+      },
+      "gaps": []
+    },
+    {
+      "run": "questions/round-3/limiter--intact",
+      "arm": "questions",
+      "round": 3,
+      "case": "limiter",
+      "kind": "intact",
+      "variant": null,
+      "removed": null,
+      "exit": 0,
+      "outcome": "clean",
+      "signal": null,
+      "detail": "",
+      "signals": {},
+      "gaps": []
+    },
+    {
+      "run": "questions/round-3/limiter--no-step",
+      "arm": "questions",
+      "round": 3,
+      "case": "limiter",
+      "kind": "planted",
+      "variant": "no-step",
+      "removed": "step 2: the count never goes above one hundred tokens",
+      "exit": 1,
+      "outcome": "caught",
+      "signal": "question 3",
+      "detail": "partly",
+      "signals": {
+        "question 3": "partly"
+      },
+      "gaps": []
+    },
+    {
+      "run": "questions/round-3/rotation--intact",
+      "arm": "questions",
+      "round": 3,
+      "case": "rotation",
+      "kind": "intact",
+      "variant": null,
+      "removed": null,
+      "exit": 1,
+      "outcome": "false alarm",
+      "signal": null,
+      "detail": "question 4: partly",
+      "signals": {
+        "question 4": "partly"
+      },
+      "gaps": []
+    },
+    {
+      "run": "questions/round-3/rotation--no-step",
+      "arm": "questions",
+      "round": 3,
+      "case": "rotation",
+      "kind": "planted",
+      "variant": "no-step",
+      "removed": "step 5: after a rename the oldest dated files are deleted until seven are left",
+      "exit": 1,
+      "outcome": "caught",
+      "signal": "question 3",
+      "detail": "partly",
+      "signals": {
+        "question 3": "partly",
+        "question 4": "partly"
+      },
+      "gaps": []
+    }
+  ],
+  "summary": {
+    "arms": {
+      "retell": {
+        "caught": 12,
+        "not_separated": 0,
+        "missed": 0,
+        "unusable": 0,
+        "planted": 12,
+        "false_alarms": 0,
+        "intact": 12,
+        "gaps_planted": 12,
+        "usable_planted": 12,
+        "gaps_intact": 2,
+        "usable_intact": 12
+      },
+      "questions": {
+        "caught": 12,
+        "not_separated": 0,
+        "missed": 0,
+        "unusable": 0,
+        "planted": 12,
+        "false_alarms": 6,
+        "intact": 12,
+        "gaps_planted": 0,
+        "usable_planted": 12,
+        "gaps_intact": 0,
+        "usable_intact": 12
+      }
+    },
+    "comparison": {
+      "caught_share": {
+        "retell": {
+          "caught": 12,
+          "usable": 12,
+          "share": 1.0
+        },
+        "questions": {
+          "caught": 12,
+          "usable": 12,
+          "share": 1.0
+        }
+      },
+      "difference_points": 0.0,
+      "p_one_sided": 1.0
+    }
+  }
+}

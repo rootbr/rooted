@@ -1,0 +1,56 @@
+{
+  "answers": [
+    {
+      "question": "What is the mechanism for?",
+      "found": "yes",
+      "answer": "It lets each client send a burst of requests and then holds the client to a steady rate.",
+      "quotes": ["The gateway lets each client send a burst of requests and then holds it to a steady rate."],
+      "missing": ""
+    },
+    {
+      "question": "What does it take in, and what does it keep?",
+      "found": "yes",
+      "answer": "It takes in a request from a client with the time it arrived, and it keeps for every client its tokens and the time of its last request.",
+      "quotes": ["The mechanism keeps two numbers for every client: its tokens and the time of its last request.", "It takes in one event, a request from the client, with the time it arrived."],
+      "missing": ""
+    },
+    {
+      "question": "By which steps does it reach its result?",
+      "found": "yes",
+      "answer": "It adds ten tokens per second since the last request, caps the count at one hundred, passes the request on and takes one token when at least one is there or else refuses it and tells the client how long to wait, and in both cases notes this request's time as the last.",
+      "quotes": ["On a request the gateway adds ten tokens for every second since the client's last request.", "The count never goes above one hundred tokens.", "With at least one token the gateway takes one and passes the request on.", "With less than one token it refuses the request and tells the client how long to wait for the next token.", "In both cases it notes the time of this request as the client's last."],
+      "missing": ""
+    },
+    {
+      "question": "What does a reader see when it works, on the example the text gives?",
+      "found": "yes",
+      "answer": "A client silent for a minute can send one hundred requests at once and then ten a second.",
+      "quotes": ["A client that was silent for a minute can send one hundred requests at once and ten a second after that."],
+      "missing": ""
+    }
+  ],
+  "unexplained": [],
+  "retelling": [
+    {
+      "step": "On a request arriving at time now, the gateway adds ten tokens to the client's count for every second since the client's last request.",
+      "quotes": ["On a request the gateway adds ten tokens for every second since the client's last request.", "tokens = tokens + 10 × (now − last)"]
+    },
+    {
+      "step": "The count is capped so it never goes above one hundred tokens.",
+      "quotes": ["The count never goes above one hundred tokens.", "tokens = min(tokens, 100)"]
+    },
+    {
+      "step": "If the count holds at least one token, the gateway takes one token and passes the request on.",
+      "quotes": ["With at least one token the gateway takes one and passes the request on.", "if tokens ≥ 1:   tokens = tokens − 1; pass the request on"]
+    },
+    {
+      "step": "If the count holds less than one token, the gateway refuses the request and tells the client to wait (1 − tokens) / 10 seconds for the next token.",
+      "quotes": ["With less than one token it refuses the request and tells the client how long to wait for the next token.", "else:            refuse; reply \"wait (1 − tokens) / 10 seconds\""]
+    },
+    {
+      "step": "In either case the gateway records the time of this request as the client's last request time.",
+      "quotes": ["In both cases it notes the time of this request as the client's last.", "last = now"]
+    }
+  ],
+  "gaps": []
+}

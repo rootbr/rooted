@@ -1,0 +1,82 @@
+{
+  "answers": [
+    {
+      "question": "What is the mechanism for?",
+      "found": "yes",
+      "answer": "It stores and finds drawn thumbnails in a cache, since drawing one takes about a second, so that a picture uploaded again never shows its old thumbnail.",
+      "quotes": [
+        "Drawing one takes about a second, so the gallery keeps drawn thumbnails in a cache.",
+        "This page explains how a thumbnail is stored and found, so that a picture uploaded again never shows its old thumbnail."
+      ],
+      "missing": ""
+    },
+    {
+      "question": "What does it take in, and what does it keep?",
+      "found": "yes",
+      "answer": "It takes in two events, an upload of a picture and a request for its thumbnail, and keeps one number per picture, the count of its uploads, called the version.",
+      "quotes": [
+        "The mechanism keeps one number for every picture, the count of its uploads, called the version.",
+        "It takes in two events: an upload of a picture and a request for its thumbnail."
+      ],
+      "missing": ""
+    },
+    {
+      "question": "By which steps does it reach its result?",
+      "found": "partly",
+      "answer": "An upload raises the picture's version by one, the cache key joins the picture's number and its version, a request asks the cache for the entry under the newest key, and an entry leaves the cache one day after it was stored; the text says the mechanism is five steps but gives these four.",
+      "quotes": [
+        "The mechanism is five steps and one counter.",
+        "Every upload of a picture raises its version by one.",
+        "The cache key joins the picture's number and its version.",
+        "A request asks the cache for the entry under the newest key.",
+        "An entry leaves the cache one day after it was stored."
+      ],
+      "missing": "The fifth step: what happens when the cache holds no entry under the newest key, i.e. how a thumbnail is drawn and stored in the cache (the cache.put the last line refers to)."
+    },
+    {
+      "question": "What does a reader see when it works, on the example the text gives?",
+      "found": "partly",
+      "answer": "After a second upload the key changes, so the old entry is never read again and leaves after its day, and the picture does not show its old thumbnail.",
+      "quotes": [
+        "After a second upload the key changes, so the old entry is never read again and leaves after its day.",
+        "This page explains how a thumbnail is stored and found, so that a picture uploaded again never shows its old thumbnail."
+      ],
+      "missing": "What the reader sees instead of the old thumbnail on the request after the second upload: whether a new thumbnail is drawn, stored under the new key and shown, and with what delay."
+    }
+  ],
+  "unexplained": [],
+  "retelling": [
+    {
+      "step": "An upload of a picture comes in and raises that picture's version by one.",
+      "quotes": [
+        "Every upload of a picture raises its version by one.",
+        "on upload(picture):   picture.version = picture.version + 1"
+      ]
+    },
+    {
+      "step": "The cache key for a picture is made by joining the picture's number and its current version.",
+      "quotes": [
+        "The cache key joins the picture's number and its version.",
+        "key(picture)        = picture.number + \":v\" + picture.version"
+      ]
+    },
+    {
+      "step": "A request for a picture's thumbnail comes in and asks the cache for the entry under the newest key.",
+      "quotes": [
+        "A request asks the cache for the entry under the newest key.",
+        "on request(picture):  entry = cache.get(key(picture))"
+      ]
+    },
+    {
+      "step": "Every entry leaves the cache one day after it was stored.",
+      "quotes": [
+        "An entry leaves the cache one day after it was stored.",
+        "every entry:          leaves the cache one day after cache.put"
+      ]
+    }
+  ],
+  "gaps": [
+    "Between the request and the expiry no step stores an entry: the text does not say what happens when the cache has no entry under the newest key, nor how a thumbnail is drawn and put into the cache, which the expiry step (one day after cache.put) takes for granted.",
+    "The text announces five steps and gives four, so one step is missing from the sequence."
+  ]
+}

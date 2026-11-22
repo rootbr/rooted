@@ -1,0 +1,47 @@
+{
+  "answers": [
+    {
+      "question": "What is the mechanism for?",
+      "found": "yes",
+      "answer": "It keeps the service's single, ever-growing log file from filling the disk by closing it from time to time, setting it aside under a dated name and starting a new one.",
+      "quotes": [
+        "The service writes its log into one file, and a file that only grows fills the disk.",
+        "So the service closes the file from time to time, puts it aside under a dated name and starts a new one."
+      ],
+      "missing": ""
+    },
+    {
+      "question": "What does it take in, and what does it keep?",
+      "found": "yes",
+      "answer": "It takes in one event, a line to be written, and keeps the size of the current file and the time that file was opened.",
+      "quotes": [
+        "The mechanism keeps the size of the current file and the time it was opened.",
+        "It takes in one event, a line to be written."
+      ],
+      "missing": ""
+    },
+    {
+      "question": "By which steps does it reach its result?",
+      "found": "yes",
+      "answer": "Before each line it checks the current file against 100 megabytes and one day; under both it writes the line to the current file; over either it closes the file and renames it with the closing date and time, opens a new file and writes the line there, and then deletes the oldest dated files until seven are left.",
+      "quotes": [
+        "Before each line the service checks the current file against two limits, 100 megabytes and one day.",
+        "Under both limits it writes the line into the current file.",
+        "Over either limit it closes the file and renames it with the date and time of closing.",
+        "It then opens a new file and writes the line there.",
+        "After a rename it deletes the oldest dated files until seven are left."
+      ],
+      "missing": ""
+    },
+    {
+      "question": "What does a reader see when it works, on the example the text gives?",
+      "found": "partly",
+      "answer": "The text says the outcome is at most seven dated files set aside plus the current one, about 800 megabytes in all, but it gives no example run through the steps.",
+      "quotes": [
+        "So the logs never take more than about 800 megabytes: seven files put aside and the current one."
+      ],
+      "missing": "A worked example: a concrete line arriving at a file of a given size and age, which branch it takes, and the file names and files left on disk afterwards."
+    }
+  ],
+  "unexplained": []
+}

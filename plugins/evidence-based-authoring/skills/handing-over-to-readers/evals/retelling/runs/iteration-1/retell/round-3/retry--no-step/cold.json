@@ -1,0 +1,82 @@
+{
+  "answers": [
+    {
+      "question": "What is the mechanism for?",
+      "found": "yes",
+      "answer": "It makes the client ask the price service for a quote again, a little later each time, when no answer comes in time, and give up after a fixed number of tries.",
+      "quotes": [
+        "The client asks the price service for a quote and sometimes gets no answer in time.",
+        "It then asks again, a little later each time, and gives up after a fixed number of tries."
+      ],
+      "missing": ""
+    },
+    {
+      "question": "What does it take in, and what does it keep?",
+      "found": "yes",
+      "answer": "It takes in one signal, whether an answer came within two seconds of a try, and keeps two numbers per request: the tries made so far and the pause before the next try.",
+      "quotes": [
+        "The mechanism keeps two numbers for one request: the tries made so far and the pause before the next try.",
+        "It takes in one signal, whether an answer came within two seconds of a try."
+      ],
+      "missing": ""
+    },
+    {
+      "question": "By which steps does it reach its result?",
+      "found": "partly",
+      "answer": "The client sends the request and counts the try, returns an answer that comes within two seconds, otherwise waits for the pause starting at 200 milliseconds, and after the fourth unanswered try reports a failure, otherwise sends again.",
+      "quotes": [
+        "The client sends the request and counts the try.",
+        "An answer within two seconds ends the work with that answer.",
+        "Without an answer the client waits for the pause, which starts at 200 milliseconds.",
+        "After the fourth try without an answer the client reports a failure to its caller.",
+        "if tries == 4:             report failure; else go to the first line"
+      ],
+      "missing": "The step that changes the pause between tries: the text says the mechanism is five steps and that the client asks a little later each time, but gives only four steps and no rule for how the pause grows after 200 milliseconds."
+    },
+    {
+      "question": "What does a reader see when it works, on the example the text gives?",
+      "found": "yes",
+      "answer": "With no answer at all, the client waits 200, 400 and 800 milliseconds between its four tries and then reports a failure to its caller.",
+      "quotes": [
+        "With no answer at all the client waits 200, 400 and 800 milliseconds between its four tries.",
+        "After the fourth try without an answer the client reports a failure to its caller."
+      ],
+      "missing": ""
+    }
+  ],
+  "unexplained": [],
+  "retelling": [
+    {
+      "step": "The client sends the request and adds one to the count of tries.",
+      "quotes": [
+        "The client sends the request and counts the try.",
+        "send(request); tries = tries + 1"
+      ]
+    },
+    {
+      "step": "If an answer comes within two seconds of the try, the work ends and that answer is returned.",
+      "quotes": [
+        "An answer within two seconds ends the work with that answer.",
+        "if answered within 2 s:   return the answer"
+      ]
+    },
+    {
+      "step": "Without an answer, the client waits for the current pause, which starts at 200 milliseconds.",
+      "quotes": [
+        "Without an answer the client waits for the pause, which starts at 200 milliseconds.",
+        "else:                      wait(pause)"
+      ]
+    },
+    {
+      "step": "If the count of tries has reached four, the client reports a failure to its caller; otherwise it goes back to sending the request.",
+      "quotes": [
+        "After the fourth try without an answer the client reports a failure to its caller.",
+        "if tries == 4:             report failure; else go to the first line"
+      ]
+    }
+  ],
+  "gaps": [
+    "Between waiting for the pause and the next send, no step changes the pause, yet the example waits 200, 400 and then 800 milliseconds; the text would have to say how and when the pause grows (the text announces five steps and gives four).",
+    "The pseudocode waits after every unanswered try, the fourth included, before checking the count, while the example gives only three waits between four tries; the text would have to say whether the client waits after the fourth try before reporting the failure."
+  ]
+}

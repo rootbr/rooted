@@ -1,0 +1,88 @@
+{
+  "answers": [
+    {
+      "question": "What is the mechanism for?",
+      "found": "yes",
+      "answer": "It stores drawn thumbnails in a cache and finds them so that a picture uploaded again never shows its old thumbnail.",
+      "quotes": [
+        "Drawing one takes about a second, so the gallery keeps drawn thumbnails in a cache.",
+        "This page explains how a thumbnail is stored and found, so that a picture uploaded again never shows its old thumbnail."
+      ],
+      "missing": ""
+    },
+    {
+      "question": "What does it take in, and what does it keep?",
+      "found": "yes",
+      "answer": "It takes in two events, an upload of a picture and a request for its thumbnail, and keeps one number per picture, the count of its uploads called the version, beside the drawn thumbnails in the cache.",
+      "quotes": [
+        "The mechanism keeps one number for every picture, the count of its uploads, called the version.",
+        "It takes in two events: an upload of a picture and a request for its thumbnail.",
+        "Drawing one takes about a second, so the gallery keeps drawn thumbnails in a cache."
+      ],
+      "missing": ""
+    },
+    {
+      "question": "By which steps does it reach its result?",
+      "found": "yes",
+      "answer": "An upload raises the picture's version by one; the cache key joins the picture's number and version; a request asks the cache for the entry under the newest key; on a miss the gallery draws the thumbnail and stores it under that key; an entry leaves the cache one day after it was stored.",
+      "quotes": [
+        "Every upload of a picture raises its version by one.",
+        "The cache key joins the picture's number and its version.",
+        "A request asks the cache for the entry under the newest key.",
+        "When the cache has no entry under that key, the gallery draws the thumbnail and stores it under the key.",
+        "An entry leaves the cache one day after it was stored."
+      ],
+      "missing": ""
+    },
+    {
+      "question": "What does a reader see when it works, on the example the text gives?",
+      "found": "partly",
+      "answer": "On the text's example of a second upload, the key changes, the old entry is never read again and leaves after its day, so the picture does not show its old thumbnail.",
+      "quotes": [
+        "After a second upload the key changes, so the old entry is never read again and leaves after its day.",
+        "This page explains how a thumbnail is stored and found, so that a picture uploaded again never shows its old thumbnail."
+      ],
+      "missing": "The example would have to be run through with values (a picture's number, its versions and the keys before and after the second upload) and say what the reader sees on the request after the second upload: a newly drawn thumbnail and how long that first request takes."
+    }
+  ],
+  "unexplained": [],
+  "retelling": [
+    {
+      "step": "An upload of a picture comes in and raises that picture's version, the count of its uploads, by one.",
+      "quotes": [
+        "Every upload of a picture raises its version by one.",
+        "on upload(picture):   picture.version = picture.version + 1"
+      ]
+    },
+    {
+      "step": "The cache key is made by joining the picture's number and its current version.",
+      "quotes": [
+        "The cache key joins the picture's number and its version.",
+        "key(picture)        = picture.number + \":v\" + picture.version"
+      ]
+    },
+    {
+      "step": "A request for the picture's thumbnail asks the cache for the entry under the newest key.",
+      "quotes": [
+        "A request asks the cache for the entry under the newest key.",
+        "on request(picture):  entry = cache.get(key(picture))"
+      ]
+    },
+    {
+      "step": "When the cache has no entry under that key, the gallery draws the thumbnail and stores it in the cache under the key.",
+      "quotes": [
+        "When the cache has no entry under that key, the gallery draws the thumbnail and stores it under the key.",
+        "if entry is missing:  entry = draw(picture); cache.put(key(picture), entry)"
+      ]
+    },
+    {
+      "step": "Every stored entry leaves the cache one day after it was stored, so an old entry under a superseded key is never read again and goes after its day.",
+      "quotes": [
+        "An entry leaves the cache one day after it was stored.",
+        "every entry:          leaves the cache one day after cache.put",
+        "After a second upload the key changes, so the old entry is never read again and leaves after its day."
+      ]
+    }
+  ],
+  "gaps": []
+}
