@@ -1,0 +1,391 @@
+<title>Доска решений Rooted</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=Onest:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one reading column; the plan as a compact strip above the cards; each card is a sheet
+   whose options are full-width rows, so the consequence of an option is read before it is pressed. */
+:root {
+  --bg: #F4F6F9;
+  --surface: #FFFFFF;
+  --ink: #18212D;
+  --muted: #586374;
+  --line: #D9DFE7;
+  --accent: #2450C8;
+  --accent-ink: #FFFFFF;
+  --accent-soft: #E7EDFC;
+  --good: #1F7A55;
+  --good-soft: #E1F2EA;
+  --wait: #9A6A12;
+  --wait-soft: #F8EED9;
+  --font-body: "Golos Text", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-head: "Onest", "Golos Text", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #11151B; --surface: #1A202A; --ink: #E7EBF1; --muted: #9BA7B6; --line: #2C3542;
+    --accent: #86A6FF; --accent-ink: #0E1420; --accent-soft: #1F2A45;
+    --good: #5FC79A; --good-soft: #17352A; --wait: #E2B45A; --wait-soft: #3A2E14;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #11151B; --surface: #1A202A; --ink: #E7EBF1; --muted: #9BA7B6; --line: #2C3542;
+  --accent: #86A6FF; --accent-ink: #0E1420; --accent-soft: #1F2A45;
+  --good: #5FC79A; --good-soft: #17352A; --wait: #E2B45A; --wait-soft: #3A2E14;
+}
+body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 16px; line-height: 1.55; }
+.page { max-width: 46rem; margin: 0 auto; padding-block: 2rem 4rem;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: flex; flex-direction: column; gap: 2rem; }
+h1, h2, h3 { font-family: var(--font-head); text-wrap: balance; margin: 0; line-height: 1.2; }
+h1 { font-size: 1.75rem; font-weight: 700; }
+h2 { font-size: 1.05rem; font-weight: 600; letter-spacing: 0.01em; }
+h3 { font-size: 1.2rem; font-weight: 600; }
+p { margin: 0; }
+.top { display: flex; flex-direction: column; gap: 0.6rem; }
+.headline { color: var(--muted); max-width: 65ch; }
+.counts { display: flex; flex-wrap: wrap; gap: 0.5rem; font-variant-numeric: tabular-nums; }
+.chip { display: inline-flex; align-items: center; gap: 0.35rem; border-radius: 999px; padding: 0.15rem 0.65rem;
+  font-size: 0.85rem; font-weight: 500; background: var(--accent-soft); color: var(--accent); }
+.chip.good { background: var(--good-soft); color: var(--good); }
+.chip.wait { background: var(--wait-soft); color: var(--wait); }
+.chip.plain { background: transparent; color: var(--muted); border: 1px solid var(--line); }
+section { display: flex; flex-direction: column; gap: 0.8rem; }
+.plan { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; border-top: 1px solid var(--line); }
+.plan li { display: grid; grid-template-columns: 1.6rem 1fr auto; gap: 0.6rem; align-items: baseline;
+  padding: 0.5rem 0; border-bottom: 1px solid var(--line); }
+.plan .n { color: var(--muted); font-family: var(--font-mono); font-size: 0.85rem; }
+.plan .t { font-weight: 500; overflow-wrap: anywhere; }
+.plan .note { display: block; color: var(--muted); font-weight: 400; font-size: 0.9rem; }
+.cards { display: flex; flex-direction: column; gap: 1.25rem; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 1.25rem;
+  display: flex; flex-direction: column; gap: 0.9rem; }
+.card.answered { border-color: transparent; background: transparent; padding: 0.9rem 0; border-top: 1px solid var(--line); border-radius: 0; }
+.card .eyebrow { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.card .body { display: flex; flex-direction: column; gap: 0.6rem; max-width: 65ch; }
+.card .question { font-weight: 600; }
+.card .example { border-left: 3px solid var(--line); padding-left: 0.8rem; color: var(--muted); }
+.options { display: flex; flex-direction: column; gap: 0.5rem; }
+.opt { text-align: left; font: inherit; color: var(--ink); background: var(--surface); border: 1px solid var(--line);
+  border-radius: 8px; padding: 0.7rem 0.85rem; cursor: pointer; display: flex; flex-direction: column; gap: 0.2rem; }
+.opt:hover { border-color: var(--accent); }
+.opt:focus-visible, input:focus-visible, textarea:focus-visible, .link:focus-visible, .copy:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.opt .label { font-weight: 600; }
+.opt .gives, .opt .costs { font-size: 0.92rem; color: var(--muted); }
+.opt.rec { border-color: var(--accent); background: var(--accent-soft); }
+.opt.rec .label::after { content: " · рекомендую"; color: var(--accent); font-weight: 500; }
+.rec-line { font-size: 0.92rem; color: var(--muted); max-width: 65ch; }
+.free { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.free input { flex: 1 1 14rem; min-width: 0; font: inherit; color: var(--ink); background: var(--bg);
+  border: 1px solid var(--line); border-radius: 8px; padding: 0.55rem 0.7rem; }
+.free button { font: inherit; font-weight: 600; color: var(--accent-ink); background: var(--accent); border: 0;
+  border-radius: 8px; padding: 0.55rem 0.9rem; cursor: pointer; }
+details { font-size: 0.9rem; color: var(--muted); }
+details summary { cursor: pointer; }
+details .mono { font-family: var(--font-mono); font-size: 0.82rem; overflow-wrap: anywhere; display: block; margin-top: 0.4rem; white-space: pre-wrap; }
+.answer { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: baseline; }
+.answer .said { font-weight: 500; overflow-wrap: anywhere; }
+.link { font: inherit; color: var(--accent); background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; }
+.empty { color: var(--muted); border: 1px dashed var(--line); border-radius: 10px; padding: 1.25rem; }
+.note-line { color: var(--muted); font-size: 0.9rem; }
+[hidden] { display: none !important; }
+.state { display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+.copy { font: inherit; font-size: 0.92rem; font-weight: 500; color: var(--accent); background: var(--surface);
+  border: 1px solid var(--line); border-radius: 8px; padding: 0.4rem 0.8rem; cursor: pointer; }
+.copy:hover { border-color: var(--accent); }
+.state-box { align-self: stretch; display: flex; flex-direction: column; align-items: flex-start; gap: 0.4rem; }
+.state-box textarea { box-sizing: border-box; width: 100%; min-height: 10rem; resize: vertical; font-family: var(--font-mono);
+  font-size: 0.82rem; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 0.55rem 0.7rem; }
+@media (prefers-reduced-motion: no-preference) { .opt, .free button, .copy { transition: border-color 120ms, background-color 120ms; } }
+</style>
+
+<div class="page">
+  <header class="top">
+    <h1>Доска решений Rooted</h1>
+    <p class="headline" id="headline">Здесь появятся план работ и карточки решений. Данные загружаются.</p>
+    <div class="counts" id="counts"></div>
+    <div class="state">
+      <button type="button" class="copy" id="state-copy">Скопировать состояние доски</button>
+      <p class="note-line" id="state-say" role="status"></p>
+      <div class="state-box" id="state-box" hidden>
+        <textarea id="state-text" readonly spellcheck="false" aria-label="Состояние доски в JSON"></textarea>
+        <button type="button" class="link" id="state-hide">Скрыть поле</button>
+      </div>
+    </div>
+  </header>
+
+  <section aria-labelledby="h-open">
+    <h2 id="h-open">Ждут вашего решения</h2>
+    <div class="cards" id="open"><p class="empty">Открытых карточек нет. Когда работа упрётся в решение, которое может принять только владелец, карточка появится здесь.</p></div>
+  </section>
+
+  <section aria-labelledby="h-plan">
+    <h2 id="h-plan">План и ход работ</h2>
+    <ol class="plan" id="plan"><li><span class="n">·</span><span class="t">План появится, когда сессия запишет очередь работ.</span><span></span></li></ol>
+  </section>
+
+  <section aria-labelledby="h-default">
+    <h2 id="h-default">Принято по умолчанию</h2>
+    <p class="note-line">Обратимые решения, которые сессия приняла сама. Любое можно отменить ответом в карточке.</p>
+    <div class="cards" id="defaults"><p class="empty">Пока ничего не принято по умолчанию.</p></div>
+  </section>
+
+  <section aria-labelledby="h-done">
+    <h2 id="h-done">Отвечено</h2>
+    <div class="cards" id="answered"><p class="empty">Ответов пока нет.</p></div>
+  </section>
+
+  <p class="note-line" id="status" role="status"></p>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var STATE_LABEL = { done: "готово", running: "в работе", pending: "ждёт", waiting: "ждёт решения", out: "вне очереди" };
+  var STATE_CLASS = { done: "good", running: "", pending: "plain", waiting: "wait", out: "plain" };
+  var cards = [], units = [], db = null, canWrite = true, cardsLoaded = false;
+  var $ = function (id) { return document.getElementById(id); };
+
+  function el(tag, cls, text) {
+    var n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (text !== undefined && text !== null) n.textContent = text;
+    return n;
+  }
+  function say(text) { $("status").textContent = text || ""; }
+
+  function optionOf(card, key) {
+    return (card.options || []).filter(function (o) { return o.key === key; })[0] || null;
+  }
+
+  // The answer of a card: the pressed option, typed words, or both.
+  function writeAnswer(card, key, text) {
+    if (!db) { say("Ответ не записан: база данных недоступна в этом окне."); return Promise.resolve(false); }
+    var answer = { key: key || "", text: text || "", at: new Date().toISOString() };
+    say("Записываю ответ…");
+    return db.doc("cards/" + card.id).update({ answer: answer, status: "answered" }).then(function () {
+      say("Ответ записан: " + card.title);
+      return true;
+    }).catch(function (e) {
+      canWrite = false;
+      say("Ответ не записан (" + ((e && e.code) || "ошибка") + "). Продиктуйте ответ сессии в чате.");
+      return false;
+    });
+  }
+  function reopen(card) {
+    if (!db) return;
+    db.doc("cards/" + card.id).update({ status: card.kind === "default" ? "default" : "open", answer: null })
+      .catch(function (e) { say("Не удалось вернуть карточку (" + ((e && e.code) || "ошибка") + ")."); });
+  }
+
+  function focusNext(afterId) {
+    var fields = Array.prototype.slice.call(document.querySelectorAll("#open input, #defaults input"));
+    var next = fields.filter(function (f) { return f.dataset.card !== afterId; })[0];
+    if (next) next.focus();
+  }
+
+  function renderCard(card) {
+    var box = el("article", "card" + (card.status === "answered" ? " answered" : ""));
+    box.appendChild(el("div", "eyebrow", card.kind === "default" ? "Принято по умолчанию" : "Решение за вами"));
+    box.appendChild(el("h3", null, card.title));
+
+    if (card.status === "answered") {
+      var a = card.answer || {}, chosen = optionOf(card, a.key);
+      var row = el("div", "answer");
+      row.appendChild(el("span", "chip good", "ответ"));
+      row.appendChild(el("span", "said", [chosen ? chosen.label : "", a.text].filter(Boolean).join(" — ") || "без текста"));
+      var back = el("button", "link", "изменить");
+      back.type = "button";
+      back.addEventListener("click", function () { reopen(card); });
+      row.appendChild(back);
+      box.appendChild(row);
+      if (card.question) box.appendChild(el("p", "note-line", card.question));
+      return box;
+    }
+
+    var body = el("div", "body");
+    ["who", "plain"].forEach(function (k) { if (card[k]) body.appendChild(el("p", null, card[k])); });
+    if (card.example) body.appendChild(el("p", "example", card.example));
+    ["fact", "changes", "why"].forEach(function (k) { if (card[k]) body.appendChild(el("p", null, card[k])); });
+    if (card.question) body.appendChild(el("p", "question", card.question));
+    box.appendChild(body);
+
+    var opts = el("div", "options");
+    (card.options || []).forEach(function (o) {
+      var b = el("button", "opt" + (o.key === card.recommend ? " rec" : ""));
+      b.type = "button";
+      b.id = "opt-" + card.id + "-" + o.key;
+      b.appendChild(el("span", "label", o.label));
+      if (o.gives) b.appendChild(el("span", "gives", o.gives));
+      if (o.costs) b.appendChild(el("span", "costs", "Цена ошибки: " + o.costs));
+      b.addEventListener("click", function () {
+        var field = $("say-" + card.id);
+        writeAnswer(card, o.key, field ? field.value.trim() : "").then(function (ok) { if (ok) focusNext(card.id); });
+      });
+      opts.appendChild(b);
+    });
+    box.appendChild(opts);
+    if (card.basis) box.appendChild(el("p", "rec-line", "Основание рекомендации: " + card.basis));
+
+    var form = el("form", "free");
+    var input = el("input");
+    input.type = "text";
+    input.id = "say-" + card.id;
+    input.dataset.card = card.id;
+    input.placeholder = "Свой ответ или уточнение — Enter отправляет";
+    input.setAttribute("aria-label", "Свой ответ: " + card.title);
+    var send = el("button", null, "Отправить");
+    send.type = "submit";
+    form.appendChild(input);
+    form.appendChild(send);
+    form.addEventListener("submit", function (ev) {
+      ev.preventDefault();
+      var text = input.value.trim();
+      if (!text) { input.focus(); return; }
+      writeAnswer(card, "", text).then(function (ok) { if (ok) focusNext(card.id); });
+    });
+    box.appendChild(form);
+
+    if (card.details) {
+      var d = el("details");
+      d.appendChild(el("summary", null, "Идентификаторы и файлы"));
+      d.appendChild(el("span", "mono", card.details));
+      box.appendChild(d);
+    }
+    return box;
+  }
+
+  function fill(id, list, emptyText) {
+    var host = $(id);
+    // Keep what the reader is typing: a card under edit is not rebuilt.
+    var active = document.activeElement;
+    var typing = active && active.tagName === "INPUT" && host.contains(active) && active.value ? active.dataset.card : null;
+    var kept = typing ? active.closest(".card") : null;
+    host.textContent = "";
+    if (!list.length) { host.appendChild(el("p", "empty", emptyText)); return; }
+    list.forEach(function (c) { host.appendChild(kept && c.id === typing ? kept : renderCard(c)); });
+    if (kept) active.focus();
+  }
+
+  function render() {
+    var open = cards.filter(function (c) { return c.status !== "answered" && c.kind !== "default"; });
+    var defaults = cards.filter(function (c) { return c.status !== "answered" && c.kind === "default"; });
+    var answered = cards.filter(function (c) { return c.status === "answered"; });
+    fill("open", open, "Открытых карточек нет. Когда работа упрётся в решение, которое может принять только владелец, карточка появится здесь.");
+    fill("defaults", defaults, "Пока ничего не принято по умолчанию.");
+    fill("answered", answered, "Ответов пока нет.");
+    var counts = $("counts");
+    counts.textContent = "";
+    counts.appendChild(el("span", "chip wait", "ждут решения: " + open.length));
+    counts.appendChild(el("span", "chip plain", "по умолчанию: " + defaults.length));
+    counts.appendChild(el("span", "chip good", "отвечено: " + answered.length));
+  }
+
+  function renderPlan() {
+    var host = $("plan");
+    host.textContent = "";
+    if (!units.length) {
+      var li = el("li");
+      li.appendChild(el("span", "n", "·"));
+      li.appendChild(el("span", "t", "План появится, когда сессия запишет очередь работ."));
+      li.appendChild(el("span"));
+      host.appendChild(li);
+      return;
+    }
+    units.forEach(function (u, i) {
+      var li = el("li");
+      li.appendChild(el("span", "n", String(i + 1)));
+      var t = el("span", "t", u.title);
+      if (u.note) t.appendChild(el("span", "note", u.note));
+      li.appendChild(t);
+      li.appendChild(el("span", "chip " + (STATE_CLASS[u.state] || "plain"), STATE_LABEL[u.state] || u.state || ""));
+      host.appendChild(li);
+    });
+  }
+
+  // The board's state as one JSON text, for the session that cannot read the database itself.
+  function stateText() {
+    return JSON.stringify({ exportedAt: new Date().toISOString(), headline: $("headline").textContent, cards: cards, units: units }, null, 2);
+  }
+  function sayState(text) { $("state-say").textContent = text; }
+
+  // Whether the browser's own copy command took the selected field.
+  function copyBySelection() {
+    var field = $("state-text");
+    field.focus();
+    field.select();
+    try { return document.execCommand("copy"); }
+    catch (e) { return false; }  // an engine that throws refuses as one that returns false: the text stays selected for the keyboard
+  }
+
+  // Three ways of handing the text over, because the viewer's frame may refuse the first two: the clipboard, then the
+  // copy command on the selected field, and on every press after the cards arrive the field itself, shown and selected.
+  function copyState() {
+    if (!cardsLoaded) { sayState("Данные доски не загружены: копировать нечего."); return; }
+    var text = stateText(), field = $("state-text");
+    var copied = "Состояние доски скопировано в буфер обмена (карточек: " + cards.length + ", единиц плана: " + units.length + ").";
+    var selected = "Буфер обмена недоступен в этом окне: текст выделен в поле ниже, скопируйте его клавишами Ctrl+C или ⌘C.";
+    var copyOrSelect = function () { sayState(copyBySelection() ? copied : selected); };
+    field.textContent = text;
+    $("state-box").hidden = false;
+    sayState("");
+    field.focus();
+    field.select();
+    var clipboard = navigator.clipboard;
+    if (clipboard && clipboard.writeText) {
+      clipboard.writeText(text).then(function () { sayState(copied); }, copyOrSelect);
+    } else {
+      copyOrSelect();
+    }
+  }
+  function hideState() {
+    $("state-box").hidden = true;
+    sayState("");
+    $("state-copy").focus();
+  }
+
+  // A document's data may be frozen, so each row is a copy that carries the document's id.
+  function rows(snap) {
+    return snap.docs.map(function (d) {
+      var v = {}, data = d.data() || {};
+      Object.keys(data).forEach(function (k) { v[k] = data[k]; });
+      v.id = d.id;
+      return v;
+    }).sort(function (a, b) { return (a.order || 0) - (b.order || 0); });
+  }
+  // A failure while drawing is said on the page instead of leaving it empty.
+  function guarded(what, fn) {
+    return function (snap) {
+      try { fn(snap); }
+      catch (e) { say("Не удалось показать " + what + ": " + ((e && e.message) || e)); }
+    };
+  }
+
+  function start(database) {
+    db = database;
+    if (!db) {
+      $("headline").textContent = "База данных доски недоступна в этом окне: войдите в claude.ai, чтобы увидеть карточки и ответить на них.";
+      return;
+    }
+    var timer = setTimeout(function () { say("Данные доски не пришли за 10 секунд. Карточки появятся, когда база ответит."); }, 10000);
+    var got = function () { clearTimeout(timer); };
+    var fail = function (e) { got(); say("Чтение доски не удалось (" + ((e && e.code) || "ошибка") + ")."); };
+    db.collection("cards").onSnapshot(guarded("карточки", function (snap) { got(); cards = rows(snap); cardsLoaded = true; render(); }), fail);
+    db.collection("units").onSnapshot(guarded("план", function (snap) { got(); units = rows(snap); renderPlan(); }), fail);
+    db.doc("meta/board").onSnapshot(guarded("заголовок", function (snap) {
+      got();
+      var v = snap.exists ? snap.data() : null;
+      $("headline").textContent = v && v.headline ? v.headline
+        : "План работ и карточки решений ещё не записаны. Сессия заполнит доску, как только будет что показать.";
+    }), fail);
+  }
+
+  $("state-copy").addEventListener("click", copyState);
+  $("state-hide").addEventListener("click", hideState);
+  render();
+  if (window.claude && window.claude.use) { window.claude.use("db").then(start, function () { start(null); }); }
+  else { start(null); }
+})();
+</script>
