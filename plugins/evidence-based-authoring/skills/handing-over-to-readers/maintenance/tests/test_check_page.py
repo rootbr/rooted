@@ -123,6 +123,24 @@ class Clean(unittest.TestCase):
 
 
 @unittest.skipIf(CHROME is None, "no browser: set $CHROME or install Google Chrome, google-chrome, chromium or chromium-browser")
+class ExplanationBlocks(unittest.TestCase):
+    """The explanation fixture, its pseudocode with lit lines and a link, its tables of questions, of a factor and of
+    terms and its question, checked once with --shots: every block stays inside its frame."""
+
+    @classmethod
+    def setUpClass(cls):
+        work = tempfile.TemporaryDirectory(prefix="check-page-explanation-")
+        cls.addClassCleanup(work.cleanup)
+        folder = Path(work.name)
+        cls.page = build(folder, (FIXTURES / "explanation-body.html").read_text(encoding="utf-8"), "--explanation")
+        cls.shots = folder / "shots"
+        cls.code, cls.out, cls.err = check(str(cls.page), "--shots", str(cls.shots))
+
+    def test_the_explanation_page_is_exit_0_with_no_finding(self):
+        self.assertEqual((0, [f"{self.page}: 4 part(s), 0 finding(s), 8 picture(s) in {self.shots}"]), (self.code, self.out), self.err)
+
+
+@unittest.skipIf(CHROME is None, "no browser: set $CHROME or install Google Chrome, google-chrome, chromium or chromium-browser")
 class Findings(unittest.TestCase):
     """Four pages, each with one kind of defect, each checked once."""
     WIDE_LABEL = "a label far too wide for its small box"

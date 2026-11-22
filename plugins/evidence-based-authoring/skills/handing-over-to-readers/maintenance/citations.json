@@ -29889,5 +29889,764 @@
   "id": "Media: the page is added for a mechanism a figure shows or a decision among options/a9",
   "source": "https://doi.org/10.1002/14651858.CD003717.pub3",
   "quote": "Weston 1997 36/41 28/44 1.38[1.07,1.77]"
+ },
+ {
+  "id": "Explainer: the first part gives the mechanism whole, every later part unfolds one named line of it, a thing on that level is named by its role/1",
+  "source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:12240927%20AND%20SRC:MED&resultType=core&format=json",
+  "quote": "or--only in Experiment 3--training after the narrated animation (post-training group).",
+  "note": "a JSON record: the quote stands in a string of the record, read with its markup tags as spaces"
+ },
+ {
+  "id": "Explainer: the first part gives the mechanism whole, every later part unfolds one named line of it, a thing on that level is named by its role/2",
+  "source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:12240927%20AND%20SRC:MED&resultType=core&format=json",
+  "quote": "Students in the pre-training group performed better than did students in other groups on tests of transfer",
+  "note": "a JSON record: the quote stands in a string of the record, read with its markup tags as spaces"
+ },
+ {
+  "id": "Explainer: the first part gives the mechanism whole, every later part unfolds one named line of it, a thing on that level is named by its role/3",
+  "source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:12240927%20AND%20SRC:MED&resultType=core&format=json",
+  "quote": "tests of transfer (in all 3 experiments) and retention (in Experiments 1 and 2).",
+  "note": "a JSON record: the quote stands in a string of the record, read with its markup tags as spaces"
+ },
+ {
+  "id": "Explainer: the first part gives the mechanism whole, every later part unfolds one named line of it, a thing on that level is named by its role/4",
+  "source": "https://eric.ed.gov/?id=EJ229165",
+  "quote": "Subjects read a text concerning a new computer programing language, with an advance organizer given either"
+ },
+ {
+  "id": "Explainer: the first part gives the mechanism whole, every later part unfolds one named line of it, a thing on that level is named by its role/5",
+  "source": "https://eric.ed.gov/?id=EJ229165",
+  "quote": "before or after reading. On a recall test, there were different patterns of performance."
+ },
+ {
+  "id": "Explainer: the first part gives the mechanism whole, every later part unfolds one named line of it, a thing on that level is named by its role/6",
+  "source": "https://eric.ed.gov/?id=EJ229165",
+  "quote": "Results suggested that the locus of the effect was at encoding rather than retrieval."
+ },
+ {
+  "id": "Explainer: the first part gives the mechanism whole, every later part unfolds one named line of it, a thing on that level is named by its role/7",
+  "source": "https://eric.ed.gov/?id=EJ233231",
+  "quote": "One hundred thirty-five studies of the facilitative effect of advance organizers"
+ },
+ {
+  "id": "Explainer: the first part gives the mechanism whole, every later part unfolds one named line of it, a thing on that level is named by its role/8",
+  "source": "https://eric.ed.gov/?id=EJ233231",
+  "quote": "Advance organizers were shown to have a small facilitative effect."
+ },
+ {
+  "id": "Explainer: the first part gives the mechanism whole, every later part unfolds one named line of it, a thing on that level is named by its role/9",
+  "source": "https://arxiv.org/abs/2504.19225",
+  "quote": "Annotating source code with algorithm labels significantly improves program comprehension (p=0.040)"
+ },
+ {
+  "id": "Explainer: the first part gives the mechanism whole, every later part unfolds one named line of it, a thing on that level is named by its role/10",
+  "source": "https://arxiv.org/abs/2504.19225",
+  "quote": "but does not affect completion times (p=0.991)"
+ },
+ {
+  "id": "Explainer: the first part gives the mechanism whole, every later part unfolds one named line of it, a thing on that level is named by its role/11",
+  "source": "https://arxiv.org/abs/2504.19225",
+  "quote": "We conducted a controlled experiment with 56 participants"
+ },
+ {
+  "id": "Explainer: the first part gives the mechanism whole, every later part unfolds one named line of it, a thing on that level is named by its role/12",
+  "source": "https://eric.ed.gov/?id=EJ1496202",
+  "quote": "For instructor-provided graphic organizers, effect sizes were g + = 0.70 for memory (p < 0.001, k = 37)"
+ },
+ {
+  "id": "Explainer: the first part gives the mechanism whole, every later part unfolds one named line of it, a thing on that level is named by its role/13",
+  "source": "https://eric.ed.gov/?id=EJ1496202",
+  "quote": "whereas no significant moderators emerged"
+ },
+ {
+  "id": "Explainer: the first part gives the mechanism whole, every later part unfolds one named line of it, a thing on that level is named by its role/14",
+  "source": "https://eric.ed.gov/?id=EJ1496202",
+  "quote": "suggests that reported effect sizes may be inflated"
+ },
+ {
+  "id": "Explainer: the first part gives the mechanism whole, every later part unfolds one named line of it, a thing on that level is named by its role/15",
+  "source": "https://zenodo.org/records/14574085",
+  "quote": "They try to avoid comprehension whenever possible"
+ },
+ {
+  "id": "Explainer: the first part gives the mechanism whole, every later part unfolds one named line of it, a thing on that level is named by its role/16",
+  "source": "https://sigdoc.acm.org/cdq/how-developers-use-api-documentation-an-observation-study/",
+  "quote": "On average, participants used API documentation about 49% of the time (Min: 31%, Max: 68%)."
+ },
+ {
+  "id": "Explainer: the first part gives the mechanism whole, every later part unfolds one named line of it, a thing on that level is named by its role/17",
+  "source": "https://sigdoc.acm.org/cdq/how-developers-use-api-documentation-an-observation-study/",
+  "quote": "During the test, participants had access only to the developer portal."
+ },
+ {
+  "id": "Explainer: the first part gives the mechanism whole, every later part unfolds one named line of it, a thing on that level is named by its role/18",
+  "source": "https://sigdoc.acm.org/cdq/how-developers-use-api-documentation-an-observation-study/",
+  "quote": "whereas values for the other 6 participants range from 12.5% to 42.9%"
+ },
+ {
+  "id": "Explainer: the table of questions and the routes after the first part, a part per named questions, the table of terms last, reference tables without voice/1",
+  "source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:12240927%20AND%20SRC:MED&resultType=core&format=json",
+  "quote": "The pre-training described or depicted the possible states of each part.",
+  "note": "a JSON record: the quote stands in a string of the record, read with its markup tags as spaces"
+ },
+ {
+  "id": "Explainer: the table of questions and the routes after the first part, a part per named questions, the table of terms last, reference tables without voice/2",
+  "source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:12240927%20AND%20SRC:MED&resultType=core&format=json",
+  "quote": "Students in the pre-training group performed better than did students in other groups on tests of transfer",
+  "note": "a JSON record: the quote stands in a string of the record, read with its markup tags as spaces"
+ },
+ {
+  "id": "Explainer: the table of questions and the routes after the first part, a part per named questions, the table of terms last, reference tables without voice/3",
+  "source": "https://eric.ed.gov/?id=EJ918738",
+  "quote": "Seventy-eight undergraduate EFL learners read and summarized seven texts and completed a vocabulary assessment."
+ },
+ {
+  "id": "Explainer: the table of questions and the routes after the first part, a part per named questions, the table of terms last, reference tables without voice/4",
+  "source": "https://eric.ed.gov/?id=EJ918738",
+  "quote": "The best performance was observed in the condition where glosses were placed after the glossed word."
+ },
+ {
+  "id": "Explainer: the table of questions and the routes after the first part, a part per named questions, the table of terms last, reference tables without voice/5",
+  "source": "https://eric.ed.gov/?id=EJ918738",
+  "quote": "reading passages with hypermedia annotations significantly benefits passage comprehension and vocabulary"
+ },
+ {
+  "id": "Explainer: the table of questions and the routes after the first part, a part per named questions, the table of terms last, reference tables without voice/6",
+  "source": "https://eric.ed.gov/?id=EJ1117822",
+  "quote": "39 Persian-speaking L2 learners of English were divided into two experimental conditions"
+ },
+ {
+  "id": "Explainer: the table of questions and the routes after the first part, a part per named questions, the table of terms last, reference tables without voice/7",
+  "source": "https://eric.ed.gov/?id=EJ1117822",
+  "quote": "experienced lower levels of cognitive load due to the elimination of split-attention"
+ },
+ {
+  "id": "Explainer: the table of questions and the routes after the first part, a part per named questions, the table of terms last, reference tables without voice/8",
+  "source": "https://eric.ed.gov/?id=EJ1117822",
+  "quote": "performed better on the reading comprehension measures"
+ },
+ {
+  "id": "Explainer: the table of questions and the routes after the first part, a part per named questions, the table of terms last, reference tables without voice/9",
+  "source": "https://eric.ed.gov/?id=EJ1317918",
+  "quote": "pop-up window versus separate window"
+ },
+ {
+  "id": "Explainer: the table of questions and the routes after the first part, a part per named questions, the table of terms last, reference tables without voice/10",
+  "source": "https://eric.ed.gov/?id=EJ1317918",
+  "quote": "the effect of gloss location was less clear-cut"
+ },
+ {
+  "id": "Explainer: the table of questions and the routes after the first part, a part per named questions, the table of terms last, reference tables without voice/11",
+  "source": "https://eric.ed.gov/?id=EJ1135302",
+  "quote": "Teaching of word meanings supported comprehension of text containing the target words in almost all cases"
+ },
+ {
+  "id": "Explainer: the table of questions and the routes after the first part, a part per named questions, the table of terms last, reference tables without voice/12",
+  "source": "https://eric.ed.gov/?id=EJ1135302",
+  "quote": "Analyses of 36 studies that met criteria"
+ },
+ {
+  "id": "Explainer: the table of questions and the routes after the first part, a part per named questions, the table of terms last, reference tables without voice/13",
+  "source": "https://eric.ed.gov/?id=EJ1135302",
+  "quote": "very limited evidence that direct teaching of word meanings"
+ },
+ {
+  "id": "Explainer: the table of questions and the routes after the first part, a part per named questions, the table of terms last, reference tables without voice/14",
+  "source": "https://research.utwente.nl/en/publications/the-minimal-manual-is-less-really-more/",
+  "quote": "Sixty-four first-year Dutch university students were randomly assigned"
+ },
+ {
+  "id": "Explainer: the table of questions and the routes after the first part, a part per named questions, the table of terms last, reference tables without voice/15",
+  "source": "https://research.utwente.nl/en/publications/the-minimal-manual-is-less-really-more/",
+  "quote": "The results closely resembled those of the original study: minimalist users learned faster and better."
+ },
+ {
+  "id": "Explaining: the registry of an explanation always holds the newcomer's questions/1",
+  "source": "https://eric.ed.gov/?id=EJ782330",
+  "quote": "were more likely to view symbolic reasoning and mastery of equations as a necessary prerequisite"
+ },
+ {
+  "id": "Explaining: the registry of an explanation always holds the newcomer's questions/2",
+  "source": "https://eric.ed.gov/?id=EJ782330",
+  "quote": "is in contrast with students' actual performance patterns"
+ },
+ {
+  "id": "Explaining: the registry of an explanation always holds the newcomer's questions/3",
+  "source": "https://eric.ed.gov/?id=EJ782330",
+  "quote": "This study (N = 48)"
+ },
+ {
+  "id": "Explaining: the registry of an explanation always holds the newcomer's questions/4",
+  "source": "https://eric.ed.gov/?id=EJ441071",
+  "quote": "Involves asking writers to predict readers' problems with a text and providing them with reader responses."
+ },
+ {
+  "id": "Explaining: the registry of an explanation always holds the newcomer's questions/5",
+  "source": "https://eric.ed.gov/?id=EJ441071",
+  "quote": "Finds that writers taught with the reader-protocol method improved more than writers in control classes,"
+ },
+ {
+  "id": "Explaining: the registry of an explanation always holds the newcomer's questions/6",
+  "source": "https://eric.ed.gov/?id=EJ441071",
+  "quote": "and increased in their ability to diagnose and characterize problems"
+ },
+ {
+  "id": "Explaining: the registry of an explanation always holds the newcomer's questions/7",
+  "source": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0092406",
+  "quote": "we estimate the magnitude of the knowledge effect to be d = 0.20, less than one-half the original estimate"
+ },
+ {
+  "id": "Explaining: the registry of an explanation always holds the newcomer's questions/8",
+  "source": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0092406",
+  "quote": "across seven experiments with large samples (total n = 3074)"
+ },
+ {
+  "id": "Explaining: the registry of an explanation always holds the newcomer's questions/9",
+  "source": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0092406",
+  "quote": "our findings constitute a failure to replicate the original result"
+ },
+ {
+  "id": "Explaining: the registry of an explanation always holds the newcomer's questions/10",
+  "source": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0092406",
+  "quote": "suggest the effects of knowledge and plausibility to be real but small"
+ },
+ {
+  "id": "Explaining: the registry of an explanation always holds the newcomer's questions/11",
+  "source": "https://arxiv.org/abs/2110.08445",
+  "quote": "We find that different social groups, such as experts and novices, consistently ask different types of questions."
+ },
+ {
+  "id": "Explaining: a word has one meaning and one owner, a family of quantities is named by what each is made of, a signal's value by the event that sets it/1",
+  "source": "https://conf.researchr.org/details/icpc-2018/icpc-2018-Technical-Research/14/Descriptive-Compound-Identifier-Names-Improve-Source-Code-Comprehension",
+  "quote": "In a web-based study 88 Java developers were asked to locate a semantic defect in source code snippets."
+ },
+ {
+  "id": "Explaining: a word has one meaning and one owner, a family of quantities is named by what each is made of, a signal's value by the event that sets it/2",
+  "source": "https://conf.researchr.org/details/icpc-2018/icpc-2018-Technical-Research/14/Descriptive-Compound-Identifier-Names-Improve-Source-Code-Comprehension",
+  "quote": "finding the semantic defect about 14% faster than with shorter but less descriptive identifier names."
+ },
+ {
+  "id": "Explaining: a word has one meaning and one owner, a family of quantities is named by what each is made of, a signal's value by the event that sets it/3",
+  "source": "https://conf.researchr.org/details/icpc-2018/icpc-2018-Technical-Research/14/Descriptive-Compound-Identifier-Names-Improve-Source-Code-Comprehension",
+  "quote": "the style of identifier names had a clear impact on program comprehension for more experienced developers"
+ },
+ {
+  "id": "Explaining: a word has one meaning and one owner, a family of quantities is named by what each is made of, a signal's value by the event that sets it/4",
+  "source": "https://digital.gov/guides/plain-language/principles/short-simple",
+  "quote": "You can confuse your audience if you use different terms for the same concept or object."
+ },
+ {
+  "id": "Explaining: a word has one meaning and one owner, a family of quantities is named by what each is made of, a signal's value by the event that sets it/5",
+  "source": "https://digital.gov/guides/plain-language/principles/short-simple",
+  "quote": "continue to use this term throughout the material"
+ },
+ {
+  "id": "Explaining: a condition and a calculation as a formula beside their sentence, the four things a number says, the condition apart from how it is noticed/1",
+  "source": "https://arxiv.org/abs/2109.02063",
+  "quote": "We conduct a descriptive survey with 104 RE practitioners and ask how they interpret 12 different conditional clauses."
+ },
+ {
+  "id": "Explaining: a condition and a calculation as a formula beside their sentence, the four things a number says, the condition apart from how it is noticed/2",
+  "source": "https://arxiv.org/abs/2109.02063",
+  "quote": "We found that practitioners disagree on whether an antecedent is only sufficient or also necessary for the consequent."
+ },
+ {
+  "id": "Explaining: a condition and a calculation as a formula beside their sentence, the four things a number says, the condition apart from how it is noticed/3",
+  "source": "https://arxiv.org/abs/2109.02063",
+  "quote": "Interestingly, the disagreement persists even when the system behavior is known to the practitioners."
+ },
+ {
+  "id": "Explaining: a condition and a calculation as a formula beside their sentence, the four things a number says, the condition apart from how it is noticed/4",
+  "source": "https://arxiv.org/html/2109.02063v1",
+  "quote": "We use the chi-squared test of independence"
+ },
+ {
+  "id": "Explaining: a condition and a calculation as a formula beside their sentence, the four things a number says, the condition apart from how it is noticed/5",
+  "source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:10.1002/14651858.CD006776.pub2&resultType=core&format=json",
+  "quote": "We included 35 studies reporting 83 comparisons.",
+  "note": "a JSON record: the quote stands in a string of the record, read with its markup tags as spaces"
+ },
+ {
+  "id": "Explaining: a condition and a calculation as a formula beside their sentence, the four things a number says, the condition apart from how it is noticed/6",
+  "source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:10.1002/14651858.CD006776.pub2&resultType=core&format=json",
+  "quote": "understood natural frequencies better than probabilities",
+  "note": "a JSON record: the quote stands in a string of the record, read with its markup tags as spaces"
+ },
+ {
+  "id": "Explaining: a condition and a calculation as a formula beside their sentence, the four things a number says, the condition apart from how it is noticed/7",
+  "source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:10.1002/14651858.CD006776.pub2&resultType=core&format=json",
+  "quote": "Compared with ARR, RRR had little or no difference in understanding",
+  "note": "a JSON record: the quote stands in a string of the record, read with its markup tags as spaces"
+ },
+ {
+  "id": "Explaining: a condition and a calculation as a formula beside their sentence, the four things a number says, the condition apart from how it is noticed/8",
+  "source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:10.1111/j.1539-6924.2005.00608.x&resultType=core&format=json",
+  "quote": "Only in New York did a majority of them supply the standard meteorological interpretation",
+  "note": "a JSON record: the quote stands in a string of the record, read with its markup tags as spaces"
+ },
+ {
+  "id": "Explaining: a condition and a calculation as a formula beside their sentence, the four things a number says, the condition apart from how it is noticed/9",
+  "source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:10.1111/j.1539-6924.2005.00608.x&resultType=core&format=json",
+  "quote": "To improve risk communication with the public, experts need to specify the reference class",
+  "note": "a JSON record: the quote stands in a string of the record, read with its markup tags as spaces"
+ },
+ {
+  "id": "Explaining: a condition and a calculation as a formula beside their sentence, the four things a number says, the condition apart from how it is noticed/10",
+  "source": "https://eric.ed.gov/?id=EJ683032",
+  "quote": "students were more successful solving simple algebra story problems than solving mathematically equivalent equations"
+ },
+ {
+  "id": "Explaining: a condition and a calculation as a formula beside their sentence, the four things a number says, the condition apart from how it is noticed/11",
+  "source": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC6944266/fullTextXML",
+  "quote": "The formalizations in PSP were overall more correct.",
+  "note": "an XML record: the quote stands in the record's text, read with its tags as spaces"
+ },
+ {
+  "id": "Explaining: a condition and a calculation as a formula beside their sentence, the four things a number says, the condition apart from how it is noticed/12",
+  "source": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC6944266/fullTextXML",
+  "quote": "the pattern-based approach provides a higher level of understandability than EPL and LTL",
+  "note": "an XML record: the quote stands in the record's text, read with its tags as spaces"
+ },
+ {
+  "id": "Explaining: why this way, against the simpler scheme the reader would build, on one case with its numbers/1",
+  "source": "https://arxiv.org/html/2410.04253",
+  "quote": "learned statistically significantly more than participants in the unilateral condition"
+ },
+ {
+  "id": "Explaining: why this way, against the simpler scheme the reader would build, on one case with its numbers/2",
+  "source": "https://arxiv.org/html/2410.04253",
+  "quote": "significantly different learning compared to the contrastive after condition"
+ },
+ {
+  "id": "Explaining: why this way, against the simpler scheme the reader would build, on one case with its numbers/3",
+  "source": "https://arxiv.org/html/2410.04253",
+  "quote": "and unilateral explanations was not significant"
+ },
+ {
+  "id": "Explaining: why this way, against the simpler scheme the reader would build, on one case with its numbers/4",
+  "source": "https://eric.ed.gov/?id=EJ1334754",
+  "quote": "Analysis of 44 independent comparisons (n = 3,869) showed that refutation text"
+ },
+ {
+  "id": "Explaining: why this way, against the simpler scheme the reader would build, on one case with its numbers/5",
+  "source": "https://eric.ed.gov/?id=EJ1334754",
+  "quote": "is associated with a positive, moderate effect (g = 0.41, p < 0.001)"
+ },
+ {
+  "id": "Explaining: why this way, against the simpler scheme the reader would build, on one case with its numbers/6",
+  "source": "https://eric.ed.gov/?id=EJ1308129",
+  "quote": "we report evidence from a meta-analysis of 53 studies with 166 comparisons"
+ },
+ {
+  "id": "Explaining: why this way, against the simpler scheme the reader would build, on one case with its numbers/7",
+  "source": "https://eric.ed.gov/?id=EJ1308129",
+  "quote": "Hedge's g 0.36 [95% confidence interval 0.20; 0.51]"
+ },
+ {
+  "id": "Explaining: why this way, against the simpler scheme the reader would build, on one case with its numbers/8",
+  "source": "https://eric.ed.gov/?id=EJ1308129",
+  "quote": "effect sizes favored I-PS"
+ },
+ {
+  "id": "Explaining: why this way, against the simpler scheme the reader would build, on one case with its numbers/9",
+  "source": "https://www.leibniz-ipn.de/en/research/publications/a-framework-for-learning-from-erroneous-examples-and-meta-analysis-of-empirical-research",
+  "quote": "we synthesized findings from 42 papers (177 effect sizes)"
+ },
+ {
+  "id": "Explaining: why this way, against the simpler scheme the reader would build, on one case with its numbers/10",
+  "source": "https://www.leibniz-ipn.de/en/research/publications/a-framework-for-learning-from-erroneous-examples-and-meta-analysis-of-empirical-research",
+  "quote": "statistically significant but weak effect of erroneous examples on learning (g = .136)"
+ },
+ {
+  "id": "Explaining: why this way, against the simpler scheme the reader would build, on one case with its numbers/11",
+  "source": "https://www.leibniz-ipn.de/en/research/publications/a-framework-for-learning-from-erroneous-examples-and-meta-analysis-of-empirical-research",
+  "quote": "statistically significant moderating effect of the design of error-explanation activities"
+ },
+ {
+  "id": "Explaining: why this way, against the simpler scheme the reader would build, on one case with its numbers/12",
+  "source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=TITLE%3A%22Advantage%20of%20Abstract%20Examples%20in%20Learning%20Math%22&resultType=core&format=json",
+  "quote": "participants who trained with improved concrete examples performed as well as, or better than,",
+  "note": "a JSON record: the quote stands in a string of the record, read with its markup tags as spaces"
+ },
+ {
+  "id": "Explaining: three kinds of block — pseudocode, a measured quantity split into its parts, one factor with it and without it/1",
+  "source": "https://eric.ed.gov/?id=EJ646442",
+  "quote": "Used a 2-phase, isolated-interacting elements learning approach in 4 experiments involving 22, 25, 18, and 18"
+ },
+ {
+  "id": "Explaining: three kinds of block — pseudocode, a measured quantity split into its parts, one factor with it and without it/2",
+  "source": "https://eric.ed.gov/?id=EJ646442",
+  "quote": "Results provide powerful evidence that for certain groups of learners, information is better learned"
+ },
+ {
+  "id": "Explaining: three kinds of block — pseudocode, a measured quantity split into its parts, one factor with it and without it/3",
+  "source": "https://api.semanticscholar.org/graph/v1/paper/DOI:10.1016/S0959-4752(01)00016-0?fields=title,abstract,venue,year,authors",
+  "quote": "The control group was simply presented with all the information for understanding",
+  "note": "a JSON record: the quote stands in a string of the record, read with its markup tags as spaces"
+ },
+ {
+  "id": "Explaining: three kinds of block — pseudocode, a measured quantity split into its parts, one factor with it and without it/4",
+  "source": "https://eric.ed.gov/?id=EJ880293",
+  "quote": "The results provided support for the predicted interaction with lower expertise students"
+ },
+ {
+  "id": "Explaining: three kinds of block — pseudocode, a measured quantity split into its parts, one factor with it and without it/5",
+  "source": "https://eric.ed.gov/?id=EJ880293",
+  "quote": "learned more from the interacting elements format."
+ },
+ {
+  "id": "Explaining: three kinds of block — pseudocode, a measured quantity split into its parts, one factor with it and without it/6",
+  "source": "https://eric.ed.gov/?id=EJ931895",
+  "quote": "a MOP condition (n = 28), a MEP condition (n = 26), and a control condition without model progression (n = 30)"
+ },
+ {
+  "id": "Explaining: three kinds of block — pseudocode, a measured quantity split into its parts, one factor with it and without it/7",
+  "source": "https://eric.ed.gov/?id=EJ931895",
+  "quote": "gradually expands the number of variables in the task"
+ },
+ {
+  "id": "Explaining: three kinds of block — pseudocode, a measured quantity split into its parts, one factor with it and without it/8",
+  "source": "https://eric.ed.gov/?id=EJ931895",
+  "quote": "confirmed the predicted superiority of the MOP condition"
+ },
+ {
+  "id": "Explaining: three kinds of block — pseudocode, a measured quantity split into its parts, one factor with it and without it/9",
+  "source": "https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2016.02026/full",
+  "quote": "was more effective than the tree diagram"
+ },
+ {
+  "id": "Explaining: three kinds of block — pseudocode, a measured quantity split into its parts, one factor with it and without it/10",
+  "source": "https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2016.02026/full",
+  "quote": "with a large effect size of d = 0.84"
+ },
+ {
+  "id": "Explaining: three kinds of block — pseudocode, a measured quantity split into its parts, one factor with it and without it/11",
+  "source": "https://ar5iv.labs.arxiv.org/html/1909.06674",
+  "quote": "Pseudo-Code, and Hyper-parameters Specified are the least subjective variables which were significant."
+ },
+ {
+  "id": "Explaining: three kinds of block — pseudocode, a measured quantity split into its parts, one factor with it and without it/12",
+  "source": "https://ar5iv.labs.arxiv.org/html/1909.06674",
+  "quote": "but having “No” pseudo-code is also positively related with reproduction"
+ },
+ {
+  "id": "Explaining: three kinds of block — pseudocode, a measured quantity split into its parts, one factor with it and without it/13",
+  "source": "https://ar5iv.labs.arxiv.org/html/1909.06674",
+  "quote": "though simply including Pseudo-Code is not sufficient"
+ },
+ {
+  "id": "Explaining: three kinds of block — pseudocode, a measured quantity split into its parts, one factor with it and without it/14",
+  "source": "https://eric.ed.gov/?id=EJ1000186",
+  "quote": "Random effects analyses of the 336 tests revealed that case comparison activities"
+ },
+ {
+  "id": "Explaining: three kinds of block — pseudocode, a measured quantity split into its parts, one factor with it and without it/15",
+  "source": "https://eric.ed.gov/?id=EJ1000186",
+  "quote": "(d = 0.50), 95% CI [0.44, 0.56]"
+ },
+ {
+  "id": "Page: the builder checks the order of an explanation/1",
+  "source": "https://arxiv.org/html/2611.19549",
+  "quote": "enforcement during execution produced no oracle-detected violation in 104 paired runs"
+ },
+ {
+  "id": "Page: the builder checks the order of an explanation/2",
+  "source": "https://arxiv.org/html/2611.19549",
+  "quote": "After Holm correction over nine contrasts no single test was significant"
+ },
+ {
+  "id": "Page: the builder checks the order of an explanation/3",
+  "source": "https://arxiv.org/html/2607.26819v1",
+  "quote": "the focal policy file was opened in only 12 of 347 non-anchor Native runs"
+ },
+ {
+  "id": "Page: the builder checks the order of an explanation/4",
+  "source": "https://arxiv.org/html/2607.26819v1",
+  "quote": "Native Verify ranges from 4% (GPT-5.3-Codex) to 92% (GPT-5.5)."
+ },
+ {
+  "id": "Page: the builder checks the order of an explanation/5",
+  "source": "https://arxiv.org/html/2607.26819v1",
+  "quote": "Verify barely moves from its unaided baseline"
+ },
+ {
+  "id": "Page: the builder checks the order of an explanation/6",
+  "source": "https://github.com/B0yko/obey/blob/main/study/REPORT.md",
+  "quote": "no rule was broken in any condition that had the rule"
+ },
+ {
+  "id": "Page: the builder checks the order of an explanation/7",
+  "source": "https://github.com/B0yko/obey/blob/main/study/REPORT.md",
+  "quote": "Compliance is probe compliance: compliance on tempting tasks, not in natural use."
+ },
+ {
+  "id": "Page: the builder checks the order of an explanation/8",
+  "source": "https://github.com/B0yko/obey",
+  "quote": "+65 points, p < 0.001, stratified permutation test"
+ },
+ {
+  "id": "Page: the builder checks the order of an explanation/9",
+  "source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=TITLE:%22Efficacy%20and%20unintended%20consequences%20of%20hard-stop%20alerts%22&resultType=core&format=json",
+  "quote": "Hard stops were superior to soft stops in 3 of 4 studies.",
+  "note": "a JSON record: the quote stands in a string of the record, read with its markup tags as spaces"
+ },
+ {
+  "id": "Page: the builder checks the order of an explanation/10",
+  "source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=TITLE:%22Efficacy%20and%20unintended%20consequences%20of%20hard-stop%20alerts%22&resultType=core&format=json",
+  "quote": "Seventy-nine percent showed improvement in health outcomes and 88% in process outcomes.",
+  "note": "a JSON record: the quote stands in a string of the record, read with its markup tags as spaces"
+ },
+ {
+  "id": "Page: the builder checks the order of an explanation/11",
+  "source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=TITLE:%22Efficacy%20and%20unintended%20consequences%20of%20hard-stop%20alerts%22&resultType=core&format=json",
+  "quote": "avoidance of hard-stopped workflow, increased alert frequency, and delay to care",
+  "note": "a JSON record: the quote stands in a string of the record, read with its markup tags as spaces"
+ },
+ {
+  "id": "Page: the builder checks the order of an explanation/12",
+  "source": "https://arxiv.org/abs/1912.02179",
+  "quote": "the commit history of 54 projects (with 112,266 commits in total)"
+ },
+ {
+  "id": "Page: the builder checks the order of an explanation/13",
+  "source": "https://arxiv.org/abs/1912.02179",
+  "quote": "small and not statistically significant"
+ },
+ {
+  "id": "Page: the builder checks the order of an explanation/14",
+  "source": "https://arxiv.org/abs/1912.02179",
+  "quote": "we see a positive effect if PMD is present in the build configuration"
+ },
+ {
+  "id": "Page: the builder checks the order of an explanation/15",
+  "source": "https://aclanthology.org/2025.ranlp-1.124/",
+  "quote": "Base models often benefit from constrained decoding, producing more precise outputs"
+ },
+ {
+  "id": "Page: the builder checks the order of an explanation/16",
+  "source": "https://aclanthology.org/2025.ranlp-1.124/",
+  "quote": "instruction-tuned models frequently suffer performance degradation on generation tasks"
+ },
+ {
+  "id": "Evidence: a comparative measurement with its scenario, its command and the spread of its runs/1",
+  "source": "https://ar5iv.labs.arxiv.org/html/2103.03098",
+  "quote": "The single point comparison leads to the worst decision by far."
+ },
+ {
+  "id": "Evidence: a comparative measurement with its scenario, its command and the spread of its runs/2",
+  "source": "https://ar5iv.labs.arxiv.org/html/2103.03098",
+  "quote": "Using the probability of outperforming leads to better balanced decisions"
+ },
+ {
+  "id": "Evidence: a comparative measurement with its scenario, its command and the spread of its runs/3",
+  "source": "https://ar5iv.labs.arxiv.org/html/2103.03098",
+  "quote": "Randomize as many sources of variations as possible"
+ },
+ {
+  "id": "Evidence: a comparative measurement with its scenario, its command and the spread of its runs/4",
+  "source": "https://ar5iv.labs.arxiv.org/html/1909.06674",
+  "quote": "of which 162 (63.5%) were successfully replicated and 93 were not."
+ },
+ {
+  "id": "Evidence: a comparative measurement with its scenario, its command and the spread of its runs/5",
+  "source": "https://ar5iv.labs.arxiv.org/html/1909.06674",
+  "quote": "has no significant relationship with the paper’s independent reproducibility"
+ },
+ {
+  "id": "Evidence: a comparative measurement with its scenario, its command and the spread of its runs/6",
+  "source": "https://arxiv.org/abs/1909.06674",
+  "quote": "For each paper, we did not look at the authors code, if released,"
+ },
+ {
+  "id": "Evidence: a comparative measurement with its scenario, its command and the spread of its runs/7",
+  "source": "https://raw.githubusercontent.com/SIGPLAN/empirical-evaluation/master/checklist/checklist.yml",
+  "quote": "Experiments evaluating an idea need to be described in sufficient detail to be repeatable."
+ },
+ {
+  "id": "Evidence: a comparative measurement with its scenario, its command and the spread of its runs/8",
+  "source": "https://raw.githubusercontent.com/SIGPLAN/empirical-evaluation/master/checklist/checklist.yml",
+  "quote": "Failure to do so risks treating noise as signal."
+ },
+ {
+  "id": "Evidence: a comparative measurement with its scenario, its command and the spread of its runs/9",
+  "source": "https://raw.githubusercontent.com/SIGPLAN/empirical-evaluation/master/checklist/checklist.yml",
+  "quote": "Reporting just a measure of central tendency (e.g., a mean or median) can mislead the reader,"
+ },
+ {
+  "id": "Evidence: a comparative measurement with its scenario, its command and the spread of its runs/10",
+  "source": "https://www.spec.org/cpu2017/Docs/runrules.html",
+  "quote": "configuration file and any supplemental files needed to build and run the tests"
+ },
+ {
+  "id": "Evidence: a comparative measurement with its scenario, its command and the spread of its runs/11",
+  "source": "https://www.spec.org/cpu2017/Docs/runrules.html",
+  "quote": "with one user invocation of runcpu"
+ },
+ {
+  "id": "Evidence: a comparative measurement with its scenario, its command and the spread of its runs/12",
+  "source": "https://www.spec.org/cpu2017/Docs/runrules.html",
+  "quote": "three times, in which case the tools use the median time"
+ },
+ {
+  "id": "Evidence: a comparative measurement with its scenario, its command and the spread of its runs/13",
+  "source": "https://www.rfc-editor.org/rfc/rfc2544.html",
+  "quote": "the exact DUT configuration"
+ },
+ {
+  "id": "Evidence: a comparative measurement with its scenario, its command and the spread of its runs/14",
+  "source": "https://www.rfc-editor.org/rfc/rfc2544.html",
+  "quote": "exact filters configuration command lines used"
+ },
+ {
+  "id": "Evidence: a comparative measurement with its scenario, its command and the spread of its runs/15",
+  "source": "https://www.rfc-editor.org/rfc/rfc2544.html",
+  "quote": "MUST be repeated at least 20 times"
+ },
+ {
+  "id": "Evidence: a comparative measurement with its scenario, its command and the spread of its runs/16",
+  "source": "https://www.rfc-editor.org/rfc/rfc2544.html",
+  "quote": "The standard deviation for each measurement MAY also be reported."
+ },
+ {
+  "id": "Evidence: a comparative measurement with its scenario, its command and the spread of its runs/17",
+  "source": "https://raw.githubusercontent.com/acmsigsoft/EmpiricalStandards/master/docs/standards/Benchmarking.md",
+  "quote": "in sufficient detail to support independent replication"
+ },
+ {
+  "id": "Evidence: a comparative measurement with its scenario, its command and the spread of its runs/18",
+  "source": "https://raw.githubusercontent.com/acmsigsoft/EmpiricalStandards/master/docs/standards/Benchmarking.md",
+  "quote": "sufficient experiment repetitions and execution duration"
+ },
+ {
+  "id": "Evidence: a comparative measurement with its scenario, its command and the spread of its runs/19",
+  "source": "https://raw.githubusercontent.com/acmsigsoft/EmpiricalStandards/master/docs/standards/Benchmarking.md",
+  "quote": "datasets, analysis scripts"
+ },
+ {
+  "id": "Evidence: a comparative measurement with its scenario, its command and the spread of its runs/20",
+  "source": "https://sigir.org/general-information/acm-sigir-artifact-badging/",
+  "quote": "documented, consistent, complete, exercisable"
+ },
+ {
+  "id": "Evidence: a comparative measurement with its scenario, its command and the spread of its runs/21",
+  "source": "https://sigir.org/general-information/acm-sigir-artifact-badging/",
+  "quote": "obtained in a subsequent study by a person or team other than the authors"
+ },
+ {
+  "id": "Evidence: a comparative measurement with its scenario, its command and the spread of its runs/22",
+  "source": "https://sigir.org/general-information/acm-sigir-artifact-badging/",
+  "quote": "Execute the provided code on the datasets described in the paper"
+ },
+ {
+  "id": "Evidence: a comparative measurement with its scenario, its command and the spread of its runs/23",
+  "source": "https://sigir.org/general-information/acm-sigir-artifact-badging/",
+  "quote": "If the paper includes timings, an additional script should be included in the submission."
+ },
+ {
+  "id": "Evidence: a comparative measurement with its scenario, its command and the spread of its runs/24",
+  "source": "https://sigir.org/general-information/acm-sigir-artifact-badging/",
+  "quote": "Note that it is not expected that the timings in the paper will match"
+ },
+ {
+  "id": "Explaining: the first part of an explanation is read by a person of the team and retold cold before the rest is written/1",
+  "source": "https://api.crossref.org/works/10.1177/1050651905284401",
+  "quote": "The findings show that the plus-minus method does not necessarily lead to a decrease in the number of problems",
+  "note": "a JSON record: the quote stands in a string of the record, read with its markup tags as spaces"
+ },
+ {
+  "id": "Explaining: the first part of an explanation is read by a person of the team and retold cold before the rest is written/2",
+  "source": "https://api.crossref.org/works/10.1177/1050651905284401",
+  "quote": "But the types of problems readers find are significantly different.",
+  "note": "a JSON record: the quote stands in a string of the record, read with its markup tags as spaces"
+ },
+ {
+  "id": "Explaining: the first part of an explanation is read by a person of the team and retold cold before the rest is written/3",
+  "source": "https://api.crossref.org/works/10.1177/1050651905284401",
+  "quote": "after the brochure was revised, it had fewer clarity and structural problems",
+  "note": "a JSON record: the quote stands in a string of the record, read with its markup tags as spaces"
+ },
+ {
+  "id": "Explaining: the first part of an explanation is read by a person of the team and retold cold before the rest is written/4",
+  "source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:14587545%20AND%20SRC:MED&resultType=core&format=json",
+  "quote": "Some of the randomly selected sets of 5 participants found 99% of the problems; other sets found only 55%.",
+  "note": "a JSON record: the quote stands in a string of the record, read with its markup tags as spaces"
+ },
+ {
+  "id": "Explaining: the first part of an explanation is read by a person of the team and retold cold before the rest is written/5",
+  "source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:14587545%20AND%20SRC:MED&resultType=core&format=json",
+  "quote": "With 10 users, the lowest percentage of problems revealed by any one set was increased to 80%, and with 20 users, to 95%.",
+  "note": "a JSON record: the quote stands in a string of the record, read with its markup tags as spaces"
+ },
+ {
+  "id": "Explaining: the first part of an explanation is read by a person of the team and retold cold before the rest is written/6",
+  "source": "https://api.crossref.org/works/10.1177/0741088392009002001",
+  "quote": "Writers in five experimental classes critiqued a set of ten poorly written instructional texts",
+  "note": "a JSON record: the quote stands in a string of the record, read with its markup tags as spaces"
+ },
+ {
+  "id": "Explaining: the first part of an explanation is read by a person of the team and retold cold before the rest is written/7",
+  "source": "https://api.crossref.org/works/10.1177/0741088392009002001",
+  "quote": "Writers taught with the reader-protocol teaching method improved significantly more than did writers in control classes",
+  "note": "a JSON record: the quote stands in a string of the record, read with its markup tags as spaces"
+ },
+ {
+  "id": "Explaining: the first part of an explanation is read by a person of the team and retold cold before the rest is written/8",
+  "source": "https://arxiv.org/html/1609.04886",
+  "quote": "We found no evidence for the delayed issue effect"
+ },
+ {
+  "id": "Explaining: the first part of an explanation is read by a person of the team and retold cold before the rest is written/9",
+  "source": "https://arxiv.org/html/1609.04886",
+  "quote": "issues injected during coding and fixed in SysTest take 13 minutes (median) to resolve"
+ },
+ {
+  "id": "Explaining: the first part of an explanation is read by a person of the team and retold cold before the rest is written/10",
+  "source": "https://arxiv.org/html/1609.04886",
+  "quote": "DIE might be an historical relic that occurs intermittently only in certain kinds of projects"
+ },
+ {
+  "id": "Explaining: the first part of an explanation is read by a person of the team and retold cold before the rest is written/11",
+  "source": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC4144899/fullTextXML",
+  "quote": "In total 80 women were enrolled, with 40 per randomization arm.",
+  "note": "an XML record: the quote stands in the record's text, read with its tags as spaces"
+ },
+ {
+  "id": "Explaining: the first part of an explanation is read by a person of the team and retold cold before the rest is written/12",
+  "source": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC4144899/fullTextXML",
+  "quote": "Women in the IC-C arm had significantly higher overall comprehension scores than in the IC-O arm",
+  "note": "an XML record: the quote stands in the record's text, read with its tags as spaces"
+ },
+ {
+  "id": "Explaining: the first part of an explanation is read by a person of the team and retold cold before the rest is written/13",
+  "source": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC4144899/fullTextXML",
+  "quote": "We used t-tests for independent samples and 95% CIs to assess differences between arms",
+  "note": "an XML record: the quote stands in the record's text, read with its tags as spaces"
+ },
+ {
+  "id": "Explaining: the first part of an explanation is read by a person of the team and retold cold before the rest is written/14",
+  "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3062901/",
+  "quote": "Attempts to explain the various phenomena led to a decrease in self-rated understanding."
+ },
+ {
+  "id": "Explaining: the first part of an explanation is read by a person of the team and retold cold before the rest is written/15",
+  "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3062901/",
+  "quote": "Attempts to answer the diagnostic questions led to a further (non-significant) decrease."
+ },
+ {
+  "id": "Explaining: the first part of an explanation is read by a person of the team and retold cold before the rest is written/16",
+  "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3062901/",
+  "quote": "Sixteen graduate students from various departments at Yale University participated in the study."
+ },
+ {
+  "id": "Explaining: the first part of an explanation is read by a person of the team and retold cold before the rest is written/17",
+  "source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=TITLE:%22Political%20extremism%20is%20supported%20by%20an%20illusion%20of%20understanding%22&resultType=core&format=json",
+  "quote": "undermined the illusion of explanatory depth",
+  "note": "a JSON record: the quote stands in a string of the record, read with its markup tags as spaces"
+ },
+ {
+  "id": "Explaining: the first part of an explanation is read by a person of the team and retold cold before the rest is written/18",
+  "source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=TITLE:%22Political%20extremism%20is%20supported%20by%20an%20illusion%20of%20understanding%22&resultType=core&format=json",
+  "quote": "they did not occur when people were instead asked to enumerate reasons for their policy preferences",
+  "note": "a JSON record: the quote stands in a string of the record, read with its markup tags as spaces"
  }
 ]

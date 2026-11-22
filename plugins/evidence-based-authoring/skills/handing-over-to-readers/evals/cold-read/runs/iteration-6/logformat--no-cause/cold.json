@@ -1,0 +1,77 @@
+{
+  "answers": [
+    {
+      "question": "What was the task?",
+      "found": "yes",
+      "answer": "The task was to upgrade the logging library to version 2, because the old version is no longer supported.",
+      "quotes": [
+        "The task was to upgrade the logging library to version 2.",
+        "The old version is no longer supported."
+      ],
+      "missing": ""
+    },
+    {
+      "question": "How did it end: what is done and what is not?",
+      "found": "yes",
+      "answer": "The build now takes the new version and that is the whole change; the setting that keeps the old time form is not set, and the choice between keeping the old time form and the operations team changing its alert is left to the reader.",
+      "quotes": [
+        "The build now takes the new version, and that is the whole change.",
+        "You decide whether we keep the old time form on our side or the operations team changes its alert.",
+        "the setting that keeps the old form, not set: `fixtures/logformat/src/main/resources/logkit.properties:2` `logkit.timestamp=legacy`"
+      ],
+      "missing": ""
+    },
+    {
+      "question": "How does the thing that changed work?",
+      "found": "partly",
+      "answer": "The text says only that the new version moves logs to UTC and that one setting in our config keeps the old time form.",
+      "quotes": [
+        "+ logs move to UTC, which the new version intends",
+        "  1. Keep the old time form with one setting in our config"
+      ],
+      "missing": "What the old and the new time forms look like in a log line, how the operations team's alert uses the time form in its pattern, and what the setting changes in the library's output."
+    },
+    {
+      "question": "What is the problem, and what causes it?",
+      "found": "partly",
+      "answer": "The text implies that with the new time form the operations team's alert pattern no longer fires, so errors raise no alert until the pattern is changed to the new form.",
+      "quotes": [
+        "+ the alert keeps firing, and nobody else has to change anything",
+        "  2. The operations team changes its pattern to the new form",
+        "- until their change is live, errors raise no alert, so our release waits for them"
+      ],
+      "missing": "A direct statement that version 2 changes the time form of log lines and that the operations team's alert pattern matches only the old form, so with the upgrade alone errors would raise no alert."
+    },
+    {
+      "question": "What is not verified?",
+      "found": "yes",
+      "answer": "The author has not checked that the setting gives exactly the old log line.",
+      "quotes": [
+        "- our logs stay in local time; I have not checked that the setting gives exactly the old line"
+      ],
+      "missing": ""
+    },
+    {
+      "question": "What do I have to decide, and what does each option give and cost?",
+      "found": "yes",
+      "answer": "The reader decides between keeping the old time form with one config setting, which keeps the alert firing with no change by others but leaves logs in local time and is not checked to give the exact old line, and having the operations team change its pattern to the new form, which moves logs to UTC as the new version intends but leaves errors without an alert until their change is live, so the release waits for them; the author would take the first now and offer the second later.",
+      "quotes": [
+        "Keep the old time form, or ask the operations team to change the alert?",
+        "  1. Keep the old time form with one setting in our config",
+        "+ the alert keeps firing, and nobody else has to change anything",
+        "- our logs stay in local time; I have not checked that the setting gives exactly the old line",
+        "  2. The operations team changes its pattern to the new form",
+        "+ logs move to UTC, which the new version intends",
+        "- until their change is live, errors raise no alert, so our release waits for them",
+        "I would take the first now and offer them the second later."
+      ],
+      "missing": ""
+    }
+  ],
+  "unexplained": [
+    {
+      "term": "the old time form",
+      "quote": "You decide whether we keep the old time form on our side or the operations team changes its alert."
+    }
+  ]
+}

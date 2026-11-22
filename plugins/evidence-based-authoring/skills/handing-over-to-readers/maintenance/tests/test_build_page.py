@@ -32,6 +32,9 @@ def setUpModule():
 FIXTURES = Path(__file__).resolve().parent / "fixtures/page"
 REPORT = FIXTURES / "report.md"
 EXAMPLE_BODY = SKILL / "assets/page-body-example.html"
+# An explanation in its order: the opening, the first part with its pseudocode, a part with the table of questions,
+# a part with a factor table and a question, and the table of terms at the end.
+EXPLANATION = (FIXTURES / "explanation-body.html").read_text(encoding="utf-8")
 
 # Two parts: an opening of two sentences and a part of two sentences, the first of them its heading's phrase.
 CUES = [
@@ -302,6 +305,111 @@ class Links(Build):
         code, err, _ = self.build(BODY + '<p><a href="#look-heading">where to look</a></p>\n', report=None)
         self.assertEqual(1, code, err)
         self.assertIn('href="#look-heading" names no id of the page', err)
+
+
+def line_of(body, fragment):
+    """The number of the first line of `body` that holds `fragment`."""
+    return next(number for number, line in enumerate(body.splitlines(), 1) if fragment in line)
+
+
+def figure_of(body, kind):
+    """The figure of `body` whose class attribute starts with `kind`, as written, with the line break after it."""
+    start = body.index(f'<figure class="{kind}')
+    return body[start:body.index("</figure>\n", start) + len("</figure>\n")]
+
+
+class Explanation(Build):
+    FIRST_PART = "the first part of an explanation gives the mechanism whole, with its rule as pseudocode, one line a step"
+    NO_PSEUDOCODE = f'no <figure class="pseudo"> holding a <pre> of two or more lines stands in the first part: {FIRST_PART}'
+    NO_PART = f'the body has no <h2 data-part>, so the explanation has no first part to hold <figure class="pseudo">: {FIRST_PART}'
+    EARLY = "opens before the first part ends: the table of questions follows the first part, and the table of terms closes the page"
+    HEADING = 'data-part="The whole mechanism."'  # the heading of the fixture's first part
+    QUESTIONS, TERMS = '<figure class="questions">', '<figure class="terms">'
+
+    def refusals(self, body, *args):
+        """The lines of a refused build, each without the directory of the body."""
+        code, err, page = self.build(body, cues=None, report=None, args=args)
+        self.assertEqual((1, None), (code, page), err)
+        return [line.replace(f"{self.dir}{os.sep}", "", 1) for line in err.splitlines()]
+
+    def assertBuilt(self, body, *args):
+        code, err, page = self.build(body, cues=None, report=None, args=args)
+        self.assertEqual((0, ""), (code, err))
+        return page
+
+    def test_a_report_body_is_built_as_before(self):
+        self.assertBuilt(BODY + '<figure class="factor"><figcaption>A factor table marks no explanation.</figcaption></figure>\n')
+
+    def test_the_option_checks_a_report_body_as_an_explanation(self):
+        self.assertEqual([f"body.html:2: {self.NO_PSEUDOCODE}"], self.refusals(BODY, "--explanation"))
+
+    def test_each_marking_class_makes_a_body_an_explanation(self):
+        for kind in ("pseudo", "questions", "terms", "quiz"):
+            with self.subTest(kind):
+                lines = self.refusals(BODY + f'<figure class="{kind}"><figcaption>A block.</figcaption></figure>\n')
+                self.assertEqual(f"body.html:2: {self.NO_PSEUDOCODE}", lines[0])
+
+    def test_a_conforming_explanation_is_built_with_or_without_the_option(self):
+        page = self.assertBuilt(EXPLANATION)
+        self.assertIn('<figure class="pseudo">\n  <pre><span data-lit="2.2">on upload(picture): picture.version += 1</span>', page)
+        self.assertEqual(["Opening", "The whole mechanism", "Your questions", "A miss"], [part["title"] for part in self.data(page)["parts"]])
+        self.assertBuilt(EXPLANATION, "--explanation")
+
+    def test_the_opening_and_the_first_part_alone_are_built(self):
+        first = EXPLANATION[:EXPLANATION.index('<h2 id="h-questions"')].replace('<a href="#h-miss">render and store</a>', "render and store")
+        self.assertBuilt(first, "--explanation")
+
+    def test_a_pre_of_one_line_is_refused_at_the_heading_of_the_first_part(self):
+        for case, pre in (("one line", "<pre>on upload(picture): picture.version += 1</pre>"),
+                          ("one line among empty ones", "<pre>\non upload(picture): picture.version += 1\n   \n</pre>"),
+                          ("no pre", "<p>on upload(picture): picture.version += 1</p>")):
+            with self.subTest(case):
+                body = re.sub(r"<pre>.*?</pre>", lambda _: pre, EXPLANATION, flags=re.S)
+                self.assertEqual([f"body.html:{line_of(body, self.HEADING)}: {self.NO_PSEUDOCODE}"], self.refusals(body))
+
+    def test_the_pseudocode_counts_only_in_the_first_part(self):
+        pseudo = figure_of(EXPLANATION, "pseudo").replace('<a href="#h-miss">render and store</a>', "render and store")
+        without = EXPLANATION.replace(figure_of(EXPLANATION, "pseudo"), "")
+        cases = {"in the opening": without.replace('<h2 id="h-whole"', pseudo + '<h2 id="h-whole"'),
+                 "in the second part": without.replace(self.QUESTIONS, pseudo + self.QUESTIONS),
+                 "nowhere": without}
+        for case, body in cases.items():
+            with self.subTest(case):
+                self.assertEqual([f"body.html:{line_of(body, self.HEADING)}: {self.NO_PSEUDOCODE}"], self.refusals(body))
+
+    def test_a_table_of_questions_inside_the_first_part_is_refused_at_its_line(self):
+        questions = figure_of(EXPLANATION, "questions")
+        body = EXPLANATION.replace(questions, "").replace('<h2 id="h-questions"', questions + '<h2 id="h-questions"')
+        self.assertEqual([f"body.html:{line_of(body, self.QUESTIONS)}: {self.QUESTIONS} {self.EARLY}"], self.refusals(body))
+
+    def test_a_table_of_terms_in_the_opening_is_refused_at_its_line(self):
+        terms = figure_of(EXPLANATION, "terms")
+        body = EXPLANATION.replace(terms, "").replace('<h2 id="h-whole"', terms + '<h2 id="h-whole"')
+        self.assertEqual([f"body.html:{line_of(body, self.TERMS)}: {self.TERMS} {self.EARLY}"], self.refusals(body))
+
+    def test_in_a_body_of_one_part_a_table_anywhere_is_refused(self):
+        first = EXPLANATION[:EXPLANATION.index('<h2 id="h-questions"')].replace('<a href="#h-miss">render and store</a>', "render and store")
+        body = first + figure_of(EXPLANATION, "terms")
+        self.assertEqual([f"body.html:{line_of(body, self.TERMS)}: {self.TERMS} {self.EARLY}"], self.refusals(body))
+
+    def test_a_body_without_a_part_is_refused_at_line_1(self):
+        body = '<p data-say>The cache keeps thumbnails.</p>\n<figure class="pseudo"><pre>key = id + version\nserve cache[key]</pre></figure>\n'
+        self.assertEqual([f"body.html:1: {self.NO_PART}"], self.refusals(body))
+
+    def test_a_class_list_is_matched_by_token(self):
+        self.assertBuilt(EXPLANATION.replace('<figure class="pseudo">', '<figure class="wide pseudo">'))
+        self.assertBuilt(BODY + '<figure class="pseudocode quizzes"><figcaption>Neither token marks an explanation.</figcaption></figure>\n')
+
+    def test_a_table_of_questions_among_other_classes_is_refused_inside_the_first_part(self):
+        questions = figure_of(EXPLANATION, "questions")
+        early = EXPLANATION.replace(questions, "").replace('<h2 id="h-questions"', questions.replace('class="questions"', 'class="compact questions"')
+                                                           + '<h2 id="h-questions"')
+        self.assertEqual([f"body.html:{line_of(early, 'compact questions')}: {self.QUESTIONS} {self.EARLY}"], self.refusals(early))
+
+    def test_the_refusals_stand_among_the_other_violations_sorted_by_line(self):
+        lines = self.refusals(BODY + '<figure class="questions"><script></script></figure>\n')
+        self.assertEqual([f"body.html:2: {self.NO_PSEUDOCODE}", f"body.html:4: {self.QUESTIONS} {self.EARLY}",
+                          "body.html:4: a <script> element: the body carries no script, the page's script is the template's"], lines)
 
 
 class Story(Build):
@@ -612,6 +720,20 @@ class TextOut(Build):
         self.assertEqual(0, code, err)
         self.assertEqual(["body.html", "config", "look.json", "text.md"], sorted(path.name for path in self.dir.iterdir()))
 
+    def test_the_pseudocode_keeps_its_lines_between_fences_through_its_spans_and_links(self):
+        code, err, text = self.text(EXPLANATION)
+        self.assertEqual(0, code, err)
+        self.assertIn("## The whole mechanism\n"
+                      "Every upload raises the picture's version by one. The key joins the picture's number and its version. "
+                      "A request is served from the cache under that key, and a miss renders the thumbnail and stores it there.\n"
+                      "```\n"
+                      "on upload(picture): picture.version += 1\n"
+                      'key(picture) = "thumb:" + picture.id + ":v" + picture.version\n'
+                      "on request(picture): cache[key(picture)] or render and store\n"
+                      "```\n"
+                      "The rule of the cache, one step a line.\n"
+                      "## Your questions\n", text)
+
 
 class Parts(Build):
     def test_a_part_takes_the_title_of_its_data_part_heading(self):
@@ -838,6 +960,14 @@ class TheTemplate(unittest.TestCase):
 
     def test_a_hidden_element_stays_hidden_under_a_class_that_sets_display(self):
         self.assertIn("[hidden] { display: none !important; }", self.TEXT)
+
+    def test_the_blocks_of_an_explanation_take_the_rules_of_the_article(self):
+        """The pre of figure.pseudo is a pre of the article, one line a step that scrolls inside the figure; a span of it
+        lights as every span does; the cells of figure.factor take the colours of a verdict."""
+        pre = re.search(r"^\.sheet pre \{([^}]*)\}", self.TEXT, re.M).group(1)
+        self.assertEqual(("white-space: pre;", "overflow-x: auto;"), tuple(rule for rule in ("white-space: pre;", "overflow-x: auto;") if rule in pre))
+        self.assertRegex(self.TEXT, r"\.sheet :is\([^)]*\bspan\b[^)]*\)\.lit \{ background: var\(--lit\);")
+        self.assertIn("figure td.good { color: var(--keep); } figure td.bad { color: var(--drop); }", self.TEXT)
 
     def test_the_template_labels_the_part_list_control_the_marks_and_the_return_list_from_the_strings(self):
         for key in ("parts", "knew", "missed", "returnTo"):

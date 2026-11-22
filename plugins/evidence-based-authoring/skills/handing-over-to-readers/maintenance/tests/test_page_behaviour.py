@@ -37,15 +37,16 @@ OUTPUT = re.compile(r'<pre id="behaviour-out">(.*?)</pre>', re.S)
 # give a words field, so comments are the only answer it takes.
 OPENING = " ".join(c["text"] for c in ALL_CUES if c["paragraph"] == 1)
 FIELDLESS_BODY = f'<section class="look"></section>\n<h1>Fresh thumbnails</h1>\n<p data-say>{OPENING}</p>\n'
-# The example body with a question closing each of its parts "How it broke" and "What is left"; a question is not spoken,
-# so the story and its cues stay the example's.
+# The example body as an explanation: its first part "How it broke" holds the pseudocode, and a question closes each of
+# its parts "How it broke" and "What is left". Neither figure is spoken, so the story and its cues stay the example's.
+PSEUDOCODE = '<figure class="pseudo"><pre>key = "thumb:" + picture number + ":v" + version\nversion grows with every upload</pre></figure>\n'
 QUESTION = '<figure class="quiz"><details class="q"><summary>{}</summary><p class="answer">{}</p></details></figure>\n'
 FIRST_QUESTION = ("A picture is uploaded a third time. Under which key is its thumbnail stored?",
                   "Under the key with version three, because the version grows with every upload.")
 SECOND_QUESTION = ("Who still reads a thumbnail cached under the old key?",
                    "Nobody: the entry stays until it expires, up to a day after it was written.")
 QUIZ_BODY = (EXAMPLE_BODY.read_text(encoding="utf-8")
-             .replace('<h2 data-part="What is left.">', QUESTION.format(*FIRST_QUESTION) + '<h2 data-part="What is left.">')
+             .replace('<h2 data-part="What is left.">', PSEUDOCODE + QUESTION.format(*FIRST_QUESTION) + '<h2 data-part="What is left.">')
              .replace('<h2 data-part="What to decide.">', QUESTION.format(*SECOND_QUESTION) + '<h2 data-part="What to decide.">'))
 STEP_NAMES = ("two", "three", "four", "five", "six", "seven")
 

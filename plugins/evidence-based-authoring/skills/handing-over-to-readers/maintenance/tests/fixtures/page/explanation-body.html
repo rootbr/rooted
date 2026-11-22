@@ -1,0 +1,63 @@
+<h1>How the thumbnail cache finds a picture</h1>
+<p data-say>The thumbnail cache keeps one small picture per upload.
+  It finds a thumbnail by a key that names the picture and its version.
+  A new upload raises the version, so it never meets an old thumbnail.</p>
+
+<h2 id="h-whole" data-part="The whole mechanism.">The whole mechanism</h2>
+<p data-say>[@upload] Every upload raises the picture's version by one.
+  [@key] The key joins the picture's number and its version.
+  [@serve] A request is served from the cache under that key, and a miss renders the thumbnail and stores it there.</p>
+<figure class="pseudo">
+  <pre><span data-lit="@upload">on upload(picture): picture.version += 1</span>
+<span data-lit="@key">key(picture) = "thumb:" + picture.id + ":v" + picture.version</span>
+<span data-lit="@serve">on request(picture): cache[key(picture)] or <a href="#h-miss">render and store</a></span></pre>
+  <figcaption>The rule of the cache, one step a line.</figcaption>
+</figure>
+
+<h2 id="h-questions" data-part="Your questions.">Your questions</h2>
+<p data-say>The table gives each question its answer in one sentence and the part that answers it.</p>
+<figure class="questions">
+  <div class="figscroll">
+    <table>
+      <thead><tr><th>Question</th><th>Answer</th><th>Part</th></tr></thead>
+      <tbody>
+        <tr><td>Why does a re-uploaded picture get a fresh thumbnail?</td><td>Its version grows, so its key is new.</td><td><a href="#h-whole">The whole mechanism</a></td></tr>
+        <tr><td>What does the first request after an upload cost?</td><td>One render of the thumbnail.</td><td><a href="#h-miss">A miss</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <figcaption>Five minutes: the opening and the whole mechanism. Twenty: every part.</figcaption>
+</figure>
+
+<h2 id="h-miss" data-part="A miss.">A miss</h2>
+<p data-say>[@without] Without the version, a re-uploaded picture meets its old thumbnail.
+  [@with] With the version, its first request misses and renders a fresh one.</p>
+<figure class="factor wide">
+  <div class="figscroll">
+    <table>
+      <thead><tr><th>picture 42, uploaded twice</th><th data-lit="@without">without the version</th><th data-lit="@with">with the version</th></tr></thead>
+      <tbody>
+        <tr><td>the key of upload 2</td><td><code>thumb:42</code></td><td><code>thumb:42:v2</code></td></tr>
+        <tr><td>what the reader sees</td><td class="bad" data-lit="@without">the old thumbnail</td><td class="good" data-lit="@with">a fresh thumbnail</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <figcaption>One factor, the version in the key, without it and with it.</figcaption>
+</figure>
+<figure class="quiz">
+  <details class="q">
+    <summary>A picture is uploaded a third time. Which key does its first request miss?</summary>
+    <p class="answer">The key with version three, because every upload raises the version by one.</p>
+  </details>
+</figure>
+<figure class="terms">
+  <div class="figscroll">
+    <table>
+      <thead><tr><th>On the page</th><th>In the code</th><th>In the literature</th></tr></thead>
+      <tbody>
+        <tr><td>version</td><td><code>picture.version</code></td><td>generation number</td></tr>
+        <tr><td>key</td><td><code>key(picture)</code></td><td>cache key</td></tr>
+      </tbody>
+    </table>
+  </div>
+</figure>

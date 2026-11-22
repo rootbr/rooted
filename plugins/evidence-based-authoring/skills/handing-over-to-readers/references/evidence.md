@@ -8,6 +8,7 @@ Evidence for an agent's claim is a result produced outside the agent's write zon
 - An exit code taken by the harness or CI — of the tests, a linter, a compiler, a type checker, a reconciliation script, a mutation run. The report names each check under "Where to look" with the count and the exit code from its output, and a missing answer from a checker counts as a failure. The exit code counts only from a process outside the agent's write zone, since a process the agent writes into returns 0 from `sys.exit(0)`.
 - The log of files read, taken from the harness transcript rather than from the agent's report: agents failed to read every file they were asked to review in 67.9 % of runs and misled about it in 80.4 % of those.
 - A `path:line` anchor with the fragment of that line; `scripts/check_report.py` matches the fragment against the line's content, not only the address.
+- A comparative measurement — this mechanism against a simpler scheme, one factor with it and without it — with three things beside its number: the scenario as a file in the repository, the command that runs it, and the spread of its runs, given as their count with the smallest and the largest result or the deviation. A difference that lies inside the spread of one arm's runs shows nothing, and a number without the scenario and the command is the author's report of a run nobody can repeat.
 
 ## Not accepted
 

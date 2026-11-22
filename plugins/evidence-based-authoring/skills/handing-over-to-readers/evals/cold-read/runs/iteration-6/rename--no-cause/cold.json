@@ -1,0 +1,71 @@
+{
+  "answers": [
+    {
+      "question": "What was the task?",
+      "found": "yes",
+      "answer": "The task was to rename the server timeout setting so that its name shows it is in milliseconds.",
+      "quotes": ["The task was to rename the server timeout setting so that its name shows milliseconds."],
+      "missing": ""
+    },
+    {
+      "question": "How did it end: what is done and what is not?",
+      "found": "yes",
+      "answer": "The rename is done in the code and in the author's settings file and both tests pass; what is left is the reader's choice between operations renaming their line first and the code reading the old name for a while.",
+      "quotes": [
+        "That is done in the code and in our settings file, and both tests pass.",
+        "One thing is left.",
+        "You decide whether operations rename their line first, or the code keeps reading the old name for a while."
+      ],
+      "missing": ""
+    },
+    {
+      "question": "How does the thing that changed work?",
+      "found": "yes",
+      "answer": "The code reads only the new name and falls back to five seconds when that name is missing, and the author's settings file sets three seconds under the new name.",
+      "quotes": [
+        "The code now reads only the new name.",
+        "When the name is missing, it falls back to five seconds.",
+        "Our settings file gives three seconds under the new name."
+      ],
+      "missing": ""
+    },
+    {
+      "question": "What is the problem, and what causes it?",
+      "found": "partly",
+      "answer": "The text implies that operations still have a line under the old name, which the new code no longer reads, and that keeping the old name would let production keep ten seconds.",
+      "quotes": [
+        "You decide whether operations rename their line first, or the code keeps reading the old name for a while.",
+        "+ the release can go now, and production keeps ten seconds"
+      ],
+      "missing": "A statement that the production settings set the timeout to ten seconds under the old name, and what production would get after the release if nothing is done (for example the five-second fallback because the code reads only the new name)."
+    },
+    {
+      "question": "What is not verified?",
+      "found": "yes",
+      "answer": "The tests do not read the production file, so the production settings are not checked by them.",
+      "quotes": ["They do not read the production file."],
+      "missing": ""
+    },
+    {
+      "question": "What do I have to decide, and what does each option give and cost?",
+      "found": "yes",
+      "answer": "The reader decides between operations renaming their line before the release, which gives one name everywhere with nothing to clean up but makes the release wait for operations, and the code also reading the old name with the old name winning while set, which lets the release go now with production keeping ten seconds but leaves two names in the code until operations rename and the author removes the old one.",
+      "quotes": [
+        "Do you ask operations to rename their line, or do I make the code read the old name too?",
+        "  1. Operations rename their line to the new name before the release",
+        "+ one name everywhere, nothing to clean up later",
+        "- the release waits for the operations team",
+        "  2. The code also reads the old name, and the old name wins while it is set",
+        "+ the release can go now, and production keeps ten seconds",
+        "- two names live in the code until operations rename their line and I remove the old one"
+      ],
+      "missing": ""
+    }
+  ],
+  "unexplained": [
+    {
+      "term": "operations' line (their line)",
+      "quote": "You decide whether operations rename their line first, or the code keeps reading the old name for a while."
+    }
+  ]
+}

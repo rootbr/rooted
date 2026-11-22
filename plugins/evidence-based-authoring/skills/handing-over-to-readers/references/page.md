@@ -2,7 +2,7 @@
 
 A page with voice is built from one body once that form is chosen (`references/media.md`). The body holds every spoken sentence in its place, so nothing is written twice: the builder numbers the sentences, writes the story the voice reads and checks the voice's timings against the body. For a report the body's sentences are the story of the text form, and its figures are that story's pictures. What each of the three scripts below reads, runs and writes is declared in `SKILL.md`, in its paragraph on the scripts.
 
-Contents: [Steps](#steps) · [The body](#the-body) · [Figures from ready parts](#figures-from-ready-parts) · [A decision](#a-decision) · [The tables and questions of an explanation](#the-tables-and-questions-of-an-explanation) · [Where to look as data](#where-to-look-as-data) · [Before delivery](#before-delivery)
+Contents: [Steps](#steps) · [The body](#the-body) · [Figures from ready parts](#figures-from-ready-parts) · [A decision](#a-decision) · [The blocks of an explanation](#the-blocks-of-an-explanation) · [Where to look as data](#where-to-look-as-data) · [Before delivery](#before-delivery)
 
 ## Steps
 
@@ -20,7 +20,7 @@ Contents: [Steps](#steps) · [The body](#the-body) · [Figures from ready parts]
    - a decimal fraction;
    - a number with an ordinary space inside.
 
-   Fix the body, never the check.
+   Fix the body, never the check. For an explanation add `--explanation` to this build and to the build of step 4: the builder then checks the order of the explanation's blocks (§ The blocks of an explanation).
 3. **Voice it.** One of:
 
    ```bash
@@ -72,7 +72,7 @@ The body is the article: HTML without scripts and without colours of its own.
 - **A spoken sentence shown by a picture**: `data-voice` on the element that shows what the sentences say, holding those sentences: an option of a decision, a group of a figure. The voice says them at that place, and the element is lit meanwhile.
 - **A name for a sentence**: the mark `[@name]` before a sentence, in the text of a `data-say` element or in a `data-part` or `data-voice` value. `data-lit="@name"` on a box of a figure or a row of a table lights it while that sentence is spoken; an element may list several names. A name stays with its sentence when another is inserted before it.
 - **The order of speech is the order of the body.** The builder numbers the sentences `part.sentence` by it.
-- **What the voice does not say** may stand on the page only inside a figure, its caption or an option of a decision: a label, a scale, a note on what was computed, an option's heading with its gains and costs, a table of terms or constants, a question with its hidden answer.
+- **What the voice does not say** may stand on the page only inside a figure, its caption or an option of a decision: a label, a scale, a note on what was computed, an option's heading with its gains and costs, a formula, pseudocode, a table of terms or constants, a question with its hidden answer.
 - **A link inside the page** names an `id` of the body; the builder refuses a link to an id the page does not have.
 
 ## Figures from ready parts
@@ -89,6 +89,9 @@ A figure is the part's picture (`references/explaining.md` § The pictures), dra
 | `text` with `.dim`, `.bad`, `.good`, `.small`, `.lane`, `.mono` | a label, a failure, a success, a small label, a lane's name, a literal | the sentence that says it |
 | `<figure class="twocol">` with `li.plus`, `li.minus` | what is there and what is missing | the sentence about each item |
 | an HTML table inside `<figure>` | before and after, the differing cell in its own row; the stages of a run, one row a stage; causes against signs; terms, constants, the readers' questions | the sentence about each row |
+| a `<pre>` inside `<figure>` | a formula beside the sentence that says what it is for, or the rule of a mechanism as pseudocode in `<figure class="pseudo">` (§ The blocks of an explanation) | the sentence about each line |
+| `rect.attempt` and `rect.pause` on one row, a `rect.box` under them for each name | a measured quantity split into its parts to one scale, and each name of its family as a span over the parts it takes in | the sentence that brings in each part and each name |
+| `<figure class="factor">` with an HTML table | one factor in a small model, laid out as § The blocks of an explanation says | the sentence about each step |
 
 Group the shapes and the label of one thing in a `<g data-lit="…">`, so they light together:
 
@@ -107,6 +110,7 @@ Group the shapes and the label of one thing in a `<g data-lit="…">`, so they l
 - A figure states one thing, in the palette of the page; green and red appear only where they carry a verdict.
 - Sizes are computed: one scale for every span of a time line, text of 14 px that fits its box with room on both sides.
 - The opening has no figure.
+- A mechanism that switches states is drawn as one `rect.box` a state and one `line.arr` a switch, the condition of the switch as a label on its arrow.
 - **A switch** belongs to a figure that shows how options differ on one input. The group names what changes in the reader's words; the elements of one behaviour carry `only-now`, of the other `only-safe`; an option that is not built says so on the figure.
 
   ```html
@@ -145,19 +149,41 @@ Group the shapes and the label of one thing in a `<g data-lit="…">`, so they l
 - Several decisions are several sections, each with a heading of its own lit by the sentence that names it; the question that closes the story stands after the last. A decision that rests on one part may stand inside that part; the control that copies the answer follows the last field of the page.
 - The page adds the pick controls, the field for the reader's words under each decision and under each part without one, the pause beside the spoken sentence, the window for a comment on a piece of the text and the control that copies the answer; the body writes none of them.
 
-## The tables and questions of an explanation
+## The blocks of an explanation
 
-An explanation for several readers (`references/explainer.md`) adds three kinds of block, each inside a figure, none of them spoken.
+An explanation for several readers (`references/explainer.md`) adds five kinds of block, each inside a `figure` whose class names it, none of them spoken. The builder reads the classes: a body that holds one of them, or is built with `--explanation`, is checked as an explanation.
 
 ```html
-<figure>
+<h2 id="h-whole" data-part="The mechanism as a whole.">The whole mechanism</h2>
+<p data-say>[@count] Every upload of a picture is counted. [@key] The cache key joins the picture's number and that count. [@read] A reader asks by the newest key, so an old entry is never read again.</p>
+<figure class="pseudo">
+  <pre><span data-lit="@count">1  version = uploads of this picture so far      <a href="#h-version">the version</a></span>
+<span data-lit="@key">2  key = picture number + ":v" + version         <a href="#h-key">the key</a></span>
+<span data-lit="@read">3  on a read: take the entry under the newest key</span></pre>
+  <figcaption>The rule in three steps. A line leads to the part that unfolds it.</figcaption>
+</figure>
+
+<h2 id="h-version" data-part="Now the version.">The version</h2>
+<figure class="factor">
+  <div class="figscroll"><table>
+    <thead><tr><th>Step</th><th>The key without the version</th><th>The key with it</th></tr></thead>
+    <tbody>
+      <tr><td>start</td><td colspan="2">picture 7 has a thumbnail in the cache; an entry lives for a day</td></tr>
+      <tr><td>the picture is uploaded again</td><td>stored under <code>7</code>, beside the old entry</td><td>stored under <code>7:v2</code></td></tr>
+      <tr><td>a read a minute later</td><td class="bad">the old thumbnail, for up to a day</td><td class="good">the new thumbnail</td></tr>
+    </tbody>
+  </table></div>
+  <figcaption>One factor, the version in the key. Everything else is the same in both runs.</figcaption>
+</figure>
+
+<figure class="questions">
   <div class="figscroll"><table>
     <thead><tr><th>Question</th><th>Answer</th><th>Part</th></tr></thead>
     <tbody>
-      <tr><td>Why did a re-uploaded picture show its old thumbnail?</td><td>The cache key was the picture's number alone.</td><td><a href="#h-broke">How it broke</a></td></tr>
+      <tr><td>Why did a re-uploaded picture show its old thumbnail?</td><td>The cache key was the picture's number alone.</td><td><a href="#h-key">The key</a></td></tr>
     </tbody>
   </table></div>
-  <figcaption>Five minutes: the opening and this table. Twenty: the parts on the key and on what is left. An hour: every part with its question.</figcaption>
+  <figcaption>Five minutes: the opening and the first part. Twenty: the parts on the version and on the key. An hour: every part with its question.</figcaption>
 </figure>
 
 <figure class="quiz">
@@ -166,11 +192,23 @@ An explanation for several readers (`references/explainer.md`) adds three kinds 
     <p class="answer">Under the key with version three, because the version grows with every upload. Nobody reads the second entry again: it stays until it expires, up to a day.</p>
   </details>
 </figure>
+
+<figure class="terms">
+  <div class="figscroll"><table>
+    <thead><tr><th>On the page</th><th>In the code</th><th>In the literature</th></tr></thead>
+    <tbody>
+      <tr><td>the version</td><td><code>uploadCount</code></td><td>a cache-busting version</td></tr>
+    </tbody>
+  </table></div>
+</figure>
 ```
 
-- The first table gives each reader's question, its answer in one sentence and a link to the part that answers it; the routes by time stand with it.
-- A table of terms has three columns: the word on the page, the name in the code, the name in the literature.
-- A question stands in `figure.quiz` as a `details.q`: the `summary` is the question, `p.answer` the hidden answer with its cause and its number. The page adds under an opened answer the two marks the reader sets for himself and, after the last part, the list of parts worth returning to; it shows no count and keeps the marks in the reader's browser alone.
+- **The pseudocode** stands in `figure.pseudo` as a `pre` of a few lines, one line a step. A line wrapped in a `span` with `data-lit` lights on its sentence; a link at its end leads to the part that unfolds the line. A formula takes the same `pre` in a plain `figure`.
+- **One factor** stands in `figure.factor` as a table: a row a step, the starting conditions with their numbers in the first row, one column for the run without the factor and one for the run with it; `td.bad` marks the step where the run without it fails, `td.good` the same step with it.
+- **The table of questions** stands in `figure.questions` after the first part: each reader's question, its answer in one sentence and a link to the part that answers it; the routes by time stand in its caption.
+- **A question** stands in `figure.quiz` as a `details.q`: the `summary` is the question, `p.answer` the hidden answer with its cause and its number. The page adds under an opened answer the two marks the reader sets for himself and, after the last part, the list of parts worth returning to; it shows no count and keeps the marks in the reader's browser alone.
+- **The table of terms** stands in `figure.terms` after the last part, with three columns: the word on the page, the name in the code, the name in the literature.
+- **The order is checked.** The builder refuses an explanation whose first part holds no `figure.pseudo` with a `pre` of two lines or more, and one whose `figure.questions` or `figure.terms` opens before the first part ends. The first part runs from the first heading with `data-part` to the second.
 
 ## Where to look as data
 

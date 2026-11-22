@@ -4,6 +4,7 @@
     build_page.py --body BODY.html [--out PAGE.html] [--story-out STORY.txt] [--text-out TEXT.md]
                   [--cues CUES.json] [--voice URL] [--report REPORT.md | --look LOOK.json] [--root DIR]
                   [--title TITLE] [--id ID] [--strings FILE] [--template FILE] [--standalone]
+                  [--explanation]
 
 At least one of --out, --story-out and --text-out is given.
 
@@ -25,6 +26,13 @@ Its contract:
       <div class="option" data-option="NAME">, at most one of them with data-mine="1" (the
       author's choice). The page adds the pick controls, the words fields and the copy bar.
   Figures: inline SVG of class "fig" or HTML inside <figure>, in the template's classes.
+  The figures of an explanation: <figure class="pseudo"> holds the rule of the mechanism as
+      pseudocode in a <pre>, one line a step; a line may be a <span data-lit="@name"> and may hold
+      a link to the part that unfolds it. <figure class="questions"> holds the table of the
+      readers' questions, <figure class="terms"> the table of terms, <figure class="quiz"> a
+      question with its hidden answer, <figure class="factor"> a table that runs one factor
+      without it and with it, its cells class="good" or class="bad". A class attribute may list
+      several classes.
   An internal link href="#ID" names an id of the body, or look-heading on a page with a
       "Where to look" section.
 
@@ -32,6 +40,11 @@ The voice speaks the text of data-say, data-part and data-voice in document orde
 from 1, sentence S from 1 within its part. A sentence ends where voice_cues.py ends one: the
 builder takes its sentence_spans and paragraphs from beside this script. The text of each holder
 ends a sentence, so no sentence runs from one holder into the next.
+
+A body is an explanation when --explanation is given or when it holds a figure whose classes
+include pseudo, questions, terms or quiz; any other body is built as a report's. The first part of
+an explanation runs from its first data-part heading to the next one or to the end of the body,
+and gives the mechanism whole.
 
 The builder refuses a body, one line per violation on stderr as BODY:LINE: MESSAGE, when it gives
 data-say a value or names a sentence by number in data-lit (the form of sentence numbers written
@@ -42,7 +55,11 @@ a sentence mark; puts a [@name] mark anywhere but before a sentence's first word
 malformed name, or sets one name twice; names in data-lit a sentence no mark sets; links to an id
 the page does not have; has a decision with fewer than two options, more than one data-mine="1",
 no data-decision or data-title, or a data-decision used twice; or carries a <script> element or
-an on... handler attribute.
+an on... handler attribute. It refuses an explanation, besides, whose first part holds no figure
+of class pseudo with a <pre> of two or more non-empty lines (at the first part's heading, at line 1
+in a body without a data-part heading), or whose figure of class questions or terms opens before
+the second data-part heading, anywhere in a body with one part or none (at that figure): the table
+of questions follows the first part, and the table of terms closes the page.
 
 It warns, as BODY:LINE: warning: MESSAGE and without changing the exit code, about a spoken
 sentence a voice may misread: one that starts with a lowercase letter, ends in a number before
@@ -113,6 +130,7 @@ import argparse
 import html
 import importlib.util
 import json
+import math
 import os
 import re
 import sys
@@ -181,6 +199,13 @@ LEAD_MARK = re.compile(r"\[@([^\]]*)\]\s*")
 MARK_START = "[@"
 LOOK_TARGET = "look-heading"
 EXCERPT = 60  # characters of a sentence a message quotes
+
+# An explanation
+PSEUDO, QUESTIONS, TERMS, QUIZ = "pseudo", "questions", "terms", "quiz"
+EXPLANATION_FIGURES = frozenset((PSEUDO, QUESTIONS, TERMS, QUIZ))  # a figure of one of these classes makes the body an explanation
+AFTER_FIRST_PART = (QUESTIONS, TERMS)  # the figures that open after the first part of an explanation
+PSEUDO_LINES = 2  # the fewest non-empty lines of the pseudocode
+FIRST_PART = "the first part of an explanation gives the mechanism whole, with its rule as pseudocode, one line a step"
 
 # Text a voice misreads
 LOWERCASE_START = re.compile(r"[\W_]*([^\W\d_])")
@@ -270,21 +295,49 @@ class Heading:
     text: list[str] = field(default_factory=list)
 
 
+@dataclass
+class Figure:
+    """A <figure> of the body with the tokens of its class attribute, and the number of non-empty lines of each <pre>
+    it holds."""
+    classes: frozenset[str]
+    line: int
+    start: int  # offset of its "<" in the body
+    depth: int
+    pre_line_counts: list[int] = field(default_factory=list)
+
+    @property
+    def holds_pseudocode(self) -> bool:
+        """Whether it is of class pseudo and holds a <pre> of PSEUDO_LINES non-empty lines or more."""
+        return PSEUDO in self.classes and max(self.pre_line_counts, default=0) >= PSEUDO_LINES
+
+
+@dataclass
+class Pre:
+    """A <pre> being read: its depth and its text so far."""
+    depth: int
+    text: list[str] = field(default_factory=list)
+
+
 @final  # its constructor runs the parser, which calls the handlers below
 class BodyScan(HTMLParser):
     """Reads a body once and records, in document order, the elements that hold spoken text or carry data-lit; its
-    decisions, its first h1, its ids and internal links; and the violations its markup shows by itself: a data-say
-    element left open or holding an element, a script element, a handler attribute."""
+    decisions, its figures, its first h1, its ids and internal links; whether it is an explanation; and the violations
+    its markup shows by itself: a data-say element left open or holding an element, a script element, a handler
+    attribute. `explanation` declares the body an explanation, as --explanation does."""
 
-    def __init__(self, body: str):
+    def __init__(self, body: str, *, explanation: bool = False):
         super().__init__(convert_charrefs=True)
+        self._declared_explanation = explanation
         self._line_starts = [0] + [match.end() for match in re.finditer("\n", body)]
         self._stack: list[str] = []
         self._pending: Element | None = None  # the data-say element whose text is being read
         self._decisions: list[Decision] = []
         self._headings: list[Heading] = []
+        self._figures: list[Figure] = []  # the figures open at the place being read
+        self._pre: Pre | None = None  # the outermost pre open at the place being read
         self.elements: list[Element] = []
         self.decisions: list[Decision] = []
+        self.figures: list[Figure] = []
         self.h1: str | None = None
         self.ids: set[str] = set()
         self.links: list[tuple[str, int]] = []
@@ -332,6 +385,10 @@ class BodyScan(HTMLParser):
         if "data-option" in values and self._decisions:
             self._decisions[-1].options += 1
             self._decisions[-1].mine += values.get("data-mine") == "1"
+        figure = None
+        if tag == "figure":
+            figure = Figure(frozenset((values.get("class") or "").split()), line, self._offset(), len(self._stack) + 1)
+            self.figures.append(figure)
         says = element is not None and element.kind == SAY
         if closes_itself or tag in VOID_TAGS:
             if says:
@@ -345,12 +402,23 @@ class BodyScan(HTMLParser):
         if tag in ("h1", "h2"):
             part = element if element is not None and PART in element.holders else None
             self._headings.append(Heading(tag, len(self._stack), part))
+        if figure is not None:
+            self._figures.append(figure)
+        if tag == "pre" and self._pre is None:
+            self._pre = Pre(len(self._stack))
 
     def _pop(self) -> None:
         depth = len(self._stack)
         self._stack.pop()
         if self._decisions and self._decisions[-1].depth == depth:
             self.decisions.append(self._decisions.pop())
+        if self._pre is not None and self._pre.depth == depth:
+            lines = sum(1 for text in "".join(self._pre.text).splitlines() if text.strip())
+            for figure in self._figures:
+                figure.pre_line_counts.append(lines)
+            self._pre = None
+        if self._figures and self._figures[-1].depth == depth:
+            self._figures.pop()
         if self._headings and self._headings[-1].depth == depth:
             heading = self._headings.pop()
             text = " ".join("".join(heading.text).split())
@@ -382,6 +450,13 @@ class BodyScan(HTMLParser):
             self._pending.say_text.append(data)
         for heading in self._headings:
             heading.text.append(data)
+        if self._pre is not None:
+            self._pre.text.append(data)
+
+    @property
+    def is_explanation(self) -> bool:
+        """Whether the body was declared an explanation or one of its figures has a class that marks one."""
+        return self._declared_explanation or any(figure.classes & EXPLANATION_FIGURES for figure in self.figures)
 
 
 # The story
@@ -556,9 +631,31 @@ def decision_violations(decisions: list[Decision]) -> list[tuple[int, str]]:
     return found
 
 
+def explanation_violations(scan: BodyScan) -> list[tuple[int, str]]:
+    """What breaks the order of an explanation, as (body line, message): a first part without its pseudocode, and each
+    table of questions or of terms that opens before the first part ends."""
+    found = []
+    parts = [element for element in scan.elements if element.tag == "h2" and PART in element.holders]
+    end = parts[1].start if len(parts) > 1 else math.inf  # the offset at which the first part ends
+    if not parts:
+        found.append((1, 'the body has no <h2 data-part>, so the explanation has no first part to hold <figure class="pseudo">: '
+                         + FIRST_PART))
+    elif not any(figure.holds_pseudocode and parts[0].start < figure.start < end for figure in scan.figures):
+        found.append((parts[0].line, 'no <figure class="pseudo"> holding a <pre> of two or more lines stands in the first part: '
+                                     + FIRST_PART))
+    for figure in scan.figures:
+        table = next((name for name in AFTER_FIRST_PART if name in figure.classes), None)
+        if table is not None and figure.start < end:
+            found.append((figure.line, f'<figure class="{table}"> opens before the first part ends: '
+                                       "the table of questions follows the first part, and the table of terms closes the page"))
+    return found
+
+
 def validate(scan: BodyScan, splitter: Splitter, targets: set[str]) -> list[tuple[int, str]]:
     """Every violation of the body contract as (body line, message); `targets` are the ids the builder adds to the page."""
     found = list(scan.violations)
+    if scan.is_explanation:
+        found += explanation_violations(scan)
     names: dict[str, int] = {}
     for element in scan.elements:
         misplaced = placement(element)
@@ -1135,6 +1232,10 @@ def parse_args(argv: list[str] | None) -> argparse.Namespace:
     parser.add_argument("--strings", type=Path)
     parser.add_argument("--template", type=Path, default=TEMPLATE)
     parser.add_argument("--standalone", action="store_true", help="write a complete HTML document")
+    parser.add_argument("--explanation", action="store_true",
+                        help="check the body as an explanation, which a figure of class pseudo, questions, terms or quiz also "
+                             "makes it: its first part must hold the rule as pseudocode in <figure class=\"pseudo\">, and a table "
+                             "of questions or of terms must open after the first part")
     return parser.parse_args(argv)
 
 
@@ -1201,7 +1302,7 @@ def main(argv: list[str] | None = None, environ: Mapping[str, str] | None = None
     except InputError as e:
         print(f"build_page: {e}", file=sys.stderr)
         return 2
-    scan = BodyScan(inputs.body)
+    scan = BodyScan(inputs.body, explanation=args.explanation)
     targets = {LOOK_TARGET} if inputs.look is not None or args.out is None else set()
     found = validate(scan, inputs.splitter, targets)
     story = None if found else Story(scan, inputs.splitter)
