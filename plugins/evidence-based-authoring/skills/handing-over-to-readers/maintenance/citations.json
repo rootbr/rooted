@@ -32002,5 +32002,306 @@
   "id": "Media: a map of the page lists every part with its figures and stands open beside the text in a wide window/36",
   "source": "https://www.nngroup.com/articles/in-page-links/",
   "quote": "If the list of in-page links will stay in place as users scrolls, it should show users’ current location."
+ },
+ {
+  "id": "Intake: the records are read before the reader is asked; taken from them what he said and asked, never a level/1",
+  "source": "https://eric.ed.gov/?id=EJ441071",
+  "quote": "Finds that writers taught with the reader-protocol method improved more than writers in control classes"
+ },
+ {
+  "id": "Intake: the records are read before the reader is asked; taken from them what he said and asked, never a level/2",
+  "source": "https://research.utwente.nl/en/publications/the-evaluation-of-text-quality-expert-focused-and-reader-focused-/",
+  "quote": "On average, they predicted less than 15% of the reader problems and produced a lot of new problem detections."
+ },
+ {
+  "id": "Intake: the records are read before the reader is asked; taken from them what he said and asked, never a level/3",
+  "source": "https://research.utwente.nl/en/publications/the-evaluation-of-text-quality-expert-focused-and-reader-focused-/",
+  "quote": "In addition, the experts showed little mutual agreement in their problem detections."
+ },
+ {
+  "id": "Intake: the records are read before the reader is asked; taken from them what he said and asked, never a level/4",
+  "source": "https://arxiv.org/html/2505.16227v4",
+  "quote": "Our personalized LoRA model outperforms GPT-4 with contextual prompting by 21.4% in F1 score"
+ },
+ {
+  "id": "Intake: the records are read before the reader is asked; taken from them what he said and asked, never a level/5",
+  "source": "https://arxiv.org/html/2505.16227v4",
+  "quote": "vanilla prompting with a supervised personalized model yields the highest F1 (77.9)"
+ },
+ {
+  "id": "Intake: the records are read before the reader is asked; taken from them what he said and asked, never a level/6",
+  "source": "https://arxiv.org/html/2610.03998",
+  "quote": "persona descriptions reach only 7–12% of the human test–retest benchmark"
+ },
+ {
+  "id": "Intake: the records are read before the reader is asked; taken from them what he said and asked, never a level/7",
+  "source": "https://arxiv.org/html/2610.03998",
+  "quote": "persona descriptions recover only 53–67% of human between-person variation"
+ },
+ {
+  "id": "Intake: the records are read before the reader is asked; taken from them what he said and asked, never a level/8",
+  "source": "https://arxiv.org/html/2610.03998",
+  "quote": "what people have done tells a model more than who they are"
+ },
+ {
+  "id": "Intake: the record keeps the reader's own words and the words he rejected, and the list of terms reads them first/1",
+  "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7719631/",
+  "quote": "Participants preferred the picture named before as the target"
+ },
+ {
+  "id": "Intake: the record keeps the reader's own words and the words he rejected, and the list of terms reads them first/2",
+  "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7719631/",
+  "quote": "This main effect of Precedent is statistically significant"
+ },
+ {
+  "id": "Intake: the record keeps the reader's own words and the words he rejected, and the list of terms reads them first/3",
+  "source": "https://researchconnect.suny.edu/en/publications/when-conceptual-pacts-are-broken-partner-specific-effects-on-the-/",
+  "quote": "addressees were slower to look at the object when the new expression was uttered by the original speaker"
+ },
+ {
+  "id": "Intake: the record keeps the reader's own words and the words he rejected, and the list of terms reads them first/4",
+  "source": "https://researchconnect.suny.edu/en/publications/when-conceptual-pacts-are-broken-partner-specific-effects-on-the-/",
+  "quote": "addressees looked at and then touched the target objects equally quickly"
+ },
+ {
+  "id": "Intake: the record keeps the reader's own words and the words he rejected, and the list of terms reads them first/5",
+  "source": "https://researchconnect.suny.edu/en/publications/when-conceptual-pacts-are-broken-partner-specific-effects-on-the-/",
+  "quote": "There appears to be no such interference when a new partner uses a new expression."
+ },
+ {
+  "id": "Intake: the record keeps the reader's own words and the words he rejected, and the list of terms reads them first/6",
+  "source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%22Coming%20to%20terms%22%20AND%20%22linguistic%20coordination%22&resultType=core&format=json",
+  "quote": "general linguistic alignment did not have a positive effect on performance",
+  "note": "a JSON record: the quote stands in a string of the record, read with its markup tags as spaces"
+ },
+ {
+  "id": "Intake: the record keeps the reader's own words and the words he rejected, and the list of terms reads them first/7",
+  "source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%22Coming%20to%20terms%22%20AND%20%22linguistic%20coordination%22&resultType=core&format=json",
+  "quote": "the alignment of particular task-relevant vocabularies strongly correlated with collective performance",
+  "note": "a JSON record: the quote stands in a string of the record, read with its markup tags as spaces"
+ },
+ {
+  "id": "Intake: the record keeps the reader's own words and the words he rejected, and the list of terms reads them first/8",
+  "source": "https://api.crossref.org/works/10.1111/ncmr.12025",
+  "quote": "64 dyads attempted to reach an agreement",
+  "note": "a JSON record: the quote stands in a string of the record, read with its markup tags as spaces"
+ },
+ {
+  "id": "Intake: the record keeps the reader's own words and the words he rejected, and the list of terms reads them first/9",
+  "source": "https://api.crossref.org/works/10.1111/ncmr.12025",
+  "quote": "also less focused on the task and more likely to reach an impasse during the negotiation",
+  "note": "a JSON record: the quote stands in a string of the record, read with its markup tags as spaces"
+ },
+ {
+  "id": "Intake: each long deliverable leaves a record of its exchange/1",
+  "source": "https://eric.ed.gov/?id=EJ441071",
+  "quote": "Finds that writers taught with the reader-protocol method improved more than writers in control classes"
+ },
+ {
+  "id": "Intake: each long deliverable leaves a record of its exchange/2",
+  "source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:25520535&resultType=core&format=json",
+  "quote": "Those writers who received feedback improved their descriptions more than those writers who did not receive feedback.",
+  "note": "a JSON record: the quote stands in a string of the record, read with its markup tags as spaces"
+ },
+ {
+  "id": "Intake: each long deliverable leaves a record of its exchange/3",
+  "source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:25520535&resultType=core&format=json",
+  "quote": "Those writers who had previously received feedback wrote better new descriptions",
+  "note": "a JSON record: the quote stands in a string of the record, read with its markup tags as spaces"
+ },
+ {
+  "id": "Intake: each long deliverable leaves a record of its exchange/4",
+  "source": "https://eric.ed.gov/?id=EJ832454",
+  "quote": "The authors found a small but reliable effect, d = 0.12, showing that experience,"
+ },
+ {
+  "id": "Intake: each long deliverable leaves a record of its exchange/5",
+  "source": "https://eric.ed.gov/?id=EJ832454",
+  "quote": "where the experience of 4,607 clinicians was assessed in relation to the accuracy of their judgments"
+ },
+ {
+  "id": "Explaining: the opening of a long deliverable goes to the reader first/1",
+  "source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:25114268%20OR%20TITLE:%22Are%20Patients%20Aware%20of%20When%20They%20Do%20Not%20Understand%22%20OR%20TITLE:%22Emergency%20Teach-Back%22&resultType=core&format=json",
+  "quote": "Patients perceived difficulty with comprehension only 20% of the time when they demonstrated deficient comprehension.",
+  "note": "a JSON record: the quote stands in a string of the record, read with its markup tags as spaces"
+ },
+ {
+  "id": "Explaining: the opening of a long deliverable goes to the reader first/2",
+  "source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:25114268%20OR%20TITLE:%22Are%20Patients%20Aware%20of%20When%20They%20Do%20Not%20Understand%22%20OR%20TITLE:%22Emergency%20Teach-Back%22&resultType=core&format=json",
+  "quote": "Seventy-eight percent of patients demonstrated deficient comprehension (less than complete concordance) in at least 1 domain",
+  "note": "a JSON record: the quote stands in a string of the record, read with its markup tags as spaces"
+ },
+ {
+  "id": "Explaining: the opening of a long deliverable goes to the reader first/3",
+  "source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:42693371%20OR%20EXT_ID:12523921&resultType=core&format=json",
+  "quote": "Our systematic review included 18 randomized controlled trials (RCTs) involving 1985 participants.",
+  "note": "a JSON record: the quote stands in a string of the record, read with its markup tags as spaces"
+ },
+ {
+  "id": "Explaining: the opening of a long deliverable goes to the reader first/4",
+  "source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:42693371%20OR%20EXT_ID:12523921&resultType=core&format=json",
+  "quote": "Overall, there was no clear pattern of the effect of teach-back on knowledge (very low COE).",
+  "note": "a JSON record: the quote stands in a string of the record, read with its markup tags as spaces"
+ },
+ {
+  "id": "Explaining: the opening of a long deliverable goes to the reader first/5",
+  "source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:42693371%20OR%20EXT_ID:12523921&resultType=core&format=json",
+  "quote": "we did not identify a clear benefit of teach-back on knowledge acquisition",
+  "note": "a JSON record: the quote stands in a string of the record, read with its markup tags as spaces"
+ },
+ {
+  "id": "Explaining: the opening of a long deliverable goes to the reader first/6",
+  "source": "https://profiles.wustl.edu/en/publications/the-impact-of-teach-back-on-comprehension-of-discharge-instructio/",
+  "quote": "post-ED medication (P < 0.02), self-care (P < 0.03), and follow-up instructions (P < 0.0001)"
+ },
+ {
+  "id": "Explaining: the opening of a long deliverable goes to the reader first/7",
+  "source": "https://profiles.wustl.edu/en/publications/the-impact-of-teach-back-on-comprehension-of-discharge-instructio/",
+  "quote": "no change in patient satisfaction or perceived comprehension"
+ },
+ {
+  "id": "Explaining: the opening of a long deliverable goes to the reader first/8",
+  "source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:25114268%20OR%20TITLE:%22Are%20Patients%20Aware%20of%20When%20They%20Do%20Not%20Understand%22%20OR%20TITLE:%22Emergency%20Teach-Back%22&resultType=core&format=json",
+  "quote": "Postanaesthesia care unit nurses and anaesthetic assistants were given clinically relevant items of information",
+  "note": "a JSON record: the quote stands in a string of the record, read with its markup tags as spaces"
+ },
+ {
+  "id": "Explaining: the opening of a long deliverable goes to the reader first/10",
+  "source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:25114268%20OR%20TITLE:%22Are%20Patients%20Aware%20of%20When%20They%20Do%20Not%20Understand%22%20OR%20TITLE:%22Emergency%20Teach-Back%22&resultType=core&format=json",
+  "quote": "Their response was coded as read-back, verbal response without read-back or no verbal response.",
+  "note": "a JSON record: the quote stands in a string of the record, read with its markup tags as spaces"
+ },
+ {
+  "id": "Explaining: the opening of a long deliverable goes to the reader first/11",
+  "source": "https://arxiv.org/html/1609.04886v1",
+  "quote": "the effort to resolve issues in a later phase was not consistently or substantially greater"
+ },
+ {
+  "id": "Explaining: the opening of a long deliverable goes to the reader first/12",
+  "source": "https://arxiv.org/html/1609.04886v1",
+  "quote": "issues injected during coding and fixed in SysTest take 13 minutes (median) to resolve"
+ },
+ {
+  "id": "Explaining: the opening of a long deliverable goes to the reader first/13",
+  "source": "https://arxiv.org/html/1609.04886v1",
+  "quote": "We do not claim that our findings generalize beyond the projects using the TSP process."
+ },
+ {
+  "id": "Explaining: the opening of a long deliverable goes to the reader first/14",
+  "source": "https://stars.library.ucf.edu/scopus2010/1477/",
+  "quote": "One hundred and eighty undergraduate students participated in peer interviews"
+ },
+ {
+  "id": "Explaining: the opening of a long deliverable goes to the reader first/15",
+  "source": "https://stars.library.ucf.edu/scopus2010/1477/",
+  "quote": "message paraphrases were associated with the social attractiveness of the listener"
+ },
+ {
+  "id": "Explaining: the cold reader gets a question for each thing this reader lacks/1",
+  "source": "https://www.iser.essex.ac.uk/research/publications/publication-589050",
+  "quote": "detects 75% of known problems with a small false positive rate"
+ },
+ {
+  "id": "Adds: a finding in four parts/1",
+  "source": "https://research.google/pubs/destructive-criticism-in-software-code-review-impacts-inclusion/",
+  "quote": "We surveyed 93 software practitioners"
+ },
+ {
+  "id": "Adds: a finding in four parts/2",
+  "source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID%3A10380873&format=json&resultType=core",
+  "quote": "67 children (ages 5-6 years)",
+  "note": "a JSON record: the quote stands in a string of the record, read with its markup tags as spaces"
+ },
+ {
+  "id": "Adds: a finding in four parts/3",
+  "source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID%3A10380873&format=json&resultType=core",
+  "quote": "person, outcome, or process criticism",
+  "note": "a JSON record: the quote stands in a string of the record, read with its markup tags as spaces"
+ },
+ {
+  "id": "Adds: a finding in four parts/4",
+  "source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID%3A10380873&format=json&resultType=core",
+  "quote": "(including self-blame) on all dependent measures",
+  "note": "a JSON record: the quote stands in a string of the record, read with its markup tags as spaces"
+ },
+ {
+  "id": "Adds: a finding in four parts/5",
+  "source": "https://cris.huji.ac.il/en/publications/the-effects-of-feedback-interventions-on-performance-a-historical/",
+  "quote": "over 1/3 of the FIs decreased performance"
+ },
+ {
+  "id": "Adds: a finding in four parts/6",
+  "source": "https://cris.huji.ac.il/en/publications/the-effects-of-feedback-interventions-on-performance-a-historical/",
+  "quote": "as attention moves up the hierarchy closer to the self and away from the task"
+ },
+ {
+  "id": "Adds: a finding in four parts/7",
+  "source": "https://cris.huji.ac.il/en/publications/the-effects-of-feedback-interventions-on-performance-a-historical/",
+  "quote": "A meta-analysis (607 effect sizes; 23,663 observations)"
+ },
+ {
+  "id": "Explaining: a vague word carries its number/1",
+  "source": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0213522",
+  "quote": "For this condition, average correspondence was 66%, compared with 32% in the control."
+ },
+ {
+  "id": "Explaining: a vague word carries its number/2",
+  "source": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0213522",
+  "quote": "There was little improvement over the control for the Tooltip"
+ },
+ {
+  "id": "Explaining: a vague word carries its number/3",
+  "source": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0213522",
+  "quote": "the variability in interpretation was substantially reduced in Brackets participants"
+ },
+ {
+  "id": "Explaining: a vague word carries its number/4",
+  "source": "https://www.cambridge.org/core/journals/judgment-and-decision-making/article/facilitating-senderreceiver-agreement-in-communicated-probabilities-is-it-best-to-use-words-numbers-or-both/EDB34DA9A3A34B2ADC7C2E08E0FF2E7F",
+  "quote": "the numeric and combined formats outperformed the verbal format"
+ },
+ {
+  "id": "Explaining: a vague word carries its number/5",
+  "source": "https://www.cambridge.org/core/journals/judgment-and-decision-making/article/facilitating-senderreceiver-agreement-in-communicated-probabilities-is-it-best-to-use-words-numbers-or-both/EDB34DA9A3A34B2ADC7C2E08E0FF2E7F",
+  "quote": "The combined format did not confer any advantage over the purely numeric format."
+ },
+ {
+  "id": "Explaining: a vague word carries its number/6",
+  "source": "https://researchportalplus.anu.edu.au/en/publications/the-interpretation-of-ipcc-probabilistic-statements-around-the-wo/",
+  "quote": "25 samples in 24 countries and 17 languages"
+ },
+ {
+  "id": "Explaining: a vague word carries its number/7",
+  "source": "https://researchportalplus.anu.edu.au/en/publications/the-interpretation-of-ipcc-probabilistic-statements-around-the-wo/",
+  "quote": "the terms are better differentiated"
+ },
+ {
+  "id": "Explaining: a vague word carries its number/8",
+  "source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%22Communicating%20the%20risk%20of%20side%20effects%20to%20patients%3A%20an%20evaluation%20of%20UK%20regulatory%20recommendations%22&resultType=core&format=json",
+  "quote": "Participants (n = 187) were recruited from users of the Cancer Research UK patient information website.",
+  "note": "a JSON record: the quote stands in a string of the record, read with its markup tags as spaces"
+ },
+ {
+  "id": "Explaining: a vague word carries its number/9",
+  "source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%22Communicating%20the%20risk%20of%20side%20effects%20to%20patients%3A%20an%20evaluation%20of%20UK%20regulatory%20recommendations%22&resultType=core&format=json",
+  "quote": "Those in the absolute frequency format demonstrated greater accuracy in estimating the likelihood of having two of four side effects",
+  "note": "a JSON record: the quote stands in a string of the record, read with its markup tags as spaces"
+ },
+ {
+  "id": "Explaining: a vague word carries its number/10",
+  "source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%22Communicating%20the%20risk%20of%20side%20effects%20to%20patients%3A%20an%20evaluation%20of%20UK%20regulatory%20recommendations%22&resultType=core&format=json",
+  "quote": "is unequivocally superior to absolute frequency alone",
+  "note": "a JSON record: the quote stands in a string of the record, read with its markup tags as spaces"
+ },
+ {
+  "id": "Intake: the detector is the record; no inference from the wording, no self-rating/m1",
+  "source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:29620401&resultType=core&format=json",
+  "quote": "A final experiment confirmed that getting another person's perspective directly, through conversation, increased accuracy but that perspective taking did not.",
+  "note": "a JSON record: the quote stands in a string of the record, read with its markup tags as spaces"
+ },
+ {
+  "id": "Intake: the detector is the record; no inference from the wording, no self-rating/m2",
+  "source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:29620401&resultType=core&format=json",
+  "quote": "If anything, perspective taking decreased accuracy overall while occasionally increasing confidence in judgment.",
+  "note": "a JSON record: the quote stands in a string of the record, read with its markup tags as spaces"
  }
 ]

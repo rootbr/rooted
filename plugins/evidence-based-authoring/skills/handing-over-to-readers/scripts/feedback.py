@@ -65,6 +65,9 @@ INTEGER = "integer"
 BOOLEAN = "boolean"
 CODES = "codes"
 COLD_READ_COUNTS = ("questions", "answered", "partly", "unsupported", "missing", "unexplained", "dropped")
+EXCHANGE_FORMS = ("text", "page")
+EXCHANGE_OPENINGS = ("said-back", "accepted", "corrected", "none")
+EXCHANGE_REPLIES = ("acted", "asked", "corrected")
 # Each field is INTEGER, BOOLEAN, CODES or the tuple of the words it may hold; no field holds text.
 SCHEMA: dict[str, dict[str, object]] = {
     "report": {"profile": ("operator", "client"), "errors": INTEGER, "warnings": INTEGER, "codes": CODES},
@@ -72,12 +75,14 @@ SCHEMA: dict[str, dict[str, object]] = {
              "questions": INTEGER, "candidates": INTEGER, "codes": CODES},
     "answer": {"count": INTEGER},
     "reader_find": {"found": BOOLEAN},
-    "reader_add": {"holds": INTEGER, "lacks": INTEGER, "use": ("decide", "defend", "build", "know", "none"),
-                   "depth": ("mechanism", "change", "none"), "turns": INTEGER},
+    "reader_add": {"holds": INTEGER, "lacks": INTEGER, "words": INTEGER, "barred": INTEGER,
+                   "use": ("decide", "defend", "build", "know", "none"), "depth": ("mechanism", "change", "none"), "turns": INTEGER},
     "ledger_find": {"found": INTEGER},
     "ledger_add": {"kind": ("answer", "default", "closure")},
     "ledger_note": {},
     "ledger_supersede": {},
+    "exchange_add": {"form": EXCHANGE_FORMS, "opening": EXCHANGE_OPENINGS, "reply": (*EXCHANGE_REPLIES, "none")},
+    "exchange_note": {"reply": (*EXCHANGE_REPLIES, "none"), "asked": INTEGER},
     "cold_read": dict.fromkeys(COLD_READ_COUNTS, INTEGER),
     "page": {"outcome": ("built", "refused"), "sentences": INTEGER, "parts": INTEGER, "decisions": INTEGER,
              "look": INTEGER, "violations": INTEGER},
@@ -304,6 +309,22 @@ def reader_line(by: dict[str, list[dict]]) -> str | None:
     return line + (f" ({'; '.join(details)})" if details else "")
 
 
+def exchange_line(by: dict[str, list[dict]]) -> str | None:
+    """The exchanges added with their openings, and the first replies set by an add or a note.
+
+    A reply that a later note sets again is counted twice, since the journal counts events;
+    records.py exchange count gives the counts of records.
+    """
+    adds, notes = by.get("exchange_add", []), by.get("exchange_note", [])
+    if not adds and not notes:
+        return None
+    openings = Counter(a.get("opening") for a in adds)
+    replies = Counter(e.get("reply") for e in adds + notes)
+    return (f"exchanges recorded: {len(adds)}; "
+            f"opening {', '.join(f'{word} {openings[word]}' for word in EXCHANGE_OPENINGS)}; "
+            f"first reply {', '.join(f'{word} {replies[word]}' for word in EXCHANGE_REPLIES)}")
+
+
 def ledger_line(by: dict[str, list[dict]]) -> str | None:
     finds, adds = by.get("ledger_find", []), by.get("ledger_add", [])
     if not finds and not adds:
@@ -339,7 +360,7 @@ def page_line(by: dict[str, list[dict]]) -> str | None:
                f"{checked['no_browser']} without a browser" if checks else ""))
 
 
-SUMMARY_LINES = (report_line, card_line, answer_line, reader_line, ledger_line, cold_read_line, page_line)
+SUMMARY_LINES = (report_line, card_line, answer_line, reader_line, exchange_line, ledger_line, cold_read_line, page_line)
 
 
 def summary_lines(events: list[dict], manifest: Mapping[str, object]) -> list[str]:

@@ -3,7 +3,7 @@
     {
       "text": "check_report.py --profile operator reports 0 errors on report.md, its anchors read from the fixture or from the directory above the fixtures",
       "passed": false,
-      "evidence": "exit 1: 8 error(s), 8 warning(s)"
+      "evidence": "exit 1: 8 error(s), 9 warning(s)"
     },
     {
       "text": "the opening paragraph has at least three sentences",

@@ -3,7 +3,7 @@
     {
       "text": "check_report.py --profile client reports 0 errors on questions.md",
       "passed": false,
-      "evidence": "exit 1: 13 error(s), 0 warning(s)"
+      "evidence": "exit 1: 13 error(s), 3 warning(s)"
     },
     {
       "text": "every list item of questions.md ends with exactly one question mark",

@@ -1,4 +1,4 @@
-"""records.py: the reader record, the ledger of answers, their matching and the capture hook."""
+"""records.py: the reader record, the ledger of answers, the record of exchanges, their matching and the capture hook."""
 from __future__ import annotations
 
 import contextlib
@@ -461,6 +461,201 @@ class Reader(InProcess):
         self.assertIn("git work tree", err)
 
 
+class ReaderWords(InProcess):
+    """The reader's own words and the words he barred: stored, printed after holds and lacks, journalled as counts, never matched."""
+
+    WORD = "cache key: the name a picture is stored under"
+
+    def add(self, *argv):
+        code, out, err = self.reader_cmd("add", "--topic", "image cache", "--basis", "he named the key himself", *argv)
+        self.assertEqual(code, 0, err)
+        return out.strip()
+
+    def test_the_two_lists_are_stored_without_blank_items(self):
+        self.add("--holds", "eviction", "--words", self.WORD, " ", "--words", "thumbnail: the small picture", "--barred", "fingerprint", "")
+        [record] = self.stored(self.reader)
+        self.assertEqual(record["words"], [self.WORD, "thumbnail: the small picture"])
+        self.assertEqual(record["barred"], ["fingerprint"])
+
+    def test_a_list_left_empty_is_not_stored(self):
+        self.add("--words", " ", "--barred", "")
+        [record] = self.stored(self.reader)
+        self.assertNotIn("words", record)
+        self.assertNotIn("barred", record)
+
+    def test_find_and_show_print_holds_lacks_words_barred_in_that_order(self):
+        self.add("--barred", "fingerprint", "--words", self.WORD, "--lacks", "eviction", "--holds", "a hash")
+        body = f"image cache -> holds: a hash; lacks: eviction; words: {self.WORD}; barred: fingerprint"
+        code, out, _ = self.reader_cmd("find", "--topic", "image cache")
+        self.assertEqual(code, 0)
+        self.assertIn(f" · {body} · basis: ", out)
+        code, out, _ = self.reader_cmd("show")
+        self.assertIn(f" · {body} · basis: ", out)
+
+    def test_words_and_barred_are_not_matched(self):
+        record = {"id": "r-0001", "topic": "image cache", "words": [self.WORD], "barred": ["fingerprint of a thumbnail"]}
+        self.assertEqual(records.READER.texts(record), ["image cache"])
+        self.assertEqual(records.find(records.READER, "fingerprint of a thumbnail", [record]), [])
+
+    def test_the_journal_counts_the_items_of_each_list(self):
+        with mock.patch.object(records, "journal", autospec=True) as journal:
+            self.add("--holds", "a", "--words", self.WORD, "--barred", "fingerprint", "digest")
+            self.add()
+        self.assertEqual(journal.call_args_list, [
+            mock.call("reader_add", holds=1, lacks=0, words=1, barred=2, use="none", depth="none"),
+            mock.call("reader_add", holds=0, lacks=0, words=0, barred=0, use="none", depth="none"),
+        ])
+
+
+class Exchange(InProcess):
+    """The record of exchanges, in a file named by the option."""
+
+    def setUp(self):
+        super().setUp()
+        self.exchanges = self.dir / "exchanges.jsonl"
+
+    def exchange_cmd(self, command, *argv):
+        return self.main("exchange", command, "--exchange-file", str(self.exchanges), *argv)
+
+    def add(self, *argv, topic="the cache explainer", form="page", opening="said-back"):
+        code, out, err = self.exchange_cmd("add", "--topic", topic, "--form", form, "--opening", opening, *argv)
+        self.assertEqual(code, 0, err)
+        return out.strip()
+
+    def test_add_prints_the_id_and_stores_the_record(self):
+        self.assertEqual(self.add("--reply", "asked", "--asked", "what is a key?", " ", "--note", " he read it twice "), "x-0001")
+        self.assertEqual(self.add(form="text", opening="none"), "x-0002")
+        first, second = self.stored(self.exchanges)
+        self.assertEqual(first, {"id": "x-0001", "date": records.today(), "topic": "the cache explainer", "form": "page", "opening": "said-back",
+                                 "reply": "asked", "asked": ["what is a key?"], "note": "he read it twice"})
+        self.assertEqual(second, {"id": "x-0002", "date": records.today(), "topic": "the cache explainer", "form": "text", "opening": "none"})
+
+    def test_add_refuses_a_blank_topic_or_note_and_a_value_outside_its_set(self):
+        code, _, err = self.exchange_cmd("add", "--topic", "  ", "--form", "page", "--opening", "none")
+        self.assertEqual(code, 2)
+        self.assertIn("--topic is empty", err)
+        code, _, err = self.exchange_cmd("add", "--topic", "t", "--form", "page", "--opening", "none", "--note", " ")
+        self.assertEqual(code, 2)
+        self.assertIn("--note is empty", err)
+        self.assertFalse(self.exchanges.exists())
+        for argv in (["--form", "video", "--opening", "none"], ["--form", "page", "--opening", "maybe"],
+                     ["--form", "page", "--opening", "none", "--reply", "ignored"], ["--form", "page"]):
+            with self.subTest(argv=argv), contextlib.redirect_stderr(io.StringIO()), self.assertRaises(SystemExit) as raised:
+                records.main(["exchange", "add", "--exchange-file", str(self.exchanges), "--topic", "t", *argv], {})
+            self.assertEqual(raised.exception.code, 2)
+
+    def test_note_sets_the_reply(self):
+        self.add()
+        code, out, err = self.exchange_cmd("note", "x-0001", "--reply", "acted")
+        self.assertEqual((code, out, err), (0, "x-0001\n", ""))
+        self.assertEqual(self.stored(self.exchanges)[0]["reply"], "acted")
+        self.exchange_cmd("note", "x-0001", "--reply", "corrected")
+        self.assertEqual(self.stored(self.exchanges)[0]["reply"], "corrected")
+
+    def test_note_extends_the_questions(self):
+        self.add("--asked", "what is a key?")
+        self.assertEqual(self.exchange_cmd("note", "x-0001", "--asked", "why a version?", " ", "--asked", "which cache?")[0], 0)
+        self.assertEqual(self.stored(self.exchanges)[0]["asked"], ["what is a key?", "why a version?", "which cache?"])
+        self.add()
+        self.exchange_cmd("note", "x-0002", "--asked", "what is a key?")
+        self.assertEqual(self.stored(self.exchanges)[1]["asked"], ["what is a key?"])
+
+    def test_note_sets_the_note_and_leaves_the_rest(self):
+        self.add("--note", "first", "--reply", "asked")
+        self.assertEqual(self.exchange_cmd("note", "x-0001", "--note", "he went on with the rollout")[0], 0)
+        [record] = self.stored(self.exchanges)
+        self.assertEqual((record["note"], record["reply"], record["opening"]), ("he went on with the rollout", "asked", "said-back"))
+
+    def test_note_of_an_unknown_id_exits_2(self):
+        self.add()
+        before = self.exchanges.read_bytes()
+        code, _, err = self.exchange_cmd("note", "x-0042", "--reply", "acted")
+        self.assertEqual(code, 2)
+        self.assertIn("no record x-0042", err)
+        self.assertEqual(self.exchanges.read_bytes(), before)
+
+    def test_note_that_changes_nothing_exits_2(self):
+        self.add()
+        before = self.exchanges.read_bytes()
+        for argv in ([], ["--asked", " "]):
+            with self.subTest(argv=argv):
+                code, _, err = self.exchange_cmd("note", "x-0001", *argv)
+                self.assertEqual(code, 2)
+                self.assertIn("note changes nothing", err)
+        self.assertEqual(self.exchange_cmd("note", "x-0001", "--note", " ")[0], 2)
+        self.assertEqual(self.exchanges.read_bytes(), before)
+
+    def test_show_prints_every_record_newest_first_with_the_absent_parts_left_out(self):
+        self.add("--reply", "asked", "--asked", "what is a key?", "why a version?", "--note", "he read it twice")
+        self.add(topic="the retry change", form="text", opening="none")
+        code, out, _ = self.exchange_cmd("show")
+        self.assertEqual(code, 0)
+        today = records.today()
+        self.assertEqual(out.splitlines(), [
+            f"x-0002 · {today} · text · the retry change -> opening: none",
+            f"x-0001 · {today} · page · the cache explainer -> opening: said-back; reply: asked; asked: what is a key?, why a version? · note: he read it twice",
+        ])
+
+    def test_count_of_an_empty_store(self):
+        code, out, _ = self.exchange_cmd("count")
+        self.assertEqual(code, 0)
+        self.assertEqual(out.splitlines(), [
+            "deliverables: 0 (text 0, page 0)",
+            "opening: said-back 0, accepted 0, corrected 0, none 0",
+            "first reply: acted 0, asked 0, corrected 0, open 0",
+            "opening confirmed: first reply acted 0 of 0",
+            "opening not confirmed: first reply acted 0 of 0",
+        ])
+        self.assertFalse(self.exchanges.exists())
+
+    def test_count_of_a_store_that_fills_every_line(self):
+        """Confirmed: said-back acted, accepted acted, corrected asked, said-back open; not confirmed: none acted, none corrected, none asked."""
+        for opening, reply, form in (("said-back", "acted", "page"), ("accepted", "acted", "text"), ("corrected", "asked", "text"),
+                                     ("said-back", None, "page"), ("none", "acted", "text"), ("none", "corrected", "text"), ("none", "asked", "text")):
+            self.add(*(["--reply", reply] if reply else []), form=form, opening=opening)
+        code, out, _ = self.exchange_cmd("count")
+        self.assertEqual(code, 0)
+        self.assertEqual(out.splitlines(), [
+            "deliverables: 7 (text 5, page 2)",
+            "opening: said-back 2, accepted 1, corrected 1, none 3",
+            "first reply: acted 3, asked 2, corrected 1, open 1",
+            "opening confirmed: first reply acted 2 of 3",
+            "opening not confirmed: first reply acted 1 of 3",
+        ])
+
+    def test_the_journal_records_add_and_note_but_not_show_or_count(self):
+        with mock.patch.object(records, "journal", autospec=True) as journal:
+            self.add(form="text", opening="accepted")
+            self.add("--reply", "corrected", form="page", opening="none")
+            self.exchange_cmd("note", "x-0001", "--asked", "what is a key?", "why a version?")
+            self.exchange_cmd("note", "x-0001", "--reply", "asked")
+            self.exchange_cmd("show")
+            self.exchange_cmd("count")
+        self.assertEqual(journal.call_args_list, [
+            mock.call("exchange_add", form="text", opening="accepted", reply="none"),
+            mock.call("exchange_add", form="page", opening="none", reply="corrected"),
+            mock.call("exchange_note", reply="none", asked=2),
+            mock.call("exchange_note", reply="asked", asked=0),
+        ])
+
+    @unittest.skipUnless(shutil.which("git"), "git is not installed")
+    def test_an_exchange_file_inside_a_git_work_tree_is_refused_unless_ignored(self):
+        tree = self.dir / "repo"
+        tree.mkdir()
+        subprocess.run(["git", "init", "-q", str(tree)], check=True)
+        inside = tree / "notes" / "exchanges.jsonl"
+        for command in (["add", "--topic", "t", "--form", "page", "--opening", "none"], ["note", "x-0001", "--reply", "acted"], ["show"], ["count"]):
+            with self.subTest(command=command[0]):
+                code, _, err = self.main("exchange", command[0], "--exchange-file", str(inside), *command[1:])
+                self.assertEqual(code, 2)
+                self.assertIn(f"the exchange file {inside} lies inside the git work tree", err)
+                self.assertIn("--exchange-file or $HANDOVER_EXCHANGE_FILE", err)
+        self.assertFalse(inside.exists())
+        (tree / ".gitignore").write_text("notes/\n", encoding="utf-8")
+        code, _, err = self.main("exchange", "add", "--exchange-file", str(inside), "--topic", "t", "--form", "page", "--opening", "none")
+        self.assertEqual(code, 0, err)
+
+
 class StorePaths(unittest.TestCase):
     """The store files from the options, from the environment and by default, under a temporary HOME."""
 
@@ -503,6 +698,29 @@ class StorePaths(unittest.TestCase):
         self.assertEqual(len(named.read_text(encoding="utf-8").splitlines()), 1)
         self.assertEqual(len(option.read_text(encoding="utf-8").splitlines()), 1)
         self.assertFalse((self.home / ".local").exists())
+
+    def exchange_add(self, *argv, env):
+        done = run_script("exchange", "add", "--topic", "t", "--form", "text", "--opening", "none", *argv, env=env, cwd=self.work)
+        self.assertEqual(done.returncode, 0, done.stderr)
+
+    def test_exchange_file_by_default_under_home_and_under_xdg_data_home(self):
+        self.exchange_add(env=self.env())
+        self.exchange_add(env=self.env(XDG_DATA_HOME=""))
+        default = self.home / ".local" / "share" / "handing-over-to-readers" / "exchanges.jsonl"
+        self.assertEqual(len(default.read_text(encoding="utf-8").splitlines()), 2)
+        data = self.dir / "data"
+        self.exchange_add(env=self.env(XDG_DATA_HOME=str(data)))
+        self.assertTrue((data / "handing-over-to-readers" / "exchanges.jsonl").is_file())
+
+    def test_exchange_file_from_the_environment_and_from_the_option(self):
+        named = self.dir / "named" / "exchanges.jsonl"
+        option = self.dir / "option" / "exchanges.jsonl"
+        self.exchange_add(env=self.env(HANDOVER_EXCHANGE_FILE=str(named), HANDOVER_READER_FILE=str(self.dir / "reader.jsonl")))
+        self.exchange_add("--exchange-file", str(option), env=self.env(HANDOVER_EXCHANGE_FILE=str(named)))
+        self.assertEqual(len(named.read_text(encoding="utf-8").splitlines()), 1)
+        self.assertEqual(len(option.read_text(encoding="utf-8").splitlines()), 1)
+        self.assertFalse((self.home / ".local").exists())
+        self.assertFalse((self.dir / "reader.jsonl").exists())
 
     def test_ledger_file_by_default_in_the_working_directory_or_its_work_tree(self):
         self.ledger_add(env=self.env())

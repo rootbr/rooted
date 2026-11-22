@@ -42,11 +42,13 @@ EXAMPLES = {
     "card": {"mode": "hook", "outcome": "resent", "questions": 1, "candidates": 2, "codes": {}},
     "answer": {"count": 3},
     "reader_find": {"found": False},
-    "reader_add": {"holds": 2, "lacks": 0, "use": "none", "depth": "change", "turns": 3},
+    "reader_add": {"holds": 2, "lacks": 0, "words": 1, "barred": 2, "use": "none", "depth": "change", "turns": 3},
     "ledger_find": {"found": 0},
     "ledger_add": {"kind": "default"},
     "ledger_note": {},
     "ledger_supersede": {},
+    "exchange_add": {"form": "page", "opening": "said-back", "reply": "acted"},
+    "exchange_note": {"reply": "asked", "asked": 2},
     "cold_read": {"questions": 3, "answered": 1, "partly": 1, "unsupported": 0, "missing": 1, "unexplained": 0, "dropped": 2},
     "page": {"outcome": "built", "sentences": 4, "parts": 2, "decisions": 1, "look": 4, "violations": 0},
     "voice": {"backend": "module", "outcome": "written", "sentences": 9, "paragraphs": 3, "seconds": 41},
@@ -133,7 +135,8 @@ class Workspace(unittest.TestCase):
     def env(self, **extra):
         return {"PATH": os.environ.get("PATH", "/usr/bin:/bin"), "HOME": str(self.dir / "home"), "XDG_CONFIG_HOME": str(self.dir / "config"),
                 "XDG_STATE_HOME": str(self.work / "state"), "HANDOVER_LEDGER_FILE": str(self.work / "ledger.jsonl"),
-                "HANDOVER_READER_FILE": str(self.work / "reader.jsonl"), "HANDOVER_FEEDBACK_DIR": str(self.journal_dir), **extra}
+                "HANDOVER_READER_FILE": str(self.work / "reader.jsonl"), "HANDOVER_EXCHANGE_FILE": str(self.work / "exchanges.jsonl"),
+                "HANDOVER_FEEDBACK_DIR": str(self.journal_dir), **extra}
 
     def run_script(self, script, *args, stdin=None, env=None):
         """A run as a caller makes it, under -I: (exit code, stdout, stderr) as bytes."""
@@ -182,6 +185,8 @@ class Workspace(unittest.TestCase):
             self.records("ledger", "note", "a-0002", "--scope", "the exporter"),
             self.records("ledger", "supersede", "a-0001", "--by", "a-0002"),
             self.run_script("records.py", "ledger", "capture", "--hook", stdin=json.dumps({"tool_input": {"questions": [GOOD]}, "tool_response": {"answers": {GOOD["question"]: "Keep 250 ms"}}}).encode("utf-8")),
+            self.records("exchange", "add", "--topic", "the cache explainer", "--form", "page", "--opening", "said-back"),
+            self.records("exchange", "note", "x-0001", "--reply", "acted"),
             self.run_script("check_cold_read.py", "--report", str(w / "cold-report.md"), "--questions", str(w / "cold-questions.json"), "--answers", str(w / "cold-answers.json")),
             self.run_script("build_page.py", "--body", str(w / "body.html"), "--cues", str(w / "cues.json"), "--report", str(FIXTURES / "report.md"), "--out", str(w / "page.html")),
             self.run_script("voice_cues.py", "--tts-command", self.tts(), str(w / "story.txt"), str(w / "out.wav"), str(w / "out.json")),
@@ -199,7 +204,7 @@ class Switch(Workspace):
 
     def test_off_by_default_a_run_of_each_script_writes_no_file(self):
         runs = self.all_runs()
-        self.assertEqual(len(runs), 14)
+        self.assertEqual(len(runs), 16)
         self.assertFalse(self.journal_dir.exists())
 
     def test_on_sets_the_switch_and_says_what_the_journal_holds_and_where(self):
@@ -313,6 +318,10 @@ class Record(Workspace):
             ("codes as a list", "report", {"codes": ["ANCHOR"]}),
             ("field outside the schema of the page check", "page_check", {"outcome": "clean", "seconds": 3}),
             ("outcome outside its set", "page_check", {"outcome": "passed"}),
+            ("opening outside its set", "exchange_add", {"form": "text", "opening": "maybe"}),
+            ("reply outside its set", "exchange_add", {"form": "text", "opening": "none", "reply": "ignored"}),
+            ("text field of an exchange", "exchange_note", {"reply": "asked", "note": "he asked about keys"}),
+            ("count of words as text", "reader_add", {"words": "cache key"}),
         ]
         for _, event, fields in dropped:
             self.record(event, **fields)
@@ -409,11 +418,28 @@ class ScriptEvents(Workspace):
         self.assertEqual(self.events()[1:], [{"event": "reader_find", "found": True}, {"event": "reader_find", "found": False}])
 
     def test_reader_add(self):
-        self.records("reader", "add", "--topic", "t", "--basis", "b", "--holds", "x", "y", "--lacks", "z", "--use", "decide", "--turns", "2")
+        self.records("reader", "add", "--topic", "t", "--basis", "b", "--holds", "x", "y", "--lacks", "z", "--words", "cache key: the name a picture is stored under",
+                     "--barred", "fingerprint", "digest", " ", "--use", "decide", "--turns", "2")
         self.records("reader", "add", "--topic", "t", "--basis", "b", "--depth", "mechanism")
         self.assertEqual(self.events(), [
-            {"event": "reader_add", "holds": 2, "lacks": 1, "use": "decide", "depth": "none", "turns": 2},
-            {"event": "reader_add", "holds": 0, "lacks": 0, "use": "none", "depth": "mechanism"},
+            {"event": "reader_add", "holds": 2, "lacks": 1, "words": 1, "barred": 2, "use": "decide", "depth": "none", "turns": 2},
+            {"event": "reader_add", "holds": 0, "lacks": 0, "words": 0, "barred": 0, "use": "none", "depth": "mechanism"},
+        ])
+
+    def test_exchange_add_and_note(self):
+        """add journals its form, opening and reply; note its reply; either gives none when it set no reply; note also the number of questions it added."""
+        self.assertEqual(self.records("exchange", "add", "--topic", "the cache explainer", "--form", "text", "--opening", "none", "--asked", "what is a key?")[0], 0)
+        self.assertEqual(self.records("exchange", "add", "--topic", "the retry change", "--form", "page", "--opening", "accepted", "--reply", "acted")[0], 0)
+        self.assertEqual(self.records("exchange", "note", "x-0001", "--asked", "why a version?", "which cache?")[0], 0)
+        self.assertEqual(self.records("exchange", "note", "x-0001", "--reply", "corrected")[0], 0)
+        self.assertEqual(self.records("exchange", "note", "x-0003", "--reply", "acted")[0], 2)
+        self.assertEqual(self.records("exchange", "count")[0], 0)
+        self.assertEqual(self.records("exchange", "show")[0], 0)
+        self.assertEqual(self.events(), [
+            {"event": "exchange_add", "form": "text", "opening": "none", "reply": "none"},
+            {"event": "exchange_add", "form": "page", "opening": "accepted", "reply": "acted"},
+            {"event": "exchange_note", "reply": "none", "asked": 2},
+            {"event": "exchange_note", "reply": "corrected", "asked": 0},
         ])
 
     def test_ledger_find(self):
@@ -526,13 +552,13 @@ class SameOutput(Workspace):
         off = self.outputs()
         self.turn_on()
         on = self.outputs()
-        self.assertEqual(len(self.events()), 14)
+        self.assertEqual(len(self.events()), 16)
         (self.journal_dir / fb.JOURNAL_FILE).unlink()
         (self.journal_dir / fb.JOURNAL_FILE).mkdir()
         unwritable = self.outputs()
         self.assertEqual(on, off)
         self.assertEqual(unwritable, off)
-        self.assertEqual([code for code, _, _ in off], [1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 3])
+        self.assertEqual([code for code, _, _ in off], [1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 3])
 
 
 class Summary(unittest.TestCase):
@@ -596,6 +622,28 @@ class Summary(unittest.TestCase):
         lines = fb.summary_lines(fb.read_events(self.dir), self.MANIFEST)
         self.assertEqual(lines, self.EXPECTED)
         self.assertIsNone(DATE.search("\n".join(lines)))
+
+    def test_the_exchange_line_follows_the_reader_line_and_counts_every_value(self):
+        """Openings from the adds; first replies from the adds and the notes that set one, a reply set again counted again; a value with no event prints 0."""
+        journal = [
+            ("2026-11-04", "6.0.0", "reader_add", {"holds": 1, "lacks": 0, "words": 2, "barred": 1, "use": "build", "depth": "change"}),
+            ("2026-11-04", "6.0.0", "exchange_add", {"form": "page", "opening": "said-back", "reply": "asked"}),
+            ("2026-11-04", "6.0.0", "exchange_add", {"form": "text", "opening": "said-back", "reply": "none"}),
+            ("2026-11-04", "6.0.0", "exchange_add", {"form": "text", "opening": "none", "reply": "none"}),
+            ("2026-11-05", "6.0.0", "exchange_note", {"reply": "acted", "asked": 0}),
+            ("2026-11-05", "6.0.0", "exchange_note", {"reply": "none", "asked": 2}),
+            ("2026-11-05", "6.0.0", "exchange_note", {"reply": "corrected", "asked": 1}),
+            ("2026-11-06", "6.0.0", "exchange_note", {"reply": "corrected", "asked": 0}),
+        ]
+        self.journal.write_text("".join(fb.event_line(event, fields, version, day) for day, version, event, fields in journal), encoding="utf-8")
+        lines = fb.summary_lines(fb.read_events(self.dir), self.MANIFEST)
+        self.assertEqual(lines[2:4], [
+            "reader lookups: 0 known, 0 unknown; intakes recorded: 1 (1 without a count of cards; depth: change 1)",
+            "exchanges recorded: 3; opening said-back 2, accepted 0, corrected 0, none 1; first reply acted 1, asked 1, corrected 2",
+        ])
+
+    def test_without_an_exchange_event_there_is_no_exchange_line(self):
+        self.assertNotIn("exchanges recorded", "\n".join(fb.summary_lines(fb.read_events(self.dir), self.MANIFEST)))
 
     def test_the_page_line_names_the_browser_checks_only_when_one_ran(self):
         pages = {"page": [{"outcome": "built"}], "voice": []}

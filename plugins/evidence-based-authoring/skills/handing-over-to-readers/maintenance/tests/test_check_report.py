@@ -209,7 +209,120 @@ class ClientProfile(unittest.TestCase):
         self.assertEqual(self.codes(text, cr.ERROR), [])
 
 
+VAGUE_MESSAGE = '"{}" with no number in its sentence: put the count or the share beside the word, or drop the word'
+
+
+class VagueOperator(unittest.TestCase):
+    """The VAGUE warning in the story above "Where to look"; each case puts its text in place of one sentence of STORY."""
+
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.root = Path(self.tmp.name)
+        (self.root / "src").mkdir()
+        (self.root / "src" / "Router.java").write_text(SOURCE, encoding="utf-8")
+        self.addCleanup(cr.build_patterns)
+
+    def tearDown(self):
+        self.tmp.cleanup()
+
+    def vague(self, text):
+        return [(f.line, f.level, f.message) for f in cr.check(text, "operator", self.root) if f.code == "VAGUE"]
+
+    def story(self, sentence):
+        return STORY.replace("It now sends once.", sentence)
+
+    def test_a_vague_word_alone_is_a_warning_naming_it(self):
+        self.assertEqual(self.vague(self.story("Most orders now go out once.")), [(5, cr.WARNING, VAGUE_MESSAGE.format("Most"))])
+
+    def test_a_number_in_figures_or_in_words_clears_it(self):
+        for sentence in ("Most of the 40 orders now go out once.", "Most of the three gateways now send once.",
+                         "Half of the orders, most of them small, now go out once."):
+            with self.subTest(sentence=sentence):
+                self.assertEqual(self.vague(self.story(sentence)), [])
+
+    def test_the_number_must_stand_in_the_same_sentence(self):
+        self.assertEqual(self.vague(self.story("It sent 40 orders. Most went out once.")), [(5, cr.WARNING, VAGUE_MESSAGE.format("Most"))])
+
+    def test_whole_words_only_in_any_case(self):
+        self.assertEqual(self.vague(self.story("It almost never sent twice.")), [])
+        self.assertEqual(self.vague(self.story("It sent the utmost care.")), [])
+        self.assertEqual(self.vague(self.story("It MOSTLY sends once.")), [(5, cr.WARNING, VAGUE_MESSAGE.format("MOSTLY"))])
+        self.assertEqual(self.vague(self.story("A lot of orders now go out once.")), [(5, cr.WARNING, VAGUE_MESSAGE.format("A lot of"))])
+
+    def test_one_finding_a_line_naming_its_first_vague_word(self):
+        self.assertEqual(self.vague(self.story("Several orders often failed. Many retried.")), [(5, cr.WARNING, VAGUE_MESSAGE.format("Several"))])
+
+    def test_a_list_item_of_the_story_is_checked_and_its_marker_is_no_number(self):
+        for item in ("- most orders went out twice", "1. most orders went out twice"):
+            with self.subTest(item=item):
+                text = STORY.replace("## How it works\n", f"## How it works\n\n{item}\n")
+                self.assertEqual([code for _, _, code in self.vague(text)], [VAGUE_MESSAGE.format("most")])
+
+    def test_a_code_span_a_fence_a_table_row_and_a_heading_are_not_checked(self):
+        cases = {
+            "code span": STORY.replace("It now sends once.", "The `most` flag stays off."),
+            "fence": STORY.replace("attempt 2   no resend", "attempt 2   most resends"),
+            "table row": STORY.replace("## Where to look", "| case | orders |\n|--|--|\n| most | many |\n\n## Where to look"),
+            "heading": STORY.replace("## How it works", "## How most of it works"),
+        }
+        for case, text in cases.items():
+            with self.subTest(case=case):
+                self.assertEqual(self.vague(text), [])
+
+    def test_under_where_to_look_no_warning(self):
+        text = STORY + "- most places: the router\n"
+        self.assertEqual(self.vague(text), [])
+
+    def test_a_lexicon_adds_a_vague_word_and_a_number_word(self):
+        lexicon = self.root / "lexicon.json"
+        lexicon.write_text(json.dumps({"check_report": {"VAGUE": ["meistens"], "NUMBER_WORDS": ["drei"]}}), encoding="utf-8")
+        self.assertEqual(self.vague(self.story("Es sendet meistens einmal.")), [])
+        cr.apply_lexicon(str(lexicon))
+        self.assertEqual(self.vague(self.story("Es sendet meistens einmal.")), [(5, cr.WARNING, VAGUE_MESSAGE.format("meistens"))])
+        self.assertEqual(self.vague(self.story("Es sendet meistens drei Mal.")), [])
+        self.assertEqual(self.vague(self.story("Most of drei gateways send once.")), [])
+
+
+class VagueClient(unittest.TestCase):
+    """The VAGUE warning in every prose sentence of a client list but the internal section."""
+
+    def vague(self, text):
+        return [(f.line, f.level, f.message) for f in cr.check(text, "client") if f.code == "VAGUE"]
+
+    def test_a_vague_word_alone_is_a_warning_and_a_number_clears_it(self):
+        self.assertEqual(self.vague(GOOD_CLIENT), [])
+        item = "3. Several of your clients lose data on a drop. Do you need a second channel?\n"
+        self.assertEqual(self.vague(GOOD_CLIENT + item), [(5, cr.WARNING, VAGUE_MESSAGE.format("Several"))])
+        self.assertEqual(self.vague(GOOD_CLIENT + item.replace("Several", "Two")), [])
+        self.assertEqual(self.vague(GOOD_CLIENT + item.replace("Several of your", "Several of your 12")), [])
+
+    def test_prose_outside_the_list_is_checked(self):
+        text = GOOD_CLIENT.replace("# Questions on the arrival feed\n", "# Questions on the arrival feed\n\nMost questions are short.\n")
+        self.assertEqual(self.vague(text), [(3, cr.WARNING, VAGUE_MESSAGE.format("Most"))])
+
+    def test_a_code_span_a_fence_a_table_a_heading_and_the_internal_section_are_not_checked(self):
+        cases = {
+            "code span": "3. The flag `often` is off. Do you need it?\n",
+            "fence": "\n```\nmost rows\n```\n",
+            "table row": "\n| case | many |\n|--|--|\n",
+            "heading": "\n## Most questions\n",
+            "internal": "\n## Internal\nMost of this is ours.\n",
+        }
+        for case, tail in cases.items():
+            with self.subTest(case=case):
+                self.assertEqual(self.vague(GOOD_CLIENT + tail), [])
+
+
 class CommandLine(unittest.TestCase):
+    def test_vague_is_a_warning_that_fails_only_under_strict(self):
+        with tempfile.TemporaryDirectory() as d:
+            report = Path(d) / "list.md"
+            report.write_text(GOOD_CLIENT + "3. Several of your clients lose data on a drop. Do you need a second channel?\n", encoding="utf-8")
+            loose = run_script("--profile", "client", str(report))
+            self.assertEqual(loose.returncode, 0, loose.stdout)
+            self.assertIn("warning VAGUE", loose.stdout)
+            self.assertEqual(run_script("--profile", "client", "--strict", str(report)).returncode, 1)
+
     def test_exit_codes(self):
         with tempfile.TemporaryDirectory() as d:
             root = Path(d)

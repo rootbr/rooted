@@ -10,15 +10,24 @@ a `path:line` anchor whose file or line does not exist under --root, or whose fr
 code span on the same line) is not on that line, the message naming the lines of the file where
 it stands or that it stands nowhere; a run, workflow or agent identifier in the text.
 Warnings: an opening paragraph of fewer than three sentences; a story sentence of more than twenty
-words; a story sentence with three or more numbers; a self-report in the story while no exit code
-stands under "Where to look"; more than five lines under "Where to look"; more than 300 words of
-prose outside fences and tables; an anchor without a fragment, or one whose fragment stands within
-two lines of the anchor instead of on it.
+words; a story sentence with three or more numbers; a story sentence, list items included, with a
+vague word and no number (VAGUE); a self-report in the story while no exit code stands under
+"Where to look"; more than five lines under "Where to look"; more than 300 words of prose outside
+fences and tables; an anchor without a fragment, or one whose fragment stands within two lines of
+the anchor instead of on it.
 
 Profile `client`: the list reaches an addressee who opens nothing of ours. Errors: a file path,
 a section reference, a date or deadline, an effort estimate, a contract reference, an identifier
 or hash; a list item without its one question mark at the end. Warnings: a sentence with three or
-more numbers, two items on one topic. A section whose heading names the internal block is exempt.
+more numbers, a prose sentence with a vague word and no number (VAGUE), two items on one topic. A
+section whose heading names the internal block is exempt.
+
+VAGUE: a sentence holds a word of the VAGUE key of WORDS ("most", "several", "often", "likely")
+and neither a number in figures nor a word of the NUMBER_WORDS key ("three", "half", "none"),
+each matched as a whole word in any case, after code spans and a list marker are taken off; one
+finding a line, naming its first such word. It reads the prose outside fences, tables and
+headings: in the operator profile the story above "Where to look", in the client profile every
+section but the internal one.
 
 Warnings exit 0 unless --strict. The headings and words the checks match are English. A lexicon
 adds those of another language: `--lexicon FILE`, or the file
@@ -68,6 +77,12 @@ WORDS: dict[str, list[str]] = {
     "EFFORT_UNITS": ["h", "hrs?", "hours?", "man-days?", "person-days?", "days?", "weeks?"],
     "EFFORT_TAIL": ["of work"],
     "AS_AGREED": ["as agreed", "per the contract", "as discussed"],
+    "VAGUE": ["most", "majority", "minority", "many", "several", "few", "numerous", "a lot of", "lots of", "a number of",
+              "a handful of", "a couple of", "almost all", "nearly all", "mostly", "largely", "often", "frequently", "rarely",
+              "seldom", "usually", "sometimes", "occasionally", "likely", "unlikely", "probably", "possibly",
+              "almost certainly", "significantly", "substantially", "considerably", "slightly"],
+    "NUMBER_WORDS": ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve",
+                     "half", "third", "quarter", "dozen", "hundred", "thousand", "both", "none", "zero"],
 }
 LEXICON_FILE = Path(os.environ.get("XDG_CONFIG_HOME") or Path.home() / ".config") / "handing-over-to-readers" / "lexicon.json"
 
@@ -103,7 +118,7 @@ def build_patterns(extra: dict[str, list[str]] | None = None) -> None:
     The patterns are module globals rebuilt in place, so a caller that imported one by name keeps
     the English pattern; read it from the module after apply_lexicon.
     """
-    global LOOK_HEADING, SECTION_INTERNAL, EXIT_CODE, SELF_REPORT
+    global LOOK_HEADING, SECTION_INTERNAL, EXIT_CODE, SELF_REPORT, VAGUE, NUMBER_WORDS
     global CLIENT_SECTION_REF, CLIENT_DATE, CLIENT_DEADLINE, CLIENT_EFFORT, CLIENT_AS_AGREED
     words = {k: v + (extra or {}).get(k, []) for k, v in WORDS.items()}
 
@@ -115,6 +130,8 @@ def build_patterns(extra: dict[str, list[str]] | None = None) -> None:
         SECTION_INTERNAL = re.compile(rf"\b(?:{alt('SECTION_INTERNAL')})", re.IGNORECASE)
         EXIT_CODE = re.compile(alt("EXIT_CODE"), re.IGNORECASE)
         SELF_REPORT = re.compile(f"({alt('SELF_REPORT')})", re.IGNORECASE)
+        VAGUE = re.compile(rf"\b(?:{alt('VAGUE')})\b", re.IGNORECASE)
+        NUMBER_WORDS = re.compile(rf"\b(?:{alt('NUMBER_WORDS')})\b", re.IGNORECASE)
         CLIENT_SECTION_REF = re.compile(rf"(?:{alt('SECTION_REF')})\s*\d", re.IGNORECASE)
         CLIENT_DATE = re.compile(
             rf"\b\d{{1,2}}[./]\d{{1,2}}[./]\d{{2,4}}\b|\b\d{{4}}-\d{{2}}-\d{{2}}\b|\b\d{{1,2}}\s+(?:{alt('MONTHS')})\w*", re.IGNORECASE
@@ -211,6 +228,19 @@ def has_three_numbers(text: str) -> bool:
     return any(len(NUMBER.findall(sentence)) >= 3 for sentence in SENTENCE_END.split(text))
 
 
+def vague_finding(index: int, line: str) -> Finding | None:
+    """The VAGUE warning of one prose line: its first vague word that stands in a sentence with no number, in figures or in words.
+
+    A list marker and code spans are taken off first, so "1." of a numbered item is no number.
+    """
+    text = strip_code(LIST_ITEM.sub("", line))
+    for sentence in SENTENCE_END.split(text):
+        vague = VAGUE.search(sentence)
+        if vague and not NUMBER.search(sentence) and not NUMBER_WORDS.search(sentence):
+            return Finding(index + 1, WARNING, "VAGUE", f'"{vague.group(0)}" with no number in its sentence: put the count or the share beside the word, or drop the word')
+    return None
+
+
 def opening_sentences(lines: list[str]) -> int:
     """Sentences of the first paragraph; a report that opens on a heading, a list, a table or a fence has none."""
     opening: list[str] = []
@@ -258,6 +288,9 @@ def check_story(lines: list[str]) -> list[Finding]:
                 findings.append(Finding(i + 1, WARNING, "STORY-SENTENCE", f"a sentence of {longest} words in the story, past {STORY_SENTENCE_WORDS}: one claim per sentence, the way it is said aloud"))
         if has_three_numbers(line):
             findings.append(Finding(i + 1, WARNING, "NUMBERS", "three or more numbers in one sentence: one number per claim, the rest in a picture or a table (rule 17)"))
+        vague = vague_finding(i, line)
+        if vague:
+            findings.append(vague)
         if SELF_REPORT.search(line):
             self_reports.append(i)
     if not look_has_exit_code:
@@ -408,6 +441,17 @@ def check_client_numbers(lines: list[str]) -> list[Finding]:
     return findings
 
 
+def check_client_vague(lines: list[str]) -> list[Finding]:
+    findings: list[Finding] = []
+    for i, line, section in prose_lines(lines):
+        if section == "internal" or TABLE_ROW.match(line) or not line.strip():
+            continue
+        vague = vague_finding(i, line)
+        if vague:
+            findings.append(vague)
+    return findings
+
+
 def check(text: str, profile: str = "operator", root: Path | str = ".") -> list[Finding]:
     lines = text.splitlines()
     findings = check_identifiers(lines, profile)
@@ -421,6 +465,7 @@ def check(text: str, profile: str = "operator", root: Path | str = ".") -> list[
         findings += check_questions(items)
         findings += check_duplicates(items)
         findings += check_client_numbers(lines)
+        findings += check_client_vague(lines)
     return sorted(findings, key=lambda f: (f.line, f.level != ERROR, f.code))
 
 
