@@ -9,6 +9,7 @@ Main results:
 - Of the 60 tests, 7 go in the direction of a claim, 3 against one, 6 both ways and 44 answer a neighbouring question. The three that go against come from two sources: one experiment on teaching the parts of a mechanism before the whole, which bears on two claims, and one on beginners who solved problems stated in words more often than the same problems stated as equations.
 - Two of the shortcomings are measured elsewhere as failures of documentation: information that is present and not found, and a condition in natural language that practitioners read in two ways.
 - No document found prescribes all three things the readers asked of a measurement — the scenario as a file, the command and the spread of the runs — so that clause is a decision with its hypothesis, and the documents stand beside it as accepted practice.
+- Fourteen findings of the search bear on `reading-companion`, the skill that walks a reader through a book; by its owner's decision they enter that skill, seven as clauses of its run set and seven as tests beside its claims (§ What bears on the reading companion).
 
 ## What was investigated and why
 
@@ -122,6 +123,34 @@ No test below ran on an explanation page for an engineering team. Each sentence 
 | The first part is read by a person of the team and retold cold before the rest is written | the page went to its reviewers whole; the readers' measure | Faulkner 2003; MacQueen et al. 2014; Menzies et al. 2017 against the premise on late cost | `design` on the readers' measure; never done yet |
 
 Held out: a place to comment on a line of pseudocode on the page, which needs a change to the page's script and a run of the behaviour tests in a browser.
+
+## What bears on the reading companion
+
+The search was made for the rules of `handing-over-to-readers`. Fourteen of its findings bear on `reading-companion`, and by its owner's decision all are taken. Each is a transfer: none ran on an adult reading a book with a companion. The sources were not opened again for this section; the figures are the ones the skeptics of this run checked against their sources, and which finding bears on which clause is the session's judgement.
+
+Seven findings give or ground a clause of the run set.
+
+| Finding | Clause of the reading companion | What it gives |
+|--|--|--|
+| Fernbach, Rogers, Fox & Sloman 2013: people asked to explain step by step how a policy works rated their own understanding lower, and people asked to list their reasons did not (abstract) | §4.2 the Feynman check | for a mechanism the check asks for its steps |
+| Neumüller, Raschke & Tichy 2025: a label naming the algorithm above a listing, comprehension 30.12 against 25.77, 56 readers | §13 the order of a walk | the accepted name first |
+| Mayer, Mathias & Wetzell 2002: the parts of a mechanism and their states taught before the whole, better transfer in three experiments (abstract) | §13 the order of a walk; §10 raising the starting stock | the parts before the steps |
+| Pollock, Chandler & Sweller 2002; Blayney, Kalyuga & Sweller 2010: elements one by one before all together helped the less expert learners and hindered the more expert (abstracts) | §13 the order of a walk; §13.7 | one part at a time for a reader new to them |
+| Koedinger & Nathan 2004: beginning algebra students solved problems stated in words more successfully than as equations (abstract) | §13 the order of a walk | a worded case before the formula |
+| The review of the explanation page: four engineers asked for the mechanism whole in a few steps; the case run through the steps is the worked instance the methodology already has | §13 the order of a walk | the whole in a few steps before the worked instance |
+| AbuSeileek 2011; Marefat, Rezaee & Naserieh 2016; Varol & Erçetin 2021: a gloss at the word against one placed apart, unclear for proficient readers (abstracts) | the translation service of `SKILL.md` | a record for the rule that the equivalent stands at the word |
+
+Seven stand as tests beside existing claims, two of them against.
+
+| Finding | Clause of the reading companion | How it bears |
+|--|--|--|
+| MacQueen and others 2014: answers in one's own words scored 23.8 of 39 against 32.4 for true-or-false statements on the same content | §13.5 never a quiz | closed questions overstate comprehension |
+| Schroeder & Kucera 2022: texts that name a misconception and refute it, g = 0.41 | §13.4 feedback elaborates | for naming the misconception |
+| Nathan & Petrosino 2003; Ryskin & Brown-Schmidt 2014: those who know a subject misjudge what is hard for a beginner, and the pull of one's own knowledge is small, d = 0.20 | §13.1 diagnose first | for asking the reader's account |
+| Wright & Cervetti 2017: teaching word meanings helps the text that holds the words, with little evidence of a wider gain | §10 the Matthew effect | narrows the promise |
+| Trninic, Kapur & Sinha 2020; Alemdag, Eichelmann & Narciss 2025: concrete instances did as well as or better than abstract ones; examples that hold an error, g = .136 | §12 far transfer; §13.4 | narrows |
+| Buçinca and others 2025: a contrast with the participant's own earlier choice was no better than a one-sided explanation | §13.6b the explanation built on the reader's words | against that condition |
+| Ponce, Mayer & Méndez 2025: graphic organizers given by an instructor, g = 0.70 for memory and 0.53 for comprehension, with evidence of publication bias | §7 the division of labour with the AI | against the strictness of the rule, under other conditions |
 
 ## Open questions
 

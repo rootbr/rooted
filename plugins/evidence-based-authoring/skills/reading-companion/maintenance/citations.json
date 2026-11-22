@@ -10712,5 +10712,284 @@
   "source": "https://arxiv.org/abs/2607.08849v2",
   "quote": "Test score (SD) 0.000 0.285∗∗ 0.408∗∗ 0.000 0.213∗ 0.300∗",
   "note": "a PDF: convert it to text (pdftotext -layout) and give the text file's path as the source"
+ },
+ {
+  "id": "§13 Walk: the accepted name first/1",
+  "source": "https://arxiv.org/abs/2504.19225",
+  "quote": "Annotating source code with algorithm labels significantly improves program comprehension (p=0.040)"
+ },
+ {
+  "id": "§13 Walk: the accepted name first/2",
+  "source": "https://arxiv.org/abs/2504.19225",
+  "quote": "but does not affect completion times (p=0.991)"
+ },
+ {
+  "id": "§13 Walk: the accepted name first/3",
+  "source": "https://arxiv.org/abs/2504.19225",
+  "quote": "We conducted a controlled experiment with 56 participants"
+ },
+ {
+  "id": "§13 Walk: the parts before the steps/1",
+  "source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:12240927%20AND%20SRC:MED&resultType=core&format=json",
+  "quote": "or--only in Experiment 3--training after the narrated animation (post-training group).",
+  "note": "a JSON record: the quote stands in a string of the record, read with its markup tags as spaces"
+ },
+ {
+  "id": "§13 Walk: the parts before the steps/2",
+  "source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:12240927%20AND%20SRC:MED&resultType=core&format=json",
+  "quote": "Students in the pre-training group performed better than did students in other groups on tests of transfer",
+  "note": "a JSON record: the quote stands in a string of the record, read with its markup tags as spaces"
+ },
+ {
+  "id": "§13 Walk: the parts before the steps/3",
+  "source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:12240927%20AND%20SRC:MED&resultType=core&format=json",
+  "quote": "tests of transfer (in all 3 experiments) and retention (in Experiments 1 and 2).",
+  "note": "a JSON record: the quote stands in a string of the record, read with its markup tags as spaces"
+ },
+ {
+  "id": "§13 Walk: the parts before the steps/4",
+  "source": "https://eric.ed.gov/?id=EJ646442",
+  "quote": "Used a 2-phase, isolated-interacting elements learning approach in 4 experiments involving 22, 25, 18, and 18"
+ },
+ {
+  "id": "§13 Walk: the parts before the steps/5",
+  "source": "https://eric.ed.gov/?id=EJ646442",
+  "quote": "Results provide powerful evidence that for certain groups of learners, information is better learned"
+ },
+ {
+  "id": "§13 Walk: the parts before the steps/6",
+  "source": "https://api.semanticscholar.org/graph/v1/paper/DOI:10.1016/S0959-4752(01)00016-0?fields=title,abstract,venue,year,authors",
+  "quote": "The control group was simply presented with all the information for understanding",
+  "note": "a JSON record: the quote stands in a string of the record, read with its markup tags as spaces"
+ },
+ {
+  "id": "§13 Walk: the parts before the steps/7",
+  "source": "https://eric.ed.gov/?id=EJ880293",
+  "quote": "The results provided support for the predicted interaction with lower expertise students"
+ },
+ {
+  "id": "§13 Walk: the parts before the steps/8",
+  "source": "https://eric.ed.gov/?id=EJ880293",
+  "quote": "learned more from the interacting elements format."
+ },
+ {
+  "id": "§13 Walk: the whole in a few steps, then one case with numbers/1",
+  "source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=TITLE%3A%22Advantage%20of%20Abstract%20Examples%20in%20Learning%20Math%22&resultType=core&format=json",
+  "quote": "participants who trained with improved concrete examples performed as well as, or better than,",
+  "note": "a JSON record: the quote stands in a string of the record, read with its markup tags as spaces"
+ },
+ {
+  "id": "§13 Walk: a worded case before the formula/1",
+  "source": "https://eric.ed.gov/?id=EJ683032",
+  "quote": "students were more successful solving simple algebra story problems than solving mathematically equivalent equations"
+ },
+ {
+  "id": "SKILL.md The services: a translated term keeps its original and takes the equivalent at the word/1",
+  "source": "https://eric.ed.gov/?id=EJ918738",
+  "quote": "Seventy-eight undergraduate EFL learners read and summarized seven texts and completed a vocabulary assessment."
+ },
+ {
+  "id": "SKILL.md The services: a translated term keeps its original and takes the equivalent at the word/2",
+  "source": "https://eric.ed.gov/?id=EJ918738",
+  "quote": "The best performance was observed in the condition where glosses were placed after the glossed word."
+ },
+ {
+  "id": "SKILL.md The services: a translated term keeps its original and takes the equivalent at the word/3",
+  "source": "https://eric.ed.gov/?id=EJ918738",
+  "quote": "reading passages with hypermedia annotations significantly benefits passage comprehension and vocabulary"
+ },
+ {
+  "id": "SKILL.md The services: a translated term keeps its original and takes the equivalent at the word/4",
+  "source": "https://eric.ed.gov/?id=EJ1117822",
+  "quote": "39 Persian-speaking L2 learners of English were divided into two experimental conditions"
+ },
+ {
+  "id": "SKILL.md The services: a translated term keeps its original and takes the equivalent at the word/5",
+  "source": "https://eric.ed.gov/?id=EJ1117822",
+  "quote": "experienced lower levels of cognitive load due to the elimination of split-attention"
+ },
+ {
+  "id": "SKILL.md The services: a translated term keeps its original and takes the equivalent at the word/6",
+  "source": "https://eric.ed.gov/?id=EJ1117822",
+  "quote": "performed better on the reading comprehension measures"
+ },
+ {
+  "id": "SKILL.md The services: a translated term keeps its original and takes the equivalent at the word/7",
+  "source": "https://eric.ed.gov/?id=EJ1317918",
+  "quote": "pop-up window versus separate window"
+ },
+ {
+  "id": "SKILL.md The services: a translated term keeps its original and takes the equivalent at the word/8",
+  "source": "https://eric.ed.gov/?id=EJ1317918",
+  "quote": "the effect of gloss location was less clear-cut"
+ },
+ {
+  "id": "§4.2 Feynman check/70",
+  "source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=TITLE:%22Political%20extremism%20is%20supported%20by%20an%20illusion%20of%20understanding%22&resultType=core&format=json",
+  "quote": "undermined the illusion of explanatory depth",
+  "note": "a JSON record: the quote stands in a string of the record, read with its markup tags as spaces"
+ },
+ {
+  "id": "§4.2 Feynman check/71",
+  "source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=TITLE:%22Political%20extremism%20is%20supported%20by%20an%20illusion%20of%20understanding%22&resultType=core&format=json",
+  "quote": "they did not occur when people were instead asked to enumerate reasons for their policy preferences",
+  "note": "a JSON record: the quote stands in a string of the record, read with its markup tags as spaces"
+ },
+ {
+  "id": "§10 The Matthew effect/19",
+  "source": "https://eric.ed.gov/?id=EJ1135302",
+  "quote": "Teaching of word meanings supported comprehension of text containing the target words in almost all cases"
+ },
+ {
+  "id": "§10 The Matthew effect/20",
+  "source": "https://eric.ed.gov/?id=EJ1135302",
+  "quote": "Analyses of 36 studies that met criteria"
+ },
+ {
+  "id": "§10 The Matthew effect/21",
+  "source": "https://eric.ed.gov/?id=EJ1135302",
+  "quote": "very limited evidence that direct teaching of word meanings"
+ },
+ {
+  "id": "§10 The Matthew effect/22",
+  "source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:12240927%20AND%20SRC:MED&resultType=core&format=json",
+  "quote": "or--only in Experiment 3--training after the narrated animation (post-training group).",
+  "note": "a JSON record: the quote stands in a string of the record, read with its markup tags as spaces"
+ },
+ {
+  "id": "§10 The Matthew effect/23",
+  "source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:12240927%20AND%20SRC:MED&resultType=core&format=json",
+  "quote": "Students in the pre-training group performed better than did students in other groups on tests of transfer",
+  "note": "a JSON record: the quote stands in a string of the record, read with its markup tags as spaces"
+ },
+ {
+  "id": "§10 The Matthew effect/24",
+  "source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:12240927%20AND%20SRC:MED&resultType=core&format=json",
+  "quote": "tests of transfer (in all 3 experiments) and retention (in Experiments 1 and 2).",
+  "note": "a JSON record: the quote stands in a string of the record, read with its markup tags as spaces"
+ },
+ {
+  "id": "§12 Far transfer is contested/31",
+  "source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=TITLE%3A%22Advantage%20of%20Abstract%20Examples%20in%20Learning%20Math%22&resultType=core&format=json",
+  "quote": "participants who trained with improved concrete examples performed as well as, or better than,",
+  "note": "a JSON record: the quote stands in a string of the record, read with its markup tags as spaces"
+ },
+ {
+  "id": "§7 Why the line falls exactly here/90",
+  "source": "https://eric.ed.gov/?id=EJ1496202",
+  "quote": "For instructor-provided graphic organizers, effect sizes were g + = 0.70 for memory (p < 0.001, k = 37)"
+ },
+ {
+  "id": "§7 Why the line falls exactly here/91",
+  "source": "https://eric.ed.gov/?id=EJ1496202",
+  "quote": "whereas no significant moderators emerged"
+ },
+ {
+  "id": "§7 Why the line falls exactly here/92",
+  "source": "https://eric.ed.gov/?id=EJ1496202",
+  "quote": "suggests that reported effect sizes may be inflated"
+ },
+ {
+  "id": "§13.1 Diagnose first/44",
+  "source": "https://eric.ed.gov/?id=EJ782330",
+  "quote": "were more likely to view symbolic reasoning and mastery of equations as a necessary prerequisite"
+ },
+ {
+  "id": "§13.1 Diagnose first/45",
+  "source": "https://eric.ed.gov/?id=EJ782330",
+  "quote": "is in contrast with students' actual performance patterns"
+ },
+ {
+  "id": "§13.1 Diagnose first/46",
+  "source": "https://eric.ed.gov/?id=EJ782330",
+  "quote": "This study (N = 48)"
+ },
+ {
+  "id": "§13.1 Diagnose first/47",
+  "source": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0092406",
+  "quote": "we estimate the magnitude of the knowledge effect to be d = 0.20, less than one-half the original estimate"
+ },
+ {
+  "id": "§13.1 Diagnose first/48",
+  "source": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0092406",
+  "quote": "across seven experiments with large samples (total n = 3074)"
+ },
+ {
+  "id": "§13.1 Diagnose first/49",
+  "source": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0092406",
+  "quote": "our findings constitute a failure to replicate the original result"
+ },
+ {
+  "id": "§13.1 Diagnose first/50",
+  "source": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0092406",
+  "quote": "suggest the effects of knowledge and plausibility to be real but small"
+ },
+ {
+  "id": "§13.4 Feedback elaborates/46",
+  "source": "https://eric.ed.gov/?id=EJ1334754",
+  "quote": "Analysis of 44 independent comparisons (n = 3,869) showed that refutation text"
+ },
+ {
+  "id": "§13.4 Feedback elaborates/47",
+  "source": "https://eric.ed.gov/?id=EJ1334754",
+  "quote": "is associated with a positive, moderate effect (g = 0.41, p < 0.001)"
+ },
+ {
+  "id": "§13.4 Feedback elaborates/48",
+  "source": "https://www.leibniz-ipn.de/en/research/publications/a-framework-for-learning-from-erroneous-examples-and-meta-analysis-of-empirical-research",
+  "quote": "we synthesized findings from 42 papers (177 effect sizes)"
+ },
+ {
+  "id": "§13.4 Feedback elaborates/49",
+  "source": "https://www.leibniz-ipn.de/en/research/publications/a-framework-for-learning-from-erroneous-examples-and-meta-analysis-of-empirical-research",
+  "quote": "statistically significant but weak effect of erroneous examples on learning (g = .136)"
+ },
+ {
+  "id": "§13.4 Feedback elaborates/50",
+  "source": "https://www.leibniz-ipn.de/en/research/publications/a-framework-for-learning-from-erroneous-examples-and-meta-analysis-of-empirical-research",
+  "quote": "statistically significant moderating effect of the design of error-explanation activities"
+ },
+ {
+  "id": "§13.5 Never a quiz/51",
+  "source": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC4144899/fullTextXML",
+  "quote": "In total 80 women were enrolled, with 40 per randomization arm.",
+  "note": "an XML record: the quote stands in the record's text, read with its tags as spaces"
+ },
+ {
+  "id": "§13.5 Never a quiz/52",
+  "source": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC4144899/fullTextXML",
+  "quote": "Women in the IC-C arm had significantly higher overall comprehension scores than in the IC-O arm",
+  "note": "an XML record: the quote stands in the record's text, read with its tags as spaces"
+ },
+ {
+  "id": "§13.5 Never a quiz/53",
+  "source": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC4144899/fullTextXML",
+  "quote": "We used t-tests for independent samples and 95% CIs to assess differences between arms",
+  "note": "an XML record: the quote stands in the record's text, read with its tags as spaces"
+ },
+ {
+  "id": "§13.6b Know when to simply explain/48",
+  "source": "https://arxiv.org/html/2410.04253",
+  "quote": "learned statistically significantly more than participants in the unilateral condition"
+ },
+ {
+  "id": "§13.6b Know when to simply explain/49",
+  "source": "https://arxiv.org/html/2410.04253",
+  "quote": "significantly different learning compared to the contrastive after condition"
+ },
+ {
+  "id": "§13.6b Know when to simply explain/50",
+  "source": "https://arxiv.org/html/2410.04253",
+  "quote": "and unilateral explanations was not significant"
+ },
+ {
+  "id": "§13.7 Stop re-explaining/33",
+  "source": "https://eric.ed.gov/?id=EJ880293",
+  "quote": "The results provided support for the predicted interaction with lower expertise students"
+ },
+ {
+  "id": "§13.7 Stop re-explaining/34",
+  "source": "https://eric.ed.gov/?id=EJ880293",
+  "quote": "learned more from the interacting elements format."
  }
 ]
