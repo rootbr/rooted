@@ -16,3 +16,5 @@ This skill's instance of the repository `README.md` §Skill layout:
 | `assets/log.template.md` | `scripts/init-workspace.sh` | scaffolding the workspace's `notes/log.md` |
 | `maintenance/README.md` | a maintainer | before changing a methodology claim, the card specification or the scaffold |
 | `maintenance/reading-methodology-provenance.md` | a maintainer | adding a methodology claim or re-verifying its source |
+| `maintenance/pending-evidence.md` | a maintainer | to see which methodology claims wait for a test and which tests were found; never in a run |
+| `maintenance/citations.json` | a maintainer | to check that the quoted words of the two files stand in their sources; never in a run |
