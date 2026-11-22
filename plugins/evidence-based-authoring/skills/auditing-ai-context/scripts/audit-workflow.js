@@ -17,8 +17,9 @@
 //   Workflow({ scriptPath: "<skill-dir>/scripts/audit-workflow.js", args: {
 //     cardsDir:  "<skill-dir>/references/rule-cards",   // absolute; never hardcode the plugin version
 //     invPath:   "tmp/audit-<basename>-inventory.md",
-//     targets:   [ { path, name, tier, target_type, cards? } ],  // target_type ∈ context-file|skill|agent-prompt|kb-card|kb-corpus|doc|code|answer;
+//     targets:   [ { path, name, tier, target_type, cards?, allow_no_cards? } ],  // target_type ∈ context-file|skill|agent-prompt|kb-card|kb-corpus|doc|code|answer;
 //                                                        // cards: optional rule_id allowlist (gate mode — diff-triage; omit = full set)
+//                                                        // allow_no_cards: true lets a target that matches no card pass with a warning; otherwise the run stops
 //     agentType: "evidence-based-authoring:audit-subagent",  // auditor type, "<plugin>:<name>"; omit to fall back to prose tool-restriction
 //     indexAgentType: "evidence-based-authoring:audit-indexer",  // card-indexer type (adds Bash to parse frontmatter); defaults from agentType
 //     modelByCheckKind:  { mechanical: "haiku", semantic: "sonnet" },  // optional per-check_kind model routing (omit = inherit session)
@@ -170,6 +171,22 @@ const index = await agent(indexPrompt, indexOpts)
 const cards = (index && index.cards) || []
 if (cards.length === 0) throw new Error('audit-workflow: card index is empty — check cardsDir')
 
+// The indexer may return a facet as the one string its frontmatter spells — "[kb-card]",
+// "skill, agent-prompt". Read it as the list it spells; a value that is no target type means the
+// index is wrong, and a wrong index matches no card to any target: fail loud.
+function targetTypesOf(facet) {
+  return (Array.isArray(facet) ? facet : [facet])
+    .flatMap(v => String(v ?? '').replace(/[\[\]'"]/g, '').split(','))
+    .map(v => v.trim())
+    .filter(Boolean)
+}
+for (const c of cards) {
+  c.applies_to_target = targetTypesOf(c.applies_to_target)
+  const unknown = c.applies_to_target.filter(v => !TARGET_TYPES.includes(v))
+  if (unknown.length)
+    throw new Error(`audit-workflow: card ${c.rule_id} lists applies_to_target ${JSON.stringify(unknown)}, which is no target type — the card index is wrong`)
+}
+
 // a "cards" allowlist naming a rule_id the index does not know is a typo that would
 // silently audit nothing for that rule — fail loud, same policy as target_type
 const KNOWN_IDS = new Set(cards.map(c => c.rule_id))
@@ -203,7 +220,7 @@ const jobs = []
 for (const t of A.targets) {
   const before = jobs.length
   for (const c of cards) {
-    if (!Array.isArray(c.applies_to_target) || !c.applies_to_target.includes(t.target_type)) continue
+    if (!c.applies_to_target.includes(t.target_type)) continue
     if (t.cards && !t.cards.includes(c.rule_id)) continue
     jobs.push({ t, c })
   }
@@ -214,9 +231,13 @@ for (const t of A.targets) {
     if (c && !c.applies_to_target.includes(t.target_type))
       log(`WARNING: target "${t.name}" allowlists ${id}, whose applies_to_target ${JSON.stringify(c.applies_to_target)} excludes "${t.target_type}" — skipped`)
   }
-  // valid target_type but no card lists it: not a typo, but still nothing audited —
-  // surface it so "no findings" is never silently confused with "no checks run".
-  if (jobs.length === before) log(`WARNING: target "${t.name}" (target_type "${t.target_type}") matched zero cards — nothing audited for it`)
+  // no card matched the target: an empty patch list would read as a clean file. Stop the run
+  // unless the target sets allow_no_cards.
+  if (jobs.length === before) {
+    const none = `target "${t.name}" (target_type "${t.target_type}") matched zero cards — nothing would be audited for it`
+    if (!t.allow_no_cards) throw new Error(`audit-workflow: ${none}; set allow_no_cards: true on the target where that is meant`)
+    log(`WARNING: ${none}`)
+  }
 }
 log(`Dispatching ${jobs.length} audit sub-agents across ${A.targets.length} file(s), ${cards.length} cards indexed${A.targets.some(t => t.cards) ? ' (gate mode: per-target allowlists active)' : ''}`)
 
