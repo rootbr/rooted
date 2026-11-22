@@ -48,6 +48,9 @@ SECOND_QUESTION = ("Who still reads a thumbnail cached under the old key?",
 QUIZ_BODY = (EXAMPLE_BODY.read_text(encoding="utf-8")
              .replace('<h2 data-part="What is left.">', PSEUDOCODE + QUESTION.format(*FIRST_QUESTION) + '<h2 data-part="What is left.">')
              .replace('<h2 data-part="What to decide.">', QUESTION.format(*SECOND_QUESTION) + '<h2 data-part="What to decide.">'))
+# An explanation whose first part "The whole mechanism" holds the pseudocode: its line lit on sentence 2.3 opens with
+# key(picture), and its last line ends in a link to the part "A miss".
+EXPLANATION_BODY = (FIXTURES / "explanation-body.html").read_text(encoding="utf-8")
 STEP_NAMES = ("two", "three", "four", "five", "six", "seven")
 
 
@@ -325,6 +328,30 @@ class Quiz(Reader):
     def test_the_marks_stay_in_the_browser_under_a_key_of_their_own(self):
         self.assertEqual([FIRST_QUESTION[0], SECOND_QUESTION[0]], self.seen["questionTexts"])
         self.assertEqual({FIRST_QUESTION[0]: "knew", SECOND_QUESTION[0]: "missed"}, self.seen["storedMarks"])
+
+
+class PseudocodeComments(Reader):
+    BODY = EXPLANATION_BODY
+    SCENARIO = "pseudocode"
+
+    def test_a_selection_in_a_pseudocode_line_opens_the_window_with_the_selected_text(self):
+        self.assertEqual((True, True, "key(picture)"), (self.seen["linePopShown"], self.seen["lineFocusInPop"], self.seen["lineQuote"]))
+
+    def test_the_saved_comment_carries_the_selected_text_and_the_title_of_its_part(self):
+        notes = self.seen["notesAfterLine"] or []
+        self.assertEqual([{"quote": "key(picture)", "part": "The whole mechanism", "text": "a comment on a line"}],
+                         [{key: n[key] for key in ("quote", "part", "text")} for n in notes])
+
+    def test_a_selection_in_a_paragraph_still_opens_the_window(self):
+        self.assertEqual((True, "Without the version"), (self.seen["paragraphPopShown"], self.seen["paragraphQuote"]))
+
+    def test_the_copied_answer_holds_the_line_of_each_comment_in_page_order(self):
+        self.assertEqual(["On the text “key(picture)” (The whole mechanism): a comment on a line",
+                          "On the text “Without the version” (A miss): a comment on a paragraph"],
+                         self.seen["composed"].splitlines())
+
+    def test_a_click_on_the_link_of_a_pseudocode_line_follows_it_and_opens_no_window(self):
+        self.assertEqual(("#h-miss", True), (self.seen["hashAfterLink"], self.seen["popHiddenAfterLink"]))
 
 
 del Reader  # the base runs no page of its own

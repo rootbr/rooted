@@ -613,7 +613,7 @@ main, .sheet { position: relative; }
   }
 
   /* ---------- a comment on a piece of the text: select it, or press C or the plus for the spoken sentence ---------- */
-  var BLOCK = "p, li, td, th, h1, h2, h3, h4, figcaption";
+  var BLOCK = "p, li, td, th, h1, h2, h3, h4, figcaption, figure pre";
   var BLOCKS = all(article, BLOCK).filter(function (b) { return !b.closest(".part-words, .answer-bar, .look, .notes, .return-to"); });
   var RANGES = [], draft = null, canMark = !!(window.CSS && CSS.highlights && window.Highlight);
   function clip(text, n) { return text.length > n ? text.slice(0, n - 1).replace(/\s+\S*$/, "") + "…" : text; }

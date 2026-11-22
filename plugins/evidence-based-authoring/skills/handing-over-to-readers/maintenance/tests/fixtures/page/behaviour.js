@@ -5,7 +5,7 @@
    The asynchronous steps of the page are the comment window a mouseup opens on a timer and the toggle event of an opened
    answer: the reader polls for them.
    window.behaviourScenario, set by the test before this script, names the scenario: "silent", "voiced", "parts", "quiz",
-   or "observe", which records only what every scenario records first. */
+   "pseudocode", or "observe", which records only what every scenario records first. */
 window.addEventListener("load", async function () {
   var out = {};
   function tick() { return new Promise(function (resolve) { setTimeout(resolve, 10); }); }
@@ -246,7 +246,39 @@ window.addEventListener("load", async function () {
       out.questionTexts = texts([first.querySelector("summary"), second.querySelector("summary")]);
     }
 
-    var scenarios = { silent: silent, voiced: voiced, parts: parts, quiz: quiz, observe: async function () {} };
+    /* An explanation's page: a comment on a piece of a pseudocode line, one on a paragraph after it, a click on the link
+       at the end of a line. */
+    async function pseudocode() {
+      var keyLine = article.querySelector('figure.pseudo pre [data-lit="2.3"]'), partLink = article.querySelector("figure.pseudo pre a");
+
+      // 1. a selection inside a line opens the window; Enter keeps the comment
+      await select(keyLine, 0, 12);
+      out.linePopShown = !pop.hidden;
+      out.lineFocusInPop = document.activeElement === area;
+      out.lineQuote = pop.querySelector(".note-quote").textContent;
+      area.value = "a comment on a line";
+      enter();
+      var answer = stored();
+      out.notesAfterLine = answer && Array.isArray(answer.notes) ? answer.notes : null;
+
+      // 2. a selection in a paragraph still opens the window and keeps its comment
+      await select(sentence("4.2"), 0, 19);
+      out.paragraphPopShown = !pop.hidden;
+      out.paragraphQuote = pop.querySelector(".note-quote").textContent;
+      area.value = "a comment on a paragraph";
+      enter();
+
+      // 3. a click on the link of a line follows it and opens no window
+      click(partLink);
+      await until(function () { return location.hash === "#h-miss"; });
+      out.hashAfterLink = location.hash;
+      out.popHiddenAfterLink = pop.hidden;
+
+      // 4. the copied answer holds both comment lines in page order
+      out.composed = copied();
+    }
+
+    var scenarios = { silent: silent, voiced: voiced, parts: parts, quiz: quiz, pseudocode: pseudocode, observe: async function () {} };
     await scenarios[window.behaviourScenario]();
   } catch (e) { out.error = String(e && e.stack || e); }
   var pre = document.createElement("pre");

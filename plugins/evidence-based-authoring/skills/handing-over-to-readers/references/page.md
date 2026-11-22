@@ -203,7 +203,7 @@ An explanation for several readers (`references/explainer.md`) adds five kinds o
 </figure>
 ```
 
-- **The pseudocode** stands in `figure.pseudo` as a `pre` of a few lines, one line a step. A line wrapped in a `span` with `data-lit` lights on its sentence; a link at its end leads to the part that unfolds the line. A formula takes the same `pre` in a plain `figure`.
+- **The pseudocode** stands in `figure.pseudo` as a `pre` of a few lines, one line a step. A line wrapped in a `span` with `data-lit` lights on its sentence; a link at its end leads to the part that unfolds the line. A reader comments on a piece of a line as on any piece of the text. A formula takes the same `pre` in a plain `figure`.
 - **One factor** stands in `figure.factor` as a table: a row a step, the starting conditions with their numbers in the first row, one column for the run without the factor and one for the run with it; `td.bad` marks the step where the run without it fails, `td.good` the same step with it.
 - **The table of questions** stands in `figure.questions` after the first part: each reader's question, its answer in one sentence and a link to the part that answers it; the routes by time stand in its caption.
 - **A question** stands in `figure.quiz` as a `details.q`: the `summary` is the question, `p.answer` the hidden answer with its cause and its number. The page adds under an opened answer the two marks the reader sets for himself and, after the last part, the list of parts worth returning to; it shows no count and keeps the marks in the reader's browser alone.
