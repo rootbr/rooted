@@ -11,7 +11,7 @@ Every rule, checklist item, or review criterion — whether newly added **or edi
 - **A decision** — a goal, a priority, a matter of taste — is recorded under its owner, with what it is for.
 - **A definition** is recorded with its term.
 
-A claim with no test yet is a hypothesis: it goes to its skill's list of hypotheses with its refuting outcome. A claim for which no refuting outcome can be named is an opinion and stays out.
+A claim with no test yet is a hypothesis: it goes to its skill's list of hypotheses with its refuting outcome. A rule needed before its test exists is in force as the repository owner's decision, and its claim waits in that list for its test. A claim for which no refuting outcome can be named is an opinion and stays out.
 
 Cite a source in the form anyone can open: an arXiv ID or DOI, an RFC number or a link to the specification, a linked commit. A source that cannot be fetched cannot be re-verified — by a reviewer, by a later reader, or by the reader that checks the record.
 
@@ -21,19 +21,27 @@ A rule of your own enters on a test of your own:
 
 1. Commit the hypothesis: the measure, the comparison, the scope, the refuting outcome, the threshold and the number of runs.
 2. Run the same work with the technique and without it, and keep every run.
-3. Commit the result with the conditions it was obtained under and what checked the measure; a comparison of shares names its test and its p-value or interval, and a claim about a model's behaviour names the term at which its record is read again.
+3. Commit the result with the conditions it was obtained under and what checked the measure; a comparison of shares names its test and its p-value or interval. A claim about a model's behaviour at the standing `supported` or `law` carries the field `review`, the term at which its record is read again: the retirement of the model version its test or bounds name, or, where they name none, a date twelve months after the latest run of its tests, the source's date standing in for runs it leaves undated.
 
-`check_record.py --staged` reads the order from history and rejects a result whose hypothesis was not committed before it.
+The result decides the standing:
+
+- the run failed its own checks — its prompt, stand or judge did not pass the check made of it: the run is recorded with the check it failed, and the standing stays;
+- the claim held: it enters as a rule with the bounds of its test;
+- it failed once: it waits in the list, the failure recorded;
+- the tests disagree: it is contested and waits, both sides recorded;
+- it failed repeatably: it is refuted, and the record stays.
+
+`check_record.py --staged` reads the order from history and rejects a result whose hypothesis was not committed before it, and a supported claim or law whose scope names a model version listed in [`references/model-versions.md`](plugins/evidence-based-authoring/skills/scientific-method/references/model-versions.md) and carries no `review`. A record whose term has come prints as a `DUE` line and fails no commit.
 
 ## When the rule comes from a book or a blog
 
-A practitioner text is where a formulation comes from; the rule rests on the test of its claim. Three steps:
+A practitioner text is where a formulation comes from; the rule's claim stands on a test, or waits as a hypothesis until one is found. Three steps:
 
 1. Word the claim so that it can fail.
-2. Find the study that tested it, open it, and rest the rule on that test — or run the test yourself. Most durable craft rules have such a study; the practitioner text usually restates it.
-3. Name the practitioner text on the rule's provenance line as the formulation the rule follows. Attribution lives on that line alone (`C-E2`), and the rule rests on the test of step 2.
+2. Find the study that tested it, open it, and rest the rule on that test — or run the test yourself. Where no test is found, the claim waits as a hypothesis, and the rule enters as its owner's decision under § The rule.
+3. Name the practitioner text on the rule's provenance line as the formulation the rule follows. Attribution lives on that line alone (`C-E2`), and the rule rests on the record of step 2.
 
-Worked example: the "one thesis per card" rule was formulated by the Zettelkasten literature, whose own pages call it "a guiding compass" with "no clear litmus test". The test is Dense X Retrieval (Chen et al., EMNLP 2024, [arXiv:2312.06648](https://arxiv.org/abs/2312.06648)), which measures proposition-level indexing beating passage-level retrieval. The rule rests on that measurement, within the retrieval setting it was run in; the Zettelkasten pages are named as its formulation.
+Worked example: the "one thesis per card" rule was formulated by the Zettelkasten literature, whose own pages call it "a guiding compass" with "no clear litmus test". The candidate test is Dense X Retrieval (Chen et al., EMNLP 2024, [arXiv:2312.06648](https://arxiv.org/abs/2312.06648)): its Table 3 gives proposition-level indexing a higher average Recall@5 than passage-level indexing for four dense retrievers, SimCSE 34.3 to 46.3 among them, and names no test, p-value or interval that tells these differences from chance. So the rule, `C-B1`, is in force as the repository owner's decision, its claim waits as the hypothesis `H-C-B1` in the skill's list, and the Zettelkasten pages are named as its formulation.
 
 ## Before you open a PR
 
