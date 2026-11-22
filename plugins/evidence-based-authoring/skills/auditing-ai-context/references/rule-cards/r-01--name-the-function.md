@@ -12,7 +12,7 @@ severity_default: high
 The directory name and the frontmatter `name` must name the function performed — a verb + object, or a tool + mode — not the domain or asset type the skill operates on. The name must also satisfy the platform frontmatter spec: at most 64 characters, lowercase letters, numbers, and hyphens only, no XML tags, and no reserved words ("anthropic", "claude").
 
 ## Rationale
-The `name` spans 3.0% of a skill's tokens but draws 26.3% of router attention, so its per-token influence is outsized: a topic-named skill loses routing duels to a function-named alternative even when its body is more specific. In retrieval studies a surface-topic name lost the task outright (0/12) where the function-named gold skill, once routed, succeeded (9/12; 12/12 in a second case).
+In one reranker the `name` spans 3.0% of a skill's tokens yet peaks at 26.3% of attention in a single layer, 7.3% over all layers, while hiding the skill body costs 31–44 percentage points of routing accuracy; that a topic-named skill loses routing duels to a function-named alternative is an authoring inference, not a measured comparison. In retrieval studies a surface-topic name lost the task outright (0/12) where the function-named gold skill, once routed, succeeded (9/12; 12/12 in a second case).
 
 ## Example
 ```

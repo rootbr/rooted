@@ -12,7 +12,7 @@ severity_default: low
 Tables, fragments, abbreviations, and merged bullets are safe compressions. Paraphrasing, summarizing, or bulk-deleting accumulated bullets is not. When in doubt, append-and-refine; never wholesale-rewrite.
 
 ## Rationale
-A working playbook reduced from 18,282 to 122 tokens — paraphrased into "essentials" — dropped accuracy from 66.7% to 57.1%, below the uncompressed baseline. Each removed bullet was a load-bearing failure-mode reminder; the paraphrase looked tighter but had lost the operational specifics.
+A working playbook reduced from 18,282 to 122 tokens — compressed into a much shorter, less informative summary — dropped accuracy from 66.7% to 57.1%, below the 63.7% the agent scored with no adapted context. Each removed bullet was a load-bearing failure-mode reminder; the paraphrase looked tighter but had lost the operational specifics.
 
 ## Example
 ```

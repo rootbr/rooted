@@ -12,7 +12,7 @@ severity_default: medium
 Anything that enumerates project structure — directory trees, plugin catalogs, environment-variable dumps, dependency lists — must be replaced by a command or script that returns current state. The inventory rots on every change to the underlying state, and the file cannot detect the rot.
 
 ## Rationale
-Context files that duplicate repository documentation are redundant. With all repo docs removed (`.md` files, `docs/`, examples), generated context files flip from net-negative to a +2.7% gain — the file only helps once it is the sole source instead of a stale copy. The same applies to any list the filesystem already answers: the enumeration rots on every state change, silently.
+Context files that duplicate repository documentation are redundant. With all repo docs removed (`.md` files, `docs/`, examples), generated context files go from no significant effect to a +2.7% average gain — the file only helps once it is the sole source instead of a redundant copy. The same applies to any list the filesystem already answers: the enumeration rots on every state change, silently.
 
 ## Example
 ```

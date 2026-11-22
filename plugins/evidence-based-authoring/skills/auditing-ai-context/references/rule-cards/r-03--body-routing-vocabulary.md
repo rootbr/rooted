@@ -9,10 +9,10 @@ severity_default: medium
 # The skill body carries concrete routing-signal vocabulary, not abstract phrasing
 
 ## Thesis
-Modern routers scan the body, not just the description. The body should name the tools the agent uses, trigger verbs, file types, and negative cases in concrete tokens; a body of abstract phrasing forfeits routing signal.
+A router that scans the body, not just the description, routes far more accurately. The body should name the tools the agent uses, trigger verbs, file types, and negative cases in concrete tokens; a body of abstract phrasing forfeits routing signal.
 
 ## Rationale
-Removing the body from routing costs 31–44 pp Hit@1, and a body with no concrete vocabulary forfeits the same signal. The router's encoder matches concrete tokens (`gradle`, `pytest`, `.docx`, `RFC 2119`), not abstractions like "optimize agent behavior". The catalog-wide median body is 704 words against a 21-word description — the body is where the routing signal lives.
+Removing the body from routing costs 37–44 pp Hit@1, and a body with no concrete vocabulary forfeits the same signal. The router's encoder matches concrete tokens (`gradle`, `pytest`, `.docx`, `RFC 2119`), not abstractions like "optimize agent behavior". The catalog-wide median body is 704 words against a 21-word description — the body is where the routing signal lives.
 
 ## Example
 ```

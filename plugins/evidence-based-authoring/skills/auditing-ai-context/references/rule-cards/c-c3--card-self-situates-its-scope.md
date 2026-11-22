@@ -12,7 +12,7 @@ severity_default: medium
 A card must state where it holds: the applicability facet plus a limits or counter-example block together fix the conditions under which the thesis applies and the conditions under which it does not. A card that asserts its claim with no stated scope invites misapplication.
 
 ## Rationale
-Situating context is what lets a consumer judge whether a retrieved card fits the case at hand. Adding such context cuts the top-20 retrieval failure rate by 35% — 49% when combined with lexical matching, and 67% with reranking. Without it, a card retrieved for a superficially similar query is applied outside the situation it was written for, and the consumer has no signal to reject it.
+Situating context is what lets a consumer judge whether a retrieved card fits the case at hand. Prepending context that situates each chunk within its document cuts a search index's top-20 retrieval failure rate by 35% — 49% when combined with lexical matching, and 67% with reranking; that a card's applicability facet and limits block do the same for a consumer's judgment of fit is a house inference. Without it, a card retrieved for a superficially similar query is applied outside the situation it was written for, and the consumer has no signal to reject it.
 
 ## Example
 ```

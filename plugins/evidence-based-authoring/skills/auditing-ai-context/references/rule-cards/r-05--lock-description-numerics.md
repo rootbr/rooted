@@ -12,7 +12,7 @@ severity_default: medium
 Numbers in a description (line / token counts, percent thresholds, version cutoffs) act as hard pivots for the router. Either keep each number exact across every use, or remove it from the description and let the body govern it.
 
 ## Rationale
-Numeric edits ("at most 600" vs "610") cause widespread routing-reliability failures — more than pure rephrasing — because the model treats numbers as hard constraints rather than approximations. A description that says "≤ 500 lines" can fail to trigger on a cousin prompt that asks for 510.
+Numeric edits ("at most 600" vs "610") can make many instruction-following cases fail — more than pure rephrasing does; that the model treats numbers as hard constraints rather than approximations is house inference. A description that says "≤ 500 lines" can fail to trigger on a cousin prompt that asks for 510.
 
 ## Example
 ```

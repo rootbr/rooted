@@ -12,7 +12,7 @@ severity_default: medium
 Once a numeric threshold appears in a rule, every subsequent reference to the same threshold uses the same number.
 
 ## Rationale
-Numeric edits ("at most 600" vs "610") and constraint reconfiguration cause widespread reliability failures — far more than pure rephrasing does — because the model treats the number as a hard constraint, so a drifting threshold fractures the rule it governs.
+Numeric edits ("at most 600" vs "610") can make many test cases fail, and constraint reconfiguration typically scores lower reliability than pure rephrasing does (90.4 against 88.7 for one frontier model), so a drifting threshold fractures the rule it governs; that the model treats the number as a hard constraint is house inference.
 
 ## Example
 ```

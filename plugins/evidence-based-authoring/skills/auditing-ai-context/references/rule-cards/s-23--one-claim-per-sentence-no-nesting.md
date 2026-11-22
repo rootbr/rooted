@@ -12,7 +12,7 @@ severity_default: low
 Each sentence of a spoken span states one claim and embeds no clause inside another. A second claim starts a second sentence; a relative clause that would sit between a subject and its verb is reordered so the sentence runs left to right.
 
 ## Rationale
-An embedded clause forces the listener to hold the opening of a sentence unresolved while a second structure runs to completion — and unlike a reader, a listener cannot go back for the subject he is still holding. Heard sentences carrying one centre-embedded relative clause were answered less accurately than the same content with the clause resolved left to right, and the gap widened at fast speech, where the listener sets no pace. One claim per sentence follows the same constraint on open dependencies and is applied as a house default: no measurement of claims per spoken sentence was located.
+An embedded clause forces the listener to hold the opening of a sentence unresolved while a second structure runs to completion — and unlike a reader, a listener cannot go back for the subject he is still holding. Heard sentences with a centre-embedded object-relative clause ("Women that men assist are helpful") were answered less accurately than the same words with a subject-relative clause ("Men that assist women are helpful"), and older listeners fell further behind on the object-relative form at the fastest speech rate. One claim per sentence follows the same constraint on open dependencies and is applied as a house default: no measurement of claims per spoken sentence was located.
 
 ## Example
 ```

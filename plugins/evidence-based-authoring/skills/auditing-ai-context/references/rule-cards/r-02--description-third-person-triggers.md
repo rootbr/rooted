@@ -12,7 +12,7 @@ severity_default: high
 The frontmatter `description` is pasted verbatim into the routing model's prompt. It must read as third-person prose, be non-empty, fit within 1024 characters, contain no XML tags, and explicitly name (a) what the skill does, (b) contexts that should trigger it, and (c) at least one should-not-trigger context.
 
 ## Rationale
-Third person is the canonical routing voice — "I…" or "you use this to…" degrades routing because routers were trained on third-person descriptors. A description over 1024 characters or containing XML tags is auto-rejected — and markup-like text in an always-loaded field can smuggle unintended instructions into the routing prompt. Negative triggers ("NOT for Vue or Svelte") are the one place where prohibitions help: they shrink the should-trigger basin and stop adjacent skills from stealing activations — the practical safeguard while multi-skill conflict resolution stays underdeveloped.
+Third person is the canonical routing voice — the description is injected into the system prompt, and "I…" or "you use this to…" gives it an inconsistent point of view that can cause discovery problems. A description over 1024 characters or containing XML tags is auto-rejected — and markup-like text in an always-loaded field can smuggle unintended instructions into the routing prompt. Negative triggers ("NOT for Vue or Svelte") are the one place where prohibitions help: they shrink the should-trigger basin and stop adjacent skills from stealing activations — the practical safeguard while multi-skill conflict resolution stays underdeveloped.
 
 ## Example
 ```

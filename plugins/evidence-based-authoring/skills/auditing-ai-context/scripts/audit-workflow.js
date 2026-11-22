@@ -278,7 +278,7 @@ function groupOf(ruleId) {
   if (n <= 6) return 'G1'
   if (n <= 19) return 'G2'
   if (n <= 28) return 'G3'
-  if (n <= 47) return 'G4'
+  if (n <= 49) return 'G4'
   if (n <= 57) return 'G5'
   if (n <= 67) return 'G6'
   if (n <= 79) return 'G7'

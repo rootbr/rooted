@@ -12,7 +12,7 @@ severity_default: medium
 A long flat list of edge-case rules ("if X1 then Y1; if X2 then Y2; …") signals missing generalization. Replace it with 3 to 5 representative examples plus the declarative heuristic that generates them.
 
 ## Rationale
-Each independent if-then rule adds to the instruction bundle and displaces other rules competing for attention. A heuristic plus a few examples expresses the same coverage in roughly one tenth the tokens, with better generalization to edge cases the list never enumerated.
+Each independent if-then rule adds to the instruction bundle and displaces other rules competing for attention. Stated requirements are met less often as their number grows — one model's average accuracy fell to 79.7% with 19 stated together; that a heuristic plus a few examples carries the same coverage in fewer tokens, and generalizes better to edge cases the list never enumerated, is house inference.
 
 ## Example
 ```

@@ -12,7 +12,7 @@ severity_default: low
 Match form to function: ordered procedures and multi-step instructions as a numbered list; independent rules, options, and anti-patterns as a bullet list; comparisons across a fixed set of dimensions as a table; a single proposition with reasoning as one sentence plus one explanation; multi-clause reasoning that needs sequencing as a prose paragraph of at most three sentences.
 
 ## Rationale
-Structural coherence hurts retrieval in long inputs, and itemized bullets outperform monolithic prose because they permit localized edits. The reverse does not hold: forcing a single complex argument into a bullet list creates orphan claims with no connective tissue.
+Structural coherence hurts retrieval in long inputs, and itemized bullets permit localized edits that monolithic prose does not. The reverse does not hold: forcing a single complex argument into a bullet list creates orphan claims with no connective tissue.
 
 ## Example
 ```

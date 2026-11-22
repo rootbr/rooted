@@ -64,7 +64,7 @@ The sub-agents of the two card arms receive the session's instruction files, as 
 
 A card flags a planted sentence when the text of one of its patches contains the sentence, lies inside it or shares a run of forty characters with it. A planted sentence the list misses counts as kept. The thresholds follow the cost of each error: a trace left in place reaches the reader the pass exists for, and a sound sentence rewritten costs its author one rewording. The comparisons are made on the quiet traces, the form the sentences of the case behind this test had. The thresholds rest on two dry cases outside the draw: on them the cards as shipped flagged every trace that used a name of the old rule and neither of the two quiet ones, and the cards shown the deleted lines flagged all three traces of the case that had quiet ones, as the pass did.
 
-The scorer also prints, for information, the shares of each reading by itself, of the `named` traces and of the `foil` sentences in every arm, and the listed sentences no writer planted with the number of them that end as `REWRITE`.
+The scorer also prints, for information, the shares of each reading by itself, of the `named` traces and of the `foil` sentences in every arm, and the listed sentences no writer planted with the number of them that end as `REWRITE`. For H-03, H-05 and H-06, whose two shares are taken over the same quiet traces, it prints the traces only one arm caught and the two-sided exact p-value of McNemar's test over them; the test takes the traces as independent, and they stand two to a note.
 
 ## What each outcome decides
 

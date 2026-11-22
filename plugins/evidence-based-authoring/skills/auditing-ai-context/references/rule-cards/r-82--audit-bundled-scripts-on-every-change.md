@@ -12,7 +12,7 @@ severity_default: medium
 For any script under `scripts/`, `bin/`, or referenced via `Bash` in the skill, the skill body must declare four things: what the script does (one-line summary), what inputs it reads, what outputs it writes, and what privileges it requires. The script must be re-reviewed on every skill update, and its dependencies pinned to immutable hashes rather than version ranges, since an automatic update is an unconsented content change.
 
 ## Rationale
-Skills that bundle executable scripts are 2.12× more vulnerable than text-only skills. A required documentation gate — summary, inputs, outputs, privileges — makes the script's behavior auditable and prevents silent drift, where a script's effect changes without any visible change to the prose a reviewer reads.
+Skills that bundle executable scripts carry at least one detected vulnerability pattern more often than text-only skills — 40.6% against 24.2%, an odds ratio of 2.12 — an association that may reflect the more security-relevant code complex skills contain rather than more malicious intent. A required documentation gate — summary, inputs, outputs, privileges — makes the script's behavior auditable and prevents silent drift, where a script's effect changes without any visible change to the prose a reviewer reads.
 
 ## Example
 ```

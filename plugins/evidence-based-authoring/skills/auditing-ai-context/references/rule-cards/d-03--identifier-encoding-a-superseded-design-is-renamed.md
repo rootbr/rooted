@@ -12,7 +12,7 @@ severity_default: low
 A name that encodes a design no longer in the artifact — a version suffix, a `new` / `old` / `legacy` prefix, an `improved` / `refactored` / `temp` / `compat` / `shim` qualifier — is renamed to state what the thing does now, and every reference to the old name is renamed with it.
 
 ## Rationale
-A name is read far more often than the declaration it sits on, and it is the one piece of prose a reader cannot skip. `parseConfigV2` asserts that a first parser exists somewhere and that choosing between the two matters; once it is the only parser, the suffix is a false claim the reader has to disprove by search, on every encounter. The old name also propagates outward: documentation keeps naming code elements after every source instance of them is gone, in most of over 3,000 surveyed repositories, and a rename left half-finished is one event that produces exactly that dangling reference.
+A name is read far more often than the declaration it sits on, and it is the one piece of prose a reader cannot skip. `parseConfigV2` asserts that a first parser exists somewhere and that choosing between the two matters; once it is the only parser, the suffix is a false claim the reader has to disprove by search, on every encounter. The old name also propagates outward: documentation keeps naming code elements after every source instance of them is gone, at some point in the history of 82.3% of 800 popular repositories and 29.7% of 1,907 of Google's, and a rename left half-finished is one event that produces exactly that dangling reference.
 
 ## Example
 ```

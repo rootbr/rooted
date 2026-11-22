@@ -129,7 +129,7 @@ accepted: Split any meeting longer than 90 minutes into two sessions with separa
 
 | Rule | Instruction | Why |
 |---|---|---|
-| **C-B1** | One thesis per card; if a second idea accretes, split into a linked pair. | Atomicity enables reuse and linking: a Zettelkasten note holds "one idea and one idea only", and an evergreen note captures "the entirety of that thing" in one place. |
+| **C-B1** | One thesis per card; if a second idea accretes, split into a linked pair. | Atomicity enables reuse and linking: a Zettelkasten note holds "one idea and one idea only", and an evergreen note captures, "as much as possible", "the entirety of that thing" in one place. |
 | **C-B2** | Atomic does not mean short — keep the precondition, trade-off, and counter-example that make the thesis true. | Over-compression collapses accuracy: bulk-rewriting an accumulated agent context into a short summary dropped task accuracy 66.7 → 57.1, below the 63.7 no-context baseline; "minimal does not necessarily mean short". |
 | **C-B3** | The thesis is a single checkable claim. | Foundation for faithfulness checking and downstream verification. |
 
@@ -171,11 +171,11 @@ accepted: Split any meeting longer than 90 minutes into two sessions with separa
 
 ### A card is a proposition for the consumer, not a summary of the source
 
-Two independent findings converge on the same unit of knowledge for an LLM consumer, and a note-taking convention names the wording the rule follows:
+A finding and an engineering norm converge on the same unit of knowledge for an LLM consumer, and a note-taking convention names the wording the rule follows:
 
-1. **Proposition-level indexing** — evidence. The best indexing unit is the *proposition*: "atomic expressions within text, each encapsulating a distinct factoid and presented in a concise, self-contained natural language format". Proposition-level indexing beats passage-level retrieval (up to +9–12 points Recall@5 with retrievers not tuned to the corpus) and improves downstream QA under a fixed token budget — and an agent assembling its working context operates exactly in that fixed-budget, untuned regime. An ideal card is a proposition.
-2. **Context engineering** — evidence. Context engineering means finding "the smallest possible set of high-signal tokens that maximize the likelihood of some desired outcome", written at the right altitude — the Goldilocks zone between brittle hardcoded logic and vague guidance — and "minimal does not necessarily mean short".
-3. **Atomic notes** — **the formulation C-B1 follows, never its evidence.** A permanent Zettelkasten note holds "one idea and one idea only", written in full sentences, in your own words, as if for someone else. A note that needs "as mentioned above" to be understood is an essay fragment, not a note. Atomic does not mean small: an evergreen note is "only about one thing — but which, as much as possible, capture the entirety of that thing". The practice itself calls this a convention — "not a rigid law, but a guiding compass", with "no clear litmus test" — so the rule rests on the measurement in item 1 and takes only its wording here.
+1. **Proposition-level indexing** — evidence. The best indexing unit is the *proposition*: "atomic expressions within text, each encapsulating a distinct factoid and presented in a concise, self-contained natural language format". Proposition-level indexing beats passage-level retrieval (+12.0 and +9.3 points Recall@5, averaged over five QA datasets, with retrievers trained without labelled query-passage pairs; +2.6 and +2.8 with supervised ones) and improves downstream QA under a fixed token budget — and an agent assembling its working context operates exactly in that fixed-budget regime. An ideal card is a proposition.
+2. **Context engineering** — a norm, with no test of its own. Context engineering means finding "the smallest possible set of high-signal tokens that maximize the likelihood of some desired outcome", written at the right altitude — the Goldilocks zone between brittle hardcoded logic and vague guidance — and "minimal does not necessarily mean short".
+3. **Atomic notes** — **the formulation C-B1 follows, never its evidence.** A permanent Zettelkasten note holds "one idea and one idea only", written down in your own words. Atomic does not mean small: an evergreen note is "only about one thing — but which, as much as possible, capture the entirety of that thing". The practice itself calls this a convention — "not a rigid law, but a guiding compass", with "no clear litmus test" — so the rule rests on the measurement in item 1 and takes only its wording here.
 
 Consequences for any KB pipeline:
 

@@ -27,7 +27,7 @@ Mixing "MUST" with "should always" or "is recommended to always" creates parse a
 ## Example
 ```
 bad:  "MUST avoid X where possible."
-good: "MUST NOT use X."   (or, if conditional)  "SHOULD avoid X; if unavoidable, do Y."
+good: "MUST NOT use X."   (or, with an exception)  "SHOULD avoid X; do Y where X is unavoidable."
 ```
 
 ## Limits

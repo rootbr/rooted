@@ -12,7 +12,7 @@ severity_default: medium
 Set the number of hard constraints from the target model's measured accuracy on the task. When eval accuracy is below 90%, add hard constraints (Sculpting-style). At 90–95%, A/B test both densities — the outcome depends on the prompt class. Above 95%, keep prompts simple and goal-oriented and minimize prohibitions.
 
 ## Rationale
-Hard constraints that raise a mid-tier model by +4 points can degrade a frontier model by ~2.4 points: the same constraint set helps below the accuracy ceiling and handcuffs above it. Implicit-rule inference also varies by model — one model recovers 44.7% of unstated requirements while another recovers only 24.5% — so a file tuned on a frontier model under-specifies for smaller models.
+Hard constraints that raise a mid-tier model by +4 points can degrade a frontier model by ~2.4 points: the same constraint set helps below the accuracy ceiling and handcuffs above it. Implicit-rule inference also varies by model — one model guesses 44.7% of unstated requirements, 20.2% more than another — so a file tuned on a frontier model under-specifies for smaller models.
 
 ## Example
 ```

@@ -12,7 +12,7 @@ severity_default: low
 When authoring trigger examples or eval prompts, use cousin-prompt variants — paraphrases of real user queries, with concrete detail — rather than abstract textbook-style prompts.
 
 ## Rationale
-Cousin-augmented data lifts reliability by more than 45% over generic Alpaca-style examples; the generic examples actually decline reliability, so an abstract prompt is worse than no example, not merely weaker.
+Fine-tuning one 7B model on cousin prompts lifts its reliable@10 above 45% after 200 steps, while fine-tuning it on generic Alpaca-style prompts slightly lowers reliability; that example prompts in a file behave the same way is house inference.
 
 ## Example
 ```

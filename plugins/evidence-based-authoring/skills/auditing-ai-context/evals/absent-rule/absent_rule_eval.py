@@ -51,7 +51,10 @@ score      Reads, per case directory of CASES_DIR that holds labels.json, RUN_DI
            (trace, trace/named, trace/quiet, foil, licensed, plain) the counts planted, listed,
            rewritten, rewritten_reading_<k>, flagged_shipped and flagged_deleted; the line
            `other listed sentences: N, rewritten: M`; then the lines H-01 to H-07, each PASS or
-           FAIL with its numbers. With --out writes the same as JSON.
+           FAIL with its numbers; then one line each for H-03, H-05 and H-06, whose two shares are
+           taken over the same quiet traces: the traces only one arm caught and the two-sided
+           exact p-value of McNemar's test over them, the traces taken as independent. With --out
+           writes the same as JSON.
 
 Exit: draw, inventory, baseline and score 0 on success (a FAIL line is a result); validate 0
 without findings, 1 with findings; confirm 0 when every case is usable, 1 otherwise; readings 0
@@ -74,6 +77,7 @@ import re
 import sys
 from collections import Counter
 from fractions import Fraction
+from math import comb
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "scripts"))
@@ -92,6 +96,10 @@ MARKER_WORDS = re.compile(r"marker: (.+?) — ")
 SHARED_RUN = 40
 SCORE_ROWS = ("trace", "trace/named", "trace/quiet", "foil", "licensed", "plain")
 BASELINES = (("shipped", "baseline.json"), ("deleted", "baseline-deleted.json"))
+PAIRED_HYPOTHESES = (("H-03", "rewritten", "flagged_shipped"), ("H-05", "flagged_deleted", "flagged_shipped"),
+                     ("H-06", "rewritten", "flagged_deleted"))
+ARM_NAMES = {"rewritten": "the pass", "flagged_shipped": "the cards as shipped",
+             "flagged_deleted": "the cards given the deleted lines"}
 DELETED_HEADER = ("- statements_deleted_by_the_change (copied from the diff by a script; "
                   "a reader of the target cannot see them):")
 MIN_CONFIRMED = 8
@@ -642,6 +650,31 @@ def hypotheses(counts: dict[str, dict[str, int]]) -> list[dict]:
             for hid, name, passed, numbers in results]
 
 
+def exact_mcnemar(first_only: int, second_only: int) -> Fraction:
+    """Two-sided exact p-value of McNemar's test over the sentences only one arm caught: the chance
+    of a split at least this uneven when either arm is as likely as the other to be the one."""
+    discordant = first_only + second_only
+    larger = max(first_only, second_only)
+    tail = sum(comb(discordant, k) for k in range(larger, discordant + 1))
+    return min(Fraction(1), Fraction(2 * tail, 2 ** discordant))
+
+
+def paired_tests(sentences: list[dict]) -> list[dict]:
+    """Per hypothesis that compares two shares over the same quiet traces: the traces only one arm
+    caught and the p-value of that split. The test takes the traces as independent."""
+    quiet = [sentence for sentence in sentences if "trace/quiet" in row_of(sentence)]
+    tests = []
+    for hid, first, second in PAIRED_HYPOTHESES:
+        first_only = sum(1 for sentence in quiet if sentence[first] and not sentence[second])
+        second_only = sum(1 for sentence in quiet if sentence[second] and not sentence[first])
+        p = float(exact_mcnemar(first_only, second_only))
+        tests.append({"id": hid, "first_only": first_only, "second_only": second_only, "p": p,
+                      "line": f"{hid} paired: {first_only} quiet traces caught by {ARM_NAMES[first]} alone, "
+                              f"{second_only} by {ARM_NAMES[second]} alone; "
+                              f"exact McNemar test, two-sided p = {p:.4f}"})
+    return tests
+
+
 def score(cases_dir: Path, run_dir: Path) -> dict:
     if not cases_dir.is_dir():
         raise InputError(f"{cases_dir} is not a directory")
@@ -657,7 +690,8 @@ def score(cases_dir: Path, run_dir: Path) -> dict:
         other = {key: other[key] + case_other[key] for key in other}
     counts = class_counts(sentences, readings)
     return {"cases": [d.name for d in case_dirs], "readings": readings, "classes": counts,
-            "other_listed": other, "hypotheses": hypotheses(counts), "sentences": sentences}
+            "other_listed": other, "hypotheses": hypotheses(counts), "paired": paired_tests(sentences),
+            "sentences": sentences}
 
 
 def score_lines(result: dict) -> list[str]:
@@ -665,7 +699,7 @@ def score_lines(result: dict) -> list[str]:
              for row, counts in result["classes"].items()]
     other = result["other_listed"]
     lines.append(f"other listed sentences: {other['listed']}, rewritten: {other['rewritten']}")
-    return lines + [hypothesis["line"] for hypothesis in result["hypotheses"]]
+    return lines + [row["line"] for row in result["hypotheses"] + result["paired"]]
 
 
 def cmd_score(args) -> int:

@@ -12,7 +12,7 @@ severity_default: medium
 A hot-tier file (`CLAUDE.md` / `AGENTS.md` / `copilot-instructions.md`) must contain three classes of content: (i) conventions and best practices, (ii) architecture and project structure, (iii) project description.
 
 ## Rationale
-This triple was used as the qualifying criterion in the study that measured a 20.08% mean output-token reduction; only files carrying all three classes showed that benefit. Partial triples were not tested — completeness of the triple is the only configuration with measured benefit.
+This triple was used as the qualifying criterion in the study that measured a 20.08% mean output-token reduction with the file present against removed. Partial triples were not tested — completeness of the triple is the only configuration with measured benefit.
 
 ## Example
 ```

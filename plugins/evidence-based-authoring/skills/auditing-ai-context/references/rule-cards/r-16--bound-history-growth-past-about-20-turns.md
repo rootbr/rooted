@@ -12,7 +12,7 @@ severity_default: medium
 For skills that manage conversational state or store transcripts, prescribe summarization or window-based truncation rather than unbounded retention.
 
 ## Rationale
-Transcripts grow O(T²) in tokens because each turn re-encodes prior turns. Past ~20 turns, stale context degrades accuracy; the exact threshold is provider-specific.
+Sending the full transcript at every turn costs O(T²) cumulative input tokens because each turn re-sends prior turns. That stale context degrades accuracy past ~20 turns is a house heuristic: the measured degradation is by input length in tokens, and it is uneven across models.
 
 ## Example
 ```

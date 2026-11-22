@@ -21,10 +21,10 @@ good: "Keep heading depth ≤ 3 (H1 → H3); split deeper structures into a new 
 ```
 
 ## Limits
-A negative kept in the `description` to mark a non-trigger is in scope to keep, not convert. A safety or data-integrity prohibition is kept, but its ALL-CAPS marker still needs a one-sentence rationale. Only style, formatting, and edge-case prohibitions in the body are converted; reframe an edge-case prohibition as "When X, do Y instead of Z."
+A negative kept in the `description` to mark a non-trigger is in scope to keep, not convert. A safety or data-integrity prohibition is kept, but its ALL-CAPS marker still needs a one-sentence rationale. Only style, formatting, and edge-case prohibitions in the body are converted; an edge-case prohibition becomes a positive rule that names its situation in whatever form reads plainest, for example "Do Y instead of Z wherever X holds."
 
 ## Validator
-Grep the body for `do not`, `don't`, `never`, `must not`, `shall not`, `avoid`, `refrain from`. For each hit, classify: a `description`-field non-trigger → keep; a safety or data-integrity rule → keep (confirm its capitalized marker carries a rationale); a style or formatting rule → convert to positive; an edge-case prohibition → reframe as a conditional. Flag every style-class negative in the body.
+Grep the body for `do not`, `don't`, `never`, `must not`, `shall not`, `avoid`, `refrain from`. For each hit, classify: a `description`-field non-trigger → keep; a safety or data-integrity rule → keep (confirm its capitalized marker carries a rationale); a style or formatting rule → convert to positive; an edge-case prohibition → reframe as positive, naming its situation. Flag every style-class negative in the body.
 
 ## Patch output
 When auditing a body negative that is style- or edge-case-class, emit one patch (`rule_id: R-61`, `location` set to the heading and line hint, `current` = the negative phrasing, severity low) proposing the positive equivalent; set `needs_human: true` when the prohibition's class (safety vs style) is unclear.

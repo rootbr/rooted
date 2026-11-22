@@ -9,10 +9,10 @@ severity_default: low
 # For large tool outputs, prefer masking and pointer-IDs over LLM summarization
 
 ## Thesis
-For skills whose tools return large outputs, favor masking and pointer-IDs over LLM summarization. Three structural mechanisms beat semantic rewrites: masking stale observations (cuts 50.9–57.1%, no overhead), LLM summarization (cuts 41.5–55.4%, but adds a 0.65–7.20% summary pass), and pointer-IDs that return a handle the agent dereferences (~7× measured, ~16,900× estimated against a baseline that would overflow the window, no overhead).
+For skills whose tools return large outputs, favor masking and pointer-IDs over LLM summarization. Three mechanisms compare: masking stale observations (cuts instance cost 9.8–57.1% at a solve rate close to summarization's, no overhead), LLM summarization (cuts 0.0–55.4%, but adds a 0.65–7.20% summary pass), and pointer-IDs that return a handle the agent dereferences (~7× measured, ~16,900× estimated against a baseline that would overflow the window, no overhead).
 
 ## Rationale
-Runtime tool outputs consume ~84% of agent tokens. The structural mechanisms cut that cost without a summary pass and without the accuracy risk of a semantic rewrite.
+Runtime tool outputs consume ~84% of agent tokens. The structural mechanisms cut that cost without a summary pass, and masking does so at a solve rate close to a semantic rewrite's, though in one of five configurations it lowered the solve rate significantly.
 
 ## Example
 ```

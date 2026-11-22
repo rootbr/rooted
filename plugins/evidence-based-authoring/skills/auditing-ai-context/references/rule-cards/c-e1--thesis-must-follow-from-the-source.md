@@ -12,7 +12,7 @@ severity_default: high
 The thesis must be entailed by its source. Four drifts are forbidden: inverting the source's claim, dropping a precondition the source attached, stating as a recommendation a position the source refuted, and flattening a conditional ("X only when Y") into an absolute ("X").
 
 ## Rationale
-Each of the four drifts is an intrinsic hallucination — content that misrepresents the very source the card claims to rest on, so the consumer acts on a claim its provenance does not support. Entailment by the source tracks faithfulness far better than surface word overlap: a card can reuse the source's vocabulary while reversing its meaning, so faithfulness is judged by whether the source logically supports the thesis, not by shared phrasing.
+Each of the four drifts is an intrinsic hallucination — content that misrepresents the very source the card claims to rest on, so the consumer acts on a claim its provenance does not support. Entailment by the source tracks faithfulness far better than word overlap with a reference summary, and since a card can reuse the source's vocabulary while reversing its meaning, faithfulness is judged by whether the source logically supports the thesis, not by shared phrasing.
 
 ## Example
 ```

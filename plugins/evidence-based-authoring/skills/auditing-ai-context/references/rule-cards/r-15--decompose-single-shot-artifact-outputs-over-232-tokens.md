@@ -12,7 +12,7 @@ severity_default: medium
 Skills that demand one large generated artifact in a single response are fragile. When the canonical target length exceeds 232 tokens, decompose into bounded outputs or iterative edits.
 
 ## Rationale
-GPT-4o pass@1 collapsed below 10% once the canonical target length exceeded 232 tokens. The collapse traces to attention-budget contention between maintaining the constraint set and generating long structured output simultaneously. Bounded outputs let the model re-read constraints between segments.
+Pass@1 falls gradually as the canonical target length grows, and above 232 tokens even GPT-4o, the top model, stays below 10%. Tracing the drop to attention-budget contention between maintaining the constraint set and generating long structured output simultaneously is house inference. Bounded outputs let the model re-read constraints between segments.
 
 ## Example
 ```

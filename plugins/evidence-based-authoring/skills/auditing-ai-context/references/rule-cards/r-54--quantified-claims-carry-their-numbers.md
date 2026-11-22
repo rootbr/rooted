@@ -17,8 +17,8 @@ Stripped numbers turn a falsifiable claim into a vague gesture. 5.9% of requirem
 ## Example
 ```
 bad:  "Reliable@10 testing catches failures."
-good: "Reliable@10 testing exposes hidden failure modes — up to 61.8pp reliability
-      drops measured vs single-prompt accuracy (Dong 2512.14754 §2.2)."
+good: "Reliable@10 testing exposes hidden failure modes — up to a 61.8% relative drop
+      from single-prompt accuracy to reliable@10 (Dong 2512.14754 §4.2)."
 ```
 
 ## Limits

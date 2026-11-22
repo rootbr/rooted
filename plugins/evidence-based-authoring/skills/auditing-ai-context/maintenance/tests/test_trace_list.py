@@ -222,6 +222,8 @@ class Run(unittest.TestCase):
         return json.loads(out)
 
 
+COMMIT_DATES = {"GIT_AUTHOR_DATE": "2026-01-01T00:00:00+00:00", "GIT_COMMITTER_DATE": "2026-01-01T00:00:00+00:00"}
+
 SHARED = ["# Rules", ""] + [line for k in range(4) for line in (f"Shared paragraph {k} holds one sentence.", "")] + [""]
 OLD_EXAMPLE = "\n".join(SHARED + ["Every rule cites a source.", ""])
 NEW_SENTENCE = "The method is neither a sequence of steps nor a demand for a citation."
@@ -314,25 +316,38 @@ class Errors(Run):
         self.assert_exit_2("--staged", "--root", str(self.dir), message="git")
 
 
-class GitModes(Run):
+class GitRepository(Run):
+    """The temporary directory is a git repository with a committer of its own."""
+
     def setUp(self):
         super().setUp()
         self.git("init", "-q")
         self.git("config", "user.name", "Test")
         self.git("config", "user.email", "test@example.invalid")
-        self.write("a.md", "Shared line.\n\nOld rule holds.\n")
-        self.write("gone.md", "A removed statement.\n")
-        self.write("notes.txt", "Text.\n")
-        self.commit("base")
 
-    def git(self, *args: str) -> str:
-        run = subprocess.run(["git", "-C", str(self.dir), *args], capture_output=True, text=True)
+    def git(self, *args: str, env: dict | None = None) -> str:
+        run = subprocess.run(["git", "-C", str(self.dir), *args], capture_output=True, text=True,
+                             env=None if env is None else {**os.environ, **env})
         self.assertEqual(run.returncode, 0, run.stderr)
         return run.stdout
 
     def commit(self, message: str) -> None:
         self.git("add", "-A")
-        self.git("-c", "commit.gpgsign=false", "commit", "-q", "-m", message)
+        self.git("-c", "commit.gpgsign=false", "commit", "-q", "-m", message, env=COMMIT_DATES)
+
+    def summary(self, listing: dict) -> tuple:
+        return ([f["file"] for f in listing["files"]],
+                [(d["file"], d["line"], d["text"]) for d in listing["deleted"]],
+                [(c["id"], c["file"], c["line"], c["sentence"]) for c in listing["candidates"]])
+
+
+class GitModes(GitRepository):
+    def setUp(self):
+        super().setUp()
+        self.write("a.md", "Shared line.\n\nOld rule holds.\n")
+        self.write("gone.md", "A removed statement.\n")
+        self.write("notes.txt", "Text.\n")
+        self.commit("base")
 
     def change(self) -> None:
         """A modified and an added Markdown file, a deleted one and a modified non-Markdown file."""
@@ -340,11 +355,6 @@ class GitModes(Run):
         self.write("b.md", "A new file, not an old one.\n")
         self.write("notes.txt", "It is not Markdown.\n")
         (self.dir / "gone.md").unlink()
-
-    def summary(self, listing: dict) -> tuple:
-        return ([f["file"] for f in listing["files"]],
-                [(d["file"], d["line"], d["text"]) for d in listing["deleted"]],
-                [(c["id"], c["file"], c["line"], c["sentence"]) for c in listing["candidates"]])
 
     EXPECTED = (["a.md", "b.md"],
                 [("a.md", 3, "Old rule holds."), ("gone.md", 1, "A removed statement.")],
@@ -384,6 +394,115 @@ class GitModes(Run):
         code, out, err = self.run_main("--base", "no-such-rev", "--root", str(self.dir))
         self.assertEqual((code, out), (2, ""))
         self.assertIn("git diff", err)
+
+
+README = ("# Skill A\n\nThe skill reads one file and never writes one.\n\nEach run takes a list of paths.\n\n"
+          "It opens no network connection.\n")
+README_EDITED = README.replace("a list of paths.", "a list of paths, not a directory.")
+SKILL = ("---\nname: skill-a\ndescription: Reads one file. Never writes one.\n---\n# Skill A\n\n"
+         "Run it on a list of paths.\n\nIt does not follow a link.\n")
+NOTES = "# Notes\n\nA note holds no rule.\n"
+REWRITE_SENTENCE = "A path outside the root is never read."
+
+
+def rewritten(text: str) -> str:
+    """The text with eight paragraphs and REWRITE_SENTENCE appended, enough that git no longer pairs the two."""
+    steps = "".join(f"\nStep {k} reads the next path and records its size in the log.\n" for k in range(1, 9))
+    return f"{text}{steps}\n{REWRITE_SENTENCE}\n"
+
+
+class GitRenames(GitRepository):
+    """skill-a holds README.md and SKILL.md at the base; a test moves the directory to skill-b with git mv."""
+
+    def setUp(self):
+        super().setUp()
+        self.write("skill-a/README.md", README)
+        self.write("skill-a/SKILL.md", SKILL)
+        self.commit("skill-a")
+
+    def staged_status(self) -> str:
+        """The index against HEAD as git pairs it, after staging the working tree."""
+        self.git("add", "-A")
+        return self.git("diff", "--cached", "-M", "--name-status", "HEAD")
+
+    def staged_listing(self, *args: str) -> dict:
+        return self.listing("--staged", "--root", str(self.dir), *args)
+
+    def move_editing_readme_and_rewriting_skill(self) -> None:
+        self.git("mv", "skill-a", "skill-b")
+        self.write("skill-b/README.md", README_EDITED)
+        self.write("skill-b/SKILL.md", rewritten(SKILL))
+
+    EDIT_DELETED = ("skill-a/README.md", 5, "Each run takes a list of paths.")
+    EDIT_ADDED = ("skill-b/README.md", 5, "Each run takes a list of paths, not a directory.")
+    REWRITE_ADDED = ("skill-b/SKILL.md", 27, REWRITE_SENTENCE)
+    MOVED_EDITED_REWRITTEN = (["skill-b/README.md", "skill-b/SKILL.md"], [EDIT_DELETED],
+                              [("c001", *EDIT_ADDED), ("c002", *REWRITE_ADDED)])
+
+    def test_a_moved_directory_lists_only_the_sentences_its_edit_adds(self):
+        self.git("mv", "skill-a", "skill-b")
+        self.write("skill-b/README.md", README_EDITED)
+        self.assertIn("\tskill-a/README.md\tskill-b/README.md", self.staged_status())
+        self.assertEqual(self.summary(self.staged_listing()),
+                         (["skill-b/README.md", "skill-b/SKILL.md"], [self.EDIT_DELETED], [("c001", *self.EDIT_ADDED)]))
+
+    def test_a_file_rewritten_past_git_pairing_is_compared_with_its_earlier_text_through_its_directory(self):
+        self.move_editing_readme_and_rewriting_skill()
+        status = self.staged_status()
+        self.assertIn("A\tskill-b/SKILL.md", status)
+        self.assertIn("\tskill-a/README.md\tskill-b/README.md", status)
+        self.assertEqual(self.summary(self.staged_listing()), self.MOVED_EDITED_REWRITTEN)
+
+    def test_a_rewritten_file_in_a_subdirectory_is_paired_through_the_directory_that_moved(self):
+        self.write("skill-a/maintenance/notes.md", NOTES)
+        self.commit("notes")
+        self.git("mv", "skill-a", "skill-b")
+        self.write("skill-b/maintenance/notes.md", rewritten(NOTES))
+        self.assertIn("A\tskill-b/maintenance/notes.md", self.staged_status())
+        self.assertEqual(self.summary(self.staged_listing()),
+                         (["skill-b/README.md", "skill-b/SKILL.md", "skill-b/maintenance/notes.md"], [],
+                          [("c001", "skill-b/maintenance/notes.md", 21, REWRITE_SENTENCE)]))
+
+    def test_a_new_file_in_a_directory_nothing_moved_into_lists_every_candidate(self):
+        self.git("mv", "skill-a", "skill-b")
+        (self.dir / "skill-b" / "SKILL.md").unlink()
+        self.write("skill-c/SKILL.md", "# Skill C\n\nIt writes no file.\n\nA run never stops early.\n\nPlain words.\n")
+        self.assertIn("D\tskill-a/SKILL.md", self.staged_status())
+        self.assertEqual(self.summary(self.staged_listing()), (
+            ["skill-b/README.md", "skill-c/SKILL.md"],
+            [("skill-a/SKILL.md", 3, "Reads one file."), ("skill-a/SKILL.md", 3, "Never writes one."),
+             ("skill-a/SKILL.md", 7, "Run it on a list of paths."),
+             ("skill-a/SKILL.md", 9, "It does not follow a link.")],
+            [("c001", "skill-c/SKILL.md", 3, "It writes no file."),
+             ("c002", "skill-c/SKILL.md", 5, "A run never stops early.")]))
+
+    def test_range_mode_over_a_commit_with_a_rename_lists_what_staged_mode_listed_before_it(self):
+        self.move_editing_readme_and_rewriting_skill()
+        self.git("add", "-A")
+        staged = self.staged_listing()
+        self.assertEqual(self.summary(staged), self.MOVED_EDITED_REWRITTEN)
+        self.commit("move")
+        for head in (("--head", "HEAD"), ()):
+            with self.subTest(head=head):
+                self.assertEqual(self.listing("--base", "HEAD~1", *head, "--root", str(self.dir)),
+                                 {**staged, "mode": "range"})
+
+    def test_an_excluded_paired_file_leaves_its_earlier_path_off_the_list(self):
+        self.move_editing_readme_and_rewriting_skill()
+        self.git("add", "-A")
+        cases = (("skill-b/SKILL.md", (["skill-b/README.md"], [self.EDIT_DELETED], [("c001", *self.EDIT_ADDED)])),
+                 ("skill-b/README.md", (["skill-b/SKILL.md"], [], [("c001", *self.REWRITE_ADDED)])))
+        for glob, expected in cases:
+            with self.subTest(glob=glob):
+                self.assertEqual(self.summary(self.staged_listing("--exclude", glob)), expected)
+
+    def test_a_markdown_file_renamed_to_another_kind_of_file_counts_as_deleted(self):
+        self.git("mv", "skill-a/README.md", "skill-a/README.txt")
+        self.assertIn("\tskill-a/README.md\tskill-a/README.txt", self.staged_status())
+        self.assertEqual(self.summary(self.staged_listing()), ([], [
+            ("skill-a/README.md", 3, "The skill reads one file and never writes one."),
+            ("skill-a/README.md", 5, "Each run takes a list of paths."),
+            ("skill-a/README.md", 7, "It opens no network connection.")], []))
 
 
 if __name__ == "__main__":

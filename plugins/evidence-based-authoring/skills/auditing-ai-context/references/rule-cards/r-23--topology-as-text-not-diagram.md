@@ -12,7 +12,7 @@ severity_default: low
 Describe data flow, hierarchies, and process diagrams using compact text notation — `A → B → C[]`, `Hierarchy: parent → child → grandchild`, `Flow: ingest → parse → emit` — rather than Mermaid fences or ASCII boxes.
 
 ## Rationale
-Mermaid appears in only 2 of 328 surveyed instruction files: it is not the convention, and the model derives less from a rendered diagram than from arrow-notation prose.
+Mermaid diagrams appear only twice across 328 surveyed instruction files: it is not the convention, and the model derives less from a rendered diagram than from arrow-notation prose.
 
 ## Example
 ```

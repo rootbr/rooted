@@ -12,7 +12,7 @@ severity_default: medium
 Audit sibling skills for semantic overlap. When two siblings cover nearly the same subject, action, and target, consolidate them or sharpen one name and description to create the separation a router needs.
 
 ## Rationale
-Near-duplicate skills corrupt routing at the training-data level: in a set of 39,065 mined hard-negative pairs, about 10% were near-duplicates of the gold skill and had to be filtered to keep the router learnable. Semantic overlap between siblings erodes the separation a router depends on, so each steals the other's activations.
+Near-duplicate skills corrupt routing at the training-data level: 39,065 mined hard-negative pairs, about 10% of all mined negatives, were near-duplicates of the gold skill and had to be filtered, since treating them as negatives corrupts the contrastive signal. Semantic overlap between siblings erodes the separation a router depends on, so each steals the other's activations.
 
 ## Example
 ```

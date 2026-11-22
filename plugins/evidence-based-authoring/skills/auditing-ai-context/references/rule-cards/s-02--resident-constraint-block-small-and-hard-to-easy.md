@@ -12,7 +12,7 @@ severity_default: medium
 A block of constraints that loads on every turn keeps only the rules that govern every turn, states each in its operative form, orders the hardest and most load-bearing first, and leaves the full statement one file read away.
 
 ## Rationale
-Residency buys presence, not obedience, and each resident rule is paid for out of the compliance of the others. Instruction-following accuracy falls as a conversation grows longer, with drops exceeding 11%; the fall is far steeper when several constraints must hold at once, reducing accuracy by over 40%; and adding or replacing a constraint partway through a conversation costs more than 9%. A large resident block sits in exactly that regime — many constraints, held simultaneously, across a long session. Order is a second lever with the same target: performance fluctuates when the order of constraints changes, and constraints presented hard-to-easy are followed better than the same set in another order.
+Residency buys presence, not obedience, and each resident rule is paid for out of the compliance of the others. Instruction-following accuracy falls as a conversation grows longer, with drops exceeding 11%; the fall is far steeper when several constraints must hold at once, exceeding 38%, and steepest, above 40%, when they are introduced one after another rather than all at once; and adding or replacing a constraint partway through a conversation costs more than 9%. A large resident block sits in exactly that regime — many constraints, held simultaneously, across a long session. Order is a second lever with the same target: performance fluctuates when the order of constraints changes, and constraints presented hard-to-easy are followed better than the same set in another order.
 
 ## Example
 ```
@@ -21,7 +21,7 @@ good: the hard rules first and in brief; the full statement one file read away
 ```
 
 ## Limits
-Covers a block that loads on every turn. A rule governing every answer has no event to route on, so residency is forced for that class and the check is the block's size and order rather than whether it should exist at all. The over-40% figure is reported without saying whether it is absolute or relative and carries no per-model breakdown, and the ordering effect is reported with no numeric spread. Which rule counts as hard is a judgement about the target's own work.
+Covers a block that loads on every turn. A rule governing every answer has no event to route on, so residency is forced for that class and the check is the block's size and order rather than whether it should exist at all. The drops are averages across models with a per-model breakdown whose figures read them as differences in accuracy points, and the ordering effect, about 5–7% in a single round and about 25% over several rounds, is reported with no statistical test. Which rule counts as hard is a judgement about the target's own work.
 
 ## Validator
 Count the constraints the block holds simultaneously and read its order. Check that the hardest and most load-bearing sit first, that each rule appears in operative form rather than in full exposition, and that the long form is reachable by one file read instead of inlined. Flag a resident block ordered by topic or alphabetically, and a block that inlines the full statement of a rule its core only needs to name. Validator question: is every rule here worth the compliance it costs the others?

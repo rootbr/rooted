@@ -12,7 +12,7 @@ severity_default: low
 When the request arrives in a language other than the working one, open the reply with a single line restating it as an explicit English prompt, and do the work from that line.
 
 ## Rationale
-The line's work is specification, not translation: it puts the interpretation in front of the reader before anything depends on it, so a misreading costs one line to correct instead of being discovered in the finished output. That matters because what is left implicit is recovered badly — a conditional or edge-case requirement that is not spelled out is recovered only 22.9% of the time, against 70.7% for a format default the model can infer. A second and bounded reason: a multilingual transformer's abstract concept space lies closer to English than to other languages, so an English restatement states the request in the terms the model works in.
+The line's work is specification, not translation: it puts the interpretation in front of the reader before anything depends on it, so a misreading costs one line to correct instead of being discovered in the finished output. That matters because what is left implicit is recovered badly — a conditional or edge-case requirement that is not spelled out is still met at 98% accuracy or more in only 22.9% of cases, against 70.7% for a format default the model can infer and 41.1% on average. A second and bounded reason: a multilingual transformer works in abstract concepts rather than in English, concepts that lie closer to English than to other languages, so an English restatement states the request in terms near the ones the model works in.
 
 ## Example
 ```

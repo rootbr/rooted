@@ -12,7 +12,7 @@ severity_default: high
 Delimiting untrusted input reduces injection risk but does not eliminate it. For high-trust operations triggered by user input — mutations, payments, deletions, external posts — the technical defense must be paired with a human-confirmation gate before the operation runs.
 
 ## Rationale
-Prompt injection is an open problem that wrapper or template discipline alone cannot fully address, and the limit is structural: a defense cannot meaningfully separate data from instructions without breaking the agentic workflows it is meant to protect, and no fixed policy blocks all context-based attacks without also blocking legitimate flows. Because the technical layer is leaky by construction, an irreversible high-trust action needs a human in the loop.
+Prompt injection is an open problem that wrapper or template discipline alone cannot fully address, and the limit is structural: a defense cannot meaningfully separate data from instructions without breaking the agentic workflows it is meant to protect, and, on an informal argument rather than a proof, no fixed policy blocks all context-based attacks without also blocking some legitimate flows. Because the technical layer is leaky by construction, an irreversible high-trust action needs a human in the loop.
 
 ## Example
 ```

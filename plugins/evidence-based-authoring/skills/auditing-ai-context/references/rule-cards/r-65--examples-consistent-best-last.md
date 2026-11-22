@@ -9,10 +9,10 @@ severity_default: low
 # Examples consistent in label and format; three excellent beats ten mediocre; place best last
 
 ## Thesis
-Use 2–5 diverse examples; 3 excellent examples beat 10 mediocre ones. Place the most-relevant example last, and keep the label and format consistent across every example in a list.
+Use 2–5 diverse examples; 3 excellent examples typically beat 10 mediocre ones. Place the most-relevant example last, and keep the label and format consistent across every example in a list.
 
 ## Rationale
-Final examples carry 2–3× more influence on the model than earlier ones, so the most representative case belongs last. Inconsistent labels or formats across examples cut their effectiveness by up to 40%.
+Final examples carry 2–3× more influence on the model than earlier ones, so the most representative case belongs last. Inconsistent labels or formats across examples can cut their effectiveness by up to 40%.
 
 ## Example
 ```

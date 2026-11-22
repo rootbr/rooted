@@ -9,9 +9,20 @@ The list holds the statements the change deleted and, as candidates, every added
 carries a cue of denial, contrast or history. A candidate is a sentence to judge; the script
 rules on none.
 
-Reads the two files of pair mode, or Markdown files through `git diff` and `git show` (and from
-disk in range mode without --head). Writes the list to --out, or to standard output. Uses the
-Python standard library alone and opens no network connection.
+Pair mode compares OLD with NEW. The git modes compare each changed Markdown file with its text at
+the base: --staged the index with HEAD, --base the revision --head, or the working tree, with REV.
+A file git reports as renamed since the base is compared with its text under the earlier name.
+Git leaves a renamed file unpaired when more than half of its text changed, and the script pairs
+such a file through its directory: when the files beside it were renamed from one earlier
+directory, its base is the file of the same name there, deleted since the base. Any other added
+file has an empty base. A paired
+file is listed once, under its current path, and its deleted statements name its earlier path. A
+Markdown file renamed to another kind of file counts as deleted. An --exclude glob matches the
+current path of a file, or the path of a deleted file.
+
+Reads the two files of pair mode; in the git modes runs `git diff -M --name-status` and `git show`,
+and reads the working tree from disk in range mode without --head. Writes the list to --out, or to
+standard output. Uses the Python standard library alone and opens no network connection.
 
 Exit status: 0 the list was produced; 2 wrong usage, an unreadable file or a failed git command.
 """
@@ -256,14 +267,75 @@ def _git(root, *args):
     return done.stdout
 
 
+def _changed_files(root, diff_args):
+    """[(path at the base, current path)] of every file changed since the base: the base path is
+    None for an added file, the current path None for a deleted one, and the two differ for a file
+    git reports as renamed."""
+    fields = _git(root, "diff", "--name-status", "-z", "-M", *diff_args).split("\0")
+    rows, index = [], 0
+    # -z ends each field with a NUL: a status, then its path or a rename's earlier and current path.
+    while index + 1 < len(fields):
+        status, path = fields[index][:1], fields[index + 1]
+        if status == "R":
+            rows.append((path, fields[index + 2]))
+            index += 3
+        else:
+            rows.append((None if status == "A" else path, None if status == "D" else path))
+            index += 2
+    return rows
+
+
+def _moved_directories(renames):
+    """{(directory at the base, current directory)} of the directories that moved, read off the
+    renamed files.
+
+    The two paths of a rename share their last components; what stands before that tail on each
+    side is a directory that moved. A file whose own name changed, or one that left or entered the
+    root, names no moved directory.
+    """
+    found = set()
+    for earlier, now in renames:
+        before, after = earlier.split("/"), now.split("/")
+        tail = 0
+        while tail < min(len(before), len(after)) and before[-1 - tail] == after[-1 - tail]:
+            tail += 1
+        if 0 < tail < min(len(before), len(after)):
+            found.add(("/".join(before[:-tail]), "/".join(after[:-tail])))
+    return found
+
+
+def _is_markdown(path):
+    return path is not None and path.endswith(".md")
+
+
 def _changed_markdown(root, diff_args, excludes):
-    """[(status letter, path)] of the changed Markdown files."""
+    """[(path at the base, current path)] of the changed Markdown files, either None as in
+    _changed_files, sorted by the listed path: the current one, or a deleted file's own.
+
+    Files are paired by the rules of the module docstring; the deleted file that becomes the earlier
+    path of a file paired through its directory leaves the list.
+    """
+    changed = _changed_files(root, diff_args)
+    renames = [(earlier, now) for earlier, now in changed if earlier and now and earlier != now]
+    directories = _moved_directories(renames)
+    deleted = {earlier for earlier, now in changed if now is None}
+    paired, taken = {}, set()
+    for now in sorted(now for earlier, now in changed if earlier is None and _is_markdown(now)):
+        found = {old + now[len(new):] for old, new in directories if now.startswith(new + "/")}
+        found = (found & deleted) - taken
+        if len(found) == 1:
+            paired[now] = found.pop()
+            taken.add(paired[now])
     rows = []
-    for line in _git(root, "diff", "--name-status", "--no-renames", *diff_args).splitlines():
-        status, _, path = line.partition("\t")
-        if path.endswith(".md") and not any(fnmatch.fnmatch(path, glob) for glob in excludes):
-            rows.append((status[:1], path))
-    return sorted(rows, key=lambda row: row[1])
+    for earlier, now in changed:
+        if now is None and earlier in taken:
+            continue
+        base_path = paired.get(now, earlier)
+        current_path = now if _is_markdown(now) else None
+        listed = current_path or base_path
+        if _is_markdown(listed) and not any(fnmatch.fnmatch(listed, glob) for glob in excludes):
+            rows.append((base_path, current_path))
+    return sorted(rows, key=lambda row: row[1] or row[0])
 
 
 def _pairs(args):
@@ -280,9 +352,10 @@ def _pairs(args):
         else:
             new_of = lambda path: _read(f"{args.root}/{path}")
     pairs = []
-    for status, path in _changed_markdown(args.root, diff_args, args.exclude):
-        old_text = "" if status == "A" else _git(args.root, "show", f"{base}:{path}")
-        pairs.append((path, old_text, path, None if status == "D" else new_of(path)))
+    for earlier, path in _changed_markdown(args.root, diff_args, args.exclude):
+        old_text = "" if earlier is None else _git(args.root, "show", f"{base}:{earlier}")
+        new_text = None if path is None else new_of(path)
+        pairs.append((earlier or path, old_text, path or earlier, new_text))
     return pairs
 
 

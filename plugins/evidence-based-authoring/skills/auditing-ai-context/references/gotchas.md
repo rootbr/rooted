@@ -2,37 +2,37 @@
 
 Symptom → cause → fix for skills and context files, each tied to the R-rule that owns it, where one does. Cold-tier reference (loaded on demand): read when a skill or context file misbehaves, or when the audit workflow is unavailable. Stable IDs — a retired entry keeps its number vacant rather than reusing it. Pointer in `SKILL.md` §Gotchas.
 
-G-01. Skill fails to trigger? Check `description` first (negative triggers, third person, when-to-use). If solid but routing still misses — body is under-signaling (R-03). Routers use full text; even the longest descriptions leave a 31.8pp Hit@1 gap versus full-body routing.
+G-01. Skill fails to trigger? Check `description` first (negative triggers, third person, when-to-use). If solid but routing still misses — body is under-signaling (R-03). Routers usually see only name and description; even the longest descriptions leave a 31.8pp Hit@1 gap versus routing on the full text.
 
 G-02. Agent ignores MUST / NEVER. Pair every caps marker with a one-sentence rationale — agents follow reasons better than edicts (R-62).
 
-G-03. `description` pasted verbatim into system prompt. Third-person mandatory; first/second person breaks routing (R-02).
+G-03. `description` pasted verbatim into system prompt. Third-person mandatory; an inconsistent point of view can cause discovery problems (R-02).
 
 G-04. Positive framing holds for body (R-61); negative triggers belong in `description` only. Different contexts, different rules.
 
-G-05. Self-generated SKILL.md / AGENTS.md regresses: below the no-Skills baseline on all three tested configurations — −8.1pp Claude Code+Opus 4.7, −11.3pp Codex+GPT-5.5, −11.5pp Gemini CLI+Gemini 3.1 Pro — while curated Skills add +18.2 to +24.8pp on the same configs; +20–23% inference cost for −0.5% to −2% success. The failure mode is *ungated one-shot* generation — verification-gated iteration inverts it: CoEvoSkills reaches 71.1% pass vs 53.5% human-curated and 32.0% one-shot; SkillOpt's bounded edits accepted only on held-out validation improvement beat human-authored skills on all 52 cells. Curated gains are domain-dependent, not automatic: on end-to-end SWE tasks 39 of 49 public skills yielded zero pass-rate improvement (average +1.2%; three degraded, to −10%, from version-mismatched guidance; token overhead reached +451% with pass rates unchanged) — verify domain fit and version compatibility, not just skill quality. Validate with a fresh agent on real tasks; never ship ungated drafts.
+G-05. Self-generated SKILL.md / AGENTS.md regresses: below the no-Skills baseline on all three tested configurations — −8.1pp Claude Code+Opus 4.7, −11.3pp Codex+GPT-5.5, −11.5pp Gemini CLI+Gemini 3.1 Pro — while curated Skills add +18.2 to +24.8pp on the same configs; +20–23% inference cost for a −0.5% to −2% change in success that is not significant (two-sided p = 0.87 and 0.37). The failure mode is *ungated one-shot* generation — verification-gated iteration inverts it: CoEvoSkills reaches 71.1% pass vs 53.5% human-curated and 32.0% one-shot; SkillOpt's bounded edits accepted only on held-out validation improvement beat human-authored skills on all 52 cells. Curated gains are domain-dependent, not automatic: on end-to-end SWE tasks 39 of 49 public skills yielded zero pass-rate improvement (average +1.2%; three degraded, to −10%, from version-mismatched guidance; token overhead reached +451% with pass rates unchanged) — verify domain fit and version compatibility, not just skill quality. Validate with a fresh agent on real tasks; never ship ungated drafts.
 
-G-06. ~26.1% of 42,447 collected community skills contain at least one vulnerability — prompt injection, data exfiltration (13.3%), privilege escalation (11.8%), or supply chain; script-bundling skills 2.12× more vulnerable; ClawHavoc compromised over 1,184 published skills. Before installing third-party skills, diff against last-consented version — trust binds to identity, not content (R-84).
+G-06. ~26.1% of the 31,132 community skills analyzed (of 42,447 collected) contain at least one vulnerability — prompt injection, data exfiltration (13.3%), privilege escalation (11.8%), or supply chain; script-bundling skills 2.12× more vulnerable; ClawHavoc published at least 1,184 malicious skills. Before installing third-party skills, diff against last-consented version — trust binds to identity, not content (R-84).
 
-G-07. Reference files two hops from SKILL.md get partial reads — nested references are previewed (`head -100`) rather than read in full. Keep references one level deep, linked directly from SKILL.md.
+G-07. Reference files two hops from SKILL.md may get partial reads — nested references may be previewed (`head -100`) rather than read in full. Keep references one level deep, linked directly from SKILL.md.
 
-G-08. Numeric edits ("at most 600" vs "610") degrade reliability more than rephrasing. Lock numerics; re-run reliable@10 after any constraint edit (R-64).
+G-08. Constraint edits that make values more challenging (or reconfigure the task) typically score lower reliable@4 than rephrasing; even "at most 600" → "610" can fail many cases. Lock numerics; re-run reliable@10 after any constraint edit (R-64).
 
-G-09. Bundling tax: rule at 98.7% in isolation → 85% bundled with 18 others; 37.5% lose > 5pp. If rule N breaks rule N−5 after addition, it is bundling interference — split or prune.
+G-09. Bundling tax: rules average 98.7% in isolation → 85.0% on gpt-4o (79.7% on Llama-3.3-70B) when 19 are bundled; 37.5% lose > 5pp. If rule N breaks rule N−5 after addition, it is bundling interference — split or prune.
 
-G-10. Prohibitions invert on strong models — lifted GPT-4o 93→97% but dropped GPT-5 96.36→94%. The study tested OpenAI models only; treating Haiku/Sonnet → Opus as the same gradient is an extrapolation. Re-run evals before porting skills across model tiers.
+G-10. A constraint-heavy prompt (identity priming, prohibitions, format mandates) inverts on strong models — lifted GPT-4o 93→97% but dropped GPT-5 96.36→94%. The study tested OpenAI models only; treating Haiku/Sonnet → Opus as the same gradient is an extrapolation. Re-run evals before porting skills across model tiers.
 
 G-11. YAML frontmatter is not a contract — routing has no mechanism to verify body stays within description claims. Read the body as an adversary during self-review (R-06).
 
 G-12. Skill bodies lazy-load on activation — a cross-skill body reference is inert until that other skill fires. Descriptions must be self-contained (R-04, R-44).
 
-G-13. When debugging a non-trigger, diagnose by running new cousin prompts rather than asking the model "why did you fail?" — self-confidence AUROC 0.549, perplexity 0.497, both near-random.
+G-13. When debugging a non-trigger, diagnose by running new cousin prompts rather than trusting the model's own forecast — on Qwen3-8B, confidence verbalized before generation scored AUROC 0.549 and prompt perplexity 0.497, both near-random.
 
-G-14. Re-tune window-size / context-management hyperparameters on each new scaffold before reuse — tuning is scaffold-bound: the optimal masking window was M=10 on SWE-agent but M=58 on OpenHands, and naive reuse degrades drastically.
+G-14. Re-tune window-size / context-management hyperparameters on each new scaffold before reuse — tuning is scaffold-bound: the optimal masking window M=10 from SWE-agent degrades drastically when reused on OpenHands, where a retuned M=58 reproduces the results.
 
-G-15. Context rot has four failure modes: poisoning, distraction, confusion, clash. Splitting one intent across sequential turns drops quality 39% on average across six generation tasks in simulated sharded conversations — aptitude −15%, unreliability +112%, decomposed over 200,000 simulated conversations. Diagnose before compressing.
+G-15. Long contexts fail in four modes: poisoning, distraction, confusion, clash. Splitting one intent across sequential turns drops quality 39% on average across six generation tasks in simulated sharded conversations — aptitude −15%, unreliability +112%, decomposed over 200,000 simulated conversations. Diagnose before compressing.
 
-G-16. LLM-as-judge drifts on ambiguous correctness. For subjective scoring, prefer multi-round adversarial debate (d=3 rounds) over single-pass — beats single-judge 81.7–95% win rate.
+G-16. LLM-as-judge drifts on ambiguous correctness. For subjective scoring, prefer multi-round adversarial debate (d=3 rounds) over single-pass — as the fitness judge of a prompt-evolution loop, it gave the evolved prompts' outputs 81.7–95% win rates on subjective MT-Bench categories over the same loop judged single-pass.
 
 G-17. Multi-skill orchestration — conflict resolution, resource sharing, failure recovery — remains underdeveloped. Design descriptions with disjoint triggers; audit for near-duplicate siblings (R-76).
 
@@ -44,13 +44,13 @@ G-20. If two sub-agents disagree about line counts or code-ref classification, t
 
 G-21. Misclassifying a KB card as a skill in Phase 0 cascades into wrong patches from every group, because every sub-agent reads the same `target_type` from the shared inventory.
 
-G-22. The audit workflow needs Claude Code v2.1.154+ with dynamic workflows enabled — off by default on Pro (the Dynamic workflows row in `/config`), disableable org-wide (`disableWorkflows`). When it is unavailable, fall back to manual parallel dispatch (Phase 1): same reference files, same patch format, aggregation done by the main agent instead of in JS.
+G-22. The audit workflow needs dynamic workflows enabled — off by default on Pro (the Dynamic workflows row in `/config`), disableable org-wide (`disableWorkflows`). When it is unavailable, fall back to manual parallel dispatch (Phase 1): same reference files, same patch format, aggregation done by the main agent instead of in JS.
 
 G-23. (Retired — restated the Phase 1 read-only / apply-in-Phase-3 contract; folded into Phase 1 and R-83. IDs are stable, so the number is left vacant rather than reused.)
 
 G-24. A target file changed during Phase 1 — the read-only phase? The dynamic-workflow runtime ignores agent `tools:` allowlists: workflow sub-agents run with `Write`/`Edit` granted and edits auto-approved, i.e. declared ∪ {Write, Edit}. The Task tool does enforce `tools:`, so the manual fallback keeps the hard barrier. Treat a mutated target as a compromised run: discard its patches, restore the target from git, re-run via manual dispatch (R-83, R-85). PreToolUse deny-hooks still fire inside workflows — a coarse hard stopgap where configured.
 
-G-25. Skill regresses after a model *upgrade* — not bundling (G-09), not tier porting (G-10)? Newer Claude generations follow instructions more literally and over-trigger on aggressive wording: skills authored for prior models are often too prescriptive for the newest tier and can degrade output — try *removing* scaffolding (forced interim summaries, enumerated behaviors) and dialing "CRITICAL: You MUST…" down to "Use … when…" before adding anything. On Claude Fable 5, echo-/explain-your-reasoning instructions can trigger the `reasoning_extraction` refusal category with elevated fallbacks — audit for show-your-thinking wording when migrating. Effort names are calibrated per model — the same level is not the same value across models (R-60).
+G-25. Skill regresses after a model *upgrade* — not bundling (G-09), not tier porting (G-10)? Newer Claude generations follow instructions more literally and over-trigger on aggressive wording: skills authored for prior models are often too prescriptive for the newest tier and can degrade output — try *removing* scaffolding (forced interim summaries, enumerated behaviors) and dialing "CRITICAL: You MUST…" down to "Use … when…" before adding anything. On Claude Fable 5, echo-/explain-your-reasoning instructions can trigger the `reasoning_extraction` refusal category, which server-side fallback does not retry — audit for show-your-thinking wording when migrating. Effort names are calibrated per model — the same level is not the same value across models (R-60).
 
 G-26. Instructions appear in a context file that nobody wrote, or misbehavior persists across fresh sessions? Persistent context is an injection *persistence* vector: product memory, CLAUDE.md files, mounted workspaces, and the state directories of scheduled and long-running agents are all reloaded each session, so an injection that lands in any of them re-arms indefinitely. Diff persistent context files after agent runs; treat an unexplained addition as a compromise to remove and investigate, not as drift to merge (R-52, R-84).
 

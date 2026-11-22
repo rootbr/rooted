@@ -12,7 +12,7 @@ severity_default: medium
 Every row of a bar block prints the value it encodes, on the same row as the bar. The drawn length carries the comparison between rows; the digits carry the quantity.
 
 ## Rationale
-Reading a quantity off a bar is a length judgment, and a length is judged less accurately than a position along a common scale. Measured over 51 usable subjects on five bar-chart forms, "the average errors for length judgments are 40%-250% larger than those for position judgments", and gross errors concentrate on the length judgments at 5.3 times the position rate. A printed number is not judged at all — it is read — so stating it removes that error class outright while the bar keeps the at-a-glance ranking it is good at.
+Reading a quantity off a bar draws in part on a length judgment — on an ordinary bar chart position along a common scale is the primary task, and length probably also plays a role — and a length is judged less accurately than a position along a common scale. Measured over 51 usable subjects on five bar-chart forms, the lengths being those of divided-bar segments, "the average errors for length judgments are 40%-250% larger than those for position judgments", and gross errors concentrate on the length judgments at 5.3 times the position rate. A printed number is not judged at all — it is read — so stating it removes that error class outright while the bar keeps the at-a-glance ranking it is good at.
 
 ## Example
 ```

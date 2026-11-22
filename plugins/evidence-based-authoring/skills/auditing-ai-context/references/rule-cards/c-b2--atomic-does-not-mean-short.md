@@ -12,7 +12,7 @@ severity_default: medium
 A card being atomic does not mean it must be brief. Keep the precondition, the trade-off, and the counter-example that make the single thesis actually true — stripping them to shorten the card removes the qualifiers a consumer needs to apply it correctly.
 
 ## Rationale
-Over-compression collapses accuracy. Bulk-rewriting an accumulated context into a short "essentials" summary dropped task accuracy from 66.7 to 57.1 — below the 63.7 no-context baseline — because each removed qualifier was a load-bearing condition. Minimal means the smallest set of high-signal tokens, which is not the same as the fewest tokens: a thesis shorn of its bounds reads cleaner but no longer holds.
+Over-compression collapses accuracy. Bulk-rewriting an accumulated context into a much shorter, less informative summary dropped task accuracy from 66.7 to 57.1 — below the 63.7 no-context baseline — through a dramatic loss of information; that what was lost included load-bearing conditions is a house inference. Minimal means the smallest set of high-signal tokens, which is not the same as the fewest tokens: a thesis shorn of its bounds reads cleaner but no longer holds.
 
 ## Example
 ```

@@ -12,7 +12,7 @@ severity_default: medium
 When the discovery inventory marks a file as over its tier budget, emit a maintenance patch proposing a structural refactor review. The proposal is to split sections, demote content to a colder tier, or drop unsourced bullets — not to paraphrase the prose shorter.
 
 ## Rationale
-A file that only ever appends content will eventually outgrow its tier budget. The fix must be structural: bulk paraphrase compression collapses accuracy by 9.6 percentage points, so trimming words while keeping every section is the wrong remedy. Removing or relocating whole sections preserves the surviving text intact.
+A file that only ever appends content will eventually outgrow its tier budget. The fix must be structural: in one case study, an LLM that fully rewrote the accumulated context shrank it from 18,282 to 122 tokens in a single step, and accuracy fell from 66.7 to 57.1, below the 63.7 baseline; that trimming words while keeping every section fails the same way is house inference. Removing or relocating whole sections preserves the surviving text intact.
 
 ## Example
 ```

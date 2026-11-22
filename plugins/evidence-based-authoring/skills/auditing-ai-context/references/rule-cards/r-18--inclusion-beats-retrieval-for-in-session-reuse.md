@@ -12,7 +12,7 @@ severity_default: low
 Prefer hot/warm inclusion for anything used within a session; reserve MCP / search retrieval for rarely-touched specs.
 
 ## Rationale
-Long-context retention outperforms fact-extracted retrieval by 33–35 pp on two memory benchmarks (a third shows only a 7.3 pp gap). Retrieval pays off only at ~10+ reuses of ~100k-token content with caching.
+With one long-context model, retention outperforms fact-extracted retrieval by 33–35 pp on two memory benchmarks (a third shows only a 7.3 pp gap); with a second, retrieval matches or slightly beats it on two of the three. Retrieval pays off only at ~10+ reuses of ~100k-token content with caching.
 
 ## Example
 ```

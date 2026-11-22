@@ -8,6 +8,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
+from fractions import Fraction
 from pathlib import Path
 
 SKILL = Path(__file__).resolve().parents[2]
@@ -523,7 +524,8 @@ class Score(TempDir):
         self.assertEqual(lines[0], "trace: planted 4, listed 3, rewritten 3, rewritten_reading_1 3, "
                                    "rewritten_reading_2 2, flagged_shipped 1, flagged_deleted 3")
         self.assertEqual(lines[6], "other listed sentences: 2, rewritten: 1")
-        self.assertEqual(lines[7:], [h["line"] for h in result["hypotheses"]])
+        self.assertEqual(lines[7:14], [h["line"] for h in result["hypotheses"]])
+        self.assertEqual(lines[14:], [p["line"] for p in result["paired"]])
         self.assertEqual(lines[7], "H-01 list: FAIL: trace listed 3/4 = 0.75 (>= 0.90); "
                                    "foil listed 2/3 = 0.67 (>= 0.90)")
         self.assertEqual([(h["id"], h["result"]) for h in result["hypotheses"]],
@@ -624,6 +626,31 @@ class Confirm(TempDir):
         self.confirm(case)
         scored = are.scored_planted(case, self.dir / "run")
         self.assertEqual([item["id"] for item in scored], [sentence_id for sentence_id in P if sentence_id != "p04"])
+
+
+class PairedTests(unittest.TestCase):
+    def test_exact_p_of_the_split_of_the_sentences_one_arm_caught(self):
+        self.assertEqual(are.exact_mcnemar(13, 0), Fraction(1, 4096))
+        self.assertEqual(are.exact_mcnemar(0, 12), Fraction(1, 2048))
+        self.assertEqual(are.exact_mcnemar(5, 1), Fraction(7, 32))
+        self.assertEqual(are.exact_mcnemar(2, 1), 1)
+        self.assertEqual(are.exact_mcnemar(0, 0), 1)
+
+    def test_each_hypothesis_pairs_its_two_arms_over_the_quiet_traces_alone(self):
+        def sentence(row, rewritten, shipped, deleted):
+            cls, _, form = row.partition("/")
+            return {"class": cls, "form": form or None, "rewritten": rewritten,
+                    "flagged_shipped": shipped, "flagged_deleted": deleted}
+
+        sentences = ([sentence("trace/quiet", True, False, True)] * 5 + [sentence("trace/quiet", False, False, True)]
+                     + [sentence("trace/quiet", True, True, False)] + [sentence("trace/named", True, False, False)] * 4
+                     + [sentence("foil", True, False, False)] * 4)
+        tests = {test["id"]: test for test in are.paired_tests(sentences)}
+        self.assertEqual([(tests[h]["first_only"], tests[h]["second_only"]) for h in ("H-03", "H-05", "H-06")],
+                         [(5, 0), (6, 1), (1, 1)])
+        self.assertEqual(tests["H-03"]["line"], "H-03 paired: 5 quiet traces caught by the pass alone, "
+                         "0 by the cards as shipped alone; exact McNemar test, two-sided p = 0.0625")
+        self.assertEqual(tests["H-06"]["p"], 1.0)
 
 
 class Hypotheses(unittest.TestCase):

@@ -12,7 +12,7 @@ severity_default: high
 Any user input that flows into the agent's context (file uploads, form fields, message bodies, API payloads) must be wrapped in a delimited template — `<user_input>…</user_input>`, `<<USER>>…<<END>>`, or equivalent. The wrapping serves both the parser and the safety-instruction tier, marking the enclosed content as data rather than commands.
 
 ## Rationale
-Without delimitation, the model cannot reliably distinguish instructions from data, and direct prompt injection becomes a "trust based on adjacency" exploit: text adjacent to a genuine instruction is read as a genuine instruction. Proactive, system-prompt-tier delimiters beat reactive inline mitigation applied after the input is already mixed with commands.
+Without delimitation, the model cannot reliably distinguish instructions from data, and direct prompt injection becomes a "trust based on adjacency" exploit: text adjacent to a genuine instruction is read as a genuine instruction. Proactive safety instructions are put forward, untested, as more reliable than reactive filtering because they shape behaviour at generation time; that system-prompt-tier delimiters share that advantage is a house inference.
 
 ## Example
 ```
