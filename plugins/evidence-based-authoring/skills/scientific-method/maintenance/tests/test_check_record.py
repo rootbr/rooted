@@ -73,8 +73,8 @@ REFUTED = claim("F-1", "refuted", ("test", FIRST_HAND), ("result", "no differenc
 UNRECORDED = "- **U-1** · a source and its words, no record"
 EVENT_HYPOTHESIS = claim("E-1", "hypothesis", ("test", "own evals/a.json"), prediction=EVENT_PREDICTION)
 LEADING = claim("E-1", "leading", *LEADING_TAIL, prediction=EVENT_PREDICTION)
-TRIED = claim("H-2", "hypothesis", ("test", FIRST_HAND), ("result", "one run went against; it waits for its repetition"),
-              prediction=PREDICTION[:4])
+TRIED = claim("H-2", "hypothesis", ("runs", "ten per arm"), ("test", "own evals/a.json"),
+              ("result", "one run went against; it waits for its repetition"))
 
 
 class Root(unittest.TestCase):
@@ -175,8 +175,8 @@ class PlainCodes(Root):
                 self.assertEqual(self.check_lines(rule), ["FIELD"])
         with self.subTest("a hypothesis with an own test, its threshold and its runs passes"):
             self.assertEqual(self.check_lines(HYPOTHESIS), [])
-        with self.subTest("a hypothesis with external tests only or no test needs no threshold or runs"):
-            self.assertEqual(self.check_lines(claim("F-11", "hypothesis", ("test", RELAY), prediction=PREDICTION[:4]),
+        with self.subTest("a hypothesis with sources beside it or no test needs no threshold or runs"):
+            self.assertEqual(self.check_lines(claim("F-11", "hypothesis", ("beside", RELAY), prediction=PREDICTION[:4]),
                                               claim("F-12", "hypothesis", prediction=PREDICTION[:4])), [])
         with self.subTest("a supported claim on a first-hand test needs no threshold or runs"):
             self.assertEqual(self.check_lines(claim("F-8", "supported", ("test", FIRST_HAND), ("result", "r"),
@@ -317,6 +317,83 @@ class Validity(Root):
                 self.assertEqual(self.check_lines(claim("V-6", "hypothesis", ("validity", value), prediction=PREDICTION[:4])),
                                  ["VALIDITY"])
         self.assertEqual(self.check_lines(claim("V-7", "hypothesis", ("validity", "unchecked"), prediction=PREDICTION[:4])), [])
+
+
+NEIGHBOUR = (("beside", f"{FIRST_HAND}; {RELAY}"), ("beside-result", "a neighbouring question pointing the claim's way"),
+             ("beside-bounds", "students reading pairs of sentences"))
+
+
+class Beside(Root):
+    def test_a_hypothesis_keeps_its_sources_beside_its_planned_test(self):
+        self.assertEqual(self.check_lines(claim("B-1", "hypothesis", ("runs", "ten per arm"), ("test", "own evals/a.json"),
+                                                *NEIGHBOUR), require=True), [])
+        self.assertEqual(self.check_lines(claim("B-2", "hypothesis", *NEIGHBOUR, prediction=PREDICTION[:4]), require=True), [])
+
+    def test_the_forms_of_a_beside_entry(self):
+        cases = {
+            "an entry in none of the forms": ("beside", "a paper I read"),
+            "a reading outside the three": ("beside", "external doi:10.1/x second-hand"),
+            "a test of our own": ("beside", "own evals/a.json"),
+            "a test of our own among published ones": ("beside", f"{FIRST_HAND}; own evals/a.json"),
+        }
+        for name, entry in cases.items():
+            with self.subTest(name):
+                self.assertEqual(self.check_lines(claim("B-3", "hypothesis", entry, prediction=PREDICTION[:4])), ["BESIDE"])
+        self.write("rules-provenance.md", claim("B-3", "hypothesis", ("beside", "own evals/a.json"), prediction=PREDICTION[:4]))
+        self.assertIn("is a test of our own; it stands in test", self.findings()[0]["message"])
+
+    def test_its_result_and_bounds_take_beside(self):
+        for key in ("beside-result", "beside-bounds"):
+            with self.subTest(key):
+                self.assertEqual(self.check_lines(claim("B-4", "hypothesis", (key, "r"), prediction=PREDICTION[:4])), ["BESIDE"])
+        self.assertEqual(self.check_lines(claim("B-5", "hypothesis", ("beside", ""), ("beside-result", "r"),
+                                                prediction=PREDICTION[:4])), ["FIELD"])
+
+    def test_only_a_claim_takes_beside(self):
+        self.assertEqual(self.check_lines(DECISION + f" · beside: {FIRST_HAND}"), ["FIELD"])
+
+    def test_a_hypothesis_with_a_published_test_is_held_where_a_record_is(self):
+        published = claim("B-6", "hypothesis", ("test", f"{FIRST_HAND}; {ABSTRACT}"), ("result", "r"), ("bounds", "b"),
+                          prediction=PREDICTION[:4])
+        self.assertEqual(self.check_lines(published), [])
+        self.assertEqual(self.check_lines(published, require=True), ["BESIDE"])
+        self.assertIn("names 2 published source(s) in test", self.findings("--require")[0]["message"])
+        relay = claim("B-7", "hypothesis", ("runs", "ten per arm"), ("test", f"own evals/a.json; {RELAY}"))
+        self.assertEqual(self.check_lines(relay, require=True), ["BESIDE"])
+        event = claim("B-8", "hypothesis", ("test", f"own evals/a.json; {FIRST_HAND}"), prediction=EVENT_PREDICTION)
+        self.assertEqual(self.check_lines(event, require=True), ["BESIDE"])
+
+    def test_a_relayed_source_in_the_test_of_a_claim_is_held_where_a_record_is(self):
+        relayed = claim("B-14", "supported", ("test", f"{FIRST_HAND}; {RELAY}"), ("result", "r"), ("bounds", "b"),
+                        ("fit", "direct"), prediction=PREDICTION[:4])
+        self.assertEqual(self.check_lines(relayed), [])
+        self.assertEqual(self.check_lines(relayed, require=True), ["BESIDE"])
+        self.assertIn("names 1 relayed source(s) in test", self.findings("--require")[0]["message"])
+        beside = claim("B-15", "supported", ("test", FIRST_HAND), ("beside", RELAY), ("result", "r"), ("bounds", "b"),
+                       ("fit", "direct"), prediction=PREDICTION[:4])
+        self.assertEqual(self.check_lines(beside, require=True), [])
+
+    def test_beside_counts_for_nothing_in_the_standing(self):
+        cases = {
+            "SUPPORT: a supported claim on a relay, a first-hand source beside it":
+                (claim("B-9", "supported", ("test", RELAY), ("beside", FIRST_HAND), ("result", "r"), ("bounds", "b"),
+                       ("fit", "direct"), prediction=PREDICTION[:4]), ["SUPPORT"]),
+            "TEST: a law on one test, a second beside it":
+                (claim("B-10", "law", *replace(OWN_RESULT, "test", "own evals/a.json"), ("beside", FIRST_HAND)), ["TEST"]),
+            "TEST: a contested claim on one test, a second beside it":
+                (claim("B-11", "contested", ("test", FIRST_HAND), ("beside", "external doi:10.2/y first-hand"), ("result", "r")),
+                 ["TEST"]),
+            "VALIDITY: a supported claim on an own test, its validity unchecked":
+                (claim("B-12", "supported", *replace(OWN_RESULT, "validity", "unchecked"), *NEIGHBOUR), ["VALIDITY"]),
+            "FIELD: a supported claim with sources beside it and no test":
+                (claim("B-13", "supported", *NEIGHBOUR, ("result", "r"), ("bounds", "b"), ("fit", "direct"),
+                       prediction=PREDICTION[:4]), ["FIELD"]),
+        }
+        for name, (rule, expected) in cases.items():
+            with self.subTest(name):
+                self.assertEqual(self.check_lines(rule), expected)
+        with self.subTest("a supported claim with a source beside it passes on its own test"):
+            self.assertEqual(self.check_lines(claim("B-14", "supported", *OWN_RESULT, *NEIGHBOUR)), [])
 
 
 VERSIONS_LIST = """# Versions
@@ -788,6 +865,18 @@ class GitModes(Root):
         self.assertEqual(self.codes("--staged", *listed), [])
         self.assertEqual([n[2] for n in self.notices("--staged", *listed)],
                          ["R-1 is due to be read again: its review date 2026-01-01 has come"])
+
+    def test_a_hypothesis_with_a_published_test_is_held_on_a_changed_line_alone(self):
+        published = claim("B-1", "hypothesis", ("test", FIRST_HAND), ("result", "r"), prediction=PREDICTION[:4])
+        self.write("pending-evidence.md", published)
+        self.commit("a hypothesis before the field")
+        self.assertEqual(self.codes("--changed"), [])
+        self.write("pending-evidence.md", replace_line(published, "result", "r, read again"))
+        self.assertEqual(self.codes("--changed"), ["BESIDE"])
+        self.write("pending-evidence.md", replace_line(published, "test", "unused").replace("test: unused", f"beside: {FIRST_HAND}")
+                   .replace("result: r", "beside-result: r"))
+        self.git("add", "-A")
+        self.assertEqual(self.codes("--staged"), [])
 
     def test_an_unknown_base_exits_2(self):
         code, lines, err = self.run_main("--changed", "--base", "no-such-revision")

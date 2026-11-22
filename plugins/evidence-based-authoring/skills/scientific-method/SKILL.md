@@ -44,11 +44,16 @@ A claim about one event — what caused one failure, what one change did — nam
 
 ## 3. Find the test, or run one
 
-**Someone else's test.** Open the source. Find in it the comparison, the measure, the sample and the result, and confirm that the result entails the claim as you worded it: same direction, same conditions. Record it as `external <locator> first-hand`. A source that passed peer review — a journal article, a paper in reviewed proceedings, an encyclopedia entry under editorial review — may be read by its abstract alone: confirm the same entailment from the abstract and record it as `external <locator> abstract`. A source you read about and have yet to open, or a preprint read by its abstract, is a `relay`: record it as a lead and keep looking. A source that states the rule and reports no test supports a norm at most.
+**Someone else's test.** Open the source. Find in it the comparison, the measure, the sample and the result, and confirm that the result entails the claim as you worded it: same direction, same conditions. Record it as `external <locator> first-hand`. A source that passed peer review — a journal article, a paper in reviewed proceedings, an encyclopedia entry under editorial review — may be read by its abstract alone: confirm the same entailment from the abstract and record it as `external <locator> abstract`. A source you read about and have yet to open, or a preprint read by its abstract, is a `relay`: record it in `beside` as a lead and keep looking. A source that states the rule and reports no test supports a norm at most.
 
 - first-hand: the paper's results section is open, and the comparison, the sample and the number are in view.
 - abstract: the abstract of a journal article is open and reports the comparison, the sample and the number; the full text stays unread.
 - relay: a search result quotes the paper's abstract with a number, and the paper itself stays unopened.
+
+A source whose comparison or measure is another one than the claim's answers a neighbouring question. Record it in `beside`, with what it showed and how it bears on the claim in `beside-result` and the conditions it ran under in `beside-bounds`; it supports nothing. A source the claim was drawn from stands there too, as its origin. A hypothesis keeps in `test` only the test of our own it plans, and every published source found for it so far stands in `beside`.
+
+- bad: a study that compared closed with open questions about a consent form, recorded in `test` of a claim that retelling a mechanism finds a missing step.
+- good: the same study recorded in `beside`, its `beside-result` naming it a neighbouring question pointing the claim's way, and the claim waiting in the list of hypotheses for its test.
 
 **A test of our own**, in three moves:
 

@@ -22,7 +22,7 @@ Nothing under `maintenance/` is read or executed in a run of the audit. Paths ar
 - `maintenance/citations.json` — the words and figures the two maps and the list of hypotheses quote from their sources, one entry per quote with its source; `check_quotes.py` of the skill `scientific-method` says whether each stands in its source.
 - `maintenance/rule-cards-taxonomy.md` — the card schema and the controlled vocabulary of every facet.
 - `maintenance/maintenance-map.md` — the legend of the anchor tokens runtime files carry and the dossiers of volatile dependencies with their flip sites.
-- `maintenance/pending-evidence.md` — the hypotheses of the skill: about its own checks, or a claim no rule rests on yet, keyed `H-n`, and about what a rule, a gotcha or a section rests on, keyed `H-<id of its line>`; each with its measure, its refuting outcome and, for a test of our own, its threshold and runs.
+- `maintenance/pending-evidence.md` — the hypotheses of the skill: about its own checks, or a claim no rule rests on yet, keyed `H-n`, and about what a rule, a gotcha or a section rests on, keyed `H-<id of its line>`; each with its measure, its refuting outcome, the published sources found beside it and, for a test of our own, its threshold and runs.
 - `maintenance/tests/` — the unit tests of `scripts/trace_list.py`, `scripts/check_trace.py` and `evals/absent-rule/absent_rule_eval.py`.
 
 Who reads or runs every other file of the skill, and when: `README.md` §Layout.

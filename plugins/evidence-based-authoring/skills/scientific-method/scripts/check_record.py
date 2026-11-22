@@ -31,8 +31,8 @@ that cannot be read stops the script with exit 2. A version stands in a text whe
 does, in any case, with no letter, digit, hyphen or period glued to either end, so `Claude Opus 5`
 stands in no text that says `Claude Opus 5.5`.
 
-Plain mode applies KIND, FIELD, STANDING, TEST, SUPPORT, VALIDITY, OWN, FIT, REVIEW and DUP to
-every rule line that carries a record. A claim takes every field of the claim row and of the standing table,
+Plain mode applies KIND, FIELD, STANDING, TEST, SUPPORT, VALIDITY, OWN, FIT, REVIEW, BESIDE and
+DUP to every rule line that carries a record. A claim takes every field of the claim row and of the standing table,
 whatever its standing, and exactly one of `scope` and `event`; a hypothesis, a supported claim and
 a law whose `test` holds an `own` test also require `threshold` and `runs`, except beside `event`.
 A claim that carries `event` is a claim about one event: its `against` is never `none` (FIELD)
@@ -43,8 +43,12 @@ law whose `test` holds an `own` test with a `validity` absent or `unchecked`. RE
 claim's `review` that is none of `retirement of <version>`, a date `YYYY-MM-DD` and `none`, a date that
 is no calendar date and a version absent from the list; a supported claim or a law without
 `review` whose `scope` names a version of the list is REVIEW where a line without a record is
-NORECORD: under --require, and on an added or changed line in the comparing modes. DUP reports a
-recorded line whose id stands on another rule line of the same directory. The words `proved` and
+NORECORD: under --require, and on an added or changed line in the comparing modes. BESIDE reports,
+on a claim, a `beside` entry in none of the three forms `external <locator> first-hand|abstract|
+relay`, an `own` entry among them, and `beside-result` or `beside-bounds` without `beside`; a
+hypothesis whose `test` holds an `external` entry, and a claim at another standing whose `test`
+holds a `relay` entry, is BESIDE where a line without a record is NORECORD. `beside` is read by BESIDE alone: TEST, SUPPORT, VALIDITY and FIT read `test`. DUP reports
+a recorded line whose id stands on another rule line of the same directory. The words `proved` and
 `proven` count in `standing` and `result` as whole words, in any case. A rule line without a
 record is counted; under --require it is NORECORD.
 
@@ -58,8 +62,9 @@ state (the working tree under --changed, the index under --staged) or from the b
 empty there; a FILE named on the command line must exist in the working tree. A rule line is
 changed when its id stands on no rule line of its directory's base state or its text differs
 from every base line of that id there. A changed line without a record is NORECORD, a changed
-line that lacks the `review` its scope calls for is REVIEW, and every recorded line still passes
-the plain-mode codes. A map that git reports as renamed since the
+line that lacks the `review` its scope calls for is REVIEW, a changed hypothesis whose `test`
+holds an `external` entry and a changed claim at another standing whose `test` holds a `relay`
+entry are BESIDE, and every recorded line still passes the plain-mode codes. A map that git reports as renamed since the
 base (`git diff -M`: the earlier name is gone and the text is alike by half or more) has, as its
 base state, its text under the earlier name, so a directory that moves keeps the history of its
 records; the earlier name is not checked as a deleted map. A map git no longer pairs, its text
@@ -138,7 +143,8 @@ OPTIONAL = {
     "decision": ("hypothesis",),
     "definition": (),
     "norm": (),
-    "claim": ("scope", "event", "threshold", "runs", "test", "transfer", "validity", "review"),
+    "claim": ("scope", "event", "threshold", "runs", "test", "transfer", "validity", "review",
+              "beside", "beside-result", "beside-bounds"),
 }
 ADDED_BY_STANDING = {
     "hypothesis": (),
@@ -176,6 +182,9 @@ REVIEW_NONE = "none"
 REVIEW_VERSION = re.compile(r"retirement of\s+(?P<version>\S(?:.*\S)?)")
 ISO_DATE = re.compile(r"\d{4}-\d{2}-\d{2}")
 REVIEWED = ("supported", "law")
+BESIDE = "beside"
+BESIDE_DETAILS = ("beside-result", "beside-bounds")
+EXTERNAL_READINGS = (FIRST_HAND, ABSTRACT, RELAY)
 VERSIONS = Path(__file__).resolve().parents[1] / "references" / "model-versions.md"
 VERSION_LINE = re.compile(r"^- \*\*(?P<name>[^*]+)\*\*(?P<rest>.*)$")
 VERSION_KEYS = ("id", "retired", "source")
@@ -427,6 +436,16 @@ def check_record(rule: RuleLine, root: Path, versions: Versions) -> list[Finding
         if form == OWN and not own_path_exists(root, argument):
             add("OWN", f"own test {argument} does not exist under the root")
 
+    if is_claim:
+        for form, argument in parse_tests(fields.get(BESIDE, "")):
+            if form == OWN:
+                add("BESIDE", f"beside entry 'own {argument}' is a test of our own; it stands in test")
+            elif form is None:
+                add("BESIDE", f"beside entry {argument!r} is not `external <locator> <reading>` with the reading first-hand, abstract or relay")
+        for key in BESIDE_DETAILS:
+            if key in fields and BESIDE not in fields:
+                add("BESIDE", f"{key} without beside")
+
     fit = fields.get("fit", "")
     if fit and fit not in FITS:
         add("FIT", f"fit {fit!r} is outside {', '.join(FITS)}")
@@ -458,6 +477,26 @@ def missing_review(rule: RuleLine, versions: Versions) -> Finding | None:
         return None
     return Finding(rule.path, rule.line, "REVIEW", f"standing {standing} on a claim whose scope names {named.name} "
                                                    "needs review, the retirement of a model version or a date")
+
+
+def misplaced_in_test(rule: RuleLine) -> Finding | None:
+    """BESIDE at a claim whose test holds an entry that stands in beside: at a hypothesis every external entry, since
+    its test holds only a planned test of our own; at any other standing a relay, a source not yet opened."""
+    fields = rule.record.fields if rule.record else {}
+    if fields.get("kind") != "claim":
+        return None
+    forms = [form for form, _ in parse_tests(fields.get("test", ""))]
+    if fields.get("standing") == "hypothesis":
+        published = sum(1 for form in forms if form in EXTERNAL_READINGS)
+        if not published:
+            return None
+        return Finding(rule.path, rule.line, "BESIDE", f"a hypothesis names {published} published source(s) in test; "
+                                                       "its test holds only a planned test of our own, and a source found so far stands in beside")
+    relayed = forms.count(RELAY)
+    if not relayed:
+        return None
+    return Finding(rule.path, rule.line, "BESIDE", f"a claim names {relayed} relayed source(s) in test; "
+                                                   "a source read about and not yet opened is a lead, and it stands in beside")
 
 
 def due(rules: list[RuleLine], versions: Versions, today: date) -> list[Finding]:
@@ -565,6 +604,7 @@ def check(current: list[RuleLine], root: Path, versions: Versions, require: bool
                       "a changed rule line without a record" if base is not None and not require else "a rule line without a record")
               for r in held if not r.record]
     found += [finding for rule in held if (finding := missing_review(rule, versions))]
+    found += [finding for rule in held if (finding := misplaced_in_test(rule))]
     if base is not None:
         found += predictions(current, base, base_name)
         found += erasures(current, base, base_name)

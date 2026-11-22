@@ -59,10 +59,12 @@ A claim names what is compared with what, by which measure and under which condi
 
 ### 3. Severity of the test
 
-Only a test that could have come out against the claim supports it. A claim about the benefit of a technique takes a comparison with the same work done without the technique, and enough repetitions to tell the effect from chance. How many repetitions suffice is decided before the test, by the cost of an error. A result that compares shares names its test and gives its p-value or interval. A test supports a claim about a property only when its measure follows that property, and the record says what checked the measure: a probe changed in a known direction, labels made by a person, or the measure being the very quantity claimed. An experiment that intervenes is more severe than an observation of cases as they came. Check questions: had the claim been false, would the test have shown it? Does the measure move when what the claim is about changes?
+Only a test that could have come out against the claim supports it. A test of a neighbouring question, with another comparison or another measure than the claim names, could not have come out against the claim, so it is kept beside the claim and supports nothing. A claim about the benefit of a technique takes a comparison with the same work done without the technique, and enough repetitions to tell the effect from chance. How many repetitions suffice is decided before the test, by the cost of an error. A result that compares shares names its test and gives its p-value or interval. A test supports a claim about a property only when its measure follows that property, and the record says what checked the measure: a probe changed in a known direction, labels made by a person, or the measure being the very quantity claimed. An experiment that intervenes is more severe than an observation of cases as they came. Check questions: had the claim been false, would the test have shown it? Does the measure move when what the claim is about changes?
 
 - bad: "ten runs with the paragraph all passed" — the runs without it were never made.
 - good: "nine of ten runs passed with the paragraph and four of ten without it; a one-sided exact test gives p = 0.03".
+- bad: a study that compared closed with open questions about a consent form stands as the test of a claim that retelling a mechanism finds a missing step.
+- good: the same study kept beside the claim as a neighbouring question, and the claim waiting for its test.
 
 ### 4. Reproducibility
 

@@ -6,7 +6,7 @@ Rooted is a Claude Code plugin marketplace rooted in evidence. Contributions are
 
 Every rule, checklist item, or review criterion — whether newly added **or edited** — says what it rests on, and a claim rests on a test that could have refuted it. The method is [`references/method.md`](plugins/evidence-based-authoring/skills/scientific-method/references/method.md) of the `/scientific-method` skill; in short, a statement is one of four kinds:
 
-- **A claim** — "this technique works better" — names its measure, what it is compared with, the conditions it is made for, and the outcome that would refute it. It carries a test: a study you opened, with its comparison, measure, sample and result in view — for a peer-reviewed study its abstract suffices, and the record says so — or a test of your own in the repository. A claim about one event — what caused one failure — names instead its rival explanations and the trace that tells them apart.
+- **A claim** — "this technique works better" — names its measure, what it is compared with, the conditions it is made for, and the outcome that would refute it. It carries a test: a study you opened, with its comparison, measure, sample and result in view — for a peer-reviewed study its abstract suffices, and the record says so — or a test of your own in the repository. A study whose comparison or measure is another one than the claim's tests a neighbouring question: the record keeps it in the field `beside`, with what it showed, and it supports nothing. A claim about one event — what caused one failure — names instead its rival explanations and the trace that tells them apart.
 - **A norm** — a standard, a specification, official documentation, a tool's rule — is cited by issuer, version and place. It shows that a practice is accepted; whether the practice works better is a separate claim.
 - **A decision** — a goal, a priority, a matter of taste — is recorded under its owner, with what it is for.
 - **A definition** is recorded with its term.
@@ -31,7 +31,7 @@ The result decides the standing:
 - the tests disagree: it is contested and waits, both sides recorded;
 - it failed repeatably: it is refuted, and the record stays.
 
-`check_record.py --staged` reads the order from history and rejects a result whose hypothesis was not committed before it, and a supported claim or law whose scope names a model version listed in [`references/model-versions.md`](plugins/evidence-based-authoring/skills/scientific-method/references/model-versions.md) and carries no `review`. A record whose term has come prints as a `DUE` line and fails no commit.
+`check_record.py --staged` reads the order from history and rejects a result whose hypothesis was not committed before it, a supported claim or law whose scope names a model version listed in [`references/model-versions.md`](plugins/evidence-based-authoring/skills/scientific-method/references/model-versions.md) and carries no `review`, a hypothesis that names a published source in `test`, which holds only the test of our own it plans, and a claim at another standing that names there a source read about and not yet opened. A record whose term has come prints as a `DUE` line and fails no commit.
 
 ## When the rule comes from a book or a blog
 
