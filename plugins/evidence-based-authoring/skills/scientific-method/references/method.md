@@ -14,7 +14,7 @@ A claim of any origin is judged the same way: a paper, practice, a model and one
 
 Three kinds of statement rest on grounds of their own. A decision says what we want. A definition says what we call a thing. A norm says what an accepted document prescribes. Each is presented as what it is. A rule of a skill is a prescription, and a prescription takes two premises: a goal, and the claim that the technique serves the goal. The goal is the owner's decision; the claim is what the method examines.
 
-The seven rules below are a convention this repository adopts. They hold what the main lines of the philosophy of science share, and they apply to every statement alike.
+The seven rules below are a convention this repository adopts. They hold what the main lines of the philosophy of science share. Rule 1 applies to every statement. The other six judge a claim, and a norm answers the fourth of them with its document, opened. A claim about one event takes them in the form of § A claim about one event.
 
 ## Kinds of statement
 
