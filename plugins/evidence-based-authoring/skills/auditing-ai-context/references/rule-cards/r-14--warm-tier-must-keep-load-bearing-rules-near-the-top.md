@@ -12,7 +12,7 @@ severity_default: medium
 Place safety rules, routing triggers, MUSTs, and "before any other step" instructions in the first ~30% of a SKILL.md or agent file. The ~30% figure is a working heuristic; the measured direction is that, in a task of copying long input, a word is reproduced most accurately near the beginning, more so as input grows; needle retrieval showed no notable variation by position. Counter-intuitively, a needle is retrieved better from a shuffled haystack of filler than from a logically structured one; carrying that to reference material is house inference.
 
 ## Rationale
-Two phenomena combine. Positional decay: later content is weighted less by attention. Prose flow: narrative tends to bury load-bearing rules behind context-setting paragraphs, pushing them past the high-accuracy zone at the top.
+Two phenomena combine. Positional decay: in copying long input, a word is reproduced most accurately near the beginning; that a later rule is followed less often is house inference. Prose flow: narrative tends to bury load-bearing rules behind context-setting paragraphs, pushing them past the high-accuracy zone at the top.
 
 ## Example
 ```

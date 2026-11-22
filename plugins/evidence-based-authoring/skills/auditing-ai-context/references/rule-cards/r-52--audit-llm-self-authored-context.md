@@ -9,7 +9,7 @@ severity_default: medium
 # LLM-self-authored context must be audited, not assumed
 
 ## Thesis
-Auto-generated CLAUDE.md / AGENTS.md / SKILL.md produced by an LLM regresses, so its provenance must be audited. Where a file declares "auto-generated", "produced by LLM", or "generated from <code>/<config>", flag for deletion or a human-author audit pass. Where the style looks LLM-generated but carries no provenance marker, flag as suspect.
+Auto-generated CLAUDE.md / AGENTS.md / SKILL.md produced by an LLM does not measurably earn its cost, so its provenance must be audited. Where a file declares "auto-generated", "produced by LLM", or "generated from <code>/<config>", flag for deletion or a human-author audit pass. Where the style looks LLM-generated but carries no provenance marker, flag as suspect.
 
 ## Rationale
 Self-authored context consumes the same token budget as audited context without measurably earning it: auto-generated agent files raise inference cost by 20–23% while their −0.5% to −2% change in success is not significant, and self-generated SKILL.md lands below the no-Skills baseline on every tested configuration (−8.1 to −11.5pp) while curated Skills add +18.2 to +24.8pp on the same configurations. Provenance must therefore be audited rather than assumed.

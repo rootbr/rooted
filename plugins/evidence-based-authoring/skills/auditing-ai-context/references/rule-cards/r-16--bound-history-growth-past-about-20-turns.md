@@ -21,7 +21,7 @@ good: "Summarize turns older than the last 20; keep recent turns verbatim."
 ```
 
 ## Limits
-The ~20-turn figure is provider-specific, not a universal cutoff. Applies only where a skill retains conversational state or transcripts; a skill that holds no history is out of scope.
+The ~20-turn figure is a house heuristic, not a universal cutoff. Applies only where a skill retains conversational state or transcripts; a skill that holds no history is out of scope.
 
 ## Validator
 Grep for "transcript", "history", "all prior turns", "full conversation". For each usage: if it names an explicit summarization or truncation policy → keep; if it implies unbounded retention → flag.

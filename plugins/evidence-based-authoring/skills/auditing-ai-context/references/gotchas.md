@@ -32,7 +32,7 @@ G-14. Re-tune window-size / context-management hyperparameters on each new scaff
 
 G-15. Long contexts fail in four modes: poisoning, distraction, confusion, clash. Splitting one intent across sequential turns drops quality 39% on average across six generation tasks in simulated sharded conversations — aptitude −15%, unreliability +112%, decomposed over 200,000 simulated conversations. Diagnose before compressing.
 
-G-16. LLM-as-judge drifts on ambiguous correctness. For subjective scoring, prefer multi-round adversarial debate (d=3 rounds) over single-pass — as the fitness judge of a prompt-evolution loop, it gave the evolved prompts' outputs 81.7–95% win rates on subjective MT-Bench categories over the same loop judged single-pass.
+G-16. LLM-as-judge drifts on ambiguous correctness. For subjective scoring, prefer multi-round adversarial debate (d=3 rounds) over single-pass — as the fitness judge of a prompt-evolution loop, it gave the evolved prompts' outputs 81.7–95% win rates on subjective MT-Bench categories over the same loop judged single-pass; carrying that to subjective scoring outside such a loop is house inference.
 
 G-17. Multi-skill orchestration — conflict resolution, resource sharing, failure recovery — remains underdeveloped. Design descriptions with disjoint triggers; audit for near-duplicate siblings (R-76).
 
