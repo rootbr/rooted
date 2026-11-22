@@ -83,7 +83,7 @@ Of ten common techniques a review of the evidence rates only two of high utility
 ## 5. Consolidation — spacing and retrieval over time
 
 1. **Distribute the reviews over time** — the first not immediately, then expand the intervals moderately; review by **retrieving the meaning**, not by rereading or rote-learning cards. Distributed reviews beat massed ones at equal cost — **high**. Into flashcards goes only what is atomic, frequently needed from memory, and worth the upkeep; conceptual and procedural knowledge is fixed through application.
-2. **Let at least one sleep pass** between reading and the first review. Fixation proceeds in sleep: it transfers memory to the cortex and makes it resistant to interference — **high**.
+2. **Let at least one sleep pass** between reading and the first review. Fixation proceeds in sleep: recall after sleep beats recall after an equal time awake, and in slow-wave sleep the memories that depend on the hippocampus are redistributed to the cortex — **high**.
 3. **Notes — atomic, reformulated, immediately linked** to existing notes and to the current project; work in short cycles of "read → processed" so a dead archive does not accumulate. Keep the personal base on personal tools. (The form is §6.)
 4. **Retell it to others** — a talk, a workshop, an ADR with a reference to the source, a wiki entry. The strongest collective lever and at the same time the strongest test of understanding: even the *expectation* of teaching yields fuller, better-organized recall; on a delayed test the best are those who actually taught — **high**. For an engineer the **ADR** (Architecture Decision Record) is the sustainable format — one decision with its context and consequences, next to the code, through a pull request.
 
@@ -168,7 +168,7 @@ Years-long practice is set not by the best method but by **compliance**. A medio
 
 Reading accumulates *stocks* (mental models, the vocabulary of the discipline, the file of processed notes), governed by loops and delays — not a *flow* of "N pages". Measure the level of the stock, not the inflow; intervene on the system's **rules** (selection criteria, the obligation to apply before the next book), not its parameters ("hours of reading" is the lowest leverage).
 
-- **The Matthew effect** (reinforcing loop: more background → easier reading → more read → more background; **high**). In an unfamiliar field the loop first works against the reader; launch it by raising the starting stock (§3).
+- **The Matthew effect** (reinforcing loop: more background → easier reading → more read → more background; **low / extrapolation**: a framework of how children learn to read, which longitudinal studies support for some measures only). In an unfamiliar field the loop first works against the reader; launch it by raising the starting stock (§3).
 - **Delays explain why people abandon what works:** a multi-month lag between reading and effect leads to quitting before the return. So *shorten* the delay "reading → first application" (early feedback) and *lengthen* the delay between reviews (spacing).
 - **The half-life of knowledge is measurable** (engineering knowledge ~7–10 years and less) — **moderate**. The shorter a field's half-life, the stronger the preference for durable classics over rapidly obsolescing applied literature.
 - **Write off the obsolete** (a blind spot of the methodologies). There is no "citator" for non-fiction; the surrogate is a personal mark of a thesis's **status and shelf life** when taking notes, so advice from 2018 is not applied as current in 2026. The conscious discarding of the outdated is *unlearning*.
@@ -180,7 +180,7 @@ Reading accumulates *stocks* (mental models, the vocabulary of the discipline, t
 
 - Do not reread or highlight instead of reproducing from memory.
 - Do not trust the feeling "I know this" with the text open — check with the book closed.
-- Do not chase reading speed: a gain in speed inevitably cuts comprehension.
+- Do not chase reading speed (§3).
 - Do not read several similar sources back-to-back each for its own content (§2); sources read to be compared go together (§3).
 - Do not over-engineer the note system — tuning the tool is an ideal pretext for procrastination; both hoarding and perfecting the system mask the absence of processing.
 - Do not hand the AI the generation of formulations or a summary of material that is to become the reader's working model — see §1 (the binding frame) and §7.
