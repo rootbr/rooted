@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Runs before a commit is made, on the content that commit will hold: the skill layout when the
-# commit touches plugins/, and the record of every rule line it adds or changes. git points
+# commit touches plugins/, and the record of every rule line it adds or changes. A record whose
+# review term has come is printed as a DUE line and fails nothing. git points
 # GIT_INDEX_FILE at the index of this commit, so a commit by path is checked as exactly as a commit
 # of the whole index. Enable once per clone: git config core.hooksPath .githooks
 
@@ -17,7 +18,7 @@ fi
 
 records=$(python3 -I plugins/evidence-based-authoring/skills/scientific-method/scripts/check_record.py --root . --staged 2>&1)
 case $? in
-    0) ;;
+    0) printf '%s\n' "$records" | grep ': DUE: ' >&2 ;;
     *) printf 'pre-commit: the record check fails (references/record-format.md of the scientific-method skill names each code)\n%s\n' "$records" >&2
        status=1 ;;
 esac

@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Check the records that close the rule lines of provenance maps and lists of hypotheses.
 
-    check_record.py [--root DIR] [--require] [--stats] [--changed [--base REV] | --staged] [FILE ...]
+    check_record.py [--root DIR] [--require] [--stats] [--changed [--base REV] | --staged]
+                    [--today YYYY-MM-DD] [--versions LIST] [FILE ...]
 
 A record is the tail of a rule line from its field `kind` on. references/record-format.md states
 the fields, the rules and what each finding code rejects; this docstring states how the script
@@ -22,15 +23,27 @@ no record.
 An id is unique per directory: the checked files that lie in one directory form one group, and
 every comparison of ids below stays inside a group.
 
-Plain mode applies KIND, FIELD, STANDING, TEST, SUPPORT, VALIDITY, OWN, FIT and DUP to every rule
-line that carries a record. A claim takes every field of the claim row and of the standing table,
+The list of model versions is references/model-versions.md of this skill, or the file --versions
+names. A line `- **<name>**` is a version; the segments after it, split on ` · `, are `id: <id>`,
+`retired: <YYYY-MM-DD>` and `source: <page>`, each at most once, and `retired` takes `source`.
+Every other line is free text. A malformed version line, a name or id given twice, or a list
+that cannot be read stops the script with exit 2. A version stands in a text when its name or id
+does, in any case, with no letter, digit, hyphen or period glued to either end, so `Claude Opus 5`
+stands in no text that says `Claude Opus 5.5`.
+
+Plain mode applies KIND, FIELD, STANDING, TEST, SUPPORT, VALIDITY, OWN, FIT, REVIEW and DUP to
+every rule line that carries a record. A claim takes every field of the claim row and of the standing table,
 whatever its standing, and exactly one of `scope` and `event`; a hypothesis, a supported claim and
 a law whose `test` holds an `own` test also require `threshold` and `runs`, except beside `event`.
 A claim that carries `event` is a claim about one event: its `against` is never `none` (FIELD)
 and its standing is hypothesis, leading, contested or refuted (STANDING). SUPPORT accepts an
 `own`, `first-hand` or `abstract` test under supported and law, and an `own` or `first-hand` test
 under leading. VALIDITY reports a `validity` outside its four forms, and a supported claim or a
-law whose `test` holds an `own` test with a `validity` absent or `unchecked`. DUP reports a
+law whose `test` holds an `own` test with a `validity` absent or `unchecked`. REVIEW reports a
+claim's `review` that is none of `retirement of <version>`, a date `YYYY-MM-DD` and `none`, a date that
+is no calendar date and a version absent from the list; a supported claim or a law without
+`review` whose `scope` names a version of the list is REVIEW where a line without a record is
+NORECORD: under --require, and on an added or changed line in the comparing modes. DUP reports a
 recorded line whose id stands on another rule line of the same directory. The words `proved` and
 `proven` count in `standing` and `result` as whole words, in any case. A rule line without a
 record is counted; under --require it is NORECORD.
@@ -44,8 +57,9 @@ directories passed over), so a deleted map is still checked. A path absent from 
 state (the working tree under --changed, the index under --staged) or from the base counts as
 empty there; a FILE named on the command line must exist in the working tree. A rule line is
 changed when its id stands on no rule line of its directory's base state or its text differs
-from every base line of that id there. A changed line without a record is NORECORD, and every
-recorded line still passes the plain-mode codes. A map that git reports as renamed since the
+from every base line of that id there. A changed line without a record is NORECORD, a changed
+line that lacks the `review` its scope calls for is REVIEW, and every recorded line still passes
+the plain-mode codes. A map that git reports as renamed since the
 base (`git diff -M`: the earlier name is gone and the text is alike by half or more) has, as its
 base state, its text under the earlier name, so a directory that moves keeps the history of its
 records; the earlier name is not checked as a deleted map. A map git no longer pairs, its text
@@ -62,19 +76,25 @@ may move from that directory's list of hypotheses to its provenance map:
               reported at the base path and base line, and for a renamed map at its current path
               and base line
 
+A claim's term has come when its `review` date is --today or earlier (the local date by default),
+or when the list gives its version a `retired` date that is. Every mode reports such a record of
+the current state as DUE, which is no finding.
+
 Output on stdout: one line per finding, `<path>:<line>: <CODE>: <message>`, ordered by path and
-line; with --stats then three lines
+line; then one line per record whose term has come, `<path>:<line>: DUE: <message>`, in the same
+order; with --stats then three lines
     records by kind: claim <n>, decision <n>, definition <n>, norm <n>
     claims by standing: contested <n>, hypothesis <n>, law <n>, leading <n>, refuted <n>, supported <n>
     rule lines without a record: <n>
 (a value outside the vocabulary is counted after these); and the last line `<n> error(s)`.
-Every finding is an error.
+Every finding is an error; a DUE line is not.
 
-Exit: 0 no error; 1 an error; 2 an unreadable or non-UTF-8 file, wrong usage, a root that is not
-a directory, or a failed git command (outside a repository, an unknown REV), with the message
-on stderr. --stats changes no exit status.
+Exit: 0 no error; 1 an error; 2 an unreadable or non-UTF-8 file, a malformed list of model
+versions, wrong usage, a root that is not a directory, or a failed git command (outside a
+repository, an unknown REV), with the message on stderr. --stats and DUE change no exit status.
 
-Privileges: reads the checked files and, in the comparing modes only, runs `git show`,
+Privileges: reads the checked files and the list of model versions and, in the comparing modes
+only, runs `git show`,
 `git ls-tree`, `git diff` and `git rev-parse` in the root; writes nothing, opens no network
 connection, uses the standard library alone.
 """
@@ -88,6 +108,7 @@ import subprocess
 import sys
 from collections import Counter, defaultdict
 from dataclasses import dataclass
+from datetime import date
 from fnmatch import fnmatchcase
 from pathlib import Path
 
@@ -117,7 +138,7 @@ OPTIONAL = {
     "decision": ("hypothesis",),
     "definition": (),
     "norm": (),
-    "claim": ("scope", "event", "threshold", "runs", "test", "transfer", "validity"),
+    "claim": ("scope", "event", "threshold", "runs", "test", "transfer", "validity", "review"),
 }
 ADDED_BY_STANDING = {
     "hypothesis": (),
@@ -150,6 +171,14 @@ FITS = ("direct", "transfer")
 PROVED = re.compile(r"\b(?:proved|proven)\b", re.IGNORECASE)
 PREDICTION_FIELDS = ("measure", "against", "scope", "event", "refuter", "threshold")
 ERASABLE = ("refuted", "contested")
+REVIEW = "review"
+REVIEW_NONE = "none"
+REVIEW_VERSION = re.compile(r"retirement of\s+(?P<version>\S(?:.*\S)?)")
+ISO_DATE = re.compile(r"\d{4}-\d{2}-\d{2}")
+REVIEWED = ("supported", "law")
+VERSIONS = Path(__file__).resolve().parents[1] / "references" / "model-versions.md"
+VERSION_LINE = re.compile(r"^- \*\*(?P<name>[^*]+)\*\*(?P<rest>.*)$")
+VERSION_KEYS = ("id", "retired", "source")
 
 
 class InputError(Exception):
@@ -185,6 +214,87 @@ class Finding:
 
     def __str__(self) -> str:
         return f"{self.path}:{self.line}: {self.code}: {self.message}"
+
+
+def normalized(text: str) -> str:
+    return " ".join(text.split()).casefold()
+
+
+def standing_in(token: str) -> re.Pattern:
+    """The token as a whole word in a text: no letter, digit, hyphen or period glued to it, any case."""
+    body = r"\s+".join(re.escape(word) for word in token.split())
+    return re.compile(rf"(?<![\w.-]){body}(?![\w-]|\.\w)", re.IGNORECASE)
+
+
+@dataclass(frozen=True)
+class Version:
+    name: str
+    id: str | None
+    retired: date | None
+
+    def names(self) -> tuple[str, ...]:
+        return (self.name, self.id) if self.id else (self.name,)
+
+
+@dataclass
+class Versions:
+    """The list of model versions; shown is its path as the messages print it."""
+    shown: str
+    entries: list[Version]
+
+    def find(self, name: str) -> Version | None:
+        """The version whose name or id is the given one, white space collapsed, in any case."""
+        wanted = normalized(name)
+        return next((v for v in self.entries if wanted in {normalized(n) for n in v.names()}), None)
+
+    def named_in(self, text: str) -> Version | None:
+        """The first version whose name or id stands in the text."""
+        return next((v for v in self.entries if any(standing_in(n).search(text) for n in v.names())), None)
+
+
+def parse_versions(shown: str, text: str) -> Versions:
+    """The versions of a list's text; InputError at its first malformed line."""
+    entries: list[Version] = []
+    seen: dict[str, int] = {}
+    for number, raw in enumerate(text.splitlines(), 1):
+        match = VERSION_LINE.match(raw.rstrip())
+        if not match:
+            continue
+        where = f"{shown}:{number}"
+        fields: dict[str, str] = {}
+        rest = match["rest"]
+        if rest and not rest.startswith(SEPARATOR):
+            raise InputError(f"{where}: the name is followed by {rest!r}, not by ` · ` and a field")
+        for segment in rest.split(SEPARATOR)[1:]:
+            key, colon, value = segment.partition(":")
+            value = value.strip()
+            if not colon or key not in VERSION_KEYS or not value:
+                raise InputError(f"{where}: segment {segment!r} is not `key: value` with a key of {', '.join(VERSION_KEYS)}")
+            if key in fields:
+                raise InputError(f"{where}: key {key} is written twice")
+            fields[key] = value
+        retired = calendar_date(fields["retired"]) if "retired" in fields else None
+        if "retired" in fields and retired is None:
+            raise InputError(f"{where}: retired {fields['retired']!r} is not a date YYYY-MM-DD")
+        if "retired" in fields and "source" not in fields:
+            raise InputError(f"{where}: retired without source")
+        version = Version(match["name"].strip(), fields.get("id"), retired)
+        for name in version.names():
+            if normalized(name) in seen:
+                raise InputError(f"{where}: {name} is named on line {seen[normalized(name)]} as well")
+            seen[normalized(name)] = number
+        entries.append(version)
+    return Versions(shown, entries)
+
+
+def calendar_date(value: str) -> date | None:
+    """The date a YYYY-MM-DD value names; None for any other value or a day the calendar lacks."""
+    if not ISO_DATE.fullmatch(value):
+        return None
+    try:
+        return date.fromisoformat(value)
+    except ValueError:
+        return None
 
 
 def parse_record(segments: list[str]) -> Record:
@@ -251,7 +361,7 @@ def own_path_exists(root: Path, path: str) -> bool:
     return (target == base or base in target.parents) and target.exists()
 
 
-def check_record(rule: RuleLine, root: Path) -> list[Finding]:
+def check_record(rule: RuleLine, root: Path, versions: Versions) -> list[Finding]:
     """The plain-mode findings of one recorded rule line, DUP aside."""
     found: list[Finding] = []
 
@@ -322,7 +432,51 @@ def check_record(rule: RuleLine, root: Path) -> list[Finding]:
         add("FIT", f"fit {fit!r} is outside {', '.join(FITS)}")
     if fit == "transfer" and not fields.get("transfer"):
         add("FIT", "fit: transfer without transfer")
+
+    review = fields.get(REVIEW)
+    if is_claim and review:
+        retirement = REVIEW_VERSION.fullmatch(review)
+        if retirement:
+            if versions.find(retirement["version"]) is None:
+                add("REVIEW", f"review names {retirement['version']!r}, which no line of {versions.shown} names")
+        elif ISO_DATE.fullmatch(review):
+            if calendar_date(review) is None:
+                add("REVIEW", f"review {review} is no calendar date")
+        elif review != REVIEW_NONE:
+            add("REVIEW", f"review {review!r} is not `retirement of <version>`, a date YYYY-MM-DD or `none`")
     return found
+
+
+def missing_review(rule: RuleLine, versions: Versions) -> Finding | None:
+    """REVIEW at a supported claim or a law without review whose scope names a version of the list."""
+    fields = rule.record.fields if rule.record else {}
+    standing = fields.get("standing")
+    if fields.get("kind") != "claim" or standing not in REVIEWED or REVIEW in fields or SCOPE not in fields:
+        return None
+    named = versions.named_in(fields[SCOPE])
+    if not named:
+        return None
+    return Finding(rule.path, rule.line, "REVIEW", f"standing {standing} on a claim whose scope names {named.name} "
+                                                   "needs review, the retirement of a model version or a date")
+
+
+def due(rules: list[RuleLine], versions: Versions, today: date) -> list[Finding]:
+    """DUE at each claim whose review date, or the retirement of whose review version, is today or earlier."""
+    found = []
+    for rule in rules:
+        if not rule.record or rule.record.fields.get("kind") != "claim":
+            continue
+        review = rule.record.fields.get(REVIEW, "")
+        retirement = REVIEW_VERSION.fullmatch(review)
+        version = versions.find(retirement["version"]) if retirement else None
+        if version and version.retired and version.retired <= today:
+            message = f"{rule.id} is due to be read again: {version.name} is retired on {version.retired.isoformat()}"
+        elif (term := calendar_date(review)) and term <= today:
+            message = f"{rule.id} is due to be read again: its review date {term.isoformat()} has come"
+        else:
+            continue
+        found.append(Finding(rule.path, rule.line, "DUE", message))
+    return sorted(found)
 
 
 def duplicates(rules: list[RuleLine]) -> list[Finding]:
@@ -397,23 +551,20 @@ def changed_lines(current: list[RuleLine], base: list[RuleLine]) -> list[RuleLin
     return [rule for rule in current if rule.text not in base_texts.get(rule.key, ())]
 
 
-def check(current: list[RuleLine], root: Path, require: bool = False,
+def check(current: list[RuleLine], root: Path, versions: Versions, require: bool = False,
           base: list[RuleLine] | None = None, base_name: str = "HEAD") -> list[Finding]:
     """Every finding over the rule lines of the checked files; base is None in plain mode."""
     found: list[Finding] = []
     for rule in current:
         if rule.record:
-            found += check_record(rule, root)
+            found += check_record(rule, root, versions)
     found += duplicates(current)
-    unrecorded = [rule for rule in current if not rule.record]
-    if base is not None:
-        changed = {(rule.path, rule.line) for rule in changed_lines(current, base)}
-        required = [rule for rule in unrecorded if require or (rule.path, rule.line) in changed]
-    else:
-        required = unrecorded if require else []
+    changed = {(rule.path, rule.line) for rule in changed_lines(current, base)} if base is not None else set()
+    held = [rule for rule in current if require or (rule.path, rule.line) in changed]
     found += [Finding(r.path, r.line, "NORECORD",
                       "a changed rule line without a record" if base is not None and not require else "a rule line without a record")
-              for r in required]
+              for r in held if not r.record]
+    found += [finding for rule in held if (finding := missing_review(rule, versions))]
     if base is not None:
         found += predictions(current, base, base_name)
         found += erasures(current, base, base_name)
@@ -601,6 +752,13 @@ def stats(rules: list[RuleLine]) -> list[str]:
     ]
 
 
+def iso_day(value: str) -> date:
+    day = calendar_date(value)
+    if day is None:
+        raise argparse.ArgumentTypeError(f"{value!r} is not a date YYYY-MM-DD")
+    return day
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
     parser.add_argument("--root", default=".", help="the repository root (default: the current directory)")
@@ -610,6 +768,10 @@ def main(argv: list[str] | None = None) -> int:
     mode.add_argument("--changed", action="store_true", help="compare the working tree with --base")
     mode.add_argument("--staged", action="store_true", help="compare the index with HEAD")
     parser.add_argument("--base", metavar="REV", help="the base revision of --changed (default HEAD)")
+    parser.add_argument("--today", metavar="YYYY-MM-DD", type=iso_day,
+                        help="the day a term is compared with (default: the local date)")
+    parser.add_argument("--versions", metavar="LIST",
+                        help="the list of model versions (default: references/model-versions.md of this skill)")
     parser.add_argument("files", nargs="*", metavar="FILE", help="Markdown files to check (default: every map under the root)")
     args = parser.parse_args(argv)
     if args.base is not None and not args.changed:
@@ -622,14 +784,18 @@ def main(argv: list[str] | None = None) -> int:
     paths = [Path(f).absolute() for f in args.files] or discover(root)
     mode_name = "changed" if args.changed else "staged" if args.staged else "plain"
     base_name = args.base or "HEAD"
+    versions_path = Path(args.versions).absolute() if args.versions else VERSIONS
     try:
+        versions = parse_versions(relative(root, versions_path), read_file(versions_path))
         current, base = load(root, paths, mode_name, base_name, discovered=not args.files)
     except InputError as e:
         print(e, file=sys.stderr)
         return 2
-    findings = check(current, root, require=args.require, base=base, base_name=base_name)
+    findings = check(current, root, versions, require=args.require, base=base, base_name=base_name)
     for finding in findings:
         print(finding)
+    for notice in due(current, versions, args.today or date.today()):
+        print(notice)
     if args.stats:
         for line in stats(current):
             print(line)

@@ -54,7 +54,7 @@ A fact is the material of a test: an observation anyone can repeat or open. The 
 | 4. Reproducibility | another person can repeat the test: a test of our own runs by a command from the repository, and a published one is opened and its comparison, measure, sample and result are found in it; a source that passed peer review is read by its abstract, and the record says so | Would another person, following the record, see the same? | Popper, the Royal Society |
 | 5. Bounds of transfer | a supported claim holds for the conditions of its test; beyond them it is a hypothesis again, and applying it there is a decision marked as a transfer | Does the place where the rule is applied match the place where it was tested? | Hume, Deaton and Cartwright |
 | 6. No fitting | the prediction, the measure and the threshold are recorded before the test; the record holds every run, the failed ones included; a condition added to save a refuted claim is a new hypothesis | What was recorded before the result was seen? | Popper, Lakatos, Kerr |
-| 7. Revision | a standing follows the tests in both directions, and a test that went against a rule stays on record | What changes in the record if a new test goes the other way? | Popper, Duhem |
+| 7. Revision | a standing follows the tests in both directions, and a test that went against a rule stays on record; a run that failed its own checks moves no standing; a claim about a model's behaviour at the standing `supported` or `law` names the term at which its record is read again | What changes in the record if a new test goes the other way? | Popper, Duhem |
 
 ### How a rule enters
 
@@ -71,11 +71,12 @@ a new statement: which kind is it?
     │       ├── no ───► opinion: stays out
     │       └── yes ──► hypothesis
     │           └── is there a test that could have refuted it, ours or someone else's?
-    │               ├── no ─────────────────────────► waits in the list of hypotheses
-    │               ├── yes, it held ───────────────► enters as a rule with the bounds of its test
-    │               ├── yes, it failed once ────────► waits, the failure recorded
-    │               ├── yes, the tests disagree ────► contested: waits, both sides recorded
-    │               └── yes, it failed repeatably ──► refuted: the record stays
+    │               ├── no ──────────────────────────────► waits in the list of hypotheses
+    │               ├── yes, the run failed its checks ──► the run recorded, the standing kept
+    │               ├── yes, it held ────────────────────► enters as a rule with the bounds of its test
+    │               ├── yes, it failed once ─────────────► waits, the failure recorded
+    │               ├── yes, the tests disagree ─────────► contested: waits, both sides recorded
+    │               └── yes, it failed repeatably ───────► refuted: the record stays
     └── about one event
         └── are the rivals, the trace that tells them apart and the refuting outcome named?
             ├── no ───► opinion: stays out
@@ -89,7 +90,7 @@ a new statement: which kind is it?
 
 A claim about one event — what caused one failure, what one change did — cannot be tested by doing the work with the technique and without it, so it takes a path of its own. It names its rival explanations and the trace that tells them apart, and a trace on record that tells it from every named rival gives it the standing `leading` for that event; a script that reproduces the event returns it to a test of one run.
 
-A claim tested in this repository passes through a test of our own. Its hypothesis is committed first, with its measure, its refuting outcome and its threshold. The test runs the same work with the technique and without it, and the result is committed after. The repository's pre-commit hook runs the record check on the content of each commit. The check passes when every rule line the commit adds or changes in a provenance map or a list of hypotheses carries a record, and when a result follows a hypothesis that already stands in the commit history.
+A claim tested in this repository passes through a test of our own. Its hypothesis is committed first, with its measure, its refuting outcome and its threshold. The test runs the same work with the technique and without it, and the result is committed after. The repository's pre-commit hook runs the record check on the content of each commit. The check passes when every rule line the commit adds or changes in a provenance map or a list of hypotheses carries a record, when such a line holding a supported claim or a law whose scope names a model version of the skill's list carries `review`, and when a result follows a hypothesis that already stands in the commit history. A record whose term has come is a `DUE` line of the check's output and fails no commit.
 
 The full method, with a bad and a good example for each rule, is [`references/method.md`](plugins/evidence-based-authoring/skills/scientific-method/references/method.md). The [`/scientific-method`](plugins/evidence-based-authoring/skills/scientific-method/SKILL.md) skill carries the procedure, the fields of a record and the checks.
 

@@ -103,12 +103,19 @@ class Root(unittest.TestCase):
         return code, out.getvalue().splitlines(), err.getvalue()
 
     def findings(self, *args: str):
+        """The findings of one run; a DUE line is no finding and counts in neither the errors nor the exit status."""
         code, lines, err = self.run_main(*args)
         self.assertNotEqual(code, 2, err)
-        found = [FINDING.match(l).groupdict() for l in lines if FINDING.match(l)]
+        found = [m.groupdict() for l in lines if (m := FINDING.match(l)) and m["code"] != "DUE"]
         self.assertEqual(lines[-1], f"{len(found)} error(s)")
         self.assertEqual(code, 1 if found else 0)
         return found
+
+    def notices(self, *args: str):
+        """The DUE lines of one run, as (path, line, message)."""
+        code, lines, err = self.run_main(*args)
+        self.assertNotEqual(code, 2, err)
+        return [(m["path"], m["line"], m["message"]) for l in lines if (m := FINDING.match(l)) and m["code"] == "DUE"]
 
     def codes(self, *args: str) -> list[str]:
         return [f["code"] for f in self.findings(*args)]
@@ -310,6 +317,135 @@ class Validity(Root):
                 self.assertEqual(self.check_lines(claim("V-6", "hypothesis", ("validity", value), prediction=PREDICTION[:4])),
                                  ["VALIDITY"])
         self.assertEqual(self.check_lines(claim("V-7", "hypothesis", ("validity", "unchecked"), prediction=PREDICTION[:4])), [])
+
+
+VERSIONS_LIST = """# Versions
+
+Free text, and a line that names no version: - Model A 5.5 in prose.
+
+- **Model A 5.5** · id: model-a-5-5
+- **Model A 5** · id: model-a-5
+- **Model B 4.5** · id: model-b-4-5-20250929 · retired: 2026-11-30 · source: `https://example.invalid/deprecations`
+"""
+TODAY = ("--today", "2026-11-22")
+EXTERNAL_RESULT = (("test", FIRST_HAND), ("result", "r"), ("bounds", "b"), ("fit", "direct"))
+
+
+def on_model(scope: str):
+    """The prediction of a claim with no threshold and the given scope."""
+    return replace(PREDICTION[:4], "scope", scope)
+
+
+class Review(Root):
+    def setUp(self):
+        super().setUp()
+        self.versions = self.root / "versions.md"
+        self.versions.write_text(VERSIONS_LIST, encoding="utf-8")
+        self.listed = ("--versions", str(self.versions))
+
+    def review_codes(self, *rules: str, require: bool = False) -> list[str]:
+        self.write("rules-provenance.md", *rules)
+        return self.codes(*self.listed, *TODAY, *(["--require"] if require else []))
+
+    def supported(self, rid: str, *review: tuple[str, str], scope: str = "agents on Model A 5.5 at effort high",
+                  standing: str = "supported") -> str:
+        extra = replace(EXTERNAL_RESULT, "test", f"{FIRST_HAND}; external doi:10.2/y first-hand") if standing == "law" else EXTERNAL_RESULT
+        return claim(rid, standing, *extra, *review, prediction=on_model(scope))
+
+    def test_the_two_forms_pass(self):
+        for value in ("retirement of Model A 5.5", "retirement of model-b-4-5-20250929", "retirement of  model a 5.5",
+                      "2027-11-24"):
+            with self.subTest(value):
+                self.assertEqual(self.review_codes(self.supported("V-1", ("review", value)), require=True), [])
+
+    def test_a_review_outside_the_two_forms(self):
+        for value in ("soon", "2027-02-30", "27-11-24", "2027-11-24 or later", "retirement of", "retirement of Model C 1",
+                      "retirement of Model A 5.55"):
+            with self.subTest(value):
+                self.assertEqual(self.review_codes(self.supported("V-2", ("review", value))), ["REVIEW"])
+        self.write("rules-provenance.md", self.supported("V-3", ("review", "retirement of Model C 1")))
+        self.assertIn("'Model C 1', which no line of versions.md names", self.findings(*self.listed)[0]["message"])
+
+    def test_an_empty_review_is_a_field_defect(self):
+        self.assertEqual(self.review_codes(self.supported("V-4", ("review", ""))), ["FIELD"])
+
+    def test_only_a_claim_takes_review(self):
+        self.assertEqual(self.review_codes(DECISION + " · review: 2027-11-24"), ["FIELD"])
+
+    def test_a_claim_whose_scope_names_a_listed_version_carries_review_under_require(self):
+        bare = self.supported("V-5")
+        self.assertEqual(self.review_codes(bare), [])
+        self.assertEqual(self.review_codes(bare, require=True), ["REVIEW"])
+        self.assertEqual(self.review_codes(self.supported("V-6", standing="law"), require=True), ["REVIEW"])
+        self.assertEqual(self.review_codes(self.supported("V-7", scope="agents on MODEL-A-5-5"), require=True), ["REVIEW"])
+        self.write("rules-provenance.md", self.supported("V-8", scope="agents on Model A 5, and Model A 5.5 later"))
+        self.assertIn("scope names Model A 5.5 needs review", self.findings(*self.listed, "--require")[0]["message"])
+
+    def test_a_scope_that_names_no_listed_version_needs_none(self):
+        for scope in ("agents on Model A 5.55", "agents on Model A 50", "agents on a 2026 model", "humans reading Model A-5.5x"):
+            with self.subTest(scope):
+                self.assertEqual(self.review_codes(self.supported("V-9", scope=scope), require=True), [])
+        with self.subTest("a hypothesis"):
+            self.assertEqual(self.review_codes(claim("V-10", "hypothesis", prediction=on_model("agents on Model A 5.5")),
+                                               require=True), [])
+
+    def test_none_declares_no_term_and_is_never_due(self):
+        people = self.supported("V-11", ("review", "none"), scope="engineers reading reports Model A 5.5 wrote")
+        self.assertEqual(self.review_codes(people, require=True), [])
+        self.assertEqual(self.notices(*self.listed, "--today", "2099-01-01"), [])
+        for value in ("None", "none yet"):
+            with self.subTest(value):
+                self.assertEqual(self.review_codes(self.supported("V-12", ("review", value))), ["REVIEW"])
+
+    def test_a_term_that_has_come_is_due_and_fails_nothing(self):
+        self.write("rules-provenance.md", self.supported("D-1", ("review", "2026-11-22")),
+                   self.supported("D-2", ("review", "2026-11-25")),
+                   self.supported("D-3", ("review", "retirement of Model B 4.5")),
+                   self.supported("D-4", ("review", "retirement of Model A 5.5")))
+        self.assertEqual(self.codes(*self.listed, *TODAY), [])
+        self.assertEqual(self.notices(*self.listed, *TODAY),
+                         [("rules-provenance.md", "3", "D-1 is due to be read again: its review date 2026-11-22 has come")])
+        self.assertEqual(self.notices(*self.listed, "--today", "2026-11-30"), [
+            ("rules-provenance.md", "3", "D-1 is due to be read again: its review date 2026-11-22 has come"),
+            ("rules-provenance.md", "4", "D-2 is due to be read again: its review date 2026-11-25 has come"),
+            ("rules-provenance.md", "5", "D-3 is due to be read again: Model B 4.5 is retired on 2026-11-30")])
+
+    def test_due_lines_follow_the_findings_and_change_no_exit_status(self):
+        self.write("rules-provenance.md", self.supported("D-5", ("review", "2026-01-01")), line("K-1", ("kind", "opinion")))
+        code, lines, err = self.run_main(*self.listed, *TODAY, "--stats")
+        self.assertEqual(code, 1, err)
+        self.assertEqual([l.split(": ")[1] for l in lines[:2]], ["KIND", "DUE"])
+        self.assertEqual(lines[-1], "1 error(s)")
+
+    def test_a_malformed_list_exits_2(self):
+        cases = {
+            "a retired date that is no date": "- **X** · retired: 2026-11-31 · source: s",
+            "retired without source": "- **X** · retired: 2026-11-30",
+            "a key outside the list's keys": "- **X** · colour: red",
+            "a key written twice": "- **X** · id: x · id: y",
+            "words glued to the name": "- **X** soon",
+            "a name given twice": "- **X**\n- **x**",
+            "an id that is another name": "- **X** · id: y\n- **Y**",
+        }
+        for name, text in cases.items():
+            with self.subTest(name):
+                self.versions.write_text(text + "\n", encoding="utf-8")
+                self.write("rules-provenance.md", DEFINITION)
+                code, lines, err = self.run_main(*self.listed)
+                self.assertEqual((code, lines), (2, []))
+                self.assertIn("versions.md:", err)
+        code, lines, err = self.run_main("--versions", str(self.root / "absent.md"))
+        self.assertEqual((code, lines), (2, []))
+        self.assertIn("cannot read", err)
+
+    def test_today_takes_a_date(self):
+        code, lines, err = self.run_main("--today", "2026-13-01")
+        self.assertEqual((code, lines), (2, []))
+        self.assertIn("is not a date YYYY-MM-DD", err)
+
+    def test_the_shipped_list_parses(self):
+        versions = cr.parse_versions("model-versions.md", cr.VERSIONS.read_text(encoding="utf-8"))
+        self.assertTrue(versions.entries)
 
 
 class FilesAndOutput(Root):
@@ -636,6 +772,22 @@ class GitModes(Root):
         self.git("add", "-A")
         found = self.findings("--staged")
         self.assertEqual([(f["path"], f["code"]) for f in found], [("skill-b/maintenance/pending-evidence.md", "PREDICTION")])
+
+    def test_review_is_held_on_a_changed_line_and_a_due_term_fails_no_commit(self):
+        versions = self.root / "versions.md"
+        versions.write_text(VERSIONS_LIST, encoding="utf-8")
+        listed = ("--versions", str(versions), *TODAY)
+        bare = claim("R-1", "supported", *EXTERNAL_RESULT, prediction=on_model("agents on Model A 5.5"))
+        self.write("rules-provenance.md", NORM, UNRECORDED, bare)
+        self.commit("a supported claim before the field")
+        self.assertEqual(self.codes("--changed", *listed), [])
+        self.write("rules-provenance.md", NORM, UNRECORDED, replace_line(bare, "result", "r, read again"))
+        self.assertEqual(self.codes("--changed", *listed), ["REVIEW"])
+        self.write("rules-provenance.md", NORM, UNRECORDED, bare + " · review: 2026-01-01")
+        self.git("add", "-A")
+        self.assertEqual(self.codes("--staged", *listed), [])
+        self.assertEqual([n[2] for n in self.notices("--staged", *listed)],
+                         ["R-1 is due to be read again: its review date 2026-01-01 has come"])
 
     def test_an_unknown_base_exits_2(self):
         code, lines, err = self.run_main("--changed", "--base", "no-such-revision")

@@ -21,7 +21,7 @@ A rule of your own enters on a test of your own:
 
 1. Commit the hypothesis: the measure, the comparison, the scope, the refuting outcome, the threshold and the number of runs.
 2. Run the same work with the technique and without it, and keep every run.
-3. Commit the result with the conditions it was obtained under and what checked the measure; a comparison of shares names its test and its p-value or interval.
+3. Commit the result with the conditions it was obtained under and what checked the measure; a comparison of shares names its test and its p-value or interval, and a claim about a model's behaviour names the term at which its record is read again.
 
 `check_record.py --staged` reads the order from history and rejects a result whose hypothesis was not committed before it.
 

@@ -29,7 +29,7 @@ A record says what a rule rests on, in fields a script can check. It closes the 
 | `decision` | `owner`, `goal` | `hypothesis` |
 | `definition` | `term` | |
 | `norm` | `issuer`, `version`, `locator` | |
-| `claim` | `standing`, `measure`, `against`, `refuter`, one of `scope` and `event`, and the fields its standing adds | `threshold`, `runs`, `test`, `transfer`, `validity` |
+| `claim` | `standing`, `measure`, `against`, `refuter`, one of `scope` and `event`, and the fields its standing adds | `threshold`, `runs`, `test`, `transfer`, `validity`, `review` |
 
 A rule line takes the kind of what its rule rests on. A line that names a test of the rule's claim is a `claim`, also when it names a document beside the test. A line whose ground is a document that prescribes or describes the practice — a standard, a specification, official documentation, a style guide, a rule of a static analyser — is a `norm`. A line whose ground is the project's own choice is a `decision`, and a line that fixes a term is a `definition`. A run that left nothing to open or to rerun is no test here: its line takes the kind of the ground that remains, or its claim is recorded as a hypothesis.
 
@@ -57,10 +57,11 @@ A claim about one event — what caused one failure, what one change did, what o
 | `threshold` | the size of difference fixed before the test |
 | `runs` | the number of repetitions, per arm for a comparison |
 | `test` | one test or several joined by `; ` (section Tests) |
-| `result` | what the tests showed, every run counted; a comparison of shares names the test and its p-value or interval |
+| `result` | what the tests showed, every run counted; a comparison of shares names the test and its p-value or interval; a run whose prompt, stand or judge failed the check made of it is counted with the check it failed, and moves no standing |
 | `bounds` | the conditions the tests ran under |
 | `fit` | `direct` when the scope lies within the bounds, `transfer` when the rule is applied beyond them |
 | `transfer` | under `fit: transfer`, what differs between the scope and the bounds |
+| `review` | for a claim about a model's behaviour, the term at which its record is read again, in one of the two forms below; `none` on a claim of another measure whose `scope` names a listed version |
 
 `validity` takes one of four forms:
 
@@ -71,12 +72,19 @@ A claim about one event — what caused one failure, what one change did, what o
 
 § Fields a standing adds says where the field is required. Elsewhere it is optional: a hypothesis may plan it, and a record resting on someone else's test says what the source reports of its measure, or leaves the field out.
 
+`review` takes one of two forms:
+
+- `retirement of <version>` — the record is read again once that model version is retired. The version is the one the test or the bounds name, written as its line in `references/model-versions.md` names it, by name or by `id`; a version the list lacks gets a line there.
+- `<YYYY-MM-DD>` — the record is read again from that date on. A record whose test and bounds name no model version takes a date, set as rule 7 of `references/method.md` says.
+
+A claim about a model's behaviour — its measure is what a language model, or an agent running on one, does — carries `review` at the standing `supported` or `law`, and any claim may carry it. A claim whose measure is what people do with a model's output, or how a program or tool behaves, carries no term. The record check holds to the field a `supported` or `law` claim whose `scope` names a version of `references/model-versions.md`, where `REVIEW` of § Findings of the record check says; such a claim that is not about a model's behaviour writes `review: none`, as the row `review` of the table above says. The reader judges each claim's term, or its `none`, against its measure.
+
 ## Fields a standing adds
 
 | Standing | Added required fields |
 |--|--|
 | `hypothesis` | with a test of our own named in `test`: `threshold` and `runs`, except on a claim about one event; otherwise none |
-| `supported` | `test`, `result`, `bounds`, `fit`; with a test of our own also `threshold`, `runs` and a `validity` other than `unchecked` |
+| `supported` | `test`, `result`, `bounds`, `fit`; with a test of our own also `threshold`, `runs` and a `validity` other than `unchecked`; for a claim about a model's behaviour also `review` |
 | `law` | the fields of `supported`, with two tests or more |
 | `leading` | `event`, `test`, `result`, `bounds` |
 | `contested` | `test` with two tests or more, `result` |
@@ -112,12 +120,15 @@ Every finding is one line, `<path>:<line>: <CODE>: <message>`. The exit status i
 | `VALIDITY` | a `validity` outside the four forms; a `supported` or `law` claim whose `test` holds an `own` test and whose `validity` is absent or `unchecked` |
 | `OWN` | an `own` test whose path does not exist under the root |
 | `FIT` | a `fit` outside the two values; `fit: transfer` without `transfer` |
+| `REVIEW` | a `review` in neither form and other than `none`; a date that is no calendar date; a version no line of `references/model-versions.md` names; under `--require`, or on an added or changed line, a `supported` or `law` claim without `review` whose `scope` names a version of that list |
 | `DUP` | a recorded line whose id stands on another rule line of the same directory |
 | `NORECORD` | under `--require`, or on an added or changed line, a rule line without a record |
 | `PREDICTION` | a claim with an `own` test and a standing other than `hypothesis` whose id, at the base revision and in the same directory, is absent or carries a different `measure`, `against`, `scope`, `event`, `refuter` or `threshold` |
 | `ERASED` | an id whose record at the base revision had the standing `refuted` or `contested`, or carried a `result` whatever its standing, and whose line is gone from its directory |
 
-`NORECORD` on changed lines, `PREDICTION` and `ERASED` compare two states of the files, so they run in the two comparing modes. `--changed` sets the working tree against a base revision, `HEAD` unless `--base` names another; `--staged` sets the index against `HEAD`. With no file named, both modes check the files that match the two name patterns in either state, so a deleted map still answers for its records. A map that git reports as renamed is compared with its text under the earlier name, and a map whose text changed too much for git to pair it is paired through the directory its neighbours moved from, so a directory that moves keeps the history of its records. `PREDICTION` is what puts a prediction into history before its result: the hypothesis is committed first, and the commit that adds the result finds it at the base revision unchanged.
+Beside its findings the script prints `<path>:<line>: DUE: <message>` for each record whose term has come: its `review` date is the day of the check or earlier, or the list gives its version a `retired` date that is. A `DUE` line is no finding: it changes neither the count of errors nor the exit status, so a term that has come fails no commit. `--today <YYYY-MM-DD>` sets the day of the check, and `--versions <file>` reads another list in place of `references/model-versions.md`.
+
+`NORECORD` and `REVIEW` on changed lines, `PREDICTION` and `ERASED` compare two states of the files, so they run in the two comparing modes. `--changed` sets the working tree against a base revision, `HEAD` unless `--base` names another; `--staged` sets the index against `HEAD`. With no file named, both modes check the files that match the two name patterns in either state, so a deleted map still answers for its records. A map that git reports as renamed is compared with its text under the earlier name, and a map whose text changed too much for git to pair it is paired through the directory its neighbours moved from, so a directory that moves keeps the history of its records. `PREDICTION` is what puts a prediction into history before its result: the hypothesis is committed first, and the commit that adds the result finds it at the base revision unchanged.
 
 ## The reader's verdict
 

@@ -87,10 +87,14 @@ The prediction, the measure and the threshold are recorded before the test. The 
 
 ### 7. Revision
 
-A standing follows the tests and moves in both directions; the strongest standing is still open to a new test. A test that went against the claim is recorded and stays recorded. A claim is refuted by a repeatable result; a single failure is recorded and waits for its repetition. Check question: what changes in the record if a new test goes the other way?
+A standing follows the tests and moves in both directions; the strongest standing is still open to a new test. A test that went against the claim is recorded and stays recorded. A claim is refuted by a repeatable result; a single failure is recorded and waits for its repetition. A run whose prompt, stand or judge failed the check made of it tested its apparatus and not the claim: it is recorded as a run, with the check it failed, and the standing stays where it was. Whether a run failed its checks is judged for each claim it is offered to: one run can test one claim and leave another untested. Check question: what changes in the record if a new test goes the other way?
 
 - bad: after one failed run the rule is deleted together with its record.
 - good: the failed run is recorded, and a second failure under the same conditions moves the standing to refuted.
+- bad: a run whose judge read no reply, its parser failing on every one, is counted as the second failure, and the claim becomes refuted.
+- good: that run is recorded with the check its judge failed, the standing stays, and the next run that passes its checks counts.
+
+A claim about a model's behaviour — its measure is what a language model, or an agent running on one, does — at the standing `supported` or `law` also carries the term at which its record is read again: the retirement of the model version its test or bounds name, or, where they name none, a date twelve months after the latest run of its tests, the source's date standing in for runs it leaves undated. The term comes whether or not a new test arrives. It is no test, so its coming moves no standing by itself: the record is read again with the check questions of rules 5 and 7 against the versions in service, and leaves the reading with a new term, the version of a new test or a date twelve months after the reading.
 
 ## A claim about one event
 
@@ -123,11 +127,12 @@ a new statement: which kind is it?
     │       ├── no ───► opinion: stays out
     │       └── yes ──► hypothesis
     │           └── is there a test that could have refuted it, ours or someone else's?
-    │               ├── no ─────────────────────────► waits in the list of hypotheses
-    │               ├── yes, it held ───────────────► enters as a rule with the bounds of its test
-    │               ├── yes, it failed once ────────► waits, the failure recorded
-    │               ├── yes, the tests disagree ────► contested: waits, both sides recorded
-    │               └── yes, it failed repeatably ──► refuted: the record stays
+    │               ├── no ──────────────────────────────► waits in the list of hypotheses
+    │               ├── yes, the run failed its checks ──► the run recorded, the standing kept
+    │               ├── yes, it held ────────────────────► enters as a rule with the bounds of its test
+    │               ├── yes, it failed once ─────────────► waits, the failure recorded
+    │               ├── yes, the tests disagree ─────────► contested: waits, both sides recorded
+    │               └── yes, it failed repeatably ───────► refuted: the record stays
     └── about one event
         └── are the rivals, the trace that tells them apart and the refuting outcome named?
             ├── no ───► opinion: stays out
@@ -141,4 +146,4 @@ a new statement: which kind is it?
 
 A claim tested in this repository passes through a hypothesis, a test of our own and a record in the repository. An opinion enters after it is recast: a test is named for it and it becomes a hypothesis, or the owner takes it as a decision and it is presented as a choice. A rule needed before its test exists enters the same way: it is in force as a decision, and its hypothesis waits in the list for its test.
 
-The record of an accepted claim carries the statement with its measure, the refuting outcome, the test, its result, the bounds and the standing; `references/record-format.md` gives the fields. An independent reader answers the check questions of the seven rules, and a rerun confirms a test of our own.
+The record of an accepted claim carries the statement with its measure, the refuting outcome, the test, its result, the bounds and the standing, and for a claim about a model's behaviour the term at which it is read again; `references/record-format.md` gives the fields. An independent reader answers the check questions of the seven rules, and a rerun confirms a test of our own.

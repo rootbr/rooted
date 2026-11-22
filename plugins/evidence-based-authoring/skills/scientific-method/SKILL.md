@@ -53,8 +53,8 @@ A claim about one event — what caused one failure, what one change did — nam
 **A test of our own**, in three moves:
 
 1. Register. Write the hypothesis record with its `threshold`, its `runs` and the planned `test` into the project's list of hypotheses, and have it committed by the project's commit procedure.
-2. Run. Do the same work with the technique and without it, as many times as the record says, each run graded by a script. Keep every run. Unless the measure is the very quantity the claim is about, check it as well, in a run of its own: change what the claim is about in a known direction and see the measure move, or have a person label what the measure counts.
-3. Record. Add `result`, `bounds`, `fit` and `validity`, set the standing, and have the change committed. A result that compares shares names its test and its p-value or interval; `validity` says what checked the measure (`references/record-format.md` gives its four forms). `check_record.py --staged` passes this commit only when the hypothesis stands in the previous one with its prediction unchanged.
+2. Run. Do the same work with the technique and without it, as many times as the record says, each run graded by a script. Keep every run, a run whose prompt, stand or judge failed the check made of it included: record it with the check it failed, since it tested its apparatus and not the claim. Unless the measure is the very quantity the claim is about, check it as well, in a run of its own: change what the claim is about in a known direction and see the measure move, or have a person label what the measure counts.
+3. Record. Add `result`, `bounds`, `fit` and `validity`, and `review` for a claim about a model's behaviour (§4), set the standing, and have the change committed. A result that compares shares names its test and its p-value or interval; `validity` says what checked the measure (`references/record-format.md` gives its four forms). `check_record.py --staged` passes this commit only when the hypothesis stands in the previous one with its prediction unchanged.
 
 A claim about how a program, a language or a tool behaves takes a test of one run: a script whose exit status is non-zero when the behaviour differs.
 
@@ -64,6 +64,8 @@ A claim about how a program, a language or a tool behaves takes a test of one ru
 
 `bounds` are the conditions the test ran under: who or which model, what task, which version. `scope` is where the rule is applied. The fit is `direct` when the scope lies within the bounds. It is `transfer` when the rule is applied beyond them: the record names the difference, and applying the rule there is the owner's decision.
 
+A claim about a model's behaviour — its measure is what a language model, or an agent running on one, does — gets `review` at `supported` or `law`, the term at which its record is read again. Name the model version its test or bounds name, `retirement of <version>`, as its line in `references/model-versions.md` names it, and add the line when the list lacks the version. Where they name none, the term is a date twelve months after the latest run of its tests, or after the source's date where it leaves its runs undated. A claim about what people do with a model's output, or about how a program behaves, gets no term; where its `scope` names a version of that list, it gets `review: none`.
+
 A test in which an agent follows an instruction bounds the claim "the instruction produces the behaviour". That the behaviour serves the reader or the code is a second claim, with a test of its own.
 
 - bad: a run in which the agent writes the opening paragraph as instructed, recorded as the test of "readers grasp the report faster".
@@ -71,7 +73,7 @@ A test in which an agent follows an instruction bounds the claim "the instructio
 
 ## 5. Set the standing
 
-Take the standing from the table of `references/method.md` by what the tests show, and no stronger. One study or one series of runs gives `supported`; `law` takes independent tests under varied conditions. A claim about one event takes `leading` once a trace on record tells it from every named rival, and returns to `hypothesis` when a new rival fits the trace as well. A test that went against the claim stays in the record.
+Take the standing from the table of `references/method.md` by what the tests show, and no stronger. One study or one series of runs gives `supported`; `law` takes independent tests under varied conditions. A claim about one event takes `leading` once a trace on record tells it from every named rival, and returns to `hypothesis` when a new rival fits the trace as well. A test that went against the claim stays in the record. A run that failed its own checks — its prompt, its stand or its judge failed the check made of it — moves no standing, in either direction.
 
 - bad: one study of students reading pairs of sentences, behind a rule for engineers reading reports, recorded as `law`.
 - good: the same study recorded as `supported`, with `fit: transfer` and the difference named.
@@ -82,6 +84,8 @@ Take the standing from the table of `references/method.md` by what the tests sho
 python3 -I <skill-dir>/scripts/check_record.py --root <repo> <file-with-the-record>
 python3 -I <skill-dir>/scripts/check_record.py --root <repo> --staged
 ```
+
+A `DUE` line in its output names a record whose term has come; it is no finding and fails nothing, and §7 says what to do with it.
 
 Then have the record read by a reader that saw nothing of your work. Dispatch the plugin's `claim-skeptic` agent (`evidence-based-authoring:claim-skeptic`) with the path of the file, the id of the record, the paths of the two reference files and the output of the record check; save the JSON it returns and check it:
 
@@ -98,9 +102,11 @@ When a new test arrives, add it to `test` and `result` and move the standing whe
 - bad: the refuted line is edited to "works on short files" and keeps `supported`.
 - good: the refuted line stays as it is, and "works on short files" enters as a hypothesis with its own refuting outcome.
 
+When the record check prints `DUE` for a record, read the record again against the model versions in service: does the scope still lie within the bounds, and does the standing say no more than the tests show? A term that has come is no test and moves no standing by itself. Give the record a new term: the version of a new test, or a date twelve months after the reading. When a provider announces the retirement of a listed version, add `retired` and `source` to its line in `references/model-versions.md`.
+
 ## Scripts and the reader
 
-- `scripts/check_record.py` reads the Markdown files named on its command line or found under `--root` by name. With `--changed` or `--staged` it also runs `git show`, `git rev-parse`, `git ls-tree` and `git diff` to read the base state. It prints its findings, writes nothing, opens no network connection and uses the Python standard library alone.
+- `scripts/check_record.py` reads the Markdown files named on its command line or found under `--root` by name, and the list `references/model-versions.md`. With `--changed` or `--staged` it also runs `git show`, `git rev-parse`, `git ls-tree` and `git diff` to read the base state. It prints its findings, writes nothing, opens no network connection and uses the Python standard library alone.
 - `scripts/check_verdict.py` reads one JSON file or standard input, prints its findings, writes nothing, opens no network connection and uses the Python standard library alone.
 - The `claim-skeptic` agent is read-only: it reads and searches files under the repository and fetches the sources a record names over the network.
 
