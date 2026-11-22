@@ -1,0 +1,84 @@
+{
+ "cases": [
+  {
+   "case": "cache",
+   "report_intact": "cache/intact.md",
+   "steps": 5,
+   "variants": [
+    {
+     "variant": "no-step",
+     "report": "cache/no-step.md",
+     "removed": "step 4: on a miss the gallery draws the thumbnail and stores it under the key",
+     "remove": [
+      {
+       "sentence": "When the cache has no entry under that key"
+      },
+      {
+       "line": "if entry is missing:"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "case": "retry",
+   "report_intact": "retry/intact.md",
+   "steps": 5,
+   "variants": [
+    {
+     "variant": "no-step",
+     "report": "retry/no-step.md",
+     "removed": "step 4: after each wait the pause doubles, up to two seconds",
+     "remove": [
+      {
+       "sentence": "After each wait the pause doubles"
+      },
+      {
+       "line": "pause = min(2 × pause, 2 s)"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "case": "limiter",
+   "report_intact": "limiter/intact.md",
+   "steps": 5,
+   "variants": [
+    {
+     "variant": "no-step",
+     "report": "limiter/no-step.md",
+     "removed": "step 2: the count never goes above one hundred tokens",
+     "remove": [
+      {
+       "sentence": "The count never goes above one hundred tokens"
+      },
+      {
+       "line": "tokens = min(tokens, 100)"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "case": "rotation",
+   "report_intact": "rotation/intact.md",
+   "steps": 5,
+   "variants": [
+    {
+     "variant": "no-step",
+     "report": "rotation/no-step.md",
+     "removed": "step 5: after a rename the oldest dated files are deleted until seven are left",
+     "remove": [
+      {
+       "sentence": "After a rename it deletes the oldest dated files"
+      },
+      {
+       "line": "delete the oldest log.<date-time> files until 7 remain"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

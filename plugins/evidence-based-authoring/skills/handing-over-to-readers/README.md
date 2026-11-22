@@ -91,3 +91,5 @@ This skill's instance of the repository `README.md` §Skill layout:
 | `evals/grade.py` | a maintainer | grading a run |
 | `evals/runs/iteration-2/` | a maintainer, a reviewer | checking a rule that rests on the eval |
 | `evals/cold-read/` (`plants.json`, `plant.py`, `questions.json`, the four cases, `runs/`), `evals/grade_cold_read.py` | a maintainer | measuring the cold read on reports with planted omissions |
+| `evals/retelling/` (`README.md`, `plants.json`, the two questions files, the four cases, `runs/`), `evals/grade_retelling.py` | a maintainer | measuring whether a retelling of a first part marks a step the text leaves out |
+| `evals/explainer-reading/protocol.md` | a maintainer and the repository's owner | the two readings of the rebuilt explanation page and what each counts |
